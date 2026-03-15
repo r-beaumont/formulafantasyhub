@@ -1,378 +1,270 @@
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-
-const s = {
-  page: {
-    position: 'relative' as const, zIndex: 1,
-    maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px',
-  },
-  card: {
-    background: '#0E1318',
-    border: '1px solid rgba(255,255,255,0.07)',
-    borderRadius: '14px', overflow: 'hidden' as const,
-  },
-  cardHeader: {
-    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-    padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)',
-  },
-  cardTitle: {
-    fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const,
-    letterSpacing: '1.5px', color: '#5A6A7A',
-  },
-  cardBody: { padding: '16px 20px' },
-}
-
-const Badge = ({ type, label }: { type: string; label: string }) => {
-  const styles: Record<string, { bg: string; color: string }> = {
-    live: { bg: 'rgba(232,0,45,0.15)', color: '#E8002D' },
-    race: { bg: 'rgba(255,184,0,0.12)', color: '#FFB800' },
-    new: { bg: 'rgba(0,212,126,0.12)', color: '#00D47E' },
-    blue: { bg: 'rgba(0,168,255,0.12)', color: '#00A8FF' },
-    premium: { bg: 'rgba(255,184,0,0.12)', color: '#FFB800' },
-  }
-  const st = styles[type] || styles.live
-  return (
-    <span style={{
-      fontSize: '10px', fontWeight: 600, padding: '3px 8px',
-      borderRadius: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' as const,
-      background: st.bg, color: st.color,
-    }}>{label}</span>
-  )
-}
-
-const TeamDot = ({ color }: { color: string }) => (
-  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: color, flexShrink: 0 }} />
-)
+import { CURRENT_RACE, SEASON_CALENDAR } from '@/lib/races'
+import { DRIVER_STANDINGS, CONSTRUCTOR_STANDINGS } from '@/lib/standings'
+import { articles } from '@/lib/articles'
 
 export default function Home() {
+  const top5Drivers = DRIVER_STANDINGS.slice(0, 5)
+  const top5Constructors = CONSTRUCTOR_STANDINGS.slice(0, 5)
+  const latestArticles = articles.slice(0, 3)
+  const nextSession = CURRENT_RACE.sessions.find(s => !s.completed)
+
   return (
     <>
       <Navbar />
-      <div style={s.page}>
+      <main style={{ position: 'relative', zIndex: 1 }}>
 
-        {/* HERO */}
+        {/* HERO BANNER */}
         <div style={{
-          ...s.card,
-          padding: '28px 32px', marginBottom: '24px',
-          display: 'grid', gridTemplateColumns: '1fr auto',
-          alignItems: 'center', gap: '24px',
-          position: 'relative' as const,
+          borderBottom: '1px solid rgba(255,255,255,0.07)',
+          background: 'linear-gradient(180deg, rgba(232,0,45,0.08) 0%, transparent 100%)',
+          padding: '48px 32px 40px',
         }}>
-          <div style={{
-            position: 'absolute' as const, left: 0, top: 0, bottom: 0,
-            width: '4px', background: '#E8002D', borderRadius: '2px 0 0 2px',
-          }} />
-          <div>
-            <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase' as const, marginBottom: '6px' }}>
-              🏁 Race Weekend Active
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
+              <div style={{ width: '3px', height: '32px', background: '#E8002D', borderRadius: '2px' }} />
+              <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '3px', color: '#E8002D', textTransform: 'uppercase' }}>
+                Formula Hub — Your F1 Home
+              </span>
             </div>
-            <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', letterSpacing: '1px', lineHeight: 1, marginBottom: '6px' }}>
-              Chinese Grand Prix 2026
+            <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(3rem,8vw,6rem)', lineHeight: 0.95, marginBottom: '16px' }}>
+              Everything F1.<br />One place.
             </div>
-            <div style={{ fontSize: '13px', color: '#5A6A7A' }}>
-              Sprint weekend · <strong style={{ color: '#F0F4F8' }}>Deadline Saturday 03:00 UTC</strong> &nbsp;·&nbsp; Round 2 of 24 &nbsp;·&nbsp; 🇨🇳 Shanghai
+            <p style={{ color: '#5A6A7A', fontSize: '14px', maxWidth: '500px', lineHeight: 1.7, marginBottom: '28px' }}>
+              Live race data, championship standings, fantasy strategy and expert analysis from Rob Beaumont — official F1 Fantasy columnist for formula1.com.
+            </p>
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+              <Link href="/race-hub" style={{ background: '#E8002D', color: 'white', padding: '10px 24px', borderRadius: '8px', textDecoration: 'none', fontSize: '13px', fontWeight: 600 }}>Race Hub →</Link>
+              <Link href="/f1-fantasy" style={{ background: 'transparent', color: '#F0F4F8', padding: '10px 24px', borderRadius: '8px', textDecoration: 'none', fontSize: '13px', fontWeight: 600, border: '1px solid rgba(255,255,255,0.15)' }}>F1 Fantasy →</Link>
             </div>
           </div>
-          {/* Countdown */}
-          <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-            {[['01', 'Days'], ['08', 'Hrs'], ['24', 'Min']].map(([num, label], i) => (
-              <>
-                <div key={label} style={{
-                  textAlign: 'center' as const, background: '#141B22',
-                  border: '1px solid rgba(255,255,255,0.07)',
-                  borderRadius: '10px', padding: '10px 16px', minWidth: '60px',
-                }}>
-                  <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '26px', fontWeight: 600, lineHeight: 1, color: '#E8002D' }}>{num}</div>
-                  <div style={{ fontSize: '10px', color: '#5A6A7A', textTransform: 'uppercase' as const, letterSpacing: '1px', marginTop: '3px' }}>{label}</div>
+        </div>
+
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
+
+          {/* NEXT RACE + WEATHER ROW */}
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '20px', marginBottom: '20px' }}>
+
+            {/* Next Race */}
+            <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', position: 'relative' }}>
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg, #E8002D, rgba(232,0,45,0.2))' }} />
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+                <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1.5px', color: '#5A6A7A' }}>Current Race Weekend</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div style={{ width: '7px', height: '7px', background: '#E8002D', borderRadius: '50%', animation: 'pulse 2s infinite' }} />
+                  <span style={{ fontSize: '10px', fontWeight: 600, color: '#E8002D', textTransform: 'uppercase', letterSpacing: '1px' }}>Live</span>
                 </div>
-                {i < 2 && <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '22px', color: '#3A4A5A', marginBottom: '12px' }}>:</span>}
-              </>
+              </div>
+              <div style={{ padding: '20px' }}>
+                <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', lineHeight: 1, marginBottom: '4px' }}>
+                  {CURRENT_RACE.flag} {CURRENT_RACE.name}
+                </div>
+                <div style={{ color: '#5A6A7A', fontSize: '13px', marginBottom: '20px' }}>
+                  Round {CURRENT_RACE.round} · {CURRENT_RACE.isSprint ? '⚡ Sprint Weekend' : 'Standard Weekend'}
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: `repeat(${CURRENT_RACE.sessions.length}, 1fr)`, gap: '8px' }}>
+                  {CURRENT_RACE.sessions.map((session) => {
+                    const isNext = session === nextSession
+                    return (
+                      <div key={session.name} style={{
+                        background: isNext ? 'rgba(232,0,45,0.08)' : '#141B22',
+                        border: isNext ? '1px solid rgba(232,0,45,0.4)' : '1px solid rgba(255,255,255,0.05)',
+                        borderRadius: '8px', padding: '10px 12px',
+                      }}>
+                        <div style={{ fontSize: '9px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', color: session.completed ? '#3A4A5A' : isNext ? '#E8002D' : '#5A6A7A', marginBottom: '4px' }}>
+                          {session.completed ? '✓' : isNext ? '● Next' : '○'}
+                        </div>
+                        <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '14px', color: session.completed ? '#3A4A5A' : '#F0F4F8', marginBottom: '2px' }}>{session.name}</div>
+                        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: session.completed ? '#3A4A5A' : '#FFB800' }}>{session.timeUTC}</div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Weather */}
+            <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+                <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1.5px', color: '#5A6A7A' }}>Weekend Weather</span>
+                <span style={{ fontSize: '10px', color: '#5A6A7A', fontFamily: 'JetBrains Mono, monospace' }}>Shanghai</span>
+              </div>
+              <div style={{ padding: '16px 20px' }}>
+                {[
+                  { day: 'Fri', icon: '🌤️', high: '16°', low: '10°', rain: '10%' },
+                  { day: 'Sat', icon: '⛅', high: '15°', low: '9°', rain: '20%' },
+                  { day: 'Sun', icon: '🌧️', high: '13°', low: '8°', rain: '45%' },
+                ].map((w, i) => (
+                  <div key={w.day} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
+                    <span style={{ fontSize: '22px' }}>{w.icon}</span>
+                    <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '18px', color: '#5A6A7A', width: '32px' }}>{w.day}</span>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 600 }}>{w.high} <span style={{ color: '#3A4A5A', fontSize: '12px' }}>{w.low}</span></div>
+                    </div>
+                    <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: parseInt(w.rain) > 30 ? '#00A8FF' : '#5A6A7A' }}>💧{w.rain}</span>
+                  </div>
+                ))}
+                <Link href="/race-hub" style={{ display: 'block', textAlign: 'center', marginTop: '12px', fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 600 }}>
+                  Full forecast →
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* SESSION RESULTS */}
+          <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', marginBottom: '20px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+              <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1.5px', color: '#5A6A7A' }}>Latest Session Results — Australian GP</span>
+              <Link href="/race-hub" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>Full results →</Link>
+            </div>
+            <div style={{ padding: '16px 20px' }}>
+              <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', color: '#5A6A7A', marginBottom: '12px' }}>Race Result · Round 1</div>
+              {[
+                { pos: 1, posC: '#FFD700', bar: '#27F4D2', driver: 'G. Russell', team: 'Mercedes', time: '1:21:32.456', gap: 'Winner' },
+                { pos: 2, posC: '#C0C0C0', bar: '#27F4D2', driver: 'K. Antonelli', team: 'Mercedes', time: '+5.123', gap: '+5.1s' },
+                { pos: 3, posC: '#CD7F32', bar: '#E8002D', driver: 'C. Leclerc', team: 'Ferrari', time: '+12.456', gap: '+12.5s' },
+                { pos: 4, posC: '#5A6A7A', bar: '#E8002D', driver: 'L. Hamilton', team: 'Ferrari', time: '+18.901', gap: '+18.9s' },
+                { pos: 5, posC: '#5A6A7A', bar: '#FF8000', driver: 'L. Norris', team: 'McLaren', time: '+24.567', gap: '+24.6s' },
+              ].map((r) => (
+                <div key={r.driver} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 600, color: r.posC, width: '24px' }}>{r.pos}</span>
+                  <div style={{ width: '3px', height: '28px', borderRadius: '2px', background: r.bar }} />
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: '13px', fontWeight: 600 }}>{r.driver}</div>
+                    <div style={{ fontSize: '11px', color: '#5A6A7A' }}>{r.team}</div>
+                  </div>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: r.pos === 1 ? '#FFB800' : '#5A6A7A' }}>{r.gap}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* STANDINGS ROW */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+
+            {/* Drivers */}
+            <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+                <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1.5px', color: '#5A6A7A' }}>Drivers Championship</span>
+                <Link href="/statistics" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>Full standings →</Link>
+              </div>
+              <div style={{ padding: '8px 20px' }}>
+                {top5Drivers.map((d) => {
+                  const posColors: Record<number,string> = { 1: '#FFD700', 2: '#C0C0C0', 3: '#CD7F32' }
+                  return (
+                    <div key={d.id} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: posColors[d.pos] || '#5A6A7A', width: '20px', fontWeight: d.pos <= 3 ? 600 : 400 }}>{d.pos}</span>
+                      <div style={{ width: '3px', height: '28px', borderRadius: '2px', background: d.teamColor }} />
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: '13px', fontWeight: 500 }}>{d.nationality} {d.name}</div>
+                        <div style={{ fontSize: '11px', color: '#5A6A7A' }}>{d.team}</div>
+                      </div>
+                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '15px', fontWeight: 600, color: '#F0F4F8' }}>{d.points}</span>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Constructors */}
+            <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+                <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1.5px', color: '#5A6A7A' }}>Constructors Championship</span>
+                <Link href="/statistics" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>Full standings →</Link>
+              </div>
+              <div style={{ padding: '8px 20px' }}>
+                {top5Constructors.map((c) => {
+                  const posColors: Record<number,string> = { 1: '#FFD700', 2: '#C0C0C0', 3: '#CD7F32' }
+                  const maxPts = CONSTRUCTOR_STANDINGS[0].points
+                  return (
+                    <div key={c.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: posColors[c.pos] || '#5A6A7A', width: '20px', fontWeight: c.pos <= 3 ? 600 : 400 }}>{c.pos}</span>
+                      <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: c.color, flexShrink: 0 }} />
+                      <span style={{ flex: 1, fontSize: '13px', fontWeight: 500 }}>{c.name}</span>
+                      <div style={{ width: '60px', height: '3px', background: '#1C2630', borderRadius: '2px', overflow: 'hidden' }}>
+                        <div style={{ width: maxPts > 0 ? `${(c.points/maxPts)*100}%` : '4px', height: '100%', background: c.color, opacity: 0.8 }} />
+                      </div>
+                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '15px', fontWeight: 600, color: '#F0F4F8', width: '32px', textAlign: 'right' }}>{c.points}</span>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* SECTION LINKS — summary of main pages */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '12px', marginBottom: '20px' }}>
+            {[
+              { href: '/race-hub', icon: '🏎️', label: 'Race Hub', desc: 'Live timing, results & circuit info', color: '#E8002D' },
+              { href: '/f1-fantasy', icon: '🏆', label: 'F1 Fantasy', desc: 'Picks, price changes & strategy', color: '#FFB800' },
+              { href: '/statistics', icon: '📊', label: 'Statistics', desc: 'Full championship standings & data', color: '#00A8FF' },
+              { href: '/videos', icon: '▶️', label: 'Videos', desc: 'Latest YouTube content from Rob', color: '#00D47E' },
+            ].map((item) => (
+              <Link key={item.href} href={item.href} style={{ textDecoration: 'none' }}>
+                <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', padding: '20px', cursor: 'pointer', transition: 'border-color 0.2s', height: '100%' }}>
+                  <div style={{ fontSize: '28px', marginBottom: '12px' }}>{item.icon}</div>
+                  <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '20px', color: item.color, marginBottom: '6px' }}>{item.label}</div>
+                  <div style={{ fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>{item.desc}</div>
+                </div>
+              </Link>
             ))}
           </div>
-        </div>
 
-        {/* STANDINGS STRIP */}
-        <div style={{
-          display: 'flex', background: '#0E1318',
-          border: '1px solid rgba(255,255,255,0.07)',
-          borderRadius: '12px', overflow: 'hidden', marginBottom: '24px',
-        }}>
-          {[
-            { pos: '1', posStyle: { color: '#FFD700' }, barColor: '#3671C6', driver: 'M. Verstappen', team: 'Red Bull Racing', pts: '87' },
-            { pos: '2', posStyle: { color: '#C0C0C0' }, barColor: '#FF8000', driver: 'L. Norris', team: 'McLaren', pts: '74' },
-            { pos: '3', posStyle: { color: '#CD7F32' }, barColor: '#FF8000', driver: 'O. Piastri', team: 'McLaren', pts: '61' },
-            { pos: '4', posStyle: { color: '#3A4A5A' }, barColor: '#E8002D', driver: 'C. Leclerc', team: 'Ferrari', pts: '52' },
-            { pos: '5', posStyle: { color: '#3A4A5A' }, barColor: '#E8002D', driver: 'C. Sainz', team: 'Ferrari', pts: '48' },
-          ].map((item, i) => (
-            <div key={item.driver} style={{
-              flex: 1, padding: '14px 18px',
-              borderRight: i < 4 ? '1px solid rgba(255,255,255,0.07)' : 'none',
-              display: 'flex', alignItems: 'center', gap: '12px',
-            }}>
-              <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '28px', lineHeight: 1, width: '28px', ...item.posStyle }}>{item.pos}</div>
-              <div style={{ width: '3px', height: '32px', borderRadius: '2px', background: item.barColor, flexShrink: 0 }} />
-              <div>
-                <div style={{ fontSize: '13px', fontWeight: 600 }}>{item.driver}</div>
-                <div style={{ fontSize: '11px', color: '#5A6A7A' }}>{item.team}</div>
+          {/* ARTICLES + VIDEOS ROW */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+
+            {/* Latest Articles */}
+            <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+                <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1.5px', color: '#5A6A7A' }}>Latest Articles</span>
+                <Link href="/articles" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>View all →</Link>
               </div>
-              <div style={{ marginLeft: 'auto', fontFamily: 'JetBrains Mono, monospace', fontSize: '15px', fontWeight: 600, color: '#FFB800' }}>{item.pts}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* MAIN GRID */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px', marginBottom: '20px' }}>
-
-          {/* Price Changes */}
-          <div style={s.card}>
-            <div style={s.cardHeader}>
-              <span style={s.cardTitle}>Price Changes</span>
-              <Badge type="live" label="LIVE" />
-            </div>
-            <div style={{ padding: '14px 20px' }}>
-              <div style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#00D47E', marginBottom: '10px' }}>▲ Rising</div>
-              {[
-                { color: '#FF8000', name: 'L. Norris', team: 'McLaren', change: '+0.2 → $29.0M' },
-                { color: '#3671C6', name: 'M. Verstappen', team: 'Red Bull', change: '+0.1 → $30.5M' },
-                { color: '#27F4D2', name: 'G. Russell', team: 'Mercedes', change: '+0.1 → $22.0M' },
-              ].map((d) => (
-                <div key={d.name} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '7px 0', borderBottom: '1px solid rgba(255,255,255,0.03)', fontSize: '13px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <TeamDot color={d.color} />
-                    <div>
-                      <div style={{ fontWeight: 500 }}>{d.name}</div>
-                      <div style={{ fontSize: '11px', color: '#5A6A7A' }}>{d.team}</div>
-                    </div>
-                  </div>
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 600, color: '#00D47E' }}>{d.change}</span>
-                </div>
-              ))}
-            </div>
-            <hr style={{ border: 'none', borderTop: '1px solid rgba(255,255,255,0.07)' }} />
-            <div style={{ padding: '14px 20px' }}>
-              <div style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#E8002D', marginBottom: '10px' }}>▼ Falling</div>
-              {[
-                { color: '#B6BABD', name: 'V. Bottas', team: 'Kick Sauber', change: '-0.1 → $8.0M' },
-                { color: '#005AFF', name: 'F. Alonso', team: 'Aston Martin', change: '-0.2 → $19.5M' },
-              ].map((d) => (
-                <div key={d.name} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '7px 0', borderBottom: '1px solid rgba(255,255,255,0.03)', fontSize: '13px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <TeamDot color={d.color} />
-                    <div>
-                      <div style={{ fontWeight: 500 }}>{d.name}</div>
-                      <div style={{ fontSize: '11px', color: '#5A6A7A' }}>{d.team}</div>
-                    </div>
-                  </div>
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 600, color: '#E8002D' }}>{d.change}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Race Projections */}
-          <div style={s.card}>
-            <div style={s.cardHeader}>
-              <span style={s.cardTitle}>Race Projections</span>
-              <Badge type="race" label="China" />
-            </div>
-            <div style={s.cardBody}>
-              {[
-                { rank: '1', rankColor: '#FFD700', color: '#3671C6', name: 'M. Verstappen', team: 'Red Bull', pct: 100, pts: 68 },
-                { rank: '2', rankColor: '#C0C0C0', color: '#FF8000', name: 'L. Norris', team: 'McLaren', pct: 88, pts: 61 },
-                { rank: '3', rankColor: '#CD7F32', color: '#E8002D', name: 'C. Leclerc', team: 'Ferrari', pct: 75, pts: 52 },
-                { rank: '4', rankColor: '#5A6A7A', color: '#FF8000', name: 'O. Piastri', team: 'McLaren', pct: 68, pts: 47 },
-                { rank: '5', rankColor: '#5A6A7A', color: '#27F4D2', name: 'G. Russell', team: 'Mercedes', pct: 55, pts: 38 },
-                { rank: '6', rankColor: '#5A6A7A', color: '#E8002D', name: 'C. Sainz', team: 'Ferrari', pct: 48, pts: 34 },
-              ].map((d) => (
-                <div key={d.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: d.rankColor, width: '18px', textAlign: 'center' as const }}>{d.rank}</span>
-                  <TeamDot color={d.color} />
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: '13px', fontWeight: 500 }}>{d.name}</div>
-                    <div style={{ fontSize: '11px', color: '#5A6A7A' }}>{d.team}</div>
-                  </div>
-                  <div style={{ width: '60px', height: '4px', background: '#1C2630', borderRadius: '2px', overflow: 'hidden' }}>
-                    <div style={{ width: `${d.pct}%`, height: '100%', background: 'linear-gradient(90deg, #FFB800, rgba(255,184,0,0.4))', borderRadius: '2px' }} />
-                  </div>
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 600, color: '#FFB800' }}>{d.pts}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* DRS Boost Picks */}
-          <div style={s.card}>
-            <div style={s.cardHeader}>
-              <span style={s.cardTitle}>Top DRS Boost Picks</span>
-              <Badge type="blue" label="Top 10K" />
-            </div>
-            <div style={s.cardBody}>
-              <div style={{ fontSize: '11px', color: '#5A6A7A', marginBottom: '12px' }}>Most popular 2× DRS boost among top 10,000 managers</div>
-              {[
-                { color: '#3671C6', name: 'M. Verstappen', pct: 78 },
-                { color: '#FF8000', name: 'L. Norris', pct: 62 },
-                { color: '#E8002D', name: 'C. Leclerc', pct: 34 },
-                { color: '#FF8000', name: 'O. Piastri', pct: 18 },
-                { color: '#27F4D2', name: 'G. Russell', pct: 8 },
-              ].map((d) => (
-                <div key={d.name} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                  <TeamDot color={d.color} />
-                  <span style={{ flexShrink: 0, width: '110px', fontSize: '13px', fontWeight: 500 }}>{d.name}</span>
-                  <div style={{ flex: 1, height: '6px', background: '#1C2630', borderRadius: '3px', overflow: 'hidden' }}>
-                    <div style={{ width: `${d.pct}%`, height: '100%', background: 'linear-gradient(90deg, #00A8FF, rgba(0,168,255,0.4))', borderRadius: '3px' }} />
-                  </div>
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 600, color: '#00A8FF', width: '36px', textAlign: 'right' as const }}>{d.pct}%</span>
-                </div>
-              ))}
-
-              {/* Chip usage */}
-              <div style={{ marginTop: '16px', paddingTop: '14px', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-                <div style={{ fontSize: '11px', color: '#5A6A7A', marginBottom: '10px', textTransform: 'uppercase' as const, letterSpacing: '1px', fontWeight: 600 }}>Chip Usage This Race</div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                  {[
-                    { icon: '♾️', name: 'Limitless', pct: '34%', bg: 'rgba(0,212,126,0.12)' },
-                    { icon: '🚫', name: 'No Negative', pct: '12%', bg: 'rgba(255,184,0,0.12)' },
-                    { icon: '✖️', name: 'Extra DRS', pct: '8%', bg: 'rgba(0,168,255,0.12)' },
-                    { icon: '🔀', name: 'Wildcard', pct: '5%', bg: 'rgba(232,0,45,0.12)' },
-                  ].map((chip) => (
-                    <div key={chip.name} style={{ background: '#141B22', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '10px', padding: '12px 14px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <div style={{ width: '34px', height: '34px', borderRadius: '8px', background: chip.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', flexShrink: 0 }}>{chip.icon}</div>
-                      <div>
-                        <div style={{ fontSize: '12px', fontWeight: 600 }}>{chip.name}</div>
-                        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A' }}><span style={{ color: '#F0F4F8' }}>{chip.pct}</span> used</div>
+              <div style={{ padding: '8px 20px' }}>
+                {latestArticles.map((a, i) => (
+                  <Link key={a.slug} href={`/articles/${a.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <div style={{ display: 'flex', gap: '12px', padding: '12px 0', borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.05)' : 'none', cursor: 'pointer' }}>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '6px' }}>
+                          <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 6px', borderRadius: '3px', background: a.premium ? 'rgba(255,184,0,0.15)' : 'rgba(0,212,126,0.12)', color: a.premium ? '#FFB800' : '#00D47E', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                            {a.tag}
+                          </span>
+                          {a.premium && <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 6px', borderRadius: '3px', background: 'rgba(232,0,45,0.15)', color: '#E8002D', textTransform: 'uppercase' }}>Premium</span>}
+                        </div>
+                        <div style={{ fontSize: '13px', fontWeight: 600, lineHeight: 1.4, marginBottom: '4px' }}>{a.title}</div>
+                        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#3A4A5A' }}>{a.date}</div>
                       </div>
                     </div>
-                  ))}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Latest Videos */}
+            <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+                <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1.5px', color: '#5A6A7A' }}>Latest Videos</span>
+                <Link href="/videos" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>View all →</Link>
+              </div>
+              <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div style={{ position: 'relative', paddingBottom: '56.25%', background: '#080C10', borderRadius: '8px', overflow: 'hidden' }}>
+                  <iframe
+                    src="https://www.youtube.com/embed?listType=user_uploads&list=formulafantasyhub&index=0"
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 </div>
+                <a href="https://www.youtube.com/@formulafantasyhub" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: '#E8002D', color: 'white', padding: '10px', borderRadius: '8px', textDecoration: 'none', fontSize: '13px', fontWeight: 600 }}>
+                  ▶ Subscribe on YouTube
+                </a>
               </div>
             </div>
           </div>
+
         </div>
-
-        {/* WIDE GRID */}
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '20px', marginBottom: '28px' }}>
-
-          {/* Stats table */}
-          <div style={s.card}>
-            <div style={s.cardHeader}>
-              <span style={s.cardTitle}>Driver Statistics — Season 2026</span>
-              <Badge type="new" label="Live Data" />
-            </div>
-            <div style={s.cardBody}>
-              <table style={{ width: '100%', borderCollapse: 'collapse' as const }}>
-                <thead>
-                  <tr>
-                    {['Driver', 'Price', 'Pts', 'Avg', 'PPM', 'Wins', 'Poles', 'FL', 'DNF'].map((h) => (
-                      <th key={h} style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: h === 'Driver' ? 'left' as const : 'center' as const, padding: '0 0 10px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>{h}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { color: '#3671C6', name: 'M. Verstappen', price: '$30.5M', pts: 87, avg: 43.5, ppm: 1.43, wins: 2, poles: 2, fl: 1, dnf: 0, highlight: true },
-                    { color: '#FF8000', name: 'L. Norris', price: '$29.0M', pts: 74, avg: 37.0, ppm: 1.28, wins: 1, poles: 1, fl: 1, dnf: 0, highlight: false },
-                    { color: '#FF8000', name: 'O. Piastri', price: '$26.0M', pts: 61, avg: 30.5, ppm: 1.17, wins: 0, poles: 0, fl: 0, dnf: 0, highlight: false },
-                    { color: '#E8002D', name: 'C. Leclerc', price: '$25.5M', pts: 52, avg: 26.0, ppm: 1.02, wins: 0, poles: 1, fl: 1, dnf: 1, highlight: false },
-                    { color: '#E8002D', name: 'C. Sainz', price: '$22.0M', pts: 48, avg: 24.0, ppm: 1.09, wins: 0, poles: 0, fl: 0, dnf: 0, highlight: false },
-                    { color: '#27F4D2', name: 'G. Russell', price: '$22.0M', pts: 41, avg: 20.5, ppm: 0.93, wins: 0, poles: 0, fl: 1, dnf: 0, highlight: false },
-                  ].map((d) => (
-                    <tr key={d.name}>
-                      <td style={{ padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,0.03)', fontSize: '13px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 500 }}>
-                          <TeamDot color={d.color} />{d.name}
-                        </div>
-                      </td>
-                      {[d.price, d.pts, d.avg, d.ppm, d.wins, d.poles, d.fl, d.dnf].map((val, i) => (
-                        <td key={i} style={{ padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,0.03)', textAlign: 'center' as const, fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: (i === 1 || i === 3) && d.highlight ? '#FFB800' : '#5A6A7A', fontWeight: (i === 1 || i === 3) && d.highlight ? 600 : 400 }}>{val}</td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Score events */}
-          <div style={s.card}>
-            <div style={s.cardHeader}>
-              <span style={s.cardTitle}>Recent Score Events</span>
-              <Badge type="live" label="Live" />
-            </div>
-            <div style={s.cardBody}>
-              {[
-                { type: 'positive', icon: '🏆', title: 'Driver of the Day', meta: 'O. Piastri · Australia GP', pts: '+10' },
-                { type: 'positive', icon: '⚡', title: 'Fastest Lap Bonus', meta: 'M. Verstappen · Australia GP', pts: '+5' },
-                { type: 'positive', icon: '🔧', title: 'Best Pit Stop', meta: 'Red Bull Racing · Australia GP', pts: '+10' },
-                { type: 'negative', icon: '💥', title: 'DNF Penalty', meta: 'K. Magnussen · Australia GP', pts: '−15' },
-                { type: 'neutral', icon: '📊', title: 'Price Changes Applied', meta: '3 rises · 4 falls', pts: '—' },
-              ].map((e) => (
-                <div key={e.title} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                  <div style={{ width: '30px', height: '30px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', flexShrink: 0, background: e.type === 'positive' ? 'rgba(0,212,126,0.12)' : e.type === 'negative' ? 'rgba(232,0,45,0.15)' : 'rgba(255,184,0,0.12)' }}>{e.icon}</div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: '13px', fontWeight: 500 }}>{e.title}</div>
-                    <div style={{ fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>{e.meta}</div>
-                  </div>
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 600, color: e.type === 'positive' ? '#00D47E' : e.type === 'negative' ? '#E8002D' : '#5A6A7A', flexShrink: 0 }}>{e.pts}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* ARTICLES */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
-          <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '20px', letterSpacing: '1px' }}>Latest Strategy Articles</div>
-          <Link href="/articles" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>View all →</Link>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px', marginBottom: '28px' }}>
-          {[
-            { bg: 'linear-gradient(135deg,#1a0a00,#3d1500)', icon: '🏎️', tag: 'Race Preview', tagStyle: { background: 'rgba(232,0,45,0.85)', color: 'white' }, title: 'China GP: Best Fantasy Picks & DRS Boost Candidates for Round 2', date: 'Mar 13, 2026', read: '5 min', href: '/articles/chinese-gp-fantasy-preview-2026', premium: false },
-            { bg: 'linear-gradient(135deg,#000a1a,#001a3d)', icon: '💡', tag: 'Chip Guide', tagStyle: { background: 'rgba(0,168,255,0.85)', color: 'white' }, title: 'When to Play Your Limitless Chip in 2026 — Data-Driven Analysis', date: 'Mar 9, 2026', read: '8 min', href: '/articles/limitless-chip-guide-2026', premium: true },
-            { bg: 'linear-gradient(135deg,#001a00,#003d00)', icon: '💰', tag: 'Value Picks', tagStyle: { background: 'rgba(0,212,126,0.85)', color: 'black' }, title: 'Top 5 Budget Drivers Under $15M Delivering Exceptional Points Per Million', date: 'Mar 7, 2026', read: '6 min', href: '/articles/price-changes-to-watch-china', premium: true },
-          ].map((a) => (
-            <Link key={a.title} href={a.href} style={{ textDecoration: 'none', color: 'inherit' }}>
-              <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', transition: 'border-color 0.2s, transform 0.2s', cursor: 'pointer' }}>
-                <div style={{ height: '140px', background: a.bg, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '36px' }}>
-                  {a.icon}
-                  <span style={{ position: 'absolute', top: '10px', left: '10px', fontSize: '10px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' as const, padding: '3px 8px', borderRadius: '4px', ...a.tagStyle }}>{a.tag}</span>
-                  {a.premium && <span style={{ position: 'absolute', top: '10px', right: '10px', fontSize: '10px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' as const, padding: '3px 8px', borderRadius: '4px', background: 'rgba(255,184,0,0.85)', color: 'black' }}>Premium</span>}
-                </div>
-                <div style={{ padding: '14px 16px' }}>
-                  <div style={{ fontSize: '14px', fontWeight: 600, lineHeight: 1.4, marginBottom: '8px' }}>{a.title}</div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: '#5A6A7A' }}>
-                    <span>{a.date}</span>
-                    <div style={{ width: '3px', height: '3px', background: '#3A4A5A', borderRadius: '50%' }} />
-                    <span>{a.read} read</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* RESOURCES */}
-        <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '20px', letterSpacing: '1px', marginBottom: '16px' }}>Useful Resources</div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
-          {[
-            { icon: '🎮', name: 'Official Fantasy Game', desc: 'fantasy.formula1.com', href: 'https://fantasy.formula1.com' },
-            { icon: '📊', name: 'F1 Fantasy Tools', desc: 'f1fantasytools.com', href: 'https://f1fantasytools.com' },
-            { icon: '▶️', name: 'YouTube Channel', desc: '@formulafantasyhub', href: 'https://www.youtube.com/@formulafantasyhub' },
-            { icon: '💬', name: 'r/FantasyF1', desc: 'Community & discussion', href: 'https://reddit.com/r/FantasyF1' },
-          ].map((r) => (
-            <a key={r.name} href={r.href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '16px', display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer', transition: 'border-color 0.2s' }}>
-                <div style={{ width: '38px', height: '38px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', flexShrink: 0, background: '#141B22' }}>{r.icon}</div>
-                <div>
-                  <div style={{ fontSize: '13px', fontWeight: 600, color: '#F0F4F8' }}>{r.name}</div>
-                  <div style={{ fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>{r.desc}</div>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-
-      </div>
+      </main>
       <Footer />
     </>
   )
