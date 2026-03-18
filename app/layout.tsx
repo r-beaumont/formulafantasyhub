@@ -26,7 +26,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
       </head>
-      <body>{children}</body>
+      <body>
+        {/* Flag emoji polyfill for Chrome/Edge on Windows */}
+        <script type="module" dangerouslySetInnerHTML={{ __html: `
+          import { polyfillCountryFlagEmojis } from "https://cdn.skypack.dev/country-flag-emoji-polyfill";
+          polyfillCountryFlagEmojis();
+        `}} />
+        {children}
+      </body>
     </html>
   )
 }

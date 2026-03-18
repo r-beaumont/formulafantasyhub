@@ -1,12 +1,12 @@
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import RaceHubClient from './RaceHubClient'
+import StandingsClient from './StandingsClient'
 
-export default function RaceHubPage() {
+export default function StandingsPage() {
   return (
     <>
       <Navbar />
-      <RaceHubClient />
+      <StandingsClient />
       <Footer />
     </>
   )

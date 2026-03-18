@@ -29,9 +29,14 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Twemoji Country Flags', 'DM Sans', sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+/* Force Twemoji flags on all emoji flag spans */
+.flag-emoji {
+  font-family: 'Twemoji Country Flags', 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif !important;
 }
 
 body::before {

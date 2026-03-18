@@ -2,86 +2,52 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
 
-const tools = [
-  {
-    name: 'Driver Price Tracker',
-    description: 'Track price changes in real time. Know who\'s rising before the deadline.',
-    status: 'coming-soon',
-    premium: true,
-  },
-  {
-    name: 'Lineup Optimiser',
-    description: 'Build the highest expected-points team within your budget cap.',
-    status: 'coming-soon',
-    premium: true,
-  },
-  {
-    name: 'Points Simulator',
-    description: 'Simulate race outcomes and see how your team scores in each scenario.',
-    status: 'coming-soon',
-    premium: true,
-  },
-  {
-    name: 'Race Weekend Dashboard',
-    description: 'Live race-week stats, qualifying results, and fantasy scoring.',
-    status: 'coming-soon',
-    premium: true,
-  },
-]
-
 export default function RaceCenterPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-16">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-
-          {/* Header */}
-          <div className="border-b border-border pb-12 mb-12">
-            <div className="tag mb-4">Race Center</div>
-            <div className="display text-6xl md:text-8xl mb-6">Race<br />Center</div>
-            <p className="text-subtle max-w-lg leading-relaxed">
-              Interactive tools and dashboards for serious F1 Fantasy managers.
-              Built to give you an edge every race weekend.
-            </p>
+      <main style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
+        <div style={{ marginBottom: '32px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+            <div style={{ width: '3px', height: '24px', background: '#E8002D', borderRadius: '2px' }} />
+            <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase' as const }}>Premium</span>
           </div>
+          <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '56px', letterSpacing: '1px', lineHeight: 1 }}>Race Center</div>
+          <p style={{ color: '#5A6A7A', fontSize: '14px', marginTop: '8px', maxWidth: '500px', lineHeight: 1.7 }}>
+            Interactive dashboards and tools for serious F1 Fantasy managers. Live data, lineup optimisers and strategy simulators.
+          </p>
+        </div>
 
-          {/* Tools grid */}
-          <div className="grid md:grid-cols-2 gap-4 mb-16">
-            {tools.map((tool) => (
-              <div key={tool.name} className="card p-8 flex flex-col gap-4">
-                <div className="flex items-center justify-between">
-                  <span className="premium-badge">Premium</span>
-                  <span className="font-mono text-xs text-muted uppercase tracking-widest">
-                    Coming Soon
-                  </span>
-                </div>
-                <h2 className="font-body font-semibold text-xl text-white">{tool.name}</h2>
-                <p className="text-subtle text-sm leading-relaxed flex-1">{tool.description}</p>
-                <div className="pt-4 border-t border-border">
-                  <div className="w-full bg-border h-px relative">
-                    <div className="absolute inset-y-0 left-0 bg-white w-1/3 animate-pulse" />
-                  </div>
-                  <p className="font-mono text-xs text-muted mt-2">In development</p>
-                </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '32px' }}>
+          {[
+            { name: 'Lineup Optimizer', description: 'Automatically build the highest-scoring team within your budget, factoring in form, price, and fixture difficulty.', icon: '⚙️' },
+            { name: 'Price Tracker', description: 'Track driver price movements over the season. See who\'s rising, who\'s falling, and get ahead of the changes.', icon: '📈' },
+            { name: 'Points Simulator', description: 'Simulate different race outcomes and see how your fantasy score changes. Plan your captain pick with confidence.', icon: '🎯' },
+            { name: 'Chip Planner', description: 'Map out your chip strategy for the whole season. See the optimal windows for Limitless, 3x Boost and Wildcard.', icon: '🗓️' },
+          ].map(tool => (
+            <div key={tool.name} style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', padding: '28px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+                <span style={{ fontSize: '32px' }}>{tool.icon}</span>
+                <span style={{ fontSize: '10px', fontWeight: 700, padding: '3px 8px', borderRadius: '4px', background: 'rgba(232,0,45,0.15)', color: '#E8002D', textTransform: 'uppercase' as const }}>Coming Soon</span>
               </div>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <div className="border border-border p-10 md:p-16 text-center">
-            <div className="display text-5xl md:text-7xl mb-6">
-              Get early access
+              <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '22px', marginBottom: '8px' }}>{tool.name}</div>
+              <p style={{ fontSize: '13px', color: '#5A6A7A', lineHeight: 1.6 }}>{tool.description}</p>
+              <div style={{ marginTop: '16px', height: '2px', background: '#141B22', borderRadius: '1px', overflow: 'hidden' }}>
+                <div style={{ width: '33%', height: '100%', background: '#E8002D', opacity: 0.4 }} />
+              </div>
+              <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#3A4A5A', marginTop: '6px' }}>In development</p>
             </div>
-            <p className="text-subtle max-w-md mx-auto mb-8 leading-relaxed text-sm">
-              Premium members get first access to every tool as it launches.
-              Subscribe now and never miss a race-week edge.
-            </p>
-            <Link href="/subscribe" className="btn-primary text-lg px-10 py-4">
-              Subscribe — €5/month
-            </Link>
-          </div>
+          ))}
+        </div>
 
+        <div style={{ background: 'rgba(232,0,45,0.06)', border: '1px solid rgba(232,0,45,0.2)', borderRadius: '14px', padding: '40px', textAlign: 'center' as const }}>
+          <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', marginBottom: '12px' }}>Get early access with Premium</div>
+          <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, maxWidth: '480px', margin: '0 auto 24px' }}>
+            Race Center tools will be available to Premium subscribers first. Join for €5/month and get full access when they launch.
+          </p>
+          <Link href="/subscribe" style={{ background: '#E8002D', color: 'white', padding: '12px 32px', borderRadius: '8px', textDecoration: 'none', fontWeight: 700, fontSize: '14px', boxShadow: '0 0 24px rgba(232,0,45,0.3)' }}>
+            Subscribe for €5/month →
+          </Link>
         </div>
       </main>
       <Footer />

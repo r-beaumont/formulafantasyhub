@@ -14,7 +14,6 @@ export default function Footer() {
         <Link href="/subscribe" style={{ color: '#5A6A7A', textDecoration: 'none' }}>Premium</Link>
         <Link href="https://www.youtube.com/@formulafantasyhub" target="_blank" style={{ color: '#5A6A7A', textDecoration: 'none' }}>YouTube</Link>
         <Link href="https://x.com/F_FantasyHub" target="_blank" style={{ color: '#5A6A7A', textDecoration: 'none' }}>X / Twitter</Link>
-        <Link href="https://formula1.com" target="_blank" style={{ color: '#5A6A7A', textDecoration: 'none' }}>F1.com Column ↗</Link>
       </div>
     </footer>
   )
