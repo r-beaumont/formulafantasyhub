@@ -58,7 +58,7 @@ export default function RaceWeekendCard() {
       </div>
       <div style={{ padding: '20px' }}>
         <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', lineHeight: 1, marginBottom: '4px' }}>
-          {CURRENT_RACE.flag} {CURRENT_RACE.name}
+          {CURRENT_RACE.name}
         </div>
         <div style={{ color: '#5A6A7A', fontSize: '13px', marginBottom: '20px' }}>
           Round {CURRENT_RACE.round} · {CURRENT_RACE.isSprint ? '⚡ Sprint Weekend' : 'Standard Weekend'}

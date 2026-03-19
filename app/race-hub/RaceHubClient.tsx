@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { SEASON_CALENDAR, CURRENT_RACE } from '@/lib/races'
+import { STATIC_RACE_RESULTS } from '@/lib/raceResults'
 
 const card = { background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' as const }
 const cardHeader = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }
@@ -37,7 +38,7 @@ function formatDelta(seconds: number | null | undefined): string {
 }
 
 export default function RaceHubClient() {
-  const [activeTab, setActiveTab] = useState<'race-info' | 'results' | 'calendar' | 'weather'>('race-info')
+  const [activeTab, setActiveTab] = useState<'race-info' | 'results' | 'calendar' | 'weather' | 'pitwall'>('race-info')
   const [selectedRound, setSelectedRound] = useState(3)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [sessions, setSessions] = useState<any[]>([])
@@ -58,6 +59,11 @@ export default function RaceHubClient() {
   const selectedRace = SEASON_CALENDAR.find(r => r.round === selectedRound) || SEASON_CALENDAR[1]
 
   useEffect(() => {
+    // Always clear stale data from previous round immediately
+    setSessions([])
+    setResults([])
+    setWeather(null)
+
     async function load() {
       setLoading(true)
       try {
@@ -204,6 +210,7 @@ export default function RaceHubClient() {
     { id: 'results', label: 'Results' },
     { id: 'calendar', label: 'Racing Calendar' },
     { id: 'weather', label: 'Weather' },
+    { id: 'pitwall', label: 'Pitwall' },
   ]
 
   return (
@@ -387,27 +394,59 @@ export default function RaceHubClient() {
       })()}
 
       {/* RESULTS TAB */}
-      {activeTab === 'results' && (
-        <div style={card}>
-          <div style={cardHeader}>
-            <span style={cardTitle}>{selectedRace.flag} {selectedRace.name} GP — Session Results</span>
-            <Badge type="new" label="OpenF1" />
-          </div>
-          <div style={{ display: 'flex', gap: '6px', padding: '12px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', flexWrap: 'wrap' as const }}>
-            {sessionTabs.length > 0 ? sessionTabs.map(t => (
-              <button key={t.id} onClick={() => setActiveSession(t.id)} style={{
-                background: activeSession === t.id ? '#E8002D' : '#141B22',
-                color: activeSession === t.id ? 'white' : '#5A6A7A',
-                border: '1px solid', borderColor: activeSession === t.id ? '#E8002D' : 'rgba(255,255,255,0.07)',
-                padding: '5px 14px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: 600,
-              }}>{t.label}</button>
-            )) : (
-              <span style={{ fontSize: '12px', color: '#5A6A7A' }}>No session data available for this race weekend</span>
+      {activeTab === 'results' && (() => {
+        const staticData = STATIC_RACE_RESULTS[selectedRound]
+        const hasStatic = !!staticData
+
+        // Static session tabs for rounds with hardcoded data
+        const staticSessionTabs = hasStatic
+          ? [
+              { id: 'race',               label: 'Race' },
+              { id: 'qualifying',         label: 'Qualifying' },
+              ...(staticData['sprint']             ? [{ id: 'sprint',             label: 'Sprint' }]             : []),
+              ...(staticData['sprint-qualifying']  ? [{ id: 'sprint-qualifying',  label: 'Sprint Quali' }]       : []),
+            ]
+          : []
+
+        const displayResults: any[] = hasStatic
+          ? (staticData[activeSession] || staticData['race'] || [])
+          : results
+
+        const displayTabs = hasStatic ? staticSessionTabs : sessionTabs
+
+        return (
+          <div style={card}>
+            <div style={cardHeader}>
+              <span style={cardTitle}>{selectedRace.flag} {selectedRace.name} GP — Session Results</span>
+              <Badge type={hasStatic ? 'done' : 'new'} label={hasStatic ? '2026 Results' : 'OpenF1'} />
+            </div>
+
+            {!selectedRace.completed ? (
+              <div style={{ padding: '48px', textAlign: 'center' as const }}>
+                <div style={{ fontSize: '28px', marginBottom: '12px' }}>🏁</div>
+                <div style={{ fontSize: '14px', fontWeight: 600, color: '#F0F4F8', marginBottom: '8px' }}>Results not yet available</div>
+                <div style={{ fontSize: '13px', color: '#5A6A7A' }}>{selectedRace.name} GP takes place on {selectedRace.date}.</div>
+              </div>
+            ) : (
+              <>
+                <div style={{ display: 'flex', gap: '6px', padding: '12px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', flexWrap: 'wrap' as const }}>
+                  {displayTabs.length > 0 ? displayTabs.map(t => (
+                    <button key={t.id} onClick={() => setActiveSession(t.id)} style={{
+                      background: activeSession === t.id ? '#E8002D' : '#141B22',
+                      color: activeSession === t.id ? 'white' : '#5A6A7A',
+                      border: '1px solid', borderColor: activeSession === t.id ? '#E8002D' : 'rgba(255,255,255,0.07)',
+                      padding: '5px 14px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: 600,
+                    }}>{t.label}</button>
+                  )) : (
+                    <span style={{ fontSize: '12px', color: '#5A6A7A' }}>No session data available</span>
+                  )}
+                </div>
+                <ResultsTable data={displayResults} loading={!hasStatic && resultsLoading} />
+              </>
             )}
           </div>
-          <ResultsTable data={results} loading={resultsLoading} />
-        </div>
-      )}
+        )
+      })()}
 
       {/* CALENDAR TAB */}
       {activeTab === 'calendar' && (
@@ -459,28 +498,41 @@ export default function RaceHubClient() {
             </div>
           ) : (
             // Calendar detail — results for clicked race
-            <div style={card}>
-              <div style={cardHeader}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <button onClick={() => { setCalendarRound(null); setCalendarSessions([]); setCalendarResults([]) }} style={{ background: '#141B22', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px', color: '#F0F4F8', padding: '4px 10px', cursor: 'pointer', fontSize: '12px' }}>← Back</button>
-                  <span style={cardTitle}>
-                    {SEASON_CALENDAR.find(r => r.round === calendarRound)?.flag} {SEASON_CALENDAR.find(r => r.round === calendarRound)?.name} GP Results
-                  </span>
+            (() => {
+              const calRace = SEASON_CALENDAR.find(r => r.round === calendarRound)
+              const calStatic = calendarRound !== null ? STATIC_RACE_RESULTS[calendarRound] : null
+              const calHasStatic = !!calStatic
+              const calStaticTabs = calHasStatic ? [
+                { id: 'race',              label: 'Race' },
+                { id: 'qualifying',        label: 'Qualifying' },
+                ...(calStatic['sprint']            ? [{ id: 'sprint',            label: 'Sprint' }]            : []),
+                ...(calStatic['sprint-qualifying'] ? [{ id: 'sprint-qualifying', label: 'Sprint Quali' }]      : []),
+              ] : []
+              const calDisplayTabs    = calHasStatic ? calStaticTabs : getSessionTabs(calendarSessions)
+              const calDisplayResults = calHasStatic ? (calStatic[calendarSessionTab] || calStatic['race'] || []) : calendarResults
+              return (
+                <div style={card}>
+                  <div style={cardHeader}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <button onClick={() => { setCalendarRound(null); setCalendarSessions([]); setCalendarResults([]) }} style={{ background: '#141B22', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px', color: '#F0F4F8', padding: '4px 10px', cursor: 'pointer', fontSize: '12px' }}>← Back</button>
+                      <span style={cardTitle}>{calRace?.flag} {calRace?.name} GP Results</span>
+                    </div>
+                    <Badge type="done" label="Completed" />
+                  </div>
+                  <div style={{ display: 'flex', gap: '6px', padding: '12px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', flexWrap: 'wrap' as const }}>
+                    {calDisplayTabs.map(t => (
+                      <button key={t.id} onClick={() => setCalendarSessionTab(t.id)} style={{
+                        background: calendarSessionTab === t.id ? '#E8002D' : '#141B22',
+                        color: calendarSessionTab === t.id ? 'white' : '#5A6A7A',
+                        border: '1px solid', borderColor: calendarSessionTab === t.id ? '#E8002D' : 'rgba(255,255,255,0.07)',
+                        padding: '5px 14px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: 600,
+                      }}>{t.label}</button>
+                    ))}
+                  </div>
+                  <ResultsTable data={calDisplayResults} loading={!calHasStatic && resultsLoading} />
                 </div>
-                <Badge type="done" label="Completed" />
-              </div>
-              <div style={{ display: 'flex', gap: '6px', padding: '12px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', flexWrap: 'wrap' as const }}>
-                {getSessionTabs(calendarSessions).map(t => (
-                  <button key={t.id} onClick={() => setCalendarSessionTab(t.id)} style={{
-                    background: calendarSessionTab === t.id ? '#E8002D' : '#141B22',
-                    color: calendarSessionTab === t.id ? 'white' : '#5A6A7A',
-                    border: '1px solid', borderColor: calendarSessionTab === t.id ? '#E8002D' : 'rgba(255,255,255,0.07)',
-                    padding: '5px 14px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: 600,
-                  }}>{t.label}</button>
-                ))}
-              </div>
-              <ResultsTable data={calendarResults} loading={resultsLoading} />
-            </div>
+              )
+            })()
           )}
         </div>
       )}
@@ -624,6 +676,181 @@ export default function RaceHubClient() {
                 )}
               </div>
             </div>
+          </div>
+        )
+      })()}
+
+      {/* PITWALL TAB */}
+      {activeTab === 'pitwall' && (() => {
+        const race = SEASON_CALENDAR.find(r => r.round === selectedRound)
+        const raceName = race?.name || selectedRace.name
+
+        // Per-circuit pitwall data — keyed by round
+        const pitwallData: Record<number, {
+          downforce: string
+          downforceLevel: number // 1=low … 5=high
+          downforceNote: string
+          compounds: { name: string; color: string; code: string; desc: string }[]
+          strategies: { name: string; stops: number; laps: string[]; note: string }[]
+        }> = {
+          3: { // Japan — Suzuka
+            downforce: 'High',
+            downforceLevel: 5,
+            downforceNote: 'Suzuka\'s high-speed corners (Turns 1–9, 130R) demand maximum downforce. Teams typically run their highest-downforce configurations of the year here.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C1', desc: 'Primary race tyre. Very durable — teams may attempt a 1-stop on H–M.' },
+              { name: 'Medium', color: '#FFD700', code: 'C2', desc: 'Versatile option for both stints. Often used as the second tyre in a 1-stop.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C3', desc: 'Fast qualifying tyre. Degrades quickly at Suzuka\'s high-speed corners.' },
+            ],
+            strategies: [
+              { name: '1-Stop Medium → Hard',  stops: 1, laps: ['Lap 1–20: Medium', 'Pit ~Lap 20', 'Lap 21–53: Hard'],  note: 'Frontrunner default. Prioritises track position. Works well in clean air.' },
+              { name: '1-Stop Hard → Medium',  stops: 1, laps: ['Lap 1–28: Hard',   'Pit ~Lap 28', 'Lap 29–53: Medium'], note: 'Aggressive undercut option — opens up faster final stint pace.' },
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–14: Soft', 'Pit ~Lap 14', 'Lap 15–34: Medium', 'Pit ~Lap 34', 'Lap 35–53: Hard'], note: 'Used if degradation is higher than expected or after a safety car.' },
+            ],
+          },
+          1: { // Australia — Albert Park
+            downforce: 'Medium / High',
+            downforceLevel: 4,
+            downforceNote: 'Albert Park combines fast flowing sections with technical chicanes. Teams run medium-high downforce to balance cornering grip with straight-line speed.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C2', desc: 'Durable option for a 1-stop. Suits cooler Melbourne conditions.' },
+              { name: 'Medium', color: '#FFD700', code: 'C3', desc: 'Versatile — commonly used in the opening stint or as the second tyre.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C4', desc: 'Qualifying tyre. Can be used at race start from grid position.' },
+            ],
+            strategies: [
+              { name: '1-Stop Medium → Hard',  stops: 1, laps: ['Lap 1–22: Medium', 'Pit ~Lap 22', 'Lap 23–58: Hard'],  note: 'Dominant strategy in recent years. Track position key at Albert Park.' },
+              { name: '1-Stop Soft → Hard',    stops: 1, laps: ['Lap 1–18: Soft',   'Pit ~Lap 18', 'Lap 19–58: Hard'],  note: 'Works for drivers starting from the front who can manage early tyre life.' },
+              { name: '2-Stop Soft → Med → Med', stops: 2, laps: ['Lap 1–15: Soft', 'Pit ~Lap 15', 'Lap 16–38: Medium', 'Pit ~Lap 38', 'Lap 39–58: Medium'], note: 'Safety car play or teams unable to make 1-stop work.' },
+            ],
+          },
+          2: { // China — Shanghai
+            downforce: 'Medium',
+            downforceLevel: 3,
+            downforceNote: 'Shanghai has a mix of long straights and medium-speed corners. Teams target a balanced downforce setup — too much costs too much speed on the back straight.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C2', desc: 'Used on the harder end of the range for China\'s abrasive surface.' },
+              { name: 'Medium', color: '#FFD700', code: 'C3', desc: 'Common race tyre. Good balance of pace and durability.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C4', desc: 'Qualifying tyre. Tends to drop off quickly in the race.' },
+            ],
+            strategies: [
+              { name: '1-Stop Medium → Hard',  stops: 1, laps: ['Lap 1–20: Medium', 'Pit ~Lap 20', 'Lap 21–56: Hard'],  note: 'Standard 1-stop. Works on the Sprint weekend format.' },
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–12: Soft', 'Pit ~Lap 12', 'Lap 13–35: Medium', 'Pit ~Lap 35', 'Lap 36–56: Hard'], note: 'Aggressive option — often triggered by safety car.' },
+            ],
+          },
+        }
+
+        const data = pitwallData[selectedRound]
+        const downforceBars = [
+          { label: 'Low',        level: 1 },
+          { label: 'Med / Low',  level: 2 },
+          { label: 'Medium',     level: 3 },
+          { label: 'Med / High', level: 4 },
+          { label: 'High',       level: 5 },
+        ]
+
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '20px' }}>
+
+            {!data ? (
+              <div style={{ ...card, padding: '40px', textAlign: 'center' as const }}>
+                <div style={{ fontSize: '32px', marginBottom: '12px' }}>🏗️</div>
+                <div style={{ fontSize: '14px', fontWeight: 600, color: '#F0F4F8', marginBottom: '8px' }}>Pitwall data coming soon</div>
+                <div style={{ fontSize: '13px', color: '#5A6A7A' }}>Tyre compound and strategy data for {raceName} will be added closer to race weekend.</div>
+              </div>
+            ) : (
+              <>
+                {/* Downforce */}
+                <div style={card}>
+                  <div style={cardHeader}>
+                    <span style={cardTitle}>Aerodynamic Setup — Downforce Level</span>
+                    <Badge type="blue" label={data.downforce} />
+                  </div>
+                  <div style={{ padding: '20px 24px' }}>
+                    {/* Bar visualiser */}
+                    <div style={{ display: 'flex', gap: '6px', alignItems: 'flex-end', marginBottom: '16px' }}>
+                      {downforceBars.map(bar => (
+                        <div key={bar.level} style={{ flex: 1, display: 'flex', flexDirection: 'column' as const, alignItems: 'center', gap: '6px' }}>
+                          <div style={{
+                            width: '100%',
+                            height: `${bar.level * 18}px`,
+                            borderRadius: '4px 4px 0 0',
+                            background: bar.level <= data.downforceLevel
+                              ? bar.level === data.downforceLevel ? '#E8002D' : 'rgba(232,0,45,0.35)'
+                              : 'rgba(255,255,255,0.06)',
+                            transition: 'background 0.2s',
+                          }} />
+                          <span style={{ fontSize: '9px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.5px', color: bar.level === data.downforceLevel ? '#F0F4F8' : '#3A4A5A', textAlign: 'center' as const, whiteSpace: 'nowrap' as const }}>{bar.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <p style={{ fontSize: '13px', color: '#8A9AB0', lineHeight: 1.7, margin: 0 }}>{data.downforceNote}</p>
+                  </div>
+                </div>
+
+                {/* Tyre Compounds */}
+                <div style={card}>
+                  <div style={cardHeader}>
+                    <span style={cardTitle}>Tyre Compounds — {selectedRace.flag} {raceName} GP</span>
+                    <Badge type="race" label="Pirelli" />
+                  </div>
+                  <div style={{ padding: '16px 24px 20px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px' }}>
+                    {data.compounds.map(c => (
+                      <div key={c.name} style={{ background: '#141B22', borderRadius: '12px', padding: '18px', border: '1px solid rgba(255,255,255,0.06)', display: 'flex', flexDirection: 'column' as const, gap: '10px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          {/* Tyre circle */}
+                          <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#0E1318', border: `3px solid ${c.color}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', fontWeight: 700, color: c.color }}>{c.code}</span>
+                          </div>
+                          <div>
+                            <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '18px', letterSpacing: '1px', color: c.color }}>{c.name}</div>
+                            <div style={{ fontSize: '10px', fontWeight: 600, color: '#3A4A5A', textTransform: 'uppercase' as const, letterSpacing: '1px' }}>Compound {c.code}</div>
+                          </div>
+                        </div>
+                        <p style={{ fontSize: '12px', color: '#8A9AB0', lineHeight: 1.6, margin: 0 }}>{c.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Strategies */}
+                <div style={card}>
+                  <div style={cardHeader}>
+                    <span style={cardTitle}>Expected Race Strategies</span>
+                    <Badge type="new" label={`${data.strategies.length} Options`} />
+                  </div>
+                  <div style={{ padding: '16px 24px 20px', display: 'flex', flexDirection: 'column' as const, gap: '12px' }}>
+                    {data.strategies.map((s, i) => (
+                      <div key={i} style={{ background: '#141B22', borderRadius: '12px', padding: '18px', border: '1px solid rgba(255,255,255,0.06)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+                          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', fontWeight: 700, padding: '3px 8px', borderRadius: '4px', background: s.stops === 1 ? 'rgba(0,212,126,0.12)' : 'rgba(255,184,0,0.12)', color: s.stops === 1 ? '#00D47E' : '#FFB800' }}>
+                            {s.stops}-Stop
+                          </span>
+                          <span style={{ fontSize: '13px', fontWeight: 600, color: '#F0F4F8' }}>{s.name}</span>
+                        </div>
+                        {/* Stint visualiser */}
+                        <div style={{ display: 'flex', gap: '6px', marginBottom: '12px', flexWrap: 'wrap' as const }}>
+                          {s.laps.map((stint, j) => {
+                            const isPit = stint.startsWith('Pit')
+                            const tyreColor = stint.includes('Hard') ? '#FFFFFF' : stint.includes('Medium') ? '#FFD700' : stint.includes('Soft') ? '#E8002D' : '#5A6A7A'
+                            return (
+                              <div key={j} style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                {isPit ? (
+                                  <span style={{ fontSize: '10px', fontWeight: 700, padding: '3px 8px', borderRadius: '4px', background: 'rgba(0,168,255,0.12)', color: '#00A8FF' }}>{stint}</span>
+                                ) : (
+                                  <span style={{ fontSize: '11px', fontWeight: 600, padding: '3px 10px', borderRadius: '4px', background: `${tyreColor}18`, color: tyreColor, border: `1px solid ${tyreColor}30` }}>{stint}</span>
+                                )}
+                                {j < s.laps.length - 1 && !isPit && <span style={{ color: '#3A4A5A', fontSize: '10px' }}>→</span>}
+                              </div>
+                            )
+                          })}
+                        </div>
+                        <p style={{ fontSize: '12px', color: '#8A9AB0', lineHeight: 1.6, margin: 0 }}>💡 {s.note}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         )
       })()}

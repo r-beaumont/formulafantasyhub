@@ -6,7 +6,7 @@ import { DRIVERS } from '@/lib/drivers'
 
 const RACES = 2
 
-type SortMode = 'points' | 'average'
+type SortMode = 'points' | 'wins' | 'podiums' | 'dnf'
 
 function posColor(pos: number) {
   return pos === 1 ? '#FFD700' : pos === 2 ? '#C0C0C0' : pos === 3 ? '#CD7F32' : '#5A6A7A'
@@ -37,8 +37,9 @@ export default function StandingsClient() {
   })
 
   const sorted = [...drivers].sort((a, b) => {
-    if (sortMode === 'average') return b.avg  - a.avg
-    if (sortMode === 'value')   return b.ppm  - a.ppm
+    if (sortMode === 'wins')    return b.wins - a.wins
+    if (sortMode === 'podiums') return (b.podiums ?? 0) - (a.podiums ?? 0)
+    if (sortMode === 'dnf')    return 0
     return b.points - a.points
   })
 
@@ -97,32 +98,12 @@ export default function StandingsClient() {
       <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', marginBottom: '24px' }}>
 
         {/* Table header */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-          <div>
-            <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Driver Fantasy Stats — 2026</span>
-            <span style={{ marginLeft: '10px', fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', background: 'rgba(0,212,126,0.12)', color: '#00D47E' }}>
-              {RACES} Races
-            </span>
-          </div>
-          {/* Sort toggles */}
-          <div style={{ display: 'flex', background: '#141B22', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.07)', overflow: 'hidden' }}>
-            {(['points', 'average'] as SortMode[]).map((mode, i) => (
-              <button
-                key={mode}
-                onClick={() => setSortMode(mode)}
-                style={{
-                  background: sortMode === mode ? '#E8002D' : 'transparent',
-                  color: sortMode === mode ? 'white' : '#5A6A7A',
-                  border: 'none',
-                  borderLeft: i > 0 ? '1px solid rgba(255,255,255,0.07)' : 'none',
-                  padding: '6px 14px', cursor: 'pointer', fontSize: '11px', fontWeight: 600,
-                  textTransform: 'capitalize' as const, transition: 'all 0.15s',
-                }}
-              >
-                {mode === 'points' ? 'Points' : 'Average'}
-              </button>
-            ))}
-          </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+          <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Driver Fantasy Stats — 2026</span>
+          <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', background: 'rgba(0,212,126,0.12)', color: '#00D47E' }}>
+            {RACES} Races
+          </span>
+          <span style={{ fontSize: '10px', color: '#3A4A5A', marginLeft: '4px' }}>Click a column to sort ↓</span>
         </div>
 
         <div style={{ overflowX: 'auto' }}>
@@ -132,12 +113,11 @@ export default function StandingsClient() {
                 <th style={thStyle(false)}>#</th>
                 <th style={thStyle(true)}>Driver</th>
                 <th style={thStyle(true)}>Team</th>
-                <th style={{ ...thStyle(false), color: sortMode === 'points'  ? '#F0F4F8' : '#5A6A7A' }}>PTS</th>
-                <th style={{ ...thStyle(false), color: sortMode === 'average' ? '#F0F4F8' : '#5A6A7A' }}>AVG</th>
+                <th onClick={() => setSortMode('points')}  style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'points'  ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>PTS {sortMode === 'points'  ? '↓' : ''}</th>
                 <th style={thStyle(false)}>BEST</th>
-                <th style={thStyle(false)}>WINS</th>
-                <th style={thStyle(false)}>PODS</th>
-                <th style={thStyle(false)}>DNF</th>
+                <th onClick={() => setSortMode('wins')}    style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'wins'    ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>WINS {sortMode === 'wins'    ? '↓' : ''}</th>
+                <th onClick={() => setSortMode('podiums')} style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'podiums' ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>PODS {sortMode === 'podiums' ? '↓' : ''}</th>
+                <th onClick={() => setSortMode('dnf')}     style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'dnf'     ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>DNF/DSQ {sortMode === 'dnf'     ? '↓' : ''}</th>
               </tr>
             </thead>
             <tbody>
@@ -164,11 +144,6 @@ export default function StandingsClient() {
                     {/* PTS */}
                     <td style={{ ...tdMono(d.points > 0 ? '#F0F4F8' : '#3A4A5A'), fontWeight: 700, fontSize: '14px' }}>{d.points}</td>
 
-                    {/* AVG */}
-                    <td style={tdMono(d.avg > 0 ? '#8A9AB0' : '#3A4A5A')}>
-                      {d.avg > 0 ? d.avg.toFixed(1) : '—'}
-                    </td>
-
                     {/* BEST */}
                     <td style={tdMono('#3A4A5A')}>—</td>
 
@@ -184,7 +159,7 @@ export default function StandingsClient() {
                       {d.podiums !== null ? d.podiums : '—'}
                     </td>
 
-                    {/* DNF */}
+                    {/* DNF/DSQ */}
                     <td style={tdMono('#3A4A5A')}>—</td>
 
                   </tr>
