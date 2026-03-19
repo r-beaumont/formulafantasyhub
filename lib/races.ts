@@ -1,6 +1,8 @@
 export interface Session {
   name: string
+  short?: string
   date: string
+  dateISO?: string
   timeUTC: string
   timeLocal: string
   completed: boolean
@@ -26,11 +28,11 @@ export const CURRENT_RACE: Race = {
   flag: '🇯🇵',
   isSprint: false,
   sessions: [
-    { name: 'Practice 1',  date: 'Fri 27 Mar', timeUTC: '02:30 UTC', timeLocal: '11:30 JST', completed: false },
-    { name: 'Practice 2',  date: 'Fri 27 Mar', timeUTC: '06:00 UTC', timeLocal: '15:00 JST', completed: false },
-    { name: 'Practice 3',  date: 'Sat 28 Mar', timeUTC: '02:30 UTC', timeLocal: '11:30 JST', completed: false },
-    { name: 'Qualifying',  date: 'Sat 28 Mar', timeUTC: '06:00 UTC', timeLocal: '15:00 JST', completed: false },
-    { name: 'Race',        date: 'Sun 29 Mar', timeUTC: '05:00 UTC', timeLocal: '14:00 JST', completed: false },
+    { name: 'Practice 1',  short: 'FP1',  date: 'Fri 27 Mar', dateISO: '2026-03-27T02:30:00Z', timeUTC: '02:30 UTC', timeLocal: '11:30 JST', completed: false },
+    { name: 'Practice 2',  short: 'FP2',  date: 'Fri 27 Mar', dateISO: '2026-03-27T06:00:00Z', timeUTC: '06:00 UTC', timeLocal: '15:00 JST', completed: false },
+    { name: 'Practice 3',  short: 'FP3',  date: 'Sat 28 Mar', dateISO: '2026-03-28T02:30:00Z', timeUTC: '02:30 UTC', timeLocal: '11:30 JST', completed: false },
+    { name: 'Qualifying',  short: 'QUAL', date: 'Sat 28 Mar', dateISO: '2026-03-28T06:00:00Z', timeUTC: '06:00 UTC', timeLocal: '15:00 JST', completed: false },
+    { name: 'Race',        short: 'RACE', date: 'Sun 29 Mar', dateISO: '2026-03-29T05:00:00Z', timeUTC: '05:00 UTC', timeLocal: '14:00 JST', completed: false },
   ],
 }
 
@@ -46,6 +48,9 @@ export const SEASON_CALENDAR: {
   completed: boolean
   calledOff: boolean
   meeting_key?: number
+  lat?: number
+  lon?: number
+  weekendStartISO?: string
 }[] = [
   {
     round: 1,
@@ -59,6 +64,9 @@ export const SEASON_CALENDAR: {
     completed: true,
     calledOff: false,
     meeting_key: 1263,
+    lat: -37.8497,
+    lon: 144.9680,
+    weekendStartISO: '2026-03-13',
   },
   {
     round: 2,
@@ -72,6 +80,9 @@ export const SEASON_CALENDAR: {
     completed: true,
     calledOff: false,
     meeting_key: 1264,
+    lat: 31.3389,
+    lon: 121.2200,
+    weekendStartISO: '2026-03-20',
   },
   {
     round: 3,
@@ -84,6 +95,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: 34.8431,
+    lon: 136.5417,
+    weekendStartISO: '2026-03-27',
   },
   {
     round: 4,
@@ -96,6 +110,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: true,
+    lat: 26.0325,
+    lon: 50.5106,
+    weekendStartISO: '2026-04-10',
   },
   {
     round: 5,
@@ -108,6 +125,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: true,
+    lat: 21.6319,
+    lon: 39.1044,
+    weekendStartISO: '2026-04-17',
   },
   {
     round: 6,
@@ -120,6 +140,9 @@ export const SEASON_CALENDAR: {
     sprint: true,
     completed: false,
     calledOff: false,
+    lat: 25.9581,
+    lon: -80.2389,
+    weekendStartISO: '2026-05-01',
   },
   {
     round: 7,
@@ -132,6 +155,9 @@ export const SEASON_CALENDAR: {
     sprint: true,
     completed: false,
     calledOff: false,
+    lat: 45.5048,
+    lon: -73.5228,
+    weekendStartISO: '2026-05-22',
   },
   {
     round: 8,
@@ -144,6 +170,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: 43.7347,
+    lon: 7.4206,
+    weekendStartISO: '2026-06-05',
   },
   {
     round: 9,
@@ -156,6 +185,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: 41.5700,
+    lon: 2.2611,
+    weekendStartISO: '2026-06-12',
   },
   {
     round: 10,
@@ -168,6 +200,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: 47.2197,
+    lon: 14.7647,
+    weekendStartISO: '2026-06-26',
   },
   {
     round: 11,
@@ -180,6 +215,9 @@ export const SEASON_CALENDAR: {
     sprint: true,
     completed: false,
     calledOff: false,
+    lat: 52.0786,
+    lon: -1.0169,
+    weekendStartISO: '2026-07-03',
   },
   {
     round: 12,
@@ -192,6 +230,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: 50.4372,
+    lon: 5.9714,
+    weekendStartISO: '2026-07-17',
   },
   {
     round: 13,
@@ -204,6 +245,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: 47.5830,
+    lon: 19.2486,
+    weekendStartISO: '2026-07-24',
   },
   {
     round: 14,
@@ -216,6 +260,9 @@ export const SEASON_CALENDAR: {
     sprint: true,
     completed: false,
     calledOff: false,
+    lat: 52.3888,
+    lon: 4.5409,
+    weekendStartISO: '2026-08-21',
   },
   {
     round: 15,
@@ -228,6 +275,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: 45.6156,
+    lon: 9.2811,
+    weekendStartISO: '2026-09-04',
   },
   {
     round: 16,
@@ -240,6 +290,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: 40.4168,
+    lon: -3.7038,
+    weekendStartISO: '2026-09-11',
   },
   {
     round: 17,
@@ -252,6 +305,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: 40.3725,
+    lon: 49.8533,
+    weekendStartISO: '2026-09-25',
   },
   {
     round: 18,
@@ -264,6 +320,9 @@ export const SEASON_CALENDAR: {
     sprint: true,
     completed: false,
     calledOff: false,
+    lat: 1.2914,
+    lon: 103.8639,
+    weekendStartISO: '2026-10-09',
   },
   {
     round: 19,
@@ -276,6 +335,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: 30.1328,
+    lon: -97.6411,
+    weekendStartISO: '2026-10-23',
   },
   {
     round: 20,
@@ -288,6 +350,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: 19.4042,
+    lon: -99.0907,
+    weekendStartISO: '2026-10-30',
   },
   {
     round: 21,
@@ -300,6 +365,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: -23.7036,
+    lon: -46.6997,
+    weekendStartISO: '2026-11-06',
   },
   {
     round: 22,
@@ -312,6 +380,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: 36.1699,
+    lon: -115.1398,
+    weekendStartISO: '2026-11-19',
   },
   {
     round: 23,
@@ -324,6 +395,9 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: 25.4900,
+    lon: 51.4500,
+    weekendStartISO: '2026-11-27',
   },
   {
     round: 24,
@@ -336,5 +410,8 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: 24.4672,
+    lon: 54.6031,
+    weekendStartISO: '2026-12-04',
   },
 ]

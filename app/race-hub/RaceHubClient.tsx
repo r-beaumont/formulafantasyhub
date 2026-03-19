@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
-import { SEASON_CALENDAR } from '@/lib/races'
+import { SEASON_CALENDAR, CURRENT_RACE } from '@/lib/races'
 
 const card = { background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' as const }
 const cardHeader = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }
@@ -44,6 +44,8 @@ export default function RaceHubClient() {
   const [results, setResults] = useState<any[]>([])
   const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[] }>({ drivers: [], constructors: [] })
   const [weather, setWeather] = useState<any>(null)
+  const [forecast, setForecast] = useState<any>(null)
+  const [forecastLoading, setForecastLoading] = useState(false)
   const [activeSession, setActiveSession] = useState<string>('race')
   const [loading, setLoading] = useState(true)
   const [resultsLoading, setResultsLoading] = useState(false)
@@ -51,6 +53,7 @@ export default function RaceHubClient() {
   const [calendarSessions, setCalendarSessions] = useState<any[]>([])
   const [calendarResults, setCalendarResults] = useState<any[]>([])
   const [calendarSessionTab, setCalendarSessionTab] = useState<string>('race')
+  const [useLocalTime, setUseLocalTime] = useState(false)
 
   const selectedRace = SEASON_CALENDAR.find(r => r.round === selectedRound) || SEASON_CALENDAR[1]
 
@@ -78,6 +81,25 @@ export default function RaceHubClient() {
       finally { setLoading(false) }
     }
     load()
+  }, [selectedRound])
+
+  useEffect(() => {
+    if (!selectedRace.lat || !selectedRace.lon || !selectedRace.weekendStartISO) return
+    setForecastLoading(true)
+    setForecast(null)
+    // Mon before the weekend to Sunday of race day = 7 days
+    const friday = new Date(selectedRace.weekendStartISO + 'T12:00:00Z')
+    const monday = new Date(friday)
+    monday.setUTCDate(friday.getUTCDate() - 4)
+    const sunday = new Date(friday)
+    sunday.setUTCDate(friday.getUTCDate() + 2)
+    const startDate = monday.toISOString().slice(0, 10)
+    const endDate = sunday.toISOString().slice(0, 10)
+    fetch(`/api/forecast?lat=${selectedRace.lat}&lon=${selectedRace.lon}&start_date=${startDate}&end_date=${endDate}`)
+      .then(r => r.json())
+      .then(data => setForecast(data))
+      .catch(() => {})
+      .finally(() => setForecastLoading(false))
   }, [selectedRound])
 
   const getSessionTabs = (sessList: any[]) => {
@@ -274,33 +296,95 @@ export default function RaceHubClient() {
       </div>
 
       {/* RACE INFO TAB */}
-      {activeTab === 'race-info' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px' }}>
-          <div style={card}>
-            <div style={cardHeader}>
-              <span style={cardTitle}>Session Schedule</span>
-              <Badge type={selectedRace.completed ? 'done' : 'live'} label={selectedRace.completed ? 'Completed' : 'Upcoming'} />
-            </div>
-            <div style={{ padding: '16px 20px' }}>
-              {loading ? <Loader label="sessions" /> : sessions.length === 0 ? (
-                <div style={{ color: '#5A6A7A', fontSize: '13px', padding: '20px 0' }}>
-                  {selectedRace.completed ? 'Session data not yet available from OpenF1' : `Sessions will appear closer to race weekend (${selectedRace.date})`}
+      {activeTab === 'race-info' && (() => {
+        const isCurrentRace = selectedRound === CURRENT_RACE.round
+        const useStaticSessions = !loading && sessions.length === 0 && isCurrentRace && CURRENT_RACE.sessions.length > 0
+        // Derive track TZ label from static sessions if available
+        const staticTZ = (() => {
+          const s = CURRENT_RACE.sessions[0]
+          if (!s) return 'Track'
+          const parts = s.timeLocal.trim().split(' ')
+          return parts.length >= 2 ? parts[parts.length - 1] : 'Track'
+        })()
+        const trackLabel = useStaticSessions ? staticTZ : 'UTC'
+        return (
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px' }}>
+            <div style={card}>
+              <div style={cardHeader}>
+                <span style={cardTitle}>Session Schedule</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  {/* Timezone toggle */}
+                  <div style={{ display: 'flex', background: '#141B22', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.07)', overflow: 'hidden' }}>
+                    <button
+                      onClick={() => setUseLocalTime(false)}
+                      style={{
+                        background: !useLocalTime ? 'rgba(232,0,45,0.15)' : 'transparent',
+                        color: !useLocalTime ? '#E8002D' : '#5A6A7A',
+                        border: 'none', padding: '4px 10px', cursor: 'pointer',
+                        fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.5px',
+                      }}
+                    >{trackLabel}</button>
+                    <button
+                      onClick={() => setUseLocalTime(true)}
+                      style={{
+                        background: useLocalTime ? 'rgba(232,0,45,0.15)' : 'transparent',
+                        color: useLocalTime ? '#E8002D' : '#5A6A7A',
+                        border: 'none', borderLeft: '1px solid rgba(255,255,255,0.07)',
+                        padding: '4px 10px', cursor: 'pointer',
+                        fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.5px',
+                      }}
+                    >Local</button>
+                  </div>
+                  <Badge type={selectedRace.completed ? 'done' : 'live'} label={selectedRace.completed ? 'Completed' : 'Upcoming'} />
                 </div>
-              ) : sessions.map((s: any, i: number) => (
-                <div key={s.session_key} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < sessions.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: '13px', fontWeight: 600 }}>{s.session_name}</div>
-                    <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>
-                      {s.date_start ? new Date(s.date_start).toLocaleString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }) + ' UTC' : '—'}
+              </div>
+              <div style={{ padding: '16px 20px' }}>
+                {loading ? <Loader label="sessions" /> : sessions.length === 0 && !useStaticSessions ? (
+                  <div style={{ color: '#5A6A7A', fontSize: '13px', padding: '20px 0' }}>
+                    {selectedRace.completed ? 'Session data not yet available from OpenF1' : `Sessions will appear closer to race weekend (${selectedRace.date})`}
+                  </div>
+                ) : useStaticSessions ? (
+                  CURRENT_RACE.sessions.map((s, i) => {
+                    const nextSession = CURRENT_RACE.sessions.find(x => !x.completed)
+                    const isNext = s === nextSession
+                    const displayTime = useLocalTime
+                      ? (s.dateISO ? new Date(s.dateISO).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }) : s.timeUTC)
+                      : s.timeLocal
+                    return (
+                      <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < CURRENT_RACE.sessions.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
+                        <div style={{ width: '52px', fontFamily: 'Bebas Neue, sans-serif', fontSize: '12px', letterSpacing: '0.5px', color: isNext ? '#E8002D' : s.completed ? '#3A4A5A' : '#8A9AB0', textAlign: 'center' as const, background: isNext ? 'rgba(232,0,45,0.1)' : 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>
+                          {s.short}
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontSize: '13px', fontWeight: 600, color: s.completed ? '#3A4A5A' : '#F0F4F8' }}>{s.name}</div>
+                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>
+                            {s.date} · {displayTime}
+                          </div>
+                        </div>
+                        {isNext && <span style={{ fontSize: '9px', fontWeight: 700, padding: '3px 7px', borderRadius: '20px', background: '#E8002D', color: 'white', textTransform: 'uppercase' as const, letterSpacing: '0.5px', flexShrink: 0 }}>Next</span>}
+                        {s.completed && <span style={{ fontSize: '12px', color: '#00D47E', flexShrink: 0 }}>✓</span>}
+                      </div>
+                    )
+                  })
+                ) : sessions.map((s: any, i: number) => (
+                  <div key={s.session_key} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < sessions.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontSize: '13px', fontWeight: 600 }}>{s.session_name}</div>
+                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>
+                        {s.date_start
+                          ? useLocalTime
+                            ? new Date(s.date_start).toLocaleString(undefined, { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+                            : new Date(s.date_start).toLocaleString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }) + ' UTC'
+                          : '—'}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-
-        </div>
-      )}
+        )
+      })()}
 
       {/* RESULTS TAB */}
       {activeTab === 'results' && (
@@ -402,47 +486,147 @@ export default function RaceHubClient() {
       )}
 
       {/* WEATHER TAB */}
-      {activeTab === 'weather' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-          <div style={card}>
-            <div style={cardHeader}>
-              <span style={cardTitle}>Live Track Conditions</span>
-              <Badge type="live" label="OpenF1" />
+      {activeTab === 'weather' && (() => {
+        const wmoIcon = (code: number): string => {
+          if (code === 0) return '☀️'
+          if (code <= 2) return '🌤️'
+          if (code === 3) return '☁️'
+          if (code <= 48) return '🌫️'
+          if (code <= 57) return '🌦️'
+          if (code <= 67) return '🌧️'
+          if (code <= 77) return '❄️'
+          if (code <= 82) return '🌦️'
+          if (code <= 84) return '🌨️'
+          if (code <= 86) return '❄️'
+          if (code <= 99) return '⛈️'
+          return '🌡️'
+        }
+        const wmoLabel = (code: number): string => {
+          if (code === 0) return 'Clear sky'
+          if (code === 1) return 'Mainly clear'
+          if (code === 2) return 'Partly cloudy'
+          if (code === 3) return 'Overcast'
+          if (code <= 48) return 'Foggy'
+          if (code <= 55) return 'Drizzle'
+          if (code <= 57) return 'Freezing drizzle'
+          if (code <= 63) return 'Rain'
+          if (code <= 67) return 'Heavy rain'
+          if (code <= 75) return 'Snow'
+          if (code <= 77) return 'Snow grains'
+          if (code <= 82) return 'Rain showers'
+          if (code <= 86) return 'Snow showers'
+          if (code <= 99) return 'Thunderstorm'
+          return 'Unknown'
+        }
+
+        const dailyData = forecast?.daily
+        const forecastDays = dailyData
+          ? dailyData.time.map((date: string, i: number) => ({
+              date,
+              maxTemp: dailyData.temperature_2m_max[i],
+              minTemp: dailyData.temperature_2m_min[i],
+              rainChance: dailyData.precipitation_probability_max[i],
+              windMax: dailyData.wind_speed_10m_max[i],
+              code: dailyData.weather_code[i],
+            }))
+          : []
+
+        return (
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+            {/* Live Track Conditions */}
+            <div style={card}>
+              <div style={cardHeader}>
+                <span style={cardTitle}>Live Track Conditions</span>
+                <Badge type="live" label="OpenF1" />
+              </div>
+              <div style={{ padding: '20px' }}>
+                {loading ? <Loader label="weather" /> : !weather ? (
+                  <div style={{ color: '#5A6A7A', fontSize: '13px' }}>No live track data available — check back during the race weekend</div>
+                ) : (
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                    {[
+                      { label: 'Air Temp', value: `${weather.air_temperature?.toFixed(1) ?? '—'}°C`, icon: '🌡️' },
+                      { label: 'Track Temp', value: `${weather.track_temperature?.toFixed(1) ?? '—'}°C`, icon: '🏎️' },
+                      { label: 'Wind Speed', value: `${weather.wind_speed?.toFixed(1) ?? '—'} m/s`, icon: '💨' },
+                      { label: 'Wind Dir', value: `${weather.wind_direction ?? '—'}°`, icon: '🧭' },
+                      { label: 'Humidity', value: `${weather.humidity?.toFixed(0) ?? '—'}%`, icon: '💧' },
+                      { label: 'Pressure', value: `${weather.pressure?.toFixed(1) ?? '—'} hPa`, icon: '📊' },
+                      { label: 'Rainfall', value: weather.rainfall ? 'Yes 🌧️' : 'No ☀️', icon: '🌦️' },
+                    ].map((stat) => (
+                      <div key={stat.label} style={{ background: '#141B22', borderRadius: '8px', padding: '14px' }}>
+                        <div style={{ fontSize: '11px', color: '#5A6A7A', textTransform: 'uppercase' as const, letterSpacing: '1px', marginBottom: '6px' }}>{stat.icon} {stat.label}</div>
+                        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '18px', fontWeight: 600 }}>{stat.value}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-            <div style={{ padding: '20px' }}>
-              {loading ? <Loader label="weather" /> : !weather ? (
-                <div style={{ color: '#5A6A7A', fontSize: '13px' }}>No weather data available for this weekend</div>
-              ) : (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                  {[
-                    { label: 'Air Temp', value: `${weather.air_temperature?.toFixed(1) ?? '—'}°C`, icon: '🌡️' },
-                    { label: 'Track Temp', value: `${weather.track_temperature?.toFixed(1) ?? '—'}°C`, icon: '🏎️' },
-                    { label: 'Wind Speed', value: `${weather.wind_speed?.toFixed(1) ?? '—'} m/s`, icon: '💨' },
-                    { label: 'Wind Dir', value: `${weather.wind_direction ?? '—'}°`, icon: '🧭' },
-                    { label: 'Humidity', value: `${weather.humidity?.toFixed(0) ?? '—'}%`, icon: '💧' },
-                    { label: 'Pressure', value: `${weather.pressure?.toFixed(1) ?? '—'} hPa`, icon: '📊' },
-                    { label: 'Rainfall', value: weather.rainfall ? 'Yes 🌧️' : 'No ☀️', icon: '🌦️' },
-                  ].map((stat) => (
-                    <div key={stat.label} style={{ background: '#141B22', borderRadius: '8px', padding: '14px' }}>
-                      <div style={{ fontSize: '11px', color: '#5A6A7A', textTransform: 'uppercase' as const, letterSpacing: '1px', marginBottom: '6px' }}>{stat.icon} {stat.label}</div>
-                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '18px', fontWeight: 600 }}>{stat.value}</div>
+
+            {/* Weekend Forecast */}
+            <div style={card}>
+              <div style={cardHeader}>
+                <span style={cardTitle}>Weekend Forecast</span>
+                <Badge type="new" label="Open-Meteo" />
+              </div>
+              <div style={{ padding: '20px' }}>
+                {forecastLoading ? (
+                  <Loader label="forecast" />
+                ) : !selectedRace.lat ? (
+                  <div style={{ color: '#5A6A7A', fontSize: '13px' }}>No location data available for this circuit</div>
+                ) : forecastDays.length === 0 ? (
+                  <div style={{ color: '#5A6A7A', fontSize: '13px' }}>Could not load forecast data</div>
+                ) : (
+                  <>
+                    {[
+                      { label: 'Pre-Weekend', days: forecastDays.slice(0, 4), accent: '#5A6A7A' },
+                      { label: 'Race Weekend', days: forecastDays.slice(4, 7), accent: '#E8002D' },
+                    ].map(section => (
+                      <div key={section.label} style={{ marginBottom: '16px' }}>
+                        <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: section.accent, marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                          {section.label === 'Race Weekend' && <div style={{ width: '6px', height: '6px', background: '#E8002D', borderRadius: '50%' }} />}
+                          {section.label}
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '6px' }}>
+                          {section.days.map((day: any) => {
+                            const d = new Date(day.date + 'T12:00:00Z')
+                            const dayLabel = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' })
+                            const rainHigh = day.rainChance >= 60
+                            const rainMed = day.rainChance >= 30
+                            const isRaceWeekend = section.label === 'Race Weekend'
+                            return (
+                              <div key={day.date} style={{ display: 'grid', gridTemplateColumns: '90px 28px 1fr auto auto auto', alignItems: 'center', gap: '8px', padding: '9px 12px', background: isRaceWeekend ? 'rgba(232,0,45,0.04)' : '#141B22', borderRadius: '8px', border: isRaceWeekend ? '1px solid rgba(232,0,45,0.12)' : '1px solid rgba(255,255,255,0.04)' }}>
+                                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: isRaceWeekend ? '#F0F4F8' : '#8A9AB0' }}>{dayLabel}</span>
+                                <span style={{ fontSize: '18px', textAlign: 'center' as const }}>{wmoIcon(day.code)}</span>
+                                <span style={{ fontSize: '11px', color: '#5A6A7A' }}>{wmoLabel(day.code)}</span>
+                                <div style={{ textAlign: 'right' as const }}>
+                                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 600, color: '#F0F4F8' }}>{Math.round(day.maxTemp)}°</span>
+                                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginLeft: '4px' }}>{Math.round(day.minTemp)}°</span>
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                                  <span style={{ fontSize: '10px' }}>💧</span>
+                                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', fontWeight: 600, color: rainHigh ? '#E8002D' : rainMed ? '#FFB800' : '#5A6A7A' }}>{day.rainChance}%</span>
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                                  <span style={{ fontSize: '10px' }}>💨</span>
+                                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#5A6A7A' }}>{Math.round(day.windMax)}<span style={{ fontSize: '9px' }}>km/h</span></span>
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    ))}
+                    <div style={{ marginTop: '6px', fontSize: '10px', color: '#3A4A5A', lineHeight: 1.6 }}>
+                      Forecast data provided by Open-Meteo (open-meteo.com) · Updates hourly
                     </div>
-                  ))}
-                </div>
-              )}
+                  </>
+                )}
+              </div>
             </div>
           </div>
-          <div style={card}>
-            <div style={cardHeader}>
-              <span style={cardTitle}>Weekend Forecast</span>
-              <Badge type="blue" label={selectedRace.flag + ' ' + selectedRace.name} />
-            </div>
-            <div style={{ padding: '20px', color: '#5A6A7A', fontSize: '13px', lineHeight: 1.7 }}>
-              Live weather forecast data from OpenWeatherMap coming soon. Track conditions above are sourced directly from F1 timing data via OpenF1.
-            </div>
-          </div>
-        </div>
-      )}
+        )
+      })()}
 
     </div>
   )

@@ -6,7 +6,7 @@ import { DRIVERS } from '@/lib/drivers'
 
 const RACES = 2
 
-type SortMode = 'points' | 'average' | 'value'
+type SortMode = 'points' | 'average'
 
 function posColor(pos: number) {
   return pos === 1 ? '#FFD700' : pos === 2 ? '#C0C0C0' : pos === 3 ? '#CD7F32' : '#5A6A7A'
@@ -106,7 +106,7 @@ export default function StandingsClient() {
           </div>
           {/* Sort toggles */}
           <div style={{ display: 'flex', background: '#141B22', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.07)', overflow: 'hidden' }}>
-            {(['points', 'average', 'value'] as SortMode[]).map((mode, i) => (
+            {(['points', 'average'] as SortMode[]).map((mode, i) => (
               <button
                 key={mode}
                 onClick={() => setSortMode(mode)}
@@ -119,7 +119,7 @@ export default function StandingsClient() {
                   textTransform: 'capitalize' as const, transition: 'all 0.15s',
                 }}
               >
-                {mode === 'points' ? 'Points' : mode === 'average' ? 'Average' : 'Value'}
+                {mode === 'points' ? 'Points' : 'Average'}
               </button>
             ))}
           </div>
@@ -138,7 +138,6 @@ export default function StandingsClient() {
                 <th style={thStyle(false)}>WINS</th>
                 <th style={thStyle(false)}>PODS</th>
                 <th style={thStyle(false)}>DNF</th>
-                <th style={{ ...thStyle(false), color: sortMode === 'value'   ? '#F0F4F8' : '#5A6A7A' }}>PRICE</th>
               </tr>
             </thead>
             <tbody>
@@ -188,8 +187,6 @@ export default function StandingsClient() {
                     {/* DNF */}
                     <td style={tdMono('#3A4A5A')}>—</td>
 
-                    {/* PRICE */}
-                    <td style={tdMono('#5A6A7A')}>${d.price}M</td>
                   </tr>
                 )
               })}

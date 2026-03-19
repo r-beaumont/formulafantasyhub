@@ -2,12 +2,11 @@ import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import StandingsWidget from '@/components/StandingsWidget'
-import { CURRENT_RACE } from '@/lib/races'
+import RaceWeekendCard from '@/components/RaceWeekendCard'
 import { articles } from '@/lib/articles'
 
 export default function Home() {
   const latestArticles = articles.slice(0, 3)
-  const nextSession = CURRENT_RACE.sessions.find(s => !s.completed)
 
   const lastRaceResults = [
     { pos: 1, posC: '#FFD700', bar: '#27F4D2', driver: 'K. Antonelli', flag: '🇮🇹', team: 'Mercedes', gap: 'Winner' },
@@ -47,43 +46,12 @@ export default function Home() {
 
           {/* RACE WEEKEND + WEATHER */}
           <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '20px', marginBottom: '20px' }}>
-            <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', position: 'relative' }}>
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg,#E8002D,rgba(232,0,45,0.2))' }} />
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-                <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Current Race Weekend</span>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <div style={{ width: '7px', height: '7px', background: '#E8002D', borderRadius: '50%', animation: 'pulse 2s infinite' }} />
-                  <span style={{ fontSize: '10px', fontWeight: 600, color: '#E8002D', textTransform: 'uppercase' as const, letterSpacing: '1px' }}>Live</span>
-                </div>
-              </div>
-              <div style={{ padding: '20px' }}>
-                <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', lineHeight: 1, marginBottom: '4px' }}>
-                  {CURRENT_RACE.flag} {CURRENT_RACE.name}
-                </div>
-                <div style={{ color: '#5A6A7A', fontSize: '13px', marginBottom: '20px' }}>
-                  Round {CURRENT_RACE.round} · {CURRENT_RACE.isSprint ? '⚡ Sprint Weekend' : 'Standard Weekend'}
-                </div>
-                <div style={{ display: 'grid', gridTemplateColumns: `repeat(${CURRENT_RACE.sessions.length},1fr)`, gap: '8px' }}>
-                  {CURRENT_RACE.sessions.map((s) => {
-                    const isNext = s === nextSession
-                    return (
-                      <div key={s.name} style={{ background: isNext ? 'rgba(232,0,45,0.08)' : '#141B22', border: isNext ? '1px solid rgba(232,0,45,0.4)' : '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '10px 12px' }}>
-                        <div style={{ fontSize: '9px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: s.completed ? '#3A4A5A' : isNext ? '#E8002D' : '#5A6A7A', marginBottom: '4px' }}>
-                          {s.completed ? '✓' : isNext ? '● Next' : '○'}
-                        </div>
-                        <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '14px', color: s.completed ? '#3A4A5A' : '#F0F4F8', marginBottom: '2px' }}>{s.name}</div>
-                        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: s.completed ? '#3A4A5A' : '#FFB800' }}>{s.timeUTC}</div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            </div>
+            <RaceWeekendCard />
 
             <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
                 <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Weekend Weather</span>
-                <span style={{ fontSize: '12px' }}>{CURRENT_RACE.flag}</span>
+                <span style={{ fontSize: '12px' }}>🇯🇵</span>
               </div>
               <div style={{ padding: '16px 20px' }}>
                 {[{ day: 'Fri', icon: '🌤️', high: '16°', rain: '10%' }, { day: 'Sat', icon: '⛅', high: '15°', rain: '20%' }, { day: 'Sun', icon: '🌧️', high: '13°', rain: '45%' }].map((w, i) => (
