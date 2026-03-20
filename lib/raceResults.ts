@@ -23,12 +23,14 @@ export interface RaceResult {
 }
 
 export const STATIC_RACE_RESULTS: Record<number, {
+  [key: string]: RaceResult[] | any[] | undefined
   qualifying?: RaceResult[]
   'sprint-qualifying'?: RaceResult[]
   sprint?: RaceResult[]
   fp1?: any[]
   fp2?: any[]
   fp3?: any[]
+  race?: RaceResult[]
 }> = {
 
   1: { // R1 — Australia, Albert Park Circuit
