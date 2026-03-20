@@ -3,20 +3,18 @@
 import { useState } from 'react'
 import { CURRENT_RACE } from '@/lib/races'
 
-function getTrackTZ(timeLocal: string): string {
-  const parts = timeLocal.trim().split(' ')
-  return parts.length >= 2 ? parts[parts.length - 1] : 'Track'
-}
-
-function toUserTime(dateISO: string | undefined): string {
+function formatTrackTime(dateISO: string | undefined, timezone: string, useLocal: boolean): string {
   if (!dateISO) return '—'
-  return new Date(dateISO).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
+  const d = new Date(dateISO)
+  if (useLocal) return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
+  const tzAbbr = new Intl.DateTimeFormat('en-US', { timeZone: timezone, timeZoneName: 'short' })
+    .formatToParts(d).find(p => p.type === 'timeZoneName')?.value ?? ''
+  return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: timezone }) + (tzAbbr ? ` ${tzAbbr}` : '')
 }
 
 export default function RaceWeekendCard() {
   const [useLocalTime, setUseLocalTime] = useState(false)
   const nextSession = CURRENT_RACE.sessions.find(s => !s.completed)
-  const trackTZ = CURRENT_RACE.sessions.length > 0 ? getTrackTZ(CURRENT_RACE.sessions[0].timeLocal) : 'Track'
 
   return (
     <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', position: 'relative' }}>
@@ -37,7 +35,7 @@ export default function RaceWeekendCard() {
                 border: 'none', padding: '4px 10px', cursor: 'pointer',
                 fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.5px',
               }}
-            >{trackTZ}</button>
+            >Track</button>
             <button
               onClick={() => setUseLocalTime(true)}
               style={{
@@ -66,7 +64,7 @@ export default function RaceWeekendCard() {
         <div className="sessions-grid" style={{ display: 'grid', gridTemplateColumns: `repeat(${CURRENT_RACE.sessions.length},1fr)`, gap: '8px' }}>
           {CURRENT_RACE.sessions.map((s) => {
             const isNext = s === nextSession
-            const displayTime = useLocalTime ? toUserTime(s.dateISO) : s.timeLocal
+            const displayTime = formatTrackTime(s.dateISO, CURRENT_RACE.timezone, useLocalTime)
             return (
               <div key={s.name} style={{ background: isNext ? 'rgba(232,0,45,0.08)' : '#141B22', border: isNext ? '1px solid rgba(232,0,45,0.4)' : '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '10px 12px' }}>
                 <div style={{ fontSize: '9px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: s.completed ? '#3A4A5A' : isNext ? '#E8002D' : '#5A6A7A', marginBottom: '4px' }}>

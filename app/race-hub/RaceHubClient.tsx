@@ -97,6 +97,29 @@ function Loader({ label }: { label: string }) {
   return <div style={{ padding: '40px', textAlign: 'center' as const, color: '#3A4A5A', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px' }}>Loading {label}...</div>
 }
 
+// Format a session ISO date using the circuit's IANA timezone (Track mode)
+// or the user's device timezone (Local mode). Returns separate date and time labels.
+function formatSessionDateTime(
+  isoDate: string,
+  timezone: string,
+  useLocal: boolean
+): { dateLabel: string; timeLabel: string } {
+  const d = new Date(isoDate)
+  if (useLocal) {
+    return {
+      dateLabel: d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }),
+      timeLabel: d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
+    }
+  }
+  const tzAbbr = new Intl.DateTimeFormat('en-US', { timeZone: timezone, timeZoneName: 'short' })
+    .formatToParts(d)
+    .find(p => p.type === 'timeZoneName')?.value ?? ''
+  return {
+    dateLabel: d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: timezone }),
+    timeLabel: d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: timezone }) + (tzAbbr ? ` ${tzAbbr}` : ''),
+  }
+}
+
 function formatTime(seconds: number | null | undefined): string {
   if (!seconds) return '—'
   const mins = Math.floor(seconds / 60)
@@ -496,14 +519,7 @@ export default function RaceHubClient() {
         const useStaticSessions = !loading && sessions.length === 0 && isCurrentRace && CURRENT_RACE.sessions.length > 0
         const calendarSessData = SEASON_CALENDAR.find(r => r.round === selectedRound)?.sessions
         const useCalendarSessions = !loading && sessions.length === 0 && !useStaticSessions && !!calendarSessData?.length
-        // Derive track TZ label from static sessions if available
-        const staticTZ = (() => {
-          const s = CURRENT_RACE.sessions[0]
-          if (!s) return 'Track'
-          const parts = s.timeLocal.trim().split(' ')
-          return parts.length >= 2 ? parts[parts.length - 1] : 'Track'
-        })()
-        const trackLabel = useStaticSessions ? staticTZ : 'UTC'
+        const raceTimezone = selectedRace?.timezone ?? 'UTC'
         return (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px' }}>
             <div style={card}>
@@ -520,7 +536,7 @@ export default function RaceHubClient() {
                         border: 'none', padding: '4px 10px', cursor: 'pointer',
                         fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.5px',
                       }}
-                    >{trackLabel}</button>
+                    >Track</button>
                     <button
                       onClick={() => setUseLocalTime(true)}
                       style={{
@@ -548,10 +564,7 @@ export default function RaceHubClient() {
                     const isNext = !isCompleted && calendarSessData!.findIndex(x => new Date(x.date) >= now) === i
                     const shortMap: Record<string, string> = { 'Practice 1': 'FP1', 'Practice 2': 'FP2', 'Practice 3': 'FP3', 'Sprint Qualifying': 'SQ', 'Sprint': 'SPRINT', 'Qualifying': 'QUAL', 'Race': 'RACE' }
                     const shortLabel = shortMap[s.name] || s.name
-                    const dateLabel = sessionDate.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' })
-                    const displayTime = useLocalTime
-                      ? sessionDate.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
-                      : sessionDate.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }) + ' UTC'
+                    const { dateLabel, timeLabel: displayTime } = formatSessionDateTime(s.date, raceTimezone, useLocalTime)
                     return (
                       <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < calendarSessData!.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', opacity: isCompleted ? 0.45 : 1 }}>
                         <div style={{ width: '52px', fontFamily: 'Bebas Neue, sans-serif', fontSize: '12px', letterSpacing: '0.5px', color: isNext ? '#E8002D' : isCompleted ? '#3A4A5A' : '#8A9AB0', textAlign: 'center' as const, background: isNext ? 'rgba(232,0,45,0.1)' : 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>
@@ -570,18 +583,18 @@ export default function RaceHubClient() {
                   CURRENT_RACE.sessions.map((s, i) => {
                     const nextSession = CURRENT_RACE.sessions.find(x => !x.completed)
                     const isNext = s === nextSession
-                    const displayTime = useLocalTime
-                      ? (s.dateISO ? new Date(s.dateISO).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }) : s.timeUTC)
-                      : s.timeLocal
+                    const { dateLabel, timeLabel: displayTime } = s.dateISO
+                      ? formatSessionDateTime(s.dateISO, CURRENT_RACE.timezone, useLocalTime)
+                      : { dateLabel: s.date, timeLabel: useLocalTime ? new Date(s.dateISO ?? '').toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) : s.timeLocal }
                     return (
-                      <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < CURRENT_RACE.sessions.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
+                      <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < CURRENT_RACE.sessions.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', opacity: s.completed ? 0.45 : 1 }}>
                         <div style={{ width: '52px', fontFamily: 'Bebas Neue, sans-serif', fontSize: '12px', letterSpacing: '0.5px', color: isNext ? '#E8002D' : s.completed ? '#3A4A5A' : '#8A9AB0', textAlign: 'center' as const, background: isNext ? 'rgba(232,0,45,0.1)' : 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>
                           {s.short}
                         </div>
                         <div style={{ flex: 1 }}>
                           <div style={{ fontSize: '13px', fontWeight: 600, color: s.completed ? '#3A4A5A' : '#F0F4F8' }}>{s.name}</div>
                           <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>
-                            {s.date} · {displayTime}
+                            {dateLabel} · {displayTime}
                           </div>
                         </div>
                         {isNext && <span style={{ fontSize: '9px', fontWeight: 700, padding: '3px 7px', borderRadius: '20px', background: '#E8002D', color: 'white', textTransform: 'uppercase' as const, letterSpacing: '0.5px', flexShrink: 0 }}>Next</span>}
@@ -595,9 +608,10 @@ export default function RaceHubClient() {
                       <div style={{ fontSize: '13px', fontWeight: 600 }}>{s.session_name}</div>
                       <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>
                         {s.date_start
-                          ? useLocalTime
-                            ? new Date(s.date_start).toLocaleString(undefined, { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
-                            : new Date(s.date_start).toLocaleString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }) + ' UTC'
+                          ? (() => {
+                              const { dateLabel, timeLabel } = formatSessionDateTime(s.date_start, raceTimezone, useLocalTime)
+                              return `${dateLabel} · ${timeLabel}`
+                            })()
                           : '—'}
                       </div>
                     </div>
@@ -827,16 +841,18 @@ export default function RaceHubClient() {
                     }) === i
                     const shortMap: Record<string, string> = { 'Practice 1': 'FP1', 'Practice 2': 'FP2', 'Practice 3': 'FP3', 'Sprint Qualifying': 'SQ', 'Sprint': 'SPRINT', 'Qualifying': 'QUAL', 'Race': 'RACE' }
                     const shortLabel = s.short || shortMap[s.name as string] || s.name
+                    const calTz = calRace?.timezone ?? 'UTC'
                     let dateLabel: string, displayTime: string
                     if (isNewFormat) {
-                      dateLabel = new Date(s.date).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' })
-                      displayTime = useLocalTime
-                        ? new Date(s.date).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
-                        : new Date(s.date).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }) + ' UTC'
+                      const fmt = formatSessionDateTime(s.date, calTz, useLocalTime)
+                      dateLabel = fmt.dateLabel
+                      displayTime = fmt.timeLabel
+                    } else if (s.dateISO) {
+                      const fmt = formatSessionDateTime(s.dateISO, CURRENT_RACE.timezone, useLocalTime)
+                      dateLabel = fmt.dateLabel
+                      displayTime = fmt.timeLabel
                     } else {
-                      displayTime = useLocalTime
-                        ? (s.dateISO ? new Date(s.dateISO).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }) : s.timeUTC)
-                        : s.timeLocal
+                      displayTime = useLocalTime ? s.timeLocal : s.timeLocal
                       dateLabel = s.date
                     }
                     return (
