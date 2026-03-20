@@ -216,8 +216,8 @@ export default function StandingsClient() {
                   </div>
 
                   {/* Bar */}
-                  <div style={{ height: '6px', background: '#141B22', borderRadius: '3px', overflow: 'hidden' }}>
-                    <div style={{ width: `${barPct}%`, minWidth: c.points > 0 ? '4px' : '0', height: '100%', background: c.color, borderRadius: '3px', opacity: 0.85, transition: 'width 0.6s ease' }} />
+                  <div style={{ height: '6px', background: '#141B22', borderRadius: '3px', overflow: 'hidden', minWidth: '40px' }}>
+                    <div style={{ width: `${barPct}%`, minWidth: c.points > 0 ? '4px' : '0', height: '100%', background: c.color, borderRadius: '3px', opacity: 0.85, transition: 'width 0.6s ease', flexShrink: 0 }} />
                   </div>
 
                   {/* Points */}

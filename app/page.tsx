@@ -104,7 +104,7 @@ export default function Home() {
             {[
               { href: '/race-hub',   icon: '🏎️', label: 'Race Hub',   desc: 'Live timing, results & circuit info',   color: '#E8002D' },
               { href: '/f1-fantasy', icon: '🏆', label: 'F1 Fantasy', desc: 'Picks, price changes & strategy',        color: '#FFB800' },
-              { href: '/standings', icon: '📊', label: 'Statistics',  desc: 'Full championship standings & data',    color: '#00A8FF' },
+              { href: '/standings', icon: '📊', label: 'Standings',   desc: 'Full championship standings & data',    color: '#00A8FF' },
               { href: '/videos',     icon: '▶️', label: 'Videos',      desc: 'Latest YouTube content from Rob',       color: '#00D47E' },
             ].map((item) => (
               <Link key={item.href} href={item.href} style={{ textDecoration: 'none' }}>
@@ -150,7 +150,7 @@ export default function Home() {
               </div>
               <div style={{ padding: '20px', display: 'flex', flexDirection: 'column' as const, gap: '12px' }}>
                 <div style={{ position: 'relative', paddingBottom: '56.25%', background: '#080C10', borderRadius: '8px', overflow: 'hidden' }}>
-                  <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=formulafantasyhub" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                  <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=formulafantasyhub&rel=0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
                 </div>
                 <a href="https://www.youtube.com/@formulafantasyhub" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: '#E8002D', color: 'white', padding: '10px', borderRadius: '8px', textDecoration: 'none', fontSize: '13px', fontWeight: 600 }}>
                   ▶ Subscribe on YouTube

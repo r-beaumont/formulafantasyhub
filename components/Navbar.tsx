@@ -36,7 +36,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', flexShrink: 0 }}>
           <Image src="/logo.png" alt="Formula Hub" width={36} height={36} style={{ borderRadius: '50%' }} />
-          <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '22px', letterSpacing: '2px', color: '#F0F4F8' }}>
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 800, fontSize: '22px', letterSpacing: '1px', color: '#F0F4F8' }}>
             FORMULA <span style={{ color: '#E8002D' }}>HUB</span>
           </span>
         </Link>

@@ -754,35 +754,66 @@ export default function F1FantasyClient() {
                 <span style={{ fontSize: '20px' }}>📊</span>
                 <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#00D47E' }}>Scoring System</span>
               </div>
-              <div style={{ padding: '20px' }}>
-                <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '16px' }}>
-                  {[
-                    { label: '1st place', pts: '+25' }, { label: '2nd place', pts: '+18' },
-                    { label: '3rd place', pts: '+15' }, { label: '4th place', pts: '+12' },
-                    { label: '5th place', pts: '+10' }, { label: '6th place', pts: '+8' },
-                    { label: '7th place', pts: '+6' },  { label: '8th place', pts: '+4' },
-                    { label: '9th place', pts: '+2' },  { label: '10th place', pts: '+1' },
-                  ].map(s => (
-                    <div key={s.label} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 10px', background: '#141B22', borderRadius: '6px' }}>
-                      <span style={{ fontSize: '12px', color: '#5A6A7A' }}>{s.label}</span>
-                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 600, color: '#FFB800' }}>{s.pts}</span>
-                    </div>
-                  ))}
+              <div style={{ padding: '20px', display: 'flex', flexDirection: 'column' as const, gap: '16px' }}>
+
+                {/* Race Finish */}
+                <div>
+                  <div style={{ fontSize: '10px', fontWeight: 700, color: '#FFB800', textTransform: 'uppercase' as const, letterSpacing: '1.5px', marginBottom: '8px' }}>Race Finish</div>
+                  <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px' }}>
+                    {[['P1','+25'],['P2','+18'],['P3','+15'],['P4','+12'],['P5','+10'],['P6','+8'],['P7','+6'],['P8','+4'],['P9','+2'],['P10','+1']].map(([l,p]) => (
+                      <div key={l} style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 10px', background: '#141B22', borderRadius: '5px' }}>
+                        <span style={{ fontSize: '11px', color: '#5A6A7A' }}>{l}</span>
+                        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', fontWeight: 600, color: '#FFB800' }}>{p}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '6px' }}>
-                  {[
-                    { label: 'Fastest lap', pts: '+5', color: '#FF69B4' },
-                    { label: 'Per overtake', pts: '+3', color: '#00A8FF' },
-                    { label: 'Qualifying bonus (P1)', pts: '+10', color: '#00D47E' },
-                    { label: 'DNF / Not classified', pts: '-20', color: '#E8002D' },
-                    { label: 'Sprint DNF penalty', pts: '-10', color: '#E8002D' },
-                  ].map(s => (
-                    <div key={s.label} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 10px', background: '#141B22', borderRadius: '6px' }}>
-                      <span style={{ fontSize: '12px', color: '#5A6A7A' }}>{s.label}</span>
-                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 600, color: s.color }}>{s.pts}</span>
-                    </div>
-                  ))}
+
+                {/* Qualifying */}
+                <div>
+                  <div style={{ fontSize: '10px', fontWeight: 700, color: '#00A8FF', textTransform: 'uppercase' as const, letterSpacing: '1.5px', marginBottom: '8px' }}>Qualifying</div>
+                  <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px' }}>
+                    {[['P1','+10'],['P2','+9'],['P3','+8'],['P4','+7'],['P5','+6'],['P6','+5'],['P7','+4'],['P8','+3'],['P9','+2'],['P10','+1']].map(([l,p]) => (
+                      <div key={l} style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 10px', background: '#141B22', borderRadius: '5px' }}>
+                        <span style={{ fontSize: '11px', color: '#5A6A7A' }}>Q {l}</span>
+                        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', fontWeight: 600, color: '#00A8FF' }}>{p}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
+
+                {/* Sprint Weekend */}
+                <div>
+                  <div style={{ fontSize: '10px', fontWeight: 700, color: '#E8002D', textTransform: 'uppercase' as const, letterSpacing: '1.5px', marginBottom: '8px' }}>Sprint Weekend</div>
+                  <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px' }}>
+                    {[['Sprint P1','+8'],['Sprint P2','+7'],['Sprint P3','+6'],['Sprint P4','+5'],['Sprint P5','+4'],['Sprint P6','+3'],['Sprint P7','+2'],['Sprint P8','+1'],['SQ P1','+5'],['SQ P2','+4'],['SQ P3','+3'],['SQ P4–5','+2–1']].map(([l,p]) => (
+                      <div key={l} style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 10px', background: '#141B22', borderRadius: '5px' }}>
+                        <span style={{ fontSize: '11px', color: '#5A6A7A' }}>{l}</span>
+                        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', fontWeight: 600, color: '#E8002D' }}>{p}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Bonuses & Penalties */}
+                <div>
+                  <div style={{ fontSize: '10px', fontWeight: 700, color: '#00D47E', textTransform: 'uppercase' as const, letterSpacing: '1.5px', marginBottom: '8px' }}>Bonuses & Penalties</div>
+                  <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '4px' }}>
+                    {[
+                      { label: 'Fastest Lap',          pts: '+5',  color: '#FF69B4' },
+                      { label: 'Per Overtake (max 5)',  pts: '+3',  color: '#00A8FF' },
+                      { label: 'DNF / Not Classified',  pts: '−20', color: '#E8002D' },
+                      { label: 'Sprint DNF',            pts: '−10', color: '#E8002D' },
+                      { label: 'Did Not Start',         pts: '−15', color: '#FF6B6B' },
+                    ].map(s => (
+                      <div key={s.label} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 10px', background: '#141B22', borderRadius: '6px' }}>
+                        <span style={{ fontSize: '12px', color: '#5A6A7A' }}>{s.label}</span>
+                        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 600, color: s.color }}>{s.pts}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
               </div>
             </div>
 
@@ -816,20 +847,6 @@ export default function F1FantasyClient() {
               'Or deploy at a circuit that historically produces high scores',
               'You only get one per season — timing is everything',
             ]},
-            { icon: '3️⃣', title: '3x Boost', color: '#E8002D', items: [
-              'Pick one driver to score triple points for that race weekend',
-              'The most powerful single-race scoring tool available',
-              'Best used on a driver certain to win and set fastest lap',
-              'Sprint weekends give you two sessions to benefit',
-              'You only get one — save it for the highest-ceiling race',
-            ]},
-            { icon: '🚫', title: 'No Negative', color: '#FFB800', items: [
-              'Removes all negative points scored that race weekend',
-              'Ideal if you must start a high-risk driver or constructor',
-              'Useful in wet races or street circuits with high DNF risk',
-              'Protects your score when you\'re forced into risky picks',
-              'One per season — use defensively, not offensively',
-            ]},
             { icon: '🔄', title: 'Wildcard', color: '#00A8FF', items: [
               'Make unlimited free transfers for one race weekend',
               'Completely rebuild your team without points penalties',
@@ -844,12 +861,26 @@ export default function F1FantasyClient() {
               'Cannot be combined with other chips in the same round',
               'Use as a safety net, not a primary strategy',
             ]},
+            { icon: '3️⃣', title: '3x Boost', color: '#E8002D', items: [
+              'Pick one driver to score triple points for that race weekend',
+              'The most powerful single-race scoring tool available',
+              'Best used on a driver certain to win and set fastest lap',
+              'Sprint weekends give you two sessions to benefit',
+              'You only get one — save it for the highest-ceiling race',
+            ]},
             { icon: '🔧', title: 'Final Fix', color: '#C0C0C0', items: [
               'Make one free transfer after the race deadline has passed',
               'Useful to fix an injury or late grid penalty',
               'Can only be used once per season',
               'Does not cost -10 points unlike a normal late transfer',
               'Save it for a genuine emergency — not a tactical change',
+            ]},
+            { icon: '🚫', title: 'No Negative', color: '#FFB800', items: [
+              'Removes all negative points scored that race weekend',
+              'Ideal if you must start a high-risk driver or constructor',
+              'Useful in wet races or street circuits with high DNF risk',
+              'Protects your score when you\'re forced into risky picks',
+              'One per season — use defensively, not offensively',
             ]},
           ].map((section) => (
             <div key={section.title} style={card}>
