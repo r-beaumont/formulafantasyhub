@@ -1,3 +1,4 @@
+// Updated: force CDN cache bust
 // Verified qualifying results for completed rounds.
 // Race, sprint and sprint-qualifying are fetched live from the OpenF1 API.
 // Qualifying and sprint-qualifying are stored statically — OpenF1 cannot split Q1/Q2/Q3 natively.

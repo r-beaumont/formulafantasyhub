@@ -21,58 +21,106 @@ const OPENF1_MEETING_KEYS: Record<number, number> = {
   21: 1301, 22: 1302,
 }
 
-// Static fallback practice results (used if live API fails)
+// Static fallback practice results (used if live API fails or returns fewer than 22 drivers)
 const FP_STATIC_FALLBACK: Record<number, Record<string, any[]>> = {
   1: {
     fp1: [
-      { position: 1,  driver_number: 16, name: 'Charles Leclerc',   team: 'Ferrari',        team_colour: '#E8002D', time: '1:20.267', gap: '—'       },
-      { position: 2,  driver_number: 44, name: 'Lewis Hamilton',    team: 'Ferrari',        team_colour: '#E8002D', time: '1:20.736', gap: '+0.469s' },
-      { position: 3,  driver_number: 1,  name: 'Max Verstappen',    team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:20.789', gap: '+0.522s' },
-      { position: 4,  driver_number: 6,  name: 'Isack Hadjar',      team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:21.087', gap: '+0.820s' },
-      { position: 5,  driver_number: 7,  name: 'Arvid Lindblad',    team: 'Racing Bulls',   team_colour: '#6692FF', time: '1:21.313', gap: '+1.046s' },
-      { position: 6,  driver_number: 81, name: 'Oscar Piastri',     team: 'McLaren',        team_colour: '#FF8000', time: '1:21.342', gap: '+1.075s' },
-      { position: 7,  driver_number: 63, name: 'George Russell',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:21.371', gap: '+1.104s' },
-      { position: 8,  driver_number: 12, name: 'Kimi Antonelli',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:21.376', gap: '+1.109s' },
-      { position: 9,  driver_number: 5,  name: 'Gabriel Bortoleto', team: 'Audi',           team_colour: '#C0C0C0', time: '1:21.696', gap: '+1.429s' },
-      { position: 10, driver_number: 27, name: 'Nico Hülkenberg',   team: 'Audi',           team_colour: '#C0C0C0', time: '1:21.969', gap: '+1.702s' },
+      { position: 1,  driver_number: 16, name: 'Charles Leclerc',   team: 'Ferrari',        team_colour: '#E8002D', time: '1:20.267', gap: '—'        },
+      { position: 2,  driver_number: 44, name: 'Lewis Hamilton',    team: 'Ferrari',        team_colour: '#E8002D', time: '1:20.736', gap: '+0.469s'  },
+      { position: 3,  driver_number: 1,  name: 'Max Verstappen',    team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:20.789', gap: '+0.522s'  },
+      { position: 4,  driver_number: 6,  name: 'Isack Hadjar',      team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:21.087', gap: '+0.820s'  },
+      { position: 5,  driver_number: 7,  name: 'Arvid Lindblad',    team: 'Racing Bulls',   team_colour: '#6692FF', time: '1:21.313', gap: '+1.046s'  },
+      { position: 6,  driver_number: 81, name: 'Oscar Piastri',     team: 'McLaren',        team_colour: '#FF8000', time: '1:21.342', gap: '+1.075s'  },
+      { position: 7,  driver_number: 63, name: 'George Russell',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:21.371', gap: '+1.104s'  },
+      { position: 8,  driver_number: 12, name: 'Kimi Antonelli',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:21.376', gap: '+1.109s'  },
+      { position: 9,  driver_number: 5,  name: 'Gabriel Bortoleto', team: 'Audi',           team_colour: '#C0C0C0', time: '1:21.696', gap: '+1.429s'  },
+      { position: 10, driver_number: 27, name: 'Nico Hülkenberg',   team: 'Audi',           team_colour: '#C0C0C0', time: '1:21.969', gap: '+1.702s'  },
+      { position: 11, driver_number: 31, name: 'Esteban Ocon',      team: 'Haas',           team_colour: '#B6BABD', time: '1:22.161', gap: '+1.894s'  },
+      { position: 12, driver_number: 55, name: 'Carlos Sainz',      team: 'Williams',       team_colour: '#64C4FF', time: '1:22.323', gap: '+2.056s'  },
+      { position: 13, driver_number: 30, name: 'Liam Lawson',       team: 'Racing Bulls',   team_colour: '#6692FF', time: '1:22.613', gap: '+2.346s'  },
+      { position: 14, driver_number: 87, name: 'Oliver Bearman',    team: 'Haas',           team_colour: '#B6BABD', time: '1:22.682', gap: '+2.415s'  },
+      { position: 15, driver_number: 23, name: 'Alex Albon',        team: 'Williams',       team_colour: '#64C4FF', time: '1:23.130', gap: '+2.863s'  },
+      { position: 16, driver_number: 43, name: 'Franco Colapinto',  team: 'Alpine',         team_colour: '#FF69B4', time: '1:23.325', gap: '+3.058s'  },
+      { position: 17, driver_number: 77, name: 'Valtteri Bottas',   team: 'Cadillac',       team_colour: '#CC0000', time: '1:24.022', gap: '+3.755s'  },
+      { position: 18, driver_number: 10, name: 'Pierre Gasly',      team: 'Alpine',         team_colour: '#FF69B4', time: '1:24.035', gap: '+3.768s'  },
+      { position: 19, driver_number: 4,  name: 'Lando Norris',      team: 'McLaren',        team_colour: '#FF8000', time: '1:24.391', gap: '+4.124s'  },
+      { position: 20, driver_number: 11, name: 'Sergio Pérez',      team: 'Cadillac',       team_colour: '#CC0000', time: '1:24.620', gap: '+4.353s'  },
+      { position: 21, driver_number: 18, name: 'Lance Stroll',      team: 'Aston Martin',   team_colour: '#358C75', time: '1:50.334', gap: '+30.067s' },
+      { position: 22, driver_number: 14, name: 'Fernando Alonso',   team: 'Aston Martin',   team_colour: '#358C75', time: 'NO TIME',  gap: null       },
     ],
     fp2: [
-      { position: 1,  driver_number: 81, name: 'Oscar Piastri',     team: 'McLaren',        team_colour: '#FF8000', time: '1:19.729', gap: '—'       },
-      { position: 2,  driver_number: 12, name: 'Kimi Antonelli',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:19.943', gap: '+0.214s' },
-      { position: 3,  driver_number: 63, name: 'George Russell',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:20.049', gap: '+0.320s' },
-      { position: 4,  driver_number: 44, name: 'Lewis Hamilton',    team: 'Ferrari',        team_colour: '#E8002D', time: '1:20.050', gap: '+0.321s' },
-      { position: 5,  driver_number: 16, name: 'Charles Leclerc',   team: 'Ferrari',        team_colour: '#E8002D', time: '1:20.291', gap: '+0.562s' },
-      { position: 6,  driver_number: 1,  name: 'Max Verstappen',    team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:20.366', gap: '+0.637s' },
-      { position: 7,  driver_number: 4,  name: 'Lando Norris',      team: 'McLaren',        team_colour: '#FF8000', time: '1:20.794', gap: '+1.065s' },
-      { position: 8,  driver_number: 7,  name: 'Arvid Lindblad',    team: 'Racing Bulls',   team_colour: '#6692FF', time: '1:20.922', gap: '+1.193s' },
-      { position: 9,  driver_number: 6,  name: 'Isack Hadjar',      team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:20.941', gap: '+1.212s' },
-      { position: 10, driver_number: 31, name: 'Esteban Ocon',      team: 'Haas',           team_colour: '#B6BABD', time: '1:21.179', gap: '+1.450s' },
+      { position: 1,  driver_number: 81, name: 'Oscar Piastri',     team: 'McLaren',        team_colour: '#FF8000', time: '1:19.729', gap: '—'        },
+      { position: 2,  driver_number: 12, name: 'Kimi Antonelli',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:19.943', gap: '+0.214s'  },
+      { position: 3,  driver_number: 63, name: 'George Russell',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:20.049', gap: '+0.320s'  },
+      { position: 4,  driver_number: 44, name: 'Lewis Hamilton',    team: 'Ferrari',        team_colour: '#E8002D', time: '1:20.050', gap: '+0.321s'  },
+      { position: 5,  driver_number: 16, name: 'Charles Leclerc',   team: 'Ferrari',        team_colour: '#E8002D', time: '1:20.291', gap: '+0.562s'  },
+      { position: 6,  driver_number: 1,  name: 'Max Verstappen',    team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:20.366', gap: '+0.637s'  },
+      { position: 7,  driver_number: 4,  name: 'Lando Norris',      team: 'McLaren',        team_colour: '#FF8000', time: '1:20.794', gap: '+1.065s'  },
+      { position: 8,  driver_number: 7,  name: 'Arvid Lindblad',    team: 'Racing Bulls',   team_colour: '#6692FF', time: '1:20.922', gap: '+1.193s'  },
+      { position: 9,  driver_number: 6,  name: 'Isack Hadjar',      team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:20.941', gap: '+1.212s'  },
+      { position: 10, driver_number: 31, name: 'Esteban Ocon',      team: 'Haas',           team_colour: '#B6BABD', time: '1:21.179', gap: '+1.450s'  },
+      { position: 11, driver_number: 87, name: 'Oliver Bearman',    team: 'Haas',           team_colour: '#B6BABD', time: '1:21.326', gap: '+1.597s'  },
+      { position: 12, driver_number: 27, name: 'Nico Hülkenberg',   team: 'Audi',           team_colour: '#C0C0C0', time: '1:21.351', gap: '+1.622s'  },
+      { position: 13, driver_number: 30, name: 'Liam Lawson',       team: 'Racing Bulls',   team_colour: '#6692FF', time: '1:21.358', gap: '+1.629s'  },
+      { position: 14, driver_number: 5,  name: 'Gabriel Bortoleto', team: 'Audi',           team_colour: '#C0C0C0', time: '1:21.668', gap: '+1.939s'  },
+      { position: 15, driver_number: 23, name: 'Alex Albon',        team: 'Williams',       team_colour: '#64C4FF', time: '1:21.847', gap: '+2.118s'  },
+      { position: 16, driver_number: 10, name: 'Pierre Gasly',      team: 'Alpine',         team_colour: '#FF69B4', time: '1:22.167', gap: '+2.438s'  },
+      { position: 17, driver_number: 55, name: 'Carlos Sainz',      team: 'Williams',       team_colour: '#64C4FF', time: '1:22.253', gap: '+2.524s'  },
+      { position: 18, driver_number: 43, name: 'Franco Colapinto',  team: 'Alpine',         team_colour: '#FF69B4', time: '1:22.619', gap: '+2.890s'  },
+      { position: 19, driver_number: 77, name: 'Valtteri Bottas',   team: 'Cadillac',       team_colour: '#CC0000', time: '1:23.660', gap: '+3.931s'  },
+      { position: 20, driver_number: 14, name: 'Fernando Alonso',   team: 'Aston Martin',   team_colour: '#358C75', time: '1:24.662', gap: '+4.933s'  },
+      { position: 21, driver_number: 18, name: 'Lance Stroll',      team: 'Aston Martin',   team_colour: '#358C75', time: '1:25.816', gap: '+6.087s'  },
+      { position: 22, driver_number: 11, name: 'Sergio Pérez',      team: 'Cadillac',       team_colour: '#CC0000', time: 'NO TIME',  gap: null       },
     ],
     fp3: [
-      { position: 1,  driver_number: 63, name: 'George Russell',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:19.053', gap: '—'       },
-      { position: 2,  driver_number: 44, name: 'Lewis Hamilton',    team: 'Ferrari',        team_colour: '#E8002D', time: '1:19.669', gap: '+0.616s' },
-      { position: 3,  driver_number: 16, name: 'Charles Leclerc',   team: 'Ferrari',        team_colour: '#E8002D', time: '1:19.827', gap: '+0.774s' },
-      { position: 4,  driver_number: 81, name: 'Oscar Piastri',     team: 'McLaren',        team_colour: '#FF8000', time: '1:20.087', gap: '+1.034s' },
-      { position: 5,  driver_number: 6,  name: 'Isack Hadjar',      team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:20.137', gap: '+1.084s' },
-      { position: 6,  driver_number: 1,  name: 'Max Verstappen',    team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:20.197', gap: '+1.144s' },
-      { position: 7,  driver_number: 12, name: 'Kimi Antonelli',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:20.324', gap: '+1.271s' },
-      { position: 8,  driver_number: 4,  name: 'Lando Norris',      team: 'McLaren',        team_colour: '#FF8000', time: '1:20.443', gap: '+1.390s' },
-      { position: 9,  driver_number: 5,  name: 'Gabriel Bortoleto', team: 'Audi',           team_colour: '#C0C0C0', time: '1:20.459', gap: '+1.406s' },
-      { position: 10, driver_number: 87, name: 'Oliver Bearman',    team: 'Haas',           team_colour: '#B6BABD', time: '1:20.778', gap: '+1.725s' },
+      { position: 1,  driver_number: 63, name: 'George Russell',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:19.053', gap: '—'        },
+      { position: 2,  driver_number: 44, name: 'Lewis Hamilton',    team: 'Ferrari',        team_colour: '#E8002D', time: '1:19.669', gap: '+0.616s'  },
+      { position: 3,  driver_number: 16, name: 'Charles Leclerc',   team: 'Ferrari',        team_colour: '#E8002D', time: '1:19.827', gap: '+0.774s'  },
+      { position: 4,  driver_number: 81, name: 'Oscar Piastri',     team: 'McLaren',        team_colour: '#FF8000', time: '1:20.087', gap: '+1.034s'  },
+      { position: 5,  driver_number: 6,  name: 'Isack Hadjar',      team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:20.137', gap: '+1.084s'  },
+      { position: 6,  driver_number: 1,  name: 'Max Verstappen',    team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:20.197', gap: '+1.144s'  },
+      { position: 7,  driver_number: 12, name: 'Kimi Antonelli',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:20.324', gap: '+1.271s'  },
+      { position: 8,  driver_number: 4,  name: 'Lando Norris',      team: 'McLaren',        team_colour: '#FF8000', time: '1:20.443', gap: '+1.390s'  },
+      { position: 9,  driver_number: 5,  name: 'Gabriel Bortoleto', team: 'Audi',           team_colour: '#C0C0C0', time: '1:20.459', gap: '+1.406s'  },
+      { position: 10, driver_number: 87, name: 'Oliver Bearman',    team: 'Haas',           team_colour: '#B6BABD', time: '1:20.778', gap: '+1.725s'  },
+      { position: 11, driver_number: 7,  name: 'Arvid Lindblad',    team: 'Racing Bulls',   team_colour: '#6692FF', time: '1:20.838', gap: '+1.785s'  },
+      { position: 12, driver_number: 30, name: 'Liam Lawson',       team: 'Racing Bulls',   team_colour: '#6692FF', time: '1:20.890', gap: '+1.837s'  },
+      { position: 13, driver_number: 31, name: 'Esteban Ocon',      team: 'Haas',           team_colour: '#B6BABD', time: '1:20.983', gap: '+1.930s'  },
+      { position: 14, driver_number: 27, name: 'Nico Hülkenberg',   team: 'Audi',           team_colour: '#C0C0C0', time: '1:21.067', gap: '+2.014s'  },
+      { position: 15, driver_number: 10, name: 'Pierre Gasly',      team: 'Alpine',         team_colour: '#FF69B4', time: '1:21.071', gap: '+2.018s'  },
+      { position: 16, driver_number: 43, name: 'Franco Colapinto',  team: 'Alpine',         team_colour: '#FF69B4', time: '1:21.413', gap: '+2.360s'  },
+      { position: 17, driver_number: 23, name: 'Alex Albon',        team: 'Williams',       team_colour: '#64C4FF', time: '1:21.664', gap: '+2.611s'  },
+      { position: 18, driver_number: 14, name: 'Fernando Alonso',   team: 'Aston Martin',   team_colour: '#358C75', time: '1:22.720', gap: '+3.667s'  },
+      { position: 19, driver_number: 77, name: 'Valtteri Bottas',   team: 'Cadillac',       team_colour: '#CC0000', time: '1:23.514', gap: '+4.461s'  },
+      { position: 20, driver_number: 11, name: 'Sergio Pérez',      team: 'Cadillac',       team_colour: '#CC0000', time: '1:24.397', gap: '+5.344s'  },
+      { position: 21, driver_number: 55, name: 'Carlos Sainz',      team: 'Williams',       team_colour: '#64C4FF', time: 'NO TIME',  gap: null       },
+      { position: 22, driver_number: 18, name: 'Lance Stroll',      team: 'Aston Martin',   team_colour: '#358C75', time: 'NO TIME',  gap: null       },
     ],
   },
   2: {
     fp1: [
-      { position: 1,  driver_number: 63, name: 'George Russell',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:32.741', gap: '—'       },
-      { position: 2,  driver_number: 12, name: 'Kimi Antonelli',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:32.861', gap: '+0.120s' },
-      { position: 3,  driver_number: 4,  name: 'Lando Norris',      team: 'McLaren',        team_colour: '#FF8000', time: '1:33.296', gap: '+0.555s' },
-      { position: 4,  driver_number: 81, name: 'Oscar Piastri',     team: 'McLaren',        team_colour: '#FF8000', time: '1:33.472', gap: '+0.731s' },
-      { position: 5,  driver_number: 16, name: 'Charles Leclerc',   team: 'Ferrari',        team_colour: '#E8002D', time: '1:33.599', gap: '+0.858s' },
-      { position: 6,  driver_number: 44, name: 'Lewis Hamilton',    team: 'Ferrari',        team_colour: '#E8002D', time: '1:34.129', gap: '+1.388s' },
-      { position: 7,  driver_number: 87, name: 'Oliver Bearman',    team: 'Haas',           team_colour: '#B6BABD', time: '1:34.426', gap: '+1.685s' },
-      { position: 8,  driver_number: 1,  name: 'Max Verstappen',    team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:34.541', gap: '+1.800s' },
-      { position: 9,  driver_number: 27, name: 'Nico Hülkenberg',   team: 'Audi',           team_colour: '#C0C0C0', time: '1:34.639', gap: '+1.898s' },
-      { position: 10, driver_number: 10, name: 'Pierre Gasly',      team: 'Alpine',         team_colour: '#FF69B4', time: '1:34.676', gap: '+1.935s' },
+      { position: 1,  driver_number: 63, name: 'George Russell',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:32.741', gap: '—'        },
+      { position: 2,  driver_number: 12, name: 'Kimi Antonelli',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:32.861', gap: '+0.120s'  },
+      { position: 3,  driver_number: 4,  name: 'Lando Norris',      team: 'McLaren',        team_colour: '#FF8000', time: '1:33.296', gap: '+0.555s'  },
+      { position: 4,  driver_number: 81, name: 'Oscar Piastri',     team: 'McLaren',        team_colour: '#FF8000', time: '1:33.472', gap: '+0.731s'  },
+      { position: 5,  driver_number: 16, name: 'Charles Leclerc',   team: 'Ferrari',        team_colour: '#E8002D', time: '1:33.599', gap: '+0.858s'  },
+      { position: 6,  driver_number: 44, name: 'Lewis Hamilton',    team: 'Ferrari',        team_colour: '#E8002D', time: '1:34.129', gap: '+1.388s'  },
+      { position: 7,  driver_number: 87, name: 'Oliver Bearman',    team: 'Haas',           team_colour: '#B6BABD', time: '1:34.426', gap: '+1.685s'  },
+      { position: 8,  driver_number: 1,  name: 'Max Verstappen',    team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:34.541', gap: '+1.800s'  },
+      { position: 9,  driver_number: 27, name: 'Nico Hülkenberg',   team: 'Audi',           team_colour: '#C0C0C0', time: '1:34.639', gap: '+1.898s'  },
+      { position: 10, driver_number: 10, name: 'Pierre Gasly',      team: 'Alpine',         team_colour: '#FF69B4', time: '1:34.676', gap: '+1.935s'  },
+      { position: 11, driver_number: 30, name: 'Liam Lawson',       team: 'Racing Bulls',   team_colour: '#6692FF', time: '1:34.773', gap: '+2.032s'  },
+      { position: 12, driver_number: 5,  name: 'Gabriel Bortoleto', team: 'Audi',           team_colour: '#C0C0C0', time: '1:34.828', gap: '+2.087s'  },
+      { position: 13, driver_number: 6,  name: 'Isack Hadjar',      team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:34.856', gap: '+2.115s'  },
+      { position: 14, driver_number: 31, name: 'Esteban Ocon',      team: 'Haas',           team_colour: '#B6BABD', time: '1:34.877', gap: '+2.136s'  },
+      { position: 15, driver_number: 43, name: 'Franco Colapinto',  team: 'Alpine',         team_colour: '#FF69B4', time: '1:34.947', gap: '+2.206s'  },
+      { position: 16, driver_number: 23, name: 'Alex Albon',        team: 'Williams',       team_colour: '#64C4FF', time: '1:35.480', gap: '+2.739s'  },
+      { position: 17, driver_number: 55, name: 'Carlos Sainz',      team: 'Williams',       team_colour: '#64C4FF', time: '1:35.679', gap: '+2.938s'  },
+      { position: 18, driver_number: 14, name: 'Fernando Alonso',   team: 'Aston Martin',   team_colour: '#358C75', time: '1:35.856', gap: '+3.115s'  },
+      { position: 19, driver_number: 77, name: 'Valtteri Bottas',   team: 'Cadillac',       team_colour: '#CC0000', time: '1:36.057', gap: '+3.316s'  },
+      { position: 20, driver_number: 18, name: 'Lance Stroll',      team: 'Aston Martin',   team_colour: '#358C75', time: '1:37.224', gap: '+4.483s'  },
+      { position: 21, driver_number: 7,  name: 'Arvid Lindblad',    team: 'Racing Bulls',   team_colour: '#6692FF', time: '1:37.896', gap: '+5.155s'  },
+      { position: 22, driver_number: 11, name: 'Sergio Pérez',      team: 'Cadillac',       team_colour: '#CC0000', time: '1:39.200', gap: '+6.459s'  },
     ],
   },
 }
@@ -284,12 +332,12 @@ export default function RaceHubClient() {
         const res = await fetch(`/api/f1/practice?session_key=${sessionKey}`)
         const data = await res.json()
 
-        if (Array.isArray(data) && data.length > 0) {
+        if (Array.isArray(data) && data.length >= 22) {
           setPracticeData(data)
         } else {
-          // API returned empty — use static fallback
+          // API returned fewer than 22 drivers — use static fallback for complete 22-driver list
           const fallback = FP_STATIC_FALLBACK[selectedRound]?.[activeSession]
-          setPracticeData(fallback || [])
+          setPracticeData(fallback || data || [])
         }
       } catch {
         const fallback = FP_STATIC_FALLBACK[selectedRound]?.[activeSession]
@@ -343,14 +391,14 @@ export default function RaceHubClient() {
     )
   )
 
-  const QualifyingTable = ({ data }: { data: any[] }) => {
+  const QualifyingTable = ({ data, qualifier = 'Q' }: { data: any[], qualifier?: string }) => {
     if (data.length === 0) return (
       <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px' }}>No qualifying data available for this session yet</div>
     )
-    // Groups: Q3 = position 1-10, Q2-elim = next 6 (11-16), Q1-elim = last 6 (17-22)
-    const q3Group = data.filter(r => r.q3)
-    const q2Group = data.filter(r => r.q2 && !r.q3)
-    const q1Group = data.filter(r => !r.q2 && !r.q3)
+    // Group by position ranges — always 10 / 6 / 6 in F1 qualifying and sprint qualifying
+    const q3Group = data.filter(r => r.position <= 10)
+    const q2Group = data.filter(r => r.position >= 11 && r.position <= 16)
+    const q1Group = data.filter(r => r.position >= 17)
     const SectionDivider = ({ label }: { label: string }) => (
       <div style={{ padding: '6px 20px', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.07)', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
         <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#3A4A5A' }}>{label}</span>
@@ -358,15 +406,15 @@ export default function RaceHubClient() {
     )
     const Row = ({ r }: { r: any }) => {
       const posColors: Record<number, string> = { 1: '#FFD700', 2: '#C0C0C0', 3: '#CD7F32' }
-      const outInQ1 = !r.q2 && !r.q3
-      const outInQ2 = r.q2 && !r.q3
+      const inQ1Only = r.position >= 17
+      const inQ2Only = r.position >= 11 && r.position <= 16
       return (
-        <div style={{ display: 'grid', gridTemplateColumns: '32px 4px 1fr 1fr 100px 100px 100px', gap: '0 10px', alignItems: 'center', padding: '8px 20px', borderBottom: '1px solid rgba(255,255,255,0.04)', opacity: outInQ1 ? 0.5 : outInQ2 ? 0.72 : 1 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '32px 4px 1fr 1fr 100px 100px 100px', gap: '0 10px', alignItems: 'center', padding: '8px 20px', borderBottom: '1px solid rgba(255,255,255,0.04)', opacity: inQ1Only ? 0.5 : inQ2Only ? 0.72 : 1 }}>
           <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 600 : 400, color: posColors[r.position] || '#5A6A7A' }}>{r.position}</span>
           <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
           <div style={{ fontSize: '13px', fontWeight: 500 }}>{r.name}</div>
           <div style={{ fontSize: '12px', color: '#5A6A7A' }}>{r.team}</div>
-          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#8A9AB0', textAlign: 'right' as const }}>{r.q1 || '—'}</span>
+          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: r.q1 ? '#8A9AB0' : '#3A4A5A', textAlign: 'right' as const }}>{r.q1 || '—'}</span>
           <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: r.q2 ? '#B8C4CF' : '#3A4A5A', textAlign: 'right' as const }}>{r.q2 || '—'}</span>
           <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', fontWeight: r.q3 && r.position <= 3 ? 600 : 400, color: r.q3 ? (r.position === 1 ? '#FFB800' : '#F0F4F8') : '#3A4A5A', textAlign: 'right' as const }}>{r.q3 || '—'}</span>
         </div>
@@ -380,13 +428,13 @@ export default function RaceHubClient() {
             <span />
             <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const }}>Driver</span>
             <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const }}>Team</span>
-            <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>Q1</span>
-            <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>Q2</span>
-            <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>Q3</span>
+            <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>{qualifier}1</span>
+            <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>{qualifier}2</span>
+            <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>{qualifier}3</span>
           </div>
           {q3Group.length > 0 && <>{q3Group.map(r => <Row key={r.driver_number} r={r} />)}</>}
-          {q2Group.length > 0 && <><SectionDivider label={`— Q2 Eliminated (P${q3Group.length + 1}–${q3Group.length + q2Group.length}) —`} />{q2Group.map(r => <Row key={r.driver_number} r={r} />)}</>}
-          {q1Group.length > 0 && <><SectionDivider label={`— Q1 Eliminated (P${q3Group.length + q2Group.length + 1}–${data.length}) —`} />{q1Group.map(r => <Row key={r.driver_number} r={r} />)}</>}
+          {q2Group.length > 0 && <><SectionDivider label={`— ${qualifier}2 Eliminated (P${q3Group.length + 1}–${q3Group.length + q2Group.length}) —`} />{q2Group.map(r => <Row key={r.driver_number} r={r} />)}</>}
+          {q1Group.length > 0 && <><SectionDivider label={`— ${qualifier}1 Eliminated (P${q3Group.length + q2Group.length + 1}–${data.length}) —`} />{q1Group.map(r => <Row key={r.driver_number} r={r} />)}</>}
         </div>
       </div>
     )
@@ -602,37 +650,18 @@ export default function RaceHubClient() {
 
       {/* RESULTS TAB */}
       {activeTab === 'results' && (() => {
-        const staticData = STATIC_RACE_RESULTS[selectedRound]
-        const hasStatic = !!staticData
-
-        // Static session tabs for rounds with hardcoded data
-        const staticSessionTabs = hasStatic
-          ? [
-              ...(staticData['fp1']              ? [{ id: 'fp1',              label: 'FP1'          }] : []),
-              ...(staticData['fp2']              ? [{ id: 'fp2',              label: 'FP2'          }] : []),
-              ...(staticData['fp3']              ? [{ id: 'fp3',              label: 'FP3'          }] : []),
-              ...(staticData['sprint-qualifying'] ? [{ id: 'sprint-qualifying', label: 'Sprint Quali' }] : []),
-              ...(staticData['sprint']           ? [{ id: 'sprint',           label: 'Sprint'       }] : []),
-              { id: 'qualifying', label: 'Qualifying' },
-              { id: 'race',       label: 'Race' },
-            ]
-          : []
-
-        // For FP sessions, use live practice data (from OpenF1 laps API via /api/f1/practice)
+        const roundStatic = STATIC_RACE_RESULTS[selectedRound]
         const isFpSession = ['fp1', 'fp2', 'fp3'].includes(activeSession)
-        const displayResults: any[] = isFpSession
-          ? practiceData
-          : hasStatic
-            ? (staticData[activeSession] || staticData['race'] || [])
-            : results
-
-        const displayTabs = hasStatic ? staticSessionTabs : sessionTabs
+        const isQualiSession = activeSession === 'qualifying'
+        const isSprintQualiSession = activeSession === 'sprint-qualifying'
+        const staticQualiData = isQualiSession ? roundStatic?.qualifying : isSprintQualiSession ? roundStatic?.['sprint-qualifying'] : undefined
+        const displayResults: any[] = isFpSession ? practiceData : results
 
         return (
           <div style={card}>
             <div style={cardHeader}>
               <span style={cardTitle}>{selectedRace.flag} {selectedRace.name} GP — Session Results</span>
-              <Badge type={hasStatic ? 'done' : 'new'} label={hasStatic ? '2026 Results' : 'Live'} />
+              <Badge type={selectedRace.completed ? 'done' : 'live'} label={selectedRace.completed ? '2026 Results' : 'Live'} />
             </div>
 
             {!selectedRace.completed ? (
@@ -644,7 +673,9 @@ export default function RaceHubClient() {
             ) : (
               <>
                 <div style={{ display: 'flex', gap: '6px', padding: '12px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', flexWrap: 'wrap' as const }}>
-                  {displayTabs.length > 0 ? displayTabs.map(t => (
+                  {loading ? (
+                    <span style={{ fontSize: '12px', color: '#5A6A7A' }}>Loading sessions...</span>
+                  ) : sessionTabs.length > 0 ? sessionTabs.map(t => (
                     <button key={t.id} onClick={() => setActiveSession(t.id)} style={{
                       background: activeSession === t.id ? '#E8002D' : '#141B22',
                       color: activeSession === t.id ? 'white' : '#5A6A7A',
@@ -655,9 +686,9 @@ export default function RaceHubClient() {
                     <span style={{ fontSize: '12px', color: '#5A6A7A' }}>No session data available</span>
                   )}
                 </div>
-                {activeSession === 'qualifying' && hasStatic
-                  ? <QualifyingTable data={displayResults} />
-                  : <ResultsTable data={displayResults} loading={isFpSession ? practiceLoading : (!hasStatic && resultsLoading)} />
+                {staticQualiData
+                  ? <QualifyingTable data={staticQualiData} qualifier={isSprintQualiSession ? 'SQ' : 'Q'} />
+                  : <ResultsTable data={displayResults} loading={isFpSession ? practiceLoading : resultsLoading} />
                 }
               </>
             )}
