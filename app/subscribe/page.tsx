@@ -4,12 +4,12 @@ import Footer from '@/components/Footer'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Formula Hub Premium — F1 Fantasy Insider & Paddock Access',
-  description: 'Get unlimited access to F1 Fantasy Insider tools and Paddock Access content. AI-powered transfer tips, exclusive race reviews, and the Paddock Briefing newsletter. €5/month.',
+  title: 'Formula Hub Premium — F1 Fantasy Insider & Exclusive Insights',
+  description: 'Premium F1 Fantasy strategy content and exclusive race analysis. Expert transfer tips, chip timing guides and in-depth race reviews. €5/month, cancel anytime.',
   alternates: { canonical: 'https://formulahub.live/subscribe' },
   openGraph: {
-    title: 'Formula Hub Premium — F1 Fantasy Insider & Paddock Access',
-    description: 'AI-powered F1 Fantasy tips, exclusive race reviews and the Paddock Briefing newsletter. €5/month, cancel anytime.',
+    title: 'Formula Hub Premium — F1 Fantasy Insider & Exclusive Insights',
+    description: 'Premium F1 Fantasy strategy content and exclusive race analysis. Expert transfer tips, chip timing guides and in-depth race reviews. €5/month, cancel anytime.',
     url: 'https://formulahub.live/subscribe',
     siteName: 'Formula Hub',
     type: 'website',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@F_FantasyHub',
     creator: '@F_FantasyHub',
-    description: 'AI-powered F1 Fantasy tips, exclusive race reviews and the Paddock Briefing newsletter. €5/month, cancel anytime.',
+    description: 'Premium F1 Fantasy strategy content and exclusive race analysis. Expert transfer tips, chip timing guides and in-depth race reviews. €5/month, cancel anytime.',
   },
 }
 
@@ -27,8 +27,8 @@ const freeItems = [
   { label: 'Racing calendar & session times', free: true  },
   { label: 'Public articles',                 free: true  },
   { label: 'Race Hub data',                   free: true  },
-  { label: 'Fantasy Insider tools',           free: false },
-  { label: 'Paddock Access content',          free: false },
+  { label: 'Fantasy Insider content',          free: false },
+  { label: 'Exclusive Insights content',      free: false },
   { label: 'AI predictions & model showdown', free: false },
 ]
 
@@ -38,19 +38,18 @@ const groups = [
     color: '#FFB800',
     coming: false,
     items: [
-      'AI-recommended transfers — personalised weekly suggestions based on your team, budget and upcoming circuit',
-      'F1 Fantasy team sync — connect your official F1 Fantasy team and track performance on Formula Hub',
-      'Mini-league analyser — view rival team selections, gaps and projected scores across your leagues',
-      'Chip timing analysis — data-driven breakdown of when to deploy each chip across the season',
+      'Expert transfer analysis — weekly breakdown of the best value picks, price risers and differential options for every race',
+      'Chip timing guide — data-driven breakdown of when to deploy each chip across the season based on circuit data',
+      'Fantasy strategy articles — in-depth weekly content covering team selection, captaincy and scoring opportunities',
     ],
   },
   {
-    label: 'Paddock Access',
+    label: 'Exclusive Insights',
     color: '#00A8FF',
     coming: false,
     items: [
-      'Exclusive race reviews — Rob\'s post-race deep dive, beyond what\'s published publicly',
-      'Paddock Briefing — weekly premium newsletter covering the stories behind the headlines',
+      'Exclusive race reviews — in-depth post-race analysis beyond what\'s published publicly',
+      'Insider Briefing — weekly premium newsletter covering the stories and strategy behind the headlines',
       'Live race dashboard — enhanced race-day view with live gaps, tyre age and pit window analysis',
       'Constructor strategy breakdown — detailed post-race analysis of team strategy decisions',
     ],
@@ -73,7 +72,7 @@ const faqs = [
   },
   {
     q: 'When does new content go live?',
-    a: 'Race reviews go live on Sunday evenings after each Grand Prix. The Paddock Briefing lands every Thursday. Fantasy tools update after each race weekend deadline.',
+    a: 'Race reviews go live on Sunday evenings after each Grand Prix. The Insider Briefing lands every Thursday. Fantasy tools update after each race weekend deadline.',
   },
   {
     q: 'Who creates the content?',
@@ -81,7 +80,7 @@ const faqs = [
   },
   {
     q: 'What tools are included?',
-    a: 'Fantasy Insider tools include AI-recommended transfers, F1 Fantasy team sync, mini-league analyser, and chip timing analysis. Paddock Access includes exclusive race reviews, the Paddock Briefing newsletter, live race dashboard, and constructor strategy breakdowns.',
+    a: 'Fantasy Insider content includes expert transfer analysis, chip timing guides and weekly fantasy strategy articles. Exclusive Insights includes in-depth race reviews, the Insider Briefing newsletter, live race dashboard, and constructor strategy breakdowns.',
   },
   {
     q: 'What is the AI model showdown?',

@@ -42,25 +42,12 @@ function StatCard({ label, value, icon, color, sub }: { label: string; value: st
 
 type LeaderCategory = 'wins' | 'podiums' | 'poles' | 'overtakes' | 'positions_gained'
 
-const pointsFeed = [
-  { icon: '⭐', type: 'positive', label: 'Driver of the Day', driver: 'C. Leclerc',    round: 'R2',  ago: '2h ago',   pts: '+10' },
-  { icon: '⚡', type: 'positive', label: 'Fastest Lap',        driver: 'M. Verstappen', round: 'R2',  ago: '2h ago',   pts: '+5'  },
-  { icon: '✕', type: 'negative', label: 'DNF Penalty',         driver: 'S. Perez',      round: 'R2',  ago: '3h ago',   pts: '-15' },
-  { icon: '🏆', type: 'positive', label: 'Sprint Race Win',    driver: 'L. Norris',     round: 'R2',  ago: '1d ago',   pts: '+8'  },
-  { icon: '✕', type: 'negative', label: '5-place Grid Penalty',driver: 'F. Alonso',     round: 'R2',  ago: '1d ago',   pts: '-5'  },
-  { icon: '⚡', type: 'positive', label: 'Pole Position Bonus', driver: 'G. Russell',   round: 'R2',  ago: '1d ago',   pts: '+10' },
-]
 
 export default function F1FantasyClient() {
   const [stats, setStats] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState<'team-snapshot' | 'overview' | 'drivers' | 'constructors' | 'how-to-play' | 'guide' | 'ai-predictor'>('overview')
+  const [activeTab, setActiveTab] = useState<'overview' | 'drivers' | 'constructors' | 'how-to-play' | 'guide' | 'ai-predictor'>('overview')
   const [leaderCategory, setLeaderCategory] = useState<LeaderCategory>('wins')
-  const [timeMode, setTimeMode] = useState<'utc' | 'local'>('utc')
-  const [isSignedIn, setIsSignedIn] = useState(false)
-  const [signInEmail, setSignInEmail] = useState('')
-  const [signInPassword, setSignInPassword] = useState('')
-  const [signInError, setSignInError] = useState('')
 
   useEffect(() => {
     async function load() {
@@ -114,7 +101,6 @@ export default function F1FantasyClient() {
   })
 
   const tabs = [
-    { id: 'team-snapshot', label: 'My Team',              premium: true },
     { id: 'overview',      label: 'Overview'                             },
     { id: 'drivers',       label: 'Driver Rankings'                      },
     { id: 'constructors',  label: 'Constructor Rankings'                  },
@@ -123,13 +109,6 @@ export default function F1FantasyClient() {
     { id: 'ai-predictor',  label: 'AI Predictor',         premium: true  },
   ]
 
-  const formatSessionTime = (s: typeof CURRENT_RACE.sessions[0]) => {
-    if (timeMode === 'utc' || !s.dateISO) return s.timeUTC
-    const d = new Date(s.dateISO)
-    const timeStr = d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false })
-    const tzAbbr = d.toLocaleTimeString('en-US', { timeZoneName: 'short' }).split(' ').pop() || 'Local'
-    return `${timeStr} ${tzAbbr}`
-  }
 
   const ppm = (d: any) => {
     const standing = DRIVER_STANDINGS.find(s => s.name === d.name || s.shortName === d.acronym)
@@ -168,267 +147,14 @@ export default function F1FantasyClient() {
             {tab.premium && (
               <span style={{
                 fontSize: '9px', fontWeight: 700, padding: '2px 6px', borderRadius: '3px',
-                background: isSignedIn ? 'rgba(0,212,126,0.15)' : 'rgba(255,184,0,0.15)',
-                color: isSignedIn ? '#00D47E' : '#FFB800',
+                background: 'rgba(255,184,0,0.15)',
+                color: '#FFB800',
                 letterSpacing: '0.5px', textTransform: 'uppercase' as const,
-              }}>{isSignedIn ? 'Members' : '🔒 Members'}</span>
+              }}>🔒 Members</span>
             )}
           </button>
         ))}
       </div>
-
-      {/* TEAM SNAPSHOT TAB */}
-      {activeTab === 'team-snapshot' && !isSignedIn && (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '480px' }}>
-          <div style={{ background: '#0E1318', border: '1px solid rgba(255,184,0,0.2)', borderRadius: '20px', padding: '48px 40px', maxWidth: '440px', width: '100%', textAlign: 'center' as const, position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg,#FFB800,rgba(255,184,0,0.2))' }} />
-            <div style={{ fontSize: '48px', marginBottom: '16px' }}>🔒</div>
-            <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '32px', letterSpacing: '1px', marginBottom: '8px' }}>Members Only</div>
-            <p style={{ color: '#5A6A7A', fontSize: '13px', lineHeight: 1.7, marginBottom: '28px' }}>
-              Sign in to access your personal team snapshot — track your budget, team value, global rank, and live points updates from your F1 Fantasy squad.
-            </p>
-
-            {/* Sign in form */}
-            <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '10px', marginBottom: '16px' }}>
-              <input
-                type="email"
-                placeholder="Email address"
-                value={signInEmail}
-                onChange={e => setSignInEmail(e.target.value)}
-                style={{
-                  background: '#141B22', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px',
-                  padding: '11px 14px', color: '#F0F4F8', fontSize: '13px', outline: 'none', width: '100%',
-                  boxSizing: 'border-box' as const,
-                }}
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                value={signInPassword}
-                onChange={e => setSignInPassword(e.target.value)}
-                onKeyDown={e => {
-                  if (e.key === 'Enter') {
-                    if (signInEmail && signInPassword) { setIsSignedIn(true); setSignInError('') }
-                    else setSignInError('Please enter your email and password.')
-                  }
-                }}
-                style={{
-                  background: '#141B22', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px',
-                  padding: '11px 14px', color: '#F0F4F8', fontSize: '13px', outline: 'none', width: '100%',
-                  boxSizing: 'border-box' as const,
-                }}
-              />
-              {signInError && <div style={{ fontSize: '11px', color: '#E8002D', textAlign: 'left' as const }}>{signInError}</div>}
-              <button
-                onClick={() => {
-                  if (signInEmail && signInPassword) { setIsSignedIn(true); setSignInError('') }
-                  else setSignInError('Please enter your email and password.')
-                }}
-                style={{
-                  background: '#E8002D', color: 'white', border: 'none', borderRadius: '8px',
-                  padding: '12px', fontSize: '13px', fontWeight: 700, cursor: 'pointer',
-                  letterSpacing: '0.5px', boxShadow: '0 0 20px rgba(232,0,45,0.3)',
-                }}
-              >Sign In to My Team</button>
-            </div>
-
-            <div style={{ fontSize: '12px', color: '#3A4A5A' }}>
-              Not a member?{' '}
-              <a href="mailto:connect.f1fantasyhub@gmail.com" style={{ color: '#FFB800', textDecoration: 'none', fontWeight: 600 }}>
-                Get in touch to join →
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {activeTab === 'team-snapshot' && isSignedIn && (
-        <>
-          {/* Members header bar */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px', padding: '10px 16px', background: 'rgba(0,212,126,0.06)', border: '1px solid rgba(0,212,126,0.15)', borderRadius: '10px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontSize: '14px' }}>✅</span>
-              <span style={{ fontSize: '12px', fontWeight: 600, color: '#00D47E' }}>Signed in as member</span>
-              <span style={{ fontSize: '12px', color: '#3A4A5A' }}>· {signInEmail}</span>
-            </div>
-            <button
-              onClick={() => { setIsSignedIn(false); setSignInEmail(''); setSignInPassword('') }}
-              style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px', color: '#5A6A7A', padding: '4px 12px', cursor: 'pointer', fontSize: '11px', fontWeight: 600 }}
-            >Sign Out</button>
-          </div>
-
-          {/* Stats row */}
-          <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', marginBottom: '20px' }}>
-            <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', padding: '20px', position: 'relative', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg, #00D47E, rgba(0,212,126,0.2))' }} />
-              <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A', marginBottom: '10px' }}>Budget Remaining</div>
-              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '32px', fontWeight: 600, color: '#00D47E', lineHeight: 1, marginBottom: '6px' }}>$28.5M</div>
-              <div style={{ fontSize: '11px', color: '#3A4A5A' }}>of $100M cap</div>
-            </div>
-            <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', padding: '20px', position: 'relative', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg, #00A8FF, rgba(0,168,255,0.2))' }} />
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
-                <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Team Value</div>
-                <span style={{ fontSize: '10px', fontWeight: 700, padding: '2px 7px', borderRadius: '20px', background: 'rgba(0,212,126,0.15)', color: '#00D47E' }}>+$2.1M</span>
-              </div>
-              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '32px', fontWeight: 600, color: '#00A8FF', lineHeight: 1, marginBottom: '6px' }}>$101.5M</div>
-              <div style={{ fontSize: '11px', color: '#3A4A5A' }}>since season start</div>
-            </div>
-            <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', padding: '20px', position: 'relative', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg, #FFB800, rgba(255,184,0,0.2))' }} />
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
-                <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Overall Rank</div>
-                <span style={{ fontSize: '12px', color: '#00D47E', fontWeight: 700 }}>↑ 812</span>
-              </div>
-              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '32px', fontWeight: 600, color: '#FFB800', lineHeight: 1, marginBottom: '6px' }}>#4,231</div>
-              <div style={{ fontSize: '11px', color: '#3A4A5A' }}>global ranking</div>
-            </div>
-            <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', padding: '20px', position: 'relative', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg, #E8002D, rgba(232,0,45,0.2))' }} />
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
-                <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Points This Round</div>
-                <span style={{ fontSize: '10px', fontWeight: 700, padding: '2px 7px', borderRadius: '20px', background: 'rgba(0,168,255,0.12)', color: '#00A8FF' }}>vs avg +24</span>
-              </div>
-              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '32px', fontWeight: 600, color: '#F0F4F8', lineHeight: 1, marginBottom: '6px' }}>147 pts</div>
-              <div style={{ fontSize: '11px', color: '#3A4A5A' }}>R2 China · avg 123</div>
-            </div>
-          </div>
-
-          {/* Main content row */}
-          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: '20px' }}>
-
-            {/* Left — Race Weekend Panel */}
-            <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' }}>
-              <div style={{ height: '3px', background: 'linear-gradient(90deg, #E8002D, rgba(232,0,45,0.2))' }} />
-              <div style={{ padding: '20px 24px 16px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
-                  <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Next Race Weekend</span>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <div style={{ width: '7px', height: '7px', background: '#E8002D', borderRadius: '50%', animation: 'pulse 2s infinite' }} />
-                    <span style={{ fontSize: '10px', fontWeight: 600, color: '#E8002D', textTransform: 'uppercase' as const, letterSpacing: '1px' }}>Upcoming</span>
-                  </div>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '10px' }}>
-                  <span style={{ fontSize: '48px', lineHeight: 1 }}>{CURRENT_RACE.flag}</span>
-                  <div>
-                    <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', lineHeight: 1, letterSpacing: '1px' }}>{CURRENT_RACE.name}</div>
-                    <div style={{ color: '#5A6A7A', fontSize: '13px', marginTop: '2px' }}>
-                      {CURRENT_RACE.circuit} · Round {CURRENT_RACE.round} of 22 · {CURRENT_RACE.isSprint ? '⚡ Sprint Weekend' : 'Standard Weekend'}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ padding: '20px 24px' }}>
-                {/* Session schedule header + timezone toggle */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-                  <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Session Schedule</div>
-                  <div style={{ display: 'flex', background: '#141B22', borderRadius: '6px', padding: '2px', border: '1px solid rgba(255,255,255,0.07)' }}>
-                    <button
-                      onClick={() => setTimeMode('utc')}
-                      style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.5px', padding: '4px 10px', borderRadius: '4px', border: 'none', cursor: 'pointer', transition: 'all 0.15s', background: timeMode === 'utc' ? '#E8002D' : 'transparent', color: timeMode === 'utc' ? 'white' : '#5A6A7A' }}
-                    >UTC</button>
-                    <button
-                      onClick={() => setTimeMode('local')}
-                      style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.5px', padding: '4px 10px', borderRadius: '4px', border: 'none', cursor: 'pointer', transition: 'all 0.15s', background: timeMode === 'local' ? '#E8002D' : 'transparent', color: timeMode === 'local' ? 'white' : '#5A6A7A' }}
-                    >Local</button>
-                  </div>
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '8px' }}>
-                  {CURRENT_RACE.sessions.map((s) => {
-                    const nextSession = CURRENT_RACE.sessions.find(x => !x.completed)
-                    const isNext = s === nextSession
-                    return (
-                      <div
-                        key={s.name}
-                        style={{
-                          display: 'grid',
-                          gridTemplateColumns: '72px 1fr auto auto',
-                          alignItems: 'center',
-                          gap: '16px',
-                          padding: '12px 16px',
-                          borderRadius: '10px',
-                          background: isNext ? 'rgba(232,0,45,0.07)' : '#141B22',
-                          border: isNext ? '1px solid rgba(232,0,45,0.35)' : '1px solid rgba(255,255,255,0.05)',
-                        }}
-                      >
-                        <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '13px', letterSpacing: '1px', color: s.completed ? '#3A4A5A' : isNext ? '#E8002D' : '#8A9AB0', textAlign: 'center' as const, background: isNext ? 'rgba(232,0,45,0.12)' : 'rgba(255,255,255,0.04)', padding: '5px 8px', borderRadius: '6px' }}>
-                          {s.short || s.name.slice(0, 4).toUpperCase()}
-                        </div>
-                        <div>
-                          <div style={{ fontSize: '13px', fontWeight: 600, color: s.completed ? '#3A4A5A' : '#F0F4F8' }}>{s.name}</div>
-                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#3A4A5A', marginTop: '1px' }}>{s.date}</div>
-                        </div>
-                        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 600, color: s.completed ? '#3A4A5A' : isNext ? '#FFB800' : '#8A9AB0', textAlign: 'right' as const }}>
-                          {formatSessionTime(s)}
-                        </div>
-                        <div style={{ width: '52px', textAlign: 'right' as const }}>
-                          {isNext ? (
-                            <span style={{ fontSize: '9px', fontWeight: 700, padding: '3px 7px', borderRadius: '20px', background: '#E8002D', color: 'white', textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>Next</span>
-                          ) : s.completed ? (
-                            <span style={{ fontSize: '12px', color: '#00D47E' }}>✓</span>
-                          ) : (
-                            <span style={{ fontSize: '10px', color: '#3A4A5A' }}>○</span>
-                          )}
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-
-                <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
-                  <Link href="/race-hub" style={{ flex: 1, display: 'block', textAlign: 'center' as const, background: '#E8002D', color: 'white', padding: '11px 20px', borderRadius: '8px', textDecoration: 'none', fontSize: '13px', fontWeight: 600, boxShadow: '0 0 20px rgba(232,0,45,0.25)' }}>
-                    Race Hub →
-                  </Link>
-                  <Link href="/race-hub" style={{ flex: 1, display: 'block', textAlign: 'center' as const, background: 'transparent', color: '#F0F4F8', padding: '11px 20px', borderRadius: '8px', textDecoration: 'none', fontSize: '13px', fontWeight: 600, border: '1px solid rgba(255,255,255,0.12)' }}>
-                    Full Calendar
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            {/* Right — Points Updates Feed */}
-            <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', display: 'flex', flexDirection: 'column' as const }}>
-              <div style={{ height: '3px', background: 'linear-gradient(90deg, #E8002D, rgba(232,0,45,0.2))' }} />
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-                <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Points Updates</span>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: 'rgba(232,0,45,0.12)', border: '1px solid rgba(232,0,45,0.25)', borderRadius: '20px', padding: '4px 10px' }}>
-                  <div style={{ width: '6px', height: '6px', background: '#E8002D', borderRadius: '50%', animation: 'pulse 2s infinite' }} />
-                  <span style={{ fontSize: '10px', fontWeight: 700, color: '#E8002D', textTransform: 'uppercase' as const, letterSpacing: '1px' }}>Live</span>
-                </div>
-              </div>
-              <div style={{ flex: 1, padding: '8px 0' }}>
-                {pointsFeed.map((item, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 20px', borderBottom: i < pointsFeed.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
-                    <div style={{ width: '34px', height: '34px', borderRadius: '8px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: item.type === 'positive' ? 'rgba(0,212,126,0.1)' : 'rgba(232,0,45,0.1)', border: `1px solid ${item.type === 'positive' ? 'rgba(0,212,126,0.2)' : 'rgba(232,0,45,0.2)'}`, fontSize: '14px' }}>
-                      {item.icon}
-                    </div>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: '12px', fontWeight: 600, color: '#F0F4F8', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.label}</div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '2px' }}>
-                        <span style={{ fontSize: '11px', color: '#5A6A7A' }}>{item.driver}</span>
-                        <span style={{ fontSize: '9px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(255,255,255,0.06)', color: '#5A6A7A' }}>{item.round}</span>
-                        <span style={{ fontSize: '10px', color: '#3A4A5A', fontFamily: 'JetBrains Mono, monospace' }}>{item.ago}</span>
-                      </div>
-                    </div>
-                    <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '15px', fontWeight: 700, flexShrink: 0, color: item.type === 'positive' ? '#00D47E' : '#E8002D' }}>
-                      {item.pts}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div style={{ padding: '12px 20px', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-                <Link href="/standings" style={{ display: 'block', textAlign: 'center' as const, fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 600 }}>
-                  View full points breakdown →
-                </Link>
-              </div>
-            </div>
-
-          </div>
-          <style>{`@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }`}</style>
-        </>
-      )}
 
       {/* OVERVIEW TAB */}
       {activeTab === 'overview' && (
