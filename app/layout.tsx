@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     creator: '@F_FantasyHub',
     description: 'Formula 1 data, analysis and strategy — all in one place.',
   },
+  verification: {
+    google: 'SYADByLJyBhRA4RfYWdOW3ntNwDjkPEFPSQD1T2Hnys',
+  },
 }
 
 const jsonLd = {
