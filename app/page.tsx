@@ -1,9 +1,30 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import StandingsWidget from '@/components/StandingsWidget'
 import RaceWeekendCard from '@/components/RaceWeekendCard'
 import { articles } from '@/lib/articles'
+
+export const metadata: Metadata = {
+  title: 'Formula Hub — F1 Race Data, Standings & Fantasy Strategy 2026',
+  description: 'Live F1 race results, championship standings, session times and fantasy strategy from Rob Beaumont — official F1 Fantasy columnist for formula1.com.',
+  alternates: { canonical: 'https://formulahub.live' },
+  openGraph: {
+    title: 'Formula Hub — F1 Race Data, Standings & Fantasy Strategy 2026',
+    description: 'Live F1 race results, championship standings, session times and fantasy strategy from Rob Beaumont — official F1 Fantasy columnist for formula1.com.',
+    url: 'https://formulahub.live',
+    siteName: 'Formula Hub',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@F_FantasyHub',
+    creator: '@F_FantasyHub',
+    title: 'Formula Hub — F1 Race Data, Standings & Fantasy Strategy 2026',
+    description: 'Live F1 race results, championship standings, session times and fantasy strategy from Rob Beaumont — official F1 Fantasy columnist for formula1.com.',
+  },
+}
 
 export default function Home() {
   const latestArticles = articles.slice(0, 3)
@@ -29,9 +50,9 @@ export default function Home() {
               <div style={{ width: '3px', height: '32px', background: '#E8002D', borderRadius: '2px' }} />
               <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '3px', color: '#E8002D', textTransform: 'uppercase' as const }}>Formula Hub — Your F1 Home</span>
             </div>
-            <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(3rem,8vw,6rem)', lineHeight: 0.95, marginBottom: '16px' }}>
+            <h1 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(3rem,8vw,6rem)', lineHeight: 0.95, marginBottom: '16px', fontWeight: 400 }}>
               Everything F1.<br />One place.
-            </div>
+            </h1>
             <p style={{ color: '#5A6A7A', fontSize: '14px', maxWidth: '500px', lineHeight: 1.7, marginBottom: '28px' }}>
               Live race data, championship standings, expert analysis and F1 Fantasy strategy from Rob Beaumont — official Formula 1 Fantasy columnist for formula1.com.
             </p>

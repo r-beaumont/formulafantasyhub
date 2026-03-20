@@ -1,7 +1,27 @@
+import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
 import { articles } from '@/lib/articles'
+
+export const metadata: Metadata = {
+  title: 'F1 Articles & Analysis 2026 | Formula Hub',
+  description: 'Expert F1 Fantasy analysis, race reviews and strategy articles from Rob Beaumont — official F1 Fantasy columnist for formula1.com.',
+  alternates: { canonical: 'https://formulahub.live/articles' },
+  openGraph: {
+    title: 'F1 Articles & Analysis 2026',
+    description: 'Expert F1 Fantasy analysis, race reviews and strategy articles from Rob Beaumont.',
+    url: 'https://formulahub.live/articles',
+    siteName: 'Formula Hub',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@F_FantasyHub',
+    creator: '@F_FantasyHub',
+    description: 'Expert F1 Fantasy analysis, race reviews and strategy articles from Rob Beaumont.',
+  },
+}
 
 const categoryColors: Record<string, { color: string; bg: string }> = {
   'Race Preview':  { color: '#E8002D', bg: 'rgba(232,0,45,0.12)' },

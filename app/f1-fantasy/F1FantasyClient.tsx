@@ -147,7 +147,7 @@ export default function F1FantasyClient() {
           <div style={{ width: '3px', height: '24px', background: '#E8002D', borderRadius: '2px' }} />
           <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase' as const }}>F1 Fantasy 2026</span>
         </div>
-        <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '56px', letterSpacing: '1px', lineHeight: 1, marginBottom: '8px' }}>Strategy Centre</div>
+        <h1 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '56px', letterSpacing: '1px', lineHeight: 1, marginBottom: '8px', fontWeight: 400, margin: '0 0 8px' }}>F1 Fantasy 2026</h1>
         <p style={{ color: '#5A6A7A', fontSize: '13px', maxWidth: '500px', lineHeight: 1.7 }}>
           Live race performance metrics and strategy tools. Use these stats to make smarter F1 Fantasy picks every race week.
         </p>

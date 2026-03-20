@@ -1,6 +1,26 @@
+import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Formula Hub Premium — F1 Fantasy Insider & Paddock Access',
+  description: 'Get unlimited access to F1 Fantasy Insider tools and Paddock Access content. AI-powered transfer tips, exclusive race reviews, and the Paddock Briefing newsletter. €5/month.',
+  alternates: { canonical: 'https://formulahub.live/subscribe' },
+  openGraph: {
+    title: 'Formula Hub Premium — F1 Fantasy Insider & Paddock Access',
+    description: 'AI-powered F1 Fantasy tips, exclusive race reviews and the Paddock Briefing newsletter. €5/month, cancel anytime.',
+    url: 'https://formulahub.live/subscribe',
+    siteName: 'Formula Hub',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@F_FantasyHub',
+    creator: '@F_FantasyHub',
+    description: 'AI-powered F1 Fantasy tips, exclusive race reviews and the Paddock Briefing newsletter. €5/month, cancel anytime.',
+  },
+}
 
 const freeItems = [
   { label: 'Race results & standings',        free: true  },
