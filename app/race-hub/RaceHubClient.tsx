@@ -145,11 +145,6 @@ export default function RaceHubClient() {
   const [activeSession, setActiveSession] = useState<string>('race')
   const [loading, setLoading] = useState(true)
   const [resultsLoading, setResultsLoading] = useState(false)
-  const [calendarRound, setCalendarRound] = useState<number | null>(null)
-  const [calendarDetailTab, setCalendarDetailTab] = useState<'schedule' | 'results'>('schedule')
-  const [calendarSessions, setCalendarSessions] = useState<any[]>([])
-  const [calendarResults, setCalendarResults] = useState<any[]>([])
-  const [calendarSessionTab, setCalendarSessionTab] = useState<string>('race')
   const [useLocalTime, setUseLocalTime] = useState(false)
   const [practiceData, setPracticeData] = useState<any[]>([])
   const [practiceLoading, setPracticeLoading] = useState(false)
@@ -307,24 +302,6 @@ export default function RaceHubClient() {
     fetchPractice()
   }, [selectedRound, activeSession])
 
-  useEffect(() => {
-    if (calendarRound !== null) {
-      const race = SEASON_CALENDAR.find(r => r.round === calendarRound)
-      if (race?.meeting_key) {
-        fetch(`/api/f1/sessions?meeting_key=${race.meeting_key}`)
-          .then(r => r.json())
-          .then(data => {
-            const sessData = Array.isArray(data) ? data : []
-            setCalendarSessions(sessData)
-            if (sessData.length) fetchResultsForSession(sessData, calendarSessionTab, setCalendarResults, setResultsLoading)
-          })
-      }
-    }
-  }, [calendarRound])
-
-  useEffect(() => {
-    if (calendarSessions.length) fetchResultsForSession(calendarSessions, calendarSessionTab, setCalendarResults, setResultsLoading)
-  }, [calendarSessionTab])
 
   const sessionTabs = getSessionTabs(sessions)
 
@@ -690,221 +667,63 @@ export default function RaceHubClient() {
 
       {/* CALENDAR TAB */}
       {activeTab === 'calendar' && (() => {
-        // Session schedule data — CURRENT_RACE sessions (old format) + SEASON_CALENDAR sessions (new format)
-        const sessionsByRound: Record<number, any[]> = {
-          [CURRENT_RACE.round]: CURRENT_RACE.sessions,
-          ...Object.fromEntries(
-            SEASON_CALENDAR
-              .filter(r => r.sessions && r.sessions.length > 0)
-              .map(r => [r.round, r.sessions!])
-          ),
-        }
-
-        if (calendarRound === null) {
-          return (
-            <div style={card}>
-              <div style={cardHeader}>
-                <span style={cardTitle}>2026 Racing Calendar</span>
-                <Badge type="blue" label="22 Rounds" />
-              </div>
-              <div className="mob-2col" style={{ padding: '16px 20px', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '10px' }}>
-                {SEASON_CALENDAR.map((race) => {
-                  const isCalledOff = (race as any).calledOff
-                  const isNextRace = race.round === selectedRound && !race.completed
-                  const isNew = race.name === 'Madrid'
-                  const bgColor = isCalledOff ? 'rgba(255,255,255,0.02)' : race.completed ? '#0E1318' : '#141B22'
-                  const nameColor = isCalledOff ? '#3A4A5A' : race.completed ? '#3A4A5A' : '#F0F4F8'
-                  return (
-                    <div
-                      key={race.round}
-                      onClick={() => !isCalledOff ? (() => { setCalendarRound(race.round); setCalendarDetailTab(race.completed ? 'results' : 'schedule') })() : null}
-                      style={{
-                        position: 'relative' as const,
-                        background: bgColor,
-                        border: isCalledOff ? '1px solid rgba(255,255,255,0.04)'
-                          : isNextRace ? '1px solid rgba(232,0,45,0.3)'
-                          : race.completed ? '1px solid rgba(255,255,255,0.04)'
-                          : '1px solid rgba(255,255,255,0.08)',
-                        borderLeft: isNextRace ? '3px solid #E8002D' : undefined,
-                        borderRadius: '10px', padding: '14px',
-                        cursor: isCalledOff ? 'default' : 'pointer',
-                        opacity: isCalledOff ? 0.4 : 1,
-                        transition: 'border-color 0.2s',
-                      }}
-                    >
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#3A4A5A' }}>R{race.round}</span>
-                        <div style={{ display: 'flex', gap: '4px' }}>
-                          {isNew && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(0,168,255,0.15)', color: '#00A8FF' }}>NEW</span>}
-                          {isNextRace && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(232,0,45,0.15)', color: '#E8002D' }}>NEXT RACE</span>}
-                          {race.sprint && !isCalledOff && !isNextRace && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(232,0,45,0.15)', color: '#E8002D' }}>SPRINT</span>}
-                          {isCalledOff && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(255,255,255,0.08)', color: '#5A6A7A' }}>CANCELLED</span>}
-                          {race.completed && !isCalledOff && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(0,212,126,0.12)', color: '#00D47E' }}>COMPLETED</span>}
-                        </div>
-                      </div>
-                      <div style={{ fontSize: '20px', marginBottom: '6px' }}>{race.flag}</div>
-                      <div style={{ fontSize: '12px', fontWeight: 600, color: nameColor, marginBottom: '2px' }}>{race.name}</div>
-                      <div style={{ fontSize: '11px', color: '#3A4A5A', marginBottom: '2px' }}>{race.circuit}</div>
-                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#3A4A5A' }}>{(race as any).dateRange || race.date}</div>
-                      {!isCalledOff && <div style={{ marginTop: '8px', fontSize: '10px', color: race.completed ? '#5A6A7A' : '#E8002D', fontWeight: 600 }}>
-                        {race.completed ? 'View results →' : 'View schedule →'}
-                      </div>}
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          )
-        }
-
-        // Calendar detail panel
-        const calRace = SEASON_CALENDAR.find(r => r.round === calendarRound)
-        const calStatic = calendarRound !== null ? STATIC_RACE_RESULTS[calendarRound] : null
-        const calHasStatic = !!calStatic
-        const calStaticTabs = calHasStatic ? [
-          ...(calStatic['fp1']               ? [{ id: 'fp1',               label: 'FP1'          }] : []),
-          ...(calStatic['fp2']               ? [{ id: 'fp2',               label: 'FP2'          }] : []),
-          ...(calStatic['fp3']               ? [{ id: 'fp3',               label: 'FP3'          }] : []),
-          ...(calStatic['sprint-qualifying'] ? [{ id: 'sprint-qualifying', label: 'Sprint Quali' }] : []),
-          ...(calStatic['sprint']            ? [{ id: 'sprint',            label: 'Sprint'       }] : []),
-          { id: 'qualifying', label: 'Qualifying' },
-          { id: 'race',       label: 'Race' },
-        ] : []
-        const calDisplayTabs    = calHasStatic ? calStaticTabs : getSessionTabs(calendarSessions)
-        const isFpCalSession = ['fp1', 'fp2', 'fp3'].includes(calendarSessionTab)
-        const calDisplayResults = (calHasStatic && !isFpCalSession) ? (calStatic[calendarSessionTab] || calStatic['race'] || []) : calendarResults
-
-        // Schedule data for the clicked race
-        const raceSessions = calRace ? sessionsByRound[calRace.round] : undefined
-        const defaultSessions = calRace?.sprint
-          ? ['Practice 1', 'Sprint Qualifying', 'Sprint', 'Qualifying', 'Race']
-          : ['Practice 1', 'Practice 2', 'Practice 3', 'Qualifying', 'Race']
-
+        const nextRaceRound = SEASON_CALENDAR.find(r => !r.completed && !(r as any).calledOff)?.round
         return (
           <div style={card}>
             <div style={cardHeader}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <button
-                  onClick={() => { setCalendarRound(null); setCalendarSessions([]); setCalendarResults([]) }}
-                  style={{ background: '#141B22', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px', color: '#F0F4F8', padding: '4px 10px', cursor: 'pointer', fontSize: '12px' }}
-                >← Back</button>
-                <span style={cardTitle}>{calRace?.flag} {calRace?.name} GP</span>
-              </div>
-              <Badge type={calRace?.completed ? 'done' : 'new'} label={calRace?.completed ? 'Completed' : 'Upcoming'} />
+              <span style={cardTitle}>2026 Racing Calendar</span>
+              <Badge type="blue" label="22 Rounds" />
             </div>
-
-            {/* Race meta */}
-            <div style={{ padding: '12px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', display: 'flex', gap: '24px', flexWrap: 'wrap' as const }}>
-              <span style={{ fontSize: '12px', color: '#5A6A7A' }}>🏟️ {calRace?.circuit}</span>
-              <span style={{ fontSize: '12px', color: '#5A6A7A' }}>Round {calRace?.round} of 22</span>
-              <span style={{ fontSize: '12px', color: '#5A6A7A' }}>📅 {(calRace as any)?.dateRange || calRace?.date}</span>
-              {calRace?.sprint && <span style={{ fontSize: '12px', color: '#E8002D', fontWeight: 600 }}>⚡ Sprint Weekend</span>}
-            </div>
-
-            {/* Detail tabs */}
-            <div style={{ display: 'flex', gap: '4px', padding: '10px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-              <button onClick={() => setCalendarDetailTab('schedule')} style={{
-                background: calendarDetailTab === 'schedule' ? '#E8002D' : '#141B22',
-                color: calendarDetailTab === 'schedule' ? 'white' : '#5A6A7A',
-                border: '1px solid', borderColor: calendarDetailTab === 'schedule' ? '#E8002D' : 'rgba(255,255,255,0.07)',
-                padding: '5px 14px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: 600,
-              }}>Schedule</button>
-              {calRace?.completed && (
-                <button onClick={() => setCalendarDetailTab('results')} style={{
-                  background: calendarDetailTab === 'results' ? '#E8002D' : '#141B22',
-                  color: calendarDetailTab === 'results' ? 'white' : '#5A6A7A',
-                  border: '1px solid', borderColor: calendarDetailTab === 'results' ? '#E8002D' : 'rgba(255,255,255,0.07)',
-                  padding: '5px 14px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: 600,
-                }}>Results</button>
-              )}
-            </div>
-
-            {/* Schedule view */}
-            {calendarDetailTab === 'schedule' && (
-              <div style={{ padding: '16px 20px' }}>
-                {/* Timezone toggle */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginBottom: '12px' }}>
-                  <div style={{ display: 'flex', background: '#141B22', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.07)', overflow: 'hidden' }}>
-                    <button onClick={() => setUseLocalTime(false)} style={{ background: !useLocalTime ? 'rgba(232,0,45,0.15)' : 'transparent', color: !useLocalTime ? '#E8002D' : '#5A6A7A', border: 'none', padding: '4px 10px', cursor: 'pointer', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const }}>Track</button>
-                    <button onClick={() => setUseLocalTime(true)}  style={{ background: useLocalTime  ? 'rgba(232,0,45,0.15)' : 'transparent', color: useLocalTime  ? '#E8002D' : '#5A6A7A', border: 'none', borderLeft: '1px solid rgba(255,255,255,0.07)', padding: '4px 10px', cursor: 'pointer', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const }}>Local</button>
-                  </div>
-                </div>
-                {raceSessions ? (
-                  raceSessions.map((s: any, i: number) => {
-                    const isNewFormat = !s.short
-                    const now = new Date()
-                    const sessionDate = isNewFormat ? new Date(s.date) : (s.dateISO ? new Date(s.dateISO) : null)
-                    const isCompleted = sessionDate ? sessionDate < now : (s.completed || !!calRace?.completed)
-                    const isNext = !calRace?.completed && !isCompleted && raceSessions.findIndex((x: any) => {
-                      const d = x.short ? (x.dateISO ? new Date(x.dateISO) : null) : new Date(x.date)
-                      return d ? d >= now : !x.completed
-                    }) === i
-                    const shortMap: Record<string, string> = { 'Practice 1': 'FP1', 'Practice 2': 'FP2', 'Practice 3': 'FP3', 'Sprint Qualifying': 'SQ', 'Sprint': 'SPRINT', 'Qualifying': 'QUAL', 'Race': 'RACE' }
-                    const shortLabel = s.short || shortMap[s.name as string] || s.name
-                    const calTz = calRace?.timezone ?? 'UTC'
-                    let dateLabel: string, displayTime: string
-                    if (isNewFormat) {
-                      const fmt = formatSessionDateTime(s.date, calTz, useLocalTime)
-                      dateLabel = fmt.dateLabel
-                      displayTime = fmt.timeLabel
-                    } else if (s.dateISO) {
-                      const fmt = formatSessionDateTime(s.dateISO, CURRENT_RACE.timezone, useLocalTime)
-                      dateLabel = fmt.dateLabel
-                      displayTime = fmt.timeLabel
-                    } else {
-                      displayTime = useLocalTime ? s.timeLocal : s.timeLocal
-                      dateLabel = s.date
-                    }
-                    return (
-                      <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < raceSessions.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', opacity: isCompleted ? 0.45 : 1 }}>
-                        <div style={{ width: '52px', fontFamily: 'Bebas Neue, sans-serif', fontSize: '12px', letterSpacing: '0.5px', color: isNext ? '#E8002D' : isCompleted ? '#3A4A5A' : '#8A9AB0', textAlign: 'center' as const, background: isNext ? 'rgba(232,0,45,0.1)' : 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>{shortLabel}</div>
-                        <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: '13px', fontWeight: 600, color: isCompleted ? '#3A4A5A' : '#F0F4F8' }}>{s.name}</div>
-                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>{dateLabel} · {displayTime}</div>
-                        </div>
-                        {isNext && <span style={{ fontSize: '9px', fontWeight: 700, padding: '3px 7px', borderRadius: '20px', background: '#E8002D', color: 'white', textTransform: 'uppercase' as const, letterSpacing: '0.5px', flexShrink: 0 }}>Next</span>}
-                        {isCompleted && <span style={{ fontSize: '12px', color: '#3A4A5A', flexShrink: 0 }}>✓</span>}
+            <div className="mob-2col" style={{ padding: '16px 20px', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '10px' }}>
+              {SEASON_CALENDAR.map((race) => {
+                const isCalledOff = (race as any).calledOff
+                const isNextRace = race.round === nextRaceRound
+                const isNew = race.name === 'Madrid'
+                const bgColor = isCalledOff ? 'rgba(255,255,255,0.02)' : race.completed ? '#0E1318' : '#141B22'
+                const nameColor = isCalledOff ? '#3A4A5A' : race.completed ? '#3A4A5A' : '#F0F4F8'
+                return (
+                  <div
+                    key={race.round}
+                    onClick={() => {
+                      if (isCalledOff) return
+                      setSelectedRound(race.round)
+                      setActiveTab('race-info')
+                    }}
+                    style={{
+                      position: 'relative' as const,
+                      background: bgColor,
+                      border: isCalledOff ? '1px solid rgba(255,255,255,0.04)'
+                        : isNextRace ? '1px solid rgba(232,0,45,0.3)'
+                        : race.completed ? '1px solid rgba(255,255,255,0.04)'
+                        : '1px solid rgba(255,255,255,0.08)',
+                      borderLeft: isNextRace ? '3px solid #E8002D' : undefined,
+                      borderRadius: '10px', padding: '14px',
+                      cursor: isCalledOff ? 'default' : 'pointer',
+                      opacity: isCalledOff ? 0.4 : 1,
+                      transition: 'border-color 0.2s',
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#3A4A5A' }}>R{race.round}</span>
+                      <div style={{ display: 'flex', gap: '4px' }}>
+                        {isNew && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(0,168,255,0.15)', color: '#00A8FF' }}>NEW</span>}
+                        {isNextRace && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(232,0,45,0.15)', color: '#E8002D' }}>NEXT RACE</span>}
+                        {race.sprint && !isCalledOff && !isNextRace && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(232,0,45,0.15)', color: '#E8002D' }}>SPRINT</span>}
+                        {isCalledOff && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(255,255,255,0.08)', color: '#5A6A7A' }}>CANCELLED</span>}
+                        {race.completed && !isCalledOff && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(0,212,126,0.12)', color: '#00D47E' }}>COMPLETED</span>}
                       </div>
-                    )
-                  })
-                ) : (
-                  <div>
-                    {defaultSessions.map((name, i) => (
-                      <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < defaultSessions.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', opacity: calRace?.completed ? 0.45 : 1 }}>
-                        <div style={{ width: '52px', fontFamily: 'Bebas Neue, sans-serif', fontSize: '12px', letterSpacing: '0.5px', color: '#5A6A7A', textAlign: 'center' as const, background: 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>
-                          {name === 'Practice 1' ? 'FP1' : name === 'Practice 2' ? 'FP2' : name === 'Practice 3' ? 'FP3' : name === 'Sprint Qualifying' ? 'SQ' : name === 'Qualifying' ? 'QUAL' : 'RACE'}
-                        </div>
-                        <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: '13px', fontWeight: 600, color: calRace?.completed ? '#3A4A5A' : '#F0F4F8' }}>{name}</div>
-                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>Times TBC</div>
-                        </div>
-                        {calRace?.completed && <span style={{ fontSize: '12px', color: '#3A4A5A' }}>✓</span>}
-                      </div>
-                    ))}
+                    </div>
+                    <div style={{ fontSize: '20px', marginBottom: '6px' }}>{race.flag}</div>
+                    <div style={{ fontSize: '12px', fontWeight: 600, color: nameColor, marginBottom: '2px' }}>{race.name}</div>
+                    <div style={{ fontSize: '11px', color: '#3A4A5A', marginBottom: '2px' }}>{race.circuit}</div>
+                    <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#3A4A5A' }}>{(race as any).dateRange || race.date}</div>
+                    {!isCalledOff && <div style={{ marginTop: '8px', fontSize: '10px', color: race.completed ? '#5A6A7A' : '#E8002D', fontWeight: 600 }}>
+                      {race.completed ? 'View results →' : 'View schedule →'}
+                    </div>}
                   </div>
-                )}
-              </div>
-            )}
-
-            {/* Results view — only for completed races */}
-            {calendarDetailTab === 'results' && calRace?.completed && (
-              <>
-                <div style={{ display: 'flex', gap: '6px', padding: '12px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', flexWrap: 'wrap' as const }}>
-                  {calDisplayTabs.map(t => (
-                    <button key={t.id} onClick={() => setCalendarSessionTab(t.id)} style={{
-                      background: calendarSessionTab === t.id ? '#E8002D' : '#141B22',
-                      color: calendarSessionTab === t.id ? 'white' : '#5A6A7A',
-                      border: '1px solid', borderColor: calendarSessionTab === t.id ? '#E8002D' : 'rgba(255,255,255,0.07)',
-                      padding: '5px 14px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: 600,
-                    }}>{t.label}</button>
-                  ))}
-                </div>
-                {calendarSessionTab === 'qualifying' && calHasStatic
-                  ? <QualifyingTable data={calDisplayResults} />
-                  : <ResultsTable data={calDisplayResults} loading={!calHasStatic && resultsLoading} />
-                }
-              </>
-            )}
+                )
+              })}
+            </div>
           </div>
         )
       })()}
