@@ -207,10 +207,36 @@ export default function RaceHubClient() {
     )
   )
 
-  const QualifyingTable = ({ data }: { data: any[] }) => (
-    data.length === 0 ? (
+  const QualifyingTable = ({ data }: { data: any[] }) => {
+    if (data.length === 0) return (
       <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px' }}>No qualifying data available for this session yet</div>
-    ) : (
+    )
+    // Groups: Q3 = position 1-10, Q2-elim = next 6 (11-16), Q1-elim = last 6 (17-22)
+    const q3Group = data.filter(r => r.q3)
+    const q2Group = data.filter(r => r.q2 && !r.q3)
+    const q1Group = data.filter(r => !r.q2 && !r.q3)
+    const SectionDivider = ({ label }: { label: string }) => (
+      <div style={{ padding: '6px 20px', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.07)', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#3A4A5A' }}>{label}</span>
+      </div>
+    )
+    const Row = ({ r }: { r: any }) => {
+      const posColors: Record<number, string> = { 1: '#FFD700', 2: '#C0C0C0', 3: '#CD7F32' }
+      const outInQ1 = !r.q2 && !r.q3
+      const outInQ2 = r.q2 && !r.q3
+      return (
+        <div style={{ display: 'grid', gridTemplateColumns: '32px 4px 1fr 1fr 100px 100px 100px', gap: '0 10px', alignItems: 'center', padding: '8px 20px', borderBottom: '1px solid rgba(255,255,255,0.04)', opacity: outInQ1 ? 0.5 : outInQ2 ? 0.72 : 1 }}>
+          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 600 : 400, color: posColors[r.position] || '#5A6A7A' }}>{r.position}</span>
+          <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
+          <div style={{ fontSize: '13px', fontWeight: 500 }}>{r.name}</div>
+          <div style={{ fontSize: '12px', color: '#5A6A7A' }}>{r.team}</div>
+          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#8A9AB0', textAlign: 'right' as const }}>{r.q1 || '—'}</span>
+          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: r.q2 ? '#B8C4CF' : '#3A4A5A', textAlign: 'right' as const }}>{r.q2 || '—'}</span>
+          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', fontWeight: r.q3 && r.position <= 3 ? 600 : 400, color: r.q3 ? (r.position === 1 ? '#FFB800' : '#F0F4F8') : '#3A4A5A', textAlign: 'right' as const }}>{r.q3 || '—'}</span>
+        </div>
+      )
+    }
+    return (
       <div style={{ overflowX: 'auto', minWidth: 0 }}>
         <div style={{ minWidth: '560px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '32px 4px 1fr 1fr 100px 100px 100px', gap: '0 10px', padding: '8px 20px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
@@ -222,26 +248,13 @@ export default function RaceHubClient() {
             <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>Q2</span>
             <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>Q3</span>
           </div>
-          {data.map((r: any) => {
-            const posColors: Record<number, string> = { 1: '#FFD700', 2: '#C0C0C0', 3: '#CD7F32' }
-            const outInQ1 = !r.q2 && !r.q3
-            const outInQ2 = r.q2 && !r.q3
-            return (
-              <div key={r.driver_number} style={{ display: 'grid', gridTemplateColumns: '32px 4px 1fr 1fr 100px 100px 100px', gap: '0 10px', alignItems: 'center', padding: '8px 20px', borderBottom: '1px solid rgba(255,255,255,0.04)', opacity: outInQ1 ? 0.55 : outInQ2 ? 0.75 : 1 }}>
-                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 600 : 400, color: posColors[r.position] || '#5A6A7A' }}>{r.position}</span>
-                <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
-                <div style={{ fontSize: '13px', fontWeight: 500 }}>{r.name}</div>
-                <div style={{ fontSize: '12px', color: '#5A6A7A' }}>{r.team}</div>
-                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#8A9AB0', textAlign: 'right' as const }}>{r.q1 || '—'}</span>
-                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: r.q2 ? '#B8C4CF' : '#3A4A5A', textAlign: 'right' as const }}>{r.q2 || '—'}</span>
-                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', fontWeight: r.q3 && r.position <= 3 ? 600 : 400, color: r.q3 ? (r.position === 1 ? '#FFB800' : '#F0F4F8') : '#3A4A5A', textAlign: 'right' as const }}>{r.q3 || '—'}</span>
-              </div>
-            )
-          })}
+          {q3Group.length > 0 && <>{q3Group.map(r => <Row key={r.driver_number} r={r} />)}</>}
+          {q2Group.length > 0 && <><SectionDivider label={`— Q2 Eliminated (P${q3Group.length + 1}–${q3Group.length + q2Group.length}) —`} />{q2Group.map(r => <Row key={r.driver_number} r={r} />)}</>}
+          {q1Group.length > 0 && <><SectionDivider label={`— Q1 Eliminated (P${q3Group.length + q2Group.length + 1}–${data.length}) —`} />{q1Group.map(r => <Row key={r.driver_number} r={r} />)}</>}
         </div>
       </div>
     )
-  )
+  }
 
   const tabs = [
     { id: 'race-info', label: 'Race Info' },
@@ -450,7 +463,9 @@ export default function RaceHubClient() {
             ]
           : []
 
-        const displayResults: any[] = hasStatic
+        // For FP sessions, always use live API data even on static rounds (OpenF1 has practice data)
+        const isFpSession = ['fp1', 'fp2', 'fp3'].includes(activeSession)
+        const displayResults: any[] = (hasStatic && !isFpSession)
           ? (staticData[activeSession] || staticData['race'] || [])
           : results
 
@@ -557,7 +572,8 @@ export default function RaceHubClient() {
                 { id: 'race',       label: 'Race' },
               ] : []
               const calDisplayTabs    = calHasStatic ? calStaticTabs : getSessionTabs(calendarSessions)
-              const calDisplayResults = calHasStatic ? (calStatic[calendarSessionTab] || calStatic['race'] || []) : calendarResults
+              const isFpCalSession = ['fp1', 'fp2', 'fp3'].includes(calendarSessionTab)
+              const calDisplayResults = (calHasStatic && !isFpCalSession) ? (calStatic[calendarSessionTab] || calStatic['race'] || []) : calendarResults
               return (
                 <div style={card}>
                   <div style={cardHeader}>

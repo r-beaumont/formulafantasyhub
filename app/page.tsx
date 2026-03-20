@@ -33,7 +33,7 @@ export default function Home() {
               Everything F1.<br />One place.
             </div>
             <p style={{ color: '#5A6A7A', fontSize: '14px', maxWidth: '500px', lineHeight: 1.7, marginBottom: '28px' }}>
-              Live race data, championship standings, fantasy strategy and expert analysis from Rob Beaumont — official F1 Fantasy columnist for formula1.com.
+              Live race data, championship standings, expert analysis and F1 Fantasy strategy from Rob Beaumont — official Formula 1 Fantasy columnist for formula1.com.
             </p>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' as const }}>
               <Link href="/race-hub" style={{ background: '#E8002D', color: 'white', padding: '10px 24px', borderRadius: '8px', textDecoration: 'none', fontSize: '13px', fontWeight: 600 }}>Race Hub →</Link>
@@ -149,9 +149,19 @@ export default function Home() {
                 <Link href="/videos" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>View all →</Link>
               </div>
               <div style={{ padding: '20px', display: 'flex', flexDirection: 'column' as const, gap: '12px' }}>
-                <div style={{ position: 'relative', paddingBottom: '56.25%', background: '#080C10', borderRadius: '8px', overflow: 'hidden' }}>
-                  <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=formulafantasyhub&rel=0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
-                </div>
+                <a href="https://www.youtube.com/@formulafantasyhub" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block' }}>
+                  <div style={{ position: 'relative', paddingBottom: '56.25%', background: '#080C10', borderRadius: '8px', overflow: 'hidden', cursor: 'pointer' }}>
+                    <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center', gap: '14px' }}>
+                      <div style={{ width: '64px', height: '64px', background: '#E8002D', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 28px rgba(232,0,45,0.5)' }}>
+                        <div style={{ width: 0, height: 0, borderStyle: 'solid', borderWidth: '12px 0 12px 22px', borderColor: 'transparent transparent transparent white', marginLeft: '5px' }} />
+                      </div>
+                      <div style={{ textAlign: 'center' as const }}>
+                        <div style={{ fontSize: '15px', fontWeight: 700, color: '#F0F4F8' }}>Watch Latest Videos</div>
+                        <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '4px' }}>@formulafantasyhub</div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
                 <a href="https://www.youtube.com/@formulafantasyhub" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: '#E8002D', color: 'white', padding: '10px', borderRadius: '8px', textDecoration: 'none', fontSize: '13px', fontWeight: 600 }}>
                   ▶ Subscribe on YouTube
                 </a>

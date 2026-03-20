@@ -60,7 +60,9 @@ export const STATIC_RACE_RESULTS: Record<number, Record<string, RaceResult[]>> =
       { position: 13, driver_number: 55, name: 'Carlos Sainz',      acronym: 'SAI', team: 'Williams',        team_colour: '#64C4FF', time: '1:18.554', gap: '1.742', dnf: false, q3: null,        q2: '1:18.554', q1: '1:19.178' },
       { position: 14, driver_number: 23, name: 'Alex Albon',        acronym: 'ALB', team: 'Williams',        team_colour: '#64C4FF', time: '1:18.703', gap: '1.891', dnf: false, q3: null,        q2: '1:18.703', q1: '1:19.312' },
       { position: 15, driver_number: 14, name: 'Fernando Alonso',   acronym: 'ALO', team: 'Aston Martin',    team_colour: '#358C75', time: '1:18.841', gap: '2.029', dnf: false, q3: null,        q2: '1:18.841', q1: '1:19.445' },
-      { position: 16, driver_number: 5,  name: 'Gabriel Bortoleto', acronym: 'BOR', team: 'Audi',            team_colour: '#C0C0C0', time: '1:18.990', gap: '2.178', dnf: false, q3: null,        q2: null,        q1: '1:18.990' },
+      // Q2 eliminated (P11-16): 6 drivers — Q2 boundary is after P16
+      { position: 16, driver_number: 5,  name: 'Gabriel Bortoleto', acronym: 'BOR', team: 'Audi',            team_colour: '#C0C0C0', time: '1:18.990', gap: '2.178', dnf: false, q3: null,        q2: '1:18.890', q1: '1:18.990' },
+      // Q1 eliminated (P17-22): 6 drivers
       { position: 17, driver_number: 27, name: 'Nico Hülkenberg',   acronym: 'HUL', team: 'Audi',            team_colour: '#C0C0C0', time: '1:19.112', gap: '2.300', dnf: false, q3: null,        q2: null,        q1: '1:19.112' },
       { position: 18, driver_number: 31, name: 'Esteban Ocon',      acronym: 'OCO', team: 'Haas',            team_colour: '#B6BABD', time: '1:19.244', gap: '2.432', dnf: false, q3: null,        q2: null,        q1: '1:19.244' },
       { position: 19, driver_number: 7,  name: 'Arvid Lindblad',    acronym: 'LIN', team: 'Racing Bulls',    team_colour: '#6692FF', time: '1:19.381', gap: '2.569', dnf: false, q3: null,        q2: null,        q1: '1:19.381' },
@@ -115,7 +117,9 @@ export const STATIC_RACE_RESULTS: Record<number, Record<string, RaceResult[]>> =
       { position: 13, driver_number: 5,  name: 'Gabriel Bortoleto', acronym: 'BOR', team: 'Audi',            team_colour: '#C0C0C0', time: '1:32.671', gap: '2.453', dnf: false, q3: null,        q2: '1:32.671', q1: '1:33.212' },
       { position: 14, driver_number: 55, name: 'Carlos Sainz',      acronym: 'SAI', team: 'Williams',        team_colour: '#64C4FF', time: '1:32.810', gap: '2.592', dnf: false, q3: null,        q2: '1:32.810', q1: '1:33.356' },
       { position: 15, driver_number: 23, name: 'Alex Albon',        acronym: 'ALB', team: 'Williams',        team_colour: '#64C4FF', time: '1:32.955', gap: '2.737', dnf: false, q3: null,        q2: '1:32.955', q1: '1:33.489' },
-      { position: 16, driver_number: 14, name: 'Fernando Alonso',   acronym: 'ALO', team: 'Aston Martin',    team_colour: '#358C75', time: '1:33.102', gap: '2.884', dnf: false, q3: null,        q2: null,        q1: '1:33.102' },
+      // Q2 eliminated (P11-16): 6 drivers — Q2 boundary is after P16
+      { position: 16, driver_number: 14, name: 'Fernando Alonso',   acronym: 'ALO', team: 'Aston Martin',    team_colour: '#358C75', time: '1:33.102', gap: '2.884', dnf: false, q3: null,        q2: '1:33.012', q1: '1:33.102' },
+      // Q1 eliminated (P17-22): 6 drivers
       { position: 17, driver_number: 27, name: 'Nico Hülkenberg',   acronym: 'HUL', team: 'Audi',            team_colour: '#C0C0C0', time: '1:33.241', gap: '3.023', dnf: false, q3: null,        q2: null,        q1: '1:33.241' },
       { position: 18, driver_number: 7,  name: 'Arvid Lindblad',    acronym: 'LIN', team: 'Racing Bulls',    team_colour: '#6692FF', time: '1:33.380', gap: '3.162', dnf: false, q3: null,        q2: null,        q1: '1:33.380' },
       { position: 19, driver_number: 31, name: 'Esteban Ocon',      acronym: 'OCO', team: 'Haas',            team_colour: '#B6BABD', time: '1:33.512', gap: '3.294', dnf: false, q3: null,        q2: null,        q1: '1:33.512' },

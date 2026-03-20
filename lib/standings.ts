@@ -17,6 +17,7 @@ export interface ConstructorStanding {
   flag: string
   points: number
   wins: number
+  price?: number
 }
 
 // Auto-updated via OpenF1 API on every page load
@@ -48,15 +49,15 @@ export const DRIVER_STANDINGS: DriverStanding[] = [
 ]
 
 export const CONSTRUCTOR_STANDINGS: ConstructorStanding[] = [
-  { pos: 1,  name: 'Mercedes',       color: '#27F4D2', flag: '🇩🇪', points: 98, wins: 2 },
-  { pos: 2,  name: 'Ferrari',        color: '#E8002D', flag: '🇮🇹', points: 67, wins: 0 },
-  { pos: 3,  name: 'Haas',           color: '#B6BABD', flag: '🇺🇸', points: 17, wins: 0 },
-  { pos: 4,  name: 'McLaren',        color: '#FF8000', flag: '🇬🇧', points: 18, wins: 0 },
-  { pos: 5,  name: 'Alpine',         color: '#FF69B4', flag: '🇫🇷', points: 10, wins: 0 },
-  { pos: 6,  name: 'Racing Bulls',   color: '#6692FF', flag: '🇮🇹', points: 12, wins: 0 },
-  { pos: 7,  name: 'Red Bull Racing',color: '#3671C6', flag: '🇦🇹', points: 12, wins: 0 },
-  { pos: 8,  name: 'Williams',       color: '#64C4FF', flag: '🇬🇧', points: 2,  wins: 0 },
-  { pos: 9,  name: 'Audi',           color: '#C0C0C0', flag: '🇩🇪', points: 2,  wins: 0 },
-  { pos: 10, name: 'Aston Martin',   color: '#358C75', flag: '🇬🇧', points: 0,  wins: 0 },
-  { pos: 11, name: 'Cadillac',       color: '#CC0000', flag: '🇺🇸', points: 0,  wins: 0 },
+  { pos: 1,  name: 'Mercedes',        color: '#27F4D2', flag: '🇩🇪', points: 98, wins: 2, price: 34.5 },
+  { pos: 2,  name: 'Ferrari',         color: '#E8002D', flag: '🇮🇹', points: 67, wins: 0, price: 23.9 },
+  { pos: 3,  name: 'Haas',            color: '#B6BABD', flag: '🇺🇸', points: 17, wins: 0, price: 8.6  },
+  { pos: 4,  name: 'McLaren',         color: '#FF8000', flag: '🇬🇧', points: 18, wins: 0, price: 22.0 },
+  { pos: 5,  name: 'Alpine',          color: '#FF69B4', flag: '🇫🇷', points: 10, wins: 0, price: 13.5 },
+  { pos: 6,  name: 'Racing Bulls',    color: '#6692FF', flag: '🇮🇹', points: 12, wins: 0, price: 12.0 },
+  { pos: 7,  name: 'Red Bull Racing', color: '#3671C6', flag: '🇦🇹', points: 12, wins: 0, price: 18.0 },
+  { pos: 8,  name: 'Williams',        color: '#64C4FF', flag: '🇬🇧', points: 2,  wins: 0, price: 11.5 },
+  { pos: 9,  name: 'Audi',            color: '#C0C0C0', flag: '🇩🇪', points: 2,  wins: 0, price: 9.5  },
+  { pos: 10, name: 'Aston Martin',    color: '#358C75', flag: '🇬🇧', points: 0,  wins: 0, price: 10.5 },
+  { pos: 11, name: 'Cadillac',        color: '#CC0000', flag: '🇺🇸', points: 0,  wins: 0, price: 8.0  },
 ]

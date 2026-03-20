@@ -8,10 +8,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: 'Formula Hub — F1 Fantasy Strategy & Race Center',
-  description: 'Expert F1 Fantasy picks, strategy guides, and race-week tools from Rob Beaumont — official F1 Fantasy columnist for formula1.com.',
+  description: 'Formula 1 data, analysis and strategy — all in one place. Race results, championship standings, and F1 Fantasy tools from Rob Beaumont.',
   openGraph: {
     title: 'Formula Hub',
-    description: 'Expert F1 Fantasy strategy from the world\'s leading F1 Fantasy creator.',
+    description: 'Formula 1 data, analysis and strategy — all in one place.',
     url: 'https://formulahub.live',
     siteName: 'Formula Hub',
     type: 'website',
@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@F_FantasyHub',
     creator: '@F_FantasyHub',
+    description: 'Formula 1 data, analysis and strategy — all in one place.',
   },
 }
 

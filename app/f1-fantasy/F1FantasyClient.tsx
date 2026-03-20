@@ -559,6 +559,7 @@ export default function F1FantasyClient() {
 
       {/* DRIVERS TAB */}
       {activeTab === 'drivers' && (
+        <>
         <div style={card}>
           <div style={cardHeader}>
             <span style={cardTitle}>Full Driver Rankings — 2026</span>
@@ -604,6 +605,82 @@ export default function F1FantasyClient() {
             </table>
           </div>
         </div>
+
+        {/* OFFICIAL F1 FANTASY STATS */}
+        <div style={{ ...card, marginTop: '20px' }}>
+          <div style={cardHeader}>
+            <span style={cardTitle}>Official F1 Fantasy Stats</span>
+            <Badge type="blue" label="After R2" />
+          </div>
+          <div style={{ padding: '4px 20px 16px', fontSize: '11px', color: '#5A6A7A', borderBottom: '1px solid rgba(255,255,255,0.07)', marginBottom: '4px' }}>
+            Data from official F1 Fantasy — updated manually each race week. &nbsp;
+            <a href="https://fantasy.formula1.com/en/statistics" target="_blank" rel="noopener noreferrer" style={{ color: '#E8002D', textDecoration: 'none', fontWeight: 600 }}>View full stats on F1 Fantasy ↗</a>
+          </div>
+          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0' }}>
+
+            {/* Total Fantasy Points */}
+            <div style={{ padding: '16px 20px', borderRight: '1px solid rgba(255,255,255,0.07)' }}>
+              <div style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#FFB800', marginBottom: '12px' }}>Top Fantasy Points</div>
+              {[
+                { driver: 'K. Antonelli', pts: 100, flag: '🇮🇹', color: '#27F4D2' },
+                { driver: 'G. Russell',   pts: 84,  flag: '🇬🇧', color: '#27F4D2' },
+                { driver: 'C. Leclerc',   pts: 80,  flag: '🇲🇨', color: '#E8002D' },
+                { driver: 'L. Hamilton',  pts: 73,  flag: '🇬🇧', color: '#E8002D' },
+                { driver: 'M. Verstappen',pts: 64,  flag: '🇳🇱', color: '#3671C6' },
+              ].map((r, i) => (
+                <div key={r.driver} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '7px 0', borderBottom: i < 4 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#3A4A5A', width: '14px' }}>{i + 1}</span>
+                  <div style={{ width: '3px', height: '18px', borderRadius: '2px', background: r.color, flexShrink: 0 }} />
+                  <span style={{ fontSize: '13px' }}>{r.flag}</span>
+                  <span style={{ flex: 1, fontSize: '12px', fontWeight: 500 }}>{r.driver}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 600, color: '#FFB800' }}>{r.pts}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Selection % */}
+            <div style={{ padding: '16px 20px', borderRight: '1px solid rgba(255,255,255,0.07)' }}>
+              <div style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#00A8FF', marginBottom: '12px' }}>Most Selected</div>
+              {[
+                { driver: 'O. Bearman',   pct: '60%', flag: '🇬🇧', color: '#B6BABD' },
+                { driver: 'A. Lindblad',  pct: '45%', flag: '🇬🇧', color: '#6692FF' },
+                { driver: 'I. Hadjar',    pct: '33%', flag: '🇫🇷', color: '#3671C6' },
+                { driver: 'G. Bortoleto', pct: '33%', flag: '🇧🇷', color: '#C0C0C0' },
+                { driver: 'N. Hülkenberg',pct: '32%', flag: '🇩🇪', color: '#C0C0C0' },
+              ].map((r, i) => (
+                <div key={r.driver} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '7px 0', borderBottom: i < 4 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#3A4A5A', width: '14px' }}>{i + 1}</span>
+                  <div style={{ width: '3px', height: '18px', borderRadius: '2px', background: r.color, flexShrink: 0 }} />
+                  <span style={{ fontSize: '13px' }}>{r.flag}</span>
+                  <span style={{ flex: 1, fontSize: '12px', fontWeight: 500 }}>{r.driver}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 600, color: '#00A8FF' }}>{r.pct}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Price Rises */}
+            <div style={{ padding: '16px 20px' }}>
+              <div style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#00D47E', marginBottom: '12px' }}>Biggest Price Rises</div>
+              {[
+                { driver: 'A. Lindblad', rise: '+$1.2M', flag: '🇬🇧', color: '#6692FF' },
+                { driver: 'E. Ocon',     rise: '+$1.2M', flag: '🇫🇷', color: '#B6BABD' },
+                { driver: 'O. Bearman',  rise: '+$1.2M', flag: '🇬🇧', color: '#B6BABD' },
+                { driver: 'F. Colapinto',rise: '+$0.8M', flag: '🇦🇷', color: '#FF69B4' },
+                { driver: 'P. Gasly',    rise: '+$0.8M', flag: '🇫🇷', color: '#FF69B4' },
+              ].map((r, i) => (
+                <div key={r.driver} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '7px 0', borderBottom: i < 4 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#3A4A5A', width: '14px' }}>{i + 1}</span>
+                  <div style={{ width: '3px', height: '18px', borderRadius: '2px', background: r.color, flexShrink: 0 }} />
+                  <span style={{ fontSize: '13px' }}>{r.flag}</span>
+                  <span style={{ flex: 1, fontSize: '12px', fontWeight: 500 }}>{r.driver}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 600, color: '#00D47E' }}>{r.rise}</span>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+        </>
       )}
 
       {/* CONSTRUCTORS TAB */}
