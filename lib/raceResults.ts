@@ -25,6 +25,7 @@ export interface RaceResult {
 export const STATIC_RACE_RESULTS: Record<number, {
   qualifying?: RaceResult[]
   'sprint-qualifying'?: RaceResult[]
+  sprint?: RaceResult[]
   fp1?: any[]
   fp2?: any[]
   fp3?: any[]
