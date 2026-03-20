@@ -5,6 +5,78 @@ import Link from 'next/link'
 import { SEASON_CALENDAR, CURRENT_RACE } from '@/lib/races'
 import { STATIC_RACE_RESULTS } from '@/lib/raceResults'
 
+// Hardcoded FP session keys from OpenF1 for past/current rounds
+const FP_SESSION_KEYS: Record<number, Partial<Record<string, number>>> = {
+  1: { fp1: 11227, fp2: 11228, fp3: 11229 },
+  2: { fp1: 11235 },
+  3: { fp1: 11246, fp2: 11247, fp3: 11248 },
+}
+
+// OpenF1 meeting keys for all 22 rounds (for dynamic FP session key lookup)
+const OPENF1_MEETING_KEYS: Record<number, number> = {
+  1: 1279, 2: 1280, 3: 1281, 4: 1284, 5: 1285,
+  6: 1286, 7: 1287, 8: 1288, 9: 1289, 10: 1290,
+  11: 1291, 12: 1292, 13: 1293, 14: 1294, 15: 1295,
+  16: 1296, 17: 1297, 18: 1298, 19: 1299, 20: 1300,
+  21: 1301, 22: 1302,
+}
+
+// Static fallback practice results (used if live API fails)
+const FP_STATIC_FALLBACK: Record<number, Record<string, any[]>> = {
+  1: {
+    fp1: [
+      { position: 1,  driver_number: 16, name: 'Charles Leclerc',   team: 'Ferrari',        team_colour: '#E8002D', time: '1:20.267', gap: '—'       },
+      { position: 2,  driver_number: 44, name: 'Lewis Hamilton',    team: 'Ferrari',        team_colour: '#E8002D', time: '1:20.736', gap: '+0.469s' },
+      { position: 3,  driver_number: 1,  name: 'Max Verstappen',    team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:20.789', gap: '+0.522s' },
+      { position: 4,  driver_number: 6,  name: 'Isack Hadjar',      team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:21.087', gap: '+0.820s' },
+      { position: 5,  driver_number: 7,  name: 'Arvid Lindblad',    team: 'Racing Bulls',   team_colour: '#6692FF', time: '1:21.313', gap: '+1.046s' },
+      { position: 6,  driver_number: 81, name: 'Oscar Piastri',     team: 'McLaren',        team_colour: '#FF8000', time: '1:21.342', gap: '+1.075s' },
+      { position: 7,  driver_number: 63, name: 'George Russell',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:21.371', gap: '+1.104s' },
+      { position: 8,  driver_number: 12, name: 'Kimi Antonelli',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:21.376', gap: '+1.109s' },
+      { position: 9,  driver_number: 5,  name: 'Gabriel Bortoleto', team: 'Audi',           team_colour: '#C0C0C0', time: '1:21.696', gap: '+1.429s' },
+      { position: 10, driver_number: 27, name: 'Nico Hülkenberg',   team: 'Audi',           team_colour: '#C0C0C0', time: '1:21.969', gap: '+1.702s' },
+    ],
+    fp2: [
+      { position: 1,  driver_number: 81, name: 'Oscar Piastri',     team: 'McLaren',        team_colour: '#FF8000', time: '1:19.729', gap: '—'       },
+      { position: 2,  driver_number: 12, name: 'Kimi Antonelli',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:19.943', gap: '+0.214s' },
+      { position: 3,  driver_number: 63, name: 'George Russell',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:20.049', gap: '+0.320s' },
+      { position: 4,  driver_number: 44, name: 'Lewis Hamilton',    team: 'Ferrari',        team_colour: '#E8002D', time: '1:20.050', gap: '+0.321s' },
+      { position: 5,  driver_number: 16, name: 'Charles Leclerc',   team: 'Ferrari',        team_colour: '#E8002D', time: '1:20.291', gap: '+0.562s' },
+      { position: 6,  driver_number: 1,  name: 'Max Verstappen',    team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:20.366', gap: '+0.637s' },
+      { position: 7,  driver_number: 4,  name: 'Lando Norris',      team: 'McLaren',        team_colour: '#FF8000', time: '1:20.794', gap: '+1.065s' },
+      { position: 8,  driver_number: 7,  name: 'Arvid Lindblad',    team: 'Racing Bulls',   team_colour: '#6692FF', time: '1:20.922', gap: '+1.193s' },
+      { position: 9,  driver_number: 6,  name: 'Isack Hadjar',      team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:20.941', gap: '+1.212s' },
+      { position: 10, driver_number: 31, name: 'Esteban Ocon',      team: 'Haas',           team_colour: '#B6BABD', time: '1:21.179', gap: '+1.450s' },
+    ],
+    fp3: [
+      { position: 1,  driver_number: 63, name: 'George Russell',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:19.053', gap: '—'       },
+      { position: 2,  driver_number: 44, name: 'Lewis Hamilton',    team: 'Ferrari',        team_colour: '#E8002D', time: '1:19.669', gap: '+0.616s' },
+      { position: 3,  driver_number: 16, name: 'Charles Leclerc',   team: 'Ferrari',        team_colour: '#E8002D', time: '1:19.827', gap: '+0.774s' },
+      { position: 4,  driver_number: 81, name: 'Oscar Piastri',     team: 'McLaren',        team_colour: '#FF8000', time: '1:20.087', gap: '+1.034s' },
+      { position: 5,  driver_number: 6,  name: 'Isack Hadjar',      team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:20.137', gap: '+1.084s' },
+      { position: 6,  driver_number: 1,  name: 'Max Verstappen',    team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:20.197', gap: '+1.144s' },
+      { position: 7,  driver_number: 12, name: 'Kimi Antonelli',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:20.324', gap: '+1.271s' },
+      { position: 8,  driver_number: 4,  name: 'Lando Norris',      team: 'McLaren',        team_colour: '#FF8000', time: '1:20.443', gap: '+1.390s' },
+      { position: 9,  driver_number: 5,  name: 'Gabriel Bortoleto', team: 'Audi',           team_colour: '#C0C0C0', time: '1:20.459', gap: '+1.406s' },
+      { position: 10, driver_number: 87, name: 'Oliver Bearman',    team: 'Haas',           team_colour: '#B6BABD', time: '1:20.778', gap: '+1.725s' },
+    ],
+  },
+  2: {
+    fp1: [
+      { position: 1,  driver_number: 63, name: 'George Russell',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:32.741', gap: '—'       },
+      { position: 2,  driver_number: 12, name: 'Kimi Antonelli',    team: 'Mercedes',       team_colour: '#27F4D2', time: '1:32.861', gap: '+0.120s' },
+      { position: 3,  driver_number: 4,  name: 'Lando Norris',      team: 'McLaren',        team_colour: '#FF8000', time: '1:33.296', gap: '+0.555s' },
+      { position: 4,  driver_number: 81, name: 'Oscar Piastri',     team: 'McLaren',        team_colour: '#FF8000', time: '1:33.472', gap: '+0.731s' },
+      { position: 5,  driver_number: 16, name: 'Charles Leclerc',   team: 'Ferrari',        team_colour: '#E8002D', time: '1:33.599', gap: '+0.858s' },
+      { position: 6,  driver_number: 44, name: 'Lewis Hamilton',    team: 'Ferrari',        team_colour: '#E8002D', time: '1:34.129', gap: '+1.388s' },
+      { position: 7,  driver_number: 87, name: 'Oliver Bearman',    team: 'Haas',           team_colour: '#B6BABD', time: '1:34.426', gap: '+1.685s' },
+      { position: 8,  driver_number: 1,  name: 'Max Verstappen',    team: 'Red Bull Racing',team_colour: '#3671C6', time: '1:34.541', gap: '+1.800s' },
+      { position: 9,  driver_number: 27, name: 'Nico Hülkenberg',   team: 'Audi',           team_colour: '#C0C0C0', time: '1:34.639', gap: '+1.898s' },
+      { position: 10, driver_number: 10, name: 'Pierre Gasly',      team: 'Alpine',         team_colour: '#FF69B4', time: '1:34.676', gap: '+1.935s' },
+    ],
+  },
+}
+
 const card = { background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' as const }
 const cardHeader = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }
 const cardTitle = { fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }
@@ -51,10 +123,13 @@ export default function RaceHubClient() {
   const [loading, setLoading] = useState(true)
   const [resultsLoading, setResultsLoading] = useState(false)
   const [calendarRound, setCalendarRound] = useState<number | null>(null)
+  const [calendarDetailTab, setCalendarDetailTab] = useState<'schedule' | 'results'>('schedule')
   const [calendarSessions, setCalendarSessions] = useState<any[]>([])
   const [calendarResults, setCalendarResults] = useState<any[]>([])
   const [calendarSessionTab, setCalendarSessionTab] = useState<string>('race')
   const [useLocalTime, setUseLocalTime] = useState(false)
+  const [practiceData, setPracticeData] = useState<any[]>([])
+  const [practiceLoading, setPracticeLoading] = useState(false)
 
   const selectedRace = SEASON_CALENDAR.find(r => r.round === selectedRound) || SEASON_CALENDAR[1]
 
@@ -147,6 +222,67 @@ export default function RaceHubClient() {
   useEffect(() => {
     if (sessions.length) fetchResultsForSession(sessions, activeSession, setResults, setResultsLoading)
   }, [sessions, activeSession])
+
+  // Practice data fetching — fully automated via OpenF1 laps API
+  useEffect(() => {
+    const isFp = ['fp1', 'fp2', 'fp3'].includes(activeSession)
+    if (!isFp) return
+    setPracticeData([])
+
+    async function fetchPractice() {
+      setPracticeLoading(true)
+      try {
+        // 1. Try hardcoded session key first
+        let sessionKey: number | null = FP_SESSION_KEYS[selectedRound]?.[activeSession] ?? null
+
+        // 2. If not hardcoded, try to find from already-loaded sessions
+        if (!sessionKey && sessions.length > 0) {
+          const nameMap: Record<string, string> = { fp1: 'practice 1', fp2: 'practice 2', fp3: 'practice 3' }
+          const match = sessions.find((s: any) => (s.session_name || '').toLowerCase().includes(nameMap[activeSession] || ''))
+          if (match) sessionKey = match.session_key
+        }
+
+        // 3. If still not found, fetch from OpenF1 sessions endpoint
+        if (!sessionKey) {
+          const meetingKey = OPENF1_MEETING_KEYS[selectedRound]
+          if (!meetingKey) { setPracticeLoading(false); return }
+          const sessRes = await fetch(`/api/f1/sessions?meeting_key=${meetingKey}`)
+          const sessData = await sessRes.json()
+          if (Array.isArray(sessData)) {
+            const nameMap: Record<string, string> = { fp1: 'practice 1', fp2: 'practice 2', fp3: 'practice 3' }
+            const match = sessData.find((s: any) => (s.session_name || '').toLowerCase().includes(nameMap[activeSession] || ''))
+            if (match) sessionKey = match.session_key
+          }
+        }
+
+        if (!sessionKey) {
+          // No session key found — use static fallback if available
+          const fallback = FP_STATIC_FALLBACK[selectedRound]?.[activeSession]
+          setPracticeData(fallback || [])
+          return
+        }
+
+        // 4. Fetch practice results via the dedicated practice route
+        const res = await fetch(`/api/f1/practice?session_key=${sessionKey}`)
+        const data = await res.json()
+
+        if (Array.isArray(data) && data.length > 0) {
+          setPracticeData(data)
+        } else {
+          // API returned empty — use static fallback
+          const fallback = FP_STATIC_FALLBACK[selectedRound]?.[activeSession]
+          setPracticeData(fallback || [])
+        }
+      } catch {
+        const fallback = FP_STATIC_FALLBACK[selectedRound]?.[activeSession]
+        setPracticeData(fallback || [])
+      } finally {
+        setPracticeLoading(false)
+      }
+    }
+
+    fetchPractice()
+  }, [selectedRound, activeSession])
 
   useEffect(() => {
     if (calendarRound !== null) {
@@ -400,7 +536,7 @@ export default function RaceHubClient() {
               <div style={{ padding: '16px 20px' }}>
                 {loading ? <Loader label="sessions" /> : sessions.length === 0 && !useStaticSessions ? (
                   <div style={{ color: '#5A6A7A', fontSize: '13px', padding: '20px 0' }}>
-                    {selectedRace.completed ? 'Session data not yet available from OpenF1' : `Sessions will appear closer to race weekend (${selectedRace.date})`}
+                    {selectedRace.completed ? 'Session data not yet available' : `Sessions will appear closer to race weekend (${selectedRace.date})`}
                   </div>
                 ) : useStaticSessions ? (
                   CURRENT_RACE.sessions.map((s, i) => {
@@ -463,11 +599,13 @@ export default function RaceHubClient() {
             ]
           : []
 
-        // For FP sessions, always use live API data even on static rounds (OpenF1 has practice data)
+        // For FP sessions, use live practice data (from OpenF1 laps API via /api/f1/practice)
         const isFpSession = ['fp1', 'fp2', 'fp3'].includes(activeSession)
-        const displayResults: any[] = (hasStatic && !isFpSession)
-          ? (staticData[activeSession] || staticData['race'] || [])
-          : results
+        const displayResults: any[] = isFpSession
+          ? practiceData
+          : hasStatic
+            ? (staticData[activeSession] || staticData['race'] || [])
+            : results
 
         const displayTabs = hasStatic ? staticSessionTabs : sessionTabs
 
@@ -475,7 +613,7 @@ export default function RaceHubClient() {
           <div style={card}>
             <div style={cardHeader}>
               <span style={cardTitle}>{selectedRace.flag} {selectedRace.name} GP — Session Results</span>
-              <Badge type={hasStatic ? 'done' : 'new'} label={hasStatic ? '2026 Results' : 'OpenF1'} />
+              <Badge type={hasStatic ? 'done' : 'new'} label={hasStatic ? '2026 Results' : 'Live'} />
             </div>
 
             {!selectedRace.completed ? (
@@ -500,7 +638,7 @@ export default function RaceHubClient() {
                 </div>
                 {activeSession === 'qualifying' && hasStatic
                   ? <QualifyingTable data={displayResults} />
-                  : <ResultsTable data={displayResults} loading={!hasStatic && resultsLoading} />
+                  : <ResultsTable data={displayResults} loading={isFpSession ? practiceLoading : (!hasStatic && resultsLoading)} />
                 }
               </>
             )}
@@ -509,9 +647,14 @@ export default function RaceHubClient() {
       })()}
 
       {/* CALENDAR TAB */}
-      {activeTab === 'calendar' && (
-        <div>
-          {calendarRound === null ? (
+      {activeTab === 'calendar' && (() => {
+        // Session schedule data — only defined for rounds with data in lib/races.ts
+        const sessionsByRound: Record<number, typeof CURRENT_RACE.sessions> = {
+          [CURRENT_RACE.round]: CURRENT_RACE.sessions,
+        }
+
+        if (calendarRound === null) {
+          return (
             <div style={card}>
               <div style={cardHeader}>
                 <span style={cardTitle}>2026 Racing Calendar</span>
@@ -519,90 +662,184 @@ export default function RaceHubClient() {
               </div>
               <div className="mob-2col" style={{ padding: '16px 20px', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '10px' }}>
                 {SEASON_CALENDAR.map((race) => {
-                  const isCurrent = race.round === selectedRound
                   const isCalledOff = (race as any).calledOff
+                  const isNextRace = race.round === selectedRound && !race.completed
                   const isNew = race.name === 'Madrid'
+                  const bgColor = isCalledOff ? 'rgba(255,255,255,0.02)' : race.completed ? '#0E1318' : '#141B22'
+                  const nameColor = isCalledOff ? '#3A4A5A' : race.completed ? '#3A4A5A' : '#F0F4F8'
                   return (
                     <div
                       key={race.round}
-                      onClick={() => race.completed && !isCalledOff ? setCalendarRound(race.round) : null}
+                      onClick={() => !isCalledOff ? (() => { setCalendarRound(race.round); setCalendarDetailTab(race.completed ? 'results' : 'schedule') })() : null}
                       style={{
-                        background: isCalledOff ? 'rgba(255,255,255,0.02)' : isCurrent ? 'rgba(232,0,45,0.08)' : '#141B22',
-                        border: isCalledOff ? '1px solid rgba(255,255,255,0.04)' : isCurrent ? '1px solid rgba(232,0,45,0.3)' : '1px solid rgba(255,255,255,0.05)',
-                        borderRadius: '10px', padding: '14px',
-                        cursor: race.completed && !isCalledOff ? 'pointer' : 'default',
-                        opacity: isCalledOff ? 0.4 : !race.completed && race.round > selectedRound ? 0.6 : 1,
-                        transition: 'border-color 0.2s',
                         position: 'relative' as const,
+                        background: bgColor,
+                        border: isCalledOff ? '1px solid rgba(255,255,255,0.04)'
+                          : isNextRace ? '1px solid rgba(232,0,45,0.3)'
+                          : race.completed ? '1px solid rgba(255,255,255,0.04)'
+                          : '1px solid rgba(255,255,255,0.08)',
+                        borderLeft: isNextRace ? '3px solid #E8002D' : undefined,
+                        borderRadius: '10px', padding: '14px',
+                        cursor: isCalledOff ? 'default' : 'pointer',
+                        opacity: isCalledOff ? 0.4 : 1,
+                        transition: 'border-color 0.2s',
                       }}
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                         <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#3A4A5A' }}>R{race.round}</span>
                         <div style={{ display: 'flex', gap: '4px' }}>
                           {isNew && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(0,168,255,0.15)', color: '#00A8FF' }}>NEW</span>}
-                          {race.sprint && !isCalledOff && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(232,0,45,0.15)', color: '#E8002D' }}>SPRINT</span>}
+                          {isNextRace && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(232,0,45,0.15)', color: '#E8002D' }}>NEXT RACE</span>}
+                          {race.sprint && !isCalledOff && !isNextRace && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(232,0,45,0.15)', color: '#E8002D' }}>SPRINT</span>}
                           {isCalledOff && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(255,255,255,0.08)', color: '#5A6A7A' }}>CANCELLED</span>}
-                          {race.completed && !isCalledOff && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(0,212,126,0.12)', color: '#00D47E' }}>✓</span>}
+                          {race.completed && !isCalledOff && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(0,212,126,0.12)', color: '#00D47E' }}>COMPLETED</span>}
                         </div>
                       </div>
                       <div style={{ fontSize: '20px', marginBottom: '6px' }}>{race.flag}</div>
-                      <div style={{ fontSize: '12px', fontWeight: 600, color: isCalledOff ? '#3A4A5A' : isCurrent ? '#F0F4F8' : '#5A6A7A', marginBottom: '2px' }}>{race.name}</div>
+                      <div style={{ fontSize: '12px', fontWeight: 600, color: nameColor, marginBottom: '2px' }}>{race.name}</div>
                       <div style={{ fontSize: '11px', color: '#3A4A5A', marginBottom: '2px' }}>{race.circuit}</div>
                       <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#3A4A5A' }}>{(race as any).dateRange || race.date}</div>
-                      {isCalledOff && <div style={{ marginTop: '8px', fontSize: '10px', color: '#5A6A7A', fontWeight: 600 }}>Called off</div>}
-                      {race.completed && !isCalledOff && <div style={{ marginTop: '8px', fontSize: '10px', color: '#E8002D', fontWeight: 600 }}>Click for results →</div>}
+                      {!isCalledOff && <div style={{ marginTop: '8px', fontSize: '10px', color: race.completed ? '#5A6A7A' : '#E8002D', fontWeight: 600 }}>
+                        {race.completed ? 'View results →' : 'View schedule →'}
+                      </div>}
                     </div>
                   )
                 })}
               </div>
             </div>
-          ) : (
-            // Calendar detail — results for clicked race
-            (() => {
-              const calRace = SEASON_CALENDAR.find(r => r.round === calendarRound)
-              const calStatic = calendarRound !== null ? STATIC_RACE_RESULTS[calendarRound] : null
-              const calHasStatic = !!calStatic
-              const calStaticTabs = calHasStatic ? [
-                ...(calStatic['fp1']              ? [{ id: 'fp1',              label: 'FP1'          }] : []),
-                ...(calStatic['fp2']              ? [{ id: 'fp2',              label: 'FP2'          }] : []),
-                ...(calStatic['fp3']              ? [{ id: 'fp3',              label: 'FP3'          }] : []),
-                ...(calStatic['sprint-qualifying'] ? [{ id: 'sprint-qualifying', label: 'Sprint Quali' }] : []),
-                ...(calStatic['sprint']           ? [{ id: 'sprint',           label: 'Sprint'       }] : []),
-                { id: 'qualifying', label: 'Qualifying' },
-                { id: 'race',       label: 'Race' },
-              ] : []
-              const calDisplayTabs    = calHasStatic ? calStaticTabs : getSessionTabs(calendarSessions)
-              const isFpCalSession = ['fp1', 'fp2', 'fp3'].includes(calendarSessionTab)
-              const calDisplayResults = (calHasStatic && !isFpCalSession) ? (calStatic[calendarSessionTab] || calStatic['race'] || []) : calendarResults
-              return (
-                <div style={card}>
-                  <div style={cardHeader}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <button onClick={() => { setCalendarRound(null); setCalendarSessions([]); setCalendarResults([]) }} style={{ background: '#141B22', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px', color: '#F0F4F8', padding: '4px 10px', cursor: 'pointer', fontSize: '12px' }}>← Back</button>
-                      <span style={cardTitle}>{calRace?.flag} {calRace?.name} GP Results</span>
-                    </div>
-                    <Badge type="done" label="Completed" />
+          )
+        }
+
+        // Calendar detail panel
+        const calRace = SEASON_CALENDAR.find(r => r.round === calendarRound)
+        const calStatic = calendarRound !== null ? STATIC_RACE_RESULTS[calendarRound] : null
+        const calHasStatic = !!calStatic
+        const calStaticTabs = calHasStatic ? [
+          ...(calStatic['fp1']               ? [{ id: 'fp1',               label: 'FP1'          }] : []),
+          ...(calStatic['fp2']               ? [{ id: 'fp2',               label: 'FP2'          }] : []),
+          ...(calStatic['fp3']               ? [{ id: 'fp3',               label: 'FP3'          }] : []),
+          ...(calStatic['sprint-qualifying'] ? [{ id: 'sprint-qualifying', label: 'Sprint Quali' }] : []),
+          ...(calStatic['sprint']            ? [{ id: 'sprint',            label: 'Sprint'       }] : []),
+          { id: 'qualifying', label: 'Qualifying' },
+          { id: 'race',       label: 'Race' },
+        ] : []
+        const calDisplayTabs    = calHasStatic ? calStaticTabs : getSessionTabs(calendarSessions)
+        const isFpCalSession = ['fp1', 'fp2', 'fp3'].includes(calendarSessionTab)
+        const calDisplayResults = (calHasStatic && !isFpCalSession) ? (calStatic[calendarSessionTab] || calStatic['race'] || []) : calendarResults
+
+        // Schedule data for the clicked race
+        const raceSessions = calRace ? sessionsByRound[calRace.round] : undefined
+        const defaultSessions = calRace?.sprint
+          ? ['Practice 1', 'Sprint Qualifying', 'Sprint', 'Qualifying', 'Race']
+          : ['Practice 1', 'Practice 2', 'Practice 3', 'Qualifying', 'Race']
+
+        return (
+          <div style={card}>
+            <div style={cardHeader}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <button
+                  onClick={() => { setCalendarRound(null); setCalendarSessions([]); setCalendarResults([]) }}
+                  style={{ background: '#141B22', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px', color: '#F0F4F8', padding: '4px 10px', cursor: 'pointer', fontSize: '12px' }}
+                >← Back</button>
+                <span style={cardTitle}>{calRace?.flag} {calRace?.name} GP</span>
+              </div>
+              <Badge type={calRace?.completed ? 'done' : 'new'} label={calRace?.completed ? 'Completed' : 'Upcoming'} />
+            </div>
+
+            {/* Race meta */}
+            <div style={{ padding: '12px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', display: 'flex', gap: '24px', flexWrap: 'wrap' as const }}>
+              <span style={{ fontSize: '12px', color: '#5A6A7A' }}>🏟️ {calRace?.circuit}</span>
+              <span style={{ fontSize: '12px', color: '#5A6A7A' }}>Round {calRace?.round} of 22</span>
+              <span style={{ fontSize: '12px', color: '#5A6A7A' }}>📅 {(calRace as any)?.dateRange || calRace?.date}</span>
+              {calRace?.sprint && <span style={{ fontSize: '12px', color: '#E8002D', fontWeight: 600 }}>⚡ Sprint Weekend</span>}
+            </div>
+
+            {/* Detail tabs */}
+            <div style={{ display: 'flex', gap: '4px', padding: '10px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+              <button onClick={() => setCalendarDetailTab('schedule')} style={{
+                background: calendarDetailTab === 'schedule' ? '#E8002D' : '#141B22',
+                color: calendarDetailTab === 'schedule' ? 'white' : '#5A6A7A',
+                border: '1px solid', borderColor: calendarDetailTab === 'schedule' ? '#E8002D' : 'rgba(255,255,255,0.07)',
+                padding: '5px 14px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: 600,
+              }}>Schedule</button>
+              {calRace?.completed && (
+                <button onClick={() => setCalendarDetailTab('results')} style={{
+                  background: calendarDetailTab === 'results' ? '#E8002D' : '#141B22',
+                  color: calendarDetailTab === 'results' ? 'white' : '#5A6A7A',
+                  border: '1px solid', borderColor: calendarDetailTab === 'results' ? '#E8002D' : 'rgba(255,255,255,0.07)',
+                  padding: '5px 14px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: 600,
+                }}>Results</button>
+              )}
+            </div>
+
+            {/* Schedule view */}
+            {calendarDetailTab === 'schedule' && (
+              <div style={{ padding: '16px 20px' }}>
+                {/* Timezone toggle */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginBottom: '12px' }}>
+                  <div style={{ display: 'flex', background: '#141B22', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.07)', overflow: 'hidden' }}>
+                    <button onClick={() => setUseLocalTime(false)} style={{ background: !useLocalTime ? 'rgba(232,0,45,0.15)' : 'transparent', color: !useLocalTime ? '#E8002D' : '#5A6A7A', border: 'none', padding: '4px 10px', cursor: 'pointer', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const }}>Track</button>
+                    <button onClick={() => setUseLocalTime(true)}  style={{ background: useLocalTime  ? 'rgba(232,0,45,0.15)' : 'transparent', color: useLocalTime  ? '#E8002D' : '#5A6A7A', border: 'none', borderLeft: '1px solid rgba(255,255,255,0.07)', padding: '4px 10px', cursor: 'pointer', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const }}>Local</button>
                   </div>
-                  <div style={{ display: 'flex', gap: '6px', padding: '12px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', flexWrap: 'wrap' as const }}>
-                    {calDisplayTabs.map(t => (
-                      <button key={t.id} onClick={() => setCalendarSessionTab(t.id)} style={{
-                        background: calendarSessionTab === t.id ? '#E8002D' : '#141B22',
-                        color: calendarSessionTab === t.id ? 'white' : '#5A6A7A',
-                        border: '1px solid', borderColor: calendarSessionTab === t.id ? '#E8002D' : 'rgba(255,255,255,0.07)',
-                        padding: '5px 14px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: 600,
-                      }}>{t.label}</button>
+                </div>
+                {raceSessions ? (
+                  raceSessions.map((s, i) => {
+                    const isCompleted = s.completed || !!calRace?.completed
+                    const displayTime = useLocalTime
+                      ? (s.dateISO ? new Date(s.dateISO).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }) : s.timeUTC)
+                      : s.timeLocal
+                    return (
+                      <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < raceSessions.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', opacity: isCompleted ? 0.45 : 1 }}>
+                        <div style={{ width: '52px', fontFamily: 'Bebas Neue, sans-serif', fontSize: '12px', letterSpacing: '0.5px', color: isCompleted ? '#3A4A5A' : '#8A9AB0', textAlign: 'center' as const, background: 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>{s.short}</div>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontSize: '13px', fontWeight: 600, color: isCompleted ? '#3A4A5A' : '#F0F4F8' }}>{s.name}</div>
+                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>{s.date} · {displayTime}</div>
+                        </div>
+                        {isCompleted && <span style={{ fontSize: '12px', color: '#3A4A5A' }}>✓</span>}
+                      </div>
+                    )
+                  })
+                ) : (
+                  <div>
+                    {defaultSessions.map((name, i) => (
+                      <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < defaultSessions.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', opacity: calRace?.completed ? 0.45 : 1 }}>
+                        <div style={{ width: '52px', fontFamily: 'Bebas Neue, sans-serif', fontSize: '12px', letterSpacing: '0.5px', color: '#5A6A7A', textAlign: 'center' as const, background: 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>
+                          {name === 'Practice 1' ? 'FP1' : name === 'Practice 2' ? 'FP2' : name === 'Practice 3' ? 'FP3' : name === 'Sprint Qualifying' ? 'SQ' : name === 'Qualifying' ? 'QUAL' : 'RACE'}
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontSize: '13px', fontWeight: 600, color: calRace?.completed ? '#3A4A5A' : '#F0F4F8' }}>{name}</div>
+                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>Times TBC</div>
+                        </div>
+                        {calRace?.completed && <span style={{ fontSize: '12px', color: '#3A4A5A' }}>✓</span>}
+                      </div>
                     ))}
                   </div>
-                  {calendarSessionTab === 'qualifying' && calHasStatic
-                    ? <QualifyingTable data={calDisplayResults} />
-                    : <ResultsTable data={calDisplayResults} loading={!calHasStatic && resultsLoading} />
-                  }
+                )}
+              </div>
+            )}
+
+            {/* Results view — only for completed races */}
+            {calendarDetailTab === 'results' && calRace?.completed && (
+              <>
+                <div style={{ display: 'flex', gap: '6px', padding: '12px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', flexWrap: 'wrap' as const }}>
+                  {calDisplayTabs.map(t => (
+                    <button key={t.id} onClick={() => setCalendarSessionTab(t.id)} style={{
+                      background: calendarSessionTab === t.id ? '#E8002D' : '#141B22',
+                      color: calendarSessionTab === t.id ? 'white' : '#5A6A7A',
+                      border: '1px solid', borderColor: calendarSessionTab === t.id ? '#E8002D' : 'rgba(255,255,255,0.07)',
+                      padding: '5px 14px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: 600,
+                    }}>{t.label}</button>
+                  ))}
                 </div>
-              )
-            })()
-          )}
-        </div>
-      )}
+                {calendarSessionTab === 'qualifying' && calHasStatic
+                  ? <QualifyingTable data={calDisplayResults} />
+                  : <ResultsTable data={calDisplayResults} loading={!calHasStatic && resultsLoading} />
+                }
+              </>
+            )}
+          </div>
+        )
+      })()}
 
       {/* WEATHER TAB */}
       {activeTab === 'weather' && (() => {
@@ -656,7 +893,7 @@ export default function RaceHubClient() {
             <div style={card}>
               <div style={cardHeader}>
                 <span style={cardTitle}>Live Track Conditions</span>
-                <Badge type="live" label="OpenF1" />
+                <Badge type="live" label="Live" />
               </div>
               <div style={{ padding: '20px' }}>
                 {loading ? <Loader label="weather" /> : !weather ? (

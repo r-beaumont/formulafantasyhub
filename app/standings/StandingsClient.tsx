@@ -7,6 +7,7 @@ import { DRIVERS } from '@/lib/drivers'
 const RACES = 2
 
 type SortMode = 'points' | 'wins' | 'podiums' | 'dnf'
+type ConSortMode = 'points' | 'wins' | 'podiums' | 'dnf'
 
 function posColor(pos: number) {
   return pos === 1 ? '#FFD700' : pos === 2 ? '#C0C0C0' : pos === 3 ? '#CD7F32' : '#5A6A7A'
@@ -16,6 +17,8 @@ export default function StandingsClient() {
   const [liveStandings, setLiveStandings] = useState<any>(null)
   const [liveStats, setLiveStats] = useState<any[]>([])
   const [sortMode, setSortMode] = useState<SortMode>('points')
+  const [conSortMode, setConSortMode] = useState<ConSortMode>('points')
+  const [conSortDir, setConSortDir] = useState<'desc' | 'asc'>('desc')
 
   useEffect(() => {
     fetch('/api/f1/standings').then(r => r.json()).then(setLiveStandings).catch(() => {})
@@ -43,16 +46,7 @@ export default function StandingsClient() {
     return b.points - a.points
   })
 
-  const constructors = [...CONSTRUCTOR_STANDINGS]
-    .map(c => {
-      const liveC = liveStandings?.constructors?.find((lc: any) => lc.team === c.name)
-      return { ...c, points: liveC?.points ?? c.points }
-    })
-    .sort((a, b) => b.points - a.points)
-
-  const maxConPts = constructors[0]?.points || 1
-
-  // Compute constructor wins/podiums/dnf from driver data
+  // Compute constructor wins/podiums from driver data (must be before constructors sort)
   const constructorStats = drivers.reduce((acc, d) => {
     const key = d.team
     if (!acc[key]) acc[key] = { wins: 0, podiums: 0 }
@@ -60,6 +54,30 @@ export default function StandingsClient() {
     acc[key].podiums += d.podiums ?? 0
     return acc
   }, {} as Record<string, { wins: number, podiums: number }>)
+
+  function toggleConSort(mode: ConSortMode) {
+    if (conSortMode === mode) {
+      setConSortDir(d => d === 'desc' ? 'asc' : 'desc')
+    } else {
+      setConSortMode(mode)
+      setConSortDir('desc')
+    }
+  }
+
+  const constructors = [...CONSTRUCTOR_STANDINGS]
+    .map(c => {
+      const liveC = liveStandings?.constructors?.find((lc: any) => lc.team === c.name)
+      return { ...c, points: liveC?.points ?? c.points }
+    })
+    .sort((a, b) => {
+      const dir = conSortDir === 'desc' ? 1 : -1
+      if (conSortMode === 'wins')    return dir * ((constructorStats[b.name]?.wins ?? 0) - (constructorStats[a.name]?.wins ?? 0))
+      if (conSortMode === 'podiums') return dir * ((constructorStats[b.name]?.podiums ?? 0) - (constructorStats[a.name]?.podiums ?? 0))
+      if (conSortMode === 'dnf')     return 0
+      return dir * (b.points - a.points)
+    })
+
+  const maxConPts = [...constructors].sort((a, b) => b.points - a.points)[0]?.points || 1
 
   const thStyle = (leftAlign?: boolean): React.CSSProperties => ({
     fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px',
@@ -83,7 +101,7 @@ export default function StandingsClient() {
           <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase' }}>2026 Season</span>
         </div>
         <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '56px', letterSpacing: '1px', lineHeight: 1 }}>Standings</div>
-        <div style={{ color: '#5A6A7A', fontSize: '13px', marginTop: '6px' }}>Auto-updates from OpenF1 after each race · After R2 China</div>
+        <div style={{ color: '#5A6A7A', fontSize: '13px', marginTop: '6px' }}>Live data — updates after each race · After R2 China</div>
       </div>
 
       {/* ── SEASON SUMMARY CARDS ── */}
@@ -177,9 +195,10 @@ export default function StandingsClient() {
 
       {/* ── CONSTRUCTOR FANTASY POINTS — HORIZONTAL BAR CHART ── */}
       <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
           <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Constructor Championship Standings — 2026</span>
           <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', background: 'rgba(0,212,126,0.12)', color: '#00D47E' }}>{RACES} Races</span>
+          <span style={{ fontSize: '10px', color: '#3A4A5A', marginLeft: '4px' }}>Click a column to sort ↓</span>
         </div>
 
         <div style={{ overflowX: 'auto' }}>
@@ -189,10 +208,10 @@ export default function StandingsClient() {
             <span />
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Constructor</span>
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Points</span>
-            <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: 'right' as const }}>PTS</span>
-            <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: 'center' as const }}>WINS</span>
-            <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: 'center' as const }}>PODS</span>
-            <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: 'center' as const }}>DNF/DSQ</span>
+            <span onClick={() => toggleConSort('points')}  style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'points'  ? '#F0F4F8' : '#5A6A7A', textAlign: 'right' as const, cursor: 'pointer', userSelect: 'none' as const }}>PTS {conSortMode === 'points'  ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
+            <span onClick={() => toggleConSort('wins')}    style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'wins'    ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>WINS {conSortMode === 'wins'    ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
+            <span onClick={() => toggleConSort('podiums')} style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'podiums' ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>PODS {conSortMode === 'podiums' ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
+            <span onClick={() => toggleConSort('dnf')}     style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'dnf'     ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>DNF/DSQ {conSortMode === 'dnf'     ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
           </div>
           <div style={{ padding: '8px 24px 20px', display: 'flex', flexDirection: 'column', gap: '12px', minWidth: '560px' }}>
             {constructors.map((c, i) => {

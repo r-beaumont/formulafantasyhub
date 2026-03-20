@@ -26,7 +26,7 @@ function Badge({ type, label }: { type: string; label: string }) {
 }
 
 function Loader() {
-  return <div style={{ padding: '32px', textAlign: 'center' as const, color: '#3A4A5A', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px' }}>Loading from OpenF1...</div>
+  return <div style={{ padding: '32px', textAlign: 'center' as const, color: '#3A4A5A', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px' }}>Loading...</div>
 }
 
 function StatCard({ label, value, icon, color, sub }: { label: string; value: string; icon: string; color: string; sub?: string }) {
@@ -148,7 +148,7 @@ export default function F1FantasyClient() {
         </div>
         <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '56px', letterSpacing: '1px', lineHeight: 1, marginBottom: '8px' }}>Strategy Centre</div>
         <p style={{ color: '#5A6A7A', fontSize: '13px', maxWidth: '500px', lineHeight: 1.7 }}>
-          Live race performance metrics powered by OpenF1. Use these stats to make smarter F1 Fantasy picks every race week.
+          Live race performance metrics and strategy tools. Use these stats to make smarter F1 Fantasy picks every race week.
         </p>
       </div>
 
@@ -513,7 +513,7 @@ export default function F1FantasyClient() {
           <div style={card}>
             <div style={cardHeader}>
               <span style={cardTitle}>Performance Leaderboard</span>
-              <Badge type="new" label="OpenF1 Live" />
+              <Badge type="new" label="Live Data" />
             </div>
             <div style={{ display: 'flex', gap: '6px', padding: '12px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', flexWrap: 'wrap' as const }}>
               {leaderTabs.map(t => (
@@ -611,10 +611,6 @@ export default function F1FantasyClient() {
           <div style={cardHeader}>
             <span style={cardTitle}>Official F1 Fantasy Stats</span>
             <Badge type="blue" label="After R2" />
-          </div>
-          <div style={{ padding: '4px 20px 16px', fontSize: '11px', color: '#5A6A7A', borderBottom: '1px solid rgba(255,255,255,0.07)', marginBottom: '4px' }}>
-            Data from official F1 Fantasy — updated manually each race week. &nbsp;
-            <a href="https://fantasy.formula1.com/en/statistics" target="_blank" rel="noopener noreferrer" style={{ color: '#E8002D', textDecoration: 'none', fontWeight: 600 }}>View full stats on F1 Fantasy ↗</a>
           </div>
           <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0' }}>
 
