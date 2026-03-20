@@ -51,6 +51,7 @@ export const SEASON_CALENDAR: {
   lat?: number
   lon?: number
   weekendStartISO?: string
+  sessions?: { name: string; date: string; duration: number }[]
 }[] = [
   {
     round: 1,
@@ -113,6 +114,13 @@ export const SEASON_CALENDAR: {
     lat: 25.9581,
     lon: -80.2389,
     weekendStartISO: '2026-05-01',
+    sessions: [
+      { name: 'Practice 1',        date: '2026-05-01T16:30:00.000Z', duration: 60  },
+      { name: 'Sprint Qualifying', date: '2026-05-01T20:30:00.000Z', duration: 44  },
+      { name: 'Sprint',            date: '2026-05-02T16:00:00.000Z', duration: 60  },
+      { name: 'Qualifying',        date: '2026-05-02T20:00:00.000Z', duration: 60  },
+      { name: 'Race',              date: '2026-05-03T20:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 5,
@@ -128,6 +136,13 @@ export const SEASON_CALENDAR: {
     lat: 45.5048,
     lon: -73.5228,
     weekendStartISO: '2026-05-22',
+    sessions: [
+      { name: 'Practice 1',        date: '2026-05-22T16:30:00.000Z', duration: 60  },
+      { name: 'Sprint Qualifying', date: '2026-05-22T20:30:00.000Z', duration: 44  },
+      { name: 'Sprint',            date: '2026-05-23T16:00:00.000Z', duration: 60  },
+      { name: 'Qualifying',        date: '2026-05-23T20:00:00.000Z', duration: 60  },
+      { name: 'Race',              date: '2026-05-24T20:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 6,
@@ -143,6 +158,13 @@ export const SEASON_CALENDAR: {
     lat: 43.7347,
     lon: 7.4206,
     weekendStartISO: '2026-06-05',
+    sessions: [
+      { name: 'Practice 1', date: '2026-06-05T11:30:00.000Z', duration: 60  },
+      { name: 'Practice 2', date: '2026-06-05T15:00:00.000Z', duration: 60  },
+      { name: 'Practice 3', date: '2026-06-06T10:30:00.000Z', duration: 60  },
+      { name: 'Qualifying', date: '2026-06-06T14:00:00.000Z', duration: 60  },
+      { name: 'Race',       date: '2026-06-07T13:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 7,
@@ -158,6 +180,13 @@ export const SEASON_CALENDAR: {
     lat: 41.5700,
     lon: 2.2611,
     weekendStartISO: '2026-06-12',
+    sessions: [
+      { name: 'Practice 1', date: '2026-06-12T11:30:00.000Z', duration: 60  },
+      { name: 'Practice 2', date: '2026-06-12T15:00:00.000Z', duration: 60  },
+      { name: 'Practice 3', date: '2026-06-13T10:30:00.000Z', duration: 60  },
+      { name: 'Qualifying', date: '2026-06-13T14:00:00.000Z', duration: 60  },
+      { name: 'Race',       date: '2026-06-14T13:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 8,
@@ -173,6 +202,13 @@ export const SEASON_CALENDAR: {
     lat: 47.2197,
     lon: 14.7647,
     weekendStartISO: '2026-06-26',
+    sessions: [
+      { name: 'Practice 1', date: '2026-06-26T11:30:00.000Z', duration: 60  },
+      { name: 'Practice 2', date: '2026-06-26T15:00:00.000Z', duration: 60  },
+      { name: 'Practice 3', date: '2026-06-27T10:30:00.000Z', duration: 60  },
+      { name: 'Qualifying', date: '2026-06-27T14:00:00.000Z', duration: 60  },
+      { name: 'Race',       date: '2026-06-28T13:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 9,
@@ -188,6 +224,13 @@ export const SEASON_CALENDAR: {
     lat: 52.0786,
     lon: -1.0169,
     weekendStartISO: '2026-07-03',
+    sessions: [
+      { name: 'Practice 1',        date: '2026-07-03T11:30:00.000Z', duration: 60  },
+      { name: 'Sprint Qualifying', date: '2026-07-03T15:30:00.000Z', duration: 44  },
+      { name: 'Sprint',            date: '2026-07-04T11:00:00.000Z', duration: 60  },
+      { name: 'Qualifying',        date: '2026-07-04T15:00:00.000Z', duration: 60  },
+      { name: 'Race',              date: '2026-07-05T14:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 10,
@@ -203,6 +246,13 @@ export const SEASON_CALENDAR: {
     lat: 50.4372,
     lon: 5.9714,
     weekendStartISO: '2026-07-17',
+    sessions: [
+      { name: 'Practice 1', date: '2026-07-17T11:30:00.000Z', duration: 60  },
+      { name: 'Practice 2', date: '2026-07-17T15:00:00.000Z', duration: 60  },
+      { name: 'Practice 3', date: '2026-07-18T10:30:00.000Z', duration: 60  },
+      { name: 'Qualifying', date: '2026-07-18T14:00:00.000Z', duration: 60  },
+      { name: 'Race',       date: '2026-07-19T13:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 11,
@@ -218,6 +268,13 @@ export const SEASON_CALENDAR: {
     lat: 47.5830,
     lon: 19.2486,
     weekendStartISO: '2026-07-24',
+    sessions: [
+      { name: 'Practice 1', date: '2026-07-24T11:30:00.000Z', duration: 60  },
+      { name: 'Practice 2', date: '2026-07-24T15:00:00.000Z', duration: 60  },
+      { name: 'Practice 3', date: '2026-07-25T10:30:00.000Z', duration: 60  },
+      { name: 'Qualifying', date: '2026-07-25T14:00:00.000Z', duration: 60  },
+      { name: 'Race',       date: '2026-07-26T13:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 12,
@@ -233,6 +290,13 @@ export const SEASON_CALENDAR: {
     lat: 52.3888,
     lon: 4.5409,
     weekendStartISO: '2026-08-21',
+    sessions: [
+      { name: 'Practice 1',        date: '2026-08-21T10:30:00.000Z', duration: 60  },
+      { name: 'Sprint Qualifying', date: '2026-08-21T14:30:00.000Z', duration: 44  },
+      { name: 'Sprint',            date: '2026-08-22T10:00:00.000Z', duration: 60  },
+      { name: 'Qualifying',        date: '2026-08-22T14:00:00.000Z', duration: 60  },
+      { name: 'Race',              date: '2026-08-23T13:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 13,
@@ -248,6 +312,13 @@ export const SEASON_CALENDAR: {
     lat: 45.6156,
     lon: 9.2811,
     weekendStartISO: '2026-09-04',
+    sessions: [
+      { name: 'Practice 1', date: '2026-09-04T10:30:00.000Z', duration: 60  },
+      { name: 'Practice 2', date: '2026-09-04T14:00:00.000Z', duration: 60  },
+      { name: 'Practice 3', date: '2026-09-05T10:30:00.000Z', duration: 60  },
+      { name: 'Qualifying', date: '2026-09-05T14:00:00.000Z', duration: 60  },
+      { name: 'Race',       date: '2026-09-06T13:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 14,
@@ -263,6 +334,13 @@ export const SEASON_CALENDAR: {
     lat: 40.4168,
     lon: -3.7038,
     weekendStartISO: '2026-09-11',
+    sessions: [
+      { name: 'Practice 1', date: '2026-09-11T11:30:00.000Z', duration: 60  },
+      { name: 'Practice 2', date: '2026-09-11T15:00:00.000Z', duration: 60  },
+      { name: 'Practice 3', date: '2026-09-12T10:30:00.000Z', duration: 60  },
+      { name: 'Qualifying', date: '2026-09-12T14:00:00.000Z', duration: 60  },
+      { name: 'Race',       date: '2026-09-13T13:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 15,
@@ -278,6 +356,13 @@ export const SEASON_CALENDAR: {
     lat: 40.3725,
     lon: 49.8533,
     weekendStartISO: '2026-09-24',
+    sessions: [
+      { name: 'Practice 1', date: '2026-09-24T08:30:00.000Z', duration: 60  },
+      { name: 'Practice 2', date: '2026-09-24T12:00:00.000Z', duration: 60  },
+      { name: 'Practice 3', date: '2026-09-25T08:30:00.000Z', duration: 60  },
+      { name: 'Qualifying', date: '2026-09-25T12:00:00.000Z', duration: 60  },
+      { name: 'Race',       date: '2026-09-26T11:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 16,
@@ -293,6 +378,13 @@ export const SEASON_CALENDAR: {
     lat: 1.2914,
     lon: 103.8639,
     weekendStartISO: '2026-10-09',
+    sessions: [
+      { name: 'Practice 1',        date: '2026-10-09T08:30:00.000Z', duration: 60  },
+      { name: 'Sprint Qualifying', date: '2026-10-09T12:30:00.000Z', duration: 44  },
+      { name: 'Sprint',            date: '2026-10-10T09:00:00.000Z', duration: 60  },
+      { name: 'Qualifying',        date: '2026-10-10T13:00:00.000Z', duration: 60  },
+      { name: 'Race',              date: '2026-10-11T12:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 17,
@@ -308,6 +400,13 @@ export const SEASON_CALENDAR: {
     lat: 30.1328,
     lon: -97.6411,
     weekendStartISO: '2026-10-23',
+    sessions: [
+      { name: 'Practice 1', date: '2026-10-23T17:30:00.000Z', duration: 60  },
+      { name: 'Practice 2', date: '2026-10-23T21:00:00.000Z', duration: 60  },
+      { name: 'Practice 3', date: '2026-10-24T17:30:00.000Z', duration: 60  },
+      { name: 'Qualifying', date: '2026-10-24T21:00:00.000Z', duration: 60  },
+      { name: 'Race',       date: '2026-10-25T20:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 18,
@@ -323,6 +422,13 @@ export const SEASON_CALENDAR: {
     lat: 19.4042,
     lon: -99.0907,
     weekendStartISO: '2026-10-30',
+    sessions: [
+      { name: 'Practice 1', date: '2026-10-30T18:30:00.000Z', duration: 60  },
+      { name: 'Practice 2', date: '2026-10-30T22:00:00.000Z', duration: 60  },
+      { name: 'Practice 3', date: '2026-10-31T17:30:00.000Z', duration: 60  },
+      { name: 'Qualifying', date: '2026-10-31T21:00:00.000Z', duration: 60  },
+      { name: 'Race',       date: '2026-11-01T20:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 19,
@@ -338,6 +444,13 @@ export const SEASON_CALENDAR: {
     lat: -23.7036,
     lon: -46.6997,
     weekendStartISO: '2026-11-06',
+    sessions: [
+      { name: 'Practice 1', date: '2026-11-06T15:30:00.000Z', duration: 60  },
+      { name: 'Practice 2', date: '2026-11-06T19:00:00.000Z', duration: 60  },
+      { name: 'Practice 3', date: '2026-11-07T14:30:00.000Z', duration: 60  },
+      { name: 'Qualifying', date: '2026-11-07T18:00:00.000Z', duration: 60  },
+      { name: 'Race',       date: '2026-11-08T17:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 20,
@@ -353,6 +466,13 @@ export const SEASON_CALENDAR: {
     lat: 36.1699,
     lon: -115.1398,
     weekendStartISO: '2026-11-19',
+    sessions: [
+      { name: 'Practice 1', date: '2026-11-20T00:30:00.000Z', duration: 60  },
+      { name: 'Practice 2', date: '2026-11-20T04:00:00.000Z', duration: 60  },
+      { name: 'Practice 3', date: '2026-11-21T00:30:00.000Z', duration: 60  },
+      { name: 'Qualifying', date: '2026-11-21T04:00:00.000Z', duration: 60  },
+      { name: 'Race',       date: '2026-11-22T04:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 21,
@@ -368,6 +488,13 @@ export const SEASON_CALENDAR: {
     lat: 25.4900,
     lon: 51.4500,
     weekendStartISO: '2026-11-27',
+    sessions: [
+      { name: 'Practice 1', date: '2026-11-27T13:30:00.000Z', duration: 60  },
+      { name: 'Practice 2', date: '2026-11-27T17:00:00.000Z', duration: 60  },
+      { name: 'Practice 3', date: '2026-11-28T14:30:00.000Z', duration: 60  },
+      { name: 'Qualifying', date: '2026-11-28T18:00:00.000Z', duration: 60  },
+      { name: 'Race',       date: '2026-11-29T16:00:00.000Z', duration: 120 },
+    ],
   },
   {
     round: 22,
@@ -383,5 +510,12 @@ export const SEASON_CALENDAR: {
     lat: 24.4672,
     lon: 54.6031,
     weekendStartISO: '2026-12-04',
+    sessions: [
+      { name: 'Practice 1', date: '2026-12-04T09:30:00.000Z', duration: 60  },
+      { name: 'Practice 2', date: '2026-12-04T13:00:00.000Z', duration: 60  },
+      { name: 'Practice 3', date: '2026-12-05T10:30:00.000Z', duration: 60  },
+      { name: 'Qualifying', date: '2026-12-05T14:00:00.000Z', duration: 60  },
+      { name: 'Race',       date: '2026-12-06T13:00:00.000Z', duration: 120 },
+    ],
   },
 ]

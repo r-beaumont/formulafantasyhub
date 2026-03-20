@@ -494,6 +494,8 @@ export default function RaceHubClient() {
       {activeTab === 'race-info' && (() => {
         const isCurrentRace = selectedRound === CURRENT_RACE.round
         const useStaticSessions = !loading && sessions.length === 0 && isCurrentRace && CURRENT_RACE.sessions.length > 0
+        const calendarSessData = SEASON_CALENDAR.find(r => r.round === selectedRound)?.sessions
+        const useCalendarSessions = !loading && sessions.length === 0 && !useStaticSessions && !!calendarSessData?.length
         // Derive track TZ label from static sessions if available
         const staticTZ = (() => {
           const s = CURRENT_RACE.sessions[0]
@@ -534,10 +536,36 @@ export default function RaceHubClient() {
                 </div>
               </div>
               <div style={{ padding: '16px 20px' }}>
-                {loading ? <Loader label="sessions" /> : sessions.length === 0 && !useStaticSessions ? (
+                {loading ? <Loader label="sessions" /> : sessions.length === 0 && !useStaticSessions && !useCalendarSessions ? (
                   <div style={{ color: '#5A6A7A', fontSize: '13px', padding: '20px 0' }}>
                     {selectedRace.completed ? 'Session data not yet available' : `Sessions will appear closer to race weekend (${selectedRace.date})`}
                   </div>
+                ) : useCalendarSessions ? (
+                  calendarSessData!.map((s, i) => {
+                    const now = new Date()
+                    const sessionDate = new Date(s.date)
+                    const isCompleted = sessionDate < now
+                    const isNext = !isCompleted && calendarSessData!.findIndex(x => new Date(x.date) >= now) === i
+                    const shortMap: Record<string, string> = { 'Practice 1': 'FP1', 'Practice 2': 'FP2', 'Practice 3': 'FP3', 'Sprint Qualifying': 'SQ', 'Sprint': 'SPRINT', 'Qualifying': 'QUAL', 'Race': 'RACE' }
+                    const shortLabel = shortMap[s.name] || s.name
+                    const dateLabel = sessionDate.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' })
+                    const displayTime = useLocalTime
+                      ? sessionDate.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
+                      : sessionDate.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }) + ' UTC'
+                    return (
+                      <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < calendarSessData!.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', opacity: isCompleted ? 0.45 : 1 }}>
+                        <div style={{ width: '52px', fontFamily: 'Bebas Neue, sans-serif', fontSize: '12px', letterSpacing: '0.5px', color: isNext ? '#E8002D' : isCompleted ? '#3A4A5A' : '#8A9AB0', textAlign: 'center' as const, background: isNext ? 'rgba(232,0,45,0.1)' : 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>
+                          {shortLabel}
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontSize: '13px', fontWeight: 600, color: isCompleted ? '#3A4A5A' : '#F0F4F8' }}>{s.name}</div>
+                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>{dateLabel} · {displayTime}</div>
+                        </div>
+                        {isNext && <span style={{ fontSize: '9px', fontWeight: 700, padding: '3px 7px', borderRadius: '20px', background: '#E8002D', color: 'white', textTransform: 'uppercase' as const, letterSpacing: '0.5px', flexShrink: 0 }}>Next</span>}
+                        {isCompleted && <span style={{ fontSize: '12px', color: '#00D47E', flexShrink: 0 }}>✓</span>}
+                      </div>
+                    )
+                  })
                 ) : useStaticSessions ? (
                   CURRENT_RACE.sessions.map((s, i) => {
                     const nextSession = CURRENT_RACE.sessions.find(x => !x.completed)
@@ -648,9 +676,14 @@ export default function RaceHubClient() {
 
       {/* CALENDAR TAB */}
       {activeTab === 'calendar' && (() => {
-        // Session schedule data — only defined for rounds with data in lib/races.ts
-        const sessionsByRound: Record<number, typeof CURRENT_RACE.sessions> = {
+        // Session schedule data — CURRENT_RACE sessions (old format) + SEASON_CALENDAR sessions (new format)
+        const sessionsByRound: Record<number, any[]> = {
           [CURRENT_RACE.round]: CURRENT_RACE.sessions,
+          ...Object.fromEntries(
+            SEASON_CALENDAR
+              .filter(r => r.sessions && r.sessions.length > 0)
+              .map(r => [r.round, r.sessions!])
+          ),
         }
 
         if (calendarRound === null) {
@@ -783,19 +816,38 @@ export default function RaceHubClient() {
                   </div>
                 </div>
                 {raceSessions ? (
-                  raceSessions.map((s, i) => {
-                    const isCompleted = s.completed || !!calRace?.completed
-                    const displayTime = useLocalTime
-                      ? (s.dateISO ? new Date(s.dateISO).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }) : s.timeUTC)
-                      : s.timeLocal
+                  raceSessions.map((s: any, i: number) => {
+                    const isNewFormat = !s.short
+                    const now = new Date()
+                    const sessionDate = isNewFormat ? new Date(s.date) : (s.dateISO ? new Date(s.dateISO) : null)
+                    const isCompleted = sessionDate ? sessionDate < now : (s.completed || !!calRace?.completed)
+                    const isNext = !calRace?.completed && !isCompleted && raceSessions.findIndex((x: any) => {
+                      const d = x.short ? (x.dateISO ? new Date(x.dateISO) : null) : new Date(x.date)
+                      return d ? d >= now : !x.completed
+                    }) === i
+                    const shortMap: Record<string, string> = { 'Practice 1': 'FP1', 'Practice 2': 'FP2', 'Practice 3': 'FP3', 'Sprint Qualifying': 'SQ', 'Sprint': 'SPRINT', 'Qualifying': 'QUAL', 'Race': 'RACE' }
+                    const shortLabel = s.short || shortMap[s.name as string] || s.name
+                    let dateLabel: string, displayTime: string
+                    if (isNewFormat) {
+                      dateLabel = new Date(s.date).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' })
+                      displayTime = useLocalTime
+                        ? new Date(s.date).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
+                        : new Date(s.date).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }) + ' UTC'
+                    } else {
+                      displayTime = useLocalTime
+                        ? (s.dateISO ? new Date(s.dateISO).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }) : s.timeUTC)
+                        : s.timeLocal
+                      dateLabel = s.date
+                    }
                     return (
                       <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < raceSessions.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', opacity: isCompleted ? 0.45 : 1 }}>
-                        <div style={{ width: '52px', fontFamily: 'Bebas Neue, sans-serif', fontSize: '12px', letterSpacing: '0.5px', color: isCompleted ? '#3A4A5A' : '#8A9AB0', textAlign: 'center' as const, background: 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>{s.short}</div>
+                        <div style={{ width: '52px', fontFamily: 'Bebas Neue, sans-serif', fontSize: '12px', letterSpacing: '0.5px', color: isNext ? '#E8002D' : isCompleted ? '#3A4A5A' : '#8A9AB0', textAlign: 'center' as const, background: isNext ? 'rgba(232,0,45,0.1)' : 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>{shortLabel}</div>
                         <div style={{ flex: 1 }}>
                           <div style={{ fontSize: '13px', fontWeight: 600, color: isCompleted ? '#3A4A5A' : '#F0F4F8' }}>{s.name}</div>
-                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>{s.date} · {displayTime}</div>
+                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>{dateLabel} · {displayTime}</div>
                         </div>
-                        {isCompleted && <span style={{ fontSize: '12px', color: '#3A4A5A' }}>✓</span>}
+                        {isNext && <span style={{ fontSize: '9px', fontWeight: 700, padding: '3px 7px', borderRadius: '20px', background: '#E8002D', color: 'white', textTransform: 'uppercase' as const, letterSpacing: '0.5px', flexShrink: 0 }}>Next</span>}
+                        {isCompleted && <span style={{ fontSize: '12px', color: '#3A4A5A', flexShrink: 0 }}>✓</span>}
                       </div>
                     )
                   })
