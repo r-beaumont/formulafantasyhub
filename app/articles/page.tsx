@@ -21,7 +21,7 @@ export default function ArticlesPage() {
   return (
     <>
       <Navbar />
-      <main style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
+      <main className="mob-pad-page" style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
 
         {/* Header */}
         <div style={{ marginBottom: '32px' }}>
@@ -35,14 +35,14 @@ export default function ArticlesPage() {
 
         {/* FEATURED */}
         <Link href={`/articles/${featured.slug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block', marginBottom: '28px' }}>
-          <div style={{
+          <div className="mob-1col" style={{
             background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)',
             borderRadius: '16px', overflow: 'hidden', display: 'grid',
             gridTemplateColumns: '1fr 1fr', cursor: 'pointer',
             transition: 'border-color 0.2s',
           }}>
             {/* Left — big thumbnail */}
-            <div style={{ height: '340px', background: featured.thumbnail, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div className="mob-featured-thumb" style={{ height: '340px', background: featured.thumbnail, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div style={{ position: 'absolute', inset: 0, background: featured.thumbnailBg }} />
               <span style={{ fontSize: '100px', position: 'relative', zIndex: 1, filter: 'drop-shadow(0 4px 24px rgba(0,0,0,0.5))' }}>{featured.thumbnailIcon}</span>
               <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '100px', background: 'linear-gradient(transparent,rgba(14,19,24,0.95))', zIndex: 2 }} />
@@ -85,7 +85,7 @@ export default function ArticlesPage() {
                 <span style={{ fontSize: '10px', fontWeight: 700, padding: '3px 10px', borderRadius: '20px', background: 'rgba(0,212,126,0.12)', color: '#00D47E' }}>No subscription needed</span>
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px' }}>
+            <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px' }}>
               {free.map(a => <ArticleCard key={a.slug} article={a} />)}
             </div>
           </section>
@@ -101,7 +101,7 @@ export default function ArticlesPage() {
               </div>
               <Link href="/subscribe" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 600 }}>Unlock all →</Link>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px' }}>
+            <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px' }}>
               {premium.map(a => <ArticleCard key={a.slug} article={a} />)}
             </div>
           </section>

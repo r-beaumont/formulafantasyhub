@@ -26,7 +26,7 @@ export default function SubscribePage() {
   return (
     <>
       <Navbar />
-      <div style={{ position: 'relative', zIndex: 1, maxWidth: '1000px', margin: '0 auto', padding: '60px 32px' }}>
+      <div className="mob-pad-sub" style={{ position: 'relative', zIndex: 1, maxWidth: '1000px', margin: '0 auto', padding: '60px 32px' }}>
 
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
           <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase', marginBottom: '16px' }}>Premium Membership</div>
@@ -40,7 +40,7 @@ export default function SubscribePage() {
         </div>
 
         {/* Pricing cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '60px' }}>
+        <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '60px' }}>
           <div style={{ ...card, padding: '32px' }}>
             <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#5A6A7A', textTransform: 'uppercase', marginBottom: '8px' }}>Free</div>
             <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '56px', lineHeight: 1 }}>€0</div>

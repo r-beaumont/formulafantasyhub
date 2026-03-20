@@ -65,10 +65,10 @@ export default function VideosClient() {
   const rest = videos.slice(1)
 
   return (
-    <div style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
+    <div className="mob-pad-page" style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
 
       {/* Header */}
-      <div style={{ marginBottom: '28px', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
+      <div className="mob-flex-col" style={{ marginBottom: '28px', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
         <div>
           <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase', marginBottom: '6px' }}>Videos</div>
           <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '56px', letterSpacing: '1px', lineHeight: 1 }}>YouTube Channel</div>
@@ -121,7 +121,7 @@ export default function VideosClient() {
       {/* Featured video */}
       {!loading && !error && featured && (
         <div style={{ ...c, marginBottom: '24px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
             <div style={{ position: 'relative', paddingBottom: '56.25%', background: '#080C10' }}>
               <iframe
                 src={`https://www.youtube.com/embed/${featured.id}`}
@@ -154,7 +154,7 @@ export default function VideosClient() {
           <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '20px', letterSpacing: '1px', marginBottom: '16px' }}>
             More Videos
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '32px' }}>
+          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '32px' }}>
             {rest.map((video) => (
               <a key={video.id} href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div style={{ ...c, cursor: 'pointer', transition: 'border-color 0.2s' }}>

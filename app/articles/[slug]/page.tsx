@@ -59,7 +59,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         </div>
 
         {/* Article content */}
-        <div style={{ maxWidth: '760px', margin: '0 auto', padding: '0 32px 80px', position: 'relative', zIndex: 3, marginTop: '-40px' }}>
+        <div className="mob-pad-article" style={{ maxWidth: '760px', margin: '0 auto', padding: '0 32px 80px', position: 'relative', zIndex: 3, marginTop: '-40px' }}>
 
           {/* Tags */}
           <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap' as const }}>
@@ -121,7 +121,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           {otherArticles.length > 0 && (
             <div style={{ marginTop: '48px' }}>
               <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '28px', letterSpacing: '1px', marginBottom: '16px' }}>More Articles</div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '12px' }}>
+              <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '12px' }}>
                 {otherArticles.map(a => {
                   const c = categoryColors[a.category] || { color: '#5A6A7A', bg: 'rgba(255,255,255,0.08)' }
                   return (

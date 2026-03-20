@@ -65,7 +65,7 @@ export default function StandingsClient() {
   })
 
   return (
-    <div style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
+    <div className="mob-pad-page" style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
 
       {/* ── PAGE HEADER ── */}
       <div style={{ marginBottom: '24px' }}>
@@ -78,7 +78,7 @@ export default function StandingsClient() {
       </div>
 
       {/* ── SEASON SUMMARY CARDS ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', marginBottom: '24px' }}>
+      <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', marginBottom: '24px' }}>
         {[
           { label: 'Races Completed', value: '2',  sub: 'of 24',        color: '#E8002D', bar: 'linear-gradient(90deg,#E8002D,rgba(232,0,45,0.2))' },
           { label: 'Different Winners', value: '2', sub: 'Russell · Antonelli', color: '#FFD700', bar: 'linear-gradient(90deg,#FFD700,rgba(255,215,0,0.2))' },
@@ -181,7 +181,7 @@ export default function StandingsClient() {
           {constructors.map((c, i) => {
             const barPct = maxConPts > 0 ? (c.points / maxConPts) * 100 : 0
             return (
-              <div key={c.name} style={{ display: 'grid', gridTemplateColumns: '28px 26px 160px 1fr 56px', alignItems: 'center', gap: '12px' }}>
+              <div key={c.name} className="constructor-row" style={{ display: 'grid', gridTemplateColumns: '28px 26px 160px 1fr 56px', alignItems: 'center', gap: '12px' }}>
 
                 {/* Rank */}
                 <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: posColor(i + 1), fontWeight: i < 3 ? 600 : 400, textAlign: 'right' }}>
@@ -189,7 +189,7 @@ export default function StandingsClient() {
                 </span>
 
                 {/* Flag */}
-                <span style={{ fontSize: '18px', fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif' }}>{c.flag}</span>
+                <span className="con-flag" style={{ fontSize: '18px', fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif' }}>{c.flag}</span>
 
                 {/* Team name + colour dot */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

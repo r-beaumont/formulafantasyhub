@@ -23,7 +23,7 @@ export default function Home() {
         <style>{`@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }`}</style>
 
         {/* HERO */}
-        <div style={{ borderBottom: '1px solid rgba(255,255,255,0.07)', background: 'linear-gradient(180deg,rgba(232,0,45,0.08) 0%,transparent 100%)', padding: '48px 32px 40px' }}>
+        <div className="mob-pad-hero" style={{ borderBottom: '1px solid rgba(255,255,255,0.07)', background: 'linear-gradient(180deg,rgba(232,0,45,0.08) 0%,transparent 100%)', padding: '48px 32px 40px' }}>
           <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
               <div style={{ width: '3px', height: '32px', background: '#E8002D', borderRadius: '2px' }} />
@@ -42,10 +42,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
+        <div className="mob-pad-page" style={{ maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
 
           {/* RACE WEEKEND + WEATHER */}
-          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '20px', marginBottom: '20px' }}>
+          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '20px', marginBottom: '20px' }}>
             <RaceWeekendCard />
 
             <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' }}>
@@ -94,13 +94,13 @@ export default function Home() {
           </div>
 
           {/* STANDINGS — auto-updating via StandingsWidget */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
             <StandingsWidget type="drivers" limit={5} showLink={true} />
             <StandingsWidget type="constructors" limit={5} showLink={true} />
           </div>
 
           {/* SECTION LINKS */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '12px', marginBottom: '20px' }}>
+          <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '12px', marginBottom: '20px' }}>
             {[
               { href: '/race-hub',   icon: '🏎️', label: 'Race Hub',   desc: 'Live timing, results & circuit info',   color: '#E8002D' },
               { href: '/f1-fantasy', icon: '🏆', label: 'F1 Fantasy', desc: 'Picks, price changes & strategy',        color: '#FFB800' },
@@ -118,7 +118,7 @@ export default function Home() {
           </div>
 
           {/* ARTICLES + VIDEOS */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
             <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
                 <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Latest Articles</span>

@@ -138,7 +138,7 @@ export default function F1FantasyClient() {
   }
 
   return (
-    <div style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
+    <div className="mob-pad-page" style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
 
       {/* Header */}
       <div style={{ marginBottom: '24px' }}>
@@ -257,7 +257,7 @@ export default function F1FantasyClient() {
           </div>
 
           {/* Stats row */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', marginBottom: '20px' }}>
+          <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', marginBottom: '20px' }}>
             <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', padding: '20px', position: 'relative', overflow: 'hidden' }}>
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg, #00D47E, rgba(0,212,126,0.2))' }} />
               <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A', marginBottom: '10px' }}>Budget Remaining</div>
@@ -294,7 +294,7 @@ export default function F1FantasyClient() {
           </div>
 
           {/* Main content row */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: '20px' }}>
+          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: '20px' }}>
 
             {/* Left — Race Weekend Panel */}
             <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' }}>
@@ -433,7 +433,7 @@ export default function F1FantasyClient() {
       {activeTab === 'overview' && (
         <>
           {/* Season stat summary cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: '12px', marginBottom: '20px' }}>
+          <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: '12px', marginBottom: '20px' }}>
             <StatCard label="Season Leader" value={leaders.wins?.acronym || '—'} icon="🏆" color="#FFD700" sub={`${leaders.wins?.wins || 0} wins`} />
             <StatCard label="Pole Sitter" value={leaders.poles?.acronym || '—'} icon="⚡" color="#E8002D" sub={`${leaders.poles?.poles || 0} poles`} />
             <StatCard label="Top Overtaker" value={leaders.overtakes?.acronym || '—'} icon="🔀" color="#00A8FF" sub={`${leaders.overtakes?.total_overtakes || 0} moves`} />
@@ -442,7 +442,7 @@ export default function F1FantasyClient() {
           </div>
 
           {/* Leader boards */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
 
             {/* Fantasy points leaders */}
             <div style={card}>
@@ -608,7 +608,7 @@ export default function F1FantasyClient() {
 
       {/* CONSTRUCTORS TAB */}
       {activeTab === 'constructors' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+        <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
           <div style={card}>
             <div style={cardHeader}>
               <span style={cardTitle}>Constructor Rankings</span>
@@ -677,7 +677,7 @@ export default function F1FantasyClient() {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
 
             {/* Building your team */}
             <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' }}>
@@ -755,7 +755,7 @@ export default function F1FantasyClient() {
                 <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#00D47E' }}>Scoring System</span>
               </div>
               <div style={{ padding: '20px' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '16px' }}>
+                <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '16px' }}>
                   {[
                     { label: '1st place', pts: '+25' }, { label: '2nd place', pts: '+18' },
                     { label: '3rd place', pts: '+15' }, { label: '4th place', pts: '+12' },
@@ -807,7 +807,7 @@ export default function F1FantasyClient() {
 
       {/* CHIP OVERVIEW TAB (formerly guide) */}
       {activeTab === 'guide' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+        <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
           {[
             { icon: '♾️', title: 'Limitless', color: '#00D47E', items: [
               'Remove your $100M budget cap for one race weekend',

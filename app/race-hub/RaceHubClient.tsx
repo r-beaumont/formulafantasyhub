@@ -173,7 +173,8 @@ export default function RaceHubClient() {
     loading ? <Loader label="results" /> : data.length === 0 ? (
       <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px' }}>No results available for this session yet</div>
     ) : (
-      <>
+      <div style={{ overflowX: 'auto', minWidth: 0 }}>
+        <div style={{ minWidth: '480px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '32px 4px 1fr 1fr 100px 100px', gap: '0 12px', padding: '8px 20px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
           <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const }}>Pos</span>
           <span />
@@ -201,7 +202,8 @@ export default function RaceHubClient() {
             </div>
           )
         })}
-      </>
+        </div>
+      </div>
     )
   )
 
@@ -214,7 +216,7 @@ export default function RaceHubClient() {
   ]
 
   return (
-    <div style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
+    <div className="mob-pad-page" style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
 
       {/* Header + Dropdown */}
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '20px', gap: '20px' }}>
@@ -457,7 +459,7 @@ export default function RaceHubClient() {
                 <span style={cardTitle}>2026 Racing Calendar</span>
                 <Badge type="blue" label="24 Rounds" />
               </div>
-              <div style={{ padding: '16px 20px', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '10px' }}>
+              <div className="mob-2col" style={{ padding: '16px 20px', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '10px' }}>
                 {SEASON_CALENDAR.map((race) => {
                   const isCurrent = race.round === selectedRound
                   const isCalledOff = (race as any).calledOff
@@ -584,7 +586,7 @@ export default function RaceHubClient() {
           : []
 
         return (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
             {/* Live Track Conditions */}
             <div style={card}>
               <div style={cardHeader}>
@@ -595,7 +597,7 @@ export default function RaceHubClient() {
                 {loading ? <Loader label="weather" /> : !weather ? (
                   <div style={{ color: '#5A6A7A', fontSize: '13px' }}>No live track data available — check back during the race weekend</div>
                 ) : (
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                  <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                     {[
                       { label: 'Air Temp', value: `${weather.air_temperature?.toFixed(1) ?? '—'}°C`, icon: '🌡️' },
                       { label: 'Track Temp', value: `${weather.track_temperature?.toFixed(1) ?? '—'}°C`, icon: '🏎️' },
@@ -793,7 +795,7 @@ export default function RaceHubClient() {
                     <span style={cardTitle}>Tyre Compounds — {selectedRace.flag} {raceName} GP</span>
                     <Badge type="race" label="Pirelli" />
                   </div>
-                  <div style={{ padding: '16px 24px 20px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px' }}>
+                  <div className="mob-1col" style={{ padding: '16px 24px 20px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px' }}>
                     {data.compounds.map(c => (
                       <div key={c.name} style={{ background: '#141B22', borderRadius: '12px', padding: '18px', border: '1px solid rgba(255,255,255,0.06)', display: 'flex', flexDirection: 'column' as const, gap: '10px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>

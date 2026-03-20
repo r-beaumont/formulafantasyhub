@@ -63,7 +63,7 @@ export default function RaceWeekendCard() {
         <div style={{ color: '#5A6A7A', fontSize: '13px', marginBottom: '20px' }}>
           Round {CURRENT_RACE.round} · {CURRENT_RACE.isSprint ? '⚡ Sprint Weekend' : 'Standard Weekend'}
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${CURRENT_RACE.sessions.length},1fr)`, gap: '8px' }}>
+        <div className="sessions-grid" style={{ display: 'grid', gridTemplateColumns: `repeat(${CURRENT_RACE.sessions.length},1fr)`, gap: '8px' }}>
           {CURRENT_RACE.sessions.map((s) => {
             const isNext = s === nextSession
             const displayTime = useLocalTime ? toUserTime(s.dateISO) : s.timeLocal

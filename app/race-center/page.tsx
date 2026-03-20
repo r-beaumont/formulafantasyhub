@@ -6,7 +6,7 @@ export default function RaceCenterPage() {
   return (
     <>
       <Navbar />
-      <main style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
+      <main className="mob-pad-page" style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
         <div style={{ marginBottom: '32px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
             <div style={{ width: '3px', height: '24px', background: '#E8002D', borderRadius: '2px' }} />
@@ -18,7 +18,7 @@ export default function RaceCenterPage() {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '32px' }}>
+        <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '32px' }}>
           {[
             { name: 'Lineup Optimizer', description: 'Automatically build the highest-scoring team within your budget, factoring in form, price, and fixture difficulty.', icon: '⚙️' },
             { name: 'Price Tracker', description: 'Track driver price movements over the season. See who\'s rising, who\'s falling, and get ahead of the changes.', icon: '📈' },

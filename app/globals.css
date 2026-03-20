@@ -63,3 +63,81 @@ body::before {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ── MOBILE RESPONSIVENESS ── */
+.nav-hamburger { display: none; }
+.nav-race-badge { display: flex; }
+
+@media (max-width: 768px) {
+  /* Grid collapses */
+  .mob-1col { grid-template-columns: 1fr !important; }
+  .mob-2col { grid-template-columns: 1fr 1fr !important; }
+
+  /* Page padding */
+  .mob-pad-page { padding: 16px 16px 40px !important; }
+  .mob-pad-hero { padding: 24px 16px 20px !important; }
+  .mob-pad-sub  { padding: 32px 16px 40px !important; }
+  .mob-pad-article { padding: 0 16px 60px !important; }
+
+  /* Featured article thumbnail */
+  .mob-featured-thumb { height: 200px !important; }
+
+  /* Navbar */
+  .nav-links {
+    display: none !important;
+  }
+  .nav-links.mob-open {
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    top: 60px !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: rgba(8,12,16,0.98) !important;
+    padding: 10px 12px !important;
+    border-bottom: 1px solid rgba(232,0,45,0.2) !important;
+    z-index: 99 !important;
+    gap: 2px !important;
+    margin: 0 !important;
+  }
+  .nav-hamburger {
+    display: flex !important;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-race-badge { display: none !important; }
+
+  /* Footer */
+  .footer-inner {
+    flex-direction: column !important;
+    gap: 12px !important;
+    text-align: center !important;
+  }
+
+  /* RaceWeekendCard sessions */
+  .sessions-grid { grid-template-columns: repeat(3, 1fr) !important; }
+
+  /* Videos page header */
+  .mob-flex-col {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  /* Constructor bar row — hide flag, shorten name col */
+  .constructor-row {
+    grid-template-columns: 24px 110px 1fr 50px !important;
+  }
+  .constructor-row .con-flag { display: none !important; }
+}
+
+@media (max-width: 480px) {
+  .mob-2col { grid-template-columns: 1fr !important; }
+  .sessions-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
