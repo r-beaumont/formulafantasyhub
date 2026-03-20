@@ -230,7 +230,7 @@ export default function RaceHubClient() {
             <span>{selectedRace.name} Grand Prix</span>
           </div>
           <div style={{ color: '#5A6A7A', fontSize: '13px' }}>
-            {selectedRace.circuit} · Round {selectedRace.round} of 24 · {selectedRace.sprint ? '⚡ Sprint Weekend' : 'Standard Weekend'}
+            {selectedRace.circuit} · Round {selectedRace.round} of 22 · {selectedRace.sprint ? '⚡ Sprint Weekend' : 'Standard Weekend'}
           </div>
         </div>
 
@@ -292,7 +292,7 @@ export default function RaceHubClient() {
       </div>
 
       {/* Tab nav */}
-      <div style={{ display: 'flex', gap: '4px', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+      <div style={{ display: 'flex', gap: '4px', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.07)', overflowX: 'auto', WebkitOverflowScrolling: 'touch', whiteSpace: 'nowrap' }}>
         {tabs.map(tab => (
           <button key={tab.id} onClick={() => setActiveTab(tab.id as any)} style={{
             background: activeTab === tab.id ? 'rgba(232,0,45,0.1)' : 'transparent',
@@ -300,6 +300,7 @@ export default function RaceHubClient() {
             border: 'none', borderBottom: activeTab === tab.id ? '2px solid #E8002D' : '2px solid transparent',
             padding: '10px 20px', cursor: 'pointer', fontSize: '13px', fontWeight: 600,
             letterSpacing: '0.3px', transition: 'all 0.2s', borderRadius: '6px 6px 0 0',
+            flexShrink: 0,
           }}>{tab.label}</button>
         ))}
       </div>
@@ -457,7 +458,7 @@ export default function RaceHubClient() {
             <div style={card}>
               <div style={cardHeader}>
                 <span style={cardTitle}>2026 Racing Calendar</span>
-                <Badge type="blue" label="24 Rounds" />
+                <Badge type="blue" label="22 Rounds" />
               </div>
               <div className="mob-2col" style={{ padding: '16px 20px', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '10px' }}>
                 {SEASON_CALENDAR.map((race) => {

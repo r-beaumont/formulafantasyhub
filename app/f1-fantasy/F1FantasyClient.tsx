@@ -153,7 +153,7 @@ export default function F1FantasyClient() {
       </div>
 
       {/* Tab nav */}
-      <div style={{ display: 'flex', gap: '4px', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+      <div style={{ display: 'flex', gap: '4px', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.07)', overflowX: 'auto', WebkitOverflowScrolling: 'touch', whiteSpace: 'nowrap' }}>
         {tabs.map(tab => (
           <button key={tab.id} onClick={() => setActiveTab(tab.id as any)} style={{
             background: activeTab === tab.id ? 'rgba(232,0,45,0.1)' : 'transparent',
@@ -161,7 +161,7 @@ export default function F1FantasyClient() {
             border: 'none', borderBottom: activeTab === tab.id ? '2px solid #E8002D' : '2px solid transparent',
             padding: '10px 20px', cursor: 'pointer', fontSize: '13px', fontWeight: 600,
             letterSpacing: '0.3px', transition: 'all 0.2s', borderRadius: '6px 6px 0 0',
-            display: 'flex', alignItems: 'center', gap: '6px',
+            display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0,
           }}>
             {tab.label}
             {tab.premium && (
@@ -312,7 +312,7 @@ export default function F1FantasyClient() {
                   <div>
                     <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', lineHeight: 1, letterSpacing: '1px' }}>{CURRENT_RACE.name}</div>
                     <div style={{ color: '#5A6A7A', fontSize: '13px', marginTop: '2px' }}>
-                      {CURRENT_RACE.circuit} · Round {CURRENT_RACE.round} of 24 · {CURRENT_RACE.isSprint ? '⚡ Sprint Weekend' : 'Standard Weekend'}
+                      {CURRENT_RACE.circuit} · Round {CURRENT_RACE.round} of 22 · {CURRENT_RACE.isSprint ? '⚡ Sprint Weekend' : 'Standard Weekend'}
                     </div>
                   </div>
                 </div>
@@ -438,7 +438,7 @@ export default function F1FantasyClient() {
             <StatCard label="Pole Sitter" value={leaders.poles?.acronym || '—'} icon="⚡" color="#E8002D" sub={`${leaders.poles?.poles || 0} poles`} />
             <StatCard label="Top Overtaker" value={leaders.overtakes?.acronym || '—'} icon="🔀" color="#00A8FF" sub={`${leaders.overtakes?.total_overtakes || 0} moves`} />
             <StatCard label="Pos. Gained" value={leaders.positions_gained?.acronym || '—'} icon="📈" color="#00D47E" sub={`+${leaders.positions_gained?.total_positions_gained || 0} total`} />
-            <StatCard label="Rounds" value="2" icon="🏁" color="#FFB800" sub="of 24 complete" />
+            <StatCard label="Rounds" value="2" icon="🏁" color="#FFB800" sub="of 22 complete" />
           </div>
 
           {/* Leader boards */}
