@@ -2,22 +2,75 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
 
-const features = [
-  { name: 'Race previews & reviews', free: true },
-  { name: 'Full race strategy guides', free: false },
-  { name: 'Driver price change tracker', free: false },
-  { name: 'Lineup optimiser tool', free: false },
-  { name: 'Points simulator', free: false },
-  { name: 'Race weekend dashboard', free: false },
-  { name: 'Chip timing analysis', free: false },
-  { name: 'F1.com column access', free: true },
+const freeItems = [
+  { label: 'Race results & standings',        free: true  },
+  { label: 'Racing calendar & session times', free: true  },
+  { label: 'Public articles',                 free: true  },
+  { label: 'Race Hub data',                   free: true  },
+  { label: 'Fantasy Insider tools',           free: false },
+  { label: 'Paddock Access content',          free: false },
+  { label: 'AI predictions & model showdown', free: false },
+]
+
+const groups = [
+  {
+    label: 'Fantasy Insider',
+    color: '#FFB800',
+    coming: false,
+    items: [
+      'AI-recommended transfers — personalised weekly suggestions based on your team, budget and upcoming circuit',
+      'F1 Fantasy team sync — connect your official F1 Fantasy team and track performance on Formula Hub',
+      'Mini-league analyser — view rival team selections, gaps and projected scores across your leagues',
+      'Chip timing analysis — data-driven breakdown of when to deploy each chip across the season',
+    ],
+  },
+  {
+    label: 'Paddock Access',
+    color: '#00A8FF',
+    coming: false,
+    items: [
+      'Exclusive race reviews — Rob\'s post-race deep dive, beyond what\'s published publicly',
+      'Paddock Briefing — weekly premium newsletter covering the stories behind the headlines',
+      'Live race dashboard — enhanced race-day view with live gaps, tyre age and pit window analysis',
+      'Constructor strategy breakdown — detailed post-race analysis of team strategy decisions',
+    ],
+  },
+  {
+    label: 'Coming Soon',
+    color: '#5A6A7A',
+    coming: true,
+    items: [
+      'AI model showdown — GPT, Gemini and Claude each independently predict the top 5 qualifying and race results every weekend. Scores are tracked across the season to find the most accurate AI predictor of 2026.',
+      'AI-recommended transfers — personalised weekly fantasy transfer suggestions powered by AI, based on your current team, budget and upcoming circuit',
+    ],
+  },
 ]
 
 const faqs = [
-  { q: 'How does billing work?', a: 'You\'re billed €5 per month. Cancel at any time — no questions asked.' },
-  { q: 'When does new content go live?', a: 'Strategy guides every Wednesday before a race weekend. Price change updates Thursday–Saturday. Race review Sunday evening.' },
-  { q: 'Who writes the content?', a: 'All content is written by Rob Beaumont, the official F1 Fantasy columnist for formula1.com.' },
-  { q: 'What tools are included?', a: 'Price change tracker, lineup optimiser, points simulator, and the live Race Hub dashboard — all built specifically for F1 Fantasy managers.' },
+  {
+    q: 'How does billing work?',
+    a: 'You are billed €5 per month. Cancel at any time — no questions asked, no hidden fees.',
+  },
+  {
+    q: 'When does new content go live?',
+    a: 'Race reviews go live on Sunday evenings after each Grand Prix. The Paddock Briefing lands every Thursday. Fantasy tools update after each race weekend deadline.',
+  },
+  {
+    q: 'Who creates the content?',
+    a: 'All content and analysis is produced by Rob Beaumont, the official F1 Fantasy columnist for formula1.com.',
+  },
+  {
+    q: 'What tools are included?',
+    a: 'Fantasy Insider tools include AI-recommended transfers, F1 Fantasy team sync, mini-league analyser, and chip timing analysis. Paddock Access includes exclusive race reviews, the Paddock Briefing newsletter, live race dashboard, and constructor strategy breakdowns.',
+  },
+  {
+    q: 'What is the AI model showdown?',
+    a: 'Each race weekend, GPT, Gemini and Claude independently predict the top 5 qualifying and race results. After the session, their predictions are scored against the real results and the totals accumulate across the season — crowning the most accurate AI predictor of 2026. This feature is currently in development.',
+  },
+  {
+    q: 'Will there be a Formula Hub app?',
+    a: 'Yes — a Formula Hub app is planned. Members will get early access and push notifications for session times, results and fantasy deadlines.',
+  },
 ]
 
 export default function SubscribePage() {
@@ -28,28 +81,32 @@ export default function SubscribePage() {
       <Navbar />
       <div className="mob-pad-sub" style={{ position: 'relative', zIndex: 1, maxWidth: '1000px', margin: '0 auto', padding: '60px 32px' }}>
 
+        {/* Hero */}
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
           <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase', marginBottom: '16px' }}>Premium Membership</div>
           <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(3rem,8vw,6rem)', lineHeight: 0.95, marginBottom: '24px' }}>
-            Win your<br />mini-league.
+            More than<br />fantasy.
           </div>
-          <p style={{ color: '#5A6A7A', maxWidth: '500px', margin: '0 auto', lineHeight: 1.7 }}>
-            Expert strategy, interactive tools, and race-week analysis from the world's
-            leading F1 Fantasy creator — Rob Beaumont, official columnist for formula1.com.
+          <p style={{ color: '#5A6A7A', maxWidth: '520px', margin: '0 auto', lineHeight: 1.7 }}>
+            In-depth F1 analysis, exclusive race coverage, and smarter fantasy tools — all in one place. From Rob Beaumont, official F1 Fantasy columnist for formula1.com.
           </p>
         </div>
 
         {/* Pricing cards */}
-        <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '60px' }}>
+        <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '40px' }}>
+
+          {/* Free card */}
           <div style={{ ...card, padding: '32px' }}>
             <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#5A6A7A', textTransform: 'uppercase', marginBottom: '8px' }}>Free</div>
             <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '56px', lineHeight: 1 }}>€0</div>
             <div style={{ color: '#5A6A7A', fontSize: '13px', marginBottom: '32px' }}>per month, forever</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '32px' }}>
-              {features.map((f) => (
-                <div key={f.name} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: f.free ? '#00D47E' : '#3A4A5A' }}>{f.free ? '✓' : '–'}</span>
-                  <span style={{ fontSize: '13px', color: f.free ? '#F0F4F8' : '#3A4A5A' }}>{f.name}</span>
+              {freeItems.map((f) => (
+                <div key={f.label} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: f.free ? '#00D47E' : '#3A4A5A', flexShrink: 0 }}>
+                    {f.free ? '✓' : '🔒'}
+                  </span>
+                  <span style={{ fontSize: '13px', color: f.free ? '#F0F4F8' : '#3A4A5A' }}>{f.label}</span>
                 </div>
               ))}
             </div>
@@ -58,16 +115,17 @@ export default function SubscribePage() {
             </Link>
           </div>
 
+          {/* Premium card */}
           <div style={{ background: '#E8002D', borderRadius: '14px', padding: '32px', position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'absolute', top: '-40px', right: '-40px', width: '160px', height: '160px', background: 'rgba(255,255,255,0.05)', borderRadius: '50%' }} />
             <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', marginBottom: '8px' }}>Premium</div>
             <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '56px', lineHeight: 1, color: 'white' }}>€5</div>
             <div style={{ color: 'rgba(255,255,255,0.7)', fontSize: '13px', marginBottom: '32px' }}>per month · cancel anytime</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '32px' }}>
-              {features.map((f) => (
-                <div key={f.name} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: 'white' }}>✓</span>
-                  <span style={{ fontSize: '13px', color: 'white', fontWeight: 500 }}>{f.name}</span>
+              {freeItems.map((f) => (
+                <div key={f.label} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: 'white', flexShrink: 0 }}>✓</span>
+                  <span style={{ fontSize: '13px', color: 'white', fontWeight: 500 }}>{f.label}</span>
                 </div>
               ))}
             </div>
@@ -76,6 +134,29 @@ export default function SubscribePage() {
             </button>
             <div style={{ textAlign: 'center', marginTop: '12px', fontSize: '11px', color: 'rgba(255,255,255,0.6)' }}>Stripe · Secure payment · Cancel anytime</div>
           </div>
+        </div>
+
+        {/* Detailed feature groups */}
+        <div style={{ ...card, padding: '32px', marginBottom: '60px' }}>
+          <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#5A6A7A', textTransform: 'uppercase', marginBottom: '24px' }}>What's included in Premium</div>
+          {groups.map((group, gi) => (
+            <div key={group.label} style={{ borderTop: gi === 0 ? 'none' : '1px solid rgba(255,255,255,0.07)', paddingTop: gi === 0 ? '0' : '24px', marginTop: gi === 0 ? '0' : '24px' }}>
+              <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: group.color, borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '16px', marginBottom: '16px' }}>{group.label}</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {group.items.map((item) => (
+                  <div key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                    <span style={{ fontSize: '13px', flexShrink: 0, marginTop: '1px' }}>{group.coming ? '⏳' : '✓'}</span>
+                    <span style={{ fontSize: '13px', color: group.coming ? '#5A6A7A' : '#F0F4F8', lineHeight: 1.6 }}>
+                      {item}
+                      {group.coming && (
+                        <span style={{ background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)', fontSize: '9px', padding: '2px 6px', borderRadius: '4px', marginLeft: '6px', fontWeight: 600, letterSpacing: '0.5px', textTransform: 'uppercase', display: 'inline-block', verticalAlign: 'middle' }}>Soon</span>
+                      )}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* FAQ */}

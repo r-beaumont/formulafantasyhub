@@ -54,7 +54,7 @@ const pointsFeed = [
 export default function F1FantasyClient() {
   const [stats, setStats] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState<'team-snapshot' | 'overview' | 'drivers' | 'constructors' | 'how-to-play' | 'guide'>('overview')
+  const [activeTab, setActiveTab] = useState<'team-snapshot' | 'overview' | 'drivers' | 'constructors' | 'how-to-play' | 'guide' | 'ai-predictor'>('overview')
   const [leaderCategory, setLeaderCategory] = useState<LeaderCategory>('wins')
   const [timeMode, setTimeMode] = useState<'utc' | 'local'>('utc')
   const [isSignedIn, setIsSignedIn] = useState(false)
@@ -114,12 +114,13 @@ export default function F1FantasyClient() {
   })
 
   const tabs = [
-    { id: 'team-snapshot', label: 'My Team', premium: true },
-    { id: 'overview', label: 'Overview' },
-    { id: 'drivers', label: 'Driver Rankings' },
-    { id: 'constructors', label: 'Constructor Rankings' },
-    { id: 'how-to-play', label: 'How to Play' },
-    { id: 'guide', label: 'Chip Overview' },
+    { id: 'team-snapshot', label: 'My Team',              premium: true },
+    { id: 'overview',      label: 'Overview'                             },
+    { id: 'drivers',       label: 'Driver Rankings'                      },
+    { id: 'constructors',  label: 'Constructor Rankings'                  },
+    { id: 'how-to-play',   label: 'How to Play'                          },
+    { id: 'guide',         label: 'Chip Overview'                        },
+    { id: 'ai-predictor',  label: 'AI Predictor',         premium: true  },
   ]
 
   const formatSessionTime = (s: typeof CURRENT_RACE.sessions[0]) => {
@@ -233,7 +234,7 @@ export default function F1FantasyClient() {
 
             <div style={{ fontSize: '12px', color: '#3A4A5A' }}>
               Not a member?{' '}
-              <a href="mailto:rob@formulafantasyhub.com" style={{ color: '#FFB800', textDecoration: 'none', fontWeight: 600 }}>
+              <a href="mailto:connect.f1fantasyhub@gmail.com" style={{ color: '#FFB800', textDecoration: 'none', fontWeight: 600 }}>
                 Get in touch to join →
               </a>
             </div>
@@ -988,6 +989,42 @@ export default function F1FantasyClient() {
                 Read on F1.com →
               </a>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* AI PREDICTOR TAB */}
+      {activeTab === 'ai-predictor' && (
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '520px' }}>
+          <div style={{ background: '#0E1318', border: '1px solid rgba(255,184,0,0.2)', borderRadius: '20px', padding: '48px 40px', maxWidth: '480px', width: '100%', textAlign: 'center' as const, position: 'relative', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg,#FFB800,rgba(255,184,0,0.2))' }} />
+            <div style={{ fontSize: '48px', marginBottom: '16px' }}>🤖</div>
+            <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '32px', letterSpacing: '1px', marginBottom: '8px' }}>AI Predictor</div>
+            <div style={{ fontSize: '14px', fontWeight: 600, color: '#FFB800', marginBottom: '16px' }}>Three models. One race. Who calls it right?</div>
+            <p style={{ color: '#5A6A7A', fontSize: '13px', lineHeight: 1.7, marginBottom: '28px' }}>
+              Every race weekend, GPT, Gemini and Claude each independently predict the top 5 qualifying and race results — no collaboration, no shared data. After the session, predictions are scored against the real results. Points accumulate across the 2026 season to crown the most accurate AI predictor in Formula 1.
+            </p>
+
+            {/* Season leaderboard placeholder */}
+            <div style={{ background: '#141B22', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '16px 20px', marginBottom: '8px' }}>
+              <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '14px' }}>2026 Season Leaderboard</div>
+              {[
+                { medal: '🥇', name: 'Claude',   pts: 0 },
+                { medal: '🥈', name: 'GPT-4o',   pts: 0 },
+                { medal: '🥉', name: 'Gemini',    pts: 0 },
+              ].map((row) => (
+                <div key={row.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 0', borderBottom: row.name !== 'Gemini' ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
+                  <span style={{ fontSize: '18px', width: '24px', textAlign: 'center' as const }}>{row.medal}</span>
+                  <span style={{ flex: 1, fontSize: '13px', fontWeight: 600, textAlign: 'left' as const }}>{row.name}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: '#3A4A5A' }}>{row.pts} pts</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ fontSize: '11px', color: '#5A6A7A', marginBottom: '28px' }}>Season predictions begin at Round 4 — Miami</div>
+
+            <a href="/subscribe" style={{ display: 'block', background: '#E8002D', color: 'white', borderRadius: '8px', padding: '14px', fontSize: '14px', fontWeight: 700, textDecoration: 'none', letterSpacing: '0.3px' }}>
+              Unlock with Premium
+            </a>
           </div>
         </div>
       )}
