@@ -64,6 +64,19 @@ export default function RaceHubClient() {
   const [activeTab, setActiveTab] = useState<'race-info' | 'results' | 'weather' | 'pitwall'>('race-info')
   const [selectedRound, setSelectedRound] = useState(3)
   const [dropdownOpen, setDropdownOpen] = useState(false)
+
+  // Read URL params on mount (?round=N&tab=results deep-link from standings)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const roundParam = params.get('round')
+    const tabParam = params.get('tab')
+    if (roundParam) {
+      const n = parseInt(roundParam, 10)
+      if (!isNaN(n)) setSelectedRound(n)
+    }
+    if (tabParam === 'results') setActiveTab('results')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   const [sessions, setSessions] = useState<any[]>([])
 const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[] }>({ drivers: [], constructors: [] })
   const [weather, setWeather] = useState<any>(null)
