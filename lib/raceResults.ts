@@ -32,7 +32,9 @@ export interface RaceWeekend {
   fp2?: DriverResult[]
   fp3?: DriverResult[]
   sprintQualifying?: QualifyingResult[]
+  sprintRace?: DriverResult[]
   qualifying?: QualifyingResult[]
+  race?: DriverResult[]
 }
 
 export const RACE_WEEKENDS: Record<number, RaceWeekend> = {

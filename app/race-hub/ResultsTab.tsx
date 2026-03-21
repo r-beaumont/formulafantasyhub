@@ -98,114 +98,90 @@ function QualifyingTable({ data, qualifier = 'Q' }: { data: QualifyingResult[]; 
   )
 }
 
-export default function ResultsTab() {
-  const availableRounds = Object.keys(RACE_WEEKENDS).map(Number).sort((a, b) => a - b)
-  const [selectedRound, setSelectedRound] = useState(availableRounds[0] ?? 1)
+export default function ResultsTab({ selectedRound }: { selectedRound: number }) {
+  const weekend = RACE_WEEKENDS[selectedRound]
   const [activeSession, setActiveSession] = useState('fp1')
 
-  const weekend = RACE_WEEKENDS[selectedRound]
-
   const sessionTabs = [
-    { id: 'fp1',               label: 'FP1',               available: !!weekend.fp1 },
-    { id: 'fp2',               label: 'FP2',               available: !weekend.isSprint && !!weekend.fp2 },
-    { id: 'fp3',               label: 'FP3',               available: !weekend.isSprint && !!weekend.fp3 },
-    { id: 'sprint-qualifying', label: 'Sprint Qualifying', available: weekend.isSprint && !!weekend.sprintQualifying },
-    { id: 'qualifying',        label: 'Qualifying',        available: !!weekend.qualifying },
+    { id: 'fp1',               label: 'FP1',               available: !!weekend?.fp1 },
+    { id: 'fp2',               label: 'FP2',               available: !weekend?.isSprint && !!weekend?.fp2 },
+    { id: 'fp3',               label: 'FP3',               available: !weekend?.isSprint && !!weekend?.fp3 },
+    { id: 'sprint-qualifying', label: 'Sprint Qualifying', available: !!weekend?.isSprint && !!weekend?.sprintQualifying },
+    { id: 'sprint-race',       label: 'Sprint Race',       available: !!weekend?.isSprint && !!weekend?.sprintRace },
+    { id: 'qualifying',        label: 'Qualifying',        available: !!weekend?.qualifying },
+    { id: 'race',              label: 'Race',              available: !!weekend?.race },
   ].filter(t => t.available)
 
-  // Reset to fp1 when round changes
+  // Reset to first available session when round changes
   useEffect(() => {
-    setActiveSession('fp1')
+    setActiveSession(sessionTabs[0]?.id ?? 'fp1')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedRound])
 
-  // Ensure active session is valid (fallback to first available)
   const effectiveSession = sessionTabs.some(t => t.id === activeSession) ? activeSession : sessionTabs[0]?.id ?? 'fp1'
+
+  if (!weekend) {
+    return (
+      <div style={card}>
+        <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px' }}>
+          No data available for this round
+        </div>
+      </div>
+    )
+  }
 
   function renderTable() {
     switch (effectiveSession) {
-      case 'fp1': return weekend.fp1 ? <PracticeTable data={weekend.fp1} /> : null
-      case 'fp2': return weekend.fp2 ? <PracticeTable data={weekend.fp2} /> : null
-      case 'fp3': return weekend.fp3 ? <PracticeTable data={weekend.fp3} /> : null
+      case 'fp1':               return weekend.fp1              ? <PracticeTable data={weekend.fp1} /> : null
+      case 'fp2':               return weekend.fp2              ? <PracticeTable data={weekend.fp2} /> : null
+      case 'fp3':               return weekend.fp3              ? <PracticeTable data={weekend.fp3} /> : null
       case 'sprint-qualifying': return weekend.sprintQualifying ? <QualifyingTable data={weekend.sprintQualifying} qualifier="SQ" /> : null
-      case 'qualifying': return weekend.qualifying ? <QualifyingTable data={weekend.qualifying} qualifier="Q" /> : null
+      case 'sprint-race':       return weekend.sprintRace       ? <PracticeTable data={weekend.sprintRace} /> : null
+      case 'qualifying':        return weekend.qualifying       ? <QualifyingTable data={weekend.qualifying} qualifier="Q" /> : null
+      case 'race':              return weekend.race             ? <PracticeTable data={weekend.race} /> : null
       default: return null
     }
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '16px' }}>
-
-      {/* Round selector */}
-      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' as const }}>
-        {availableRounds.map(round => {
-          const w = RACE_WEEKENDS[round]
-          const isSelected = round === selectedRound
-          return (
-            <button
-              key={round}
-              onClick={() => setSelectedRound(round)}
-              style={{
-                background: isSelected ? 'rgba(232,0,45,0.12)' : '#141B22',
-                border: isSelected ? '1px solid rgba(232,0,45,0.4)' : '1px solid rgba(255,255,255,0.07)',
-                borderRadius: '8px',
-                color: isSelected ? '#E8002D' : '#8A9AB0',
-                padding: '8px 16px',
-                cursor: 'pointer',
-                fontSize: '13px',
-                fontWeight: 600,
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-              }}
-            >
-              <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif' }}>{w.flag}</span>
-              <span>R{round} — {w.name}</span>
-              {w.isSprint && <span style={{ fontSize: '10px', color: '#E8002D' }}>⚡</span>}
-            </button>
-          )
-        })}
+    <div style={card}>
+      <div style={cardHeader}>
+        <span style={cardTitle}>
+          <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', marginRight: '6px' }}>{weekend.flag}</span>
+          {weekend.name} GP — Session Results
+        </span>
+        <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' as const, background: 'rgba(255,255,255,0.06)', color: '#5A6A7A' }}>2026 Results</span>
       </div>
 
-      {/* Results card */}
-      <div style={card}>
-        <div style={cardHeader}>
-          <span style={cardTitle}>
-            <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', marginRight: '6px' }}>{weekend.flag}</span>
-            {weekend.name} GP — Session Results
-          </span>
-          <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' as const, background: 'rgba(255,255,255,0.06)', color: '#5A6A7A' }}>2026 Results</span>
-        </div>
-
-        {/* Session tabs */}
-        <div style={{ display: 'flex', gap: '6px', padding: '12px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', flexWrap: 'wrap' as const }}>
-          {sessionTabs.map(t => (
-            <button
-              key={t.id}
-              onClick={() => setActiveSession(t.id)}
-              style={{
-                background: effectiveSession === t.id ? '#E8002D' : '#141B22',
-                color: effectiveSession === t.id ? 'white' : '#5A6A7A',
-                border: '1px solid',
-                borderColor: effectiveSession === t.id ? '#E8002D' : 'rgba(255,255,255,0.07)',
-                padding: '5px 14px',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '12px',
-                fontWeight: 600,
-              }}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Table */}
-        {renderTable() ?? (
-          <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px' }}>
-            No data available for this session
-          </div>
-        )}
+      {/* Session tabs */}
+      <div style={{ display: 'flex', gap: '6px', padding: '12px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', flexWrap: 'wrap' as const }}>
+        {sessionTabs.map(t => (
+          <button
+            key={t.id}
+            onClick={() => setActiveSession(t.id)}
+            style={{
+              background: effectiveSession === t.id ? '#E8002D' : '#141B22',
+              color: effectiveSession === t.id ? 'white' : '#5A6A7A',
+              border: '1px solid',
+              borderColor: effectiveSession === t.id ? '#E8002D' : 'rgba(255,255,255,0.07)',
+              padding: '5px 14px',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontSize: '12px',
+              fontWeight: 600,
+            }}
+          >
+            {t.label}
+          </button>
+        ))}
       </div>
+
+      {/* Table */}
+      {renderTable() ?? (
+        <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px' }}>
+          No data available for this session
+        </div>
+      )}
     </div>
   )
 }

@@ -332,7 +332,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       })()}
 
       {/* RESULTS TAB */}
-      {activeTab === 'results' && <ResultsTab />}
+      {activeTab === 'results' && <ResultsTab selectedRound={selectedRound} />}
 
       {/* CALENDAR TAB */}
       {activeTab === 'calendar' && (() => {
