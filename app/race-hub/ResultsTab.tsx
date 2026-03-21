@@ -1,7 +1,22 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { RACE_WEEKENDS, type DriverResult, type QualifyingResult } from '@/lib/raceResults'
+import { RACE_WEEKENDS, type DriverResult, type QualifyingResult, type QualifyingSessionKeys } from '@/lib/raceResults'
+
+async function fetchLiveQualifying(keys: QualifyingSessionKeys, qualifier: string): Promise<QualifyingResult[] | null> {
+  const params = new URLSearchParams()
+  if (keys.q1) params.set(qualifier === 'SQ' ? 'q1_key' : 'q1_key', keys.q1)
+  if (keys.q2) params.set('q2_key', keys.q2)
+  if (keys.q3) params.set('q3_key', keys.q3)
+  try {
+    const res = await fetch(`/api/f1/qualifying?${params}`)
+    if (!res.ok) return null
+    const data = await res.json()
+    return data.results ?? null
+  } catch {
+    return null
+  }
+}
 
 const card = { background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' as const }
 const cardHeader = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }
@@ -101,22 +116,47 @@ function QualifyingTable({ data, qualifier = 'Q' }: { data: QualifyingResult[]; 
 export default function ResultsTab({ selectedRound }: { selectedRound: number }) {
   const weekend = RACE_WEEKENDS[selectedRound]
   const [activeSession, setActiveSession] = useState('fp1')
+  const [liveQualifying, setLiveQualifying] = useState<QualifyingResult[] | null>(null)
+  const [liveSprintQualifying, setLiveSprintQualifying] = useState<QualifyingResult[] | null>(null)
+  const [loadingLive, setLoadingLive] = useState(false)
+
+  const hasQualifying = !!weekend?.qualifying || !!weekend?.qualifyingKeys
+  const hasSprintQualifying = !!weekend?.isSprint && (!!weekend?.sprintQualifying || !!weekend?.sprintQualifyingKeys)
 
   const sessionTabs = [
     { id: 'fp1',               label: 'FP1',               available: !!weekend?.fp1 },
     { id: 'fp2',               label: 'FP2',               available: !weekend?.isSprint && !!weekend?.fp2 },
     { id: 'fp3',               label: 'FP3',               available: !weekend?.isSprint && !!weekend?.fp3 },
-    { id: 'sprint-qualifying', label: 'Sprint Qualifying', available: !!weekend?.isSprint && !!weekend?.sprintQualifying },
+    { id: 'sprint-qualifying', label: 'Sprint Qualifying', available: hasSprintQualifying },
     { id: 'sprint-race',       label: 'Sprint Race',       available: !!weekend?.isSprint && !!weekend?.sprintRace },
-    { id: 'qualifying',        label: 'Qualifying',        available: !!weekend?.qualifying },
+    { id: 'qualifying',        label: 'Qualifying',        available: hasQualifying },
     { id: 'race',              label: 'Race',              available: !!weekend?.race },
   ].filter(t => t.available)
 
-  // Reset to first available session when round changes
+  // Reset to first available session when round changes; clear live data
   useEffect(() => {
     setActiveSession(sessionTabs[0]?.id ?? 'fp1')
+    setLiveQualifying(null)
+    setLiveSprintQualifying(null)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedRound])
+
+  // Fetch live qualifying if session selected and no static data
+  useEffect(() => {
+    if (activeSession === 'qualifying' && !weekend?.qualifying && weekend?.qualifyingKeys) {
+      setLoadingLive(true)
+      fetchLiveQualifying(weekend.qualifyingKeys, 'Q')
+        .then(data => setLiveQualifying(data))
+        .finally(() => setLoadingLive(false))
+    }
+    if (activeSession === 'sprint-qualifying' && !weekend?.sprintQualifying && weekend?.sprintQualifyingKeys) {
+      setLoadingLive(true)
+      fetchLiveQualifying(weekend.sprintQualifyingKeys, 'SQ')
+        .then(data => setLiveSprintQualifying(data))
+        .finally(() => setLoadingLive(false))
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSession, selectedRound])
 
   const effectiveSession = sessionTabs.some(t => t.id === activeSession) ? activeSession : sessionTabs[0]?.id ?? 'fp1'
 
@@ -130,14 +170,20 @@ export default function ResultsTab({ selectedRound }: { selectedRound: number })
     )
   }
 
+  const qualifyingData = weekend.qualifying ?? liveQualifying
+  const sprintQualifyingData = weekend.sprintQualifying ?? liveSprintQualifying
+
   function renderTable() {
+    if (loadingLive && (effectiveSession === 'qualifying' || effectiveSession === 'sprint-qualifying')) {
+      return <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px' }}>Loading live data…</div>
+    }
     switch (effectiveSession) {
       case 'fp1':               return weekend.fp1              ? <PracticeTable data={weekend.fp1} /> : null
       case 'fp2':               return weekend.fp2              ? <PracticeTable data={weekend.fp2} /> : null
       case 'fp3':               return weekend.fp3              ? <PracticeTable data={weekend.fp3} /> : null
-      case 'sprint-qualifying': return weekend.sprintQualifying ? <QualifyingTable data={weekend.sprintQualifying} qualifier="SQ" /> : null
+      case 'sprint-qualifying': return sprintQualifyingData     ? <QualifyingTable data={sprintQualifyingData} qualifier="SQ" /> : null
       case 'sprint-race':       return weekend.sprintRace       ? <PracticeTable data={weekend.sprintRace} /> : null
-      case 'qualifying':        return weekend.qualifying       ? <QualifyingTable data={weekend.qualifying} qualifier="Q" /> : null
+      case 'qualifying':        return qualifyingData           ? <QualifyingTable data={qualifyingData} qualifier="Q" /> : null
       case 'race':              return weekend.race             ? <PracticeTable data={weekend.race} /> : null
       default: return null
     }
