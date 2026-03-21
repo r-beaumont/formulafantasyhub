@@ -19,7 +19,9 @@ function posColor(pos: number) {
 // ── Static race data computations ─────────────────────────────────────────────
 
 const F1_PTS: Record<number, number> = { 1:25,2:18,3:15,4:12,5:10,6:8,7:6,8:4,9:2,10:1 }
+const SPRINT_PTS: Record<number, number> = { 1:8,2:7,3:6,4:5,5:4,6:3,7:2,8:1 }
 function racePoints(pos: number): number { return F1_PTS[pos] || 0 }
+function sprintPoints(pos: number): number { return SPRINT_PTS[pos] || 0 }
 
 const RACE_CODE: Record<string, string> = {
   'Australia': 'AUS', 'China': 'CHN', 'Japan': 'JPN', 'Miami': 'MIA',
@@ -59,16 +61,23 @@ const mostWins    = Object.entries(_winsMap).filter(([,v]) => v.count === maxWin
 const mostPoles   = Object.entries(_polesMap).filter(([,v]) => v.count === maxPoles).map(([n,v]) => ({ name: n, ...v }))
 const mostPodiums = Object.entries(_podiumsMap).filter(([,v]) => v.count === maxPodiums).map(([n,v]) => ({ name: n, ...v }))
 
-// Per-driver per-round points (race only, not sprint)
+// Per-driver per-round points (race + sprint)
 const _driverRoundPts: Record<string, Record<number, number>> = {}
 const _driverMeta: Record<string, { team: string; teamColor: string }> = {}
 for (const calR of completedCalRounds) {
   const w = RACE_WEEKENDS[calR.round]
-  if (!w?.race) continue
-  for (const r of w.race) {
+  if (!w) continue
+  // Main race points
+  for (const r of (w.race || [])) {
     if (!_driverRoundPts[r.name]) _driverRoundPts[r.name] = {}
-    _driverRoundPts[r.name][calR.round] = racePoints(r.position)
+    _driverRoundPts[r.name][calR.round] = (_driverRoundPts[r.name][calR.round] || 0) + racePoints(r.position)
     _driverMeta[r.name] = { team: r.team, teamColor: r.team_colour }
+  }
+  // Sprint race points
+  for (const r of (w.sprintRace || [])) {
+    if (!_driverRoundPts[r.name]) _driverRoundPts[r.name] = {}
+    _driverRoundPts[r.name][calR.round] = (_driverRoundPts[r.name][calR.round] || 0) + sprintPoints(r.position)
+    if (!_driverMeta[r.name]) _driverMeta[r.name] = { team: r.team, teamColor: r.team_colour }
   }
 }
 const driverPprData = Object.entries(_driverRoundPts)
@@ -99,16 +108,14 @@ const conPprData = Object.entries(_conRoundPts)
   }))
   .sort((a, b) => b.total - a.total)
 
-// Per-round gold/orange thresholds for driver
-const _driverRoundThresholds: Record<number, [number, number]> = {}
+// Race podium per round (P1/P2/P3 driver names and team names for gold/silver/bronze cell highlighting)
+const _racePodium: Record<number, string[]> = {}
+const _raceConPodium: Record<number, string[]> = {}
 for (const calR of completedCalRounds) {
-  const vals = driverPprData.map(d => d.rpts[calR.round] ?? 0).filter(p => p > 0).sort((a,b) => b-a)
-  _driverRoundThresholds[calR.round] = [vals[0] ?? 0, vals[1] ?? 0]
-}
-const _conRoundThresholds: Record<number, [number, number]> = {}
-for (const calR of completedCalRounds) {
-  const vals = conPprData.map(c => c.rpts[calR.round] ?? 0).filter(p => p > 0).sort((a,b) => b-a)
-  _conRoundThresholds[calR.round] = [vals[0] ?? 0, vals[1] ?? 0]
+  const w = RACE_WEEKENDS[calR.round]
+  if (!w?.race) continue
+  _racePodium[calR.round] = w.race.slice(0, 3).map(r => r.name)
+  _raceConPodium[calR.round] = w.race.slice(0, 3).map(r => r.team)
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -533,11 +540,12 @@ export default function StandingsClient() {
                     </td>
                     {completedCalRounds.map(calR => {
                       const pts = d.rpts[calR.round] ?? 0
-                      const [gold, orange] = _driverRoundThresholds[calR.round] ?? [0, 0]
-                      const bg = pts > 0 && pts === gold ? 'rgba(255,215,0,0.12)' : pts > 0 && pts === orange ? 'rgba(255,120,0,0.1)' : 'transparent'
-                      const col = pts > 0 && pts === gold ? '#FFD700' : pts > 0 && pts === orange ? '#FF8800' : pts > 0 ? '#F0F4F8' : '#3A4A5A'
+                      const [p1n, p2n, p3n] = _racePodium[calR.round] ?? ['', '', '']
+                      const medal = d.name === p1n ? 'gold' : d.name === p2n ? 'silver' : d.name === p3n ? 'bronze' : null
+                      const bg = medal === 'gold' ? 'rgba(255,215,0,0.14)' : medal === 'silver' ? 'rgba(192,192,192,0.09)' : medal === 'bronze' ? 'rgba(205,127,50,0.12)' : 'transparent'
+                      const col = medal === 'gold' ? '#FFD700' : medal === 'silver' ? '#C0C0C0' : medal === 'bronze' ? '#CD7F32' : pts > 0 ? '#F0F4F8' : '#3A4A5A'
                       return (
-                        <td key={calR.round} style={{ ...tdMono(col), background: bg, fontWeight: pts === gold ? 700 : 400 }}>
+                        <td key={calR.round} style={{ ...tdMono(col), background: bg, fontWeight: medal ? 700 : 400 }}>
                           {pts > 0 ? pts : '—'}
                         </td>
                       )
@@ -576,11 +584,12 @@ export default function StandingsClient() {
                     </td>
                     {completedCalRounds.map(calR => {
                       const pts = c.rpts[calR.round] ?? 0
-                      const [gold, orange] = _conRoundThresholds[calR.round] ?? [0, 0]
-                      const bg = pts > 0 && pts === gold ? 'rgba(255,215,0,0.12)' : pts > 0 && pts === orange ? 'rgba(255,120,0,0.1)' : 'transparent'
-                      const col = pts > 0 && pts === gold ? '#FFD700' : pts > 0 && pts === orange ? '#FF8800' : pts > 0 ? '#F0F4F8' : '#3A4A5A'
+                      const [c1t, c2t, c3t] = _raceConPodium[calR.round] ?? ['', '', '']
+                      const conMedal = c.team === c1t ? 'gold' : c.team === c2t && c2t !== c1t ? 'silver' : c.team === c3t && c3t !== c1t && c3t !== c2t ? 'bronze' : null
+                      const bg = conMedal === 'gold' ? 'rgba(255,215,0,0.14)' : conMedal === 'silver' ? 'rgba(192,192,192,0.09)' : conMedal === 'bronze' ? 'rgba(205,127,50,0.12)' : 'transparent'
+                      const col = conMedal === 'gold' ? '#FFD700' : conMedal === 'silver' ? '#C0C0C0' : conMedal === 'bronze' ? '#CD7F32' : pts > 0 ? '#F0F4F8' : '#3A4A5A'
                       return (
-                        <td key={calR.round} style={{ ...tdMono(col), background: bg, fontWeight: pts === gold ? 700 : 400 }}>
+                        <td key={calR.round} style={{ ...tdMono(col), background: bg, fontWeight: conMedal ? 700 : 400 }}>
                           {pts > 0 ? pts : '—'}
                         </td>
                       )
@@ -595,7 +604,7 @@ export default function StandingsClient() {
           )}
         </div>
         <div style={{ padding: '8px 20px 12px', borderTop: '1px solid rgba(255,255,255,0.04)' }}>
-          <span style={{ fontSize: '10px', color: '#3A4A5A' }}>Race points only (25–18–15–12–10–8–6–4–2–1). Sprint points not included.</span>
+          <span style={{ fontSize: '10px', color: '#3A4A5A' }}>Race points (25–18–15–12–10–8–6–4–2–1) + sprint points (8–7–6–5–4–3–2–1) where applicable. Gold/silver/bronze highlight = Grand Prix podium finisher.</span>
         </div>
       </div>
 
