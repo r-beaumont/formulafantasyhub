@@ -8,6 +8,7 @@ import { CURRENT_RACE } from '@/lib/races'
 const links = [
   { href: '/',           label: 'Home' },
   { href: '/race-hub',   label: 'Race Hub' },
+  { href: '/calendar',   label: 'Calendar' },
   { href: '/f1-fantasy', label: 'F1 Fantasy' },
   { href: '/standings',  label: 'Standings' },
   { href: '/articles',   label: 'Articles' },

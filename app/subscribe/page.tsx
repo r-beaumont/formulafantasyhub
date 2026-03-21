@@ -40,7 +40,7 @@ const groups = [
     items: [
       'Expert transfer analysis — weekly breakdown of the best value picks, price risers and differential options for every race',
       'Chip timing guide — data-driven breakdown of when to deploy each chip across the season based on circuit data',
-      'Fantasy strategy articles — in-depth weekly content covering team selection, captaincy and scoring opportunities',
+      'Fantasy strategy articles — in-depth weekly content covering team selection, 2x Boost and scoring opportunities',
     ],
   },
   {
@@ -72,7 +72,7 @@ const faqs = [
   },
   {
     q: 'When does new content go live?',
-    a: 'Race reviews go live on Sunday evenings after each Grand Prix. The Insider Briefing lands every Thursday. Fantasy tools update after each race weekend deadline.',
+    a: 'Race reviews go live on Sunday evenings after each Grand Prix. The Insider Briefing lands every Thursday. Tools to succeed in F1 Fantasy update after each race weekend deadline.',
   },
   {
     q: 'Who creates the content?',
@@ -107,7 +107,7 @@ export default function SubscribePage() {
             The pitwall<br />in your pocket.
           </div>
           <p style={{ color: '#5A6A7A', maxWidth: '520px', margin: '0 auto', lineHeight: 1.7 }}>
-            In-depth F1 analysis, exclusive race coverage, and smarter fantasy tools — all in one place. From Rob Beaumont, official F1 Fantasy columnist for formula1.com.
+            In-depth F1 analysis, exclusive race coverage, and smarter tools to succeed in F1 Fantasy — all in one place. From Rob Beaumont, official F1 Fantasy columnist for formula1.com.
           </p>
         </div>
 

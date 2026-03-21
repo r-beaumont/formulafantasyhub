@@ -90,7 +90,7 @@ Ferrari showed genuine race pace — Leclerc and Hamilton both delivered strong 
 
 Mercedes are the must-have constructor. Their pace advantage is real and the prices haven't fully reflected it yet. Get them in before the price rise hits.
 
-Russell is the standout captain option heading into China. His form, the car's pace, and the circuit characteristics all point to another strong weekend.
+Russell is the standout 2x Boost driver option heading into China. His form, the car's pace, and the circuit characteristics all point to another strong weekend.
 
 **The Bearman factor**
 
@@ -122,7 +122,7 @@ Both Norris and Piastri failed to start due to separate electrical failures. Thi
 
 **Fantasy implications going forward**
 
-The gap between Mercedes and everyone else is now significant. Russell and Antonelli are both must-starts for most managers. The question is which one you captain — and on current form, Antonelli's win puts him slightly ahead.
+The gap between Mercedes and everyone else is now significant. Russell and Antonelli are both must-starts for most managers. The question is which one you pick as your 2x Boost driver — and on current form, Antonelli's win puts him slightly ahead.
 
 **Hamilton's redemption arc**
 

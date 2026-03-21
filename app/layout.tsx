@@ -9,7 +9,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://formulahub.live'),
   title: 'Formula Hub — F1 Fantasy Strategy & Race Center',
-  description: 'Formula 1 data, analysis and strategy — all in one place. Race results, championship standings, and F1 Fantasy tools from Rob Beaumont.',
+  description: 'Formula 1 data, analysis and strategy — all in one place. Race results, championship standings, and tools to succeed in F1 Fantasy from Rob Beaumont.',
   alternates: { canonical: 'https://formulahub.live' },
   openGraph: {
     title: 'Formula Hub',

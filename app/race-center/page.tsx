@@ -22,7 +22,7 @@ export default function RaceCenterPage() {
           {[
             { name: 'Lineup Optimizer', description: 'Automatically build the highest-scoring team within your budget, factoring in form, price, and fixture difficulty.', icon: '⚙️' },
             { name: 'Price Tracker', description: 'Track driver price movements over the season. See who\'s rising, who\'s falling, and get ahead of the changes.', icon: '📈' },
-            { name: 'Points Simulator', description: 'Simulate different race outcomes and see how your fantasy score changes. Plan your captain pick with confidence.', icon: '🎯' },
+            { name: 'Points Simulator', description: 'Simulate different race outcomes and see how your fantasy score changes. Plan your 2x Boost driver pick with confidence.', icon: '🎯' },
             { name: 'Chip Planner', description: 'Map out your chip strategy for the whole season. See the optimal windows for Limitless, 3x Boost and Wildcard.', icon: '🗓️' },
           ].map(tool => (
             <div key={tool.name} style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', padding: '28px' }}>
