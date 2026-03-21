@@ -104,7 +104,7 @@ export default function SubscribePage() {
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
           <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase', marginBottom: '16px' }}>Premium Membership</div>
           <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(3rem,8vw,6rem)', lineHeight: 0.95, marginBottom: '24px' }}>
-            More than<br />fantasy.
+            The pitwall<br />in your pocket.
           </div>
           <p style={{ color: '#5A6A7A', maxWidth: '520px', margin: '0 auto', lineHeight: 1.7 }}>
             In-depth F1 analysis, exclusive race coverage, and smarter fantasy tools — all in one place. From Rob Beaumont, official F1 Fantasy columnist for formula1.com.
