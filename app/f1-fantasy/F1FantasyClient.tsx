@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { DRIVERS, TEAMS } from '@/lib/drivers'
 import { DRIVER_STANDINGS, CONSTRUCTOR_STANDINGS } from '@/lib/standings'
 import { CURRENT_RACE } from '@/lib/races'
+import { DRIVER_STATS_MAP } from '@/lib/seasonStats'
 
 const TEAM_FLAGS: Record<string, string> = Object.fromEntries(
   CONSTRUCTOR_STANDINGS.map(c => [c.name, c.flag])
@@ -69,8 +70,8 @@ export default function F1FantasyClient() {
     team: d.team,
     team_colour: d.teamColor,
     wins: d.wins,
-    podiums: 0,
-    poles: 0,
+    podiums: DRIVER_STATS_MAP[d.name]?.podiums ?? 0,
+    poles:   DRIVER_STATS_MAP[d.name]?.poles   ?? 0,
     total_overtakes: 0,
     total_positions_gained: 0,
     race_count: 2,
@@ -321,8 +322,8 @@ export default function F1FantasyClient() {
                       <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 600, color: d.points > 0 ? '#FFB800' : '#3A4A5A', textAlign: 'center' as const }}>{d.points}</td>
                       <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#00D47E', textAlign: 'center' as const }}>{ppmVal}</td>
                       <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: d.wins > 0 ? '#FFD700' : '#3A4A5A', textAlign: 'center' as const }}>{d.wins}</td>
-                      <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#5A6A7A', textAlign: 'center' as const }}>{liveStats?.podiums ?? '—'}</td>
-                      <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#5A6A7A', textAlign: 'center' as const }}>{liveStats?.poles ?? '—'}</td>
+                      <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#5A6A7A', textAlign: 'center' as const }}>{liveStats?.podiums ?? DRIVER_STATS_MAP[d.name]?.podiums ?? '—'}</td>
+                      <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#5A6A7A', textAlign: 'center' as const }}>{liveStats?.poles ?? DRIVER_STATS_MAP[d.name]?.poles ?? '—'}</td>
                       <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#00A8FF', textAlign: 'center' as const }}>{liveStats?.total_overtakes ?? '—'}</td>
                       <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#00D47E', textAlign: 'center' as const }}>{liveStats?.total_positions_gained ? `+${liveStats.total_positions_gained}` : '—'}</td>
                     </tr>

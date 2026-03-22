@@ -6,6 +6,7 @@ import { DRIVER_STANDINGS, CONSTRUCTOR_STANDINGS } from '@/lib/standings'
 import { DRIVERS } from '@/lib/drivers'
 import { RACE_WEEKENDS } from '@/lib/raceResults'
 import { SEASON_CALENDAR } from '@/lib/races'
+import { SEASON_STATS, DRIVER_STATS_MAP } from '@/lib/seasonStats'
 
 const RACES = 2
 
@@ -34,32 +35,10 @@ const RACE_CODE: Record<string, string> = {
 
 const completedCalRounds = SEASON_CALENDAR.filter(r => r.completed && !r.calledOff)
 
-// Wins / Poles / Podiums from static race data
-const _winsMap: Record<string, { count: number; teamColor: string }> = {}
-const _polesMap: Record<string, { count: number; teamColor: string }> = {}
-const _podiumsMap: Record<string, { count: number; teamColor: string }> = {}
-
-for (const calR of completedCalRounds) {
-  const w = RACE_WEEKENDS[calR.round]
-  if (!w) continue
-  const p1r = w.race?.[0]
-  if (p1r) {
-    _winsMap[p1r.name] = { count: (_winsMap[p1r.name]?.count ?? 0) + 1, teamColor: p1r.team_colour }
-  }
-  const p1q = w.qualifying?.[0]
-  if (p1q) {
-    _polesMap[p1q.name] = { count: (_polesMap[p1q.name]?.count ?? 0) + 1, teamColor: p1q.team_colour }
-  }
-  for (const r of (w.race || []).slice(0, 3)) {
-    _podiumsMap[r.name] = { count: (_podiumsMap[r.name]?.count ?? 0) + 1, teamColor: r.team_colour }
-  }
-}
-const maxWins    = Math.max(...Object.values(_winsMap).map(v => v.count),    0)
-const maxPoles   = Math.max(...Object.values(_polesMap).map(v => v.count),   0)
-const maxPodiums = Math.max(...Object.values(_podiumsMap).map(v => v.count), 0)
-const mostWins    = Object.entries(_winsMap).filter(([,v]) => v.count === maxWins).map(([n,v]) => ({ name: n, ...v }))
-const mostPoles   = Object.entries(_polesMap).filter(([,v]) => v.count === maxPoles).map(([n,v]) => ({ name: n, ...v }))
-const mostPodiums = Object.entries(_podiumsMap).filter(([,v]) => v.count === maxPodiums).map(([n,v]) => ({ name: n, ...v }))
+// Wins / Poles / Podiums — derived from SEASON_STATS (single source of truth)
+const mostWins    = SEASON_STATS.mostWins.map(n    => ({ name: n, count: DRIVER_STATS_MAP[n]?.wins    ?? 0, teamColor: DRIVER_STATS_MAP[n]?.teamColor ?? '#5A6A7A' }))
+const mostPoles   = SEASON_STATS.mostPoles.map(n   => ({ name: n, count: DRIVER_STATS_MAP[n]?.poles   ?? 0, teamColor: DRIVER_STATS_MAP[n]?.teamColor ?? '#5A6A7A' }))
+const mostPodiums = SEASON_STATS.mostPodiums.map(n => ({ name: n, count: DRIVER_STATS_MAP[n]?.podiums ?? 0, teamColor: DRIVER_STATS_MAP[n]?.teamColor ?? '#5A6A7A' }))
 
 // Per-driver per-round points (race + sprint)
 const _driverRoundPts: Record<string, Record<number, number>> = {}
