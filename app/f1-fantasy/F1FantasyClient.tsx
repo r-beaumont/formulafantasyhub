@@ -62,19 +62,26 @@ export default function F1FantasyClient() {
     load()
   }, [])
 
-  // Use standings as fallback if API hasn't returned yet
-  const displayDrivers = stats.length > 0 ? stats : DRIVER_STANDINGS.map(d => ({
+  // Build display drivers: API for overtakes/positions_gained, DRIVER_STATS_MAP for wins/podiums/poles
+  const baseDrivers = stats.length > 0 ? stats : DRIVER_STANDINGS.map(d => ({
     driver_number: d.id,
     name: d.name,
     acronym: d.shortName,
     team: d.team,
     team_colour: d.teamColor,
-    wins: d.wins,
-    podiums: DRIVER_STATS_MAP[d.name]?.podiums ?? 0,
-    poles:   DRIVER_STATS_MAP[d.name]?.poles   ?? 0,
+    wins: 0,
+    podiums: 0,
+    poles: 0,
     total_overtakes: 0,
     total_positions_gained: 0,
     race_count: 2,
+  }))
+  // Always use DRIVER_STATS_MAP as primary for metrics computable from race results
+  const displayDrivers = baseDrivers.map((d: any) => ({
+    ...d,
+    wins:    DRIVER_STATS_MAP[d.name]?.wins    ?? d.wins    ?? 0,
+    podiums: DRIVER_STATS_MAP[d.name]?.podiums ?? d.podiums ?? 0,
+    poles:   DRIVER_STATS_MAP[d.name]?.poles   ?? d.poles   ?? 0,
   }))
 
   const leaders = {
@@ -322,8 +329,8 @@ export default function F1FantasyClient() {
                       <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 600, color: d.points > 0 ? '#FFB800' : '#3A4A5A', textAlign: 'center' as const }}>{d.points}</td>
                       <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#00D47E', textAlign: 'center' as const }}>{ppmVal}</td>
                       <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: d.wins > 0 ? '#FFD700' : '#3A4A5A', textAlign: 'center' as const }}>{d.wins}</td>
-                      <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#5A6A7A', textAlign: 'center' as const }}>{liveStats?.podiums ?? DRIVER_STATS_MAP[d.name]?.podiums ?? '—'}</td>
-                      <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#5A6A7A', textAlign: 'center' as const }}>{liveStats?.poles ?? DRIVER_STATS_MAP[d.name]?.poles ?? '—'}</td>
+                      <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#5A6A7A', textAlign: 'center' as const }}>{DRIVER_STATS_MAP[d.name]?.podiums ?? '—'}</td>
+                      <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#5A6A7A', textAlign: 'center' as const }}>{DRIVER_STATS_MAP[d.name]?.poles ?? '—'}</td>
                       <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#00A8FF', textAlign: 'center' as const }}>{liveStats?.total_overtakes ?? '—'}</td>
                       <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#00D47E', textAlign: 'center' as const }}>{liveStats?.total_positions_gained ? `+${liveStats.total_positions_gained}` : '—'}</td>
                     </tr>

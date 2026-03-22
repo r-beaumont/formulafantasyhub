@@ -10,7 +10,7 @@ import { SEASON_STATS, DRIVER_STATS_MAP } from '@/lib/seasonStats'
 
 const RACES = 2
 
-type SortMode = 'points' | 'wins' | 'podiums' | 'dnf'
+type SortMode = 'points' | 'wins' | 'podiums' | 'poles' | 'dnf'
 type ConSortMode = 'points' | 'wins' | 'podiums' | 'dnf'
 
 function posColor(pos: number) {
@@ -119,17 +119,19 @@ export default function StandingsClient() {
     const liveStat    = liveStats.find(s => s.name === d.name || s.acronym === d.shortName)
     const liveDriver  = liveStandings?.drivers?.find((ld: any) => ld.name === d.name || ld.acronym === d.shortName)
     const points      = liveDriver?.points  ?? d.points
-    const wins        = liveDriver?.wins    ?? d.wins
-    const podiums     = liveStat?.podiums   ?? null
+    const wins        = DRIVER_STATS_MAP[d.name]?.wins    ?? d.wins
+    const podiums     = DRIVER_STATS_MAP[d.name]?.podiums ?? 0
+    const poles       = DRIVER_STATS_MAP[d.name]?.poles   ?? 0
     const price       = driverInfo?.price   ?? 15
     const avg         = points > 0 ? points / RACES : 0
     const ppm         = price > 0 ? points / price : 0
-    return { ...d, points, wins, podiums, price, avg, ppm, staticPos: i + 1 }
+    return { ...d, points, wins, podiums, poles, price, avg, ppm, staticPos: i + 1 }
   })
 
   const sorted = [...drivers].sort((a, b) => {
     if (sortMode === 'wins')    return b.wins - a.wins
-    if (sortMode === 'podiums') return (b.podiums ?? 0) - (a.podiums ?? 0)
+    if (sortMode === 'podiums') return b.podiums - a.podiums
+    if (sortMode === 'poles')   return b.poles - a.poles
     if (sortMode === 'dnf')    return 0
     return b.points - a.points
   })
@@ -324,6 +326,7 @@ export default function StandingsClient() {
                 <th onClick={() => setSortMode('points')}  style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'points'  ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>PTS {sortMode === 'points'  ? '↓' : ''}</th>
                 <th onClick={() => setSortMode('wins')}    style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'wins'    ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>WINS {sortMode === 'wins'    ? '↓' : ''}</th>
                 <th onClick={() => setSortMode('podiums')} style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'podiums' ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>PODS {sortMode === 'podiums' ? '↓' : ''}</th>
+                <th onClick={() => setSortMode('poles')}   style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'poles'   ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>POLES {sortMode === 'poles'   ? '↓' : ''}</th>
                 <th onClick={() => setSortMode('dnf')}     style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'dnf'     ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>DNF/DSQ {sortMode === 'dnf'     ? '↓' : ''}</th>
               </tr>
             </thead>
@@ -345,9 +348,8 @@ export default function StandingsClient() {
                     <td style={tdMono(d.wins > 0 ? '#FFD700' : '#3A4A5A')}>
                       {d.wins > 0 ? <span style={{ fontWeight: 700 }}>{d.wins}</span> : '0'}
                     </td>
-                    <td style={tdMono(d.podiums !== null && d.podiums > 0 ? '#C0C0C0' : '#3A4A5A')}>
-                      {d.podiums !== null ? d.podiums : '—'}
-                    </td>
+                    <td style={tdMono(d.podiums > 0 ? '#C0C0C0' : '#3A4A5A')}>{d.podiums > 0 ? d.podiums : '—'}</td>
+                    <td style={tdMono(d.poles > 0 ? '#E8002D' : '#3A4A5A')}>{d.poles > 0 ? d.poles : '—'}</td>
                     <td style={tdMono('#3A4A5A')}>—</td>
                   </tr>
                 )
