@@ -64,8 +64,9 @@ export default function F1FantasyClient() {
 
   // Always build from DRIVER_STANDINGS so names match DRIVER_STATS_MAP keys exactly.
   // Merge API data only for metrics we cannot compute from race results (overtakes, positions gained).
+  const toProperCase = (s: string) => s.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())
   const displayDrivers: any[] = DRIVER_STANDINGS.map(d => {
-    const api = stats.find((s: any) => s.name === d.name || s.acronym === d.shortName)
+    const api = stats.find((s: any) => toProperCase(s.name || '') === d.name || s.acronym === d.shortName)
     return {
       driver_number: d.id,
       name:          d.name,

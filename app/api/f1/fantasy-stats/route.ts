@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server'
 const BASE = 'https://api.openf1.org/v1'
 
+// OpenF1 returns names like "George RUSSELL" — normalise to "George Russell"
+function toProperCase(name: string): string {
+  return name.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
@@ -23,7 +28,7 @@ export async function GET(request: Request) {
     for (const d of driversData) {
       stats[d.driver_number] = {
         driver_number: d.driver_number,
-        name: d.full_name || `#${d.driver_number}`,
+        name: toProperCase(d.full_name || `#${d.driver_number}`),
         acronym: d.name_acronym || '',
         team: d.team_name || '',
         team_colour: d.team_colour ? `#${d.team_colour}` : '#666',
