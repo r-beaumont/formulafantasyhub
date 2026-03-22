@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server'
 const BASE = 'https://api.openf1.org/v1'
 
+function toProperCase(name: string): string {
+  return name.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
@@ -33,7 +37,7 @@ export async function GET(request: Request) {
           return {
             position: r.position,
             driver_number: r.driver_number,
-            name: driver.full_name || `#${r.driver_number}`,
+            name: toProperCase(driver.full_name || `#${r.driver_number}`),
             acronym: driver.name_acronym || '',
             team: driver.team_name || '',
             team_colour: driver.team_colour ? `#${driver.team_colour}` : '#666666',
@@ -63,7 +67,7 @@ export async function GET(request: Request) {
         return {
           position: pos.position,
           driver_number: pos.driver_number,
-          name: driver.full_name || `#${pos.driver_number}`,
+          name: toProperCase(driver.full_name || `#${pos.driver_number}`),
           acronym: driver.name_acronym || '',
           team: driver.team_name || '',
           team_colour: driver.team_colour ? `#${driver.team_colour}` : '#666666',

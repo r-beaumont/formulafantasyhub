@@ -3,6 +3,10 @@ import { DRIVER_STANDINGS, CONSTRUCTOR_STANDINGS } from '@/lib/standings'
 
 const BASE = 'https://api.openf1.org/v1'
 
+function toProperCase(name: string): string {
+  return name.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())
+}
+
 export async function GET() {
   try {
     // Get latest race session
@@ -37,7 +41,7 @@ export async function GET() {
         return {
           position: d.position_current,
           driver_number: d.driver_number,
-          name: info.full_name || fallback?.name || `#${d.driver_number}`,
+          name: toProperCase(info.full_name || fallback?.name || `#${d.driver_number}`),
           acronym: info.name_acronym || '',
           team: info.team_name || fallback?.team || '',
           team_colour: info.team_colour ? `#${info.team_colour}` : fallback?.teamColor || '#666',

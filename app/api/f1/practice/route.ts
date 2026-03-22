@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server'
 const BASE = 'https://api.openf1.org/v1'
 
+function toProperCase(name: string): string {
+  return name.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())
+}
+
 function formatLapTime(seconds: number): string {
   const mins = Math.floor(seconds / 60)
   const secs = seconds % 60
@@ -55,7 +59,7 @@ export async function GET(request: Request) {
         return {
           position: i + 1,
           driver_number: dn,
-          name: driver.full_name || driver.broadcast_name || `#${dn}`,
+          name: toProperCase(driver.full_name || driver.broadcast_name || `#${dn}`),
           team: driver.team_name || '—',
           team_colour: driver.team_colour ? `#${driver.team_colour}` : '#5A6A7A',
           time: formatLapTime(time),

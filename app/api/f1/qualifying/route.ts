@@ -16,6 +16,10 @@ const TEAM_COLOURS: Record<string, string> = {
   'Cadillac':          '#CC0000',
 }
 
+function toProperCase(name: string): string {
+  return name.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())
+}
+
 function secondsToLapTime(seconds: number): string {
   const m = Math.floor(seconds / 60)
   const s = seconds % 60
@@ -74,7 +78,7 @@ export async function GET(req: NextRequest) {
   const driverMap: Record<number, { name: string; team: string; number: number }> = {}
   for (const d of drivers) {
     driverMap[d.driver_number] = {
-      name: d.full_name || d.broadcast_name || `Driver #${d.driver_number}`,
+      name: toProperCase(d.full_name || d.broadcast_name || `Driver #${d.driver_number}`),
       team: d.team_name || 'Unknown',
       number: d.driver_number,
     }
