@@ -62,27 +62,24 @@ export default function F1FantasyClient() {
     load()
   }, [])
 
-  // Build display drivers: API for overtakes/positions_gained, DRIVER_STATS_MAP for wins/podiums/poles
-  const baseDrivers = stats.length > 0 ? stats : DRIVER_STANDINGS.map(d => ({
-    driver_number: d.id,
-    name: d.name,
-    acronym: d.shortName,
-    team: d.team,
-    team_colour: d.teamColor,
-    wins: 0,
-    podiums: 0,
-    poles: 0,
-    total_overtakes: 0,
-    total_positions_gained: 0,
-    race_count: 2,
-  }))
-  // Always use DRIVER_STATS_MAP as primary for metrics computable from race results
-  const displayDrivers = baseDrivers.map((d: any) => ({
-    ...d,
-    wins:    DRIVER_STATS_MAP[d.name]?.wins    ?? d.wins    ?? 0,
-    podiums: DRIVER_STATS_MAP[d.name]?.podiums ?? d.podiums ?? 0,
-    poles:   DRIVER_STATS_MAP[d.name]?.poles   ?? d.poles   ?? 0,
-  }))
+  // Always build from DRIVER_STANDINGS so names match DRIVER_STATS_MAP keys exactly.
+  // Merge API data only for metrics we cannot compute from race results (overtakes, positions gained).
+  const displayDrivers: any[] = DRIVER_STANDINGS.map(d => {
+    const api = stats.find((s: any) => s.name === d.name || s.acronym === d.shortName)
+    return {
+      driver_number: d.id,
+      name:          d.name,
+      acronym:       d.shortName,
+      team:          d.team,
+      team_colour:   d.teamColor,
+      wins:    DRIVER_STATS_MAP[d.name]?.wins    ?? 0,
+      podiums: DRIVER_STATS_MAP[d.name]?.podiums ?? 0,
+      poles:   DRIVER_STATS_MAP[d.name]?.poles   ?? 0,
+      total_overtakes:        api?.total_overtakes        ?? 0,
+      total_positions_gained: api?.total_positions_gained ?? 0,
+      race_count: 2,
+    }
+  })
 
   const leaders = {
     wins: [...displayDrivers].sort((a, b) => b.wins - a.wins)[0],
