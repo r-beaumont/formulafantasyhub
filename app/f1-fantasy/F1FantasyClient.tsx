@@ -26,10 +26,6 @@ function Badge({ type, label }: { type: string; label: string }) {
   return <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' as const, background: st.bg, color: st.color }}>{label}</span>
 }
 
-function Loader() {
-  return <div style={{ padding: '32px', textAlign: 'center' as const, color: '#3A4A5A', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px' }}>Loading...</div>
-}
-
 function StatCard({ label, value, icon, color, sub }: { label: string; value: string; icon: string; color: string; sub?: string }) {
   return (
     <div style={{ background: '#141B22', borderRadius: '10px', padding: '16px' }}>
@@ -41,25 +37,15 @@ function StatCard({ label, value, icon, color, sub }: { label: string; value: st
   )
 }
 
-type LeaderCategory = 'wins' | 'podiums' | 'poles' | 'overtakes' | 'positions_gained'
-
-
 export default function F1FantasyClient() {
   const [stats, setStats] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<'overview' | 'drivers' | 'constructors' | 'how-to-play' | 'guide' | 'ai-predictor'>('overview')
-  const [leaderCategory, setLeaderCategory] = useState<LeaderCategory>('wins')
 
   useEffect(() => {
-    async function load() {
-      try {
-        const res = await fetch('/api/f1/fantasy-stats?year=2026')
-        const data = await res.json()
-        setStats(data.drivers || [])
-      } catch (e) { console.error(e) }
-      finally { setLoading(false) }
-    }
-    load()
+    fetch('/api/f1/fantasy-stats?year=2026')
+      .then(r => r.json())
+      .then(d => setStats(d.drivers || []))
+      .catch(() => {})
   }, [])
 
   // Always build from DRIVER_STANDINGS so names match DRIVER_STATS_MAP keys exactly.
@@ -89,22 +75,6 @@ export default function F1FantasyClient() {
     overtakes: [...displayDrivers].sort((a, b) => b.total_overtakes - a.total_overtakes)[0],
     positions_gained: [...displayDrivers].sort((a, b) => b.total_positions_gained - a.total_positions_gained)[0],
   }
-
-  const leaderTabs: { id: LeaderCategory; label: string; icon: string }[] = [
-    { id: 'wins', label: 'Wins', icon: '🏆' },
-    { id: 'podiums', label: 'Podiums', icon: '🥇' },
-    { id: 'poles', label: 'Poles', icon: '⚡' },
-    { id: 'overtakes', label: 'Overtakes', icon: '🔀' },
-    { id: 'positions_gained', label: 'Pos. Gained', icon: '📈' },
-  ]
-
-  const sortedByCategory = [...displayDrivers].sort((a, b) => {
-    const map: Record<LeaderCategory, string> = {
-      wins: 'wins', podiums: 'podiums', poles: 'poles',
-      overtakes: 'total_overtakes', positions_gained: 'total_positions_gained'
-    }
-    return b[map[leaderCategory]] - a[map[leaderCategory]]
-  })
 
   const tabs = [
     { id: 'overview',      label: 'Overview'                             },
@@ -242,51 +212,6 @@ export default function F1FantasyClient() {
             </div>
           </div>
 
-          {/* Performance leaderboard */}
-          <div style={card}>
-            <div style={cardHeader}>
-              <span style={cardTitle}>Performance Leaderboard</span>
-              <Badge type="new" label="Live Data" />
-            </div>
-            <div style={{ display: 'flex', gap: '6px', padding: '12px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', flexWrap: 'wrap' as const }}>
-              {leaderTabs.map(t => (
-                <button key={t.id} onClick={() => setLeaderCategory(t.id)} style={{
-                  background: leaderCategory === t.id ? '#E8002D' : '#141B22',
-                  color: leaderCategory === t.id ? 'white' : '#5A6A7A',
-                  border: '1px solid', borderColor: leaderCategory === t.id ? '#E8002D' : 'rgba(255,255,255,0.07)',
-                  padding: '5px 14px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: 600,
-                }}>{t.icon} {t.label}</button>
-              ))}
-            </div>
-            {loading ? <Loader /> : (
-              <div style={{ padding: '8px 20px' }}>
-                {sortedByCategory.slice(0, 10).map((d: any, i: number) => {
-                  const valMap: Record<LeaderCategory, any> = {
-                    wins: d.wins, podiums: d.podiums, poles: d.poles,
-                    overtakes: d.total_overtakes, positions_gained: d.total_positions_gained,
-                  }
-                  const val = valMap[leaderCategory]
-                  const maxVal = valMap[leaderCategory] || 1
-                  const maxAll = sortedByCategory[0]?.[leaderCategory === 'overtakes' ? 'total_overtakes' : leaderCategory === 'positions_gained' ? 'total_positions_gained' : leaderCategory] || 1
-                  return (
-                    <div key={d.driver_number} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: i < 3 ? ['#FFD700','#C0C0C0','#CD7F32'][i] : '#3A4A5A', width: '20px' }}>{i + 1}</span>
-                      <div style={{ width: '3px', height: '24px', borderRadius: '2px', background: d.team_colour, flexShrink: 0 }} />
-                      {(() => { const standing = DRIVER_STANDINGS.find(s => s.name === d.name || s.shortName === d.acronym); return standing ? <span style={{ fontSize: '14px', fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif' }}>{standing.flag}</span> : null })()}
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: '13px', fontWeight: 500 }}>{d.name}</div>
-                        <div style={{ fontSize: '11px', color: '#5A6A7A' }}>{d.team}</div>
-                      </div>
-                      <div style={{ width: '120px', height: '4px', background: '#1C2630', borderRadius: '2px', overflow: 'hidden' }}>
-                        <div style={{ width: `${(val / maxAll) * 100}%`, height: '100%', background: '#E8002D', opacity: 0.8 }} />
-                      </div>
-                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '15px', fontWeight: 600, color: '#F0F4F8', width: '28px', textAlign: 'right' as const }}>{val}</span>
-                    </div>
-                  )
-                })}
-              </div>
-            )}
-          </div>
         </>
       )}
 
