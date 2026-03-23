@@ -30,11 +30,11 @@ export default function Home() {
   const latestArticles = articles.slice(0, 3)
 
   const lastRaceResults = [
-    { pos: 1, posC: '#FFD700', bar: '#27F4D2', driver: 'K. Antonelli', flag: '🇮🇹', team: 'Mercedes', gap: 'Winner' },
-    { pos: 2, posC: '#C0C0C0', bar: '#27F4D2', driver: 'G. Russell',   flag: '🇬🇧', team: 'Mercedes', gap: '+5.5s' },
-    { pos: 3, posC: '#CD7F32', bar: '#E8002D', driver: 'L. Hamilton',  flag: '🇬🇧', team: 'Ferrari',  gap: '+25.3s' },
-    { pos: 4, posC: '#5A6A7A', bar: '#E8002D', driver: 'C. Leclerc',   flag: '🇲🇨', team: 'Ferrari',  gap: '+28.9s' },
-    { pos: 5, posC: '#5A6A7A', bar: '#B6BABD', driver: 'O. Bearman',   flag: '🇬🇧', team: 'Haas',     gap: '+57.3s' },
+    { pos: 1, posC: '#FFD700', bar: '#27F4D2', driver: 'Kimi Antonelli',   flag: '🇮🇹', team: 'Mercedes', gap: 'Winner' },
+    { pos: 2, posC: '#C0C0C0', bar: '#27F4D2', driver: 'George Russell',  flag: '🇬🇧', team: 'Mercedes', gap: '+5.5s' },
+    { pos: 3, posC: '#CD7F32', bar: '#E8002D', driver: 'Lewis Hamilton',  flag: '🇬🇧', team: 'Ferrari',  gap: '+25.3s' },
+    { pos: 4, posC: '#5A6A7A', bar: '#E8002D', driver: 'Charles Leclerc', flag: '🇲🇨', team: 'Ferrari',  gap: '+28.9s' },
+    { pos: 5, posC: '#5A6A7A', bar: '#B6BABD', driver: 'Oliver Bearman',  flag: '🇬🇧', team: 'Haas',     gap: '+57.3s' },
   ]
 
   return (

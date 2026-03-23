@@ -16,10 +16,10 @@ export interface Article {
 
 export const articles: Article[] = [
   {
-    slug: 'japan-gp-race-week-preview-2026',
-    title: 'Japanese GP Race Week Preview: Can anyone stop Mercedes in Suzuka?',
-    excerpt: 'Suzuka is a true test of car performance. With Mercedes dominant in Australia and China, this race week preview covers the key fantasy decisions heading into Round 3.',
-    readTime: 5,
+    slug: 'race-week-preview-japanese-gp-2026',
+    title: 'Race Week Preview: Japanese Grand Prix',
+    excerpt: 'Mercedes lead the championship after back-to-back one-twos. Here is your F1 Fantasy watchlist for Suzuka.',
+    readTime: 4,
     date: 'Mar 25, 2026',
     tag: 'Race Preview',
     category: 'Race Preview',
@@ -28,25 +28,47 @@ export const articles: Article[] = [
     thumbnail: 'linear-gradient(135deg, #001a0a 0%, #003d1a 50%, #001a0a 100%)',
     thumbnailBg: 'rgba(0,212,126,0.2)',
     thumbnailIcon: '🇯🇵',
-    content: `Suzuka returns to the calendar after its traditional slot and all signs point to another Mercedes-dominated weekend. But circuit characteristics here can throw up surprises — and that's where the fantasy opportunities lie.
+    content: `**THE SETUP**
 
-The tight, technical nature of Suzuka's first sector rewards aerodynamic efficiency. Ferrari have shown strong sector 1 pace in practice data, and with Hamilton finally settled at Maranello, don't be surprised if the red cars are closer this weekend.
+Two races in, Mercedes are running away with this. George Russell leads the championship, Kimi Antonelli is the reigning race winner, and Ferrari are the only team consistently sharing the podium. For F1 Fantasy managers, the message from the first two rounds is clear — the Silver Arrows are the spine of any competitive team right now. Japan is where we find out if that holds on one of the most technically demanding circuits in the world.
 
-**The captain call for Japan**
+**THE CIRCUIT**
 
-Russell and Antonelli are the obvious choices, but their combined ownership is north of 70%. If you want to differentiate, look at the Ferrari pairing. Hamilton has three podiums at Suzuka and knows this circuit as well as anyone.
+Suzuka is a flowing, high-downforce layout where overtaking is notoriously difficult. Tyre management through the Esses and Sector 2 is critical, with one-stop strategies common. Safety car deployments are reasonably frequent, particularly in wet conditions, which could shake up scoring unpredictably.
 
-**Value picks to consider**
+**THE WEATHER**
 
-Ollie Bearman continues to outperform expectations. Haas have been quick through the fast corners this year and Suzuka plays to their strengths. At his price point, he remains the best differential on the grid.
+Rain is forecast across all three days with temperatures expected around 15-17°C. Wet Suzuka is a different race entirely — it introduces safety cars, variable strategies and the kind of chaos that can either spike or sink your week. If qualifying runs in the wet, grid positions become unpredictable and that changes the positions gained calculation for Sunday entirely.
 
-**Constructor strategy**
+**THE WEEKLY WATCHLIST**
 
-Mercedes are the must-have constructor. Anyone not holding them heading into Japan is already at a points disadvantage. The only question is whether you should double up on Ferrari or diversify into Williams, who have shown surprising pace in the middle sector.
+🟢 BUY
 
-**Chip deployment**
+Oliver Bearman — $8.6m
+Best PPM in the game after two rounds. Haas have been genuinely competitive in 2026's new regulations and Oliver Bearman is driving with real confidence. At his price he gives you flexibility to load up on premium picks elsewhere — he is the standout budget buy of the season so far.
 
-If you haven't used your Wildcard yet, Japan is not the race for it. Save the big chips for Monaco or the British GP, where track position is everything and qualifying performance gets magnified.`,
+Kimi Antonelli — $23.8m
+Still underpriced relative to what he's delivering. Race winner in China, two podiums in two rounds, and he's your strongest 2x Boost candidate not named George Russell. If you don't have him, get him before the price ceiling catches up with his points total.
+
+🟡 HOLD
+
+George Russell — $28.0m
+Pole and win in Australia, sprint win and P2 in China. You already know the answer. Hold him through Suzuka — Max Verstappen's four-race winning streak here came in a different era with a very different car.
+
+Arvid Lindblad — $7.4m
+Scored on debut in Australia and the DNS in China was a mechanical issue, not a performance problem. Racing Bulls should suit Suzuka better than Shanghai's high-speed straights. Hold and see what Friday brings.
+
+🔴 SELL
+
+Max Verstappen — $26.5m
+Four straight wins at Suzuka sounds compelling — it isn't, not in this car. He called the Red Bull undriveable in China and nothing suggests a rapid fix before Japan. His price tag is impossible to justify against the points he's realistically delivering right now.
+
+Gabriel Bortoleto — $7.2m
+DNS in China wiped out the momentum he built with a points finish in Australia. Audi are still finding their feet with the new regulations and Gabriel Bortoleto's price doesn't yet reflect the uncertainty around his weekend-to-weekend reliability.
+
+**THE CHIPS**
+
+Suzuka's unpredictability in wet conditions makes Limitless a risk this week — you want clean, predictable scoring to maximise that chip. However, if weather conditions improve, there could be an opportunity to use it here given the limited overtaking opportunities at Suzuka. If rain is expected during the Grand Prix, consider deploying No Negative — Suzuka is a technically challenging circuit across three demanding sessions and wet conditions historically produce higher than expected retirements, making this one of the strongest use cases for that chip.`,
   },
   {
     slug: 'chinese-gp-fantasy-preview-2026',

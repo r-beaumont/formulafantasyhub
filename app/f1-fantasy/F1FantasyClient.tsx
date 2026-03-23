@@ -121,7 +121,7 @@ function HowToPlayTab() {
           {[
             { label: '5 Drivers', icon: '👤', color: '#00A8FF' },
             { label: '2 Constructors', icon: '🏎️', color: '#FFB800' },
-            { label: '1 Turbo Driver (3×)', icon: '🚀', color: '#E8002D' },
+            { label: '1 2x Boost Driver', icon: '🚀', color: '#E8002D' },
             { label: '$100M Budget', icon: '💰', color: '#00D47E' },
           ].map(item => (
             <div key={item.label} style={{ background: '#141B22', borderRadius: '8px', padding: '10px 16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -207,88 +207,46 @@ function HowToPlayTab() {
 function ChipOverviewTab() {
   const chips = [
     {
-      name: '3x Boost',
-      icon: '🚀',
-      color: '#E8002D',
-      border: 'rgba(232,0,45,0.3)',
-      bg: 'rgba(232,0,45,0.06)',
-      tagline: 'Triple your captain\'s points',
-      desc: 'Your selected Turbo Driver scores 3× points instead of 2× for one race weekend. Use this on a driver you expect to dominate — pole, win, fastest lap and Driver of the Day is the dream scenario.',
-      tips: [
-        'Best used at low-overtake circuits where the fastest driver runs away',
-        'Target weekends where one driver has clear pace advantage',
-        'Avoid sprint weekends — you only get the 3× boost for the main race',
-      ],
+      accent: '#00C851',
+      name: '3X BOOST',
+      what: 'Assign to two drivers in your team. One scores 3x points, one scores 2x points for that race weekend.',
+      who: 'Two premium drivers you expect to perform — e.g. George Russell and Kimi Antonelli, or whoever is in form that week.',
+      when: 'Typically used on sprint weekends for a third scoring session.',
     },
     {
-      name: 'Limitless',
-      icon: '♾️',
-      color: '#00A8FF',
-      border: 'rgba(0,168,255,0.3)',
-      bg: 'rgba(0,168,255,0.06)',
-      tagline: 'No budget, no restrictions',
-      desc: 'For one race weekend, you can select any 5 drivers and 2 constructors with no budget cap. Build the ultimate squad without any compromise. All changes revert after the round.',
-      tips: [
-        'Sprint weekends give you double the scoring sessions — highest ceiling',
-        'Stack the top teams: all Mercedes + Ferrari assets simultaneously',
-        'Use when you are behind in a mini-league and need maximum points',
-      ],
+      accent: '#00A8FF',
+      name: 'LIMITLESS',
+      what: 'Unlimited transfers and unlimited budget for one week only. Price changes apply to your pre-Limitless team after activation, but pre-Limitless transfers do not count.',
+      who: 'Build the best possible team at that point of the season with no budget restrictions.',
+      when: 'On a weekend early in the season where at least six assets are expected to increase in value and where there is expected to be a significant points delta between Limitless and non-Limitless teams.',
     },
     {
-      name: 'No Negative',
-      icon: '🛡️',
-      color: '#00D47E',
-      border: 'rgba(0,212,126,0.3)',
-      bg: 'rgba(0,212,126,0.06)',
-      tagline: 'Floor your score at zero',
-      desc: 'No driver or constructor in your squad can score negative points for that race weekend. DNFs, DSQs and poor qualifying performances cannot hurt you. Your worst-case outcome is zero.',
-      tips: [
-        'Ideal for chaotic circuits (Baku, Monaco, Singapore)',
-        'Use when you hold a risky differential pick that might DNF',
-        'Strong at early-season weekends before reliability is established',
-      ],
+      accent: '#9B59B6',
+      name: 'NO NEGATIVE',
+      what: 'All negative scoring categories are reset to zero for one race weekend. Any driver with a score below zero — DNF, DSQ, positions lost — scores zero instead.',
+      who: 'All drivers and constructors in your team benefit.',
+      when: 'Sprint weekends, wet races, high DNF risk tracks.',
     },
     {
-      name: 'Wildcard',
-      icon: '🃏',
-      color: '#FFB800',
-      border: 'rgba(255,184,0,0.3)',
-      bg: 'rgba(255,184,0,0.06)',
-      tagline: 'Free transfers for one round',
-      desc: 'Make unlimited transfers for one race weekend with no budget penalty and no points deductions. Your squad resets to its pre-Wildcard state the following round.',
-      tips: [
-        'Use after a major grid shake-up (new team, mid-season driver change)',
-        'Stack with a Limitless when you are wildly off the optimal squad',
-        'Best deployed before a price rise wave to lock in value',
-      ],
+      accent: '#E8002D',
+      name: 'WILDCARD',
+      what: 'Unlimited transfers up to your current team value. All drivers and constructors in your team can be changed.',
+      who: 'Your full squad — use it to overhaul your lineup completely.',
+      when: "When you've fallen behind the template, need to make multiple changes, or when a major shift in the competitive order demands a full reset.",
     },
     {
-      name: 'Autopilot',
-      icon: '✈️',
-      color: '#C0C0C0',
-      border: 'rgba(192,192,192,0.3)',
-      bg: 'rgba(192,192,192,0.06)',
-      tagline: 'Automatic optimal selection',
-      desc: 'The game selects the highest-scoring squad for you for that round — with the benefit of hindsight. Guarantees your maximum possible score for one race weekend.',
-      tips: [
-        'Never use proactively — always save for emergencies',
-        'Activate if you cannot set your team before a deadline',
-        'Do not use on sprint weekends — you only score the main race',
-      ],
+      accent: '#00E5CC',
+      name: 'AUTOPILOT',
+      what: 'Your 2x Boost is automatically reassigned to the highest-scoring driver in your team for that race weekend.',
+      who: 'The drivers in your team — whoever performs best gets the multiplier automatically.',
+      when: 'Wet races, high DNF risk tracks, sprint weekends, situations where predicting your 2x Boost driver is difficult.',
     },
     {
-      name: 'Final Fix',
-      icon: '🔧',
-      color: '#FF69B4',
-      border: 'rgba(255,105,180,0.3)',
-      bg: 'rgba(255,105,180,0.06)',
-      tagline: 'One free transfer after qualifying',
-      desc: 'Make one free transfer after qualifying has concluded, before the race starts. Perfect for replacing a DNQ driver or reacting to a grid penalty.',
-      tips: [
-        'Hold this chip all season — it pays off at least once every year',
-        'Use when your Turbo Driver fails to qualify or takes a grid penalty',
-        'Can be combined with other chips for maximum flexibility',
-      ],
+      accent: '#FFD700',
+      name: 'FINAL FIX',
+      what: 'One free driver change between the deadline and the race start. Any driver within budget. Can be applied to a driver carrying the 2x Boost. Constructors cannot be changed with this chip.',
+      who: 'Any driver in your squad.',
+      when: 'Pre-race withdrawals, back-of-the-grid penalties, a driver qualifying unexpectedly out of position. Very hard to plan for — this chip is reactive by nature.',
     },
   ]
 
@@ -296,29 +254,32 @@ function ChipOverviewTab() {
     <div>
       <div style={{ ...card, padding: '20px 24px', marginBottom: '24px' }}>
         <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, margin: 0 }}>
-          Each manager receives one of each chip per season. Chips cannot be used simultaneously (except Final Fix, which can stack with other chips). Use them wisely — a well-timed chip is worth 50+ points in a mini-league.
+          Each manager receives one of each chip per season. Chips cannot be used simultaneously (except Final Fix, which can stack with other chips). Once activated, a chip cannot be reversed — think strategically before you use it.
         </p>
       </div>
       <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '16px' }}>
         {chips.map(chip => (
-          <div key={chip.name} style={{ background: chip.bg, border: `1px solid ${chip.border}`, borderRadius: '14px', padding: '24px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
-              <div style={{ fontSize: '32px' }}>{chip.icon}</div>
-              <div>
-                <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '22px', color: chip.color }}>{chip.name}</div>
-                <div style={{ fontSize: '12px', color: '#5A6A7A', fontStyle: 'italic' }}>{chip.tagline}</div>
+          <div key={chip.name} style={{
+            background: '#0E1318',
+            border: '1px solid rgba(255,255,255,0.07)',
+            borderLeft: `4px solid ${chip.accent}`,
+            borderRadius: '14px',
+            padding: '24px',
+            display: 'flex',
+            flexDirection: 'column' as const,
+            gap: '16px',
+          }}>
+            <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '26px', color: chip.accent, letterSpacing: '1px' }}>{chip.name}</div>
+            {[
+              { label: 'WHAT', text: chip.what },
+              { label: 'WHO',  text: chip.who  },
+              { label: 'WHEN', text: chip.when },
+            ].map(row => (
+              <div key={row.label} style={{ display: 'flex', gap: '14px' }}>
+                <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', color: chip.accent, width: '40px', flexShrink: 0, paddingTop: '2px' }}>{row.label}</span>
+                <p style={{ fontSize: '13px', color: '#8A9AB0', lineHeight: 1.65, margin: 0, fontFamily: 'DM Sans, sans-serif' }}>{row.text}</p>
               </div>
-            </div>
-            <p style={{ fontSize: '13px', color: '#8A9AB0', lineHeight: 1.65, marginBottom: '16px' }}>{chip.desc}</p>
-            <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: '12px' }}>
-              <div style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '1px', color: chip.color, marginBottom: '8px' }}>Strategy Tips</div>
-              {chip.tips.map((tip, i) => (
-                <div key={i} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start', marginBottom: '6px' }}>
-                  <span style={{ color: chip.color, fontSize: '12px', flexShrink: 0, marginTop: '1px' }}>›</span>
-                  <span style={{ fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>{tip}</span>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         ))}
       </div>
