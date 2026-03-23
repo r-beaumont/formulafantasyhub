@@ -35,7 +35,7 @@ export default function CalendarClient() {
           const isNextRace = race.round === nextRaceRound
           const isNew = race.name === 'Madrid'
           const bgColor = isCalledOff ? 'rgba(255,255,255,0.02)' : race.completed ? '#0E1318' : '#141B22'
-          const nameColor = isCalledOff ? '#3A4A5A' : race.completed ? '#3A4A5A' : '#F0F4F8'
+          const nameColor = isCalledOff ? '#3A4A5A' : '#F0F4F8'
           return (
             <div
               key={race.round}
@@ -47,18 +47,17 @@ export default function CalendarClient() {
                 position: 'relative' as const,
                 background: bgColor,
                 border: isCalledOff ? '1px solid rgba(255,255,255,0.04)'
-                  : isNextRace ? '1px solid rgba(232,0,45,0.3)'
                   : race.completed ? '1px solid rgba(255,255,255,0.04)'
-                  : '1px solid rgba(255,255,255,0.08)',
-                borderLeft: isNextRace ? '3px solid #E8002D' : undefined,
+                  : '1px solid rgba(232,0,45,0.2)',
+                borderLeft: (!isCalledOff && !race.completed) ? '3px solid #E8002D' : undefined,
                 borderRadius: '10px', padding: '14px',
                 cursor: isCalledOff ? 'default' : 'pointer',
-                opacity: isCalledOff ? 0.4 : 1,
+                opacity: isCalledOff ? 0.4 : race.completed ? 0.5 : 1,
                 transition: 'border-color 0.2s',
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#3A4A5A' }}>R{race.round}</span>
+                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 700, color: '#5A6A7A' }}>R{race.round}</span>
                 <div style={{ display: 'flex', gap: '4px' }}>
                   {isNew && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(0,168,255,0.15)', color: '#00A8FF' }}>NEW</span>}
                   {isNextRace && <span style={{ fontSize: '8px', fontWeight: 700, padding: '1px 5px', borderRadius: '3px', background: 'rgba(232,0,45,0.15)', color: '#E8002D' }}>NEXT RACE</span>}
@@ -68,9 +67,9 @@ export default function CalendarClient() {
                 </div>
               </div>
               <div style={{ fontSize: '20px', marginBottom: '6px' }}>{race.flag}</div>
-              <div style={{ fontSize: '12px', fontWeight: 600, color: nameColor, marginBottom: '2px' }}>{race.name}</div>
+              <div style={{ fontSize: '16px', fontWeight: 700, color: nameColor, marginBottom: '2px' }}>{race.name}</div>
               <div style={{ fontSize: '11px', color: '#3A4A5A', marginBottom: '2px' }}>{race.circuit}</div>
-              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#3A4A5A' }}>{(race as any).dateRange || race.date}</div>
+              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 600, color: '#5A6A7A' }}>{(race as any).dateRange || race.date}</div>
               {!isCalledOff && <div style={{ marginTop: '8px', fontSize: '10px', color: race.completed ? '#5A6A7A' : '#E8002D', fontWeight: 600 }}>
                 {race.completed ? 'View results →' : 'View schedule →'}
               </div>}

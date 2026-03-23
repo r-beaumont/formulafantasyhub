@@ -11,7 +11,7 @@ const links = [
   { href: '/calendar',   label: 'Calendar' },
   { href: '/f1-fantasy', label: 'F1 Fantasy' },
   { href: '/standings',  label: 'Standings' },
-  { href: '/articles',   label: 'Articles' },
+  { href: '/news',       label: 'News' },
   { href: '/videos',     label: 'Videos' },
 ]
 

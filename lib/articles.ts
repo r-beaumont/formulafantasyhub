@@ -6,6 +6,7 @@ export interface Article {
   date: string
   tag: string
   category: 'Race Preview' | 'Race Review' | 'Strategy' | 'Price Changes' | 'Data Analysis' | 'News'
+  articleType: 'F1 Fantasy' | 'F1'
   premium: boolean
   thumbnail: string
   thumbnailBg: string
@@ -15,6 +16,39 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'japan-gp-race-week-preview-2026',
+    title: 'Japanese GP Race Week Preview: Can anyone stop Mercedes in Suzuka?',
+    excerpt: 'Suzuka is a true test of car performance. With Mercedes dominant in Australia and China, this race week preview covers the key fantasy decisions heading into Round 3.',
+    readTime: 5,
+    date: 'Mar 25, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #001a0a 0%, #003d1a 50%, #001a0a 100%)',
+    thumbnailBg: 'rgba(0,212,126,0.2)',
+    thumbnailIcon: '🇯🇵',
+    content: `Suzuka returns to the calendar after its traditional slot and all signs point to another Mercedes-dominated weekend. But circuit characteristics here can throw up surprises — and that's where the fantasy opportunities lie.
+
+The tight, technical nature of Suzuka's first sector rewards aerodynamic efficiency. Ferrari have shown strong sector 1 pace in practice data, and with Hamilton finally settled at Maranello, don't be surprised if the red cars are closer this weekend.
+
+**The captain call for Japan**
+
+Russell and Antonelli are the obvious choices, but their combined ownership is north of 70%. If you want to differentiate, look at the Ferrari pairing. Hamilton has three podiums at Suzuka and knows this circuit as well as anyone.
+
+**Value picks to consider**
+
+Ollie Bearman continues to outperform expectations. Haas have been quick through the fast corners this year and Suzuka plays to their strengths. At his price point, he remains the best differential on the grid.
+
+**Constructor strategy**
+
+Mercedes are the must-have constructor. Anyone not holding them heading into Japan is already at a points disadvantage. The only question is whether you should double up on Ferrari or diversify into Williams, who have shown surprising pace in the middle sector.
+
+**Chip deployment**
+
+If you haven't used your Wildcard yet, Japan is not the race for it. Save the big chips for Monaco or the British GP, where track position is everything and qualifying performance gets magnified.`,
+  },
+  {
     slug: 'chinese-gp-fantasy-preview-2026',
     title: 'Chinese GP: The differential picks that could win your mini-league',
     excerpt: 'Shanghai brings a Sprint weekend and a unique two-race planning challenge. Here\'s how to structure your squad for maximum points.',
@@ -22,6 +56,7 @@ export const articles: Article[] = [
     date: 'Mar 13, 2026',
     tag: 'Race Preview',
     category: 'Race Preview',
+    articleType: 'F1 Fantasy',
     premium: false,
     thumbnail: 'linear-gradient(135deg, #1a0000 0%, #3d0000 50%, #1a0a00 100%)',
     thumbnailBg: 'rgba(232,0,45,0.2)',
@@ -50,6 +85,7 @@ McLaren are the obvious pick but their ownership is sky-high. Mercedes are price
     date: 'Mar 10, 2026',
     tag: 'Strategy',
     category: 'Strategy',
+    articleType: 'F1 Fantasy',
     premium: true,
     thumbnail: 'linear-gradient(135deg, #000a1a 0%, #001a3d 50%, #000a1a 100%)',
     thumbnailBg: 'rgba(0,168,255,0.2)',
@@ -64,6 +100,7 @@ McLaren are the obvious pick but their ownership is sky-high. Mercedes are price
     date: 'Mar 12, 2026',
     tag: 'Price Changes',
     category: 'Price Changes',
+    articleType: 'F1 Fantasy',
     premium: true,
     thumbnail: 'linear-gradient(135deg, #001a00 0%, #003d00 50%, #001a00 100%)',
     thumbnailBg: 'rgba(0,212,126,0.2)',
@@ -78,6 +115,7 @@ McLaren are the obvious pick but their ownership is sky-high. Mercedes are price
     date: 'Mar 9, 2026',
     tag: 'Race Review',
     category: 'Race Review',
+    articleType: 'F1 Fantasy',
     premium: false,
     thumbnail: 'linear-gradient(135deg, #0a0a1a 0%, #1a1a3d 50%, #0a0a1a 100%)',
     thumbnailBg: 'rgba(255,184,0,0.2)',
@@ -108,6 +146,7 @@ Piastri's pre-race incident was a red flag. McLaren clearly have a fast car, but
     date: 'Mar 16, 2026',
     tag: 'Race Review',
     category: 'Race Review',
+    articleType: 'F1 Fantasy',
     premium: false,
     thumbnail: 'linear-gradient(135deg, #1a0a00 0%, #3d1a00 50%, #1a0000 100%)',
     thumbnailBg: 'rgba(232,0,45,0.25)',

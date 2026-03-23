@@ -23,6 +23,7 @@ export interface DriverStats {
   poles: number
   sprintWins: number
   sprintPodiums: number
+  dnfs: number
 }
 
 export interface ConstructorStats {
@@ -50,7 +51,7 @@ export function calculateSeasonStats(): SeasonStats {
   const cMap: Record<string, ConstructorStats> = {}
 
   function ensureDriver(name: string, team: string, teamColor: string) {
-    if (!dMap[name]) dMap[name] = { name, team, teamColor, points: 0, wins: 0, podiums: 0, poles: 0, sprintWins: 0, sprintPodiums: 0 }
+    if (!dMap[name]) dMap[name] = { name, team, teamColor, points: 0, wins: 0, podiums: 0, poles: 0, sprintWins: 0, sprintPodiums: 0, dnfs: 0 }
   }
   function ensureCon(team: string) {
     if (!cMap[team]) cMap[team] = { team, points: 0, wins: 0, podiums: 0 }

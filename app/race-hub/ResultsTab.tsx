@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { RACE_WEEKENDS, type DriverResult, type QualifyingResult, type QualifyingSessionKeys } from '@/lib/raceResults'
 
 async function fetchLiveQualifying(keys: QualifyingSessionKeys, qualifier: string): Promise<QualifyingResult[] | null> {
@@ -24,6 +24,47 @@ const cardTitle = { fontSize: '12px', fontWeight: 600, textTransform: 'uppercase
 
 const posColors: Record<number, string> = { 1: '#FFD700', 2: '#C0C0C0', 3: '#CD7F32' }
 
+function shortenTeam(team: string): string {
+  return team
+    .replace('Red Bull Racing', 'Red Bull')
+    .replace('Haas F1 Team', 'Haas')
+}
+
+function ScrollTable({ children, minW }: { children: React.ReactNode; minW: number }) {
+  const topRef = useRef<HTMLDivElement>(null)
+  const botRef = useRef<HTMLDivElement>(null)
+  const syncingRef = useRef(false)
+
+  const onTopScroll = useCallback(() => {
+    if (syncingRef.current) return
+    syncingRef.current = true
+    if (botRef.current && topRef.current) botRef.current.scrollLeft = topRef.current.scrollLeft
+    syncingRef.current = false
+  }, [])
+
+  const onBotScroll = useCallback(() => {
+    if (syncingRef.current) return
+    syncingRef.current = true
+    if (topRef.current && botRef.current) topRef.current.scrollLeft = botRef.current.scrollLeft
+    syncingRef.current = false
+  }, [])
+
+  return (
+    <div>
+      {/* Top scrollbar mirror */}
+      <div ref={topRef} onScroll={onTopScroll} style={{ overflowX: 'auto', overflowY: 'hidden', height: '12px' }}>
+        <div style={{ width: `${minW}px`, height: '1px' }} />
+      </div>
+      {/* Actual content */}
+      <div ref={botRef} onScroll={onBotScroll} style={{ overflowX: 'auto', minWidth: 0 }}>
+        <div style={{ minWidth: `${minW}px` }}>
+          {children}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function timeCell(t: string | null): { text: string; color: string } {
   if (!t) return { text: '—', color: '#3A4A5A' }
   if (t === 'NO TIME SET') return { text: 'NO TIME SET', color: '#3A4A5A' }
@@ -32,32 +73,30 @@ function timeCell(t: string | null): { text: string; color: string } {
 
 function PracticeTable({ data }: { data: DriverResult[] }) {
   return (
-    <div style={{ overflowX: 'auto', minWidth: 0 }}>
-      <div style={{ minWidth: '480px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '32px 4px 1fr 1fr 110px 110px', gap: '0 12px', padding: '8px 20px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-          <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const }}>Pos</span>
-          <span />
-          <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const }}>Driver</span>
-          <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const }}>Team</span>
-          <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>Time</span>
-          <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>Gap</span>
-        </div>
-        {data.map(r => {
-          const t = timeCell(r.time)
-          const g = timeCell(r.gap)
-          return (
-            <div key={r.position} style={{ display: 'grid', gridTemplateColumns: '32px 4px 1fr 1fr 110px 110px', gap: '0 12px', alignItems: 'center', padding: '8px 20px', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 600 : 400, color: posColors[r.position] || '#5A6A7A' }}>{r.position}</span>
-              <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
-              <div style={{ fontSize: '13px', fontWeight: 500 }}>{r.name}</div>
-              <div style={{ fontSize: '12px', color: '#5A6A7A' }}>{r.team}</div>
-              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: r.position === 1 ? '#FFB800' : t.color, textAlign: 'right' as const }}>{t.text}</span>
-              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: g.color, textAlign: 'right' as const }}>{r.position === 1 ? '—' : g.text}</span>
-            </div>
-          )
-        })}
+    <ScrollTable minW={500}>
+      <div style={{ display: 'grid', gridTemplateColumns: '32px 4px 140px 110px 110px 110px', gap: '0 12px', padding: '8px 20px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+        <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const }}>Pos</span>
+        <span />
+        <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const }}>Driver</span>
+        <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const }}>Team</span>
+        <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>Time</span>
+        <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>Gap</span>
       </div>
-    </div>
+      {data.map(r => {
+        const t = timeCell(r.time)
+        const g = timeCell(r.gap)
+        return (
+          <div key={r.position} style={{ display: 'grid', gridTemplateColumns: '32px 4px 140px 110px 110px 110px', gap: '0 12px', alignItems: 'center', minHeight: '48px', padding: '0 20px', borderBottom: '1px solid rgba(255,255,255,0.04)', verticalAlign: 'middle' }}>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 600 : 400, color: posColors[r.position] || '#5A6A7A' }}>{r.position}</span>
+            <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
+            <div style={{ fontSize: '13px', fontWeight: 500, whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{r.name}</div>
+            <div style={{ fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{shortenTeam(r.team)}</div>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: r.position === 1 ? '#FFB800' : t.color, textAlign: 'right' as const }}>{t.text}</span>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: g.color, textAlign: 'right' as const }}>{r.position === 1 ? '—' : g.text}</span>
+          </div>
+        )
+      })}
+    </ScrollTable>
   )
 }
 
@@ -81,11 +120,11 @@ function QualifyingTable({ data, qualifier = 'Q' }: { data: QualifyingResult[]; 
     const q2c = timeCell(r.q2)
     const q3c = timeCell(r.q3)
     return (
-      <div style={{ display: 'grid', gridTemplateColumns: '32px 4px 1fr 1fr 110px 110px 110px', gap: '0 10px', alignItems: 'center', padding: '8px 20px', borderBottom: '1px solid rgba(255,255,255,0.04)', opacity: inQ1Only ? 0.5 : inQ2Only ? 0.72 : 1 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '32px 4px 140px 110px 110px 110px 110px', gap: '0 10px', alignItems: 'center', minHeight: '48px', padding: '0 20px', borderBottom: '1px solid rgba(255,255,255,0.04)', opacity: inQ1Only ? 0.5 : inQ2Only ? 0.72 : 1 }}>
         <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 600 : 400, color: posColors[r.position] || '#5A6A7A' }}>{r.position}</span>
         <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
-        <div style={{ fontSize: '13px', fontWeight: 500 }}>{r.name}</div>
-        <div style={{ fontSize: '12px', color: '#5A6A7A' }}>{r.team}</div>
+        <div style={{ fontSize: '13px', fontWeight: 500, whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{r.name}</div>
+        <div style={{ fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{shortenTeam(r.team)}</div>
         <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: q1c.color, textAlign: 'right' as const }}>{q1c.text}</span>
         <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: q2c.color, textAlign: 'right' as const }}>{q2c.text}</span>
         <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', fontWeight: r.q3 && r.position <= 3 ? 600 : 400, color: r.position === 1 && r.q3 ? '#FFB800' : q3c.color, textAlign: 'right' as const }}>{q3c.text}</span>
@@ -94,22 +133,20 @@ function QualifyingTable({ data, qualifier = 'Q' }: { data: QualifyingResult[]; 
   }
 
   return (
-    <div style={{ overflowX: 'auto', minWidth: 0 }}>
-      <div style={{ minWidth: '580px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '32px 4px 1fr 1fr 110px 110px 110px', gap: '0 10px', padding: '8px 20px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-          <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const }}>Pos</span>
-          <span />
-          <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const }}>Driver</span>
-          <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const }}>Team</span>
-          <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>{qualifier}1</span>
-          <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>{qualifier}2</span>
-          <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>{qualifier}3</span>
-        </div>
-        {q3Group.map(r => <Row key={r.position} r={r} />)}
-        {q2Group.length > 0 && <><SectionDivider label={`— ${qualifier}2 Eliminated (P11–16) —`} />{q2Group.map(r => <Row key={r.position} r={r} />)}</>}
-        {q1Group.length > 0 && <><SectionDivider label={`— ${qualifier}1 Eliminated (P17–22) —`} />{q1Group.map(r => <Row key={r.position} r={r} />)}</>}
+    <ScrollTable minW={580}>
+      <div style={{ display: 'grid', gridTemplateColumns: '32px 4px 140px 110px 110px 110px 110px', gap: '0 10px', padding: '8px 20px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+        <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const }}>Pos</span>
+        <span />
+        <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const }}>Driver</span>
+        <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const }}>Team</span>
+        <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>{qualifier}1</span>
+        <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>{qualifier}2</span>
+        <span style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: 'right' as const }}>{qualifier}3</span>
       </div>
-    </div>
+      {q3Group.map(r => <Row key={r.position} r={r} />)}
+      {q2Group.length > 0 && <><SectionDivider label={`— ${qualifier}2 Eliminated (P11–16) —`} />{q2Group.map(r => <Row key={r.position} r={r} />)}</>}
+      {q1Group.length > 0 && <><SectionDivider label={`— ${qualifier}1 Eliminated (P17–22) —`} />{q1Group.map(r => <Row key={r.position} r={r} />)}</>}
+    </ScrollTable>
   )
 }
 
