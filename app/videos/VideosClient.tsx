@@ -14,10 +14,7 @@ interface Video {
   thumbnail: string
 }
 
-const UPCOMING = [
-  { title: 'Japan GP Fantasy Preview', date: 'Wed Mar 19', time: '18:00 UTC', type: 'Premiere' },
-  { title: 'China GP Deadline Livestream', date: 'Sat Mar 15', time: '06:00 UTC', type: 'Live' },
-]
+const UPCOMING: { title: string; date: string; time: string; type: string }[] = []
 
 function timeAgo(dateStr: string) {
   const diff = Date.now() - new Date(dateStr).getTime()
@@ -43,13 +40,18 @@ export default function VideosClient() {
         )
         if (!searchRes.ok) throw new Error('Failed to fetch videos')
         const data = await searchRes.json()
-        const mapped: Video[] = (data.items || []).map((item: any) => ({
-          id: item.id.videoId,
-          title: item.snippet.title,
-          description: item.snippet.description,
-          publishedAt: item.snippet.publishedAt,
-          thumbnail: item.snippet.thumbnails?.high?.url || item.snippet.thumbnails?.default?.url,
-        }))
+        const mapped: Video[] = (data.items || [])
+          .map((item: any) => ({
+            id: item.id.videoId,
+            title: item.snippet.title,
+            description: item.snippet.description,
+            publishedAt: item.snippet.publishedAt,
+            thumbnail: item.snippet.thumbnails?.high?.url || item.snippet.thumbnails?.default?.url,
+          }))
+          .filter((v: Video) => {
+            const t = v.title.toLowerCase()
+            return !t.includes('deadline') && !t.includes('stream')
+          })
         setVideos(mapped)
       } catch (e) {
         setError('Could not load videos — visit the YouTube channel directly.')

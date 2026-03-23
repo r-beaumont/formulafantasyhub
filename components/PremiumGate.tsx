@@ -19,7 +19,7 @@ export default function PremiumGate({ preview }: PremiumGateProps) {
       <div className="border border-border bg-surface p-8 md:p-12 text-center mt-6">
         <div className="display text-5xl md:text-7xl mb-4">Premium</div>
         <p className="text-subtle text-sm max-w-md mx-auto mb-8 leading-relaxed">
-          Full strategy guides, lineup analysis, price change tools and race-week dashboards.
+          Full strategy guides, lineup analysis, price change alerts and race-week dashboards.
           From Rob Beaumont — official F1 Fantasy columnist for formula1.com.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

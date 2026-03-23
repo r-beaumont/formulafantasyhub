@@ -41,7 +41,7 @@ export default function CalendarClient() {
               key={race.round}
               onClick={() => {
                 if (isCalledOff) return
-                router.push('/race-hub')
+                router.push(`/race-hub?round=${race.round}&tab=results`)
               }}
               style={{
                 position: 'relative' as const,

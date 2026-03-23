@@ -18,36 +18,25 @@ function ComingSoonTab() {
         <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(2.5rem,6vw,4rem)', letterSpacing: '3px', color: '#F0F4F8', lineHeight: 1, marginBottom: '12px' }}>
           UPGRADE PACKAGE INCOMING
         </div>
-        <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, maxWidth: '520px', margin: '0 auto 32px' }}>
-          A full suite of F1 Fantasy tools is being built for Formula Hub. Real-time price alerts, AI-powered picks, performance tracking and weekly strategy guides — all in one place.
+        <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, maxWidth: '520px', margin: '0 auto' }}>
+          F1 Fantasy analysis to help guide your weekly decisions. AI-powered picks, data-driven insights and weekly strategy guides — all in one place.
         </p>
-        <Link href="/subscribe" style={{ background: '#E8002D', color: 'white', padding: '12px 32px', borderRadius: '8px', textDecoration: 'none', fontWeight: 700, fontSize: '14px', boxShadow: '0 0 28px rgba(232,0,45,0.35)' }}>
-          Get Early Access →
-        </Link>
       </div>
 
       {/* Feature cards */}
-      <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '16px' }}>
+      <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px' }}>
         {[
           {
-            icon: '📊',
-            title: 'Fantasy Performance Tracker',
-            desc: 'Track every driver and constructor across each race weekend. Points breakdowns, price movement history and ownership trends — all visualised in real time.',
-            status: 'IN DEVELOPMENT',
-            statusColor: '#FFB800',
-            statusBg: 'rgba(255,184,0,0.12)',
-          },
-          {
             icon: '🤖',
-            title: 'AI Race Recommendations',
-            desc: 'Machine learning models trained on five years of F1 data. Get driver and constructor picks ranked by expected points, circuit fit and price efficiency.',
+            title: 'AI Recommendations',
+            desc: 'Machine learning models to help guide your weekly fantasy decisions — using key datapoints and analytical insights based on historical data, circuit performances and value opportunity.',
             status: 'IN DEVELOPMENT',
             statusColor: '#FFB800',
             statusBg: 'rgba(255,184,0,0.12)',
           },
           {
             icon: '📰',
-            title: 'F1 Fantasy News Hub',
+            title: 'F1 Fantasy News',
             desc: 'Breaking news, price change alerts and race week strategy updates delivered as soon as they happen. Never miss a deadline or a price rise again.',
             status: 'COMING SOON',
             statusColor: '#E8002D',
@@ -55,8 +44,8 @@ function ComingSoonTab() {
           },
           {
             icon: '🏆',
-            title: 'Mini-League Analytics',
-            desc: 'See exactly where you\'re winning and losing against your mini-league. Differential pick analysis, chip timing comparison and head-to-head breakdowns.',
+            title: 'AI Model Showdown',
+            desc: 'GPT, Gemini and Claude independently predict the top 5 qualifying and race results each weekend. Scores accumulate across the season to find the most accurate AI predictor of 2026.',
             status: 'COMING SOON',
             statusColor: '#E8002D',
             statusBg: 'rgba(232,0,45,0.12)',
@@ -192,12 +181,6 @@ function HowToPlayTab() {
         ]}
       />
 
-      <div style={{ ...card, padding: '20px' }}>
-        <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '20px', marginBottom: '8px', color: '#FFB800' }}>Constructors</div>
-        <p style={{ color: '#5A6A7A', fontSize: '13px', lineHeight: 1.6, margin: 0 }}>
-          Constructor points are the sum of both of their drivers' qualifying, sprint and race points. Constructors score double when both drivers finish in the points.
-        </p>
-      </div>
     </div>
   )
 }
@@ -254,7 +237,7 @@ function ChipOverviewTab() {
     <div>
       <div style={{ ...card, padding: '20px 24px', marginBottom: '24px' }}>
         <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, margin: 0 }}>
-          Each manager receives one of each chip per season. Chips cannot be used simultaneously (except Final Fix, which can stack with other chips). Once activated, a chip cannot be reversed — think strategically before you use it.
+          Each manager receives one of each chip per season. Chips cannot be used simultaneously. Once activated, a chip cannot be reversed — think strategically before you use it.
         </p>
       </div>
       <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '16px' }}>
