@@ -82,8 +82,8 @@ export function calculateSeasonStats(): SeasonStats {
       if (r.position <= 3) dMap[r.name].sprintPodiums++
     }
 
-    // ── Qualifying pole ──
-    const pole = w.qualifying?.[0]
+    // ── Qualifying pole — explicitly find position 1, never rely on array order ──
+    const pole = w.qualifying?.find(r => r.position === 1)
     if (pole) {
       ensureDriver(pole.name, pole.team, pole.team_colour)
       dMap[pole.name].poles++
