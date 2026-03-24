@@ -96,7 +96,7 @@ export default function Home() {
               <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>
                 🇨🇳 Chinese GP — Race Result · Round 2
               </span>
-              <Link href="/race-hub" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>Full results →</Link>
+              <Link href="/race-hub" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>Full →</Link>
             </div>
             <div style={{ padding: '8px 20px' }}>
               {lastRaceResults.map((r) => (
@@ -146,7 +146,7 @@ export default function Home() {
             </div>
             <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '12px' }}>
               {[
-                { icon: '📊', title: 'Fantasy Performance Tracker', desc: 'Track your F1 Fantasy squad performance across every race weekend with in-depth analytics.', status: 'IN DEVELOPMENT', statusColor: '#FFB800', statusBg: 'rgba(255,184,0,0.12)' },
+                { icon: '🎯', title: 'Fantasy Performance Tracker', desc: 'Track your F1 Fantasy squad performance across every race weekend with in-depth analytics.', status: 'IN DEVELOPMENT', statusColor: '#FFB800', statusBg: 'rgba(255,184,0,0.12)' },
                 { icon: '🤖', title: 'AI Race Recommendations', desc: 'Get AI-powered driver and constructor picks based on circuit data, form and price trends.', status: 'IN DEVELOPMENT', statusColor: '#FFB800', statusBg: 'rgba(255,184,0,0.12)' },
                 { icon: '📰', title: 'F1 Fantasy News', desc: 'Breaking news, price change alerts and strategy updates delivered in real time.', status: 'COMING SOON', statusColor: '#E8002D', statusBg: 'rgba(232,0,45,0.12)' },
               ].map((item) => (
