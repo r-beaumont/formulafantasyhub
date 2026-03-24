@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { SEASON_CALENDAR, CURRENT_RACE } from '@/lib/races'
 import ResultsTab from './ResultsTab'
-import H2HQualifyingChart from '@/components/H2HQualifyingChart'
 
 const card = { background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' as const }
 const cardHeader = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }
@@ -62,7 +61,7 @@ function formatDelta(seconds: number | null | undefined): string {
 }
 
 export default function RaceHubClient() {
-  const [activeTab, setActiveTab] = useState<'race-info' | 'results' | 'weather' | 'pitwall' | 'h2h-qualifying'>('race-info')
+  const [activeTab, setActiveTab] = useState<'race-info' | 'results' | 'weather' | 'pitwall'>('race-info')
   const [selectedRound, setSelectedRound] = useState(3)
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
@@ -142,7 +141,6 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
     { id: 'results', label: 'Results' },
     { id: 'weather', label: 'Weather' },
     { id: 'pitwall', label: 'Pitwall' },
-    { id: 'h2h-qualifying', label: 'H2H Qualifying' },
   ]
 
   return (
@@ -666,8 +664,6 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
         )
       })()}
 
-      {/* H2H QUALIFYING TAB */}
-      {activeTab === 'h2h-qualifying' && <H2HQualifyingChart />}
 
     </div>
   )
