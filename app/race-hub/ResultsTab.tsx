@@ -2,6 +2,9 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { RACE_WEEKENDS, type DriverResult, type QualifyingResult, type QualifyingSessionKeys } from '@/lib/raceResults'
+import { DRIVERS } from '@/lib/drivers'
+
+const DRIVER_FLAG: Record<string, string> = Object.fromEntries(DRIVERS.map(d => [d.name, d.nationality]))
 
 async function fetchLiveQualifying(keys: QualifyingSessionKeys, qualifier: string): Promise<QualifyingResult[] | null> {
   const params = new URLSearchParams()
@@ -89,7 +92,10 @@ function PracticeTable({ data }: { data: DriverResult[] }) {
           <div key={r.position} style={{ display: 'grid', gridTemplateColumns: '32px 4px 140px 110px 110px 110px', gap: '0 12px', alignItems: 'center', minHeight: '48px', padding: '0 20px', borderBottom: '1px solid rgba(255,255,255,0.04)', verticalAlign: 'middle' }}>
             <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 600 : 400, color: posColors[r.position] || '#5A6A7A' }}>{r.position}</span>
             <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
-            <div style={{ fontSize: '13px', fontWeight: 500, whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{r.name}</div>
+            <div style={{ fontSize: '13px', fontWeight: 500, whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              {DRIVER_FLAG[r.name] && <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', fontSize: '13px', flexShrink: 0 }}>{DRIVER_FLAG[r.name]}</span>}
+              {r.name}
+            </div>
             <div style={{ fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{shortenTeam(r.team)}</div>
             <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: r.position === 1 ? '#FFB800' : t.color, textAlign: 'right' as const }}>{t.text}</span>
             <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: g.color, textAlign: 'right' as const }}>{r.position === 1 ? '—' : g.text}</span>
@@ -123,7 +129,10 @@ function QualifyingTable({ data, qualifier = 'Q' }: { data: QualifyingResult[]; 
       <div style={{ display: 'grid', gridTemplateColumns: '32px 4px 140px 110px 110px 110px 110px', gap: '0 10px', alignItems: 'center', minHeight: '48px', padding: '0 20px', borderBottom: '1px solid rgba(255,255,255,0.04)', opacity: inQ1Only ? 0.5 : inQ2Only ? 0.72 : 1 }}>
         <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 600 : 400, color: posColors[r.position] || '#5A6A7A' }}>{r.position}</span>
         <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
-        <div style={{ fontSize: '13px', fontWeight: 500, whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{r.name}</div>
+        <div style={{ fontSize: '13px', fontWeight: 500, whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          {DRIVER_FLAG[r.name] && <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', fontSize: '13px', flexShrink: 0 }}>{DRIVER_FLAG[r.name]}</span>}
+          {r.name}
+        </div>
         <div style={{ fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{shortenTeam(r.team)}</div>
         <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: q1c.color, textAlign: 'right' as const }}>{q1c.text}</span>
         <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: q2c.color, textAlign: 'right' as const }}>{q2c.text}</span>

@@ -10,8 +10,8 @@ import { SEASON_STATS, DRIVER_STATS_MAP } from '@/lib/seasonStats'
 
 const RACES = 2
 
-type SortMode = 'points' | 'wins' | 'podiums' | 'poles' | 'dnf'
-type ConSortMode = 'points' | 'wins' | 'podiums' | 'dnf'
+type SortMode = 'points' | 'wins' | 'podiums' | 'poles'
+type ConSortMode = 'points' | 'wins' | 'podiums'
 
 function posColor(pos: number) {
   return pos === 1 ? '#FFD700' : pos === 2 ? '#C0C0C0' : pos === 3 ? '#CD7F32' : '#5A6A7A'
@@ -24,14 +24,6 @@ const SPRINT_PTS: Record<number, number> = { 1:8,2:7,3:6,4:5,5:4,6:3,7:2,8:1 }
 function racePoints(pos: number): number { return F1_PTS[pos] || 0 }
 function sprintPoints(pos: number): number { return SPRINT_PTS[pos] || 0 }
 
-const RACE_CODE: Record<string, string> = {
-  'Australia': 'AUS', 'China': 'CHN', 'Japan': 'JPN', 'Miami': 'MIA',
-  'Canada': 'CAN', 'Monaco': 'MON', 'Barcelona-Catalunya': 'ESP', 'Austria': 'AUT',
-  'Britain': 'GBR', 'Belgium': 'BEL', 'Hungary': 'HUN', 'Netherlands': 'NED',
-  'Italy': 'ITA', 'Madrid': 'MAD', 'Azerbaijan': 'AZE', 'Singapore': 'SGP',
-  'United States': 'USA', 'Mexico': 'MEX', 'Brazil': 'BRA', 'Las Vegas': 'LAS',
-  'Qatar': 'QAT', 'Abu Dhabi': 'ABU',
-}
 
 const completedCalRounds = SEASON_CALENDAR.filter(r => r.completed && !r.calledOff)
 
@@ -132,7 +124,6 @@ export default function StandingsClient() {
     if (sortMode === 'wins')    return b.wins - a.wins
     if (sortMode === 'podiums') return b.podiums - a.podiums
     if (sortMode === 'poles')   return b.poles - a.poles
-    if (sortMode === 'dnf')    return 0
     return b.points - a.points
   })
 
@@ -163,7 +154,6 @@ export default function StandingsClient() {
       const dir = conSortDir === 'desc' ? 1 : -1
       if (conSortMode === 'wins')    return dir * ((constructorStats[b.name]?.wins ?? 0) - (constructorStats[a.name]?.wins ?? 0))
       if (conSortMode === 'podiums') return dir * ((constructorStats[b.name]?.podiums ?? 0) - (constructorStats[a.name]?.podiums ?? 0))
-      if (conSortMode === 'dnf')     return 0
       return dir * (b.points - a.points)
     })
 
@@ -327,7 +317,6 @@ export default function StandingsClient() {
                 <th onClick={() => setSortMode('wins')}    style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'wins'    ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>WINS {sortMode === 'wins'    ? '↓' : ''}</th>
                 <th onClick={() => setSortMode('podiums')} style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'podiums' ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>PODS {sortMode === 'podiums' ? '↓' : ''}</th>
                 <th onClick={() => setSortMode('poles')}   style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'poles'   ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>POLES {sortMode === 'poles'   ? '↓' : ''}</th>
-                <th onClick={() => setSortMode('dnf')}     style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'dnf'     ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>DNF/DSQ {sortMode === 'dnf'     ? '↓' : ''}</th>
               </tr>
             </thead>
             <tbody>
@@ -350,7 +339,6 @@ export default function StandingsClient() {
                     </td>
                     <td style={tdMono(d.podiums > 0 ? '#C0C0C0' : '#3A4A5A')}>{d.podiums > 0 ? d.podiums : '—'}</td>
                     <td style={tdMono(d.poles > 0 ? '#E8002D' : '#3A4A5A')}>{d.poles > 0 ? d.poles : '—'}</td>
-                    <td style={tdMono('#3A4A5A')}>—</td>
                   </tr>
                 )
               })}
@@ -368,7 +356,7 @@ export default function StandingsClient() {
         </div>
 
         <div style={{ overflowX: 'auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '28px 26px 160px 1fr 56px 52px 52px 64px', alignItems: 'center', gap: '12px', padding: '8px 24px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)', minWidth: '560px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '28px 26px 160px 1fr 56px 52px 52px', alignItems: 'center', gap: '12px', padding: '8px 24px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)', minWidth: '560px' }}>
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: 'right' as const }}>#</span>
             <span />
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Constructor</span>
@@ -376,14 +364,13 @@ export default function StandingsClient() {
             <span onClick={() => toggleConSort('points')}  style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'points'  ? '#F0F4F8' : '#5A6A7A', textAlign: 'right' as const, cursor: 'pointer', userSelect: 'none' as const }}>PTS {conSortMode === 'points'  ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
             <span onClick={() => toggleConSort('wins')}    style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'wins'    ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>WINS {conSortMode === 'wins'    ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
             <span onClick={() => toggleConSort('podiums')} style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'podiums' ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>PODS {conSortMode === 'podiums' ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
-            <span onClick={() => toggleConSort('dnf')}     style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'dnf'     ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>DNF/DSQ {conSortMode === 'dnf'     ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
           </div>
           <div style={{ padding: '8px 24px 20px', display: 'flex', flexDirection: 'column', gap: '12px', minWidth: '560px' }}>
             {constructors.map((c, i) => {
               const barPct = maxConPts > 0 ? (c.points / maxConPts) * 100 : 0
               const cStats = constructorStats[c.name] || { wins: 0, podiums: 0 }
               return (
-                <div key={c.name} style={{ display: 'grid', gridTemplateColumns: '28px 26px 160px 1fr 56px 52px 52px 64px', alignItems: 'center', gap: '12px' }}>
+                <div key={c.name} style={{ display: 'grid', gridTemplateColumns: '28px 26px 160px 1fr 56px 52px 52px', alignItems: 'center', gap: '12px' }}>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: posColor(i + 1), fontWeight: i < 3 ? 600 : 400, textAlign: 'right' as const }}>{i + 1}</span>
                   <span style={{ fontSize: '18px', fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif' }}>{c.flag}</span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -396,7 +383,6 @@ export default function StandingsClient() {
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 600, color: c.points > 0 ? '#FFB800' : '#3A4A5A', textAlign: 'right' as const }}>{c.points > 0 ? c.points : '—'}</span>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: cStats.wins > 0 ? '#FFD700' : '#3A4A5A', textAlign: 'center' as const, fontWeight: cStats.wins > 0 ? 700 : 400 }}>{cStats.wins}</span>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: cStats.podiums > 0 ? '#C0C0C0' : '#3A4A5A', textAlign: 'center' as const }}>{cStats.podiums > 0 ? cStats.podiums : '—'}</span>
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#3A4A5A', textAlign: 'center' as const }}>—</span>
                 </div>
               )
             })}
@@ -415,9 +401,6 @@ export default function StandingsClient() {
             {SEASON_CALENDAR.map(race => {
               const isCalledOff = race.calledOff
               const isCompleted = race.completed && !isCalledOff
-              const code = RACE_CODE[race.name] || race.name.slice(0, 3).toUpperCase()
-              const labelColor = race.sprint ? '#00A8FF' : '#00D47E'
-              const labelBg = race.sprint ? 'rgba(0,168,255,0.15)' : 'rgba(0,212,126,0.12)'
               return (
                 <div
                   key={race.round}
@@ -451,11 +434,7 @@ export default function StandingsClient() {
                     </div>
                   )}
                   {/* Flag */}
-                  <div style={{ fontSize: '22px', marginTop: '4px', marginBottom: '4px', fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif' }}>{race.flag}</div>
-                  {/* Country code label */}
-                  <div style={{ background: labelBg, borderRadius: '3px', padding: '1px 4px', display: 'inline-block', marginBottom: '4px' }}>
-                    <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '8px', fontWeight: 700, color: labelColor, letterSpacing: '0.5px' }}>{code}</span>
-                  </div>
+                  <div style={{ fontSize: '22px', marginTop: '4px', marginBottom: '2px', fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif' }}>{race.flag}</div>
                   {/* Date */}
                   <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '8px', color: '#3A4A5A' }}>{race.date}</div>
                 </div>
@@ -501,9 +480,8 @@ export default function StandingsClient() {
                   <th style={{ ...thStyle(false), width: '36px' }}>#</th>
                   <th style={{ ...thStyle(true), minWidth: '160px' }}>Driver</th>
                   {completedCalRounds.map(calR => (
-                    <th key={calR.round} style={{ ...thStyle(false), minWidth: '52px' }}>
-                      <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', marginRight: '3px' }}>{calR.flag}</span>
-                      {RACE_CODE[calR.name] || calR.name.slice(0,3).toUpperCase()}
+                    <th key={calR.round} style={{ ...thStyle(false), minWidth: '44px' }}>
+                      <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', fontSize: '16px' }}>{calR.flag}</span>
                     </th>
                   ))}
                   <th style={{ ...thStyle(false), minWidth: '52px', color: '#FFB800' }}>TOTAL</th>
@@ -545,9 +523,8 @@ export default function StandingsClient() {
                   <th style={{ ...thStyle(false), width: '36px' }}>#</th>
                   <th style={{ ...thStyle(true), minWidth: '160px' }}>Constructor</th>
                   {completedCalRounds.map(calR => (
-                    <th key={calR.round} style={{ ...thStyle(false), minWidth: '52px' }}>
-                      <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', marginRight: '3px' }}>{calR.flag}</span>
-                      {RACE_CODE[calR.name] || calR.name.slice(0,3).toUpperCase()}
+                    <th key={calR.round} style={{ ...thStyle(false), minWidth: '44px' }}>
+                      <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', fontSize: '16px' }}>{calR.flag}</span>
                     </th>
                   ))}
                   <th style={{ ...thStyle(false), minWidth: '52px', color: '#FFB800' }}>TOTAL</th>
