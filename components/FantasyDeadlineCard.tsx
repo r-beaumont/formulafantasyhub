@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { CURRENT_RACE } from '@/lib/races'
 
@@ -39,22 +40,18 @@ export default function FantasyDeadlineCard() {
   const deadlineLabel = CURRENT_RACE.isSprint ? 'Sprint Race' : 'Qualifying'
 
   return (
-    <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', position: 'relative' }}>
+    <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg,#FFB800,rgba(255,184,0,0.2))' }} />
       <div style={{ padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
         <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>
-          F1 Fantasy Deadline
+          F1 Fantasy Team Lock Deadline
         </span>
       </div>
 
-      <div style={{ padding: '16px 20px 20px' }}>
-        {/* Race label */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
-          <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', fontSize: '18px' }}>{CURRENT_RACE.flag}</span>
-          <div>
-            <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '18px', lineHeight: 1, color: '#F0F4F8' }}>{CURRENT_RACE.name} GP</div>
-            <div style={{ fontSize: '10px', color: '#5A6A7A', marginTop: '2px' }}>Locks at {deadlineLabel}</div>
-          </div>
+      <div style={{ padding: '16px 20px 0', flex: 1 }}>
+        {/* Lock label */}
+        <div style={{ fontSize: '10px', color: '#5A6A7A', marginBottom: '12px' }}>
+          Locks at <span style={{ color: '#FFB800', fontWeight: 600 }}>{deadlineLabel}</span> · {CURRENT_RACE.shortName} R{CURRENT_RACE.round}
         </div>
 
         {/* Countdown */}
@@ -80,13 +77,13 @@ export default function FantasyDeadlineCard() {
             <div style={{ fontSize: '11px', color: '#3A4A5A', marginTop: '4px' }}>Transfers are locked</div>
           </div>
         )}
+      </div>
 
-        {/* Subtext */}
-        {timeLeft && (
-          <div style={{ marginTop: '12px', fontSize: '10px', color: '#3A4A5A', textAlign: 'center' as const }}>
-            Based on your local time
-          </div>
-        )}
+      {/* Footer link */}
+      <div style={{ padding: '12px 20px', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '16px' }}>
+        <Link href="/f1-fantasy" style={{ fontSize: '12px', color: '#FFB800', textDecoration: 'none', fontWeight: 600 }}>
+          More F1 Fantasy →
+        </Link>
       </div>
     </div>
   )
