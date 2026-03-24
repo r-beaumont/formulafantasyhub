@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import StandingsWidget from '@/components/StandingsWidget'
 import RaceWeekendCard from '@/components/RaceWeekendCard'
+import FantasyDeadlineCard from '@/components/FantasyDeadlineCard'
 import { articles } from '@/lib/articles'
 
 export const metadata: Metadata = {
@@ -65,27 +66,29 @@ export default function Home() {
 
         <div className="mob-pad-page" style={{ maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
 
-          {/* RACE WEEKEND + WEATHER */}
-          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '20px', marginBottom: '20px' }}>
+          {/* RACE WEEKEND + FANTASY DEADLINE + WEATHER */}
+          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '20px', marginBottom: '20px' }}>
             <RaceWeekendCard />
 
+            <FantasyDeadlineCard />
+
             <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-                <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Weekend Weather</span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px 10px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+                <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Weather</span>
                 <span style={{ fontSize: '12px' }}>🇯🇵</span>
               </div>
-              <div style={{ padding: '16px 20px' }}>
+              <div style={{ padding: '10px 16px 14px' }}>
                 {[{ day: 'Fri', icon: '🌤️', high: '16°', rain: '10%' }, { day: 'Sat', icon: '⛅', high: '15°', rain: '20%' }, { day: 'Sun', icon: '🌧️', high: '13°', rain: '45%' }].map((w, i) => (
-                  <div key={w.day} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
-                    <span style={{ fontSize: '22px' }}>{w.icon}</span>
-                    <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '18px', color: '#5A6A7A', width: '32px' }}>{w.day}</span>
+                  <div key={w.day} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '7px 0', borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
+                    <span style={{ fontSize: '18px' }}>{w.icon}</span>
+                    <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '15px', color: '#5A6A7A', width: '28px' }}>{w.day}</span>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 600 }}>{w.high}</div>
+                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 600 }}>{w.high}</div>
                     </div>
-                    <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: parseInt(w.rain) > 30 ? '#00A8FF' : '#5A6A7A' }}>💧{w.rain}</span>
+                    <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: parseInt(w.rain) > 30 ? '#00A8FF' : '#5A6A7A' }}>💧{w.rain}</span>
                   </div>
                 ))}
-                <Link href="/race-hub" style={{ display: 'block', textAlign: 'center' as const, marginTop: '12px', fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 600 }}>Full forecast →</Link>
+                <Link href="/race-hub" style={{ display: 'block', textAlign: 'center' as const, marginTop: '10px', fontSize: '11px', color: '#E8002D', textDecoration: 'none', fontWeight: 600 }}>Full forecast →</Link>
               </div>
             </div>
           </div>
