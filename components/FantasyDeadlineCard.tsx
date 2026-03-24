@@ -43,7 +43,7 @@ export default function FantasyDeadlineCard() {
   return (
     <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg,#FFB800,rgba(255,184,0,0.2))' }} />
-      <div style={{ padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', padding: '16px 20px 12px', minHeight: '52px', boxSizing: 'border-box' as const, borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
         <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>
           ⏱️ F1 Fantasy Team Lock Deadline
         </span>

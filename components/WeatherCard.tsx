@@ -71,7 +71,7 @@ export default function WeatherCard() {
     <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
       {/* Blue accent band — matches #00BFFF tile theme */}
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg,#00BFFF,rgba(0,191,255,0.2))' }} />
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px 10px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', minHeight: '52px', boxSizing: 'border-box' as const, borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
         <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>🌤️ Weather</span>
         <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', fontSize: '14px' }}>{CURRENT_RACE.flag}</span>
       </div>
