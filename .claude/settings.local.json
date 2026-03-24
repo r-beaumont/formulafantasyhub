@@ -5,7 +5,8 @@
       "Bash(npx tsc:*)",
       "Bash(curl https://formulahub.live/race-hub)",
       "Bash(grep -r Russell C:UsersroberOneDriveDocumentsformulafantasyhub --include=*.ts --include=*.tsx --include=*.js -n)",
-      "Bash(grep -r \"STATIC_RACE_RESULTS\\\\|sprintRace\\\\|race:\" C:UsersroberOneDriveDocumentsformulafantasyhub --include=*.ts --include=*.tsx -l)"
+      "Bash(grep -r \"STATIC_RACE_RESULTS\\\\|sprintRace\\\\|race:\" C:UsersroberOneDriveDocumentsformulafantasyhub --include=*.ts --include=*.tsx -l)",
+      "Bash(gh run:*)"
     ]
   }
 }

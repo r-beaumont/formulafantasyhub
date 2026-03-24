@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useState } from 'react'
 import { CURRENT_RACE } from '@/lib/races'
 
@@ -17,7 +18,7 @@ export default function RaceWeekendCard() {
   const nextSession = CURRENT_RACE.sessions.find(s => !s.completed)
 
   return (
-    <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', position: 'relative' }}>
+    <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg,#E8002D,rgba(232,0,45,0.2))' }} />
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -54,12 +55,9 @@ export default function RaceWeekendCard() {
           </div>
         </div>
       </div>
-      <div style={{ padding: '20px' }}>
-        <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', lineHeight: 1, marginBottom: '4px' }}>
+      <div style={{ padding: '20px 20px 0', flex: 1 }}>
+        <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', lineHeight: 1, marginBottom: '14px' }}>
           {CURRENT_RACE.name}
-        </div>
-        <div style={{ color: '#5A6A7A', fontSize: '13px', marginBottom: '20px' }}>
-          Round {CURRENT_RACE.round} · {CURRENT_RACE.isSprint ? '⚡ Sprint Weekend' : 'Standard Weekend'}
         </div>
         <div className="sessions-grid" style={{ display: 'grid', gridTemplateColumns: `repeat(${CURRENT_RACE.sessions.length},1fr)`, gap: '8px' }}>
           {CURRENT_RACE.sessions.map((s) => {
@@ -76,6 +74,12 @@ export default function RaceWeekendCard() {
             )
           })}
         </div>
+      </div>
+      {/* Footer link */}
+      <div style={{ padding: '12px 20px', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '16px' }}>
+        <Link href="/race-hub" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 600 }}>
+          Race Hub →
+        </Link>
       </div>
     </div>
   )

@@ -2,8 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { SEASON_CALENDAR } from '@/lib/races'
-import { CURRENT_RACE } from '@/lib/races'
+import { SEASON_CALENDAR, CURRENT_RACE } from '@/lib/races'
 
 // Identical icon/label logic to the Race Hub weather tab
 function wmoIcon(code: number): string {
@@ -69,9 +68,11 @@ export default function WeatherCard() {
   const dayLabels = ['Fri', 'Sat', 'Sun']
 
   return (
-    <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+      {/* Blue accent band — matches #00BFFF tile theme */}
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg,#00BFFF,rgba(0,191,255,0.2))' }} />
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px 10px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-        <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Weather</span>
+        <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>🌤️ Weather</span>
         <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', fontSize: '14px' }}>{CURRENT_RACE.flag}</span>
       </div>
 
@@ -100,9 +101,10 @@ export default function WeatherCard() {
         )}
       </div>
 
-      <div style={{ padding: '10px 16px 14px', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '10px' }}>
-        <Link href="/race-hub?tab=weather" style={{ fontSize: '11px', color: '#E8002D', textDecoration: 'none', fontWeight: 600 }}>
-          Full forecast →
+      {/* Footer link — identical style to Race Hub → and More F1 Fantasy → */}
+      <div style={{ padding: '12px 16px', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '10px' }}>
+        <Link href="/race-hub?tab=weather" style={{ fontSize: '12px', color: '#00BFFF', textDecoration: 'none', fontWeight: 600 }}>
+          Full Forecast →
         </Link>
       </div>
     </div>
