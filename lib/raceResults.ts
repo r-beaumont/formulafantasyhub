@@ -50,7 +50,7 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
   1: {
     round: 1,
     name: 'Australia',
-    flag: '🇦🇺',
+    flag: 'au',
     isSprint: false,
     fp1: [
       { position: 1,  name: 'Charles Leclerc',   team: 'Ferrari',         team_colour: '#E8002D', time: '1:20.267', gap: '—'         },
@@ -180,7 +180,7 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
   2: {
     round: 2,
     name: 'China',
-    flag: '🇨🇳',
+    flag: 'cn',
     isSprint: true,
     fp1: [
       { position: 1,  name: 'George Russell',    team: 'Mercedes',        team_colour: '#27F4D2', time: '1:32.741', gap: '—'         },

@@ -35,38 +35,38 @@ export const TEAMS: Team[] = [
 // Prices current as of after Round 2 — China GP
 export const DRIVERS: Driver[] = [
   // McLaren
-  { id: 'norris', name: 'Lando Norris', shortName: 'L. Norris', number: 4, team: 'mclaren', teamColor: '#FF8000', nationality: '🇬🇧', price: 27.5 },
-  { id: 'piastri', name: 'Oscar Piastri', shortName: 'O. Piastri', number: 81, team: 'mclaren', teamColor: '#FF8000', nationality: '🇦🇺', price: 23.5 },
+  { id: 'norris', name: 'Lando Norris', shortName: 'L. Norris', number: 4, team: 'mclaren', teamColor: '#FF8000', nationality: 'gb', price: 27.5 },
+  { id: 'piastri', name: 'Oscar Piastri', shortName: 'O. Piastri', number: 81, team: 'mclaren', teamColor: '#FF8000', nationality: 'au', price: 23.5 },
   // Mercedes
-  { id: 'russell', name: 'George Russell', shortName: 'G. Russell', number: 63, team: 'mercedes', teamColor: '#27F4D2', nationality: '🇬🇧', price: 28.0 },
-  { id: 'antonelli', name: 'Kimi Antonelli', shortName: 'K. Antonelli', number: 12, team: 'mercedes', teamColor: '#27F4D2', nationality: '🇮🇹', price: 23.8 },
+  { id: 'russell', name: 'George Russell', shortName: 'G. Russell', number: 63, team: 'mercedes', teamColor: '#27F4D2', nationality: 'gb', price: 28.0 },
+  { id: 'antonelli', name: 'Kimi Antonelli', shortName: 'K. Antonelli', number: 12, team: 'mercedes', teamColor: '#27F4D2', nationality: 'it', price: 23.8 },
   // Red Bull
-  { id: 'verstappen', name: 'Max Verstappen', shortName: 'M. Verstappen', number: 1, team: 'redbull', teamColor: '#3671C6', nationality: '🇳🇱', price: 26.5 },
-  { id: 'hadjar', name: 'Isack Hadjar', shortName: 'I. Hadjar', number: 6, team: 'redbull', teamColor: '#3671C6', nationality: '🇫🇷', price: 7.8 },
+  { id: 'verstappen', name: 'Max Verstappen', shortName: 'M. Verstappen', number: 1, team: 'redbull', teamColor: '#3671C6', nationality: 'nl', price: 26.5 },
+  { id: 'hadjar', name: 'Isack Hadjar', shortName: 'I. Hadjar', number: 6, team: 'redbull', teamColor: '#3671C6', nationality: 'fr', price: 7.8 },
   // Ferrari
-  { id: 'leclerc', name: 'Charles Leclerc', shortName: 'C. Leclerc', number: 16, team: 'ferrari', teamColor: '#E8002D', nationality: '🇲🇨', price: 23.4 },
-  { id: 'hamilton', name: 'Lewis Hamilton', shortName: 'L. Hamilton', number: 44, team: 'ferrari', teamColor: '#E8002D', nationality: '🇬🇧', price: 22.0 },
+  { id: 'leclerc', name: 'Charles Leclerc', shortName: 'C. Leclerc', number: 16, team: 'ferrari', teamColor: '#E8002D', nationality: 'mc', price: 23.4 },
+  { id: 'hamilton', name: 'Lewis Hamilton', shortName: 'L. Hamilton', number: 44, team: 'ferrari', teamColor: '#E8002D', nationality: 'gb', price: 22.0 },
   // Williams
-  { id: 'albon', name: 'Alex Albon', shortName: 'A. Albon', number: 23, team: 'williams', teamColor: '#64C4FF', nationality: '🇹🇭', price: 10.5 },
-  { id: 'sainz', name: 'Carlos Sainz', shortName: 'C. Sainz', number: 55, team: 'williams', teamColor: '#64C4FF', nationality: '🇪🇸', price: 12.0 },
+  { id: 'albon', name: 'Alex Albon', shortName: 'A. Albon', number: 23, team: 'williams', teamColor: '#64C4FF', nationality: 'th', price: 10.5 },
+  { id: 'sainz', name: 'Carlos Sainz', shortName: 'C. Sainz', number: 55, team: 'williams', teamColor: '#64C4FF', nationality: 'es', price: 12.0 },
   // Racing Bulls
-  { id: 'lawson', name: 'Liam Lawson', shortName: 'L. Lawson', number: 30, team: 'racingbulls', teamColor: '#6692FF', nationality: '🇳🇿', price: 6.9 },
-  { id: 'lindblad', name: 'Arvid Lindblad', shortName: 'A. Lindblad', number: 7, team: 'racingbulls', teamColor: '#6692FF', nationality: '🇬🇧', price: 7.4 },
+  { id: 'lawson', name: 'Liam Lawson', shortName: 'L. Lawson', number: 30, team: 'racingbulls', teamColor: '#6692FF', nationality: 'nz', price: 6.9 },
+  { id: 'lindblad', name: 'Arvid Lindblad', shortName: 'A. Lindblad', number: 7, team: 'racingbulls', teamColor: '#6692FF', nationality: 'gb', price: 7.4 },
   // Aston Martin
-  { id: 'alonso', name: 'Fernando Alonso', shortName: 'F. Alonso', number: 14, team: 'astonmartin', teamColor: '#358C75', nationality: '🇪🇸', price: 10.0 },
-  { id: 'stroll', name: 'Lance Stroll', shortName: 'L. Stroll', number: 18, team: 'astonmartin', teamColor: '#358C75', nationality: '🇨🇦', price: 6.5 },
+  { id: 'alonso', name: 'Fernando Alonso', shortName: 'F. Alonso', number: 14, team: 'astonmartin', teamColor: '#358C75', nationality: 'es', price: 10.0 },
+  { id: 'stroll', name: 'Lance Stroll', shortName: 'L. Stroll', number: 18, team: 'astonmartin', teamColor: '#358C75', nationality: 'ca', price: 6.5 },
   // Haas
-  { id: 'ocon', name: 'Esteban Ocon', shortName: 'E. Ocon', number: 31, team: 'haas', teamColor: '#B6BABD', nationality: '🇫🇷', price: 12.7 },
-  { id: 'bearman', name: 'Oliver Bearman', shortName: 'O. Bearman', number: 87, team: 'haas', teamColor: '#B6BABD', nationality: '🇬🇧', price: 8.6 },
+  { id: 'ocon', name: 'Esteban Ocon', shortName: 'E. Ocon', number: 31, team: 'haas', teamColor: '#B6BABD', nationality: 'fr', price: 12.7 },
+  { id: 'bearman', name: 'Oliver Bearman', shortName: 'O. Bearman', number: 87, team: 'haas', teamColor: '#B6BABD', nationality: 'gb', price: 8.6 },
   // Audi
-  { id: 'hulkenberg', name: 'Nico Hülkenberg', shortName: 'N. Hülkenberg', number: 27, team: 'audi', teamColor: '#C0C0C0', nationality: '🇩🇪', price: 9.0 },
-  { id: 'bortoleto', name: 'Gabriel Bortoleto', shortName: 'G. Bortoleto', number: 5, team: 'audi', teamColor: '#C0C0C0', nationality: '🇧🇷', price: 6.4 },
+  { id: 'hulkenberg', name: 'Nico Hülkenberg', shortName: 'N. Hülkenberg', number: 27, team: 'audi', teamColor: '#C0C0C0', nationality: 'de', price: 9.0 },
+  { id: 'bortoleto', name: 'Gabriel Bortoleto', shortName: 'G. Bortoleto', number: 5, team: 'audi', teamColor: '#C0C0C0', nationality: 'br', price: 6.4 },
   // Alpine
-  { id: 'gasly', name: 'Pierre Gasly', shortName: 'P. Gasly', number: 10, team: 'alpine', teamColor: '#FF69B4', nationality: '🇫🇷', price: 13.8 },
-  { id: 'colapinto', name: 'Franco Colapinto', shortName: 'F. Colapinto', number: 43, team: 'alpine', teamColor: '#FF69B4', nationality: '🇦🇷', price: 7.0 },
+  { id: 'gasly', name: 'Pierre Gasly', shortName: 'P. Gasly', number: 10, team: 'alpine', teamColor: '#FF69B4', nationality: 'fr', price: 13.8 },
+  { id: 'colapinto', name: 'Franco Colapinto', shortName: 'F. Colapinto', number: 43, team: 'alpine', teamColor: '#FF69B4', nationality: 'ar', price: 7.0 },
   // Cadillac
-  { id: 'perez', name: 'Sergio Pérez', shortName: 'S. Pérez', number: 11, team: 'cadillac', teamColor: '#CC0000', nationality: '🇲🇽', price: 7.5 },
-  { id: 'bottas', name: 'Valtteri Bottas', shortName: 'V. Bottas', number: 77, team: 'cadillac', teamColor: '#CC0000', nationality: '🇫🇮', price: 6.5 },
+  { id: 'perez', name: 'Sergio Pérez', shortName: 'S. Pérez', number: 11, team: 'cadillac', teamColor: '#CC0000', nationality: 'mx', price: 7.5 },
+  { id: 'bottas', name: 'Valtteri Bottas', shortName: 'V. Bottas', number: 77, team: 'cadillac', teamColor: '#CC0000', nationality: 'fi', price: 6.5 },
 ]
 
 export function getDriverById(id: string) {

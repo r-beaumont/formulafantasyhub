@@ -66,7 +66,7 @@ export default function Navbar() {
           {/* Race badge — hidden on mobile */}
           <div className="nav-race-badge" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(232,0,45,0.08)', border: '1px solid rgba(232,0,45,0.2)', borderRadius: '20px', padding: '6px 14px', fontSize: '12px', fontWeight: 500, color: '#F0F4F8' }}>
             <div style={{ width: '7px', height: '7px', background: '#E8002D', borderRadius: '50%', animation: 'pulse 2s infinite', flexShrink: 0 }} />
-            <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif' }}>{CURRENT_RACE.flag}</span> {CURRENT_RACE.shortName} · R{CURRENT_RACE.round}
+            <span className={`fi fi-${CURRENT_RACE.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span> {CURRENT_RACE.shortName} · R{CURRENT_RACE.round}
           </div>
           <Link href="/subscribe" style={{ background: '#E8002D', color: 'white', fontSize: '13px', fontWeight: 600, padding: '7px 18px', borderRadius: '8px', textDecoration: 'none', boxShadow: '0 0 20px rgba(232,0,45,0.3)', letterSpacing: '0.3px', whiteSpace: 'nowrap' }}>
             Premium

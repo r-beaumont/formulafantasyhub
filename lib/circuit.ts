@@ -19,7 +19,7 @@ export const CURRENT_CIRCUIT: CircuitInfo = {
   name: 'Shanghai International Circuit',
   location: 'Shanghai, China',
   country: 'China',
-  flag: '🇨🇳',
+  flag: 'cn',
   laps: 56,
   distance: '5.451 km',
   lapRecord: '1:32.238',

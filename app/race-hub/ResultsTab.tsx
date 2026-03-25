@@ -93,7 +93,7 @@ function PracticeTable({ data }: { data: DriverResult[] }) {
             <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 600 : 400, color: posColors[r.position] || '#5A6A7A' }}>{r.position}</span>
             <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
             <div style={{ fontSize: '13px', fontWeight: 500, whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              {DRIVER_FLAG[r.name] && <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', fontSize: '13px', flexShrink: 0 }}>{DRIVER_FLAG[r.name]}</span>}
+              {DRIVER_FLAG[r.name] && <span className={`fi fi-${DRIVER_FLAG[r.name]}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', flexShrink: 0 }}></span>}
               {r.name}
             </div>
             <div style={{ fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{shortenTeam(r.team)}</div>
@@ -130,7 +130,7 @@ function QualifyingTable({ data, qualifier = 'Q' }: { data: QualifyingResult[]; 
         <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 600 : 400, color: posColors[r.position] || '#5A6A7A' }}>{r.position}</span>
         <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
         <div style={{ fontSize: '13px', fontWeight: 500, whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: '6px' }}>
-          {DRIVER_FLAG[r.name] && <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', fontSize: '13px', flexShrink: 0 }}>{DRIVER_FLAG[r.name]}</span>}
+          {DRIVER_FLAG[r.name] && <span className={`fi fi-${DRIVER_FLAG[r.name]}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', flexShrink: 0 }}></span>}
           {r.name}
         </div>
         <div style={{ fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{shortenTeam(r.team)}</div>
@@ -239,7 +239,7 @@ export default function ResultsTab({ selectedRound }: { selectedRound: number })
     <div style={card}>
       <div style={cardHeader}>
         <span style={cardTitle}>
-          <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', marginRight: '6px' }}>{weekend.flag}</span>
+          <span className={`fi fi-${weekend.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', marginRight: '6px' }}></span>
           {weekend.name} GP — Session Results
         </span>
         <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' as const, background: 'rgba(255,255,255,0.06)', color: '#5A6A7A' }}>2026 Results</span>

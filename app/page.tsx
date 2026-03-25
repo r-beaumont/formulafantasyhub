@@ -32,11 +32,11 @@ export default function Home() {
   const latestArticles = articles.slice(0, 3)
 
   const lastRaceResults = [
-    { pos: 1, posC: '#FFD700', bar: '#27F4D2', driver: 'Kimi Antonelli',   flag: '🇮🇹', team: 'Mercedes', gap: 'Winner' },
-    { pos: 2, posC: '#C0C0C0', bar: '#27F4D2', driver: 'George Russell',  flag: '🇬🇧', team: 'Mercedes', gap: '+5.5s' },
-    { pos: 3, posC: '#CD7F32', bar: '#E8002D', driver: 'Lewis Hamilton',  flag: '🇬🇧', team: 'Ferrari',  gap: '+25.3s' },
-    { pos: 4, posC: '#5A6A7A', bar: '#E8002D', driver: 'Charles Leclerc', flag: '🇲🇨', team: 'Ferrari',  gap: '+28.9s' },
-    { pos: 5, posC: '#5A6A7A', bar: '#B6BABD', driver: 'Oliver Bearman',  flag: '🇬🇧', team: 'Haas',     gap: '+57.3s' },
+    { pos: 1, posC: '#FFD700', bar: '#27F4D2', driver: 'Kimi Antonelli',   flag: 'it', team: 'Mercedes', gap: 'Winner' },
+    { pos: 2, posC: '#C0C0C0', bar: '#27F4D2', driver: 'George Russell',  flag: 'gb', team: 'Mercedes', gap: '+5.5s' },
+    { pos: 3, posC: '#CD7F32', bar: '#E8002D', driver: 'Lewis Hamilton',  flag: 'gb', team: 'Ferrari',  gap: '+25.3s' },
+    { pos: 4, posC: '#5A6A7A', bar: '#E8002D', driver: 'Charles Leclerc', flag: 'mc', team: 'Ferrari',  gap: '+28.9s' },
+    { pos: 5, posC: '#5A6A7A', bar: '#B6BABD', driver: 'Oliver Bearman',  flag: 'gb', team: 'Haas',     gap: '+57.3s' },
   ]
 
   return (
@@ -80,7 +80,7 @@ export default function Home() {
           <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', marginBottom: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
               <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>
-                🇨🇳 Chinese GP — Race Result · Round 2
+                <span className="fi fi-cn" style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span> Chinese GP — Race Result · Round 2
               </span>
               <Link href="/race-hub" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>Full →</Link>
             </div>
@@ -89,7 +89,7 @@ export default function Home() {
                 <div key={r.driver} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: r.pos <= 3 ? 600 : 400, color: r.posC, width: '24px' }}>{r.pos}</span>
                   <div style={{ width: '3px', height: '28px', borderRadius: '2px', background: r.bar }} />
-                  <span style={{ fontSize: '16px' }}>{r.flag}</span>
+                  <span className={`fi fi-${r.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: '13px', fontWeight: 600 }}>{r.driver}</div>
                     <div style={{ fontSize: '11px', color: '#5A6A7A' }}>{r.team}</div>

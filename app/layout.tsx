@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import 'flag-icons/css/flag-icons.min.css'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -67,11 +68,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        {/* Flag emoji polyfill for Chrome/Edge on Windows */}
-        <script type="module" dangerouslySetInnerHTML={{ __html: `
-          import { polyfillCountryFlagEmojis } from "https://cdn.skypack.dev/country-flag-emoji-polyfill";
-          polyfillCountryFlagEmojis();
-        `}} />
         {children}
       </body>
     </html>

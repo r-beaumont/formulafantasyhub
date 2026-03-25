@@ -46,7 +46,7 @@ export default function StandingsWidget({ limit = 5, showLink = true, type = 'bo
               <div key={d.name} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                 <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: posColor(d.position), width: '20px', fontWeight: d.position <= 3 ? 600 : 400 }}>{d.position}</span>
                 <div style={{ width: '3px', height: '26px', borderRadius: '2px', background: d.team_colour, flexShrink: 0 }} />
-                <span style={{ fontSize: '15px' }}>{d.flag}</span>
+                <span className={`fi fi-${d.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: '13px', fontWeight: 500 }}>{d.name}</div>
                   <div style={{ fontSize: '11px', color: '#5A6A7A' }}>{d.team}</div>
@@ -70,7 +70,7 @@ export default function StandingsWidget({ limit = 5, showLink = true, type = 'bo
                 <div key={c.team} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: posColor(c.position), width: '20px', fontWeight: c.position <= 3 ? 600 : 400 }}>{c.position}</span>
                   <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: c.team_colour, flexShrink: 0 }} />
-                  <span style={{ fontSize: '15px' }}>{c.flag}</span>
+                  <span className={`fi fi-${c.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
                   <span style={{ flex: 1, fontSize: '13px', fontWeight: 500 }}>{c.team}</span>
                   <div style={{ width: '60px', height: '3px', background: '#1C2630', borderRadius: '2px', overflow: 'hidden' }}>
                     <div style={{ width: `${(c.points / maxPts) * 100}%`, height: '100%', background: c.team_colour, opacity: 0.8 }} />

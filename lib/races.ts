@@ -26,7 +26,7 @@ export const CURRENT_RACE: Race = {
   shortName: 'Japan',
   circuit: 'Suzuka Circuit',
   country: 'Japan',
-  flag: '🇯🇵',
+  flag: 'jp',
   isSprint: false,
   timezone: 'Asia/Tokyo',
   sessions: [
@@ -59,7 +59,7 @@ export const SEASON_CALENDAR: {
   {
     round: 1,
     name: 'Australia',
-    flag: '🇦🇺',
+    flag: 'au',
     country: 'Australia',
     circuit: 'Albert Park Circuit',
     date: '8 Mar',
@@ -76,7 +76,7 @@ export const SEASON_CALENDAR: {
   {
     round: 2,
     name: 'China',
-    flag: '🇨🇳',
+    flag: 'cn',
     country: 'China',
     circuit: 'Shanghai International Circuit',
     date: '15 Mar',
@@ -93,7 +93,7 @@ export const SEASON_CALENDAR: {
   {
     round: 3,
     name: 'Japan',
-    flag: '🇯🇵',
+    flag: 'jp',
     country: 'Japan',
     circuit: 'Suzuka Circuit',
     date: '29 Mar',
@@ -109,7 +109,7 @@ export const SEASON_CALENDAR: {
   {
     round: 4,
     name: 'Miami',
-    flag: '🇺🇸',
+    flag: 'us',
     country: 'United States',
     circuit: 'Miami International Autodrome',
     date: '3 May',
@@ -132,7 +132,7 @@ export const SEASON_CALENDAR: {
   {
     round: 5,
     name: 'Canada',
-    flag: '🇨🇦',
+    flag: 'ca',
     country: 'Canada',
     circuit: 'Circuit Gilles Villeneuve',
     date: '24 May',
@@ -155,7 +155,7 @@ export const SEASON_CALENDAR: {
   {
     round: 6,
     name: 'Monaco',
-    flag: '🇲🇨',
+    flag: 'mc',
     country: 'Monaco',
     circuit: 'Circuit de Monaco',
     date: '7 Jun',
@@ -178,7 +178,7 @@ export const SEASON_CALENDAR: {
   {
     round: 7,
     name: 'Barcelona-Catalunya',
-    flag: '🇪🇸',
+    flag: 'es',
     country: 'Spain',
     circuit: 'Circuit de Barcelona-Catalunya',
     date: '14 Jun',
@@ -201,7 +201,7 @@ export const SEASON_CALENDAR: {
   {
     round: 8,
     name: 'Austria',
-    flag: '🇦🇹',
+    flag: 'at',
     country: 'Austria',
     circuit: 'Red Bull Ring',
     date: '28 Jun',
@@ -224,7 +224,7 @@ export const SEASON_CALENDAR: {
   {
     round: 9,
     name: 'Britain',
-    flag: '🇬🇧',
+    flag: 'gb',
     country: 'Great Britain',
     circuit: 'Silverstone Circuit',
     date: '5 Jul',
@@ -247,7 +247,7 @@ export const SEASON_CALENDAR: {
   {
     round: 10,
     name: 'Belgium',
-    flag: '🇧🇪',
+    flag: 'be',
     country: 'Belgium',
     circuit: 'Circuit de Spa-Francorchamps',
     date: '19 Jul',
@@ -270,7 +270,7 @@ export const SEASON_CALENDAR: {
   {
     round: 11,
     name: 'Hungary',
-    flag: '🇭🇺',
+    flag: 'hu',
     country: 'Hungary',
     circuit: 'Hungaroring',
     date: '26 Jul',
@@ -293,7 +293,7 @@ export const SEASON_CALENDAR: {
   {
     round: 12,
     name: 'Netherlands',
-    flag: '🇳🇱',
+    flag: 'nl',
     country: 'Netherlands',
     circuit: 'Circuit Zandvoort',
     date: '23 Aug',
@@ -316,7 +316,7 @@ export const SEASON_CALENDAR: {
   {
     round: 13,
     name: 'Italy',
-    flag: '🇮🇹',
+    flag: 'it',
     country: 'Italy',
     circuit: 'Autodromo Nazionale Monza',
     date: '6 Sep',
@@ -339,7 +339,7 @@ export const SEASON_CALENDAR: {
   {
     round: 14,
     name: 'Madrid',
-    flag: '🇪🇸',
+    flag: 'es',
     country: 'Spain',
     circuit: 'Madring Street Circuit',
     date: '13 Sep',
@@ -362,7 +362,7 @@ export const SEASON_CALENDAR: {
   {
     round: 15,
     name: 'Azerbaijan',
-    flag: '🇦🇿',
+    flag: 'az',
     country: 'Azerbaijan',
     circuit: 'Baku City Circuit',
     date: '26 Sep',
@@ -385,7 +385,7 @@ export const SEASON_CALENDAR: {
   {
     round: 16,
     name: 'Singapore',
-    flag: '🇸🇬',
+    flag: 'sg',
     country: 'Singapore',
     circuit: 'Marina Bay Street Circuit',
     date: '11 Oct',
@@ -408,7 +408,7 @@ export const SEASON_CALENDAR: {
   {
     round: 17,
     name: 'United States',
-    flag: '🇺🇸',
+    flag: 'us',
     country: 'United States',
     circuit: 'Circuit of the Americas',
     date: '25 Oct',
@@ -431,7 +431,7 @@ export const SEASON_CALENDAR: {
   {
     round: 18,
     name: 'Mexico',
-    flag: '🇲🇽',
+    flag: 'mx',
     country: 'Mexico',
     circuit: 'Autodromo Hermanos Rodriguez',
     date: '1 Nov',
@@ -454,7 +454,7 @@ export const SEASON_CALENDAR: {
   {
     round: 19,
     name: 'Brazil',
-    flag: '🇧🇷',
+    flag: 'br',
     country: 'Brazil',
     circuit: 'Autodromo Jose Carlos Pace',
     date: '8 Nov',
@@ -477,7 +477,7 @@ export const SEASON_CALENDAR: {
   {
     round: 20,
     name: 'Las Vegas',
-    flag: '🇺🇸',
+    flag: 'us',
     country: 'United States',
     circuit: 'Las Vegas Strip Circuit',
     date: '21 Nov',
@@ -500,7 +500,7 @@ export const SEASON_CALENDAR: {
   {
     round: 21,
     name: 'Qatar',
-    flag: '🇶🇦',
+    flag: 'qa',
     country: 'Qatar',
     circuit: 'Lusail International Circuit',
     date: '29 Nov',
@@ -523,7 +523,7 @@ export const SEASON_CALENDAR: {
   {
     round: 22,
     name: 'Abu Dhabi',
-    flag: '🇦🇪',
+    flag: 'ae',
     country: 'United Arab Emirates',
     circuit: 'Yas Marina Circuit',
     date: '6 Dec',

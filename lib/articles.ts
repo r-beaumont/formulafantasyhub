@@ -27,7 +27,7 @@ export const articles: Article[] = [
     premium: false,
     thumbnail: 'linear-gradient(135deg, #001a0a 0%, #003d1a 50%, #001a0a 100%)',
     thumbnailBg: 'rgba(0,212,126,0.2)',
-    thumbnailIcon: '🇯🇵',
+    thumbnailIcon: 'jp',
     content: `**THE SETUP**
 
 Two races in, Mercedes are running away with this. George Russell leads the championship, Kimi Antonelli is the reigning race winner, and Ferrari are the only team consistently sharing the podium. For F1 Fantasy managers, the message from the first two rounds is clear — the Silver Arrows are the spine of any competitive team right now. Japan is where we find out if that holds on one of the most technically demanding circuits in the world.
@@ -82,7 +82,7 @@ Suzuka's unpredictability in wet conditions makes Limitless a risk this week —
     premium: false,
     thumbnail: 'linear-gradient(135deg, #1a0000 0%, #3d0000 50%, #1a0a00 100%)',
     thumbnailBg: 'rgba(232,0,45,0.2)',
-    thumbnailIcon: '🇨🇳',
+    thumbnailIcon: 'cn',
     content: `Shanghai brings one of the most complex planning challenges of the season. A Sprint format means an extra scoring session — but it also means your Limitless chip is at its most powerful here.
 
 The key this weekend is identifying differentials: drivers that most managers won't own, but who could deliver outsized returns. With the Sprint on Saturday morning, pace from Friday practice is your only real data point.
@@ -141,7 +141,7 @@ McLaren are the obvious pick but their ownership is sky-high. Mercedes are price
     premium: false,
     thumbnail: 'linear-gradient(135deg, #0a0a1a 0%, #1a1a3d 50%, #0a0a1a 100%)',
     thumbnailBg: 'rgba(255,184,0,0.2)',
-    thumbnailIcon: '🇦🇺',
+    thumbnailIcon: 'au',
     content: `The 2026 season opener delivered more clarity than most expected. Mercedes showed dominant pace in both qualifying and the race, with Russell taking a commanding victory ahead of teammate Antonelli.
 
 Ferrari showed genuine race pace — Leclerc and Hamilton both delivered strong results. This team is going to be a key F1 Fantasy asset throughout the season.

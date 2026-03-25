@@ -45,7 +45,7 @@ export async function GET() {
           acronym: info.name_acronym || '',
           team: info.team_name || fallback?.team || '',
           team_colour: info.team_colour ? `#${info.team_colour}` : fallback?.teamColor || '#666',
-          flag: fallback?.flag || '🏁',
+          flag: fallback?.flag || '',
           points: d.points_current,
           wins: 0,
         }
@@ -59,7 +59,7 @@ export async function GET() {
           position: c.position_current,
           team: c.team_name,
           team_colour: c.team_colour ? `#${c.team_colour}` : fallback?.color || '#666',
-          flag: fallback?.flag || '🏁',
+          flag: fallback?.flag || '',
           points: c.points_current,
           wins: fallback?.wins || 0,
         }

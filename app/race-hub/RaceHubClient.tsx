@@ -154,7 +154,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
             <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase' as const }}>Race Hub</span>
           </div>
           <h1 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(2.5rem,5vw,3.5rem)', letterSpacing: '1px', lineHeight: 1, marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '12px', fontWeight: 400, margin: '0 0 4px' }}>
-            <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', fontSize: 'clamp(2rem,4vw,2.8rem)' }}>{selectedRace.flag}</span>
+            <span className={`fi fi-${selectedRace.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', fontSize: 'clamp(2rem,4vw,2.8rem)' }}></span>
             <span>{selectedRace.name} Grand Prix</span>
           </h1>
           <div style={{ color: '#5A6A7A', fontSize: '13px' }}>
@@ -176,7 +176,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                 display: 'flex', alignItems: 'center', gap: '8px',
               }}
             >
-              <span>{selectedRace.flag}</span>
+              <span className={`fi fi-${selectedRace.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
               <span>R{selectedRace.round} — {selectedRace.name}</span>
               {selectedRace.sprint && <span style={{ fontSize: '11px', color: '#E8002D' }}>⚡</span>}
               {selectedRace.completed && <span style={{ fontSize: '11px', color: '#00D47E' }}>✓</span>}
@@ -205,7 +205,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                         opacity: isCalledOff ? 0.5 : 1,
                       }}
                     >
-                      <span>{race.flag}</span>
+                      <span className={`fi fi-${race.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
                       <span>R{race.round} — {race.name}</span>
                       {race.sprint && !isCalledOff && <span style={{ fontSize: '10px', color: '#E8002D' }}>⚡</span>}
                       {isCalledOff && <span style={{ fontSize: '9px', color: '#5A6A7A', marginLeft: 'auto', fontWeight: 600 }}>CANCELLED</span>}
@@ -599,7 +599,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                 {/* Tyre Compounds */}
                 <div style={card}>
                   <div style={cardHeader}>
-                    <span style={cardTitle}>Tyre Compounds — {selectedRace.flag} {raceName} GP</span>
+                    <span style={cardTitle}>Tyre Compounds — <span className={`fi fi-${selectedRace.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span> {raceName} GP</span>
                     <Badge type="race" label="Pirelli" />
                   </div>
                   <div className="mob-1col" style={{ padding: '16px 24px 20px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px' }}>

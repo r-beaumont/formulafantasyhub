@@ -328,7 +328,7 @@ export default function StandingsClient() {
                     <td style={{ padding: '9px 12px', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <div style={{ width: '3px', height: '22px', borderRadius: '2px', background: d.teamColor, flexShrink: 0 }} />
-                        <span style={{ fontSize: '15px', fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif' }}>{d.flag}</span>
+                        <span className={`fi fi-${d.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
                         <span style={{ fontSize: '13px', fontWeight: 500, whiteSpace: 'nowrap' }}>{d.name}</span>
                       </div>
                     </td>
@@ -372,7 +372,7 @@ export default function StandingsClient() {
               return (
                 <div key={c.name} style={{ display: 'grid', gridTemplateColumns: '28px 26px 160px 1fr 56px 52px 52px', alignItems: 'center', gap: '12px' }}>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: posColor(i + 1), fontWeight: i < 3 ? 600 : 400, textAlign: 'right' as const }}>{i + 1}</span>
-                  <span style={{ fontSize: '18px', fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif' }}>{c.flag}</span>
+                  <span className={`fi fi-${c.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: c.color, flexShrink: 0 }} />
                     <span style={{ fontSize: '13px', fontWeight: 600, color: c.points > 0 ? '#F0F4F8' : '#5A6A7A', whiteSpace: 'nowrap' }}>{c.name}</span>
@@ -434,7 +434,7 @@ export default function StandingsClient() {
                     </div>
                   )}
                   {/* Flag */}
-                  <div style={{ fontSize: '22px', marginTop: '4px', marginBottom: '2px', fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif' }}>{race.flag}</div>
+                  <div style={{ marginTop: '4px', marginBottom: '2px' }}><span className={`fi fi-${race.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', fontSize: '22px' }}></span></div>
                   {/* Date */}
                   <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '8px', color: '#3A4A5A' }}>{race.date}</div>
                 </div>
@@ -481,7 +481,7 @@ export default function StandingsClient() {
                   <th style={{ ...thStyle(true), minWidth: '160px' }}>Driver</th>
                   {completedCalRounds.map(calR => (
                     <th key={calR.round} style={{ ...thStyle(false), minWidth: '44px' }}>
-                      <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', fontSize: '16px' }}>{calR.flag}</span>
+                      <span className={`fi fi-${calR.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
                     </th>
                   ))}
                   <th style={{ ...thStyle(false), minWidth: '52px', color: '#FFB800' }}>TOTAL</th>
@@ -524,7 +524,7 @@ export default function StandingsClient() {
                   <th style={{ ...thStyle(true), minWidth: '160px' }}>Constructor</th>
                   {completedCalRounds.map(calR => (
                     <th key={calR.round} style={{ ...thStyle(false), minWidth: '44px' }}>
-                      <span style={{ fontFamily: 'Twemoji Country Flags, DM Sans, sans-serif', fontSize: '16px' }}>{calR.flag}</span>
+                      <span className={`fi fi-${calR.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
                     </th>
                   ))}
                   <th style={{ ...thStyle(false), minWidth: '52px', color: '#FFB800' }}>TOTAL</th>
