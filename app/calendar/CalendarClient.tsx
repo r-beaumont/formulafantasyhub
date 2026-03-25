@@ -100,7 +100,7 @@ export default function CalendarClient() {
                 </span>
 
                 {/* Flag */}
-                <span style={{ fontSize: '18px', flexShrink: 0 }}>{race.flag}</span>
+                <span className={`fi fi-${race.flag}`} style={{ width: '1.4em', flexShrink: 0, borderRadius: '2px', display: 'inline-block' }} />
 
                 {/* Name + circuit */}
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -164,8 +164,9 @@ export default function CalendarClient() {
                 }}>
                   {/* Expanded title */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px', flexWrap: 'wrap' as const }}>
-                    <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '24px', letterSpacing: '1px', color: '#F0F4F8', lineHeight: 1 }}>
-                      {race.flag} {race.name} Grand Prix
+                    <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '24px', letterSpacing: '1px', color: '#F0F4F8', lineHeight: 1, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span className={`fi fi-${race.flag}`} style={{ width: '1em', borderRadius: '2px', display: 'inline-block', flexShrink: 0 }} />
+                      {race.name} Grand Prix
                     </span>
                     {race.sprint && !isCalledOff && (
                       <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 7px', borderRadius: '3px', background: 'rgba(232,0,45,0.15)', color: '#E8002D' }}>

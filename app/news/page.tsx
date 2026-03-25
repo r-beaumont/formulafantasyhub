@@ -17,6 +17,14 @@ const categoryColors: Record<string, { color: string; bg: string }> = {
 
 type TagFilter = 'All' | 'F1 Fantasy' | 'F1'
 
+function ThumbnailIcon({ icon, size }: { icon: string; size: number }) {
+  const isFlag = /^[a-z]{2}$/.test(icon)
+  if (isFlag) {
+    return <span className={`fi fi-${icon}`} style={{ width: `${size * 0.9}px`, height: `${size * 0.65}px`, display: 'inline-block', borderRadius: '4px', position: 'relative', zIndex: 1 }} />
+  }
+  return <span style={{ fontSize: `${size}px`, position: 'relative', zIndex: 1, filter: 'drop-shadow(0 4px 24px rgba(0,0,0,0.5))' }}>{icon}</span>
+}
+
 export default function NewsPage() {
   const [activeTag, setActiveTag] = useState<TagFilter>('All')
 
@@ -81,7 +89,7 @@ export default function NewsPage() {
               {/* Left — big thumbnail */}
               <div className="mob-featured-thumb" style={{ height: '340px', background: featured.thumbnail, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <div style={{ position: 'absolute', inset: 0, background: featured.thumbnailBg }} />
-                <span style={{ fontSize: '100px', position: 'relative', zIndex: 1, filter: 'drop-shadow(0 4px 24px rgba(0,0,0,0.5))' }}>{featured.thumbnailIcon}</span>
+                <ThumbnailIcon icon={featured.thumbnailIcon} size={100} />
                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '100px', background: 'linear-gradient(transparent,rgba(14,19,24,0.95))', zIndex: 2 }} />
                 {/* Latest badge */}
                 <div style={{ position: 'absolute', top: '16px', left: '16px', zIndex: 3 }}>
@@ -180,7 +188,7 @@ function NewsCard({ article }: { article: any }) {
         {/* Thumbnail */}
         <div style={{ height: '160px', background: article.thumbnail, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
           <div style={{ position: 'absolute', inset: 0, background: article.thumbnailBg, opacity: 0.7 }} />
-          <span style={{ fontSize: '56px', position: 'relative', zIndex: 1, filter: 'drop-shadow(0 2px 12px rgba(0,0,0,0.5))' }}>{article.thumbnailIcon}</span>
+          <ThumbnailIcon icon={article.thumbnailIcon} size={56} />
           <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(transparent,rgba(14,19,24,0.95))', zIndex: 1 }} />
         </div>
         {/* Content */}
