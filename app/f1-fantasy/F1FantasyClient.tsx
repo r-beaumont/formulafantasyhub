@@ -65,11 +65,14 @@ function ComingSoonTab() {
 
 // ── How to Play tab ────────────────────────────────────────────────────────────
 
-function ScoringTable({ title, rows, cols }: { title: string; rows: (string | number)[][]; cols: string[] }) {
+function ScoringTable({ title, note, rows, cols }: { title: string; note?: string; rows: (string | number)[][]; cols: string[] }) {
   return (
-    <div style={{ ...card, marginBottom: '20px' }}>
+    <div style={{ ...card, marginBottom: '16px' }}>
       <div style={cardHeader}>
-        <span style={cardTitle}>{title}</span>
+        <div>
+          <span style={cardTitle}>{title}</span>
+          {note && <div style={{ fontSize: '11px', color: '#5A6A7A', marginTop: '4px', fontWeight: 400, letterSpacing: 0, textTransform: 'none' as const }}>{note}</div>}
+        </div>
       </div>
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' as const, minWidth: '400px' }}>
@@ -97,11 +100,20 @@ function ScoringTable({ title, rows, cols }: { title: string; rows: (string | nu
   )
 }
 
+function SessionHeader({ label, color }: { label: string; color: string }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '32px 0 16px' }}>
+      <div style={{ width: '4px', height: '28px', background: color, borderRadius: '2px' }} />
+      <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '28px', color: '#F0F4F8', letterSpacing: '1px' }}>{label}</span>
+    </div>
+  )
+}
+
 function HowToPlayTab() {
   return (
     <div>
       {/* Intro */}
-      <div style={{ ...card, padding: '28px', marginBottom: '24px' }}>
+      <div style={{ ...card, padding: '28px', marginBottom: '8px' }}>
         <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '32px', marginBottom: '12px' }}>How F1 Fantasy Works</div>
         <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, marginBottom: '16px' }}>
           Each week you select 5 drivers and 2 constructors within a budget. Points are scored based on race performance across Qualifying, the Sprint (at sprint weekends) and the main Grand Prix.
@@ -121,31 +133,53 @@ function HowToPlayTab() {
         </div>
       </div>
 
-      {/* Qualifying scoring */}
+      {/* ── QUALIFYING ── */}
+      <SessionHeader label="Qualifying" color="#E8002D" />
+
       <ScoringTable
-        title="Qualifying Points"
+        title="Driver Scoring — Qualifying"
         cols={['Category', 'Points']}
         rows={[
-          ['Pole Position (P1)', 10],
-          ['2nd Place (P2)', 9],
-          ['3rd Place (P3)', 8],
-          ['4th Place (P4)', 7],
-          ['5th Place (P5)', 6],
-          ['6th Place (P6)', 5],
-          ['7th Place (P7)', 4],
-          ['8th Place (P8)', 3],
-          ['9th Place (P9)', 2],
-          ['10th Place (P10)', 1],
-          ['Out in Q1 (P11+)', 0],
-          ['Did Not Qualify', -5],
+          ['Pole Position', 10],
+          ['2nd Place', 9],
+          ['3rd Place', 8],
+          ['4th Place', 7],
+          ['5th Place', 6],
+          ['6th Place', 5],
+          ['7th Place', 4],
+          ['8th Place', 3],
+          ['9th Place', 2],
+          ['10th Place', 1],
+          ['11th–20th Place', 0],
+          ['NC / DSQ / No Time Set', -5],
         ]}
       />
 
-      {/* Sprint scoring */}
       <ScoringTable
-        title="Sprint Race Points"
-        cols={['Position', 'Points']}
+        title="Constructor Scoring — Qualifying"
+        note="Constructors score the combined total of both drivers, plus the bonuses below."
+        cols={['Category', 'Points']}
         rows={[
+          ['Neither driver reaches Q2', -1],
+          ['One driver reaches Q2', 1],
+          ['Both drivers reach Q2', 3],
+          ['One driver reaches Q3', 5],
+          ['Both drivers reach Q3', 10],
+          ['Disqualified driver (per driver)', -5],
+        ]}
+      />
+
+      {/* ── SPRINT ── */}
+      <SessionHeader label="Sprint" color="#FFB800" />
+
+      <ScoringTable
+        title="Driver Scoring — Sprint"
+        cols={['Category', 'Points']}
+        rows={[
+          ['Positions Gained (per position)', 1],
+          ['Positions Lost (per position)', -1],
+          ['Overtakes Made (per overtake)', 1],
+          ['Fastest Lap', 5],
           ['1st Place', 8],
           ['2nd Place', 7],
           ['3rd Place', 6],
@@ -154,14 +188,32 @@ function HowToPlayTab() {
           ['6th Place', 3],
           ['7th Place', 2],
           ['8th Place', 1],
+          ['9th–20th Place', 0],
+          ['DNF / DSQ / Not Classified', -10],
         ]}
       />
 
-      {/* Race scoring */}
       <ScoringTable
-        title="Race Points"
+        title="Constructor Scoring — Sprint"
+        note="Constructors score the combined total of both drivers, plus the penalty below."
         cols={['Category', 'Points']}
         rows={[
+          ['Disqualified driver (per driver)', -10],
+        ]}
+      />
+
+      {/* ── RACE ── */}
+      <SessionHeader label="Race" color="#00D47E" />
+
+      <ScoringTable
+        title="Driver Scoring — Race"
+        cols={['Category', 'Points']}
+        rows={[
+          ['Positions Gained (per position)', 1],
+          ['Positions Lost (per position)', -1],
+          ['Overtakes Made (per overtake)', 1],
+          ['Fastest Lap', 10],
+          ['Driver of the Day (driver only)', 10],
           ['1st Place', 25],
           ['2nd Place', 18],
           ['3rd Place', 15],
@@ -172,14 +224,55 @@ function HowToPlayTab() {
           ['8th Place', 4],
           ['9th Place', 2],
           ['10th Place', 1],
-          ['Fastest Lap (Top 10)', 5],
-          ['Driver of the Day', 10],
-          ['Overtakes (per overtake)', 2],
-          ['Positions Gained (per pos)', 2],
-          ['Positions Lost (per pos)', -2],
-          ['DNF / DSQ', -15],
+          ['11th–20th Place', 0],
+          ['DNF / DSQ / Not Classified', -20],
         ]}
       />
+
+      <ScoringTable
+        title="Constructor Scoring — Race"
+        note="Constructors score the combined total of both drivers (excluding Driver of the Day), plus pit stop bonuses below."
+        cols={['Category', 'Points']}
+        rows={[
+          ['Pit Stop: Over 3.0 seconds', 0],
+          ['Pit Stop: 2.50–2.99 seconds', 2],
+          ['Pit Stop: 2.20–2.49 seconds', 5],
+          ['Pit Stop: 2.00–2.19 seconds', 10],
+          ['Pit Stop: Under 2.0 seconds', 20],
+          ['Fastest Pit Stop Bonus', 5],
+          ['New World Record Pit Stop Bonus', 15],
+          ['Disqualified driver (per driver)', -20],
+        ]}
+      />
+
+      {/* ── TEAM MANAGEMENT ── */}
+      <SessionHeader label="Team Management" color="#00A8FF" />
+
+      <ScoringTable
+        title="Transfers"
+        cols={['Category', 'Points']}
+        rows={[
+          ['Exceeding free transfer allowance (per additional transfer)', -10],
+        ]}
+      />
+
+      {/* ── FOOTNOTES ── */}
+      <div style={{ ...card, padding: '24px', marginTop: '8px' }}>
+        <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A', marginBottom: '14px' }}>Notes</div>
+        <ul style={{ margin: 0, padding: '0 0 0 18px', display: 'flex', flexDirection: 'column' as const, gap: '10px' }}>
+          {[
+            'Positions gained and lost are calculated based on the starting and finishing position of the driver in the race, not their qualifying result.',
+            'Unclassified drivers will not have positions lost calculated and will instead receive the DNF penalty.',
+            'Cars starting from the pit lane are considered to have started from a position relative to the last car on the grid.',
+            'Overtakes are only valid when one driver legally passes another on track and the driver being passed was not entering the pit lane or suffering a car failure or going unreasonably slow.',
+            'Driver of the Day is the result of the official F1 Driver of the Day award.',
+            'DNF and Not Classified penalties apply to all drivers including those classed as inactive or not included in the final starting grid.',
+            'The current world record pit stop time is 1.8 seconds, set by McLaren at the Qatar Grand Prix 2023.',
+          ].map((note, i) => (
+            <li key={i} style={{ fontSize: '13px', color: '#5A6A7A', lineHeight: 1.65 }}>{note}</li>
+          ))}
+        </ul>
+      </div>
 
     </div>
   )
