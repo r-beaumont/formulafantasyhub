@@ -16,6 +16,128 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-japanese-gp-2026',
+    title: 'Race Week Preview: Japanese Grand Prix',
+    excerpt: 'Mercedes lead the championship after back-to-back one-twos. Here is your F1 Fantasy watchlist for Suzuka.',
+    readTime: 4,
+    date: 'Mar 27, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #001a0a 0%, #003d1a 50%, #001a0a 100%)',
+    thumbnailBg: 'rgba(0,212,126,0.2)',
+    thumbnailIcon: 'jp',
+    content: `**THE SETUP**
+
+Two races in, Mercedes are running away with this. George Russell leads the championship, Kimi Antonelli is the reigning race winner, and Ferrari are the only team consistently sharing the podium. For F1 Fantasy managers, the message from the first two rounds is clear — the Silver Arrows are the spine of any competitive team right now. Japan is where we find out if that holds on one of the most technically demanding circuits in the world.
+
+**THE CIRCUIT**
+
+Suzuka is a flowing, high-downforce layout where overtaking is notoriously difficult. Tyre management through the Esses and Sector 2 is critical, with one-stop strategies common. Safety car deployments are reasonably frequent, particularly in wet conditions, which could shake up scoring unpredictably.
+
+**THE WEATHER**
+
+Rain is forecast across all three days with temperatures expected around 15-17°C. Wet Suzuka is a different race entirely — it introduces safety cars, variable strategies and the kind of chaos that can either spike or sink your week. If qualifying runs in the wet, grid positions become unpredictable and that changes the positions gained calculation for Sunday entirely.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Oliver Bearman**
+
+Best PPM in the game after two rounds. Haas have been genuinely competitive in 2026's new regulations and Oliver Bearman is driving with real confidence. At his price he gives you flexibility to load up on premium picks elsewhere — he is the standout budget buy of the season so far.
+
+**Kimi Antonelli**
+
+Still underpriced relative to what he's delivering. Race winner in China, two podiums in two rounds, and he's your strongest 2x Boost candidate not named George Russell. If you don't have him, get him before the price ceiling catches up with his points total.
+
+🟡 HOLD
+
+**George Russell**
+
+Pole and win in Australia, sprint win and P2 in China. You already know the answer. Hold him through Suzuka — Max Verstappen's four-race winning streak here came in a different era with a very different car.
+
+**Arvid Lindblad**
+
+Scored on debut in Australia and the DNS in China was a mechanical issue, not a performance problem. Racing Bulls should suit Suzuka better than Shanghai's high-speed straights. Hold and see what Friday brings.
+
+🔴 SELL
+
+**Max Verstappen**
+
+Four straight wins at Suzuka sounds compelling — it isn't, not in this car. He called the Red Bull undriveable in China and nothing suggests a rapid fix before Japan. His price tag is impossible to justify against the points he's realistically delivering right now.
+
+**Gabriel Bortoleto**
+
+DNS in China wiped out the momentum he built with a points finish in Australia. Audi are still finding their feet with the new regulations and Gabriel Bortoleto's price doesn't yet reflect the uncertainty around his weekend-to-weekend reliability.
+
+**THE CHIPS**
+
+Suzuka's unpredictability in wet conditions makes Limitless a risk this week — you want clean, predictable scoring to maximise that chip. However, if weather conditions improve, there could be an opportunity to use it here given the limited overtaking opportunities at Suzuka. If rain is expected during the Grand Prix, consider deploying No Negative — Suzuka is a technically challenging circuit across three demanding sessions and wet conditions historically produce higher than expected retirements, making this one of the strongest use cases for that chip.`,
+  },
+  {
+    slug: 'race-week-preview-chinese-gp-2026',
+    title: 'Race Week Preview: Chinese Grand Prix',
+    excerpt: 'Mercedes are flying after Australia. Here is your F1 Fantasy watchlist for the sprint weekend in Shanghai.',
+    readTime: 4,
+    date: 'Mar 20, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0000 0%, #3d0000 50%, #1a0000 100%)',
+    thumbnailBg: 'rgba(232,0,45,0.2)',
+    thumbnailIcon: 'cn',
+    content: `**THE SETUP**
+
+One race in, Mercedes have answered the preseason question emphatically. George Russell won the Australian Grand Prix from pole position, Kimi Antonelli was second, Charles Leclerc recovered brilliantly for third, and Lewis Hamilton took a composed fourth. The Silver Arrows are the team to beat heading into Shanghai. China is a sprint weekend — with extra points on the table and overtakes aplenty, that changes the calculus entirely. Chip usage is going to be as important as ever.
+
+**THE CIRCUIT**
+
+Shanghai International Circuit is a long, flowing layout with a mix of high-speed corners in the opening sector and a technical second sector that features the famous double-right hairpin. The back straight is one of the longest on the calendar and produces genuine DRS overtaking opportunities. Tyre degradation is moderate, with two-stop strategies possible in warmer conditions. As a sprint weekend, you will have two separate scoring events — the Sprint on Saturday morning and the Grand Prix on Sunday. That means more points on the table and a higher premium on picking the right drivers.
+
+**THE WEATHER**
+
+Shanghai in late March tends to be cool and overcast, with temperatures in the mid-to-high teens. Rain is possible across the weekend — Chinese GP weekends have a history of variable conditions, and even a brief shower during the sprint qualifying session can scramble grid positions significantly.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Oliver Bearman**
+
+The standout budget pick of the season. Bearman delivered points on debut in Australia and is driving Haas with real maturity. Shanghai's long straight suits a competitive mid-field car, and he remains one of the most underowned drivers in the game. In a sprint weekend where every scoring session counts, getting him into your squad ahead of a potential price rise is the smart move.
+
+**George Russell**
+
+Australia's race winner is the form driver in the game. Pole, fastest lap, race win — Russell delivered a clean sweep in Melbourne and arrives in Shanghai as the overwhelming favourite to lead the championship after round two. He is the obvious 2x Boost candidate this week and the core asset in any competitive squad.
+
+🟡 HOLD
+
+**Liam Lawson**
+
+Lawson returned only five fantasy points in Australia but Racing Bulls showed competitive race pace in the final stint. The team also demonstrated strong single-lap pace at Albert Park, which should carry over to Shanghai. A hold for now.
+
+**Esteban Ocon**
+
+Ocon has quietly been building points in the background and Haas showed enough in Australia to suggest both their drivers have a scoring floor this season. Sprint weekends can favour midfield drivers for overtakes in Saturday's racing fixture and Ocon is capable of making the most of those opportunities.
+
+🔴 SELL
+
+**Nico Hulkenberg**
+
+Audi reliability was the demise of Hulkenberg at Albert Park, failing to start the first race of the year. With plenty of options in the same price range, the German is an early transfer casualty after taking an early -20 penalty. Selling ahead of a potential price drop makes sense here.
+
+**Oscar Piastri**
+
+McLaren showed genuine race pace in Australia but the result was not there for Piastri, who did not complete a single lap after crashing on the reconnaissance lap. With McLaren's pace still unproven in race conditions and cheaper options scoring higher up the grid, Piastri is one to avoid for now.
+
+**THE CHIPS**
+
+Limitless and 3x Boost are the standout chips this sprint weekend. A clearly defined top two in the pecking order makes building a Limitless lineup straightforward, with triple Mercedes and triple Ferrari the obvious cornerstones. Russell and Antonelli are firmly in the crosshairs for the 3x Boost given the sizable pace advantage Mercedes demonstrated in Australia. For differential options, Leclerc and Hamilton should also be considered but will rely on overtakes and Driver of the Day favouritism to maximise their fantasy upside.`,
+  },
+  {
     slug: 'race-week-preview-australian-gp-2026',
     title: 'Race Week Preview: Australian Grand Prix',
     excerpt: 'The 2026 season begins at Albert Park. Here is your F1 Fantasy watchlist for the season opener in Melbourne.',
@@ -42,117 +164,7 @@ Melbourne in early March typically brings warm, dry conditions — temperatures 
 
 **THE CHIPS**
 
-The Autopilot chip is the standout option for Round 1. With so much uncertainty about who the front-runners will actually be in race conditions, Autopilot removes the guesswork on your constructor pick — locking in the highest-scoring team from the weekend automatically. Testing suggested Mercedes and Ferrari are best placed, but Albert Park has a habit of producing surprises. Autopilot insulates your score from the unpredictability of the season opener. Save Limitless, No Negative, and Extra DRS for rounds where you have genuine race data behind you.`,
-  },
-  {
-    slug: 'race-week-preview-chinese-gp-2026',
-    title: 'Race Week Preview: Chinese Grand Prix',
-    excerpt: 'Mercedes are flying after Australia. Here is your F1 Fantasy watchlist for the sprint weekend in Shanghai.',
-    readTime: 4,
-    date: 'Mar 20, 2026',
-    tag: 'Race Preview',
-    category: 'Race Preview',
-    articleType: 'F1 Fantasy',
-    premium: false,
-    thumbnail: 'linear-gradient(135deg, #1a0000 0%, #3d0000 50%, #1a0000 100%)',
-    thumbnailBg: 'rgba(232,0,45,0.2)',
-    thumbnailIcon: 'cn',
-    content: `**THE SETUP**
-
-One race in, Mercedes have answered the preseason question emphatically. George Russell won the Australian Grand Prix from pole position, Kimi Antonelli was second, Charles Leclerc recovered brilliantly for third, and Lewis Hamilton took a composed fourth on his Ferrari debut. The Silver Arrows are the team to beat heading into Shanghai. China is a sprint weekend — that changes the calculus entirely, and if you have not already thought carefully about your chip strategy, now is the time.
-
-**THE CIRCUIT**
-
-Shanghai International Circuit is a long, flowing layout with a mix of high-speed corners in the opening sector and a technical second sector that features the famous double-right hairpin. The back straight is one of the longest on the calendar and produces genuine DRS overtaking opportunities. Tyre degradation is moderate, with two-stop strategies possible in warmer conditions. As a sprint weekend, you will have two separate scoring events — the Sprint on Saturday morning and the Grand Prix on Sunday. That means more points on the table and a higher premium on picking the right drivers.
-
-**THE WEATHER**
-
-Shanghai in late March tends to be cool and overcast, with temperatures in the mid-to-high teens. Rain is possible across the weekend — Chinese GP weekends have a history of variable conditions, and even a brief shower during the sprint qualifying session can scramble grid positions significantly.
-
-**THE WEEKLY WATCHLIST**
-
-🟢 BUY
-
-Oliver Bearman
-The standout budget pick of the season. Bearman delivered points on debut in Australia and is driving Haas with real maturity. Shanghai's long straight suits a competitive mid-field car, and he remains one of the most underowned drivers in the game. In a sprint weekend where every scoring session counts, getting him into your squad ahead of a potential price rise is the smart move.
-
-George Russell
-Australia's race winner is the form driver in the game. Pole, fastest lap, race win — Russell delivered a clean sweep in Melbourne and arrives in Shanghai as the overwhelming favourite to lead the championship after round two. He is the obvious 2x Boost candidate this week and the core asset in any competitive squad.
-
-🟡 HOLD
-
-Liam Lawson
-Lawson did not score in Australia but Racing Bulls showed competitive race pace in the final stint. Shanghai's technical second sector should suit the RB package better than Albert Park's flowing layout. Hold him for now and reassess after sprint qualifying gives you real pace data.
-
-Esteban Ocon
-Ocon has quietly been building points in the background and Haas's competitive showing in Australia suggests both their drivers have a floor under their scoring this season. Sprint weekends can deliver bonus points from unexpected positions and Ocon is capable of making the most of a disrupted session.
-
-🔴 SELL
-
-Nico Hulkenberg
-Hulkenberg struggled to show the pace that made him a popular preseason pick and his Australia result disappointed. Sauber are still finding their footing with the 2026 regulations and the Shanghai circuit's demands on traction and cornering commitment do not play to the package's current strengths. Selling ahead of a potential price drop makes sense here.
-
-Oscar Piastri
-McLaren showed genuine race pace in Australia but the result was not there for Piastri. With high ownership across the game, selling him before a second disappointing result could save you significant value. Shanghai's sprint format amplifies the risk of holding an underperforming high-price asset — if he does not deliver in the sprint, sell pressure will be significant heading into the Grand Prix.
-
-**THE CHIPS**
-
-This is the strongest Limitless weekend of the first half of the season. A sprint weekend means five scoring sessions instead of the usual four — Sprint Qualifying, the Sprint itself, Qualifying, the Grand Prix, and the fastest lap bonus. Limitless removes the budget cap for the entire weekend, letting you field the highest-scoring drivers regardless of cost. Shanghai amplifies that advantage because the sprint gives underowned high-price drivers a second chance to deliver. If you have been saving Limitless for the right moment, this is it. Deploy it here, pick your five highest-confidence drivers plus the leading constructor, and let the sprint do the work.`,
-  },
-  {
-    slug: 'race-week-preview-japanese-gp-2026',
-    title: 'Race Week Preview: Japanese Grand Prix',
-    excerpt: 'Mercedes lead the championship after back-to-back one-twos. Here is your F1 Fantasy watchlist for Suzuka.',
-    readTime: 4,
-    date: 'Mar 25, 2026',
-    tag: 'Race Preview',
-    category: 'Race Preview',
-    articleType: 'F1 Fantasy',
-    premium: false,
-    thumbnail: 'linear-gradient(135deg, #001a0a 0%, #003d1a 50%, #001a0a 100%)',
-    thumbnailBg: 'rgba(0,212,126,0.2)',
-    thumbnailIcon: 'jp',
-    content: `**THE SETUP**
-
-Two races in, Mercedes are running away with this. George Russell leads the championship, Kimi Antonelli is the reigning race winner, and Ferrari are the only team consistently sharing the podium. For F1 Fantasy managers, the message from the first two rounds is clear — the Silver Arrows are the spine of any competitive team right now. Japan is where we find out if that holds on one of the most technically demanding circuits in the world.
-
-**THE CIRCUIT**
-
-Suzuka is a flowing, high-downforce layout where overtaking is notoriously difficult. Tyre management through the Esses and Sector 2 is critical, with one-stop strategies common. Safety car deployments are reasonably frequent, particularly in wet conditions, which could shake up scoring unpredictably.
-
-**THE WEATHER**
-
-Rain is forecast across all three days with temperatures expected around 15-17°C. Wet Suzuka is a different race entirely — it introduces safety cars, variable strategies and the kind of chaos that can either spike or sink your week. If qualifying runs in the wet, grid positions become unpredictable and that changes the positions gained calculation for Sunday entirely.
-
-**THE WEEKLY WATCHLIST**
-
-🟢 BUY
-
-Oliver Bearman
-Best PPM in the game after two rounds. Haas have been genuinely competitive in 2026's new regulations and Oliver Bearman is driving with real confidence. At his price he gives you flexibility to load up on premium picks elsewhere — he is the standout budget buy of the season so far.
-
-Kimi Antonelli
-Still underpriced relative to what he's delivering. Race winner in China, two podiums in two rounds, and he's your strongest 2x Boost candidate not named George Russell. If you don't have him, get him before the price ceiling catches up with his points total.
-
-🟡 HOLD
-
-George Russell
-Pole and win in Australia, sprint win and P2 in China. You already know the answer. Hold him through Suzuka — Max Verstappen's four-race winning streak here came in a different era with a very different car.
-
-Arvid Lindblad
-Scored on debut in Australia and the DNS in China was a mechanical issue, not a performance problem. Racing Bulls should suit Suzuka better than Shanghai's high-speed straights. Hold and see what Friday brings.
-
-🔴 SELL
-
-Max Verstappen
-Four straight wins at Suzuka sounds compelling — it isn't, not in this car. He called the Red Bull undriveable in China and nothing suggests a rapid fix before Japan. His price tag is impossible to justify against the points he's realistically delivering right now.
-
-Gabriel Bortoleto
-DNS in China wiped out the momentum he built with a points finish in Australia. Audi are still finding their feet with the new regulations and Gabriel Bortoleto's price doesn't yet reflect the uncertainty around his weekend-to-weekend reliability.
-
-**THE CHIPS**
-
-Suzuka's unpredictability in wet conditions makes Limitless a risk this week — you want clean, predictable scoring to maximise that chip. However, if weather conditions improve, there could be an opportunity to use it here given the limited overtaking opportunities at Suzuka. If rain is expected during the Grand Prix, consider deploying No Negative — Suzuka is a technically challenging circuit across three demanding sessions and wet conditions historically produce higher than expected retirements, making this one of the strongest use cases for that chip.`,
+The Autopilot chip is the standout option for Round 1. With so much uncertainty heading into the season opener, nobody truly knows how the pecking order will shake out in race conditions at Albert Park. Autopilot removes the guesswork entirely — it automatically reassigns your 2x Boost to the highest-scoring driver in your team across the weekend, meaning you cannot pick the wrong driver. Testing pointed to Mercedes and Ferrari leading the way, with Russell, Antonelli and Leclerc all standout options, but Albert Park has a long history of producing surprises. Let Autopilot do the work.`,
   },
 ]
 
