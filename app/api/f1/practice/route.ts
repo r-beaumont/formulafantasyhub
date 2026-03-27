@@ -19,7 +19,7 @@ export async function GET(request: Request) {
     if (!sessionKey) return NextResponse.json([], { status: 400 })
 
     const [lapsRes, driversRes] = await Promise.all([
-      fetch(`${BASE}/laps?session_key=${sessionKey}&is_pit_out_lap=false`, { cache: 'no-store' }),
+      fetch(`${BASE}/laps?session_key=${sessionKey}`, { cache: 'no-store' }),
       fetch(`${BASE}/drivers?session_key=${sessionKey}`, { cache: 'no-store' }),
     ])
 

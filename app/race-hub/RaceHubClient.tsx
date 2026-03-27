@@ -107,8 +107,11 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
           setSessions(Array.isArray(sessData) ? sessData : [])
 
           if (Array.isArray(sessData) && sessData.length) {
-            const latestSess = sessData[sessData.length - 1]
-            const weatherRes = await fetch(`/api/f1/weather?session_key=${latestSess.session_key}`)
+            // Use the most recently started session — future sessions have no weather data
+            const now = Date.now()
+            const started = sessData.filter((s: any) => s.date_start && new Date(s.date_start).getTime() <= now)
+            const weatherSess = started.length > 0 ? started[started.length - 1] : sessData[0]
+            const weatherRes = await fetch(`/api/f1/weather?session_key=${weatherSess.session_key}`)
             const weatherData = await weatherRes.json()
             setWeather(weatherData)
           }
@@ -122,10 +125,12 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
   // Refresh track conditions every 20 minutes
   useEffect(() => {
     if (!sessions.length) return
-    const latestKey = sessions[sessions.length - 1].session_key
     const poll = async () => {
       try {
-        const res = await fetch(`/api/f1/weather?session_key=${latestKey}`)
+        const now = Date.now()
+        const started = sessions.filter((s: any) => s.date_start && new Date(s.date_start).getTime() <= now)
+        const weatherSess = started.length > 0 ? started[started.length - 1] : sessions[0]
+        const res = await fetch(`/api/f1/weather?session_key=${weatherSess.session_key}`)
         const data = await res.json()
         if (data && !data.error) setWeather(data)
       } catch {}
