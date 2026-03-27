@@ -4,7 +4,7 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
     const session_key = searchParams.get('session_key') || 'latest'
-    const res = await fetch(`${BASE}/weather?session_key=${session_key}`, { next: { revalidate: 60 } })
+    const res = await fetch(`${BASE}/weather?session_key=${session_key}`, { cache: 'no-store' })
     const data = await res.json()
     const latest = data[data.length - 1] || null
     return NextResponse.json(latest)

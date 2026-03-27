@@ -369,6 +369,9 @@ export default function ResultsTab({ selectedRound, sessions }: { selectedRound:
       }, 15000)
     } else if (status === 'recent') {
       setIsConcluded(true)
+    } else if (openF1Sess?.date_end && Date.now() > new Date(openF1Sess.date_end).getTime()) {
+      // Session ended more than 2 hours ago — still mark as concluded
+      setIsConcluded(true)
     }
 
     return () => {

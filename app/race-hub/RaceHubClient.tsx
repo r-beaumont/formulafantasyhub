@@ -100,11 +100,13 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
         setStandings(standData)
 
         if (selectedRace.meeting_key) {
-          const sessRes = await fetch(`/api/f1/sessions?meeting_key=${selectedRace.meeting_key}`)
+          // Use 'latest' for the current race weekend — guarantees correct OpenF1 meeting key
+          const meetingParam = selectedRound === CURRENT_RACE.round ? 'latest' : selectedRace.meeting_key
+          const sessRes = await fetch(`/api/f1/sessions?meeting_key=${meetingParam}`)
           const sessData = await sessRes.json()
           setSessions(Array.isArray(sessData) ? sessData : [])
 
-          if (sessData.length) {
+          if (Array.isArray(sessData) && sessData.length) {
             const latestSess = sessData[sessData.length - 1]
             const weatherRes = await fetch(`/api/f1/weather?session_key=${latestSess.session_key}`)
             const weatherData = await weatherRes.json()
@@ -116,6 +118,21 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
     }
     load()
   }, [selectedRound])
+
+  // Refresh track conditions every 20 minutes
+  useEffect(() => {
+    if (!sessions.length) return
+    const latestKey = sessions[sessions.length - 1].session_key
+    const poll = async () => {
+      try {
+        const res = await fetch(`/api/f1/weather?session_key=${latestKey}`)
+        const data = await res.json()
+        if (data && !data.error) setWeather(data)
+      } catch {}
+    }
+    const id = setInterval(poll, 20 * 60 * 1000)
+    return () => clearInterval(id)
+  }, [sessions])
 
   useEffect(() => {
     if (!selectedRace.lat || !selectedRace.lon || !selectedRace.weekendStartISO) return
