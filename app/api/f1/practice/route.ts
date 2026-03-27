@@ -19,16 +19,12 @@ export async function GET(request: Request) {
     if (!sessionKey) return NextResponse.json([], { status: 400 })
 
     const [lapsRes, driversRes] = await Promise.all([
-      fetch(`${BASE}/laps?session_key=${sessionKey}&is_pit_out_lap=false`, { next: { revalidate: 300 } }),
-      fetch(`${BASE}/drivers?session_key=${sessionKey}`, { next: { revalidate: 3600 } }),
+      fetch(`${BASE}/laps?session_key=${sessionKey}&is_pit_out_lap=false`, { cache: 'no-store' }),
+      fetch(`${BASE}/drivers?session_key=${sessionKey}`, { cache: 'no-store' }),
     ])
 
     const laps = await lapsRes.json()
     const drivers = await driversRes.json()
-
-    if (!Array.isArray(laps) || laps.length === 0) {
-      return NextResponse.json([])
-    }
 
     // Build driver info map
     const driverMap: Record<number, any> = {}
@@ -36,7 +32,11 @@ export async function GET(request: Request) {
       for (const d of drivers) driverMap[d.driver_number] = d
     }
 
-    // Find best lap per driver_number
+    if (!Array.isArray(laps) || laps.length === 0) {
+      return NextResponse.json([])
+    }
+
+    // Find best lap per driver_number (minimum lap_duration)
     const bestLaps: Record<number, number> = {}
     for (const lap of laps) {
       if (lap.lap_duration == null || lap.lap_duration <= 0) continue

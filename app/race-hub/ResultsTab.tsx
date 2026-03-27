@@ -1,30 +1,93 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { RACE_WEEKENDS, type DriverResult, type QualifyingResult, type QualifyingSessionKeys } from '@/lib/raceResults'
+import { RACE_WEEKENDS, type DriverResult, type QualifyingResult } from '@/lib/raceResults'
 import { DRIVERS } from '@/lib/drivers'
+
+// ─── Driver helpers ───────────────────────────────────────────────────────────
 
 const DRIVER_FLAG: Record<string, string> = Object.fromEntries(DRIVERS.map(d => [d.name, d.nationality]))
 
-async function fetchLiveQualifying(keys: QualifyingSessionKeys, qualifier: string): Promise<QualifyingResult[] | null> {
-  const params = new URLSearchParams()
-  if (keys.q1) params.set(qualifier === 'SQ' ? 'q1_key' : 'q1_key', keys.q1)
-  if (keys.q2) params.set('q2_key', keys.q2)
-  if (keys.q3) params.set('q3_key', keys.q3)
-  try {
-    const res = await fetch(`/api/f1/qualifying?${params}`)
-    if (!res.ok) return null
-    const data = await res.json()
-    return data.results ?? null
-  } catch {
-    return null
-  }
+const TEAM_DISPLAY: Record<string, { name: string; color: string }> = {
+  mclaren:     { name: 'McLaren',         color: '#FF8000' },
+  mercedes:    { name: 'Mercedes',        color: '#27F4D2' },
+  redbull:     { name: 'Red Bull Racing', color: '#3671C6' },
+  ferrari:     { name: 'Ferrari',         color: '#E8002D' },
+  williams:    { name: 'Williams',        color: '#64C4FF' },
+  racingbulls: { name: 'Racing Bulls',    color: '#6692FF' },
+  astonmartin: { name: 'Aston Martin',    color: '#358C75' },
+  haas:        { name: 'Haas',            color: '#B6BABD' },
+  audi:        { name: 'Audi',            color: '#C0C0C0' },
+  alpine:      { name: 'Alpine',          color: '#FF69B4' },
+  cadillac:    { name: 'Cadillac',        color: '#CC0000' },
 }
+
+/** Pad live API results to always show all 22 drivers (matched by driver_number). */
+function padTo22Practice(rows: any[]): DriverResult[] {
+  const seenNums = new Set(rows.map((r: any) => r.driver_number as number))
+  let nextPos = rows.length + 1
+  const missing: DriverResult[] = DRIVERS
+    .filter(d => !seenNums.has(d.number))
+    .map(d => ({
+      position: nextPos++,
+      name: d.name,
+      team: TEAM_DISPLAY[d.team]?.name ?? d.team,
+      team_colour: d.teamColor,
+      time: 'NO TIME SET',
+      gap: 'NO TIME SET',
+    }))
+  return [...rows, ...missing]
+}
+
+function padTo22Qualifying(rows: any[]): QualifyingResult[] {
+  const seenNums = new Set(rows.map((r: any) => r.driver_number as number))
+  let nextPos = rows.length + 1
+  const missing: QualifyingResult[] = DRIVERS
+    .filter(d => !seenNums.has(d.number))
+    .map(d => ({
+      position: nextPos++,
+      name: d.name,
+      team: TEAM_DISPLAY[d.team]?.name ?? d.team,
+      team_colour: d.teamColor,
+      q1: null,
+      q2: null,
+      q3: null,
+      time: '—',
+    }))
+  return [...rows, ...missing]
+}
+
+// ─── Session helpers ──────────────────────────────────────────────────────────
+
+function sessionNameToTabId(name: string): string | null {
+  const n = (name || '').toLowerCase().trim()
+  if (n === 'practice 1') return 'fp1'
+  if (n === 'practice 2') return 'fp2'
+  if (n === 'practice 3') return 'fp3'
+  if (n === 'sprint qualifying' || n === 'sprint shootout') return 'sprint-qualifying'
+  if (n === 'sprint') return 'sprint-race'
+  if (n === 'qualifying') return 'qualifying'
+  if (n === 'race') return 'race'
+  return null
+}
+
+type SessionStatus = 'active' | 'recent' | 'old'
+
+function getSessionStatus(session: any): SessionStatus {
+  if (!session?.date_start || !session?.date_end) return 'old'
+  const now = Date.now()
+  const start = new Date(session.date_start).getTime()
+  const end = new Date(session.date_end).getTime()
+  if (now >= start && now <= end) return 'active'
+  if (now > end && now <= end + 2 * 3600 * 1000) return 'recent'
+  return 'old'
+}
+
+// ─── Shared styles ────────────────────────────────────────────────────────────
 
 const card = { background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' as const }
 const cardHeader = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }
 const cardTitle = { fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }
-
 const posColors: Record<number, string> = { 1: '#FFD700', 2: '#C0C0C0', 3: '#CD7F32' }
 
 function shortenTeam(team: string): string {
@@ -32,6 +95,8 @@ function shortenTeam(team: string): string {
     .replace('Red Bull Racing', 'Red Bull')
     .replace('Haas F1 Team', 'Haas')
 }
+
+// ─── ScrollTable ──────────────────────────────────────────────────────────────
 
 function ScrollTable({ children, minW }: { children: React.ReactNode; minW: number }) {
   const topRef = useRef<HTMLDivElement>(null)
@@ -54,11 +119,9 @@ function ScrollTable({ children, minW }: { children: React.ReactNode; minW: numb
 
   return (
     <div>
-      {/* Top scrollbar mirror */}
       <div ref={topRef} onScroll={onTopScroll} style={{ overflowX: 'auto', overflowY: 'hidden', height: '12px' }}>
         <div style={{ width: `${minW}px`, height: '1px' }} />
       </div>
-      {/* Actual content */}
       <div ref={botRef} onScroll={onBotScroll} style={{ overflowX: 'auto', minWidth: 0 }}>
         <div style={{ minWidth: `${minW}px` }}>
           {children}
@@ -68,11 +131,15 @@ function ScrollTable({ children, minW }: { children: React.ReactNode; minW: numb
   )
 }
 
+// ─── Time cell ────────────────────────────────────────────────────────────────
+
 function timeCell(t: string | null): { text: string; color: string } {
   if (!t) return { text: '—', color: '#3A4A5A' }
   if (t === 'NO TIME SET') return { text: 'NO TIME SET', color: '#3A4A5A' }
   return { text: t, color: '#F0F4F8' }
 }
+
+// ─── PracticeTable ────────────────────────────────────────────────────────────
 
 function PracticeTable({ data }: { data: DriverResult[] }) {
   return (
@@ -89,7 +156,7 @@ function PracticeTable({ data }: { data: DriverResult[] }) {
         const t = timeCell(r.time)
         const g = timeCell(r.gap)
         return (
-          <div key={r.position} style={{ display: 'grid', gridTemplateColumns: '32px 4px 140px 110px 110px 110px', gap: '0 12px', alignItems: 'center', minHeight: '48px', padding: '0 20px', borderBottom: '1px solid rgba(255,255,255,0.04)', verticalAlign: 'middle' }}>
+          <div key={r.position} style={{ display: 'grid', gridTemplateColumns: '32px 4px 140px 110px 110px 110px', gap: '0 12px', alignItems: 'center', minHeight: '48px', padding: '0 20px', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
             <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 600 : 400, color: posColors[r.position] || '#5A6A7A' }}>{r.position}</span>
             <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
             <div style={{ fontSize: '13px', fontWeight: 500, whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -106,6 +173,8 @@ function PracticeTable({ data }: { data: DriverResult[] }) {
   )
 }
 
+// ─── SectionDivider ───────────────────────────────────────────────────────────
+
 function SectionDivider({ label }: { label: string }) {
   return (
     <div style={{ padding: '6px 20px', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.07)', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
@@ -113,6 +182,8 @@ function SectionDivider({ label }: { label: string }) {
     </div>
   )
 }
+
+// ─── QualifyingTable ──────────────────────────────────────────────────────────
 
 function QualifyingTable({ data, qualifier = 'Q' }: { data: QualifyingResult[]; qualifier?: string }) {
   const q3Group = data.filter(r => r.position <= 10)
@@ -159,54 +230,233 @@ function QualifyingTable({ data, qualifier = 'Q' }: { data: QualifyingResult[]; 
   )
 }
 
-export default function ResultsTab({ selectedRound }: { selectedRound: number }) {
+// ─── LIVE / FINAL badge ───────────────────────────────────────────────────────
+
+function StatusBadge({ polling, concluded }: { polling: boolean; concluded: boolean }) {
+  if (polling) {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+        <span className="live-dot" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#E8002D', display: 'inline-block' }} />
+        <span style={{ fontSize: '10px', fontWeight: 700, color: '#E8002D', letterSpacing: '1px' }}>LIVE</span>
+      </div>
+    )
+  }
+  if (concluded) {
+    return <span style={{ fontSize: '10px', fontWeight: 700, color: '#5A6A7A', letterSpacing: '1px', padding: '3px 8px', borderRadius: '4px', background: 'rgba(255,255,255,0.06)' }}>FINAL</span>
+  }
+  return <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' as const, background: 'rgba(255,255,255,0.06)', color: '#5A6A7A' }}>2026 Results</span>
+}
+
+// ─── Main ResultsTab ──────────────────────────────────────────────────────────
+
+export default function ResultsTab({ selectedRound, sessions }: { selectedRound: number; sessions: any[] }) {
   const weekend = RACE_WEEKENDS[selectedRound]
-  const [activeSession, setActiveSession] = useState('fp1')
-  const [liveQualifying, setLiveQualifying] = useState<QualifyingResult[] | null>(null)
-  const [liveSprintQualifying, setLiveSprintQualifying] = useState<QualifyingResult[] | null>(null)
-  const [loadingLive, setLoadingLive] = useState(false)
 
-  const hasQualifying = !!weekend?.qualifying || !!weekend?.qualifyingKeys
-  const hasSprintQualifying = !!weekend?.isSprint && (!!weekend?.sprintQualifying || !!weekend?.sprintQualifyingKeys)
+  // Map OpenF1 session names → tab IDs
+  const sessionMap: Record<string, any> = {}
+  for (const s of (sessions || [])) {
+    const tabId = sessionNameToTabId(s.session_name)
+    if (tabId) sessionMap[tabId] = s
+  }
 
+  const isSprint = !!weekend?.isSprint
+
+  // Build available session tabs
   const sessionTabs = [
-    { id: 'fp1',               label: 'FP1',               available: !!weekend?.fp1 },
-    { id: 'fp2',               label: 'FP2',               available: !weekend?.isSprint && !!weekend?.fp2 },
-    { id: 'fp3',               label: 'FP3',               available: !weekend?.isSprint && !!weekend?.fp3 },
-    { id: 'sprint-qualifying', label: 'Sprint Qualifying', available: hasSprintQualifying },
-    { id: 'sprint-race',       label: 'Sprint Race',       available: !!weekend?.isSprint && !!weekend?.sprintRace },
-    { id: 'qualifying',        label: 'Qualifying',        available: hasQualifying },
-    { id: 'race',              label: 'Race',              available: !!weekend?.race },
+    { id: 'fp1',               label: 'FP1',               available: !!weekend?.fp1 || !!sessionMap['fp1'] },
+    { id: 'fp2',               label: 'FP2',               available: !isSprint && (!!weekend?.fp2 || !!sessionMap['fp2']) },
+    { id: 'fp3',               label: 'FP3',               available: !isSprint && (!!weekend?.fp3 || !!sessionMap['fp3']) },
+    { id: 'sprint-qualifying', label: 'Sprint Qualifying', available: isSprint && (!!weekend?.sprintQualifying || !!weekend?.sprintQualifyingKeys || !!sessionMap['sprint-qualifying']) },
+    { id: 'sprint-race',       label: 'Sprint Race',       available: isSprint && (!!weekend?.sprintRace || !!sessionMap['sprint-race']) },
+    { id: 'qualifying',        label: 'Qualifying',        available: !!weekend?.qualifying || !!weekend?.qualifyingKeys || !!sessionMap['qualifying'] },
+    { id: 'race',              label: 'Race',              available: !!weekend?.race || !!sessionMap['race'] },
   ].filter(t => t.available)
 
-  // Reset to first available session when round changes; clear live data
+  const [activeSession, setActiveSession] = useState(sessionTabs[0]?.id ?? 'fp1')
+  const [livePracticeData, setLivePracticeData] = useState<DriverResult[] | null>(null)
+  const [liveQualData, setLiveQualData] = useState<QualifyingResult[] | null>(null)
+  const [loadingLive, setLoadingLive] = useState(false)
+  const [isPolling, setIsPolling] = useState(false)
+  const [isConcluded, setIsConcluded] = useState(false)
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  const effectiveSession = sessionTabs.some(t => t.id === activeSession) ? activeSession : (sessionTabs[0]?.id ?? 'fp1')
+
+  // Determine if the current tab has static data in RACE_WEEKENDS
+  function tabHasStaticData(tab: string): boolean {
+    if (!weekend) return false
+    if (tab === 'fp1' && weekend.fp1) return true
+    if (tab === 'fp2' && weekend.fp2) return true
+    if (tab === 'fp3' && weekend.fp3) return true
+    if (tab === 'sprint-qualifying' && (weekend.sprintQualifying || weekend.sprintQualifyingKeys)) return true
+    if (tab === 'sprint-race' && weekend.sprintRace) return true
+    if (tab === 'qualifying' && (weekend.qualifying || weekend.qualifyingKeys)) return true
+    if (tab === 'race' && weekend.race) return true
+    return false
+  }
+
+  // Reset everything on round change
   useEffect(() => {
+    if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null }
     setActiveSession(sessionTabs[0]?.id ?? 'fp1')
-    setLiveQualifying(null)
-    setLiveSprintQualifying(null)
+    setLivePracticeData(null)
+    setLiveQualData(null)
+    setIsPolling(false)
+    setIsConcluded(false)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedRound])
 
-  // Fetch live qualifying if session selected and no static data
+  // Live fetch + polling — triggered by tab change, round change, or when session key becomes available
+  const currentOpenF1Session = sessionMap[effectiveSession]
+  const currentSessionKey = currentOpenF1Session?.session_key ?? null
+
   useEffect(() => {
-    if (activeSession === 'qualifying' && !weekend?.qualifying && weekend?.qualifyingKeys) {
-      setLoadingLive(true)
-      fetchLiveQualifying(weekend.qualifyingKeys, 'Q')
-        .then(data => setLiveQualifying(data))
-        .finally(() => setLoadingLive(false))
+    const tab = effectiveSession
+    const openF1Sess = sessionMap[tab]
+
+    // Clear any previous interval
+    if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null }
+    setIsPolling(false)
+    setIsConcluded(false)
+    setLivePracticeData(null)
+    setLiveQualData(null)
+
+    // Skip if static data covers this tab
+    if (tabHasStaticData(tab)) return
+    // Skip if no live session key available yet
+    if (!openF1Sess?.session_key) return
+
+    const isQual = tab === 'qualifying' || tab === 'sprint-qualifying'
+    const status = getSessionStatus(openF1Sess)
+
+    const doFetch = async () => {
+      try {
+        if (isQual) {
+          const res = await fetch(`/api/f1/qualifying?session_key=${openF1Sess.session_key}`, { cache: 'no-store' })
+          if (res.ok) {
+            const data = await res.json()
+            setLiveQualData(padTo22Qualifying(data.results ?? []))
+          }
+        } else {
+          const res = await fetch(`/api/f1/practice?session_key=${openF1Sess.session_key}`, { cache: 'no-store' })
+          if (res.ok) {
+            const raw = await res.json()
+            setLivePracticeData(padTo22Practice(Array.isArray(raw) ? raw : []))
+          }
+        }
+      } catch { /* silent fail */ }
     }
-    if (activeSession === 'sprint-qualifying' && !weekend?.sprintQualifying && weekend?.sprintQualifyingKeys) {
-      setLoadingLive(true)
-      fetchLiveQualifying(weekend.sprintQualifyingKeys, 'SQ')
-        .then(data => setLiveSprintQualifying(data))
-        .finally(() => setLoadingLive(false))
+
+    // Initial fetch
+    setLoadingLive(true)
+    doFetch().finally(() => setLoadingLive(false))
+
+    if (status === 'active') {
+      setIsPolling(true)
+      intervalRef.current = setInterval(async () => {
+        const currentStatus = getSessionStatus(openF1Sess)
+        if (currentStatus === 'active') {
+          await doFetch()
+        } else if (currentStatus === 'recent') {
+          setIsPolling(false)
+          setIsConcluded(true)
+          await doFetch()
+          if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null }
+        } else {
+          setIsPolling(false)
+          if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null }
+        }
+      }, 15000)
+    } else if (status === 'recent') {
+      setIsConcluded(true)
+    }
+
+    return () => {
+      if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSession, selectedRound])
+  }, [effectiveSession, selectedRound, currentSessionKey])
 
-  const effectiveSession = sessionTabs.some(t => t.id === activeSession) ? activeSession : sessionTabs[0]?.id ?? 'fp1'
+  // Final unmount cleanup
+  useEffect(() => {
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
+  }, [])
 
-  if (!weekend) {
+  // ─── Handle old qualifying key mechanism (kept for backwards compat) ───────
+  useEffect(() => {
+    const tab = effectiveSession
+    if (!tabHasStaticData(tab)) return
+    if (tab !== 'qualifying' && tab !== 'sprint-qualifying') return
+    const keys = tab === 'qualifying' ? weekend?.qualifyingKeys : weekend?.sprintQualifyingKeys
+    if (!keys || weekend?.qualifying || weekend?.sprintQualifying) return
+
+    const params = new URLSearchParams()
+    if (keys.q1) params.set('q1_key', keys.q1)
+    if (keys.q2) params.set('q2_key', keys.q2)
+    if (keys.q3) params.set('q3_key', keys.q3)
+
+    setLoadingLive(true)
+    fetch(`/api/f1/qualifying?${params}`, { cache: 'no-store' })
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data?.results) {
+          if (tab === 'qualifying') setLiveQualData(data.results)
+          else setLiveQualData(data.results)
+        }
+      })
+      .catch(() => {})
+      .finally(() => setLoadingLive(false))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [effectiveSession, selectedRound])
+
+  // ─── Render table ─────────────────────────────────────────────────────────
+
+  function renderTable() {
+    const tab = effectiveSession
+
+    if (loadingLive && !tabHasStaticData(tab) && !livePracticeData && !liveQualData) {
+      return <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px' }}>Loading live data…</div>
+    }
+
+    switch (tab) {
+      case 'fp1':
+        if (weekend?.fp1) return <PracticeTable data={weekend.fp1} />
+        if (livePracticeData) return <PracticeTable data={livePracticeData} />
+        return null
+      case 'fp2':
+        if (weekend?.fp2) return <PracticeTable data={weekend.fp2} />
+        if (livePracticeData) return <PracticeTable data={livePracticeData} />
+        return null
+      case 'fp3':
+        if (weekend?.fp3) return <PracticeTable data={weekend.fp3} />
+        if (livePracticeData) return <PracticeTable data={livePracticeData} />
+        return null
+      case 'sprint-qualifying': {
+        const sqData = weekend?.sprintQualifying ?? liveQualData
+        if (sqData) return <QualifyingTable data={sqData} qualifier="SQ" />
+        return null
+      }
+      case 'sprint-race':
+        if (weekend?.sprintRace) return <PracticeTable data={weekend.sprintRace} />
+        if (livePracticeData) return <PracticeTable data={livePracticeData} />
+        return null
+      case 'qualifying': {
+        const qData = weekend?.qualifying ?? liveQualData
+        if (qData) return <QualifyingTable data={qData} qualifier="Q" />
+        return null
+      }
+      case 'race':
+        if (weekend?.race) return <PracticeTable data={weekend.race} />
+        if (livePracticeData) return <PracticeTable data={livePracticeData} />
+        return null
+      default:
+        return null
+    }
+  }
+
+  // ─── No data at all ───────────────────────────────────────────────────────
+
+  if (!weekend && sessions.length === 0) {
     return (
       <div style={card}>
         <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px' }}>
@@ -216,33 +466,30 @@ export default function ResultsTab({ selectedRound }: { selectedRound: number })
     )
   }
 
-  const qualifyingData = weekend.qualifying ?? liveQualifying
-  const sprintQualifyingData = weekend.sprintQualifying ?? liveSprintQualifying
-
-  function renderTable() {
-    if (loadingLive && (effectiveSession === 'qualifying' || effectiveSession === 'sprint-qualifying')) {
-      return <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px' }}>Loading live data…</div>
-    }
-    switch (effectiveSession) {
-      case 'fp1':               return weekend.fp1              ? <PracticeTable data={weekend.fp1} /> : null
-      case 'fp2':               return weekend.fp2              ? <PracticeTable data={weekend.fp2} /> : null
-      case 'fp3':               return weekend.fp3              ? <PracticeTable data={weekend.fp3} /> : null
-      case 'sprint-qualifying': return sprintQualifyingData     ? <QualifyingTable data={sprintQualifyingData} qualifier="SQ" /> : null
-      case 'sprint-race':       return weekend.sprintRace       ? <PracticeTable data={weekend.sprintRace} /> : null
-      case 'qualifying':        return qualifyingData           ? <QualifyingTable data={qualifyingData} qualifier="Q" /> : null
-      case 'race':              return weekend.race             ? <PracticeTable data={weekend.race} /> : null
-      default: return null
-    }
+  if (sessionTabs.length === 0) {
+    return (
+      <div style={card}>
+        <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px' }}>
+          Session data not yet available
+        </div>
+      </div>
+    )
   }
+
+  // ─── Render ───────────────────────────────────────────────────────────────
+
+  const flag = weekend?.flag ?? (sessions[0] && 'jp')
+  const name = weekend?.name ?? ''
 
   return (
     <div style={card}>
+      {/* Card header */}
       <div style={cardHeader}>
         <span style={cardTitle}>
-          <span className={`fi fi-${weekend.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', marginRight: '6px' }}></span>
-          {weekend.name} GP — Session Results
+          {flag && <span className={`fi fi-${flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', marginRight: '6px' }}></span>}
+          {name} GP — Session Results
         </span>
-        <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' as const, background: 'rgba(255,255,255,0.06)', color: '#5A6A7A' }}>2026 Results</span>
+        <StatusBadge polling={isPolling} concluded={isConcluded} />
       </div>
 
       {/* Session tabs */}
@@ -268,7 +515,7 @@ export default function ResultsTab({ selectedRound }: { selectedRound: number })
         ))}
       </div>
 
-      {/* Table */}
+      {/* Table content */}
       {renderTable() ?? (
         <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px' }}>
           No data available for this session

@@ -344,7 +344,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       })()}
 
       {/* RESULTS TAB */}
-      {activeTab === 'results' && <ResultsTab selectedRound={selectedRound} />}
+      {activeTab === 'results' && <ResultsTab selectedRound={selectedRound} sessions={sessions} />}
 
       {/* WEATHER TAB */}
       {activeTab === 'weather' && (() => {

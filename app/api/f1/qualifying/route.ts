@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-export const revalidate = 300
-
 const TEAM_COLOURS: Record<string, string> = {
   'Mercedes':          '#27F4D2',
   'Ferrari':           '#E8002D',
@@ -39,7 +37,7 @@ function teamColour(teamName: string): string {
 async function fetchSession(sessionKey: string): Promise<Record<number, number>> {
   const res = await fetch(
     `https://api.openf1.org/v1/laps?session_key=${sessionKey}`,
-    { next: { revalidate: 300 } }
+    { cache: 'no-store' }
   )
   if (!res.ok) return {}
   const laps: any[] = await res.json()
@@ -68,7 +66,7 @@ export async function GET(req: NextRequest) {
   const primaryKey = q3Key || q2Key || q1Key
   const empty: Record<number, number> = {}
   const [driversRes, q1Data, q2Data, q3Data] = await Promise.all([
-    fetch(`https://api.openf1.org/v1/drivers?session_key=${primaryKey}`, { next: { revalidate: 300 } }),
+    fetch(`https://api.openf1.org/v1/drivers?session_key=${primaryKey}`, { cache: 'no-store' }),
     q1Key ? fetchSession(q1Key) : Promise.resolve(empty),
     q2Key ? fetchSession(q2Key) : Promise.resolve(empty),
     q3Key ? fetchSession(q3Key) : Promise.resolve(empty),

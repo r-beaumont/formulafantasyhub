@@ -310,6 +310,14 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     ],
   },
 
+  3: {
+    round: 3,
+    name: 'Japan',
+    flag: 'jp',
+    isSprint: false,
+    // All session data fetched live from OpenF1 API (meeting_key 1281)
+  },
+
 }
 
 // ─── 2026 Team & Driver Lineup ───────────────────────────────────────────────
