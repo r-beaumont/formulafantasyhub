@@ -90,10 +90,13 @@ function shortenTeam(team: string): string {
     .replace('Haas F1 Team', 'Haas')
 }
 
-/** Pad practice results to always show all 22 drivers */
+/** Pad practice results to always show all 22 grid drivers.
+ *  Filters out non-grid entries from the API before padding. */
 function padTo22Practice(rows: PracticeRow[]): PracticeRow[] {
-  const seen = new Set(rows.map(r => r.driver_number))
-  let pos = rows.length + 1
+  const GRID_NUMBERS = new Set(DRIVERS.map(d => d.number))
+  const gridRows = rows.filter(r => GRID_NUMBERS.has(r.driver_number))
+  const seen = new Set(gridRows.map(r => r.driver_number))
+  let pos = gridRows.length + 1
   const missing: PracticeRow[] = DRIVERS
     .filter(d => !seen.has(d.number))
     .map(d => ({
@@ -105,13 +108,18 @@ function padTo22Practice(rows: PracticeRow[]): PracticeRow[] {
       time: 'NO TIME SET',
       gap: 'NO TIME SET',
     }))
-  return [...rows, ...missing]
+  return [...gridRows, ...missing]
 }
 
-/** Pad qualifying results to 22 — padded drivers get q1='NO TIME SET', q2=null, q3=null */
+/** Pad qualifying results to exactly 22 grid drivers.
+ *  First filters out any non-grid driver_numbers from the API (test/reserve/safety car entries).
+ *  Then pads any missing grid drivers with q1='NO TIME SET', q2=null, q3=null. */
 function padTo22Qual(rows: QualRow[]): QualRow[] {
-  const seen = new Set(rows.map(r => r.driver_number))
-  let pos = rows.length + 1
+  const GRID_NUMBERS = new Set(DRIVERS.map(d => d.number))
+  // Remove non-grid entries that the API may have returned
+  const gridRows = rows.filter(r => GRID_NUMBERS.has(r.driver_number))
+  const seen = new Set(gridRows.map(r => r.driver_number))
+  let pos = gridRows.length + 1
   const missing: QualRow[] = DRIVERS
     .filter(d => !seen.has(d.number))
     .map(d => ({
@@ -124,13 +132,16 @@ function padTo22Qual(rows: QualRow[]): QualRow[] {
       q2: null,
       q3: null,
     }))
-  return [...rows, ...missing]
+  return [...gridRows, ...missing]
 }
 
-/** Pad race results to 22 */
+/** Pad race results to exactly 22 grid drivers.
+ *  Filters out non-grid entries from the API before padding. */
 function padTo22Race(rows: RaceRow[]): RaceRow[] {
-  const seen = new Set(rows.map(r => r.driver_number))
-  let pos = rows.length + 1
+  const GRID_NUMBERS = new Set(DRIVERS.map(d => d.number))
+  const gridRows = rows.filter(r => GRID_NUMBERS.has(r.driver_number))
+  const seen = new Set(gridRows.map(r => r.driver_number))
+  let pos = gridRows.length + 1
   const missing: RaceRow[] = DRIVERS
     .filter(d => !seen.has(d.number))
     .map(d => ({
@@ -141,7 +152,7 @@ function padTo22Race(rows: RaceRow[]): RaceRow[] {
       team_colour: TEAM_COLOUR_MAP[d.team] ?? d.teamColor,
       gap: 'NO TIME SET',
     }))
-  return [...rows, ...missing]
+  return [...gridRows, ...missing]
 }
 
 // ─── Shared card styles ───────────────────────────────────────────────────────
@@ -296,9 +307,10 @@ function QualifyingTable({ data, qualifier = 'Q' }: { data: QualRow[]; qualifier
   const q2Only = data.filter(r => (r.q3 == null) && (r.q2 != null || (r.q2 === null && data.some(x => x.q2 != null))))
 
   // Determine groups by segment reached
+  // Q1 = 22 drivers, Q2 = 16 (positions 1–16), Q3 = 10 (positions 1–10)
   const reachedQ3 = data.filter(r => r.position <= 10)
-  const reachedQ2 = data.filter(r => r.position > 10 && r.position <= 15)
-  const q1Only   = data.filter(r => r.position > 15)
+  const reachedQ2 = data.filter(r => r.position > 10 && r.position <= 16)
+  const q1Only   = data.filter(r => r.position > 16)
 
   const Row = ({ r }: { r: QualRow }) => {
     const inQ1Only = r.position > 15
@@ -373,14 +385,14 @@ function QualifyingTable({ data, qualifier = 'Q' }: { data: QualRow[]; qualifier
         {/* Q2 eliminated */}
         {reachedQ2.length > 0 && (
           <>
-            <SectionDivider label={`— ${qualifier}2 Eliminated (P11–15) —`} />
+            <SectionDivider label={`— ${qualifier}2 Eliminated (P11–16) —`} />
             {reachedQ2.map(r => <Row key={r.position} r={r} />)}
           </>
         )}
         {/* Q1 eliminated */}
         {q1Only.length > 0 && (
           <>
-            <SectionDivider label={`— ${qualifier}1 Eliminated (P16–22) —`} />
+            <SectionDivider label={`— ${qualifier}1 Eliminated (P17–22) —`} />
             {q1Only.map(r => <Row key={r.position} r={r} />)}
           </>
         )}

@@ -2,18 +2,21 @@ import { NextRequest, NextResponse } from 'next/server'
 
 const BASE = 'https://api.openf1.org/v1'
 
+// 2026 racing grid driver numbers — used to filter out non-racing entries from the API
+const GRID_NUMBERS = new Set([1, 4, 5, 6, 7, 10, 11, 12, 14, 16, 18, 23, 27, 30, 31, 43, 44, 55, 63, 77, 81, 87])
+
 const TEAM_COLOURS: Record<string, string> = {
-  'mercedes':    '#27F4D2',
-  'ferrari':     '#E8002D',
-  'mclaren':     '#FF8000',
-  'red bull':    '#3671C6',
-  'alpine':      '#FF69B4',
-  'haas':        '#B6BABD',
-  'audi':        '#C0C0C0',
-  'racing bulls':'#6692FF',
-  'williams':    '#64C4FF',
-  'aston martin':'#358C75',
-  'cadillac':    '#CC0000',
+  'mercedes':     '#27F4D2',
+  'ferrari':      '#E8002D',
+  'mclaren':      '#FF8000',
+  'red bull':     '#3671C6',
+  'alpine':       '#FF69B4',
+  'haas':         '#B6BABD',
+  'audi':         '#C0C0C0',
+  'racing bulls': '#6692FF',
+  'williams':     '#64C4FF',
+  'aston martin': '#358C75',
+  'cadillac':     '#CC0000',
 }
 
 function toProperCase(name: string): string {
@@ -44,21 +47,23 @@ function shortTeam(t: string): string {
 }
 
 /**
- * Detect Q1/Q2/Q3 segment boundaries by finding gaps > 5 minutes
- * between consecutive lap starts across all drivers.
- * Returns an array of up to 2 boundary timestamps (ms).
- * boundary[0] = end of Q1 (last lap start before inter-segment gap)
- * boundary[1] = end of Q2
+ * Detect Q1/Q2/Q3 segment boundaries by finding time gaps > 7 minutes
+ * between consecutive valid lap starts across all grid drivers.
+ * Returns up to 2 boundary timestamps (ms) — the end of Q1 and end of Q2.
  */
-function detectSegmentBoundaries(laps: any[]): number[] {
-  const times = laps
+function detectSegmentBoundaries(validLaps: any[]): number[] {
+  // Only use laps with plausible lap times (covers flying laps, not slow formation laps > 5min)
+  const racingLaps = validLaps.filter(l => l.lap_duration < 300)
+  const times = racingLaps
     .filter(l => l.date_start)
     .map(l => new Date(l.date_start).getTime())
     .sort((a, b) => a - b)
 
+  const SEGMENT_GAP_MS = 7 * 60 * 1000  // 7 minutes between qualifying segments
+
   const boundaries: number[] = []
   for (let i = 1; i < times.length; i++) {
-    if (times[i] - times[i - 1] > 5 * 60 * 1000) {
+    if (times[i] - times[i - 1] > SEGMENT_GAP_MS) {
       boundaries.push(times[i - 1])
       if (boundaries.length === 2) break
     }
@@ -96,28 +101,33 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ results: [] })
   }
 
-  // Build driver info map
+  // Build driver info map — only grid drivers
   const driverMap: Record<number, any> = {}
-  for (const d of drivers) driverMap[d.driver_number] = d
+  for (const d of drivers) {
+    if (GRID_NUMBERS.has(d.driver_number)) {
+      driverMap[d.driver_number] = d
+    }
+  }
 
-  // Detect segment boundaries from all lap timestamps
-  const boundaries = detectSegmentBoundaries(allLaps)
+  // Valid timed laps from grid drivers only
+  const validLaps = allLaps.filter(
+    l => GRID_NUMBERS.has(l.driver_number) && l.lap_duration && l.lap_duration > 0 && l.date_start
+  )
 
-  // Valid timing laps only (exclude laps with no duration)
-  const timedLaps = allLaps.filter(l => l.lap_duration && l.lap_duration > 0 && l.date_start)
+  // Detect segment boundaries using valid laps
+  const boundaries = detectSegmentBoundaries(validLaps)
 
-  // Best lap per driver per segment
-  const segBest: Record<1 | 2 | 3, Record<number, number>> = { 1: {}, 2: {}, 3: {} }
-  // Track which segments each driver participated in (any lap at all, even invalid)
+  // Track which segments each grid driver participated in (any lap, including invalid)
   const segParticipants: Record<1 | 2 | 3, Set<number>> = { 1: new Set(), 2: new Set(), 3: new Set() }
-
   for (const lap of allLaps) {
-    if (!lap.date_start) continue
+    if (!GRID_NUMBERS.has(lap.driver_number) || !lap.date_start) continue
     const seg = getSegment(lap.date_start, boundaries)
     segParticipants[seg].add(lap.driver_number)
   }
 
-  for (const lap of timedLaps) {
+  // Best lap per grid driver per segment
+  const segBest: Record<1 | 2 | 3, Record<number, number>> = { 1: {}, 2: {}, 3: {} }
+  for (const lap of validLaps) {
     const seg = getSegment(lap.date_start, boundaries)
     const n: number = lap.driver_number
     if (!(n in segBest[seg]) || lap.lap_duration < segBest[seg][n]) {
@@ -125,29 +135,35 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  // All drivers seen across all segments
+  // Collect all grid driver numbers seen in any segment
   const allNums = new Set<number>()
   for (const seg of [1, 2, 3] as const) {
     segParticipants[seg].forEach(n => allNums.add(n))
   }
 
+  // Build per-driver results with correct q1/q2/q3 strings
   const results = Array.from(allNums).map(num => {
     const d = driverMap[num] || {}
     const name = toProperCase(d.full_name || d.broadcast_name || `Driver #${num}`)
     const team = shortTeam(d.team_name || 'Unknown')
 
-    // Time string: set if best time exists, 'NO TIME SET' if participated but no time, null if didn't reach segment
     const q1 = segBest[1][num] != null
       ? secondsToLapTime(segBest[1][num])
       : segParticipants[1].has(num) ? 'NO TIME SET' : null
+
     const q2 = segBest[2][num] != null
       ? secondsToLapTime(segBest[2][num])
       : segParticipants[2].has(num) ? 'NO TIME SET' : null
+
     const q3 = segBest[3][num] != null
       ? secondsToLapTime(segBest[3][num])
       : segParticipants[3].has(num) ? 'NO TIME SET' : null
 
-    const sortTime = segBest[3][num] ?? segBest[2][num] ?? segBest[1][num] ?? Infinity
+    // Tier: 3 = reached Q3, 2 = reached Q2, 1 = Q1 only
+    const tier: 1 | 2 | 3 = segBest[3][num] != null ? 3
+      : segParticipants[2].has(num) ? 2
+      : 1
+
     return {
       driver_number: num,
       name,
@@ -156,12 +172,28 @@ export async function GET(req: NextRequest) {
       q1,
       q2,
       q3,
-      _sort: sortTime,
+      _tier: tier,
+      _q1time: segBest[1][num] ?? Infinity,
+      _q2time: segBest[2][num] ?? Infinity,
+      _q3time: segBest[3][num] ?? Infinity,
     }
   })
 
-  results.sort((a, b) => a._sort - b._sort)
-  const positioned = results.map(({ _sort: _, ...r }, i) => ({ position: i + 1, ...r }))
+  // Sort by F1 qualifying rules:
+  //   P1–10:  Q3 finishers sorted by Q3 time
+  //   P11–16: Q2-eliminated sorted by Q2 time
+  //   P17–22: Q1-eliminated sorted by Q1 time
+  results.sort((a, b) => {
+    if (a._tier !== b._tier) return b._tier - a._tier  // higher tier = better position
+    if (a._tier === 3) return a._q3time - b._q3time
+    if (a._tier === 2) return a._q2time - b._q2time
+    return a._q1time - b._q1time
+  })
+
+  const positioned = results.map(({ _tier: _t, _q1time: _q1, _q2time: _q2, _q3time: _q3, ...r }, i) => ({
+    position: i + 1,
+    ...r,
+  }))
 
   return NextResponse.json({ results: positioned })
 }
