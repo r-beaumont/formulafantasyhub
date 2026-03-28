@@ -29,15 +29,18 @@ function timeAgo(dateStr: string) {
 
 export default function VideosClient() {
   const [videos, setVideos] = useState<Video[]>([])
+  const [liveStreams, setLiveStreams] = useState<Video[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
   useEffect(() => {
     async function fetchVideos() {
       try {
-        const searchRes = await fetch(
-          `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&order=date&maxResults=12&type=video`
-        )
+        const [searchRes, liveRes] = await Promise.all([
+          fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&order=date&maxResults=12&type=video`),
+          fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&eventType=live&type=video&maxResults=5`),
+        ])
+
         if (!searchRes.ok) throw new Error('Failed to fetch videos')
         const data = await searchRes.json()
         const mapped: Video[] = (data.items || [])
@@ -48,11 +51,22 @@ export default function VideosClient() {
             publishedAt: item.snippet.publishedAt,
             thumbnail: item.snippet.thumbnails?.high?.url || item.snippet.thumbnails?.default?.url,
           }))
-          .filter((v: Video) => {
-            const t = v.title.toLowerCase()
-            return !t.includes('deadline') && !t.includes('stream')
-          })
         setVideos(mapped)
+
+        if (liveRes.ok) {
+          const liveData = await liveRes.json()
+          const liveIds = new Set(mapped.map(v => v.id))
+          const liveMapped: Video[] = (liveData.items || [])
+            .map((item: any) => ({
+              id: item.id.videoId,
+              title: item.snippet.title,
+              description: item.snippet.description,
+              publishedAt: item.snippet.publishedAt,
+              thumbnail: item.snippet.thumbnails?.high?.url || item.snippet.thumbnails?.default?.url,
+            }))
+            .filter((v: Video) => !liveIds.has(v.id))
+          setLiveStreams(liveMapped)
+        }
       } catch (e) {
         setError('Could not load videos — visit the YouTube channel directly.')
       } finally {
@@ -117,6 +131,36 @@ export default function VideosClient() {
           <a href="https://www.youtube.com/@formulafantasyhub" target="_blank" rel="noopener noreferrer" style={{ color: '#E8002D', textDecoration: 'none', fontWeight: 600 }}>
             Watch on YouTube →
           </a>
+        </div>
+      )}
+
+      {/* Live streams */}
+      {!loading && liveStreams.length > 0 && (
+        <div style={{ marginBottom: '24px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#E8002D', animation: 'pulse 2s infinite', flexShrink: 0 }} />
+            <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '20px', letterSpacing: '1px', color: '#E8002D' }}>Live Now</div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '16px' }}>
+            {liveStreams.map(stream => (
+              <div key={stream.id} style={{ background: '#0E1318', border: '1px solid rgba(232,0,45,0.4)', borderRadius: '14px', overflow: 'hidden' }}>
+                <div style={{ position: 'relative', paddingBottom: '56.25%', background: '#080C10' }}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${stream.id}?autoplay=0`}
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+                <div style={{ padding: '14px 16px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
+                    <span style={{ fontSize: '10px', fontWeight: 700, color: '#E8002D', padding: '2px 6px', background: 'rgba(232,0,45,0.15)', borderRadius: '4px', letterSpacing: '0.5px' }}>LIVE</span>
+                  </div>
+                  <div style={{ fontSize: '13px', fontWeight: 600, lineHeight: 1.4 }}>{stream.title}</div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 

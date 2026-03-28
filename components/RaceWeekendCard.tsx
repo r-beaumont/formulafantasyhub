@@ -13,9 +13,16 @@ function formatTrackTime(dateISO: string | undefined, timezone: string, useLocal
   return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: timezone }) + (tzAbbr ? ` ${tzAbbr}` : '')
 }
 
+// A session is completed if its completed flag is set OR if 2 hours have passed since scheduled start
+function isCompleted(s: { completed: boolean; dateISO?: string }): boolean {
+  if (s.completed) return true
+  if (!s.dateISO) return false
+  return Date.now() > new Date(s.dateISO).getTime() + 2 * 60 * 60 * 1000
+}
+
 export default function RaceWeekendCard() {
   const [useLocalTime, setUseLocalTime] = useState(false)
-  const nextSession = CURRENT_RACE.sessions.find(s => !s.completed)
+  const nextSession = CURRENT_RACE.sessions.find(s => !isCompleted(s))
 
   return (
     <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
@@ -65,11 +72,11 @@ export default function RaceWeekendCard() {
             const displayTime = formatTrackTime(s.dateISO, CURRENT_RACE.timezone, useLocalTime)
             return (
               <div key={s.name} style={{ background: isNext ? 'rgba(232,0,45,0.08)' : '#141B22', border: isNext ? '1px solid rgba(232,0,45,0.4)' : '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '10px 12px' }}>
-                <div style={{ fontSize: '9px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: s.completed ? '#3A4A5A' : isNext ? '#E8002D' : '#5A6A7A', marginBottom: '4px' }}>
-                  {s.completed ? '✓' : isNext ? '● Next' : '○'}
+                <div style={{ fontSize: '9px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: isCompleted(s) ? '#3A4A5A' : isNext ? '#E8002D' : '#5A6A7A', marginBottom: '4px' }}>
+                  {isCompleted(s) ? '✓' : isNext ? '● Next' : '○'}
                 </div>
-                <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '14px', color: s.completed ? '#3A4A5A' : '#F0F4F8', marginBottom: '2px' }}>{s.name}</div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: s.completed ? '#3A4A5A' : '#FFB800' }}>{displayTime}</div>
+                <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '14px', color: isCompleted(s) ? '#3A4A5A' : '#F0F4F8', marginBottom: '2px' }}>{s.name}</div>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: isCompleted(s) ? '#3A4A5A' : '#FFB800' }}>{displayTime}</div>
               </div>
             )
           })}

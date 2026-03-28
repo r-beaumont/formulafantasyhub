@@ -279,6 +279,7 @@ export default function ResultsTab({ selectedRound, sessions }: { selectedRound:
   const [isPolling, setIsPolling] = useState(false)
   const [isConcluded, setIsConcluded] = useState(false)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const retryRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const effectiveSession = sessionTabs.some(t => t.id === activeSession) ? activeSession : (sessionTabs[0]?.id ?? 'fp1')
 
@@ -298,6 +299,7 @@ export default function ResultsTab({ selectedRound, sessions }: { selectedRound:
   // Reset everything on round change
   useEffect(() => {
     if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null }
+    if (retryRef.current) { clearInterval(retryRef.current); retryRef.current = null }
     setActiveSession(sessionTabs[0]?.id ?? 'fp1')
     setLivePracticeData(null)
     setLiveQualData(null)
@@ -314,8 +316,9 @@ export default function ResultsTab({ selectedRound, sessions }: { selectedRound:
     const tab = effectiveSession
     const openF1Sess = sessionMap[tab]
 
-    // Clear any previous interval
+    // Clear any previous intervals
     if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null }
+    if (retryRef.current) { clearInterval(retryRef.current); retryRef.current = null }
     setIsPolling(false)
     setIsConcluded(false)
     setLivePracticeData(null)
@@ -329,60 +332,86 @@ export default function ResultsTab({ selectedRound, sessions }: { selectedRound:
     const isQual = tab === 'qualifying' || tab === 'sprint-qualifying'
     const status = getSessionStatus(openF1Sess)
 
-    const doFetch = async () => {
+    // Returns true if actual data was received (not empty)
+    const doFetch = async (): Promise<boolean> => {
       try {
         if (isQual) {
           const res = await fetch(`/api/f1/qualifying?session_key=${openF1Sess.session_key}`, { cache: 'no-store' })
           if (res.ok) {
             const data = await res.json()
-            setLiveQualData(padTo22Qualifying(data.results ?? []))
+            const results = data.results ?? []
+            if (results.length > 0) {
+              setLiveQualData(padTo22Qualifying(results))
+              return true
+            }
           }
         } else {
           const res = await fetch(`/api/f1/practice?session_key=${openF1Sess.session_key}`, { cache: 'no-store' })
           if (res.ok) {
             const raw = await res.json()
-            setLivePracticeData(padTo22Practice(Array.isArray(raw) ? raw : []))
+            const arr = Array.isArray(raw) ? raw : []
+            if (arr.length > 0) {
+              setLivePracticeData(padTo22Practice(arr))
+              return true
+            }
           }
         }
       } catch { /* silent fail */ }
+      return false
     }
 
-    // Initial fetch
+    // Initial fetch — move all post-fetch logic into .then() to avoid async effect
     setLoadingLive(true)
-    doFetch().finally(() => setLoadingLive(false))
+    doFetch().then(gotData => {
+      setLoadingLive(false)
 
-    if (status === 'active') {
-      setIsPolling(true)
-      intervalRef.current = setInterval(async () => {
-        const currentStatus = getSessionStatus(openF1Sess)
-        if (currentStatus === 'active') {
-          await doFetch()
-        } else if (currentStatus === 'recent') {
-          setIsPolling(false)
-          setIsConcluded(true)
-          await doFetch()
-          if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null }
-        } else {
-          setIsPolling(false)
-          if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null }
+      if (status === 'active') {
+        setIsPolling(true)
+        intervalRef.current = setInterval(async () => {
+          const currentStatus = getSessionStatus(openF1Sess)
+          if (currentStatus === 'active') {
+            await doFetch()
+          } else if (currentStatus === 'recent') {
+            setIsPolling(false)
+            setIsConcluded(true)
+            await doFetch()
+            if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null }
+          } else {
+            setIsPolling(false)
+            if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null }
+          }
+        }, 15000)
+      } else if (status === 'recent') {
+        setIsConcluded(true)
+      } else if (openF1Sess?.date_end && Date.now() > new Date(openF1Sess.date_end).getTime()) {
+        // Session ended — mark as concluded
+        setIsConcluded(true)
+        // If data was not available yet, retry every 30s in case OpenF1 is still processing
+        if (!gotData) {
+          retryRef.current = setInterval(async () => {
+            const got = await doFetch()
+            if (got && retryRef.current) {
+              clearInterval(retryRef.current)
+              retryRef.current = null
+            }
+          }, 30000)
         }
-      }, 15000)
-    } else if (status === 'recent') {
-      setIsConcluded(true)
-    } else if (openF1Sess?.date_end && Date.now() > new Date(openF1Sess.date_end).getTime()) {
-      // Session ended more than 2 hours ago — still mark as concluded
-      setIsConcluded(true)
-    }
+      }
+    })
 
     return () => {
       if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null }
+      if (retryRef.current) { clearInterval(retryRef.current); retryRef.current = null }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [effectiveSession, selectedRound, currentSessionKey])
 
   // Final unmount cleanup
   useEffect(() => {
-    return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+      if (retryRef.current) clearInterval(retryRef.current)
+    }
   }, [])
 
   // ─── Handle old qualifying key mechanism (kept for backwards compat) ───────
@@ -521,7 +550,7 @@ export default function ResultsTab({ selectedRound, sessions }: { selectedRound:
       {/* Table content */}
       {renderTable() ?? (
         <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px' }}>
-          No data available for this session
+          {loadingLive ? 'Loading live data…' : 'No data available yet — retrying automatically'}
         </div>
       )}
     </div>
