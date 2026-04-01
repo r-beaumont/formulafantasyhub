@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { RACE_WEEKENDS } from '@/lib/raceResults'
 import { DRIVERS } from '@/lib/drivers'
+import { SEASON_CALENDAR } from '@/lib/races'
+import RaceHubLive from '@/components/RaceHubLive'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -711,6 +713,17 @@ export default function ResultsTab({ selectedRound, sessions }: { selectedRound:
   }
 
   if (sessionTabs.length === 0) {
+    const calRace = SEASON_CALENDAR.find(r => r.round === selectedRound)
+    if (calRace?.meeting_key) {
+      return (
+        <RaceHubLive
+          meeting_key={calRace.meeting_key}
+          flag={calRace.flag}
+          name={calRace.name}
+          isSprint={calRace.sprint}
+        />
+      )
+    }
     return (
       <div style={card}>
         <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
