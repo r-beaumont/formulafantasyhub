@@ -62,7 +62,7 @@ function formatDelta(seconds: number | null | undefined): string {
 
 export default function RaceHubClient() {
   const [activeTab, setActiveTab] = useState<'race-info' | 'results' | 'weather' | 'pitwall'>('race-info')
-  const [selectedRound, setSelectedRound] = useState(3)
+  const [selectedRound, setSelectedRound] = useState(4)
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   // Read URL params on mount (?round=N&tab=results deep-link from standings)
@@ -524,6 +524,21 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
           compounds: { name: string; color: string; code: string; desc: string }[]
           strategies: { name: string; stops: number; laps: string[]; note: string }[]
         }> = {
+          4: { // Miami — Miami International Autodrome
+            downforce: 'Medium / Low',
+            downforceLevel: 2,
+            downforceNote: 'Miami\'s long straights reward low downforce setups. Teams sacrifice cornering grip for straight-line speed, similar to Monza but with more medium-speed corners requiring a compromise.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C3', desc: 'Durable race tyre. Used for long first stints in 1-stop strategies.' },
+              { name: 'Medium', color: '#FFD700', code: 'C4', desc: 'Most flexible option. Used in both stints of a 1-stop or the middle stint of a 2-stop.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C5', desc: 'Fast qualifying tyre. Degrades quickly in Miami heat. Commonly used at race start.' },
+            ],
+            strategies: [
+              { name: '1-Stop Soft → Hard',       stops: 1, laps: ['Lap 1–18: Soft',   'Pit ~Lap 18', 'Lap 19–57: Hard'],                                              note: 'Frontrunner default. Gets the soft out of the way early and covers off the undercut threat.' },
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–25: Medium', 'Pit ~Lap 25', 'Lap 26–57: Hard'],                                              note: 'Conservative option. Suits drivers starting mid-grid who want track position in the second stint.' },
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–15: Soft',   'Pit ~Lap 15', 'Lap 16–36: Medium', 'Pit ~Lap 36', 'Lap 37–57: Hard'], note: 'Used after safety car or if degradation is high. Can be reactive to race events.' },
+            ],
+          },
           3: { // Japan — Suzuka
             downforce: 'High',
             downforceLevel: 5,

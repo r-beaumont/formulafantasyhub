@@ -32,11 +32,11 @@ export default function Home() {
   const latestArticles = articles.slice(0, 3)
 
   const lastRaceResults = [
-    { pos: 1, posC: '#FFD700', bar: '#27F4D2', driver: 'Kimi Antonelli',   flag: 'it', team: 'Mercedes', gap: 'Winner' },
-    { pos: 2, posC: '#C0C0C0', bar: '#27F4D2', driver: 'George Russell',  flag: 'gb', team: 'Mercedes', gap: '+5.5s' },
-    { pos: 3, posC: '#CD7F32', bar: '#E8002D', driver: 'Lewis Hamilton',  flag: 'gb', team: 'Ferrari',  gap: '+25.3s' },
-    { pos: 4, posC: '#5A6A7A', bar: '#E8002D', driver: 'Charles Leclerc', flag: 'mc', team: 'Ferrari',  gap: '+28.9s' },
-    { pos: 5, posC: '#5A6A7A', bar: '#B6BABD', driver: 'Oliver Bearman',  flag: 'gb', team: 'Haas',     gap: '+57.3s' },
+    { pos: 1, posC: '#FFD700', bar: '#27F4D2', driver: 'Kimi Antonelli',  flag: 'it', team: 'Mercedes', gap: 'Winner'  },
+    { pos: 2, posC: '#C0C0C0', bar: '#FF8000', driver: 'Oscar Piastri',   flag: 'au', team: 'McLaren',  gap: '+4.2s'   },
+    { pos: 3, posC: '#CD7F32', bar: '#E8002D', driver: 'Charles Leclerc', flag: 'mc', team: 'Ferrari',  gap: '+12.7s'  },
+    { pos: 4, posC: '#5A6A7A', bar: '#27F4D2', driver: 'George Russell',  flag: 'gb', team: 'Mercedes', gap: '+18.9s'  },
+    { pos: 5, posC: '#5A6A7A', bar: '#FF8000', driver: 'Lando Norris',    flag: 'gb', team: 'McLaren',  gap: '+24.8s'  },
   ]
 
   return (
@@ -80,7 +80,7 @@ export default function Home() {
           <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', marginBottom: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
               <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>
-                <span className="fi fi-cn" style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span> Chinese GP — Race Result · Round 2
+                <span className="fi fi-jp" style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span> Japanese GP — Race Result · Round 3
               </span>
               <Link href="/race-hub" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>Full →</Link>
             </div>

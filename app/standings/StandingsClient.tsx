@@ -185,7 +185,7 @@ export default function StandingsClient() {
           <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase' }}>2026 Season</span>
         </div>
         <h1 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '56px', letterSpacing: '1px', lineHeight: 1, fontWeight: 400, margin: 0 }}>F1 Championship Standings 2026</h1>
-        <div style={{ color: '#5A6A7A', fontSize: '13px', marginTop: '6px' }}>Live data — updates after each race · After R2 China</div>
+        <div style={{ color: '#5A6A7A', fontSize: '13px', marginTop: '6px' }}>Live data — updates after each race · After R3 Japan</div>
       </div>
 
       {/* ── SEASON OVERVIEW ── */}

@@ -285,6 +285,7 @@ function ChipOverviewTab() {
     {
       accent: '#00C851',
       name: '3X BOOST',
+      priority: true,
       what: 'Assign to two drivers in your team. One scores 3x points, one scores 2x points for that race weekend.',
       who: 'Two premium drivers you expect to perform — e.g. George Russell and Kimi Antonelli, or whoever is in form that week.',
       when: 'Typically used on sprint weekends for a third scoring session.',
@@ -292,6 +293,7 @@ function ChipOverviewTab() {
     {
       accent: '#00A8FF',
       name: 'LIMITLESS',
+      priority: false,
       what: 'Unlimited transfers and unlimited budget for one week only. Price changes apply to your pre-Limitless team after activation, but pre-Limitless transfers do not count.',
       who: 'Build the best possible team at that point of the season with no budget restrictions.',
       when: 'On a weekend early in the season where at least six assets are expected to increase in value and where there is expected to be a significant points delta between Limitless and non-Limitless teams.',
@@ -299,6 +301,7 @@ function ChipOverviewTab() {
     {
       accent: '#9B59B6',
       name: 'NO NEGATIVE',
+      priority: true,
       what: 'All negative scoring categories are reset to zero for one race weekend. Any driver with a score below zero — DNF, DSQ, positions lost — scores zero instead.',
       who: 'All drivers and constructors in your team benefit.',
       when: 'Sprint weekends, wet races, high DNF risk tracks.',
@@ -306,6 +309,7 @@ function ChipOverviewTab() {
     {
       accent: '#E8002D',
       name: 'WILDCARD',
+      priority: false,
       what: 'Unlimited transfers up to your current team value. All drivers and constructors in your team can be changed.',
       who: 'Your full squad — use it to overhaul your lineup completely.',
       when: "When you've fallen behind the template, need to make multiple changes, or when a major shift in the competitive order demands a full reset.",
@@ -313,6 +317,7 @@ function ChipOverviewTab() {
     {
       accent: '#00E5CC',
       name: 'AUTOPILOT',
+      priority: false,
       what: 'Your 2x Boost is automatically reassigned to the highest-scoring driver in your team for that race weekend.',
       who: 'The drivers in your team — whoever performs best gets the multiplier automatically.',
       when: 'Wet races, high DNF risk tracks, sprint weekends, situations where predicting your 2x Boost driver is difficult.',
@@ -320,6 +325,7 @@ function ChipOverviewTab() {
     {
       accent: '#FFD700',
       name: 'FINAL FIX',
+      priority: false,
       what: 'One free driver change between the deadline and the race start. Any driver within budget. Can be applied to a driver carrying the 2x Boost. Constructors cannot be changed with this chip.',
       who: 'Any driver in your squad.',
       when: 'Pre-race withdrawals, back-of-the-grid penalties, a driver qualifying unexpectedly out of position. Very hard to plan for — this chip is reactive by nature.',
@@ -328,16 +334,20 @@ function ChipOverviewTab() {
 
   return (
     <div>
-      <div style={{ ...card, padding: '20px 24px', marginBottom: '24px' }}>
+      <div style={{ ...card, padding: '20px 24px', marginBottom: '16px' }}>
         <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, margin: 0 }}>
           Each manager receives one of each chip per season. Chips cannot be used simultaneously. Once activated, a chip cannot be reversed — think strategically before you use it.
         </p>
+      </div>
+      <div style={{ background: 'rgba(0,200,81,0.08)', border: '1px solid rgba(0,200,81,0.25)', borderRadius: '10px', padding: '12px 16px', marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <span style={{ fontSize: '11px', fontWeight: 700, padding: '2px 8px', borderRadius: '4px', background: 'rgba(0,200,81,0.15)', color: '#00C851', textTransform: 'uppercase' as const, letterSpacing: '0.5px', flexShrink: 0 }}>Miami R4 Sprint Pick</span>
+        <span style={{ fontSize: '13px', color: '#8A9AB0' }}>Miami is a sprint weekend — <strong style={{ color: '#F0F4F8' }}>3x Boost</strong> and <strong style={{ color: '#F0F4F8' }}>No Negative</strong> are the priority chips. A third scoring session increases the value of 3x Boost, while No Negative protects against sprint DNF penalties.</span>
       </div>
       <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '16px' }}>
         {chips.map(chip => (
           <div key={chip.name} style={{
             background: '#0E1318',
-            border: '1px solid rgba(255,255,255,0.07)',
+            border: chip.priority ? `1px solid ${chip.accent}40` : '1px solid rgba(255,255,255,0.07)',
             borderLeft: `4px solid ${chip.accent}`,
             borderRadius: '14px',
             padding: '24px',
@@ -345,7 +355,10 @@ function ChipOverviewTab() {
             flexDirection: 'column' as const,
             gap: '16px',
           }}>
-            <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '26px', color: chip.accent, letterSpacing: '1px' }}>{chip.name}</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '26px', color: chip.accent, letterSpacing: '1px' }}>{chip.name}</div>
+              {chip.priority && <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 8px', borderRadius: '4px', background: `${chip.accent}20`, color: chip.accent, textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>Sprint Pick</span>}
+            </div>
             {[
               { label: 'WHAT', text: chip.what },
               { label: 'WHO',  text: chip.who  },
