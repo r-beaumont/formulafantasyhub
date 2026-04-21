@@ -16,6 +16,67 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-miami-gp-2026',
+    title: 'Race Week Preview: Miami Grand Prix',
+    excerpt: 'Kimi Antonelli leads the championship after back-to-back victories in China and Japan. Here is your F1 Fantasy watchlist for Miami.',
+    readTime: 4,
+    date: 'Apr 22, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #001a2a 0%, #003d5c 50%, #001a2a 100%)',
+    thumbnailBg: 'rgba(0,168,255,0.2)',
+    thumbnailIcon: 'us',
+    content: `**THE SETUP**
+
+Three races in, the story is simple. Mercedes are dominant, Kimi Antonelli leads the championship, and everyone else is managing damage. Russell sits nine points back in second. Ferrari are best of the rest at 90 constructors' points. Red Bull's 16-point tally after three rounds tells you everything. Japan was the exclamation mark — Antonelli moved from sixth to first on a safety car restart that caught the paddock flat-footed. For Fantasy managers, the message is the same it has been all season: the Silver Arrows are the foundation of any competitive team right now.
+
+**THE CIRCUIT**
+
+The Miami International Autodrome doesn't reward pole sitters — it punishes them. In four editions of this race, not one pole-sitter has won. A McLaren or Red Bull driver has won each of the last four races in South Beach — can Mercedes or Ferrari buck that trend this time?
+
+**THE WEATHER**
+
+Miami in May means heat, humidity, and afternoon thunderstorms. Average highs sit around 30°C and tyre degradation will be severe across every session. Changeable conditions in 2025 saw many strategists deploy a timely No Negative chip, so keep an eye on the forecast closer to the deadline if we see rain on the radar.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Nico Hulkenberg**
+
+At $5m and needing just one point for a maximum price rise of $0.6m, this is the easiest call on the watchlist. Score at Miami, bank the rise, strengthen your budget. Hulk in a race that rewards consistent finishers is exactly the setup you want.
+
+**Kimi Antonelli**
+
+Averaging 50 Fantasy points per race with two wins already this season. The most in-form Fantasy asset on the grid, and it isn't close. Get him in.
+
+🟡 HOLD
+
+**Ollie Bearman**
+
+Strong overtaking and positions gained potential makes Bearman worth holding through this weekend. One flag: he is expected to take a price drop heading into Canada following his Japan DNF. Hold through Miami, then reassess at the deadline.
+
+**Esteban Ocon**
+
+42 points in three races and exceptional consistency throughout. A fine hold. He needs more performances like what we saw in China to keep him firmly on the watchlist going forward.
+
+🔴 SELL
+
+**Charles Leclerc**
+
+A very good start to 2026, no question. But Leclerc is the obvious candidate to make way — freeing up the budget to accommodate the Mercedes and Ferrari constructors in your lineup. The budget he releases unlocks the picks that actually win leagues.
+
+**Arvid Lindblad**
+
+Needs 13 points for a max price rise and is not keeping pace with teammate Liam Lawson, who is priced $0.1m higher. VCARB are a circuit-dependent car and Miami is no guarantee — the rookie inconsistencies are still showing up at the wrong moments. Worth looking elsewhere this weekend.
+
+**THE CHIPS**
+
+Miami is the first Sprint weekend of 2026 and chip selection matters. No Negative is your best play — safety cars are near-guaranteed at this circuit, Sprint DNF exposure is live on a temporary street layout, and the storm threat adds genuine unpredictability. Sprint DNFs cost -10 in 2026, not -20 like previous seasons, but with just one Free Practice before Sprint Qualifying locks your team in, that downside protection is worth deploying.`,
+  },
+  {
     slug: 'race-week-preview-japanese-gp-2026',
     title: 'Race Week Preview: Japanese Grand Prix',
     excerpt: 'Mercedes lead the championship after back-to-back one-twos. Here is your F1 Fantasy watchlist for Suzuka.',
