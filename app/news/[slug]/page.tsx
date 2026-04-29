@@ -21,8 +21,6 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
   const article = getArticleBySlug(params.slug)
   if (!article) notFound()
 
-  const userIsPremium = false
-  const showGate = article.premium && !userIsPremium
   const cat = categoryColors[article.category] || { color: '#5A6A7A', bg: 'rgba(255,255,255,0.08)' }
   const otherArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3)
 
@@ -66,10 +64,6 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
           <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap' }}>
             <span style={{ fontSize: '10px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: article.articleType === 'F1 Fantasy' ? 'rgba(232,0,45,0.15)' : 'rgba(0,168,255,0.15)', color: article.articleType === 'F1 Fantasy' ? '#E8002D' : '#00A8FF', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{article.articleType}</span>
             <span style={{ fontSize: '10px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: cat.bg, color: cat.color, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{article.tag}</span>
-            {article.premium
-              ? <span style={{ fontSize: '10px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: 'rgba(232,0,45,0.15)', color: '#E8002D', textTransform: 'uppercase' }}>Premium</span>
-              : <span style={{ fontSize: '10px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: 'rgba(0,212,126,0.12)', color: '#00D47E', textTransform: 'uppercase' }}>Free</span>
-            }
             <span style={{ fontSize: '11px', color: '#3A4A5A', marginLeft: 'auto', fontFamily: 'JetBrains Mono, monospace' }}>⏱ {article.readTime} min read</span>
           </div>
 
@@ -93,31 +87,7 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
           </div>
 
           {/* Content */}
-          {showGate ? (
-            <div>
-              {renderContent(article.content.split('\n\n').slice(0, 2).join('\n\n'))}
-              {/* Premium gate */}
-              <div style={{ background: 'linear-gradient(180deg, rgba(8,12,16,0) 0%, #080C10 60%)', position: 'relative', marginTop: '-40px', paddingTop: '40px' }}>
-                <div style={{ background: '#0E1318', border: '1px solid rgba(232,0,45,0.3)', borderRadius: '16px', padding: '40px', textAlign: 'center' }}>
-                  <div style={{ fontSize: '40px', marginBottom: '16px' }}>🔒</div>
-                  <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '32px', marginBottom: '8px' }}>Premium Article</div>
-                  <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, maxWidth: '400px', margin: '0 auto 24px' }}>
-                    Full strategy breakdown, price change analysis, lineup recommendations and chip timing — all for €5/month.
-                  </p>
-                  <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                    <Link href="/subscribe" style={{ background: '#E8002D', color: 'white', padding: '12px 28px', borderRadius: '8px', textDecoration: 'none', fontWeight: 700, fontSize: '14px', boxShadow: '0 0 24px rgba(232,0,45,0.3)' }}>
-                      Subscribe for €5/month →
-                    </Link>
-                    <Link href="/news" style={{ background: 'transparent', color: '#5A6A7A', padding: '12px 24px', borderRadius: '8px', textDecoration: 'none', fontWeight: 600, fontSize: '14px', border: '1px solid rgba(255,255,255,0.1)' }}>
-                      Browse free articles
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div>{renderContent(article.content)}</div>
-          )}
+          <div>{renderContent(article.content)}</div>
 
           {/* Related articles */}
           {otherArticles.length > 0 && (

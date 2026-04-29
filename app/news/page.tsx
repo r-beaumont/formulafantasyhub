@@ -32,7 +32,7 @@ export default function NewsPage() {
   const rest = articles.slice(1)
 
   const filtered = activeTag === 'All' ? rest : rest.filter(a => a.articleType === activeTag)
-  const free = filtered.filter(a => !a.premium)
+  const free = filtered
 
   return (
     <>
@@ -101,7 +101,6 @@ export default function NewsPage() {
                 <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '16px' }}>
                   <span style={{ fontSize: '10px', fontWeight: 700, padding: '3px 10px', borderRadius: '20px', background: featured.articleType === 'F1 Fantasy' ? 'rgba(232,0,45,0.15)' : 'rgba(0,168,255,0.15)', color: featured.articleType === 'F1 Fantasy' ? '#E8002D' : '#00A8FF', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{featured.articleType}</span>
                   <span style={{ fontSize: '10px', fontWeight: 700, padding: '3px 10px', borderRadius: '20px', background: categoryColors[featured.category]?.bg || 'rgba(255,255,255,0.1)', color: categoryColors[featured.category]?.color || '#F0F4F8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{featured.tag}</span>
-                  {featured.premium && <span style={{ fontSize: '10px', fontWeight: 700, padding: '3px 10px', borderRadius: '20px', background: 'rgba(232,0,45,0.15)', color: '#E8002D', textTransform: 'uppercase' }}>Premium</span>}
                   <span style={{ fontSize: '11px', color: '#3A4A5A', marginLeft: 'auto', fontFamily: 'JetBrains Mono, monospace' }}>⏱ {featured.readTime} min read</span>
                 </div>
                 <h2 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', lineHeight: 1.1, marginBottom: '16px', color: '#F0F4F8', letterSpacing: '0.5px' }}>
@@ -123,48 +122,11 @@ export default function NewsPage() {
           </Link>
         )}
 
-        {/* FREE NEWS */}
+        {/* ARTICLES */}
         {free.length > 0 && (
           <section style={{ marginBottom: '32px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '24px', letterSpacing: '1px' }}>Free Articles</span>
-                <span style={{ fontSize: '10px', fontWeight: 700, padding: '3px 10px', borderRadius: '20px', background: 'rgba(0,212,126,0.12)', color: '#00D47E' }}>No subscription needed</span>
-              </div>
-            </div>
             <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px' }}>
               {free.map(a => <NewsCard key={a.slug} article={a} />)}
-            </div>
-          </section>
-        )}
-
-        {/* UPGRADE PACKAGE INCOMING — replaces premium section */}
-        {(activeTag === 'All' || activeTag === 'F1 Fantasy') && (
-          <section>
-            <div style={{ background: 'linear-gradient(135deg, rgba(232,0,45,0.08) 0%, rgba(14,19,24,1) 100%)', border: '1px solid rgba(232,0,45,0.25)', borderRadius: '16px', padding: '48px 40px', textAlign: 'center' }}>
-              <div style={{ fontSize: '48px', marginBottom: '16px' }}>🚀</div>
-              <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '48px', letterSpacing: '2px', color: '#F0F4F8', marginBottom: '8px', lineHeight: 1 }}>UPGRADE PACKAGE INCOMING</div>
-              <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, maxWidth: '480px', margin: '0 auto 32px' }}>
-                Premium analysis, price change alerts, chip timing guides and race week strategies. Full access from €5/month — launching soon.
-              </p>
-              <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
-                <Link href="/subscribe" style={{ background: '#E8002D', color: 'white', padding: '12px 28px', borderRadius: '8px', textDecoration: 'none', fontWeight: 700, fontSize: '14px', boxShadow: '0 0 24px rgba(232,0,45,0.3)' }}>
-                  Get Early Access →
-                </Link>
-              </div>
-              <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '12px', textAlign: 'left' }}>
-                {[
-                  { icon: '📊', title: 'Price Change Alerts', desc: 'Get ahead of price movements before the deadline closes.' },
-                  { icon: '🎯', title: 'Chip Timing Guides', desc: 'Exactly when to play each chip for maximum return.' },
-                  { icon: '🏆', title: 'Race Week Previews', desc: 'Full strategy breakdown before every race weekend.' },
-                ].map(f => (
-                  <div key={f.title} style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '20px' }}>
-                    <div style={{ fontSize: '24px', marginBottom: '10px' }}>{f.icon}</div>
-                    <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '18px', color: '#F0F4F8', marginBottom: '6px' }}>{f.title}</div>
-                    <div style={{ fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>{f.desc}</div>
-                  </div>
-                ))}
-              </div>
             </div>
           </section>
         )}

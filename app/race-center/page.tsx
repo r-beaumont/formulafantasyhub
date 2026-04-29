@@ -10,7 +10,7 @@ export default function RaceCenterPage() {
         <div style={{ marginBottom: '32px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
             <div style={{ width: '3px', height: '24px', background: '#E8002D', borderRadius: '2px' }} />
-            <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase' as const }}>Premium</span>
+            <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase' as const }}>Race Center</span>
           </div>
           <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '56px', letterSpacing: '1px', lineHeight: 1 }}>Race Center</div>
           <p style={{ color: '#5A6A7A', fontSize: '14px', marginTop: '8px', maxWidth: '500px', lineHeight: 1.7 }}>
@@ -40,15 +40,6 @@ export default function RaceCenterPage() {
           ))}
         </div>
 
-        <div style={{ background: 'rgba(232,0,45,0.06)', border: '1px solid rgba(232,0,45,0.2)', borderRadius: '14px', padding: '40px', textAlign: 'center' as const }}>
-          <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', marginBottom: '12px' }}>Get early access with Premium</div>
-          <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, maxWidth: '480px', margin: '0 auto 24px' }}>
-            Race Center features will be available to Premium subscribers first. Join for €5/month and get full access when they launch.
-          </p>
-          <Link href="/subscribe" style={{ background: '#E8002D', color: 'white', padding: '12px 32px', borderRadius: '8px', textDecoration: 'none', fontWeight: 700, fontSize: '14px', boxShadow: '0 0 24px rgba(232,0,45,0.3)' }}>
-            Subscribe for €5/month →
-          </Link>
-        </div>
       </main>
       <Footer />
     </>
