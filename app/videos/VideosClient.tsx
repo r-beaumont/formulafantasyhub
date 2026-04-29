@@ -202,27 +202,20 @@ export default function VideosClient() {
           </div>
           <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '32px' }}>
             {rest.map((video) => (
-              <a key={video.id} href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
-                <div style={{ ...c, cursor: 'pointer', transition: 'border-color 0.2s' }}>
-                  <div style={{ position: 'relative', paddingBottom: '56.25%', background: '#080C10' }}>
-                    <img
-                      src={video.thumbnail}
-                      alt={video.title}
-                      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
-                    <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.3)', opacity: 0, transition: 'opacity 0.2s' }}
-                      onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
-                      onMouseLeave={e => (e.currentTarget.style.opacity = '0')}
-                    >
-                      <div style={{ width: '48px', height: '48px', background: '#E8002D', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px' }}>▶</div>
-                    </div>
-                  </div>
-                  <div style={{ padding: '14px 16px' }}>
-                    <div style={{ fontSize: '13px', fontWeight: 600, lineHeight: 1.4, marginBottom: '8px' }}>{video.title}</div>
-                    <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#3A4A5A' }}>{timeAgo(video.publishedAt)}</div>
-                  </div>
+              <div key={video.id} style={c}>
+                <div style={{ position: 'relative', paddingBottom: '56.25%', background: '#080C10' }}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.id}`}
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 </div>
-              </a>
+                <div style={{ padding: '14px 16px' }}>
+                  <div style={{ fontSize: '13px', fontWeight: 600, lineHeight: 1.4, marginBottom: '8px' }}>{video.title}</div>
+                  <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#3A4A5A' }}>{timeAgo(video.publishedAt)}</div>
+                </div>
+              </div>
             ))}
           </div>
         </>

@@ -26,6 +26,12 @@ function sprintPoints(pos: number): number { return SPRINT_PTS[pos] || 0 }
 const completedCalRounds = SEASON_CALENDAR.filter(r => r.completed && !r.calledOff)
 const RACES = completedCalRounds.length
 
+// Flag lookups for PPR tables
+const _driverFlagMap: Record<string, string> = {}
+DRIVER_STANDINGS.forEach(d => { _driverFlagMap[d.name] = d.flag })
+const _conFlagMap: Record<string, string> = {}
+CONSTRUCTOR_STANDINGS.forEach(c => { _conFlagMap[c.name] = c.flag })
+
 // Wins / Poles / Podiums — derived from SEASON_STATS (single source of truth)
 const mostWins    = SEASON_STATS.mostWins.map(n    => ({ name: n, count: DRIVER_STATS_MAP[n]?.wins    ?? 0, teamColor: DRIVER_STATS_MAP[n]?.teamColor ?? '#5A6A7A' }))
 const mostPoles   = SEASON_STATS.mostPoles.map(n   => ({ name: n, count: DRIVER_STATS_MAP[n]?.poles   ?? 0, teamColor: DRIVER_STATS_MAP[n]?.teamColor ?? '#5A6A7A' }))
@@ -363,9 +369,8 @@ export default function StandingsClient() {
         </div>
 
         <div style={{ overflowX: 'auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '28px 26px 160px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px', padding: '8px 24px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)', minWidth: '620px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '28px 200px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px', padding: '8px 24px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)', minWidth: '600px' }}>
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: 'right' as const }}>#</span>
-            <span />
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Constructor</span>
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Points</span>
             <span onClick={() => toggleConSort('points')}  style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'points'  ? '#F0F4F8' : '#5A6A7A', textAlign: 'right' as const, cursor: 'pointer', userSelect: 'none' as const }}>PTS {conSortMode === 'points'  ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
@@ -378,11 +383,11 @@ export default function StandingsClient() {
               const barPct = maxConPts > 0 ? (c.points / maxConPts) * 100 : 0
               const cStats = constructorStats[c.name] || { wins: 0, podiums: 0, poles: 0 }
               return (
-                <div key={c.name} style={{ display: 'grid', gridTemplateColumns: '28px 26px 160px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px' }}>
+                <div key={c.name} style={{ display: 'grid', gridTemplateColumns: '28px 200px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px' }}>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: posColor(i + 1), fontWeight: i < 3 ? 600 : 400, textAlign: 'right' as const }}>{i + 1}</span>
-                  <span className={`fi fi-${c.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <div style={{ width: '3px', height: '22px', borderRadius: '2px', background: c.color, flexShrink: 0 }} />
+                    <span className={`fi fi-${c.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', flexShrink: 0 }}></span>
                     <span style={{ fontSize: '13px', fontWeight: 600, color: c.points > 0 ? '#F0F4F8' : '#5A6A7A', whiteSpace: 'nowrap' }}>{c.name}</span>
                   </div>
                   <div style={{ height: '6px', background: '#141B22', borderRadius: '3px', overflow: 'hidden', minWidth: '40px' }}>
@@ -503,6 +508,7 @@ export default function StandingsClient() {
                     <td style={{ padding: '8px 12px', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
                         <div style={{ width: '3px', height: '20px', borderRadius: '2px', background: d.teamColor, flexShrink: 0 }} />
+                        <span className={`fi fi-${_driverFlagMap[d.name] ?? ''}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', flexShrink: 0 }}></span>
                         <span style={{ fontSize: '12px', fontWeight: 500, whiteSpace: 'nowrap' }}>{d.name}</span>
                       </div>
                     </td>
@@ -546,6 +552,7 @@ export default function StandingsClient() {
                     <td style={{ padding: '8px 12px', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <div style={{ width: '3px', height: '20px', borderRadius: '2px', background: c.color, flexShrink: 0 }} />
+                        <span className={`fi fi-${_conFlagMap[c.team] ?? ''}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', flexShrink: 0 }}></span>
                         <span style={{ fontSize: '12px', fontWeight: 600, whiteSpace: 'nowrap' }}>{c.team}</span>
                       </div>
                     </td>

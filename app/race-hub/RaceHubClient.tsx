@@ -196,7 +196,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 36, firstGP: 1987, circuitLength: '5.807 km',
     },
     4: { // Miami — Miami International Autodrome
-      lastWinner: 'L. Norris',
+      lastWinner: 'O. Piastri',
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 2,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 2,
       mostPolesDriver: 'M. Verstappen', mostPolesDriverCount: 2,
@@ -206,7 +206,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 4, firstGP: 2022, circuitLength: '5.412 km',
     },
     5: { // Canada — Circuit Gilles Villeneuve
-      lastWinner: 'M. Verstappen',
+      lastWinner: 'G. Russell',
       mostWinsDriver: 'M. Schumacher / L. Hamilton', mostWinsDriverCount: 7,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 14,
       mostPolesDriver: 'M. Schumacher / L. Hamilton', mostPolesDriverCount: 6,
@@ -216,7 +216,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 44, firstGP: 1978, circuitLength: '4.361 km',
     },
     6: { // Monaco — Circuit de Monaco
-      lastWinner: 'C. Leclerc',
+      lastWinner: 'L. Norris',
       mostWinsDriver: 'A. Senna', mostWinsDriverCount: 6,
       mostWinsConstructor: 'McLaren', mostWinsConstructorCount: 15,
       mostPolesDriver: 'A. Senna', mostPolesDriverCount: 5,
@@ -226,7 +226,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 71, firstGP: 1950, circuitLength: '3.337 km',
     },
     7: { // Spain — Circuit de Barcelona-Catalunya
-      lastWinner: 'L. Norris',
+      lastWinner: 'O. Piastri',
       mostWinsDriver: 'M. Schumacher / L. Hamilton', mostWinsDriverCount: 6,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 14,
       mostPolesDriver: 'M. Schumacher', mostPolesDriverCount: 7,
@@ -256,7 +256,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 60, firstGP: 1950, circuitLength: '5.891 km',
     },
     10: { // Belgium — Spa-Francorchamps
-      lastWinner: 'L. Norris',
+      lastWinner: 'O. Piastri',
       mostWinsDriver: 'M. Schumacher', mostWinsDriverCount: 6,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 18,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 6,
@@ -266,7 +266,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 58, firstGP: 1950, circuitLength: '7.004 km',
     },
     11: { // Hungary — Hungaroring
-      lastWinner: 'O. Piastri',
+      lastWinner: 'L. Norris',
       mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 8,
       mostWinsConstructor: 'McLaren', mostWinsConstructorCount: 12,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 9,
@@ -276,7 +276,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 40, firstGP: 1986, circuitLength: '4.381 km',
     },
     12: { // Netherlands — Zandvoort
-      lastWinner: 'M. Verstappen',
+      lastWinner: 'O. Piastri',
       mostWinsDriver: 'J. Clark', mostWinsDriverCount: 4,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 3,
       mostPolesDriver: 'R. Arnoux / M. Verstappen', mostPolesDriverCount: 3,
@@ -286,7 +286,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 30, firstGP: 1952, circuitLength: '4.259 km',
     },
     13: { // Italy — Monza
-      lastWinner: 'C. Leclerc',
+      lastWinner: 'M. Verstappen',
       mostWinsDriver: 'M. Schumacher / L. Hamilton', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 20,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 7,
@@ -304,7 +304,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 0, firstGP: 2026, circuitLength: '5.474 km',
     },
     15: { // Azerbaijan — Baku City Circuit
-      lastWinner: 'O. Piastri',
+      lastWinner: 'M. Verstappen',
       mostWinsDriver: 'S. Perez / M. Verstappen', mostWinsDriverCount: 2,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 4,
       mostPolesDriver: 'C. Leclerc', mostPolesDriverCount: 4,
@@ -314,7 +314,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 9, firstGP: 2017, circuitLength: '6.003 km',
     },
     16: { // Singapore — Marina Bay Street Circuit
-      lastWinner: 'L. Norris',
+      lastWinner: 'G. Russell',
       mostWinsDriver: 'S. Vettel', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 5,
       mostPolesDriver: 'S. Vettel / L. Hamilton', mostPolesDriverCount: 4,
@@ -324,7 +324,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 17, firstGP: 2008, circuitLength: '4.940 km',
     },
     17: { // United States — Circuit of the Americas
-      lastWinner: 'C. Sainz',
+      lastWinner: 'M. Verstappen',
       mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Mercedes', mostWinsConstructorCount: 7,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 5,
@@ -334,7 +334,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 13, firstGP: 2012, circuitLength: '5.513 km',
     },
     18: { // Mexico — Autodromo Hermanos Rodriguez
-      lastWinner: 'C. Leclerc',
+      lastWinner: 'L. Norris',
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 6,
       mostPolesDriver: 'J. Clark', mostPolesDriverCount: 4,
@@ -354,7 +354,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 42, firstGP: 1973, circuitLength: '4.309 km',
     },
     20: { // Las Vegas — Las Vegas Strip Circuit
-      lastWinner: 'L. Norris',
+      lastWinner: 'M. Verstappen',
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 2,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 2,
       mostPolesDriver: 'C. Leclerc / G. Russell / L. Norris', mostPolesDriverCount: 1,
@@ -365,7 +365,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 3, firstGP: 2023, circuitLength: '6.201 km',
     },
     21: { // Qatar — Lusail International Circuit
-      lastWinner: 'O. Piastri',
+      lastWinner: 'M. Verstappen',
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 3,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 3,
       mostPolesDriver: 'M. Verstappen', mostPolesDriverCount: 2,
@@ -376,7 +376,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 4, firstGP: 2021, circuitLength: '5.380 km',
     },
     22: { // Abu Dhabi — Yas Marina Circuit
-      lastWinner: 'L. Norris',
+      lastWinner: 'M. Verstappen',
       mostWinsDriver: 'L. Hamilton / M. Verstappen', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 8,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 5,
