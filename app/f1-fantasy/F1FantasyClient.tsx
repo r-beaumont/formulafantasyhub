@@ -7,62 +7,6 @@ const card = { background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)'
 const cardHeader = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }
 const cardTitle = { fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }
 
-// ── Coming Soon tab ────────────────────────────────────────────────────────────
-
-function ComingSoonTab() {
-  return (
-    <div>
-      {/* Hero */}
-      <div style={{ background: 'linear-gradient(135deg, rgba(232,0,45,0.1) 0%, rgba(14,19,24,1) 100%)', border: '1px solid rgba(232,0,45,0.25)', borderRadius: '16px', padding: '56px 40px', textAlign: 'center', marginBottom: '24px' }}>
-        <div style={{ fontSize: '56px', marginBottom: '16px' }}>🚀</div>
-        <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(2.5rem,6vw,4rem)', letterSpacing: '3px', color: '#F0F4F8', lineHeight: 1, marginBottom: '12px' }}>
-          UPGRADE PACKAGE INCOMING
-        </div>
-        <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, maxWidth: '520px', margin: '0 auto' }}>
-          F1 Fantasy analysis to help guide your weekly decisions. AI-powered picks, data-driven insights and weekly strategy guides — all in one place.
-        </p>
-      </div>
-
-      {/* Feature cards */}
-      <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px' }}>
-        {[
-          {
-            icon: '🤖',
-            title: 'AI Recommendations',
-            desc: 'Machine learning models to help guide your weekly fantasy decisions — using key datapoints and analytical insights based on historical data, circuit performances and value opportunity.',
-            status: 'IN DEVELOPMENT',
-            statusColor: '#FFB800',
-            statusBg: 'rgba(255,184,0,0.12)',
-          },
-          {
-            icon: '📰',
-            title: 'F1 Fantasy News',
-            desc: 'Breaking news, price change alerts and race week strategy updates delivered as soon as they happen. Never miss a deadline or a price rise again.',
-            status: 'COMING SOON',
-            statusColor: '#E8002D',
-            statusBg: 'rgba(232,0,45,0.12)',
-          },
-          {
-            icon: '🏆',
-            title: 'AI Model Showdown',
-            desc: 'GPT, Gemini and Claude independently predict the top 5 qualifying and race results each weekend. Scores accumulate across the season to find the most accurate AI predictor of 2026.',
-            status: 'COMING SOON',
-            statusColor: '#E8002D',
-            statusBg: 'rgba(232,0,45,0.12)',
-          },
-        ].map(f => (
-          <div key={f.title} style={{ ...card, padding: '24px' }}>
-            <div style={{ fontSize: '32px', marginBottom: '12px' }}>{f.icon}</div>
-            <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 8px', borderRadius: '4px', background: f.statusBg, color: f.statusColor, textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>{f.status}</span>
-            <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '22px', color: '#F0F4F8', marginTop: '10px', marginBottom: '8px' }}>{f.title}</div>
-            <p style={{ fontSize: '13px', color: '#5A6A7A', lineHeight: 1.6, margin: 0 }}>{f.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 // ── How to Play tab ────────────────────────────────────────────────────────────
 
 function ScoringTable({ title, note, rows, cols }: { title: string; note?: string; rows: (string | number)[][]; cols: string[] }) {
@@ -379,12 +323,11 @@ function ChipOverviewTab() {
 // ── Main client ────────────────────────────────────────────────────────────────
 
 export default function F1FantasyClient() {
-  const [activeTab, setActiveTab] = useState<'coming-soon' | 'how-to-play' | 'chip-overview'>('coming-soon')
+  const [activeTab, setActiveTab] = useState<'chip-overview' | 'how-to-play'>('chip-overview')
 
   const tabs = [
-    { id: 'coming-soon',   label: 'Coming Soon'  },
-    { id: 'how-to-play',  label: 'How to Play'  },
     { id: 'chip-overview', label: 'Chip Overview' },
+    { id: 'how-to-play',  label: 'How to Play'  },
   ] as const
 
   return (
@@ -424,9 +367,8 @@ export default function F1FantasyClient() {
       </div>
 
       {/* Tab content */}
-      {activeTab === 'coming-soon'   && <ComingSoonTab />}
-      {activeTab === 'how-to-play'   && <HowToPlayTab />}
       {activeTab === 'chip-overview' && <ChipOverviewTab />}
+      {activeTab === 'how-to-play'   && <HowToPlayTab />}
 
     </div>
   )
