@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { SEASON_CALENDAR, CURRENT_RACE } from '@/lib/races'
-import ResultsTab from './ResultsTab'
 
 const card = { background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' as const }
 const cardHeader = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }
@@ -61,7 +60,7 @@ function formatDelta(seconds: number | null | undefined): string {
 }
 
 export default function RaceHubClient() {
-  const [activeTab, setActiveTab] = useState<'race-info' | 'results' | 'weather' | 'pitwall'>('race-info')
+  const [activeTab, setActiveTab] = useState<'overview' | 'race-info' | 'weather' | 'pitwall'>('overview')
   const [selectedRound, setSelectedRound] = useState(4)
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
@@ -74,7 +73,6 @@ export default function RaceHubClient() {
       const n = parseInt(roundParam, 10)
       if (!isNaN(n)) setSelectedRound(n)
     }
-    if (tabParam === 'results') setActiveTab('results')
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const [sessions, setSessions] = useState<any[]>([])
@@ -159,11 +157,204 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
   }, [selectedRound])
 
   const tabs = [
+    { id: 'overview', label: 'Overview' },
     { id: 'race-info', label: 'Race Info' },
-    { id: 'results', label: 'Results' },
     { id: 'weather', label: 'Weather' },
     { id: 'pitwall', label: 'Pitwall' },
   ]
+
+  // Circuit overview data — keyed by round number
+  const circuitOverviewData: Record<number, any> = {
+    1: {
+      mostWinsDriver: 'M. Schumacher', mostWinsDriverCount: 4,
+      mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 8,
+      mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 8,
+      mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 8,
+      avgOvertakes: 51, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'MEDIUM',
+      totalGPs: 29, firstGP: 1996, circuitLength: '5.278 km',
+    },
+    2: {
+      mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 6,
+      mostWinsConstructor: 'Mercedes', mostWinsConstructorCount: 6,
+      mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 6,
+      mostPolesConstructor: 'Mercedes', mostPolesConstructorCount: 6,
+      avgOvertakes: 87, overtakeSeasonsLabel: '2024–2025',
+      gridImportance: 'LOW',
+      totalGPs: 19, firstGP: 2004, circuitLength: '5.451 km',
+    },
+    3: {
+      mostWinsDriver: 'M. Schumacher', mostWinsDriverCount: 6,
+      mostWinsConstructor: 'McLaren', mostWinsConstructorCount: 9,
+      mostPolesDriver: 'M. Schumacher', mostPolesDriverCount: 8,
+      mostPolesConstructor: 'McLaren', mostPolesConstructorCount: 12,
+      avgOvertakes: 65, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'MEDIUM',
+      totalGPs: 36, firstGP: 1987, circuitLength: '5.807 km',
+    },
+    4: {
+      mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 2,
+      mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 2,
+      mostPolesDriver: 'M. Verstappen', mostPolesDriverCount: 2,
+      mostPolesConstructor: 'Red Bull', mostPolesConstructorCount: 2,
+      avgOvertakes: 89, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'LOW',
+      totalGPs: 4, firstGP: 2022, circuitLength: '5.412 km',
+    },
+    5: {
+      mostWinsDriver: 'A. Senna', mostWinsDriverCount: 6,
+      mostWinsConstructor: 'McLaren', mostWinsConstructorCount: 15,
+      mostPolesDriver: 'A. Senna', mostPolesDriverCount: 5,
+      mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 12,
+      avgOvertakes: 19, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'HIGH',
+      totalGPs: 71, firstGP: 1950, circuitLength: '3.337 km',
+    },
+    6: {
+      mostWinsDriver: 'M. Schumacher / L. Hamilton', mostWinsDriverCount: 6,
+      mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 14,
+      mostPolesDriver: 'M. Schumacher', mostPolesDriverCount: 7,
+      mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 14,
+      avgOvertakes: 90, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'LOW',
+      totalGPs: 34, firstGP: 1991, circuitLength: '4.657 km',
+    },
+    7: {
+      mostWinsDriver: 'M. Schumacher / L. Hamilton', mostWinsDriverCount: 7,
+      mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 14,
+      mostPolesDriver: 'M. Schumacher / L. Hamilton', mostPolesDriverCount: 6,
+      mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 11,
+      avgOvertakes: 68, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'MEDIUM',
+      totalGPs: 44, firstGP: 1978, circuitLength: '4.361 km',
+    },
+    8: {
+      mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 9,
+      mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 19,
+      mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 7,
+      mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 19,
+      avgOvertakes: 54, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'MEDIUM',
+      totalGPs: 60, firstGP: 1950, circuitLength: '5.891 km',
+    },
+    9: {
+      mostWinsDriver: 'M. Schumacher', mostWinsDriverCount: 6,
+      mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 18,
+      mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 6,
+      mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 21,
+      avgOvertakes: 67, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'MEDIUM',
+      totalGPs: 58, firstGP: 1950, circuitLength: '7.004 km',
+    },
+    10: {
+      mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 8,
+      mostWinsConstructor: 'McLaren', mostWinsConstructorCount: 12,
+      mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 9,
+      mostPolesConstructor: 'McLaren', mostPolesConstructorCount: 14,
+      avgOvertakes: 62, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'HIGH',
+      totalGPs: 40, firstGP: 1986, circuitLength: '4.381 km',
+    },
+    11: {
+      mostWinsDriver: 'J. Clark', mostWinsDriverCount: 4,
+      mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 3,
+      mostPolesDriver: 'R. Arnoux / M. Verstappen', mostPolesDriverCount: 3,
+      mostPolesConstructor: 'Red Bull', mostPolesConstructorCount: 3,
+      avgOvertakes: 72, overtakeSeasonsLabel: '2022–2024',
+      gridImportance: 'HIGH',
+      totalGPs: 30, firstGP: 1952, circuitLength: '4.259 km',
+    },
+    12: {
+      mostWinsDriver: 'M. Schumacher / L. Hamilton', mostWinsDriverCount: 5,
+      mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 20,
+      mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 7,
+      mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 22,
+      avgOvertakes: 56, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'MEDIUM',
+      totalGPs: 75, firstGP: 1950, circuitLength: '5.793 km',
+    },
+    13: {
+      mostWinsDriver: 'S. Perez / M. Verstappen', mostWinsDriverCount: 2,
+      mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 4,
+      mostPolesDriver: 'C. Leclerc', mostPolesDriverCount: 4,
+      mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 5,
+      avgOvertakes: 57, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'MEDIUM',
+      totalGPs: 9, firstGP: 2017, circuitLength: '6.003 km',
+    },
+    14: {
+      mostWinsDriver: 'S. Vettel', mostWinsDriverCount: 5,
+      mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 5,
+      mostPolesDriver: 'S. Vettel / L. Hamilton', mostPolesDriverCount: 4,
+      mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 7,
+      avgOvertakes: 68, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'HIGH',
+      totalGPs: 17, firstGP: 2008, circuitLength: '4.940 km',
+    },
+    15: {
+      mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 5,
+      mostWinsConstructor: 'Mercedes', mostWinsConstructorCount: 7,
+      mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 5,
+      mostPolesConstructor: 'Mercedes', mostPolesConstructorCount: 6,
+      avgOvertakes: 78, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'LOW',
+      totalGPs: 13, firstGP: 2012, circuitLength: '5.513 km',
+    },
+    16: {
+      isDebut: true,
+      debutMessage: 'The Madrid Grand Prix makes its Formula 1 debut in 2026. No historical records exist yet — this is where history begins.',
+      avgOvertakes: null, overtakeSeasonsLabel: null,
+      gridImportance: 'TBC',
+      totalGPs: 0, firstGP: 2026, circuitLength: '5.474 km',
+    },
+    17: {
+      mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 5,
+      mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 6,
+      mostPolesDriver: 'J. Clark', mostPolesDriverCount: 4,
+      mostPolesConstructor: 'Red Bull', mostPolesConstructorCount: 7,
+      avgOvertakes: 102, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'LOW',
+      totalGPs: 23, firstGP: 1963, circuitLength: '4.304 km',
+    },
+    18: {
+      mostWinsDriver: 'M. Schumacher', mostWinsDriverCount: 4,
+      mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 9,
+      mostPolesDriver: 'A. Senna', mostPolesDriverCount: 5,
+      mostPolesConstructor: 'McLaren', mostPolesConstructorCount: 9,
+      avgOvertakes: 78, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'LOW',
+      totalGPs: 42, firstGP: 1973, circuitLength: '4.309 km',
+    },
+    19: {
+      mostWinsDriver: 'M. Verstappen / G. Russell', mostWinsDriverCount: 1,
+      mostWinsConstructor: 'Red Bull / Mercedes', mostWinsConstructorCount: 1,
+      mostPolesDriver: 'C. Leclerc / G. Russell', mostPolesDriverCount: 1,
+      mostPolesConstructor: 'Ferrari / Mercedes', mostPolesConstructorCount: 1,
+      circuitNote: 'Circuit record — 2 races held',
+      avgOvertakes: 108, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'LOW',
+      totalGPs: 2, firstGP: 2023, circuitLength: '6.201 km',
+    },
+    20: {
+      mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 3,
+      mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 3,
+      mostPolesDriver: 'M. Verstappen', mostPolesDriverCount: 2,
+      mostPolesConstructor: 'Red Bull', mostPolesConstructorCount: 2,
+      circuitNote: '4 races held',
+      avgOvertakes: 77, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'MEDIUM',
+      totalGPs: 4, firstGP: 2021, circuitLength: '5.380 km',
+    },
+    21: {
+      mostWinsDriver: 'L. Hamilton / M. Verstappen', mostWinsDriverCount: 5,
+      mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 8,
+      mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 5,
+      mostPolesConstructor: 'Red Bull', mostPolesConstructorCount: 7,
+      avgOvertakes: 111, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'LOW',
+      totalGPs: 16, firstGP: 2009, circuitLength: '5.281 km',
+    },
+  }
 
   return (
     <div className="mob-pad-page" style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
@@ -254,6 +445,117 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
           }}>{tab.label}</button>
         ))}
       </div>
+
+      {/* OVERVIEW TAB */}
+      {activeTab === 'overview' && (() => {
+        const overview = circuitOverviewData[selectedRound]
+        const gridImportanceConfig: Record<string, { bg: string; color: string; label: string }> = {
+          HIGH:   { bg: 'rgba(232,0,45,0.15)',    color: '#E8002D', label: 'Qualifying position critical' },
+          MEDIUM: { bg: 'rgba(255,128,0,0.15)',   color: '#FF8000', label: 'Passing possible but grid position remains important' },
+          LOW:    { bg: 'rgba(0,200,81,0.15)',     color: '#00C851', label: 'Overtaking-friendly circuit' },
+          TBC:    { bg: 'rgba(90,106,122,0.15)',   color: '#5A6A7A', label: 'No data yet — debut race' },
+        }
+        const gi = overview ? gridImportanceConfig[overview.gridImportance] || gridImportanceConfig.TBC : gridImportanceConfig.TBC
+
+        if (!overview) {
+          return (
+            <div style={{ ...card, padding: '40px', textAlign: 'center' as const }}>
+              <div style={{ fontSize: '14px', color: '#5A6A7A' }}>Overview data coming soon for this circuit.</div>
+            </div>
+          )
+        }
+
+        return (
+          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
+
+            {/* CARD 1 — CIRCUIT RECORDS */}
+            <div style={card}>
+              <div style={cardHeader}>
+                <span style={cardTitle}>Circuit Records</span>
+              </div>
+              <div style={{ padding: '20px' }}>
+                {overview.isDebut ? (
+                  <div style={{ border: '1px solid rgba(232,0,45,0.3)', borderRadius: '10px', background: 'rgba(232,0,45,0.07)', padding: '20px' }}>
+                    <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '16px', letterSpacing: '1px', color: '#E8002D', marginBottom: '10px' }}>Debut Race 2026</div>
+                    <p style={{ fontSize: '13px', color: '#8A9AB0', lineHeight: 1.7, margin: 0 }}>{overview.debutMessage}</p>
+                  </div>
+                ) : (
+                  <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '0' }}>
+                    {[
+                      { label: 'Most Race Wins (Driver)',      value: overview.mostWinsDriver,      count: overview.mostWinsDriverCount },
+                      { label: 'Most Race Wins (Constructor)', value: overview.mostWinsConstructor,  count: overview.mostWinsConstructorCount },
+                      { label: 'Most Pole Positions (Driver)',      value: overview.mostPolesDriver,     count: overview.mostPolesDriverCount },
+                      { label: 'Most Pole Positions (Constructor)', value: overview.mostPolesConstructor, count: overview.mostPolesConstructorCount },
+                    ].map((row, i, arr) => (
+                      <div key={row.label} style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px', padding: '14px 0', borderBottom: i < arr.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
+                        <div style={{ fontSize: '12px', color: '#5A6A7A', lineHeight: 1.4 }}>{row.label}</div>
+                        <div style={{ textAlign: 'right' as const, flexShrink: 0 }}>
+                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 700, color: '#F0F4F8' }}>{row.value}</div>
+                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#E8002D', marginTop: '2px' }}>{row.count}×</div>
+                        </div>
+                      </div>
+                    ))}
+                    {overview.circuitNote && (
+                      <div style={{ marginTop: '12px', fontSize: '11px', color: '#5A6A7A', fontStyle: 'italic' }}>{overview.circuitNote}</div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* CARD 2 — OVERTAKING PROFILE */}
+            <div style={card}>
+              <div style={cardHeader}>
+                <span style={cardTitle}>Overtaking Profile</span>
+              </div>
+              <div style={{ padding: '20px' }}>
+                <div style={{ textAlign: 'center' as const, padding: '16px 0 20px' }}>
+                  {overview.avgOvertakes !== null ? (
+                    <>
+                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '64px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{overview.avgOvertakes}</div>
+                      <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '8px' }}>avg overtakes ({overview.overtakeSeasonsLabel})</div>
+                    </>
+                  ) : (
+                    <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '16px', color: '#5A6A7A', padding: '20px 0' }}>No data — debut race</div>
+                  )}
+                </div>
+                <div style={{ marginTop: '8px' }}>
+                  <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '8px' }}>Grid Importance Indicator</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: gi.bg, borderRadius: '8px', padding: '12px 14px' }}>
+                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: gi.color, flexShrink: 0 }} />
+                    <div>
+                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 700, color: gi.color }}>{overview.gridImportance}</div>
+                      <div style={{ fontSize: '11px', color: '#8A9AB0', marginTop: '2px', lineHeight: 1.4 }}>{gi.label}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CARD 3 — CIRCUIT SNAPSHOT */}
+            <div style={card}>
+              <div style={cardHeader}>
+                <span style={cardTitle}>Circuit Snapshot</span>
+              </div>
+              <div style={{ padding: '20px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+                  {[
+                    { label: 'Total GPs', value: overview.totalGPs === 0 ? '—' : String(overview.totalGPs), sub: 'held here' },
+                    { label: 'First GP', value: String(overview.firstGP), sub: 'year' },
+                    { label: 'Circuit Length', value: overview.circuitLength, sub: 'kilometres' },
+                  ].map(stat => (
+                    <div key={stat.label} style={{ background: '#141B22', borderRadius: '10px', padding: '16px 12px', textAlign: 'center' as const }}>
+                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '22px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{stat.value}</div>
+                      <div style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', marginTop: '6px' }}>{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        )
+      })()}
 
       {/* RACE INFO TAB */}
       {activeTab === 'race-info' && (() => {
@@ -364,9 +666,6 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
           </div>
         )
       })()}
-
-      {/* RESULTS TAB */}
-      {activeTab === 'results' && <ResultsTab selectedRound={selectedRound} sessions={sessions} />}
 
       {/* WEATHER TAB */}
       {activeTab === 'weather' && (() => {
