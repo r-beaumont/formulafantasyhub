@@ -321,15 +321,24 @@ export default function StandingsClient() {
 
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <colgroup>
+              <col style={{ width: '28px' }} />
+              <col style={{ width: '220px' }} />
+              <col />
+              <col style={{ width: '56px' }} />
+              <col style={{ width: '52px' }} />
+              <col style={{ width: '52px' }} />
+              <col style={{ width: '52px' }} />
+            </colgroup>
             <thead>
               <tr>
-                <th style={thStyle(false)}>#</th>
+                <th style={{ ...thStyle(false), padding: '10px 8px 10px 24px' }}>#</th>
                 <th style={thStyle(true)}>Driver</th>
                 <th style={thStyle(true)}>Team</th>
                 <th onClick={() => setSortMode('points')}  style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'points'  ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>PTS {sortMode === 'points'  ? '↓' : ''}</th>
                 <th onClick={() => setSortMode('wins')}    style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'wins'    ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>WINS {sortMode === 'wins'    ? '↓' : ''}</th>
                 <th onClick={() => setSortMode('podiums')} style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'podiums' ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>PODS {sortMode === 'podiums' ? '↓' : ''}</th>
-                <th onClick={() => setSortMode('poles')}   style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'poles'   ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>POLES {sortMode === 'poles'   ? '↓' : ''}</th>
+                <th onClick={() => setSortMode('poles')}   style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'poles'   ? '#F0F4F8' : '#5A6A7A', userSelect: 'none', paddingRight: '24px' }}>POLES {sortMode === 'poles'   ? '↓' : ''}</th>
               </tr>
             </thead>
             <tbody>
@@ -337,7 +346,7 @@ export default function StandingsClient() {
                 const rank = i + 1
                 return (
                   <tr key={d.id} style={{ background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
-                    <td style={{ ...tdMono(posColor(rank)), fontWeight: rank <= 3 ? 600 : 400 }}>{rank}</td>
+                    <td style={{ ...tdMono(posColor(rank)), fontWeight: rank <= 3 ? 600 : 400, padding: '9px 8px 9px 24px' }}>{rank}</td>
                     <td style={{ padding: '9px 12px', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <div style={{ width: '3px', height: '22px', borderRadius: '2px', background: d.teamColor, flexShrink: 0 }} />
@@ -351,7 +360,7 @@ export default function StandingsClient() {
                       {d.wins > 0 ? <span style={{ fontWeight: 700 }}>{d.wins}</span> : '0'}
                     </td>
                     <td style={tdMono(d.podiums > 0 ? '#C0C0C0' : '#3A4A5A')}>{d.podiums > 0 ? d.podiums : '—'}</td>
-                    <td style={tdMono(d.poles > 0 ? '#E8002D' : '#3A4A5A')}>{d.poles > 0 ? d.poles : '—'}</td>
+                    <td style={{ ...tdMono(d.poles > 0 ? '#E8002D' : '#3A4A5A'), paddingRight: '24px' }}>{d.poles > 0 ? d.poles : '—'}</td>
                   </tr>
                 )
               })}
@@ -369,21 +378,21 @@ export default function StandingsClient() {
         </div>
 
         <div style={{ overflowX: 'auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '28px 200px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px', padding: '8px 24px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)', minWidth: '600px' }}>
-            <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: 'right' as const }}>#</span>
+          <div style={{ display: 'grid', gridTemplateColumns: '28px 220px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px', padding: '8px 24px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)', minWidth: '600px' }}>
+            <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: 'center' as const }}>#</span>
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Constructor</span>
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Points</span>
             <span onClick={() => toggleConSort('points')}  style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'points'  ? '#F0F4F8' : '#5A6A7A', textAlign: 'right' as const, cursor: 'pointer', userSelect: 'none' as const }}>PTS {conSortMode === 'points'  ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
             <span onClick={() => toggleConSort('wins')}    style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'wins'    ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>WINS {conSortMode === 'wins'    ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
-            <span onClick={() => toggleConSort('poles')}   style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'poles'   ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>POLES {conSortMode === 'poles'   ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
             <span onClick={() => toggleConSort('podiums')} style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'podiums' ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>PODS {conSortMode === 'podiums' ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
+            <span onClick={() => toggleConSort('poles')}   style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'poles'   ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>POLES {conSortMode === 'poles'   ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
           </div>
           <div style={{ padding: '8px 24px 20px', display: 'flex', flexDirection: 'column', gap: '12px', minWidth: '620px' }}>
             {constructors.map((c, i) => {
               const barPct = maxConPts > 0 ? (c.points / maxConPts) * 100 : 0
               const cStats = constructorStats[c.name] || { wins: 0, podiums: 0, poles: 0 }
               return (
-                <div key={c.name} style={{ display: 'grid', gridTemplateColumns: '28px 200px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px' }}>
+                <div key={c.name} style={{ display: 'grid', gridTemplateColumns: '28px 220px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px' }}>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: posColor(i + 1), fontWeight: i < 3 ? 600 : 400, textAlign: 'right' as const }}>{i + 1}</span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <div style={{ width: '3px', height: '22px', borderRadius: '2px', background: c.color, flexShrink: 0 }} />
@@ -395,8 +404,8 @@ export default function StandingsClient() {
                   </div>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 600, color: c.points > 0 ? '#FFB800' : '#3A4A5A', textAlign: 'right' as const }}>{c.points > 0 ? c.points : '—'}</span>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: cStats.wins > 0 ? '#FFD700' : '#3A4A5A', textAlign: 'center' as const, fontWeight: cStats.wins > 0 ? 700 : 400 }}>{cStats.wins}</span>
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: cStats.poles > 0 ? '#E8002D' : '#3A4A5A', textAlign: 'center' as const, fontWeight: cStats.poles > 0 ? 700 : 400 }}>{cStats.poles > 0 ? cStats.poles : '—'}</span>
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: cStats.podiums > 0 ? '#C0C0C0' : '#3A4A5A', textAlign: 'center' as const }}>{cStats.podiums > 0 ? cStats.podiums : '—'}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: cStats.podiums > 0 ? '#C0C0C0' : '#3A4A5A', textAlign: 'center' as const, fontWeight: cStats.podiums > 0 ? 700 : 400 }}>{cStats.podiums > 0 ? cStats.podiums : '—'}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: cStats.poles > 0 ? '#E8002D' : '#3A4A5A', textAlign: 'center' as const, paddingRight: '24px' }}>{cStats.poles > 0 ? cStats.poles : '—'}</span>
                 </div>
               )
             })}
