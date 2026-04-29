@@ -163,9 +163,9 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
     { id: 'pitwall', label: 'Pitwall' },
   ]
 
-  // Circuit overview data — keyed by round number
+  // Circuit overview data — keyed by round number matching SEASON_CALENDAR
   const circuitOverviewData: Record<number, any> = {
-    1: {
+    1: { // Australia — Albert Park
       mostWinsDriver: 'M. Schumacher', mostWinsDriverCount: 4,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 8,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 8,
@@ -174,7 +174,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'MEDIUM',
       totalGPs: 29, firstGP: 1996, circuitLength: '5.278 km',
     },
-    2: {
+    2: { // China — Shanghai
       mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 6,
       mostWinsConstructor: 'Mercedes', mostWinsConstructorCount: 6,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 6,
@@ -183,7 +183,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'LOW',
       totalGPs: 19, firstGP: 2004, circuitLength: '5.451 km',
     },
-    3: {
+    3: { // Japan — Suzuka
       mostWinsDriver: 'M. Schumacher', mostWinsDriverCount: 6,
       mostWinsConstructor: 'McLaren', mostWinsConstructorCount: 9,
       mostPolesDriver: 'M. Schumacher', mostPolesDriverCount: 8,
@@ -192,7 +192,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'MEDIUM',
       totalGPs: 36, firstGP: 1987, circuitLength: '5.807 km',
     },
-    4: {
+    4: { // Miami — Miami International Autodrome
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 2,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 2,
       mostPolesDriver: 'M. Verstappen', mostPolesDriverCount: 2,
@@ -201,25 +201,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'LOW',
       totalGPs: 4, firstGP: 2022, circuitLength: '5.412 km',
     },
-    5: {
-      mostWinsDriver: 'A. Senna', mostWinsDriverCount: 6,
-      mostWinsConstructor: 'McLaren', mostWinsConstructorCount: 15,
-      mostPolesDriver: 'A. Senna', mostPolesDriverCount: 5,
-      mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 12,
-      avgOvertakes: 19, overtakeSeasonsLabel: '2023–2025',
-      gridImportance: 'HIGH',
-      totalGPs: 71, firstGP: 1950, circuitLength: '3.337 km',
-    },
-    6: {
-      mostWinsDriver: 'M. Schumacher / L. Hamilton', mostWinsDriverCount: 6,
-      mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 14,
-      mostPolesDriver: 'M. Schumacher', mostPolesDriverCount: 7,
-      mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 14,
-      avgOvertakes: 90, overtakeSeasonsLabel: '2023–2025',
-      gridImportance: 'LOW',
-      totalGPs: 34, firstGP: 1991, circuitLength: '4.657 km',
-    },
-    7: {
+    5: { // Canada — Circuit Gilles Villeneuve
       mostWinsDriver: 'M. Schumacher / L. Hamilton', mostWinsDriverCount: 7,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 14,
       mostPolesDriver: 'M. Schumacher / L. Hamilton', mostPolesDriverCount: 6,
@@ -228,7 +210,34 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'MEDIUM',
       totalGPs: 44, firstGP: 1978, circuitLength: '4.361 km',
     },
-    8: {
+    6: { // Monaco — Circuit de Monaco
+      mostWinsDriver: 'A. Senna', mostWinsDriverCount: 6,
+      mostWinsConstructor: 'McLaren', mostWinsConstructorCount: 15,
+      mostPolesDriver: 'A. Senna', mostPolesDriverCount: 5,
+      mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 12,
+      avgOvertakes: 19, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'HIGH',
+      totalGPs: 71, firstGP: 1950, circuitLength: '3.337 km',
+    },
+    7: { // Spain — Circuit de Barcelona-Catalunya
+      mostWinsDriver: 'M. Schumacher / L. Hamilton', mostWinsDriverCount: 6,
+      mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 14,
+      mostPolesDriver: 'M. Schumacher', mostPolesDriverCount: 7,
+      mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 14,
+      avgOvertakes: 90, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'LOW',
+      totalGPs: 34, firstGP: 1991, circuitLength: '4.657 km',
+    },
+    8: { // Austria — Red Bull Ring
+      mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 5,
+      mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 9,
+      mostPolesDriver: 'N. Rosberg / M. Verstappen', mostPolesDriverCount: 3,
+      mostPolesConstructor: 'Red Bull', mostPolesConstructorCount: 7,
+      avgOvertakes: 90, overtakeSeasonsLabel: '2023–2025',
+      gridImportance: 'LOW',
+      totalGPs: 34, firstGP: 1970, circuitLength: '4.318 km',
+    },
+    9: { // Britain — Silverstone
       mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 9,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 19,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 7,
@@ -237,7 +246,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'MEDIUM',
       totalGPs: 60, firstGP: 1950, circuitLength: '5.891 km',
     },
-    9: {
+    10: { // Belgium — Spa-Francorchamps
       mostWinsDriver: 'M. Schumacher', mostWinsDriverCount: 6,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 18,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 6,
@@ -246,7 +255,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'MEDIUM',
       totalGPs: 58, firstGP: 1950, circuitLength: '7.004 km',
     },
-    10: {
+    11: { // Hungary — Hungaroring
       mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 8,
       mostWinsConstructor: 'McLaren', mostWinsConstructorCount: 12,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 9,
@@ -255,7 +264,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'HIGH',
       totalGPs: 40, firstGP: 1986, circuitLength: '4.381 km',
     },
-    11: {
+    12: { // Netherlands — Zandvoort
       mostWinsDriver: 'J. Clark', mostWinsDriverCount: 4,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 3,
       mostPolesDriver: 'R. Arnoux / M. Verstappen', mostPolesDriverCount: 3,
@@ -264,7 +273,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'HIGH',
       totalGPs: 30, firstGP: 1952, circuitLength: '4.259 km',
     },
-    12: {
+    13: { // Italy — Monza
       mostWinsDriver: 'M. Schumacher / L. Hamilton', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 20,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 7,
@@ -273,7 +282,14 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'MEDIUM',
       totalGPs: 75, firstGP: 1950, circuitLength: '5.793 km',
     },
-    13: {
+    14: { // Madrid — DEBUT
+      isDebut: true,
+      debutMessage: 'The Madrid Grand Prix makes its Formula 1 debut in 2026. No historical records exist yet — this is where history begins.',
+      avgOvertakes: null, overtakeSeasonsLabel: null,
+      gridImportance: 'TBC',
+      totalGPs: 0, firstGP: 2026, circuitLength: '5.474 km',
+    },
+    15: { // Azerbaijan — Baku City Circuit
       mostWinsDriver: 'S. Perez / M. Verstappen', mostWinsDriverCount: 2,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 4,
       mostPolesDriver: 'C. Leclerc', mostPolesDriverCount: 4,
@@ -282,7 +298,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'MEDIUM',
       totalGPs: 9, firstGP: 2017, circuitLength: '6.003 km',
     },
-    14: {
+    16: { // Singapore — Marina Bay Street Circuit
       mostWinsDriver: 'S. Vettel', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 5,
       mostPolesDriver: 'S. Vettel / L. Hamilton', mostPolesDriverCount: 4,
@@ -291,7 +307,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'HIGH',
       totalGPs: 17, firstGP: 2008, circuitLength: '4.940 km',
     },
-    15: {
+    17: { // United States — Circuit of the Americas
       mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Mercedes', mostWinsConstructorCount: 7,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 5,
@@ -300,14 +316,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'LOW',
       totalGPs: 13, firstGP: 2012, circuitLength: '5.513 km',
     },
-    16: {
-      isDebut: true,
-      debutMessage: 'The Madrid Grand Prix makes its Formula 1 debut in 2026. No historical records exist yet — this is where history begins.',
-      avgOvertakes: null, overtakeSeasonsLabel: null,
-      gridImportance: 'TBC',
-      totalGPs: 0, firstGP: 2026, circuitLength: '5.474 km',
-    },
-    17: {
+    18: { // Mexico — Autodromo Hermanos Rodriguez
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 6,
       mostPolesDriver: 'J. Clark', mostPolesDriverCount: 4,
@@ -316,7 +325,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'LOW',
       totalGPs: 23, firstGP: 1963, circuitLength: '4.304 km',
     },
-    18: {
+    19: { // Brazil — Autodromo Jose Carlos Pace
       mostWinsDriver: 'M. Schumacher', mostWinsDriverCount: 4,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 9,
       mostPolesDriver: 'A. Senna', mostPolesDriverCount: 5,
@@ -325,7 +334,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'LOW',
       totalGPs: 42, firstGP: 1973, circuitLength: '4.309 km',
     },
-    19: {
+    20: { // Las Vegas — Las Vegas Strip Circuit
       mostWinsDriver: 'M. Verstappen / G. Russell', mostWinsDriverCount: 1,
       mostWinsConstructor: 'Red Bull / Mercedes', mostWinsConstructorCount: 1,
       mostPolesDriver: 'C. Leclerc / G. Russell', mostPolesDriverCount: 1,
@@ -335,7 +344,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'LOW',
       totalGPs: 2, firstGP: 2023, circuitLength: '6.201 km',
     },
-    20: {
+    21: { // Qatar — Lusail International Circuit
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 3,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 3,
       mostPolesDriver: 'M. Verstappen', mostPolesDriverCount: 2,
@@ -345,7 +354,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       gridImportance: 'MEDIUM',
       totalGPs: 4, firstGP: 2021, circuitLength: '5.380 km',
     },
-    21: {
+    22: { // Abu Dhabi — Yas Marina Circuit
       mostWinsDriver: 'L. Hamilton / M. Verstappen', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 8,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 5,
