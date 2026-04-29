@@ -8,10 +8,8 @@ import { RACE_WEEKENDS } from '@/lib/raceResults'
 import { SEASON_CALENDAR } from '@/lib/races'
 import { SEASON_STATS, DRIVER_STATS_MAP } from '@/lib/seasonStats'
 
-const RACES = 2
-
 type SortMode = 'points' | 'wins' | 'podiums' | 'poles'
-type ConSortMode = 'points' | 'wins' | 'podiums'
+type ConSortMode = 'points' | 'wins' | 'podiums' | 'poles'
 
 function posColor(pos: number) {
   return pos === 1 ? '#FFD700' : pos === 2 ? '#C0C0C0' : pos === 3 ? '#CD7F32' : '#5A6A7A'
@@ -26,6 +24,7 @@ function sprintPoints(pos: number): number { return SPRINT_PTS[pos] || 0 }
 
 
 const completedCalRounds = SEASON_CALENDAR.filter(r => r.completed && !r.calledOff)
+const RACES = completedCalRounds.length
 
 // Wins / Poles / Podiums — derived from SEASON_STATS (single source of truth)
 const mostWins    = SEASON_STATS.mostWins.map(n    => ({ name: n, count: DRIVER_STATS_MAP[n]?.wins    ?? 0, teamColor: DRIVER_STATS_MAP[n]?.teamColor ?? '#5A6A7A' }))
@@ -127,14 +126,15 @@ export default function StandingsClient() {
     return b.points - a.points
   })
 
-  // Compute constructor wins/podiums from driver data
+  // Compute constructor wins/podiums/poles from driver data
   const constructorStats = drivers.reduce((acc, d) => {
     const key = d.team
-    if (!acc[key]) acc[key] = { wins: 0, podiums: 0 }
+    if (!acc[key]) acc[key] = { wins: 0, podiums: 0, poles: 0 }
     acc[key].wins += d.wins
     acc[key].podiums += d.podiums ?? 0
+    acc[key].poles += d.poles ?? 0
     return acc
-  }, {} as Record<string, { wins: number, podiums: number }>)
+  }, {} as Record<string, { wins: number, podiums: number, poles: number }>)
 
   function toggleConSort(mode: ConSortMode) {
     if (conSortMode === mode) {
@@ -154,6 +154,7 @@ export default function StandingsClient() {
       const dir = conSortDir === 'desc' ? 1 : -1
       if (conSortMode === 'wins')    return dir * ((constructorStats[b.name]?.wins ?? 0) - (constructorStats[a.name]?.wins ?? 0))
       if (conSortMode === 'podiums') return dir * ((constructorStats[b.name]?.podiums ?? 0) - (constructorStats[a.name]?.podiums ?? 0))
+      if (conSortMode === 'poles')   return dir * ((constructorStats[b.name]?.poles ?? 0) - (constructorStats[a.name]?.poles ?? 0))
       return dir * (b.points - a.points)
     })
 
@@ -192,7 +193,7 @@ export default function StandingsClient() {
       <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', marginBottom: '24px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
           <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Season Overview</span>
-          <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', background: 'rgba(0,212,126,0.12)', color: '#00D47E' }}>{RACES} Races</span>
+          <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', background: 'rgba(0,212,126,0.12)', color: '#00D47E' }}>{RACES} {RACES === 1 ? 'Race' : 'Races'}</span>
         </div>
         <div style={{ padding: '8px 0' }}>
           {/* Drivers Leader */}
@@ -217,7 +218,7 @@ export default function StandingsClient() {
                 <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Constructors Leader</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: constructorsLeader.color }} />
+                <div style={{ width: '3px', height: '18px', borderRadius: '2px', background: constructorsLeader.color }} />
                 <span style={{ fontSize: '13px', fontWeight: 600, color: '#00A8FF' }}>{constructorsLeader.name}</span>
                 <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 700, color: '#00A8FF', background: 'rgba(0,168,255,0.12)', padding: '2px 8px', borderRadius: '4px' }}>{constructorsLeader.points} pts</span>
               </div>
@@ -278,21 +279,27 @@ export default function StandingsClient() {
       </div>
 
       {/* ── SEASON SUMMARY CARDS ── */}
-      <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', marginBottom: '24px' }}>
-        {[
-          { label: 'Races Completed', value: '2',  sub: 'of 22',        color: '#E8002D', bar: 'linear-gradient(90deg,#E8002D,rgba(232,0,45,0.2))' },
-          { label: 'Different Winners', value: '2', sub: 'Russell · Antonelli', color: '#FFD700', bar: 'linear-gradient(90deg,#FFD700,rgba(255,215,0,0.2))' },
-          { label: 'Safety Cars',      value: '—',  sub: 'data pending', color: '#00A8FF', bar: 'linear-gradient(90deg,#00A8FF,rgba(0,168,255,0.2))' },
-          { label: 'DNFs',             value: '—',  sub: 'data pending', color: '#FF6B6B', bar: 'linear-gradient(90deg,#FF6B6B,rgba(255,107,107,0.2))' },
-        ].map(card => (
-          <div key={card.label} style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', padding: '20px', position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: card.bar }} />
-            <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A', marginBottom: '10px' }}>{card.label}</div>
-            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '36px', fontWeight: 600, color: card.color, lineHeight: 1, marginBottom: '4px' }}>{card.value}</div>
-            <div style={{ fontSize: '11px', color: '#3A4A5A' }}>{card.sub}</div>
+      {(() => {
+        const raceWinners = completedCalRounds.map(r => RACE_WEEKENDS[r.round]?.race?.[0]?.name).filter(Boolean) as string[]
+        const uniqueWinners = Array.from(new Set(raceWinners))
+        const winnersLabel = uniqueWinners.map(n => n.split(' ').slice(-1)[0]).join(' · ')
+        const summaryCards = [
+          { label: 'Races Completed', value: String(RACES), sub: 'of 22', color: '#E8002D', bar: 'linear-gradient(90deg,#E8002D,rgba(232,0,45,0.2))' },
+          { label: 'Different Winners', value: String(uniqueWinners.length), sub: winnersLabel, color: '#FFD700', bar: 'linear-gradient(90deg,#FFD700,rgba(255,215,0,0.2))' },
+        ]
+        return (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', marginBottom: '24px' }}>
+            {summaryCards.map(card => (
+              <div key={card.label} style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', padding: '20px', position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: card.bar }} />
+                <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A', marginBottom: '10px' }}>{card.label}</div>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '36px', fontWeight: 600, color: card.color, lineHeight: 1, marginBottom: '4px' }}>{card.value}</div>
+                <div style={{ fontSize: '11px', color: '#3A4A5A' }}>{card.sub}</div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        )
+      })()}
 
       {/* ── DRIVER STATS TABLE ── */}
       <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', marginBottom: '24px' }}>
@@ -351,30 +358,31 @@ export default function StandingsClient() {
       <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', marginBottom: '24px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
           <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Constructor Championship Standings — 2026</span>
-          <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', background: 'rgba(0,212,126,0.12)', color: '#00D47E' }}>{RACES} Races</span>
+          <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', background: 'rgba(0,212,126,0.12)', color: '#00D47E' }}>{RACES} {RACES === 1 ? 'Race' : 'Races'}</span>
           <span style={{ fontSize: '10px', color: '#3A4A5A', marginLeft: '4px' }}>Click a column to sort ↓</span>
         </div>
 
         <div style={{ overflowX: 'auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '28px 26px 160px 1fr 56px 52px 52px', alignItems: 'center', gap: '12px', padding: '8px 24px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)', minWidth: '560px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '28px 26px 160px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px', padding: '8px 24px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)', minWidth: '620px' }}>
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: 'right' as const }}>#</span>
             <span />
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Constructor</span>
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Points</span>
             <span onClick={() => toggleConSort('points')}  style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'points'  ? '#F0F4F8' : '#5A6A7A', textAlign: 'right' as const, cursor: 'pointer', userSelect: 'none' as const }}>PTS {conSortMode === 'points'  ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
             <span onClick={() => toggleConSort('wins')}    style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'wins'    ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>WINS {conSortMode === 'wins'    ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
+            <span onClick={() => toggleConSort('poles')}   style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'poles'   ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>POLES {conSortMode === 'poles'   ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
             <span onClick={() => toggleConSort('podiums')} style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'podiums' ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>PODS {conSortMode === 'podiums' ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
           </div>
-          <div style={{ padding: '8px 24px 20px', display: 'flex', flexDirection: 'column', gap: '12px', minWidth: '560px' }}>
+          <div style={{ padding: '8px 24px 20px', display: 'flex', flexDirection: 'column', gap: '12px', minWidth: '620px' }}>
             {constructors.map((c, i) => {
               const barPct = maxConPts > 0 ? (c.points / maxConPts) * 100 : 0
-              const cStats = constructorStats[c.name] || { wins: 0, podiums: 0 }
+              const cStats = constructorStats[c.name] || { wins: 0, podiums: 0, poles: 0 }
               return (
-                <div key={c.name} style={{ display: 'grid', gridTemplateColumns: '28px 26px 160px 1fr 56px 52px 52px', alignItems: 'center', gap: '12px' }}>
+                <div key={c.name} style={{ display: 'grid', gridTemplateColumns: '28px 26px 160px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px' }}>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: posColor(i + 1), fontWeight: i < 3 ? 600 : 400, textAlign: 'right' as const }}>{i + 1}</span>
                   <span className={`fi fi-${c.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: c.color, flexShrink: 0 }} />
+                    <div style={{ width: '3px', height: '22px', borderRadius: '2px', background: c.color, flexShrink: 0 }} />
                     <span style={{ fontSize: '13px', fontWeight: 600, color: c.points > 0 ? '#F0F4F8' : '#5A6A7A', whiteSpace: 'nowrap' }}>{c.name}</span>
                   </div>
                   <div style={{ height: '6px', background: '#141B22', borderRadius: '3px', overflow: 'hidden', minWidth: '40px' }}>
@@ -382,6 +390,7 @@ export default function StandingsClient() {
                   </div>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 600, color: c.points > 0 ? '#FFB800' : '#3A4A5A', textAlign: 'right' as const }}>{c.points > 0 ? c.points : '—'}</span>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: cStats.wins > 0 ? '#FFD700' : '#3A4A5A', textAlign: 'center' as const, fontWeight: cStats.wins > 0 ? 700 : 400 }}>{cStats.wins}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: cStats.poles > 0 ? '#E8002D' : '#3A4A5A', textAlign: 'center' as const, fontWeight: cStats.poles > 0 ? 700 : 400 }}>{cStats.poles > 0 ? cStats.poles : '—'}</span>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: cStats.podiums > 0 ? '#C0C0C0' : '#3A4A5A', textAlign: 'center' as const }}>{cStats.podiums > 0 ? cStats.podiums : '—'}</span>
                 </div>
               )
@@ -536,7 +545,7 @@ export default function StandingsClient() {
                     <td style={{ ...tdMono(posColor(i + 1)), fontWeight: i < 3 ? 600 : 400 }}>{i + 1}</td>
                     <td style={{ padding: '8px 12px', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: c.color, flexShrink: 0 }} />
+                        <div style={{ width: '3px', height: '20px', borderRadius: '2px', background: c.color, flexShrink: 0 }} />
                         <span style={{ fontSize: '12px', fontWeight: 600, whiteSpace: 'nowrap' }}>{c.team}</span>
                       </div>
                     </td>

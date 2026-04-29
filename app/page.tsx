@@ -124,28 +124,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* WHAT'S COMING */}
-          <div style={{ marginBottom: '20px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
-              <div style={{ width: '3px', height: '20px', background: '#E8002D', borderRadius: '2px' }} />
-              <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase' as const }}>What&apos;s Coming to Formula Hub</span>
-            </div>
-            <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '12px' }}>
-              {[
-                { icon: '🎯', title: 'Fantasy Performance Tracker', desc: 'Track your F1 Fantasy squad performance across every race weekend with in-depth analytics.', status: 'IN DEVELOPMENT', statusColor: '#FFB800', statusBg: 'rgba(255,184,0,0.12)' },
-                { icon: '🤖', title: 'AI Race Recommendations', desc: 'Get AI-powered driver and constructor picks based on circuit data, form and price trends.', status: 'IN DEVELOPMENT', statusColor: '#FFB800', statusBg: 'rgba(255,184,0,0.12)' },
-                { icon: '📰', title: 'F1 Fantasy News', desc: 'Breaking news, price change alerts and strategy updates delivered in real time.', status: 'COMING SOON', statusColor: '#E8002D', statusBg: 'rgba(232,0,45,0.12)' },
-              ].map((item) => (
-                <div key={item.title} style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', padding: '20px' }}>
-                  <div style={{ fontSize: '28px', marginBottom: '12px' }}>{item.icon}</div>
-                  <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 8px', borderRadius: '4px', background: item.statusBg, color: item.statusColor, textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>{item.status}</span>
-                  <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '18px', color: '#F0F4F8', marginTop: '10px', marginBottom: '6px' }}>{item.title}</div>
-                  <div style={{ fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>{item.desc}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
           {/* NEWS + VIDEOS */}
           <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
             <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' }}>
@@ -161,7 +139,6 @@ export default function Home() {
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginBottom: '4px' }}>
                           <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 6px', borderRadius: '3px', background: a.articleType === 'F1 Fantasy' ? 'rgba(232,0,45,0.15)' : 'rgba(0,168,255,0.15)', color: a.articleType === 'F1 Fantasy' ? '#E8002D' : '#00A8FF', textTransform: 'uppercase' as const }}>{a.articleType}</span>
-                          {a.premium && <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 6px', borderRadius: '3px', background: 'rgba(255,184,0,0.15)', color: '#FFB800', textTransform: 'uppercase' as const }}>Premium</span>}
                         </div>
                         <div style={{ fontSize: '13px', fontWeight: 600, lineHeight: 1.4, marginBottom: '2px' }}>{a.title}</div>
                         <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#3A4A5A' }}>{a.date}</div>

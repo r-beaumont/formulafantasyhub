@@ -15,7 +15,6 @@ export default function Footer() {
           {' '}All race data is provided for informational purposes only.
         </div>
         <div style={{ display: 'flex', gap: '20px', flexShrink: 0 }}>
-          <Link href="/subscribe" style={{ color: '#5A6A7A', textDecoration: 'none' }}>Premium</Link>
           <Link href="https://www.youtube.com/@formulafantasyhub" target="_blank" style={{ color: '#5A6A7A', textDecoration: 'none' }}>YouTube</Link>
           <Link href="https://x.com/F_FantasyHub" target="_blank" style={{ color: '#5A6A7A', textDecoration: 'none' }}>X / Twitter</Link>
         </div>

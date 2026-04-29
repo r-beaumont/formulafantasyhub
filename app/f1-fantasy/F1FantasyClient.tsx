@@ -283,10 +283,6 @@ function ChipOverviewTab() {
           Each manager receives one of each chip per season. Chips cannot be used simultaneously. Once activated, a chip cannot be reversed — think strategically before you use it.
         </p>
       </div>
-      <div style={{ background: 'rgba(0,200,81,0.08)', border: '1px solid rgba(0,200,81,0.25)', borderRadius: '10px', padding: '12px 16px', marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <span style={{ fontSize: '11px', fontWeight: 700, padding: '2px 8px', borderRadius: '4px', background: 'rgba(0,200,81,0.15)', color: '#00C851', textTransform: 'uppercase' as const, letterSpacing: '0.5px', flexShrink: 0 }}>Miami R4 Sprint Pick</span>
-        <span style={{ fontSize: '13px', color: '#8A9AB0' }}>Miami is a sprint weekend — <strong style={{ color: '#F0F4F8' }}>3x Boost</strong> and <strong style={{ color: '#F0F4F8' }}>No Negative</strong> are the priority chips. A third scoring session increases the value of 3x Boost, while No Negative protects against sprint DNF penalties.</span>
-      </div>
       <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '16px' }}>
         {chips.map(chip => (
           <div key={chip.name} style={{
@@ -323,11 +319,11 @@ function ChipOverviewTab() {
 // ── Main client ────────────────────────────────────────────────────────────────
 
 export default function F1FantasyClient() {
-  const [activeTab, setActiveTab] = useState<'chip-overview' | 'how-to-play'>('chip-overview')
+  const [activeTab, setActiveTab] = useState<'how-to-play' | 'chip-overview'>('how-to-play')
 
   const tabs = [
-    { id: 'chip-overview', label: 'Chip Overview' },
     { id: 'how-to-play',  label: 'How to Play'  },
+    { id: 'chip-overview', label: 'Chip Overview' },
   ] as const
 
   return (

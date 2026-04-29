@@ -193,8 +193,8 @@ export default function CalendarClient() {
                     ))}
                   </div>
 
-                  {/* Sessions if available */}
-                  {race.sessions && race.sessions.length > 0 && (
+                  {/* Sessions — only show for upcoming races */}
+                  {!race.completed && race.sessions && race.sessions.length > 0 && (
                     <div style={{ marginBottom: '14px' }}>
                       <div style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.4px', marginBottom: '7px' }}>
                         Session Schedule
@@ -237,14 +237,14 @@ export default function CalendarClient() {
                   {/* CTA */}
                   {!isCalledOff && (
                     <button
-                      onClick={() => router.push(`/race-hub?round=${race.round}&tab=${race.completed ? 'results' : 'race-info'}`)}
+                      onClick={() => router.push(`/race-hub?round=${race.round}`)}
                       style={{
                         background: '#E8002D', color: 'white', border: 'none', borderRadius: '8px',
                         padding: '8px 18px', fontSize: '12px', fontWeight: 700, cursor: 'pointer',
                         letterSpacing: '0.3px',
                       }}
                     >
-                      {race.completed ? 'View Results →' : 'View Schedule →'}
+                      {race.completed ? 'View Race Info →' : 'View Schedule →'}
                     </button>
                   )}
                 </div>

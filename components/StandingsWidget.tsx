@@ -69,7 +69,7 @@ export default function StandingsWidget({ limit = 5, showLink = true, type = 'bo
               return (
                 <div key={c.team} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: posColor(c.position), width: '20px', fontWeight: c.position <= 3 ? 600 : 400 }}>{c.position}</span>
-                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: c.team_colour, flexShrink: 0 }} />
+                  <div style={{ width: '3px', height: '18px', borderRadius: '2px', background: c.team_colour, flexShrink: 0 }} />
                   <span className={`fi fi-${c.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
                   <span style={{ flex: 1, fontSize: '13px', fontWeight: 500 }}>{c.team}</span>
                   <div style={{ width: '60px', height: '3px', background: '#1C2630', borderRadius: '2px', overflow: 'hidden' }}>

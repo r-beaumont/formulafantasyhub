@@ -166,6 +166,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
   // Circuit overview data — keyed by round number matching SEASON_CALENDAR
   const circuitOverviewData: Record<number, any> = {
     1: { // Australia — Albert Park
+      lastWinner: 'L. Norris',
       mostWinsDriver: 'M. Schumacher', mostWinsDriverCount: 4,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 8,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 8,
@@ -175,6 +176,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 29, firstGP: 1996, circuitLength: '5.278 km',
     },
     2: { // China — Shanghai
+      lastWinner: 'O. Piastri',
       mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 6,
       mostWinsConstructor: 'Mercedes', mostWinsConstructorCount: 6,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 6,
@@ -184,6 +186,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 19, firstGP: 2004, circuitLength: '5.451 km',
     },
     3: { // Japan — Suzuka
+      lastWinner: 'M. Verstappen',
       mostWinsDriver: 'M. Schumacher', mostWinsDriverCount: 6,
       mostWinsConstructor: 'McLaren', mostWinsConstructorCount: 9,
       mostPolesDriver: 'M. Schumacher', mostPolesDriverCount: 8,
@@ -193,6 +196,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 36, firstGP: 1987, circuitLength: '5.807 km',
     },
     4: { // Miami — Miami International Autodrome
+      lastWinner: 'L. Norris',
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 2,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 2,
       mostPolesDriver: 'M. Verstappen', mostPolesDriverCount: 2,
@@ -202,6 +206,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 4, firstGP: 2022, circuitLength: '5.412 km',
     },
     5: { // Canada — Circuit Gilles Villeneuve
+      lastWinner: 'M. Verstappen',
       mostWinsDriver: 'M. Schumacher / L. Hamilton', mostWinsDriverCount: 7,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 14,
       mostPolesDriver: 'M. Schumacher / L. Hamilton', mostPolesDriverCount: 6,
@@ -211,6 +216,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 44, firstGP: 1978, circuitLength: '4.361 km',
     },
     6: { // Monaco — Circuit de Monaco
+      lastWinner: 'C. Leclerc',
       mostWinsDriver: 'A. Senna', mostWinsDriverCount: 6,
       mostWinsConstructor: 'McLaren', mostWinsConstructorCount: 15,
       mostPolesDriver: 'A. Senna', mostPolesDriverCount: 5,
@@ -220,6 +226,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 71, firstGP: 1950, circuitLength: '3.337 km',
     },
     7: { // Spain — Circuit de Barcelona-Catalunya
+      lastWinner: 'L. Norris',
       mostWinsDriver: 'M. Schumacher / L. Hamilton', mostWinsDriverCount: 6,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 14,
       mostPolesDriver: 'M. Schumacher', mostPolesDriverCount: 7,
@@ -229,6 +236,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 34, firstGP: 1991, circuitLength: '4.657 km',
     },
     8: { // Austria — Red Bull Ring
+      lastWinner: 'L. Norris',
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 9,
       mostPolesDriver: 'M. Verstappen', mostPolesDriverCount: 5,
@@ -238,6 +246,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 34, firstGP: 1970, circuitLength: '4.318 km',
     },
     9: { // Britain — Silverstone
+      lastWinner: 'G. Russell',
       mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 9,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 19,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 7,
@@ -247,6 +256,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 60, firstGP: 1950, circuitLength: '5.891 km',
     },
     10: { // Belgium — Spa-Francorchamps
+      lastWinner: 'L. Norris',
       mostWinsDriver: 'M. Schumacher', mostWinsDriverCount: 6,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 18,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 6,
@@ -256,6 +266,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 58, firstGP: 1950, circuitLength: '7.004 km',
     },
     11: { // Hungary — Hungaroring
+      lastWinner: 'O. Piastri',
       mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 8,
       mostWinsConstructor: 'McLaren', mostWinsConstructorCount: 12,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 9,
@@ -265,6 +276,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 40, firstGP: 1986, circuitLength: '4.381 km',
     },
     12: { // Netherlands — Zandvoort
+      lastWinner: 'M. Verstappen',
       mostWinsDriver: 'J. Clark', mostWinsDriverCount: 4,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 3,
       mostPolesDriver: 'R. Arnoux / M. Verstappen', mostPolesDriverCount: 3,
@@ -274,6 +286,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 30, firstGP: 1952, circuitLength: '4.259 km',
     },
     13: { // Italy — Monza
+      lastWinner: 'C. Leclerc',
       mostWinsDriver: 'M. Schumacher / L. Hamilton', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 20,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 7,
@@ -283,6 +296,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 75, firstGP: 1950, circuitLength: '5.793 km',
     },
     14: { // Madrid — DEBUT
+      lastWinner: null,
       isDebut: true,
       debutMessage: 'The Madrid Grand Prix makes its Formula 1 debut in 2026. No historical records exist yet — this is where history begins.',
       avgOvertakes: null, overtakeSeasonsLabel: null,
@@ -290,6 +304,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 0, firstGP: 2026, circuitLength: '5.474 km',
     },
     15: { // Azerbaijan — Baku City Circuit
+      lastWinner: 'O. Piastri',
       mostWinsDriver: 'S. Perez / M. Verstappen', mostWinsDriverCount: 2,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 4,
       mostPolesDriver: 'C. Leclerc', mostPolesDriverCount: 4,
@@ -299,6 +314,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 9, firstGP: 2017, circuitLength: '6.003 km',
     },
     16: { // Singapore — Marina Bay Street Circuit
+      lastWinner: 'L. Norris',
       mostWinsDriver: 'S. Vettel', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 5,
       mostPolesDriver: 'S. Vettel / L. Hamilton', mostPolesDriverCount: 4,
@@ -308,6 +324,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 17, firstGP: 2008, circuitLength: '4.940 km',
     },
     17: { // United States — Circuit of the Americas
+      lastWinner: 'C. Sainz',
       mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Mercedes', mostWinsConstructorCount: 7,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 5,
@@ -317,6 +334,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 13, firstGP: 2012, circuitLength: '5.513 km',
     },
     18: { // Mexico — Autodromo Hermanos Rodriguez
+      lastWinner: 'C. Leclerc',
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 6,
       mostPolesDriver: 'J. Clark', mostPolesDriverCount: 4,
@@ -326,6 +344,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 23, firstGP: 1963, circuitLength: '4.304 km',
     },
     19: { // Brazil — Autodromo Jose Carlos Pace
+      lastWinner: 'L. Norris',
       mostWinsDriver: 'M. Schumacher', mostWinsDriverCount: 4,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 9,
       mostPolesDriver: 'A. Senna', mostPolesDriverCount: 5,
@@ -335,6 +354,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 42, firstGP: 1973, circuitLength: '4.309 km',
     },
     20: { // Las Vegas — Las Vegas Strip Circuit
+      lastWinner: 'L. Norris',
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 2,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 2,
       mostPolesDriver: 'C. Leclerc / G. Russell / L. Norris', mostPolesDriverCount: 1,
@@ -345,6 +365,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 3, firstGP: 2023, circuitLength: '6.201 km',
     },
     21: { // Qatar — Lusail International Circuit
+      lastWinner: 'O. Piastri',
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 3,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 3,
       mostPolesDriver: 'M. Verstappen', mostPolesDriverCount: 2,
@@ -355,6 +376,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 4, firstGP: 2021, circuitLength: '5.380 km',
     },
     22: { // Abu Dhabi — Yas Marina Circuit
+      lastWinner: 'L. Norris',
       mostWinsDriver: 'L. Hamilton / M. Verstappen', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 8,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 5,
@@ -477,7 +499,64 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
         return (
           <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
 
-            {/* CARD 1 — CIRCUIT RECORDS */}
+            {/* CARD 1 — CIRCUIT SNAPSHOT */}
+            <div style={card}>
+              <div style={cardHeader}>
+                <span style={cardTitle}>Circuit Snapshot</span>
+              </div>
+              <div style={{ padding: '20px' }}>
+                {/* 2025 Winner */}
+                {overview.lastWinner && (
+                  <div style={{ background: '#141B22', borderRadius: '10px', padding: '12px 16px', marginBottom: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>2025 Winner</div>
+                    <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 700, color: '#F0F4F8' }}>{overview.lastWinner}</div>
+                  </div>
+                )}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+                  {[
+                    { label: 'Total GPs', value: overview.totalGPs === 0 ? '—' : String(overview.totalGPs) },
+                    { label: 'First GP', value: String(overview.firstGP) },
+                    { label: 'Circuit Length', value: overview.circuitLength },
+                  ].map(stat => (
+                    <div key={stat.label} style={{ background: '#141B22', borderRadius: '10px', padding: '16px 12px', textAlign: 'center' as const }}>
+                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '22px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{stat.value}</div>
+                      <div style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', marginTop: '6px' }}>{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* CARD 2 — OVERTAKING PROFILE */}
+            <div style={card}>
+              <div style={cardHeader}>
+                <span style={cardTitle}>Overtaking Profile</span>
+              </div>
+              <div style={{ padding: '20px' }}>
+                <div style={{ textAlign: 'center' as const, padding: '16px 0 20px' }}>
+                  {overview.avgOvertakes !== null ? (
+                    <>
+                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '64px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{overview.avgOvertakes}</div>
+                      <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '8px' }}>Average Overtakes per Race ({overview.overtakeSeasonsLabel})</div>
+                    </>
+                  ) : (
+                    <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '16px', color: '#5A6A7A', padding: '20px 0' }}>No data — debut race</div>
+                  )}
+                </div>
+                <div style={{ marginTop: '8px' }}>
+                  <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '8px' }}>Grid Importance Indicator</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: gi.bg, borderRadius: '8px', padding: '12px 14px' }}>
+                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: gi.color, flexShrink: 0 }} />
+                    <div>
+                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 700, color: gi.color }}>{overview.gridImportance}</div>
+                      <div style={{ fontSize: '11px', color: '#8A9AB0', marginTop: '2px', lineHeight: 1.4 }}>{gi.label}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CARD 3 — CIRCUIT RECORDS */}
             <div style={card}>
               <div style={cardHeader}>
                 <span style={cardTitle}>Circuit Records</span>
@@ -509,56 +588,6 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                     )}
                   </div>
                 )}
-              </div>
-            </div>
-
-            {/* CARD 2 — OVERTAKING PROFILE */}
-            <div style={card}>
-              <div style={cardHeader}>
-                <span style={cardTitle}>Overtaking Profile</span>
-              </div>
-              <div style={{ padding: '20px' }}>
-                <div style={{ textAlign: 'center' as const, padding: '16px 0 20px' }}>
-                  {overview.avgOvertakes !== null ? (
-                    <>
-                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '64px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{overview.avgOvertakes}</div>
-                      <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '8px' }}>avg overtakes ({overview.overtakeSeasonsLabel})</div>
-                    </>
-                  ) : (
-                    <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '16px', color: '#5A6A7A', padding: '20px 0' }}>No data — debut race</div>
-                  )}
-                </div>
-                <div style={{ marginTop: '8px' }}>
-                  <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '8px' }}>Grid Importance Indicator</div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: gi.bg, borderRadius: '8px', padding: '12px 14px' }}>
-                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: gi.color, flexShrink: 0 }} />
-                    <div>
-                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 700, color: gi.color }}>{overview.gridImportance}</div>
-                      <div style={{ fontSize: '11px', color: '#8A9AB0', marginTop: '2px', lineHeight: 1.4 }}>{gi.label}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* CARD 3 — CIRCUIT SNAPSHOT */}
-            <div style={card}>
-              <div style={cardHeader}>
-                <span style={cardTitle}>Circuit Snapshot</span>
-              </div>
-              <div style={{ padding: '20px' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
-                  {[
-                    { label: 'Total GPs', value: overview.totalGPs === 0 ? '—' : String(overview.totalGPs), sub: 'held here' },
-                    { label: 'First GP', value: String(overview.firstGP), sub: 'year' },
-                    { label: 'Circuit Length', value: overview.circuitLength, sub: 'kilometres' },
-                  ].map(stat => (
-                    <div key={stat.label} style={{ background: '#141B22', borderRadius: '10px', padding: '16px 12px', textAlign: 'center' as const }}>
-                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '22px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{stat.value}</div>
-                      <div style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', marginTop: '6px' }}>{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
 
