@@ -320,52 +320,37 @@ export default function StandingsClient() {
         </div>
 
         <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <colgroup>
-              <col style={{ width: '28px' }} />
-              <col style={{ width: '220px' }} />
-              <col />
-              <col style={{ width: '56px' }} />
-              <col style={{ width: '52px' }} />
-              <col style={{ width: '52px' }} />
-              <col style={{ width: '52px' }} />
-            </colgroup>
-            <thead>
-              <tr>
-                <th style={{ ...thStyle(false), padding: '10px 8px 10px 24px' }}>#</th>
-                <th style={thStyle(true)}>Driver</th>
-                <th style={thStyle(true)}>Team</th>
-                <th onClick={() => setSortMode('points')}  style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'points'  ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>PTS {sortMode === 'points'  ? '↓' : ''}</th>
-                <th onClick={() => setSortMode('wins')}    style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'wins'    ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>WINS {sortMode === 'wins'    ? '↓' : ''}</th>
-                <th onClick={() => setSortMode('podiums')} style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'podiums' ? '#F0F4F8' : '#5A6A7A', userSelect: 'none' }}>PODS {sortMode === 'podiums' ? '↓' : ''}</th>
-                <th onClick={() => setSortMode('poles')}   style={{ ...thStyle(false), cursor: 'pointer', color: sortMode === 'poles'   ? '#F0F4F8' : '#5A6A7A', userSelect: 'none', paddingRight: '24px' }}>POLES {sortMode === 'poles'   ? '↓' : ''}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sorted.map((d, i) => {
-                const rank = i + 1
-                return (
-                  <tr key={d.id} style={{ background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
-                    <td style={{ ...tdMono(posColor(rank)), fontWeight: rank <= 3 ? 600 : 400, padding: '9px 8px 9px 24px' }}>{rank}</td>
-                    <td style={{ padding: '9px 12px', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <div style={{ width: '3px', height: '22px', borderRadius: '2px', background: d.teamColor, flexShrink: 0 }} />
-                        <span className={`fi fi-${d.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
-                        <span style={{ fontSize: '13px', fontWeight: 500, whiteSpace: 'nowrap' }}>{d.name}</span>
-                      </div>
-                    </td>
-                    <td style={{ padding: '9px 12px', borderBottom: '1px solid rgba(255,255,255,0.03)', fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap' }}>{d.team}</td>
-                    <td style={{ ...tdMono(d.points > 0 ? '#F0F4F8' : '#3A4A5A'), fontWeight: 700, fontSize: '14px' }}>{d.points}</td>
-                    <td style={tdMono(d.wins > 0 ? '#FFD700' : '#3A4A5A')}>
-                      {d.wins > 0 ? <span style={{ fontWeight: 700 }}>{d.wins}</span> : '0'}
-                    </td>
-                    <td style={tdMono(d.podiums > 0 ? '#C0C0C0' : '#3A4A5A')}>{d.podiums > 0 ? d.podiums : '—'}</td>
-                    <td style={{ ...tdMono(d.poles > 0 ? '#E8002D' : '#3A4A5A'), paddingRight: '24px' }}>{d.poles > 0 ? d.poles : '—'}</td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
+          {/* Header row */}
+          <div style={{ display: 'grid', gridTemplateColumns: '28px 220px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px', padding: '8px 24px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)', minWidth: '600px' }}>
+            <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: 'center' as const }}>#</span>
+            <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Driver</span>
+            <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Team</span>
+            <span onClick={() => setSortMode('points')}  style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: sortMode === 'points'  ? '#F0F4F8' : '#5A6A7A', textAlign: 'right' as const, cursor: 'pointer', userSelect: 'none' as const }}>PTS {sortMode === 'points'  ? '↓' : ''}</span>
+            <span onClick={() => setSortMode('wins')}    style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: sortMode === 'wins'    ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>WINS {sortMode === 'wins'    ? '↓' : ''}</span>
+            <span onClick={() => setSortMode('podiums')} style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: sortMode === 'podiums' ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>PODS {sortMode === 'podiums' ? '↓' : ''}</span>
+            <span onClick={() => setSortMode('poles')}   style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: sortMode === 'poles'   ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>POLES {sortMode === 'poles'   ? '↓' : ''}</span>
+          </div>
+          {/* Data rows */}
+          <div style={{ padding: '8px 24px 20px', display: 'flex', flexDirection: 'column', gap: '2px', minWidth: '600px' }}>
+            {sorted.map((d, i) => {
+              const rank = i + 1
+              return (
+                <div key={d.id} style={{ display: 'grid', gridTemplateColumns: '28px 220px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px', padding: '7px 0', borderBottom: '1px solid rgba(255,255,255,0.03)', background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: posColor(rank), fontWeight: rank <= 3 ? 600 : 400, textAlign: 'center' as const }}>{rank}</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflow: 'hidden' }}>
+                    <div style={{ width: '3px', height: '22px', borderRadius: '2px', background: d.teamColor, flexShrink: 0 }} />
+                    <span className={`fi fi-${d.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', flexShrink: 0 }}></span>
+                    <span style={{ fontSize: '13px', fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.name}</span>
+                  </div>
+                  <span style={{ fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.team}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 700, color: d.points > 0 ? '#F0F4F8' : '#3A4A5A', textAlign: 'right' as const }}>{d.points}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: d.wins > 0 ? '#FFD700' : '#3A4A5A', textAlign: 'center' as const, fontWeight: d.wins > 0 ? 700 : 400 }}>{d.wins > 0 ? d.wins : '0'}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: d.podiums > 0 ? '#C0C0C0' : '#3A4A5A', textAlign: 'center' as const }}>{d.podiums > 0 ? d.podiums : '—'}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: d.poles > 0 ? '#E8002D' : '#3A4A5A', textAlign: 'center' as const }}>{d.poles > 0 ? d.poles : '—'}</span>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
 
