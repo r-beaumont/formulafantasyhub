@@ -86,8 +86,8 @@ Miami is the first Sprint weekend of 2026 and chip selection matters. No Negativ
     category: 'Race Preview',
     articleType: 'F1 Fantasy',
     premium: false,
-    thumbnail: 'linear-gradient(135deg, #001a0a 0%, #003d1a 50%, #001a0a 100%)',
-    thumbnailBg: 'rgba(0,212,126,0.2)',
+    thumbnail: 'linear-gradient(135deg, #1a1400 0%, #3d3000 50%, #1a1400 100%)',
+    thumbnailBg: 'rgba(255,215,0,0.25)',
     thumbnailIcon: 'jp',
     content: `**THE SETUP**
 
