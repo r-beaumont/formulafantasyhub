@@ -393,7 +393,7 @@ export default function StandingsClient() {
               const cStats = constructorStats[c.name] || { wins: 0, podiums: 0, poles: 0 }
               return (
                 <div key={c.name} style={{ display: 'grid', gridTemplateColumns: '28px 220px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px' }}>
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: posColor(i + 1), fontWeight: i < 3 ? 600 : 400, textAlign: 'right' as const }}>{i + 1}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: posColor(i + 1), fontWeight: i < 3 ? 600 : 400, textAlign: 'center' as const }}>{i + 1}</span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <div style={{ width: '3px', height: '22px', borderRadius: '2px', background: c.color, flexShrink: 0 }} />
                     <span className={`fi fi-${c.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', flexShrink: 0 }}></span>
