@@ -1096,6 +1096,261 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
               { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–12: Soft', 'Pit ~Lap 12', 'Lap 13–35: Medium', 'Pit ~Lap 35', 'Lap 36–56: Hard'], note: 'Aggressive option — often triggered by safety car.' },
             ],
           },
+          5: { // Canada — Circuit Gilles Villeneuve
+            downforce: 'Medium / High',
+            downforceLevel: 4,
+            downforceNote: 'The Gilles Villeneuve Circuit blends long flat-out sections with slow chicanes and hairpins. Teams run medium-high downforce — enough to survive the hairpins without losing too much speed on the main straights.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C3', desc: 'Durable option for a long opening stint. Suits the mixed-nature layout.' },
+              { name: 'Medium', color: '#FFD700', code: 'C4', desc: 'Versatile race tyre. Works in either stint of a 1-stop strategy.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C5', desc: 'Used at race start or from a low grid position. Degrades quickly at the hairpins.' },
+            ],
+            strategies: [
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–25: Medium', 'Pit ~Lap 25', 'Lap 26–70: Hard'],                                               note: 'Default frontrunner strategy. Track position is critical at Montreal — walls limit overtaking.' },
+              { name: '1-Stop Soft → Hard',        stops: 1, laps: ['Lap 1–18: Soft',   'Pit ~Lap 18', 'Lap 19–70: Hard'],                                               note: 'Aggressive variant for drivers outside the top 5. Safety cars are common here and can reward early pitters.' },
+              { name: '2-Stop Soft → Med → Hard',  stops: 2, laps: ['Lap 1–15: Soft',   'Pit ~Lap 15', 'Lap 16–40: Medium', 'Pit ~Lap 40', 'Lap 41–70: Hard'],  note: 'Safety car contingency. Two stops rarely work cleanly without a yellow flag at Montreal.' },
+            ],
+          },
+          6: { // Monaco — Circuit de Monaco
+            downforce: 'Maximum',
+            downforceLevel: 5,
+            downforceNote: 'Monaco demands the highest downforce levels of the season. Teams run maximum wing angles throughout — straight-line speed is sacrificed entirely in favour of mechanical grip and cornering confidence through the tight barriers.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C3', desc: 'Rarely used in the race. May appear in a conservative 1-stop for teams with no pace advantage.' },
+              { name: 'Medium', color: '#FFD700', code: 'C4', desc: 'Most common race tyre. Used for long stints in Monaco\'s typically cool conditions.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C5', desc: 'Often used at race start for track position — then switched to Medium for the long run home.' },
+            ],
+            strategies: [
+              { name: '1-Stop Soft → Medium',     stops: 1, laps: ['Lap 1–20: Soft',   'Pit ~Lap 20', 'Lap 21–78: Medium'], note: 'Classic Monaco strategy. Track position is everything — overtaking is virtually impossible without a safety car or pit-stop error.' },
+              { name: '1-Stop Medium → Medium',    stops: 1, laps: ['Lap 1–38: Medium', 'Pit ~Lap 38', 'Lap 39–78: Medium'], note: 'Used by teams starting in clean air who can run long on the first set. Minimises pit exposure time.' },
+              { name: '0-Stop (no pit)',            stops: 0, laps: ['Lap 1–78: Medium (or Hard)'],                           note: 'Rare but attempted in specific circumstances. Tyre management and VSC timing is key. Track position advantage must be decisive.' },
+            ],
+          },
+          7: { // Barcelona-Catalunya — Spain
+            downforce: 'Medium / High',
+            downforceLevel: 4,
+            downforceNote: 'Barcelona-Catalunya is a complete circuit with a balance of high-speed and technical sections. Teams run medium-high downforce to cope with the fast Turns 3 and 9 complex without sacrificing too much on the long main straight.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C2', desc: 'Long-life tyre suited to Barcelona\'s abrasive asphalt. Commonly used in the second or third stint.' },
+              { name: 'Medium', color: '#FFD700', code: 'C3', desc: 'Versatile option — used in both stints of a 1-stop or the middle stint of a 2-stop.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C4', desc: 'Fast qualifying tyre. Front-left wear is typically high through Turn 3, limiting race use.' },
+            ],
+            strategies: [
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–22: Medium', 'Pit ~Lap 22', 'Lap 23–66: Hard'],                                               note: 'Most common strategy. Barcelona rewards clean air and track position — the 1-stop is usually optimal unless degradation spikes.' },
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–15: Soft',   'Pit ~Lap 15', 'Lap 16–38: Medium', 'Pit ~Lap 38', 'Lap 39–66: Hard'],  note: 'Alternative for drivers in traffic or with high tyre degradation. The 2026 regs are expected to increase deg vs. 2025.' },
+              { name: '2-Stop Med → Hard → Med',  stops: 2, laps: ['Lap 1–20: Medium', 'Pit ~Lap 20', 'Lap 21–46: Hard',   'Pit ~Lap 46', 'Lap 47–66: Medium'], note: 'Undercut variant. Used if a team needs to react to a rival\'s pit stop cycle.' },
+            ],
+          },
+          8: { // Austria — Red Bull Ring
+            downforce: 'Medium / Low',
+            downforceLevel: 2,
+            downforceNote: 'The Red Bull Ring\'s short lap and powerful straights reward low downforce setups. The fast Turn 3 and Turn 6 sweepers require enough wing to generate confidence, but teams typically compromise in favour of straight-line speed.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C3', desc: 'Used for long stints at Austria\'s relatively smooth surface. Holds up well in the heat.' },
+              { name: 'Medium', color: '#FFD700', code: 'C4', desc: 'Most flexible option. Works across different strategy windows at the short Spielberg layout.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C5', desc: 'Fastest tyre over a short run. Rear degradation is typically the limiting factor here.' },
+            ],
+            strategies: [
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–32: Medium', 'Pit ~Lap 32', 'Lap 33–71: Hard'],                                               note: 'Standard 1-stop. Austria\'s short lap means stint lengths are long in lap count — tyre management is critical late on.' },
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–20: Soft',   'Pit ~Lap 20', 'Lap 21–48: Medium', 'Pit ~Lap 48', 'Lap 49–71: Hard'],  note: 'Used for drivers starting from the back or where the 1-stop pace doesn\'t suit the car.' },
+              { name: '1-Stop Soft → Hard',        stops: 1, laps: ['Lap 1–26: Soft',   'Pit ~Lap 26', 'Lap 27–71: Hard'],                                               note: 'Aggressive early stop variant. Risk of falling into dirty air after the stop if Hard pace isn\'t strong.' },
+            ],
+          },
+          9: { // Britain — Silverstone
+            downforce: 'Medium / High',
+            downforceLevel: 4,
+            downforceNote: 'Silverstone\'s high-speed corners — particularly Copse, Maggotts and Becketts — demand strong aerodynamic downforce. Teams run medium-high wings with specific attention to front-end stability through the complex.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C2', desc: 'Durable tyre for Silverstone\'s fast, energy-demanding layout. Used in long second stints.' },
+              { name: 'Medium', color: '#FFD700', code: 'C3', desc: 'Common in both stints of a 1-stop. Copes well with the high-energy corners.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C4', desc: 'Qualifying tyre. The high lateral loads at Copse and Becketts increase front-left wear.' },
+            ],
+            strategies: [
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–25: Medium', 'Pit ~Lap 25', 'Lap 26–52: Hard'],                                               note: 'Frontrunner default on the Sprint weekend format. Silverstone\'s high grip surface supports longer stints.' },
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–16: Soft',   'Pit ~Lap 16', 'Lap 17–36: Medium', 'Pit ~Lap 36', 'Lap 37–52: Hard'],  note: 'Expected from drivers starting outside the top 6 or if front-left deg is higher than predicted.' },
+              { name: '1-Stop Soft → Hard',        stops: 1, laps: ['Lap 1–20: Soft',   'Pit ~Lap 20', 'Lap 21–52: Hard'],                                               note: 'Aggressive variant. Relies on managing the hard tyre for 32 laps — viable in clean air at the front.' },
+            ],
+          },
+          10: { // Belgium — Spa-Francorchamps
+            downforce: 'Low',
+            downforceLevel: 1,
+            downforceNote: 'Spa-Francorchamps features the longest straight in F1 (Kemmel Straight) and fast sweeping sections like Eau Rouge/Raidillon. Teams run their lowest downforce levels — similar to Monza — prioritising top speed over cornering, while balancing mechanical grip for the technical Sector 3.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C2', desc: 'Primary race tyre at Spa. Long stints are typical due to the 7km lap length keeping lap counts low.' },
+              { name: 'Medium', color: '#FFD700', code: 'C3', desc: 'Often used in a 2-stop or as a middle stint option. Good across Spa\'s varied corners.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C4', desc: 'Fast over a lap but exposed to high energy loads through Pouhon and Blanchimont. Rarely lasts long.' },
+            ],
+            strategies: [
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–22: Medium', 'Pit ~Lap 22', 'Lap 23–44: Hard'],                                               note: 'Standard 1-stop. Spa\'s long lap keeps race laps low (44), making 1-stop relatively straightforward.' },
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–12: Soft',   'Pit ~Lap 12', 'Lap 13–30: Medium', 'Pit ~Lap 30', 'Lap 31–44: Hard'],  note: 'Aggressive option. Safety cars are common at Spa and can make 2 stops viable.' },
+              { name: '1-Stop Hard → Medium',      stops: 1, laps: ['Lap 1–24: Hard',   'Pit ~Lap 24', 'Lap 25–44: Medium'], note: 'Undercut variant. Used if a team wants to build track position with a long opening stint then attack on fresher rubber.' },
+            ],
+          },
+          11: { // Hungary — Hungaroring
+            downforce: 'High',
+            downforceLevel: 5,
+            downforceNote: 'The Hungaroring is one of the most twisty circuits on the calendar — a tight, technical layout with almost no long straight. Teams run maximum downforce to optimise cornering grip through the slow-speed sections. Overtaking without a significant pace advantage is nearly impossible.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C2', desc: 'Less common at Hungary — the slower corners and high lateral loads tend to favour softer compounds.' },
+              { name: 'Medium', color: '#FFD700', code: 'C3', desc: 'The workhorse tyre at the Hungaroring. Used in the majority of race stints.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C4', desc: 'Used in qualifying and potentially at race start for an undercut advantage.' },
+            ],
+            strategies: [
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–18: Soft',   'Pit ~Lap 18', 'Lap 19–45: Medium', 'Pit ~Lap 45', 'Lap 46–70: Hard'],  note: 'Benchmark strategy. Overtaking is rare so position at both stops matters — Hungary rewards reactive strategy calls.' },
+              { name: '2-Stop Med → Soft → Med',  stops: 2, laps: ['Lap 1–22: Medium', 'Pit ~Lap 22', 'Lap 23–46: Soft',   'Pit ~Lap 46', 'Lap 47–70: Medium'], note: 'Alternative split stint. Allows a Soft tyre push in the middle of the race to create a gap before the final stop.' },
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–30: Medium', 'Pit ~Lap 30', 'Lap 31–70: Hard'],                                               note: 'Viable only for drivers at the front with clean air. Tyre management over 40 laps on Hards is extremely demanding at Hungary.' },
+            ],
+          },
+          12: { // Netherlands — Circuit Zandvoort
+            downforce: 'High',
+            downforceLevel: 5,
+            downforceNote: 'Zandvoort\'s banked corners and flowing layout demand high downforce. The 18-degree banking at Turns 3 and 14 generates extreme lateral loads — teams run near-maximum wing angles to maintain stability. The narrow circuit limits overtaking to DRS zones only.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C2', desc: 'Suited to Zandvoort\'s sustained high lateral loads. Used in longer second stints on the Sprint weekend format.' },
+              { name: 'Medium', color: '#FFD700', code: 'C3', desc: 'Most common race tyre. Balances pace and durability across the banked layout.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C4', desc: 'Fast over one lap but the extreme banking accelerates rear wear significantly.' },
+            ],
+            strategies: [
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–24: Medium', 'Pit ~Lap 24', 'Lap 25–52: Hard'],                                               note: 'Preferred strategy on the Sprint weekend format. Track position is crucial — overtaking on the narrow circuit is very difficult.' },
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–14: Soft',   'Pit ~Lap 14', 'Lap 15–34: Medium', 'Pit ~Lap 34', 'Lap 35–52: Hard'],  note: 'Alternative for drivers starting from the midfield who need to take strategic risks to move forward.' },
+              { name: '1-Stop Soft → Hard',        stops: 1, laps: ['Lap 1–20: Soft',   'Pit ~Lap 20', 'Lap 21–52: Hard'],                                               note: 'Aggressive variant targeting an undercut on the first safety car. High risk if the SC doesn\'t come.' },
+            ],
+          },
+          13: { // Italy — Autodromo Nazionale Monza
+            downforce: 'Low',
+            downforceLevel: 1,
+            downforceNote: 'Monza is F1\'s fastest circuit and the ultimate low-downforce track. Teams run extreme low-drag configurations — almost identical to Spa — to maximise top speed on the two long straights. Front wing angles are at their minimum for the season.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C4', desc: 'Often the primary race tyre at Monza. The softest-biased compounds are selected for the Temple of Speed due to the limited cornering load.' },
+              { name: 'Medium', color: '#FFD700', code: 'C5', desc: 'Used in short aggressive stints. A viable option for a 2-stop middle stint to take advantage of undercut.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C6', desc: 'Qualifying tyre. Monza\'s straights mean tyre thermals don\'t build in the same way — the soft lasts longer here than at most venues.' },
+            ],
+            strategies: [
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–28: Medium', 'Pit ~Lap 28', 'Lap 29–53: Hard'],                                               note: 'Benchmark strategy. Monza\'s low drag means pace gaps are small — track position after the pit stop is decisive.' },
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–16: Soft',   'Pit ~Lap 16', 'Lap 17–36: Medium', 'Pit ~Lap 36', 'Lap 37–53: Hard'],  note: 'Alternative for teams targeting overtakes. The DRS effectiveness on the straights makes 2-stop viable if pace allows.' },
+              { name: '1-Stop Soft → Hard',        stops: 1, laps: ['Lap 1–22: Soft',   'Pit ~Lap 22', 'Lap 23–53: Hard'],                                               note: 'Surprise option for midfield teams starting on fresh rubber. Works only if the Hard tyre is kind in the final third.' },
+            ],
+          },
+          15: { // Azerbaijan — Baku City Circuit
+            downforce: 'Low',
+            downforceLevel: 1,
+            downforceNote: 'Baku combines the longest straight in F1 (2.2km) with an ultra-tight castle section. Teams run minimum downforce for top speed on the straight while adding enough mechanical grip for the slow Sector 2 corners. The wall proximity and safety car frequency make this one of the most unpredictable rounds of the year.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C3', desc: 'Durable option for long stints on Baku\'s smooth surface. Teams aim to minimise stops given the safety car risk.' },
+              { name: 'Medium', color: '#FFD700', code: 'C4', desc: 'Commonly used as either a short opening stint or middle-stint option in a 2-stop.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C5', desc: 'Fastest in qualifying — pit lane straight speed matters. Race use is risky without a yellow flag to cover the stop.' },
+            ],
+            strategies: [
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–24: Medium', 'Pit ~Lap 24', 'Lap 25–51: Hard'],                                               note: 'Benchmark strategy. Safety cars typically disrupt this plan — teams must be ready to react and box under yellow to avoid losing position.' },
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–14: Soft',   'Pit ~Lap 14', 'Lap 15–34: Medium', 'Pit ~Lap 34', 'Lap 35–51: Hard'],  note: 'Used by midfielders or after an early safety car. Baku has a history of late safety cars — this can make the 2-stop look inspired.' },
+              { name: '1-Stop Hard → Medium',      stops: 1, laps: ['Lap 1–28: Hard',   'Pit ~Lap 28', 'Lap 29–51: Medium'], note: 'Conservative opening on a hard tyre with a faster Medium for the second half. Relies on safety car timing.' },
+            ],
+          },
+          16: { // Singapore — Marina Bay Street Circuit
+            downforce: 'High',
+            downforceLevel: 5,
+            downforceNote: 'Marina Bay is the slowest and most physically demanding street circuit on the calendar. The constant acceleration and braking through over 23 corners requires high downforce for mechanical stability. Tyre temperatures are hard to manage in Singapore\'s extreme heat and humidity.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C3', desc: 'Durable option for a conservative 1-stop. Suits teams who can manage tyre temperatures in the heat.' },
+              { name: 'Medium', color: '#FFD700', code: 'C4', desc: 'Most common race tyre. Balances pace and longevity across Singapore\'s demanding 61-lap race.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C5', desc: 'Fast qualifying tyre. High ambient temperatures and bumps accelerate deg — typically used at race start only.' },
+            ],
+            strategies: [
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–28: Medium', 'Pit ~Lap 28', 'Lap 29–61: Hard'],                                               note: 'Frontrunner default on the Sprint weekend format. Track position is the priority — walls make overtaking nearly impossible.' },
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–18: Soft',   'Pit ~Lap 18', 'Lap 19–42: Medium', 'Pit ~Lap 42', 'Lap 43–61: Hard'],  note: 'Used by drivers outside the points who need to create lap time differentials. Safety car timing is critical.' },
+              { name: '1-Stop Soft → Medium',     stops: 1, laps: ['Lap 1–20: Soft',   'Pit ~Lap 20', 'Lap 21–61: Medium'], note: 'Aggressive 1-stop. A long Medium stint of 41 laps in Singapore heat is very demanding — requires exemplary tyre management.' },
+            ],
+          },
+          17: { // United States — Circuit of the Americas
+            downforce: 'Medium / High',
+            downforceLevel: 4,
+            downforceNote: 'COTA features an iconic sequence of high-speed corners (Turn 1, Turns 3–5, the back straight complex) that demand strong downforce. The bumpy surface adds to mechanical grip requirements. Teams run medium-high wing levels similar to Silverstone.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C2', desc: 'Used for long stints. COTA\'s bumps and high energy corners generate significant rear wear over a full stint.' },
+              { name: 'Medium', color: '#FFD700', code: 'C3', desc: 'Common across all strategy windows. Versatile across COTA\'s mix of fast and slow corners.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C4', desc: 'Qualifying tyre and race start option. Rear deg through Turn 1 and the fast esses limits race duration.' },
+            ],
+            strategies: [
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–18: Soft',   'Pit ~Lap 18', 'Lap 19–40: Medium', 'Pit ~Lap 40', 'Lap 41–56: Hard'],  note: 'Benchmark strategy at COTA. High degradation from the bumpy surface and fast corners typically forces most teams onto 2 stops.' },
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–24: Medium', 'Pit ~Lap 24', 'Lap 25–56: Hard'],                                               note: 'Viable only for cars with low tyre degradation in clean air. Risky in traffic where tyre management is compromised.' },
+              { name: '2-Stop Med → Hard → Med',  stops: 2, laps: ['Lap 1–22: Medium', 'Pit ~Lap 22', 'Lap 23–46: Hard',   'Pit ~Lap 46', 'Lap 47–56: Medium'], note: 'Undercut variant. Used to react to rival strategy — the final Medium stint allows an attacking pace burst in the closing laps.' },
+            ],
+          },
+          18: { // Mexico — Autodromo Hermanos Rodriguez
+            downforce: 'Medium / Low',
+            downforceLevel: 2,
+            downforceNote: 'Mexico City sits at 2,285m altitude, reducing air density by around 20%. Teams compensate for the reduced aerodynamic efficiency by running higher downforce angles than the data suggests — the actual wing angles look medium-high at sea level equivalence. The thin air also impacts engine cooling and brake performance.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C2', desc: 'Primary race tyre. Mexico\'s smooth surface and the reduced aero loads allow long stints on the harder compound.' },
+              { name: 'Medium', color: '#FFD700', code: 'C3', desc: 'Versatile race tyre used in most 2-stop strategies. Handles Mexico\'s short stadium section well.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C4', desc: 'Qualifying tyre. Rear deg can be an issue in the stadium section — the low air density means less natural cooling for the tyres.' },
+            ],
+            strategies: [
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–20: Soft',   'Pit ~Lap 20', 'Lap 21–46: Medium', 'Pit ~Lap 46', 'Lap 47–71: Hard'],  note: 'Standard 2-stop. Mexico\'s straight-line speed advantage for lower-drag cars means undercuts via the pit lane are highly effective.' },
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–26: Medium', 'Pit ~Lap 26', 'Lap 27–71: Hard'],                                               note: 'Viable for teams with a significant pace advantage. Track position through the tight stadium section limits overtaking.' },
+              { name: '2-Stop Med → Hard → Med',  stops: 2, laps: ['Lap 1–24: Medium', 'Pit ~Lap 24', 'Lap 25–50: Hard',   'Pit ~Lap 50', 'Lap 51–71: Medium'], note: 'Reactive undercut option. Teams needing to attack a rival in the final stages can gain with a fresh Medium for the last 21 laps.' },
+            ],
+          },
+          19: { // Brazil — Autodromo Jose Carlos Pace
+            downforce: 'Medium / High',
+            downforceLevel: 4,
+            downforceNote: 'Interlagos is a short, anti-clockwise circuit with a compact layout and multiple high-speed sections. Teams run medium-high downforce — the Senna S and the final Juncao complex demand strong mechanical grip. Unpredictable weather and the Sprint weekend format add strategic complexity.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C3', desc: 'Less common at Brazil — the compact layout and high energy corners typically favour softer compounds for race pace.' },
+              { name: 'Medium', color: '#FFD700', code: 'C4', desc: 'Primary race tyre. Balances pace and longevity across the demanding 71-lap race.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C5', desc: 'Used at race start and in Sprint qualifying. Short stints only — rear deg builds quickly through the high-energy corners.' },
+            ],
+            strategies: [
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–18: Soft',   'Pit ~Lap 18', 'Lap 19–45: Medium', 'Pit ~Lap 45', 'Lap 46–71: Hard'],  note: 'Most common strategy. Interlagos\'s short circuit and high degradation almost always push teams onto 2 stops. Safety car frequency makes early pitting risky.' },
+              { name: '2-Stop Med → Med → Soft',  stops: 2, laps: ['Lap 1–24: Medium', 'Pit ~Lap 24', 'Lap 25–50: Medium', 'Pit ~Lap 50', 'Lap 51–71: Soft'],  note: 'Aggressive final-stint option. A Soft tyre for the last 21 laps gives maximum attack pace — used when track position is already lost.' },
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–28: Medium', 'Pit ~Lap 28', 'Lap 29–71: Hard'],                                               note: 'Rare but attempted in clean air from the front. Highly sensitive to any safety car — risks being undercut by cars on 2-stop strategies.' },
+            ],
+          },
+          20: { // Las Vegas — Las Vegas Strip Circuit
+            downforce: 'Low',
+            downforceLevel: 1,
+            downforceNote: 'The Las Vegas Strip Circuit features three long straights — including a 1.9km blast down Las Vegas Boulevard. Teams run minimum downforce configurations similar to Monza and Baku. Cold overnight temperatures (often 10–15°C at race time) present unique tyre warming challenges and require careful compound selection.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C2', desc: 'Crucial for the cold conditions — harder compounds help maintain stability in low temperatures. Used for long stints.' },
+              { name: 'Medium', color: '#FFD700', code: 'C3', desc: 'Versatile option that works across Las Vegas\'s mainly low-load corners. Balances speed and thermal management.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C4', desc: 'Qualifying tyre. Cold asphalt makes thermal management the key challenge — needs careful management to get into its operating window.' },
+            ],
+            strategies: [
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–28: Medium', 'Pit ~Lap 28', 'Lap 29–50: Hard'],                                               note: 'Benchmark strategy. Las Vegas\'s long straights and DRS zones make it possible to overtake — but track position post-pit still matters significantly.' },
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–16: Soft',   'Pit ~Lap 16', 'Lap 17–34: Medium', 'Pit ~Lap 34', 'Lap 35–50: Hard'],  note: 'Used in cold conditions where a single tyre set struggles to stay in its operating window. Safety car under Las Vegas lights is a distinct possibility.' },
+              { name: '1-Stop Hard → Medium',      stops: 1, laps: ['Lap 1–26: Hard',   'Pit ~Lap 26', 'Lap 27–50: Medium'], note: 'Conservative cold-weather variant. Opening on the Hard builds heat gradually before switching to Medium for a pace push in the second half.' },
+            ],
+          },
+          21: { // Qatar — Lusail International Circuit
+            downforce: 'Medium / High',
+            downforceLevel: 4,
+            downforceNote: 'Lusail is a high-speed, flowing circuit with sweeping corners that generate intense lateral loads. Teams run medium-high downforce for the sustained high-speed sections. The combination of extreme heat, abrasive asphalt and high energy demands makes Qatar one of the most tyre-destructive rounds of the year.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C1', desc: 'The hardest available compound is essential at Qatar. Even C1 degrades significantly in the heat and abrasion.' },
+              { name: 'Medium', color: '#FFD700', code: 'C2', desc: 'Used in the middle stint of 2-stop strategies. Manages heat better than softer options but still requires careful management.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C3', desc: 'Qualifying tyre. Limited race use — Qatar\'s conditions expose any tyre to rapid degradation, especially in the rear.' },
+            ],
+            strategies: [
+              { name: '2-Stop Med → Hard → Hard', stops: 2, laps: ['Lap 1–20: Medium', 'Pit ~Lap 20', 'Lap 21–42: Hard',   'Pit ~Lap 42', 'Lap 43–57: Hard'],  note: 'Benchmark strategy. Qatar\'s extreme deg typically forces a 2-stop even on the hardest compounds. Managing the degradation curve is critical.' },
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–14: Soft',   'Pit ~Lap 14', 'Lap 15–36: Medium', 'Pit ~Lap 36', 'Lap 37–57: Hard'],  note: 'Aggressive variant from mid-grid. Relies on the Soft lasting the opening stint without excessive blistering.' },
+              { name: '3-Stop Soft → Med → Med → Hard', stops: 3, laps: ['Lap 1–12: Soft', 'Pit ~Lap 12', 'Lap 13–28: Medium', 'Pit ~Lap 28', 'Lap 29–44: Medium', 'Pit ~Lap 44', 'Lap 45–57: Hard'], note: 'Reactive 3-stop if degradation is catastrophic. Seen in 2023 — Qatar can spring surprises on tyre wear.' },
+            ],
+          },
+          22: { // Abu Dhabi — Yas Marina Circuit
+            downforce: 'Medium / Low',
+            downforceLevel: 2,
+            downforceNote: 'Yas Marina combines long straights with a flowing final sector. Teams run medium-low downforce to balance top speed on the straights with enough grip for the technical sectors. The season finale atmosphere and cooler evening temperatures make this a unique setup challenge.',
+            compounds: [
+              { name: 'Hard',   color: '#FFFFFF', code: 'C2', desc: 'Used for long opening stints in Abu Dhabi\'s cooler evening conditions. Holds up well across the mixed-nature layout.' },
+              { name: 'Medium', color: '#FFD700', code: 'C3', desc: 'Versatile race tyre. Works well across Abu Dhabi\'s balance of technical and high-speed sections.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C4', desc: 'Qualifying tyre and race start option. Evening temperatures reduce deg compared to mid-afternoon races.' },
+            ],
+            strategies: [
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–26: Medium', 'Pit ~Lap 26', 'Lap 27–58: Hard'],                                               note: 'Benchmark season finale strategy. Abu Dhabi\'s smooth surface and cooler evening temperatures support a clean 1-stop — track position is key for the season\'s final points.' },
+              { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–18: Soft',   'Pit ~Lap 18', 'Lap 19–42: Medium', 'Pit ~Lap 42', 'Lap 43–58: Hard'],  note: 'Used by teams chasing championships or positions — an aggressive strategy to maximise race pace in the final round.' },
+              { name: '1-Stop Soft → Hard',        stops: 1, laps: ['Lap 1–22: Soft',   'Pit ~Lap 22', 'Lap 23–58: Hard'],                                               note: 'Aggressive variant. Relies on managing 36 laps on Hard — viable in clean air but risky if caught in traffic during the Abu Dhabi sunset.' },
+            ],
+          },
         }
 
         const data = pitwallData[selectedRound]
@@ -1110,7 +1365,25 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
         return (
           <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '20px' }}>
 
-            {!data ? (
+            {/* Disclaimer banner for upcoming rounds */}
+            {selectedRound >= 5 && !selectedRace.completed && (
+              <div style={{ background: 'rgba(255,183,0,0.08)', border: '0.5px solid rgba(255,183,0,0.25)', borderRadius: '8px', padding: '10px 16px' }}>
+                <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#B8960C', margin: 0, lineHeight: 1.5 }}>
+                  Based on 2025 season data. Tyre compounds and strategy data for 2026 will be updated once confirmed by Pirelli closer to each race weekend.
+                </p>
+              </div>
+            )}
+
+            {/* Madrid debut — no historical data */}
+            {selectedRound === 14 ? (
+              <div style={{ ...card, padding: '40px', textAlign: 'center' as const }}>
+                <div style={{ fontSize: '48px', marginBottom: '16px' }}>🏙️</div>
+                <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '28px', letterSpacing: '1px', color: '#F0F4F8', marginBottom: '8px' }}>Circuit Debut</div>
+                <div style={{ fontSize: '14px', color: '#5A6A7A', maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>
+                  The Madring Street Circuit makes its Formula 1 debut in 2026. No historical pitwall data exists for this venue — tyre compound selection and race strategy information will be added once Pirelli confirm their allocation closer to the race weekend.
+                </div>
+              </div>
+            ) : !data ? (
               <div style={{ ...card, padding: '40px', textAlign: 'center' as const }}>
                 <div style={{ fontSize: '32px', marginBottom: '12px' }}>🏗️</div>
                 <div style={{ fontSize: '14px', fontWeight: 600, color: '#F0F4F8', marginBottom: '8px' }}>Pitwall data coming soon</div>
