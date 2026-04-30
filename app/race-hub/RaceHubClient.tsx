@@ -431,6 +431,39 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
     },
   }
 
+  const TRACK_SPEEDS: Record<number, string> = {
+    1: 'High', 2: 'High', 3: 'Very High', 4: 'High', 5: 'High',
+    6: 'Medium', 7: 'Medium-High', 8: 'High', 9: 'Very High', 10: 'Very High',
+    11: 'Medium', 12: 'Medium-High', 13: 'Very High', 14: 'Medium-High', 15: 'Very High',
+    16: 'Medium', 17: 'High', 18: 'High', 19: 'Medium-High', 20: 'Very High',
+    21: 'High', 22: 'Medium-High',
+  }
+
+  const CIRCUIT_DESCRIPTIONS: Record<number, string> = {
+    1: `Set around Albert Park Lake just minutes from Melbourne city centre, this semi-permanent street circuit blends flowing high-speed sections with public roads that serve residents year-round. Unpredictable weather and a track surface that evolves dramatically across the weekend make it one of the most strategically varied rounds on the calendar.`,
+    2: `The Shanghai International Circuit is defined by its sweeping snail-shell layout and one of the longest back straights in Formula 1, where cars top 320 km/h before arriving at a punishing braking zone. Its varied corner sequences test every aspect of car performance, from mechanical grip in the tight opening sector to aerodynamic efficiency across the fast middle section.`,
+    3: `Suzuka is widely regarded as the purest driver circuit on the calendar, with its figure-eight layout and relentless sequence of high-speed corners demanding total commitment and precise car balance. The legendary Esses, 130R, and Spoon Curve have defined careers and remain the ultimate benchmark for driver skill.`,
+    4: `Built around the Hard Rock Stadium in Miami Gardens, this circuit combines modern street circuit design with a backdrop that captures the energy and glamour of South Florida. High temperatures and humidity push both drivers and machinery to their limits, adding a strategic dimension to every race weekend.`,
+    5: `The Circuit Gilles Villeneuve sits on the artificial Île Notre-Dame island in the St. Lawrence River, pairing long full-throttle straights with one of Formula 1's heaviest braking zones at the famous hairpin. The notorious Wall of Champions at the exit of the final chicane has ended the races of multiple world champions and remains a constant threat.`,
+    6: `The Circuit de Monaco is motorsport's most prestigious address, threading through the narrow streets of Monte Carlo where barriers stand centimetres from the racing line and there is zero margin for error. From the tunnel exit to the Fairmont Hairpin — Formula 1's slowest corner at around 50 km/h — every lap is a high-wire act that rewards perfection and punishes everything else.`,
+    7: `The Circuit de Barcelona-Catalunya has served as Formula 1's primary pre-season testing venue for decades, making it the most thoroughly understood circuit on the calendar. Its balanced mix of high-speed sweeps, technical corners, and elevation changes means that performance here translates across the widest range of conditions.`,
+    8: `Nestled in the Styrian Alps, the Red Bull Ring is a compact, high-energy circuit with significant elevation changes across its ten corners. The steep uphill run from Turn 2 to Turn 3 and the fast flowing back section consistently produce close racing and late-braking battles into Turn 1.`,
+    9: `Silverstone is the spiritual home of Formula 1, built on the runways of a former RAF station and home to the sport's opening world championship round in 1950. The high-speed Copse and Maggotts-Becketts-Chapel complex remain among the most demanding and exhilarating sequences in motorsport.`,
+    10: `Spa-Francorchamps is the cathedral of motorsport — 7 kilometres of circuit carved through the Belgian Ardennes with over 100 metres of elevation change. The Eau Rouge-Raidillon complex, taken flat-out at close to 300 km/h, and the unpredictable microclimate that can produce simultaneous dry and wet conditions across different parts of the circuit make it uniquely demanding.`,
+    11: `Often described as Monaco without the walls, the Hungaroring is a tight, twisty circuit in the hills outside Budapest where track position is everything and overtaking opportunities are scarce. Qualifying performance is critical, and the dusty surface that rubbers-in progressively over the weekend rewards those who improve setup quickly.`,
+    12: `Circuit Zandvoort is tucked into the coastal dunes just kilometres from the North Sea, with a layout that follows the natural contours of the land rather than conforming to modern geometric design. The banked corners at Turns 3 and 14 are unique in Formula 1, creating racing dynamics that challenge both engineers and drivers to explore new limits of speed and grip.`,
+    13: `The Autodromo Nazionale di Monza — the Temple of Speed — is Formula 1's fastest circuit, where cars exceed 340 km/h on the long straights and aerodynamic efficiency matters above almost everything else. The passionate Tifosi fill the grandstands with a wall of red and noise that makes a win here feel like nothing else in the sport.`,
+    14: `The Madring brings Formula 1 to the heart of Spain's capital city for the first time, weaving through wide boulevards and alongside landmark architecture in a 5.47-kilometre layout that combines street circuit characteristics with ambitious design. As a debut venue, every session will provide new data that teams and drivers must process quickly.`,
+    15: `The Baku City Circuit is a circuit of extreme contrasts — the claustrophobic passage through the UNESCO World Heritage Old City gives way to one of Formula 1's longest straights along the Caspian Sea waterfront where cars exceed 350 km/h. Safety cars are a near-certainty, making race strategy and reliability as important as outright pace.`,
+    16: `The Marina Bay Street Circuit was Formula 1's first purpose-designed night race, with over 1,600 flood projectors turning the Singapore skyline into a uniquely spectacular backdrop. The 23-corner layout demands total concentration across one of the most physically gruelling race distances on the calendar.`,
+    17: `The Circuit of the Americas was designed from the ground up to incorporate challenges inspired by legendary circuits, including an uphill run to Turn 1 that provides spectacular first-lap incidents and one of the sport's best viewing platforms for fans. The wide, flowing layout encourages multiple racing lines and consistent overtaking.`,
+    18: `The Autódromo Hermanos Rodríguez sits at 2,285 metres above sea level — the highest venue on the Formula 1 calendar — where thin air reduces aerodynamic downforce and engine power in ways that demand entirely different car setups to every other round. The stadium section through the Foro Sol baseball arena creates a unique amphitheatre atmosphere where over 15,000 fans watch racing from just metres away.`,
+    19: `Interlagos is built into the undulating landscape of São Paulo, with an anti-clockwise layout that rises and falls more than 40 metres across its compact 4.3-kilometre lap. São Paulo's tropical climate is capable of producing sudden downpours that transform race strategy entirely, and some of Formula 1's most dramatic moments have been decided here in the final laps.`,
+    20: `The Las Vegas Strip Street Circuit runs down one of the world's most famous streets, with a 1.9-kilometre main straight along Las Vegas Boulevard that is the longest in Formula 1. The night racing format, cold track temperatures in the Nevada desert, and the neon backdrop of the Strip casinos create a race weekend unlike anything else on the calendar.`,
+    21: `The Losail International Circuit was originally built for MotoGP and has evolved into a Formula 1 venue that rewards aerodynamic efficiency and tyre management across 16 flowing corners under floodlights. Qatar's extreme heat and tyre degradation consistently produce some of the most physically demanding race conditions of the season.`,
+    22: `Yas Marina is Formula 1's traditional season finale, a purpose-built circuit on Yas Island where the iconic Yas Viceroy hotel straddles the track and the twilight race format transitions from late-afternoon sunshine to full floodlight illumination. Significant modifications in 2021 opened up the layout and improved overtaking opportunities for what has become a fitting stage for a championship conclusion.`,
+  }
+
   return (
     <div className="mob-pad-page" style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', padding: '28px 32px 60px' }}>
 
@@ -548,6 +581,8 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
           'M. Verstappen': 'Max Verstappen (Red Bull)',
         }
         const winnerDisplay = overview.lastWinner ? (winnerDisplayMap[overview.lastWinner] ?? overview.lastWinner) : null
+        const trackSpeed = TRACK_SPEEDS[selectedRound] ?? '—'
+        const circuitDescription = CIRCUIT_DESCRIPTIONS[selectedRound] ?? ''
 
         // DNF risk indicator config
         const dnfAvgNum = typeof overview.dnfHistory.avg === 'number' ? overview.dnfHistory.avg : null
@@ -572,33 +607,42 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                 {/* ── TOP HALF: CIRCUIT FACTS ── */}
                 {winnerDisplay && (
                   <div style={{ background: '#141B22', borderRadius: '10px', padding: '12px 16px', marginBottom: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <div style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>2025 Winner</div>
-                    <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 700, color: '#F0F4F8' }}>{winnerDisplay}</div>
+                    <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', fontWeight: 500, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: '#5A6A7A' }}>2025 Winner</div>
+                    <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '14px', fontWeight: 600, color: '#F0F4F8' }}>{winnerDisplay}</div>
                   </div>
                 )}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+
+                {/* 4-cell 2×2 stat grid */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', marginBottom: '20px' }}>
                   {[
                     { label: 'Total GPs', value: overview.totalGPs === 0 ? '—' : String(overview.totalGPs) },
                     { label: 'First GP', value: String(overview.firstGP) },
                     { label: 'Circuit Length', value: overview.circuitLength },
+                    { label: 'Track Speed', value: trackSpeed },
                   ].map(stat => (
                     <div key={stat.label} style={{ background: '#141B22', borderRadius: '10px', padding: '16px 12px', textAlign: 'center' as const }}>
-                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '22px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{stat.value}</div>
-                      <div style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', marginTop: '6px' }}>{stat.label}</div>
+                      <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '22px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{stat.value}</div>
+                      <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', fontWeight: 500, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: '#5A6A7A', marginTop: '6px' }}>{stat.label}</div>
                     </div>
                   ))}
                 </div>
 
+                {/* Circuit Background subsection */}
+                <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', fontWeight: 500, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: '#5A6A7A', marginBottom: '10px' }}>Circuit Background</div>
+                {circuitDescription && (
+                  <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '13px', fontWeight: 400, color: '#8A9BB0', lineHeight: 1.6, margin: '0 0 24px' }}>{circuitDescription}</p>
+                )}
+
                 {/* ── DIVIDER ── */}
-                <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: '24px', paddingTop: '24px' }}>
+                <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '24px' }}>
 
                   {/* ── BOTTOM HALF: CIRCUIT RECORDS ── */}
-                  <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '4px' }}>Circuit Records</div>
+                  <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', fontWeight: 500, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: '#5A6A7A', marginBottom: '12px' }}>Circuit Records</div>
 
                   {overview.isDebut ? (
                     <div style={{ border: '1px solid rgba(232,0,45,0.3)', borderRadius: '10px', background: 'rgba(232,0,45,0.07)', padding: '20px', marginTop: '12px' }}>
                       <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '16px', letterSpacing: '1px', color: '#E8002D', marginBottom: '10px' }}>Debut Race 2026</div>
-                      <p style={{ fontSize: '13px', color: '#8A9AB0', lineHeight: 1.7, margin: 0 }}>{overview.debutMessage}</p>
+                      <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '13px', fontWeight: 400, color: '#8A9AB0', lineHeight: 1.7, margin: 0 }}>{overview.debutMessage}</p>
                     </div>
                   ) : (
                     <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '0' }}>
@@ -609,10 +653,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                         { label: 'Most Pole Positions (Constructor)', value: overview.mostPolesConstructor, count: overview.mostPolesConstructorCount },
                       ].map((row, i, arr) => (
                         <div key={row.label} style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px', padding: '14px 0', borderBottom: i < arr.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
-                          <div style={{ fontSize: '12px', color: '#5A6A7A', lineHeight: 1.4 }}>{row.label}</div>
+                          <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '13px', fontWeight: 400, color: '#8A9BB0', lineHeight: 1.4 }}>{row.label}</div>
                           <div style={{ textAlign: 'right' as const, flexShrink: 0 }}>
-                            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 700, color: '#F0F4F8' }}>{row.value}</div>
-                            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#E8002D', marginTop: '2px' }}>{row.count}×</div>
+                            <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '14px', fontWeight: 600, color: '#F0F4F8' }}>{row.value}</div>
+                            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#E8002D', marginTop: '2px' }}>{row.count}×</div>
                           </div>
                         </div>
                       ))}
