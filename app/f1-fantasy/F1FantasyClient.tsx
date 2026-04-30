@@ -320,14 +320,281 @@ function ChipOverviewTab() {
   )
 }
 
+// ── Insights tab ───────────────────────────────────────────────────────────────
+
+type SortDir = 'asc' | 'desc'
+type SortCol = 'circuit' | '2023' | '2024' | '2025' | 'avg'
+
+interface CircuitRow {
+  circuit: string
+  flag: string
+  y2023: number | null
+  y2024: number | null
+  y2025: number | null
+}
+
+const overtakesData: CircuitRow[] = [
+  { circuit: 'Australia',    flag: 'au', y2023: 74,   y2024: 35,  y2025: 45  },
+  { circuit: 'China',        flag: 'cn', y2023: null, y2024: 102, y2025: 72  },
+  { circuit: 'Japan',        flag: 'jp', y2023: 81,   y2024: 85,  y2025: 28  },
+  { circuit: 'Miami',        flag: 'us', y2023: 94,   y2024: 93,  y2025: 80  },
+  { circuit: 'Canada',       flag: 'ca', y2023: 46,   y2024: 83,  y2025: 75  },
+  { circuit: 'Monaco',       flag: 'mc', y2023: 36,   y2024: 17,  y2025: 4   },
+  { circuit: 'Spain',        flag: 'es', y2023: 107,  y2024: 86,  y2025: 78  },
+  { circuit: 'Austria',      flag: 'at', y2023: 105,  y2024: 85,  y2025: 81  },
+  { circuit: 'Britain',      flag: 'gb', y2023: 50,   y2024: 55,  y2025: 58  },
+  { circuit: 'Belgium',      flag: 'be', y2023: 95,   y2024: 58,  y2025: 49  },
+  { circuit: 'Hungary',      flag: 'hu', y2023: 51,   y2024: 65,  y2025: 69  },
+  { circuit: 'Netherlands',  flag: 'nl', y2023: 240,  y2024: 73,  y2025: 70  },
+  { circuit: 'Italy',        flag: 'it', y2023: 49,   y2024: 71,  y2025: 47  },
+  { circuit: 'Madrid',       flag: 'es', y2023: null, y2024: null,y2025: null },
+  { circuit: 'Azerbaijan',   flag: 'az', y2023: 50,   y2024: 66,  y2025: 55  },
+  { circuit: 'Singapore',    flag: 'sg', y2023: 85,   y2024: 62,  y2025: 58  },
+  { circuit: 'United States',flag: 'us', y2023: 78,   y2024: 86,  y2025: 71  },
+  { circuit: 'Mexico',       flag: 'mx', y2023: 121,  y2024: 87,  y2025: 97  },
+  { circuit: 'Brazil',       flag: 'br', y2023: 69,   y2024: 70,  y2025: 96  },
+  { circuit: 'Las Vegas',    flag: 'us', y2023: 181,  y2024: 109, y2025: 34  },
+  { circuit: 'Qatar',        flag: 'qa', y2023: 108,  y2024: 81,  y2025: 41  },
+  { circuit: 'Abu Dhabi',    flag: 'ae', y2023: 113,  y2024: 96,  y2025: 125 },
+]
+
+const dnfData: CircuitRow[] = [
+  { circuit: 'Australia',    flag: 'au', y2023: 3,    y2024: 2,   y2025: 6   },
+  { circuit: 'China',        flag: 'cn', y2023: null, y2024: 3,   y2025: 4   },
+  { circuit: 'Japan',        flag: 'jp', y2023: 5,    y2024: 3,   y2025: 0   },
+  { circuit: 'Miami',        flag: 'us', y2023: 0,    y2024: 1,   y2025: 5   },
+  { circuit: 'Canada',       flag: 'ca', y2023: 2,    y2024: 5,   y2025: 2   },
+  { circuit: 'Monaco',       flag: 'mc', y2023: 2,    y2024: 2,   y2025: 0   },
+  { circuit: 'Spain',        flag: 'es', y2023: 0,    y2024: 0,   y2025: 3   },
+  { circuit: 'Austria',      flag: 'at', y2023: 1,    y2024: 0,   y2025: 4   },
+  { circuit: 'Britain',      flag: 'gb', y2023: 2,    y2024: 2,   y2025: 5   },
+  { circuit: 'Belgium',      flag: 'be', y2023: 2,    y2024: 2,   y2025: 0   },
+  { circuit: 'Hungary',      flag: 'hu', y2023: 2,    y2024: 1,   y2025: 1   },
+  { circuit: 'Netherlands',  flag: 'nl', y2023: 3,    y2024: 0,   y2025: 2   },
+  { circuit: 'Italy',        flag: 'it', y2023: 2,    y2024: 1,   y2025: 2   },
+  { circuit: 'Madrid',       flag: 'es', y2023: null, y2024: null,y2025: null },
+  { circuit: 'Azerbaijan',   flag: 'az', y2023: 2,    y2024: 1,   y2025: 1   },
+  { circuit: 'Singapore',    flag: 'sg', y2023: 3,    y2024: 1,   y2025: 0   },
+  { circuit: 'United States',flag: 'us', y2023: 5,    y2024: 1,   y2025: 1   },
+  { circuit: 'Mexico',       flag: 'mx', y2023: 3,    y2024: 3,   y2025: 3   },
+  { circuit: 'Brazil',       flag: 'br', y2023: 6,    y2024: 5,   y2025: 3   },
+  { circuit: 'Las Vegas',    flag: 'us', y2023: 1,    y2024: 2,   y2025: 5   },
+  { circuit: 'Qatar',        flag: 'qa', y2023: 3,    y2024: 5,   y2025: 2   },
+  { circuit: 'Abu Dhabi',    flag: 'ae', y2023: 0,    y2024: 3,   y2025: 0   },
+]
+
+function calcAvg(row: CircuitRow): number | null {
+  const vals = [row.y2023, row.y2024, row.y2025].filter((v): v is number => v !== null)
+  if (vals.length === 0) return null
+  return vals.reduce((a, b) => a + b, 0) / vals.length
+}
+
+function InsightsTab() {
+  const [view, setView]         = useState<'overtakes' | 'dnf'>('overtakes')
+  const [sortCol, setSortCol]   = useState<SortCol>('avg')
+  const [sortDir, setSortDir]   = useState<SortDir>('desc')
+
+  const data = view === 'overtakes' ? overtakesData : dnfData
+
+  const withAvg = data.map(row => ({ ...row, avg: calcAvg(row) }))
+
+  // All averages for colour-coding overtakes mode
+  const numericAvgs = withAvg.map(r => r.avg).filter((v): v is number => v !== null)
+  numericAvgs.sort((a, b) => a - b)
+  const q25 = numericAvgs[Math.floor(numericAvgs.length * 0.75)] ?? 0
+  const q65 = numericAvgs[Math.floor(numericAvgs.length * 0.35)] ?? 0
+
+  function avgColor(avg: number | null): string {
+    if (avg === null) return '#5A6A7A'
+    if (view === 'overtakes') {
+      if (avg >= q25) return '#F07070'
+      if (avg <= q65) return '#70C090'
+      return '#FF8700'
+    } else {
+      if (avg >= 3.0) return '#F07070'
+      if (avg >= 1.5) return '#FF8700'
+      return '#70C090'
+    }
+  }
+
+  function handleSort(col: SortCol) {
+    if (col === sortCol) {
+      setSortDir(d => d === 'desc' ? 'asc' : 'desc')
+    } else {
+      setSortCol(col)
+      setSortDir(col === 'circuit' ? 'asc' : 'desc')
+    }
+  }
+
+  const sorted = [...withAvg].sort((a, b) => {
+    const dir = sortDir === 'desc' ? -1 : 1
+    if (sortCol === 'circuit') {
+      return dir * a.circuit.localeCompare(b.circuit)
+    }
+    const va = sortCol === 'avg' ? a.avg : a[`y${sortCol}` as keyof typeof a] as number | null
+    const vb = sortCol === 'avg' ? b.avg : b[`y${sortCol}` as keyof typeof b] as number | null
+    if (va === null && vb === null) return 0
+    if (va === null) return 1
+    if (vb === null) return -1
+    return dir * (va - vb)
+  })
+
+  const tableTitle  = view === 'overtakes' ? 'Overtakes per Race' : 'DNFs per Race'
+  const cols: { key: SortCol; label: string }[] = [
+    { key: 'circuit', label: 'Circuit'  },
+    { key: '2023',    label: '2023'     },
+    { key: '2024',    label: '2024'     },
+    { key: '2025',    label: '2025'     },
+    { key: 'avg',     label: 'Average'  },
+  ]
+
+  function arrow(col: SortCol) {
+    if (col !== sortCol) return <span style={{ color: '#3A4A5A', marginLeft: '4px' }}>↕</span>
+    return <span style={{ color: '#E8002D', marginLeft: '4px' }}>{sortDir === 'desc' ? '↓' : '↑'}</span>
+  }
+
+  return (
+    <div>
+
+      {/* Section 1 — Intro banner */}
+      <div style={{ background: '#0E1318', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '20px 24px', marginBottom: '12px', display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
+        <div style={{ fontSize: '22px', flexShrink: 0, marginTop: '2px' }}>📊</div>
+        <div>
+          <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', fontWeight: 600, color: '#E8002D', textTransform: 'uppercase' as const, letterSpacing: '0.1em', marginBottom: '8px' }}>F1 Fantasy Insights</div>
+          <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '14px', color: '#8A9BB0', lineHeight: 1.6, margin: 0 }}>
+            Circuit data to drive your team forward — three years of overtaking and DNF history across every track on the 2026 calendar, fully sortable so you can spot the patterns that matter.
+          </p>
+        </div>
+      </div>
+
+      {/* Section 2 — Feedback banner */}
+      <div style={{ background: 'rgba(0,200,81,0.05)', border: '0.5px solid rgba(0,200,81,0.2)', borderRadius: '12px', padding: '14px 20px', marginBottom: '20px' }}>
+        <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '13px', color: '#8AC8A0', lineHeight: 1.6, margin: 0 }}>
+          <span style={{ color: '#B0DDB8', fontWeight: 500 }}>This section is constantly evolving.</span>{' '}
+          We&apos;re adding new data and features regularly — your feedback helps shape what comes next. Reach out to us on{' '}
+          <a href="https://x.com/F_FantasyHub" target="_blank" rel="noopener noreferrer" style={{ color: '#B0DDB8', fontWeight: 600, textDecoration: 'underline', textDecorationColor: 'rgba(176,221,184,0.4)' }}>X (Twitter)</a>
+          {' '}with your thoughts.
+        </p>
+      </div>
+
+      {/* Section 3 — View toggle */}
+      <div style={{ display: 'flex', gap: '6px', marginBottom: '12px' }}>
+        {(['overtakes', 'dnf'] as const).map(v => {
+          const active = view === v
+          return (
+            <button
+              key={v}
+              onClick={() => { setView(v); setSortCol('avg'); setSortDir('desc') }}
+              style={{
+                fontFamily: 'DM Sans, sans-serif',
+                fontSize: '12px',
+                fontWeight: 600,
+                padding: '5px 12px',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                background: active ? 'rgba(232,0,45,0.12)' : 'transparent',
+                color: active ? '#E8002D' : '#5A6A7A',
+                border: active ? '0.5px solid rgba(232,0,45,0.3)' : '0.5px solid rgba(255,255,255,0.07)',
+                transition: 'all 0.15s',
+              }}
+            >
+              {v === 'overtakes' ? 'Overtakes' : 'DNFs'}
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Section 4 — Sortable table */}
+      <div style={{ background: '#0E1318', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '12px', overflow: 'hidden' as const }}>
+        {/* Card header */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 20px', borderBottom: '0.5px solid rgba(255,255,255,0.07)' }}>
+          <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: '#5A6A7A' }}>{tableTitle}</span>
+          <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', color: '#5A6A7A' }}>Click any column to sort</span>
+        </div>
+
+        {/* Table */}
+        <div style={{ overflowX: 'auto' as const }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse' as const, minWidth: '480px' }}>
+            <thead>
+              <tr style={{ background: '#131A21', borderBottom: '0.5px solid rgba(255,255,255,0.07)' }}>
+                {cols.map(col => (
+                  <th
+                    key={col.key}
+                    onClick={() => handleSort(col.key)}
+                    style={{
+                      padding: '10px 12px',
+                      fontFamily: 'DM Sans, sans-serif',
+                      fontSize: '10px',
+                      fontWeight: 600,
+                      textTransform: 'uppercase' as const,
+                      letterSpacing: '0.08em',
+                      color: sortCol === col.key ? '#E8002D' : '#5A6A7A',
+                      textAlign: col.key === 'circuit' ? 'left' as const : 'right' as const,
+                      cursor: 'pointer',
+                      paddingLeft: col.key === 'circuit' ? '20px' : '12px',
+                      whiteSpace: 'nowrap' as const,
+                      userSelect: 'none' as const,
+                    }}
+                  >
+                    {col.label}{arrow(col.key)}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {sorted.map((row, idx) => (
+                <tr
+                  key={row.circuit}
+                  style={{
+                    borderBottom: idx < sorted.length - 1 ? '0.5px solid rgba(255,255,255,0.07)' : 'none',
+                    transition: 'background 0.1s',
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.04)')}
+                  onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+                >
+                  {/* Circuit */}
+                  <td style={{ padding: '10px 12px', paddingLeft: '20px', whiteSpace: 'nowrap' as const }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span className={`fi fi-${row.flag}`} style={{ width: '1.2em', borderRadius: '2px', flexShrink: 0 }} />
+                      <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '13px', fontWeight: 500, color: '#F0F4F8' }}>{row.circuit}</span>
+                    </div>
+                  </td>
+                  {/* 2023 */}
+                  <td style={{ padding: '10px 12px', textAlign: 'right' as const, fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: row.y2023 !== null ? '#F0F4F8' : '#5A6A7A' }}>
+                    {row.y2023 !== null ? row.y2023 : '—'}
+                  </td>
+                  {/* 2024 */}
+                  <td style={{ padding: '10px 12px', textAlign: 'right' as const, fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: row.y2024 !== null ? '#F0F4F8' : '#5A6A7A' }}>
+                    {row.y2024 !== null ? row.y2024 : '—'}
+                  </td>
+                  {/* 2025 */}
+                  <td style={{ padding: '10px 12px', textAlign: 'right' as const, fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: row.y2025 !== null ? '#F0F4F8' : '#5A6A7A' }}>
+                    {row.y2025 !== null ? row.y2025 : '—'}
+                  </td>
+                  {/* Average */}
+                  <td style={{ padding: '10px 12px', textAlign: 'right' as const, fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 600, color: avgColor(row.avg) }}>
+                    {row.avg !== null ? row.avg.toFixed(2) : '—'}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  )
+}
+
 // ── Main client ────────────────────────────────────────────────────────────────
 
 export default function F1FantasyClient() {
-  const [activeTab, setActiveTab] = useState<'how-to-play' | 'chip-overview'>('how-to-play')
+  const [activeTab, setActiveTab] = useState<'how-to-play' | 'chip-overview' | 'insights'>('how-to-play')
 
   const tabs = [
-    { id: 'how-to-play',  label: 'How to Play'  },
-    { id: 'chip-overview', label: 'Chip Overview' },
+    { id: 'how-to-play',   label: 'How to Play'   },
+    { id: 'chip-overview', label: 'Chip Overview'  },
+    { id: 'insights',      label: 'Insights'       },
   ] as const
 
   return (
@@ -369,6 +636,7 @@ export default function F1FantasyClient() {
       {/* Tab content */}
       {activeTab === 'chip-overview' && <ChipOverviewTab />}
       {activeTab === 'how-to-play'   && <HowToPlayTab />}
+      {activeTab === 'insights'      && <InsightsTab />}
 
     </div>
   )
