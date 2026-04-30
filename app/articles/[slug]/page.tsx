@@ -15,6 +15,7 @@ const categoryColors: Record<string, { color: string; bg: string }> = {
   'Price Changes': { color: '#00D47E', bg: 'rgba(0,212,126,0.12)' },
   'Data Analysis': { color: '#FF69B4', bg: 'rgba(255,105,180,0.12)' },
   'News':          { color: '#C0C0C0', bg: 'rgba(192,192,192,0.12)' },
+  'Technical':     { color: '#38BDF8', bg: 'rgba(56,189,248,0.12)' },
 }
 
 export default function ArticlePage({ params }: { params: { slug: string } }) {
@@ -37,6 +38,16 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           </h2>
         )
       }
+      if (block.trim() === '---') {
+        return <hr key={i} style={{ border: 'none', borderTop: '1px solid rgba(255,255,255,0.08)', margin: '32px 0' }} />
+      }
+      if (block.startsWith('_') && block.endsWith('_')) {
+        return (
+          <p key={i} style={{ fontSize: '14px', color: '#6A7A8A', lineHeight: 1.7, marginBottom: '20px', fontStyle: 'italic', borderLeft: '3px solid rgba(255,255,255,0.1)', paddingLeft: '16px' }}>
+            {block.slice(1, -1)}
+          </p>
+        )
+      }
       if (block.trim() === '') return null
       return (
         <p key={i} style={{ fontSize: '16px', color: '#8A9AB0', lineHeight: 1.85, marginBottom: '20px' }}>
@@ -54,7 +65,10 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         {/* Hero thumbnail */}
         <div style={{ height: '320px', background: article.thumbnail, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ position: 'absolute', inset: 0, background: article.thumbnailBg, opacity: 0.6 }} />
-          <span style={{ fontSize: '120px', position: 'relative', zIndex: 1, filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.6))' }}>{article.thumbnailIcon}</span>
+          {/^[a-z]{2}$/.test(article.thumbnailIcon)
+            ? <span className={`fi fi-${article.thumbnailIcon}`} style={{ width: '180px', height: '120px', display: 'inline-block', borderRadius: '8px', position: 'relative', zIndex: 1, boxShadow: '0 8px 32px rgba(0,0,0,0.6)' }} />
+            : <span style={{ fontSize: '120px', position: 'relative', zIndex: 1, filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.6))' }}>{article.thumbnailIcon}</span>
+          }
           <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '160px', background: 'linear-gradient(transparent, #080C10)', zIndex: 2 }} />
         </div>
 
@@ -81,7 +95,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
             <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg,#E8002D,#FF6B6B)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: 700, color: 'white', flexShrink: 0 }}>R</div>
             <div>
               <div style={{ fontSize: '14px', fontWeight: 600, color: '#F0F4F8' }}>Rob Beaumont</div>
-              <div style={{ fontSize: '12px', color: '#5A6A7A' }}>Official F1 Fantasy columnist · formula1.com · {article.date}</div>
+              <div style={{ fontSize: '12px', color: '#5A6A7A' }}>{article.articleType === 'F1' ? article.date : `Official F1 Fantasy columnist · formula1.com · ${article.date}`}</div>
             </div>
           </div>
 
@@ -129,7 +143,10 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                       <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '12px', overflow: 'hidden' }}>
                         <div style={{ height: '80px', background: a.thumbnail, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
                           <div style={{ position: 'absolute', inset: 0, background: a.thumbnailBg, opacity: 0.6 }} />
-                          <span style={{ fontSize: '32px', position: 'relative', zIndex: 1 }}>{a.thumbnailIcon}</span>
+                          {/^[a-z]{2}$/.test(a.thumbnailIcon)
+                            ? <span className={`fi fi-${a.thumbnailIcon}`} style={{ width: '48px', height: '32px', display: 'inline-block', borderRadius: '4px', position: 'relative', zIndex: 1 }} />
+                            : <span style={{ fontSize: '32px', position: 'relative', zIndex: 1 }}>{a.thumbnailIcon}</span>
+                          }
                         </div>
                         <div style={{ padding: '12px' }}>
                           <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', background: c.bg, color: c.color, textTransform: 'uppercase' as const }}>{a.tag}</span>

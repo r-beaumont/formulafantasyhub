@@ -15,6 +15,7 @@ const categoryColors: Record<string, { color: string; bg: string }> = {
   'Price Changes': { color: '#00D47E', bg: 'rgba(0,212,126,0.12)' },
   'Data Analysis': { color: '#FF69B4', bg: 'rgba(255,105,180,0.12)' },
   'News':          { color: '#C0C0C0', bg: 'rgba(192,192,192,0.12)' },
+  'Technical':     { color: '#38BDF8', bg: 'rgba(56,189,248,0.12)' },
 }
 
 export default function NewsArticlePage({ params }: { params: { slug: string } }) {
@@ -31,6 +32,16 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
           <h2 key={i} style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '28px', letterSpacing: '0.5px', color: '#F0F4F8', marginTop: '40px', marginBottom: '16px', paddingBottom: '10px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
             {block.replace(/\*\*/g, '')}
           </h2>
+        )
+      }
+      if (block.trim() === '---') {
+        return <hr key={i} style={{ border: 'none', borderTop: '1px solid rgba(255,255,255,0.08)', margin: '32px 0' }} />
+      }
+      if (block.startsWith('_') && block.endsWith('_')) {
+        return (
+          <p key={i} style={{ fontSize: '14px', color: '#6A7A8A', lineHeight: 1.7, marginBottom: '20px', fontStyle: 'italic', borderLeft: '3px solid rgba(255,255,255,0.1)', paddingLeft: '16px' }}>
+            {block.slice(1, -1)}
+          </p>
         )
       }
       if (block.trim() === '') return null
@@ -77,7 +88,7 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
             <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg,#E8002D,#FF6B6B)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: 700, color: 'white', flexShrink: 0 }}>R</div>
             <div>
               <div style={{ fontSize: '14px', fontWeight: 600, color: '#F0F4F8' }}>Rob Beaumont</div>
-              <div style={{ fontSize: '12px', color: '#5A6A7A' }}>Official F1 Fantasy columnist · formula1.com · {article.date}</div>
+              <div style={{ fontSize: '12px', color: '#5A6A7A' }}>{article.articleType === 'F1' ? article.date : `Official F1 Fantasy columnist · formula1.com · ${article.date}`}</div>
             </div>
           </div>
 

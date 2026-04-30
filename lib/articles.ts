@@ -5,7 +5,7 @@ export interface Article {
   content: string
   date: string
   tag: string
-  category: 'Race Preview' | 'Race Review' | 'Strategy' | 'Price Changes' | 'Data Analysis' | 'News'
+  category: 'Race Preview' | 'Race Review' | 'Strategy' | 'Price Changes' | 'Data Analysis' | 'News' | 'Technical'
   articleType: 'F1 Fantasy' | 'F1'
   premium: boolean
   thumbnail: string
@@ -15,6 +15,113 @@ export interface Article {
 }
 
 export const articles: Article[] = [
+  {
+    slug: 'miami-gp-2026-technical-upgrades',
+    title: "Miami GP 2026: Who's Brought What — and What It Actually Means",
+    excerpt: "Formula 1 lands in Miami with the first proper development race of the season. Here's how the grid stacks up across all eleven teams.",
+    readTime: 5,
+    date: 'May 2, 2026',
+    tag: 'Technical',
+    category: 'Technical',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #FF6B9D, #FF1493)',
+    thumbnailBg: 'rgba(255,20,147,0.2)',
+    thumbnailIcon: 'us',
+    content: `After a strangely quiet gap in the calendar, Formula 1 lands in Miami with the first proper development race of the season. Some teams have arrived with solutions, others with questions; and a few with something closer to a gamble. Here's how the grid stacks up heading into the weekend.
+
+**Mercedes**
+
+Mercedes come into Miami resisting the temptation to throw parts at the car. There's no headline upgrade here, which in itself says quite a bit. The focus has instead been on extracting more from what is already a fundamentally strong package: refining balance, sharpening deployment, and leaning into a car that already looks well-behaved across conditions. It's a conservative play, but one that suggests confidence.
+
+_Headline Upgrades: No major new components. Development focus on balance optimisation and energy deployment refinement._
+
+---
+
+**Ferrari**
+
+Ferrari's update is a more classic Maranello evolution — subtle on paper, but potentially meaningful on track. The revised front wing is the centrepiece, with changes focused on the endplate and footplate geometry rather than the main structure. It's all about airflow management, specifically increasing outwash to clean up the air around the front tyres; something that becomes particularly valuable at a circuit like Miami. Fred Vasseur has hinted there's more tucked into the package aerodynamically, and the team will be hoping these combined gains bring them closer to Mercedes at the front, with consistent podium and race-winning fights the target from here.
+
+_Headline Upgrades: Revised front wing endplate and footplate geometry. Enhanced outwash for improved front tyre airflow management. Additional undisclosed aerodynamic refinements._
+
+---
+
+**McLaren**
+
+McLaren have gone for a reset. What arrives in Miami is, in effect, a B-spec car, with major changes to the floor, sidepods and overall aerodynamic philosophy. There was promise in Japan, where Oscar Piastri delivered a P2 podium, and the team will be hoping the worst of their reliability difficulties is now behind them. The priority is converting that underlying pace into consistent podium challenges across the remainder of the season, and this package is central to that ambition.
+
+_Headline Upgrades: Heavily revised floor and floor edge. Redesigned sidepod concept. Wholesale aerodynamic philosophy shift; effectively a B-spec car._
+
+---
+
+**Red Bull**
+
+Red Bull's approach is targeted rather than transformative. The raw speed has been there in flashes, but the car hasn't always been easy to live with. Their Miami updates are aimed at addressing that — particularly rear-end stability and straight-line efficiency. There's also been ongoing work around rear wing behaviour, with the team continuing to search for the right balance between drag and drivability.
+
+_Headline Upgrades: Rear-end stability improvements. Revised rear wing package targeting drag reduction. Updates to overall drivability balance._
+
+---
+
+**Haas**
+
+Haas arrive without a headline upgrade, very much in keeping with their usual approach. Instead, they continue to build on a solid baseline, focusing on smaller refinements rather than chasing big gains. It's a strategy that has served them well before — particularly when it comes to race pace and tyre management.
+
+_Headline Upgrades: No major new components. Continued incremental refinements to existing package with emphasis on race pace and tyre behaviour._
+
+---
+
+**Racing Bulls**
+
+For Racing Bulls, Miami marks the first real step forward of the season. This is their initial upgrade package, part of a broader development plan that will roll into the coming races, with the aim of making the car more predictable and more consistent across a full race weekend. Alongside the technical changes, the team also arrive in South Beach with their striking all-yellow livery — a Miami-specific look that has become something of a fixture for the team at this race and one that never fails to turn heads in the paddock.
+
+_Headline Upgrades: First meaningful upgrade package of 2026. Targeted improvements to aerodynamic predictability and mechanical consistency. Special Miami yellow livery._
+
+---
+
+**Alpine**
+
+Alpine's weekend is likely to pass without much noise in terms of upgrades. There's nothing major on the car; just minor tweaks aimed at improving balance and coping with Miami's specific demands, particularly around cooling. It's a continuation of a season that, so far, has been more about understanding than outright performance.
+
+_Headline Upgrades: Minor balance adjustments. Cooling system optimisation for Miami's high-temperature conditions._
+
+---
+
+**Audi**
+
+Audi are taking a low-key approach: no major parts, no dramatic changes, just continued work on integration and execution. Reliability will be under close scrutiny after both drivers were forced to withdraw before the start in Australia and China, and Miami represents an important opportunity to demonstrate the team has those issues under control. At this stage, it's about building a platform they can develop from rather than chasing immediate gains.
+
+_Headline Upgrades: No significant new components. Focus on system integration, reliability resolution and development correlation._
+
+---
+
+**Williams**
+
+Williams remain in recovery mode after their disrupted start to the year. There's no significant upgrade package this weekend, with the focus instead on correlation and ironing out fundamental limitations — weight, efficiency, and overall consistency. Miami is less about results and more about getting the car into a place where results become possible.
+
+_Headline Upgrades: No major upgrades. Internal focus on weight reduction, aerodynamic correlation and resolving fundamental performance limitations._
+
+---
+
+**Cadillac**
+
+Cadillac arrive with one of the more tangible upgrade packages on the grid. There are clear changes to the front wing, a revised floor and floor edges, and updates to the rear brake assembly; all aimed at improving both aerodynamic efficiency and mechanical stability. For a new team, this is a meaningful step that should move them closer to the midfield fight.
+
+_Headline Upgrades: Revised front wing. Updated floor and floor edge. Rear brake assembly changes. Broad aerodynamic and mechanical stability improvements._
+
+---
+
+**Aston Martin**
+
+Aston Martin's situation is more complicated. The updates brought to Miami are largely corrective — aimed at addressing reliability issues and improving the integration between the chassis and power unit. There are also smaller mechanical tweaks, including changes to the steering system. A more substantial development push is expected later in the season, with the immediate priority being to make the car more coherent and more usable across a race weekend.
+
+_Headline Upgrades: Corrective reliability updates. Improved chassis-to-power unit integration. Revised steering system components._
+
+---
+
+**Final Thought**
+
+Miami often flatters efficiency and exposes weakness, which makes it a useful early-season checkpoint. Some teams have arrived looking to redefine their trajectory; others are simply trying to stabilise it. By Sunday evening, we should have a much clearer sense of who's moving forward — and who's already playing catch-up.`,
+  },
   {
     slug: 'race-week-preview-miami-gp-2026',
     title: 'Race Week Preview: Miami Grand Prix',
