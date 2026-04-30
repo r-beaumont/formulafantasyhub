@@ -1044,7 +1044,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
             compounds: [
               { name: 'Hard',   color: '#FFFFFF', code: 'C3', desc: 'Durable race tyre. Used for long first stints in 1-stop strategies.' },
               { name: 'Medium', color: '#FFD700', code: 'C4', desc: 'Most flexible option. Used in both stints of a 1-stop or the middle stint of a 2-stop.' },
-              { name: 'Soft',   color: '#E8002D', code: 'C5', desc: 'Fast qualifying tyre. Degrades quickly in Miami heat. Commonly used at race start.' },
+              { name: 'Soft',   color: '#E8002D', code: 'C5', desc: 'Fast qualifying tyre. Degrades quickly in Miami heat.' },
             ],
             strategies: [
               { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–27: Medium', 'Pit ~Lap 27', 'Lap 28–57: Hard'],                                              note: 'Benchmark strategy. Delivered the race win in 2025 and expected to be the frontrunner default again this year.' },
