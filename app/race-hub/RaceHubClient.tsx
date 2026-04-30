@@ -540,20 +540,40 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
           )
         }
 
-        return (
-          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
+        // Full winner name + team lookup for display
+        const winnerDisplayMap: Record<string, string> = {
+          'L. Norris':     'Lando Norris (McLaren)',
+          'O. Piastri':    'Oscar Piastri (McLaren)',
+          'G. Russell':    'George Russell (Mercedes)',
+          'M. Verstappen': 'Max Verstappen (Red Bull)',
+        }
+        const winnerDisplay = overview.lastWinner ? (winnerDisplayMap[overview.lastWinner] ?? overview.lastWinner) : null
 
-            {/* CARD 1 — CIRCUIT SNAPSHOT */}
+        // DNF risk indicator config
+        const dnfAvgNum = typeof overview.dnfHistory.avg === 'number' ? overview.dnfHistory.avg : null
+        const dnfRisk = dnfAvgNum !== null
+          ? dnfAvgNum >= 3.0
+            ? { label: 'HIGH',   color: '#E8002D', bg: 'rgba(232,0,45,0.15)',    desc: 'High DNF risk — strongly consider chip protection' }
+            : dnfAvgNum >= 1.5
+            ? { label: 'MEDIUM', color: '#FF8700', bg: 'rgba(255,135,0,0.15)',   desc: 'Moderate DNF risk — consider chip protection' }
+            : { label: 'LOW',    color: '#00C851', bg: 'rgba(0,200,81,0.15)',    desc: 'Low DNF risk historically' }
+          : null
+
+        return (
+          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+
+            {/* CARD 1 — CIRCUIT SNAPSHOT + CIRCUIT RECORDS (merged) */}
             <div style={card}>
               <div style={cardHeader}>
                 <span style={cardTitle}>Circuit Snapshot</span>
               </div>
               <div style={{ padding: '20px' }}>
-                {/* 2025 Winner */}
-                {overview.lastWinner && (
+
+                {/* ── TOP HALF: CIRCUIT FACTS ── */}
+                {winnerDisplay && (
                   <div style={{ background: '#141B22', borderRadius: '10px', padding: '12px 16px', marginBottom: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <div style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>2025 Winner</div>
-                    <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 700, color: '#F0F4F8' }}>{overview.lastWinner}</div>
+                    <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 700, color: '#F0F4F8' }}>{winnerDisplay}</div>
                   </div>
                 )}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
@@ -567,6 +587,41 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                       <div style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', marginTop: '6px' }}>{stat.label}</div>
                     </div>
                   ))}
+                </div>
+
+                {/* ── DIVIDER ── */}
+                <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: '24px', paddingTop: '24px' }}>
+
+                  {/* ── BOTTOM HALF: CIRCUIT RECORDS ── */}
+                  <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '4px' }}>Circuit Records</div>
+
+                  {overview.isDebut ? (
+                    <div style={{ border: '1px solid rgba(232,0,45,0.3)', borderRadius: '10px', background: 'rgba(232,0,45,0.07)', padding: '20px', marginTop: '12px' }}>
+                      <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '16px', letterSpacing: '1px', color: '#E8002D', marginBottom: '10px' }}>Debut Race 2026</div>
+                      <p style={{ fontSize: '13px', color: '#8A9AB0', lineHeight: 1.7, margin: 0 }}>{overview.debutMessage}</p>
+                    </div>
+                  ) : (
+                    <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '0' }}>
+                      {[
+                        { label: 'Most Race Wins (Driver)',           value: overview.mostWinsDriver,       count: overview.mostWinsDriverCount },
+                        { label: 'Most Race Wins (Constructor)',      value: overview.mostWinsConstructor,  count: overview.mostWinsConstructorCount },
+                        { label: 'Most Pole Positions (Driver)',      value: overview.mostPolesDriver,      count: overview.mostPolesDriverCount },
+                        { label: 'Most Pole Positions (Constructor)', value: overview.mostPolesConstructor, count: overview.mostPolesConstructorCount },
+                      ].map((row, i, arr) => (
+                        <div key={row.label} style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px', padding: '14px 0', borderBottom: i < arr.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
+                          <div style={{ fontSize: '12px', color: '#5A6A7A', lineHeight: 1.4 }}>{row.label}</div>
+                          <div style={{ textAlign: 'right' as const, flexShrink: 0 }}>
+                            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 700, color: '#F0F4F8' }}>{row.value}</div>
+                            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#E8002D', marginTop: '2px' }}>{row.count}×</div>
+                          </div>
+                        </div>
+                      ))}
+                      {overview.circuitNote && (
+                        <div style={{ marginTop: '12px', fontSize: '11px', color: '#5A6A7A', fontStyle: 'italic' }}>{overview.circuitNote}</div>
+                      )}
+                    </div>
+                  )}
+
                 </div>
               </div>
             </div>
@@ -601,7 +656,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                     {/* Large average */}
                     <div style={{ textAlign: 'center' as const, marginBottom: '14px' }}>
                       <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '52px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{overview.avgOvertakes}</div>
-                      <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '4px' }}>Avg Overtakes per Race ({overview.overtakeSeasonsLabel})</div>
+                      <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '4px' }}>Average Overtakes per Race ({overview.overtakeSeasonsLabel})</div>
                     </div>
                     {/* Grid Importance Indicator */}
                     <div>
@@ -641,49 +696,27 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                         ))}
                       </div>
                       {/* Large average */}
-                      <div style={{ textAlign: 'center' as const }}>
+                      <div style={{ textAlign: 'center' as const, marginBottom: '14px' }}>
                         <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '52px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{overview.dnfHistory.avg}</div>
-                        <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '4px' }}>Avg DNFs per Race (2023–2025)</div>
+                        <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '4px' }}>Average DNFs per Race (2023–2025)</div>
                       </div>
+                      {/* DNF Risk Indicator */}
+                      {dnfRisk && (
+                        <div>
+                          <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '8px' }}>DNF Risk Indicator</div>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: dnfRisk.bg, borderRadius: '8px', padding: '12px 14px' }}>
+                            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: dnfRisk.color, flexShrink: 0 }} />
+                            <div>
+                              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 700, color: dnfRisk.color }}>{dnfRisk.label}</div>
+                              <div style={{ fontSize: '11px', color: '#8A9AB0', marginTop: '2px', lineHeight: 1.4 }}>{dnfRisk.desc}</div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </>
                   )}
 
                 </div>
-              </div>
-            </div>
-
-            {/* CARD 3 — CIRCUIT RECORDS */}
-            <div style={card}>
-              <div style={cardHeader}>
-                <span style={cardTitle}>Circuit Records</span>
-              </div>
-              <div style={{ padding: '20px' }}>
-                {overview.isDebut ? (
-                  <div style={{ border: '1px solid rgba(232,0,45,0.3)', borderRadius: '10px', background: 'rgba(232,0,45,0.07)', padding: '20px' }}>
-                    <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '16px', letterSpacing: '1px', color: '#E8002D', marginBottom: '10px' }}>Debut Race 2026</div>
-                    <p style={{ fontSize: '13px', color: '#8A9AB0', lineHeight: 1.7, margin: 0 }}>{overview.debutMessage}</p>
-                  </div>
-                ) : (
-                  <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '0' }}>
-                    {[
-                      { label: 'Most Race Wins (Driver)',      value: overview.mostWinsDriver,      count: overview.mostWinsDriverCount },
-                      { label: 'Most Race Wins (Constructor)', value: overview.mostWinsConstructor,  count: overview.mostWinsConstructorCount },
-                      { label: 'Most Pole Positions (Driver)',      value: overview.mostPolesDriver,     count: overview.mostPolesDriverCount },
-                      { label: 'Most Pole Positions (Constructor)', value: overview.mostPolesConstructor, count: overview.mostPolesConstructorCount },
-                    ].map((row, i, arr) => (
-                      <div key={row.label} style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px', padding: '14px 0', borderBottom: i < arr.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
-                        <div style={{ fontSize: '12px', color: '#5A6A7A', lineHeight: 1.4 }}>{row.label}</div>
-                        <div style={{ textAlign: 'right' as const, flexShrink: 0 }}>
-                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 700, color: '#F0F4F8' }}>{row.value}</div>
-                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#E8002D', marginTop: '2px' }}>{row.count}×</div>
-                        </div>
-                      </div>
-                    ))}
-                    {overview.circuitNote && (
-                      <div style={{ marginTop: '12px', fontSize: '11px', color: '#5A6A7A', fontStyle: 'italic' }}>{overview.circuitNote}</div>
-                    )}
-                  </div>
-                )}
               </div>
             </div>
 
