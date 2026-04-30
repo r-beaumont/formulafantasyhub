@@ -20,18 +20,12 @@ const LinkIcon = () => (
   </svg>
 )
 
-const WhatsAppIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
-    <path d="M7 0C3.13 0 0 3.13 0 7C0 8.33 0.37 9.57 1.01 10.63L0 14L3.47 13.01C4.5 13.6 5.71 13.93 7 13.93C10.87 13.93 14 10.8 14 6.93C14 3.06 10.87 0 7 0ZM10.3 9.6C10.12 10.07 9.33 10.5 8.93 10.54C8.53 10.58 8.14 10.72 6.27 9.95C4.07 9.06 2.65 6.8 2.54 6.65C2.43 6.5 1.67 5.48 1.67 4.43C1.67 3.38 2.21 2.87 2.41 2.65C2.61 2.43 2.85 2.38 2.98 2.38C3.11 2.38 3.24 2.38 3.36 2.39C3.48 2.4 3.65 2.34 3.81 2.73C3.98 3.13 4.4 4.17 4.45 4.28C4.5 4.39 4.54 4.52 4.46 4.66C4.37 4.8 4.34 4.89 4.23 5.01C4.12 5.14 4 5.29 3.9 5.39C3.8 5.49 3.69 5.59 3.81 5.8C3.93 6 4.39 6.75 5.08 7.37C5.96 8.16 6.7 8.4 6.92 8.51C7.14 8.62 7.26 8.6 7.39 8.46C7.52 8.32 7.96 7.8 8.1 7.58C8.25 7.36 8.39 7.4 8.59 7.47C8.79 7.54 9.83 8.05 10.05 8.16C10.27 8.27 10.41 8.32 10.46 8.41C10.51 8.5 10.51 8.94 10.33 9.4L10.3 9.6Z" fill="currentColor"/>
-  </svg>
-)
 
 export default function ShareBar({ title, slug, showLabel = false }: ShareBarProps) {
   const [copied, setCopied] = useState(false)
 
   const articleUrl = `https://formulahub.live/news/${slug}`
   const tweetUrl   = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(articleUrl)}&via=F_FantasyHub`
-  const waUrl      = `https://wa.me/?text=${encodeURIComponent(title + ' ' + articleUrl)}`
 
   const handleCopy = () => {
     navigator.clipboard.writeText(articleUrl).then(() => {
@@ -119,26 +113,6 @@ export default function ShareBar({ title, slug, showLabel = false }: ShareBarPro
           {copied ? 'Copied!' : 'Copy Link'}
         </button>
 
-        {/* WhatsApp */}
-        <a
-          href={waUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={btn}
-          onMouseEnter={e => {
-            const el = e.currentTarget as HTMLElement
-            el.style.color = '#F0F4F8'
-            el.style.borderColor = 'rgba(255,255,255,0.25)'
-          }}
-          onMouseLeave={e => {
-            const el = e.currentTarget as HTMLElement
-            el.style.color = '#8A9BB0'
-            el.style.borderColor = 'rgba(255,255,255,0.1)'
-          }}
-        >
-          <WhatsAppIcon />
-          WhatsApp
-        </a>
       </div>
     </div>
   )
