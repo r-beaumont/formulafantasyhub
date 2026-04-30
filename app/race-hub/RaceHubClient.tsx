@@ -774,7 +774,9 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       {/* RACE INFO TAB */}
       {activeTab === 'race-info' && (() => {
         const isCurrentRace = selectedRound === CURRENT_RACE.round
-        const useStaticSessions = !loading && sessions.length === 0 && isCurrentRace && CURRENT_RACE.sessions.length > 0
+        // For the upcoming current race, always prefer CURRENT_RACE.sessions over OpenF1.
+        // OpenF1's 'latest' endpoint returns the previous race's sessions until the new weekend begins.
+        const useStaticSessions = !loading && isCurrentRace && !selectedRace.completed && CURRENT_RACE.sessions.length > 0
         const calendarSessData = SEASON_CALENDAR.find(r => r.round === selectedRound)?.sessions
         const useCalendarSessions = !loading && sessions.length === 0 && !useStaticSessions && !!calendarSessData?.length
         const raceTimezone = selectedRace?.timezone ?? 'UTC'
