@@ -172,8 +172,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 8,
       mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 8,
       avgOvertakes: 51, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 74, overtakes2024: 35, overtakes2025: 45,
       gridImportance: 'MEDIUM',
       totalGPs: 29, firstGP: 1996, circuitLength: '5.278 km',
+      dnfHistory: { y2023: 3, y2024: 2, y2025: 6, avg: 3.67 },
     },
     2: { // China — Shanghai
       lastWinner: 'O. Piastri',
@@ -182,8 +184,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 6,
       mostPolesConstructor: 'Mercedes', mostPolesConstructorCount: 6,
       avgOvertakes: 87, overtakeSeasonsLabel: '2024–2025',
+      overtakes2023: null, overtakes2024: 102, overtakes2025: 72,
       gridImportance: 'LOW',
       totalGPs: 19, firstGP: 2004, circuitLength: '5.451 km',
+      dnfHistory: { y2023: null, y2024: 3, y2025: 4, avg: 3.50 },
     },
     3: { // Japan — Suzuka
       lastWinner: 'M. Verstappen',
@@ -192,8 +196,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'M. Schumacher', mostPolesDriverCount: 8,
       mostPolesConstructor: 'McLaren', mostPolesConstructorCount: 12,
       avgOvertakes: 65, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 81, overtakes2024: 85, overtakes2025: 28,
       gridImportance: 'MEDIUM',
       totalGPs: 36, firstGP: 1987, circuitLength: '5.807 km',
+      dnfHistory: { y2023: 5, y2024: 3, y2025: 0, avg: 2.67 },
     },
     4: { // Miami — Miami International Autodrome
       lastWinner: 'O. Piastri',
@@ -202,8 +208,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'M. Verstappen', mostPolesDriverCount: 2,
       mostPolesConstructor: 'Red Bull', mostPolesConstructorCount: 2,
       avgOvertakes: 89, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 94, overtakes2024: 93, overtakes2025: 80,
       gridImportance: 'LOW',
       totalGPs: 4, firstGP: 2022, circuitLength: '5.412 km',
+      dnfHistory: { y2023: 0, y2024: 1, y2025: 5, avg: 2.00 },
     },
     5: { // Canada — Circuit Gilles Villeneuve
       lastWinner: 'G. Russell',
@@ -212,8 +220,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'M. Schumacher / L. Hamilton', mostPolesDriverCount: 6,
       mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 11,
       avgOvertakes: 68, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 46, overtakes2024: 83, overtakes2025: 75,
       gridImportance: 'MEDIUM',
       totalGPs: 44, firstGP: 1978, circuitLength: '4.361 km',
+      dnfHistory: { y2023: 2, y2024: 5, y2025: 2, avg: 3.00 },
     },
     6: { // Monaco — Circuit de Monaco
       lastWinner: 'L. Norris',
@@ -222,8 +232,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'A. Senna', mostPolesDriverCount: 5,
       mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 12,
       avgOvertakes: 19, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 36, overtakes2024: 17, overtakes2025: 4,
       gridImportance: 'HIGH',
       totalGPs: 71, firstGP: 1950, circuitLength: '3.337 km',
+      dnfHistory: { y2023: 2, y2024: 2, y2025: 0, avg: 1.33 },
     },
     7: { // Spain — Circuit de Barcelona-Catalunya
       lastWinner: 'O. Piastri',
@@ -232,8 +244,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'M. Schumacher', mostPolesDriverCount: 7,
       mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 14,
       avgOvertakes: 90, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 107, overtakes2024: 86, overtakes2025: 78,
       gridImportance: 'LOW',
       totalGPs: 34, firstGP: 1991, circuitLength: '4.657 km',
+      dnfHistory: { y2023: 0, y2024: 0, y2025: 3, avg: 1.00 },
     },
     8: { // Austria — Red Bull Ring
       lastWinner: 'L. Norris',
@@ -242,8 +256,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'M. Verstappen', mostPolesDriverCount: 5,
       mostPolesConstructor: 'Red Bull', mostPolesConstructorCount: 7,
       avgOvertakes: 90, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 105, overtakes2024: 85, overtakes2025: 81,
       gridImportance: 'LOW',
       totalGPs: 34, firstGP: 1970, circuitLength: '4.318 km',
+      dnfHistory: { y2023: 1, y2024: 0, y2025: 4, avg: 1.67 },
     },
     9: { // Britain — Silverstone
       lastWinner: 'G. Russell',
@@ -252,8 +268,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 7,
       mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 19,
       avgOvertakes: 54, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 50, overtakes2024: 55, overtakes2025: 58,
       gridImportance: 'MEDIUM',
       totalGPs: 60, firstGP: 1950, circuitLength: '5.891 km',
+      dnfHistory: { y2023: 2, y2024: 2, y2025: 5, avg: 3.00 },
     },
     10: { // Belgium — Spa-Francorchamps
       lastWinner: 'O. Piastri',
@@ -262,8 +280,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 6,
       mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 21,
       avgOvertakes: 67, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 95, overtakes2024: 58, overtakes2025: 49,
       gridImportance: 'MEDIUM',
       totalGPs: 58, firstGP: 1950, circuitLength: '7.004 km',
+      dnfHistory: { y2023: 2, y2024: 2, y2025: 0, avg: 1.33 },
     },
     11: { // Hungary — Hungaroring
       lastWinner: 'L. Norris',
@@ -272,8 +292,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 9,
       mostPolesConstructor: 'McLaren', mostPolesConstructorCount: 14,
       avgOvertakes: 62, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 51, overtakes2024: 65, overtakes2025: 69,
       gridImportance: 'HIGH',
       totalGPs: 40, firstGP: 1986, circuitLength: '4.381 km',
+      dnfHistory: { y2023: 2, y2024: 1, y2025: 1, avg: 1.33 },
     },
     12: { // Netherlands — Zandvoort
       lastWinner: 'O. Piastri',
@@ -282,8 +304,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'R. Arnoux / M. Verstappen', mostPolesDriverCount: 3,
       mostPolesConstructor: 'Red Bull', mostPolesConstructorCount: 3,
       avgOvertakes: 72, overtakeSeasonsLabel: '2022–2024',
+      overtakes2023: 240, overtakes2024: 73, overtakes2025: 70,
       gridImportance: 'HIGH',
       totalGPs: 30, firstGP: 1952, circuitLength: '4.259 km',
+      dnfHistory: { y2023: 3, y2024: 0, y2025: 2, avg: 1.67 },
     },
     13: { // Italy — Monza
       lastWinner: 'M. Verstappen',
@@ -292,16 +316,20 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 7,
       mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 22,
       avgOvertakes: 56, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 49, overtakes2024: 71, overtakes2025: 47,
       gridImportance: 'MEDIUM',
       totalGPs: 75, firstGP: 1950, circuitLength: '5.793 km',
+      dnfHistory: { y2023: 2, y2024: 1, y2025: 2, avg: 1.67 },
     },
     14: { // Madrid — DEBUT
       lastWinner: null,
       isDebut: true,
       debutMessage: 'The Madrid Grand Prix makes its Formula 1 debut in 2026. No historical records exist yet — this is where history begins.',
       avgOvertakes: null, overtakeSeasonsLabel: null,
+      overtakes2023: null, overtakes2024: null, overtakes2025: null,
       gridImportance: 'TBC',
       totalGPs: 0, firstGP: 2026, circuitLength: '5.474 km',
+      dnfHistory: { y2023: null, y2024: null, y2025: null, avg: '—' },
     },
     15: { // Azerbaijan — Baku City Circuit
       lastWinner: 'M. Verstappen',
@@ -310,8 +338,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'C. Leclerc', mostPolesDriverCount: 4,
       mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 5,
       avgOvertakes: 57, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 50, overtakes2024: 66, overtakes2025: 55,
       gridImportance: 'MEDIUM',
       totalGPs: 9, firstGP: 2017, circuitLength: '6.003 km',
+      dnfHistory: { y2023: 2, y2024: 1, y2025: 1, avg: 1.33 },
     },
     16: { // Singapore — Marina Bay Street Circuit
       lastWinner: 'G. Russell',
@@ -320,8 +350,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'S. Vettel / L. Hamilton', mostPolesDriverCount: 4,
       mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 7,
       avgOvertakes: 68, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 85, overtakes2024: 62, overtakes2025: 58,
       gridImportance: 'HIGH',
       totalGPs: 17, firstGP: 2008, circuitLength: '4.940 km',
+      dnfHistory: { y2023: 3, y2024: 1, y2025: 0, avg: 1.33 },
     },
     17: { // United States — Circuit of the Americas
       lastWinner: 'M. Verstappen',
@@ -330,8 +362,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 5,
       mostPolesConstructor: 'Mercedes', mostPolesConstructorCount: 6,
       avgOvertakes: 78, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 78, overtakes2024: 86, overtakes2025: 71,
       gridImportance: 'LOW',
       totalGPs: 13, firstGP: 2012, circuitLength: '5.513 km',
+      dnfHistory: { y2023: 5, y2024: 1, y2025: 1, avg: 2.33 },
     },
     18: { // Mexico — Autodromo Hermanos Rodriguez
       lastWinner: 'L. Norris',
@@ -340,8 +374,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'J. Clark', mostPolesDriverCount: 4,
       mostPolesConstructor: 'Red Bull', mostPolesConstructorCount: 7,
       avgOvertakes: 102, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 121, overtakes2024: 87, overtakes2025: 97,
       gridImportance: 'LOW',
       totalGPs: 23, firstGP: 1963, circuitLength: '4.304 km',
+      dnfHistory: { y2023: 3, y2024: 3, y2025: 3, avg: 3.00 },
     },
     19: { // Brazil — Autodromo Jose Carlos Pace
       lastWinner: 'L. Norris',
@@ -350,8 +386,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'A. Senna', mostPolesDriverCount: 5,
       mostPolesConstructor: 'McLaren', mostPolesConstructorCount: 9,
       avgOvertakes: 78, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 69, overtakes2024: 70, overtakes2025: 96,
       gridImportance: 'LOW',
       totalGPs: 42, firstGP: 1973, circuitLength: '4.309 km',
+      dnfHistory: { y2023: 6, y2024: 5, y2025: 3, avg: 4.67 },
     },
     20: { // Las Vegas — Las Vegas Strip Circuit
       lastWinner: 'M. Verstappen',
@@ -361,8 +399,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesConstructor: 'Ferrari / Mercedes / McLaren', mostPolesConstructorCount: 1,
       circuitNote: '3 races held (2023–2025)',
       avgOvertakes: 108, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 181, overtakes2024: 109, overtakes2025: 34,
       gridImportance: 'LOW',
       totalGPs: 3, firstGP: 2023, circuitLength: '6.201 km',
+      dnfHistory: { y2023: 1, y2024: 2, y2025: 5, avg: 2.67 },
     },
     21: { // Qatar — Lusail International Circuit
       lastWinner: 'M. Verstappen',
@@ -372,8 +412,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesConstructor: 'Red Bull', mostPolesConstructorCount: 2,
       circuitNote: '4 races held (2021–2025)',
       avgOvertakes: 77, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 108, overtakes2024: 81, overtakes2025: 41,
       gridImportance: 'MEDIUM',
       totalGPs: 4, firstGP: 2021, circuitLength: '5.380 km',
+      dnfHistory: { y2023: 3, y2024: 5, y2025: 2, avg: 3.33 },
     },
     22: { // Abu Dhabi — Yas Marina Circuit
       lastWinner: 'M. Verstappen',
@@ -382,8 +424,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 5,
       mostPolesConstructor: 'Red Bull', mostPolesConstructorCount: 7,
       avgOvertakes: 111, overtakeSeasonsLabel: '2023–2025',
+      overtakes2023: 113, overtakes2024: 96, overtakes2025: 125,
       gridImportance: 'LOW',
       totalGPs: 16, firstGP: 2009, circuitLength: '5.281 km',
+      dnfHistory: { y2023: 0, y2024: 3, y2025: 0, avg: 1.00 },
     },
   }
 
@@ -527,31 +571,83 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
               </div>
             </div>
 
-            {/* CARD 2 — OVERTAKING PROFILE */}
+            {/* CARD 2 — TRACK PROFILE */}
             <div style={card}>
               <div style={cardHeader}>
-                <span style={cardTitle}>Overtaking Profile</span>
+                <span style={cardTitle}>Track Profile</span>
               </div>
               <div style={{ padding: '20px' }}>
-                <div style={{ textAlign: 'center' as const, padding: '16px 0 20px' }}>
-                  {overview.avgOvertakes !== null ? (
-                    <>
-                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '64px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{overview.avgOvertakes}</div>
-                      <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '8px' }}>Average Overtakes per Race ({overview.overtakeSeasonsLabel})</div>
-                    </>
-                  ) : (
-                    <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '16px', color: '#5A6A7A', padding: '20px 0' }}>No data — debut race</div>
-                  )}
-                </div>
-                <div style={{ marginTop: '8px' }}>
-                  <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '8px' }}>Grid Importance Indicator</div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: gi.bg, borderRadius: '8px', padding: '12px 14px' }}>
-                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: gi.color, flexShrink: 0 }} />
-                    <div>
-                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 700, color: gi.color }}>{overview.gridImportance}</div>
-                      <div style={{ fontSize: '11px', color: '#8A9AB0', marginTop: '2px', lineHeight: 1.4 }}>{gi.label}</div>
+
+                {/* ── SECTION 1: OVERTAKING ── */}
+                <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '14px' }}>Overtaking</div>
+
+                {overview.overtakes2023 === null && overview.overtakes2024 === null && overview.overtakes2025 === null ? (
+                  <div style={{ textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px', padding: '8px 0 16px' }}>No historical data — debut circuit</div>
+                ) : (
+                  <>
+                    {/* Year table */}
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '16px' }}>
+                      {([
+                        { year: '2023', val: overview.overtakes2023 },
+                        { year: '2024', val: overview.overtakes2024 },
+                        { year: '2025', val: overview.overtakes2025 },
+                      ] as { year: string; val: number | null }[]).map(({ year, val }) => (
+                        <div key={year} style={{ textAlign: 'center' as const }}>
+                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', textTransform: 'uppercase' as const, letterSpacing: '0.5px', marginBottom: '4px' }}>{year}</div>
+                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '22px', fontWeight: 600, color: val !== null ? '#F0F4F8' : '#5A6A7A' }}>{val !== null ? val : '—'}</div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
+                    {/* Large average */}
+                    <div style={{ textAlign: 'center' as const, marginBottom: '14px' }}>
+                      <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '52px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{overview.avgOvertakes}</div>
+                      <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '4px' }}>Avg Overtakes per Race ({overview.overtakeSeasonsLabel})</div>
+                    </div>
+                    {/* Grid Importance Indicator */}
+                    <div>
+                      <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '8px' }}>Grid Importance Indicator</div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: gi.bg, borderRadius: '8px', padding: '12px 14px' }}>
+                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: gi.color, flexShrink: 0 }} />
+                        <div>
+                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 700, color: gi.color }}>{overview.gridImportance}</div>
+                          <div style={{ fontSize: '11px', color: '#8A9AB0', marginTop: '2px', lineHeight: 1.4 }}>{gi.label}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {/* ── DIVIDER ── */}
+                <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: '24px', paddingTop: '24px' }}>
+
+                  {/* ── SECTION 2: DNF HISTORY ── */}
+                  <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '14px' }}>DNF History</div>
+
+                  {overview.dnfHistory.y2023 === null && overview.dnfHistory.y2024 === null && overview.dnfHistory.y2025 === null ? (
+                    <div style={{ textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px', padding: '8px 0' }}>No historical data — debut circuit</div>
+                  ) : (
+                    <>
+                      {/* Year table */}
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '16px' }}>
+                        {([
+                          { year: '2023', val: overview.dnfHistory.y2023 },
+                          { year: '2024', val: overview.dnfHistory.y2024 },
+                          { year: '2025', val: overview.dnfHistory.y2025 },
+                        ] as { year: string; val: number | null }[]).map(({ year, val }) => (
+                          <div key={year} style={{ textAlign: 'center' as const }}>
+                            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', textTransform: 'uppercase' as const, letterSpacing: '0.5px', marginBottom: '4px' }}>{year}</div>
+                            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '22px', fontWeight: 600, color: val !== null ? '#F0F4F8' : '#5A6A7A' }}>{val !== null ? val : '—'}</div>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Large average */}
+                      <div style={{ textAlign: 'center' as const }}>
+                        <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '52px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{overview.dnfHistory.avg}</div>
+                        <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '4px' }}>Avg DNFs per Race (2023–2025)</div>
+                      </div>
+                    </>
+                  )}
+
                 </div>
               </div>
             </div>
