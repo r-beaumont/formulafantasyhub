@@ -673,7 +673,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
             {/* CARD 2 — TRACK PROFILE */}
             <div style={card}>
               <div style={cardHeader}>
-                <span style={cardTitle}>Track Profile</span>
+                <span style={cardTitle}>Racing Profile</span>
               </div>
               <div style={{ padding: '20px' }}>
 
@@ -684,6 +684,11 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                   <div style={{ textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px', padding: '8px 0 16px' }}>No historical data — debut circuit</div>
                 ) : (
                   <>
+                    {/* Large average — above year table */}
+                    <div style={{ textAlign: 'center' as const, marginBottom: '16px' }}>
+                      <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '52px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{overview.avgOvertakes}</div>
+                      <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '4px' }}>Average Overtakes per Race ({overview.overtakeSeasonsLabel})</div>
+                    </div>
                     {/* Year table */}
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '16px' }}>
                       {([
@@ -696,11 +701,6 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                           <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '22px', fontWeight: 600, color: val !== null ? '#F0F4F8' : '#5A6A7A' }}>{val !== null ? val : '—'}</div>
                         </div>
                       ))}
-                    </div>
-                    {/* Large average */}
-                    <div style={{ textAlign: 'center' as const, marginBottom: '14px' }}>
-                      <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '52px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{overview.avgOvertakes}</div>
-                      <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '4px' }}>Average Overtakes per Race ({overview.overtakeSeasonsLabel})</div>
                     </div>
                     {/* Grid Importance Indicator */}
                     <div>
@@ -720,12 +720,17 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                 <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: '24px', paddingTop: '24px' }}>
 
                   {/* ── SECTION 2: DNF HISTORY ── */}
-                  <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '14px' }}>DNF/DSQ History</div>
+                  <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '14px' }}>DNF History (Incl. DSQs)</div>
 
                   {overview.dnfHistory.y2023 === null && overview.dnfHistory.y2024 === null && overview.dnfHistory.y2025 === null ? (
                     <div style={{ textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px', padding: '8px 0' }}>No historical data — debut circuit</div>
                   ) : (
                     <>
+                      {/* Large average — above year table */}
+                      <div style={{ textAlign: 'center' as const, marginBottom: '16px' }}>
+                        <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '52px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{overview.dnfHistory.avg}</div>
+                        <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '4px' }}>Average DNFs per Race (2023–2025)</div>
+                      </div>
                       {/* Year table */}
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '16px' }}>
                         {([
@@ -739,15 +744,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                           </div>
                         ))}
                       </div>
-                      {/* Large average */}
-                      <div style={{ textAlign: 'center' as const, marginBottom: '14px' }}>
-                        <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '52px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{overview.dnfHistory.avg}</div>
-                        <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '4px' }}>Average DNFs/DSQs Per Race (2023–2025)</div>
-                      </div>
-                      {/* Risk Indicator */}
+                      {/* DNF Risk Indicator */}
                       {dnfRisk && (
                         <div>
-                          <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '8px' }}>Risk Indicator</div>
+                          <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '8px' }}>DNF Risk Indicator</div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: dnfRisk.bg, borderRadius: '8px', padding: '12px 14px' }}>
                             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: dnfRisk.color, flexShrink: 0 }} />
                             <div>
