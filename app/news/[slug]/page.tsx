@@ -88,7 +88,7 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
             <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg,#E8002D,#FF6B6B)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: 700, color: 'white', flexShrink: 0 }}>R</div>
             <div>
               <div style={{ fontSize: '14px', fontWeight: 600, color: '#F0F4F8' }}>Rob Beaumont</div>
-              <div style={{ fontSize: '12px', color: '#5A6A7A' }}>{article.articleType === 'F1' ? article.date : `Official F1 Fantasy columnist · formula1.com · ${article.date}`}</div>
+              <div style={{ fontSize: '12px', color: '#5A6A7A' }}>{article.date}</div>
             </div>
           </div>
 

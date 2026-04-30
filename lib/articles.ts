@@ -17,16 +17,16 @@ export interface Article {
 export const articles: Article[] = [
   {
     slug: 'miami-gp-2026-technical-upgrades',
-    title: "Miami GP 2026: Who's Brought What — and What It Actually Means",
+    title: 'Upgrades Preview: Miami Grand Prix',
     excerpt: "Formula 1 lands in Miami with the first proper development race of the season. Here's how the grid stacks up across all eleven teams.",
     readTime: 5,
-    date: 'May 2, 2026',
+    date: 'Apr 30, 2026',
     tag: 'Technical',
     category: 'Technical',
     articleType: 'F1',
     premium: false,
-    thumbnail: 'linear-gradient(135deg, #FF6B9D, #FF1493)',
-    thumbnailBg: 'rgba(255,20,147,0.2)',
+    thumbnail: 'linear-gradient(135deg, #9E6070, #7A4055)',
+    thumbnailBg: 'rgba(122,64,85,0.3)',
     thumbnailIcon: 'us',
     content: `After a strangely quiet gap in the calendar, Formula 1 lands in Miami with the first proper development race of the season. Some teams have arrived with solutions, others with questions; and a few with something closer to a gamble. Here's how the grid stacks up heading into the weekend.
 
