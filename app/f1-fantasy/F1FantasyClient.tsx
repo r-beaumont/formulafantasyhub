@@ -20,10 +20,14 @@ function ScoringTable({ title, note, rows, cols }: { title: string; note?: strin
       </div>
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' as const, minWidth: '400px' }}>
+          <colgroup>
+            <col />
+            {cols.slice(1).map((_, i) => <col key={i} style={{ width: '80px' }} />)}
+          </colgroup>
           <thead>
             <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-              {cols.map(c => (
-                <th key={c} style={{ padding: '10px 20px', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: 'left' as const }}>{c}</th>
+              {cols.map((c, i) => (
+                <th key={c} style={{ padding: '10px 24px', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: i === 0 ? 'left' as const : 'right' as const }}>{c}</th>
               ))}
             </tr>
           </thead>
@@ -31,7 +35,7 @@ function ScoringTable({ title, note, rows, cols }: { title: string; note?: strin
             {rows.map((row, i) => (
               <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                 {row.map((cell, j) => (
-                  <td key={j} style={{ padding: '10px 20px', fontSize: '13px', color: typeof cell === 'number' && cell > 0 ? '#00D47E' : typeof cell === 'number' && cell < 0 ? '#E8002D' : '#F0F4F8', fontFamily: typeof cell === 'number' ? 'JetBrains Mono, monospace' : 'inherit', fontWeight: j === 0 ? 500 : 400 }}>
+                  <td key={j} style={{ padding: '10px 24px', fontSize: '13px', color: typeof cell === 'number' && cell > 0 ? '#00D47E' : typeof cell === 'number' && cell < 0 ? '#E8002D' : '#F0F4F8', fontFamily: typeof cell === 'number' ? 'JetBrains Mono, monospace' : 'inherit', fontWeight: j === 0 ? 500 : 400, textAlign: j === 0 ? 'left' as const : 'right' as const, whiteSpace: j > 0 ? 'nowrap' as const : undefined }}>
                     {typeof cell === 'number' && cell > 0 ? `+${cell}` : cell}
                   </td>
                 ))}
