@@ -711,6 +711,9 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                               <div style={{ fontSize: '11px', color: '#8A9AB0', marginTop: '2px', lineHeight: 1.4 }}>{dnfRisk.desc}</div>
                             </div>
                           </div>
+                          <div style={{ fontSize: '10px', color: '#3A4A5A', marginTop: '8px', lineHeight: 1.6 }}>
+                            <span style={{ color: '#00C851' }}>Low</span>{' '}&lt; 1.5 DNFs &nbsp;·&nbsp; <span style={{ color: '#FF8700' }}>Medium</span>{' '}1.5–3.0 DNFs &nbsp;·&nbsp; <span style={{ color: '#E8002D' }}>High</span>{' '}&gt;3.0 DNFs
+                          </div>
                         </div>
                       )}
                     </>
