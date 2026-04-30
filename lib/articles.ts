@@ -12,6 +12,7 @@ export interface Article {
   thumbnailBg: string
   thumbnailIcon: string
   readTime: number
+  ogImage?: string
 }
 
 export const articles: Article[] = [
@@ -28,6 +29,7 @@ export const articles: Article[] = [
     thumbnail: 'linear-gradient(135deg, #9E6070, #7A4055)',
     thumbnailBg: 'rgba(122,64,85,0.3)',
     thumbnailIcon: 'us',
+    ogImage: 'https://formulahub.live/og/miami-gp-2026-technical-upgrades',
     content: `After a strangely quiet gap in the calendar, Formula 1 lands in Miami with the first proper development race of the season. Some teams have arrived with solutions, others with questions; and a few with something closer to a gamble. Here's how the grid stacks up heading into the weekend.
 
 **Mercedes**
@@ -135,6 +137,7 @@ Miami often flatters efficiency and exposes weakness, which makes it a useful ea
     thumbnail: 'linear-gradient(135deg, #001a2a 0%, #003d5c 50%, #001a2a 100%)',
     thumbnailBg: 'rgba(0,168,255,0.2)',
     thumbnailIcon: 'us',
+    ogImage: 'https://formulahub.live/og/race-week-preview-miami-gp-2026',
     content: `**THE SETUP**
 
 Three races in, the story is simple. Mercedes are dominant, Kimi Antonelli leads the championship, and everyone else is managing damage. Russell sits nine points back in second. Ferrari are best of the rest at 90 constructors' points. Red Bull's 16-point tally after three rounds tells you everything. Japan was the exclamation mark — Antonelli moved from sixth to first on a safety car restart that caught the paddock flat-footed. For Fantasy managers, the message is the same it has been all season: the Silver Arrows are the foundation of any competitive team right now.
@@ -196,6 +199,7 @@ Miami is the first Sprint weekend of 2026 and chip selection matters. No Negativ
     thumbnail: 'linear-gradient(135deg, #1a1400 0%, #3d3000 50%, #1a1400 100%)',
     thumbnailBg: 'rgba(255,215,0,0.25)',
     thumbnailIcon: 'jp',
+    ogImage: 'https://formulahub.live/og/race-week-preview-japanese-gp-2026',
     content: `**THE SETUP**
 
 Two races in, Mercedes are running away with this. George Russell leads the championship, Kimi Antonelli is the reigning race winner, and Ferrari are the only team consistently sharing the podium. For F1 Fantasy managers, the message from the first two rounds is clear — the Silver Arrows are the spine of any competitive team right now. Japan is where we find out if that holds on one of the most technically demanding circuits in the world.
@@ -257,6 +261,7 @@ Suzuka's unpredictability in wet conditions makes Limitless a risk this week —
     thumbnail: 'linear-gradient(135deg, #1a0000 0%, #3d0000 50%, #1a0000 100%)',
     thumbnailBg: 'rgba(232,0,45,0.2)',
     thumbnailIcon: 'cn',
+    ogImage: 'https://formulahub.live/og/race-week-preview-chinese-gp-2026',
     content: `**THE SETUP**
 
 One race in, Mercedes have answered the preseason question emphatically. George Russell won the Australian Grand Prix from pole position, Kimi Antonelli was second, Charles Leclerc recovered brilliantly for third, and Lewis Hamilton took a composed fourth. The Silver Arrows are the team to beat heading into Shanghai. China is a sprint weekend — with extra points on the table and overtakes aplenty, that changes the calculus entirely. Chip usage is going to be as important as ever.
@@ -318,6 +323,7 @@ Limitless and 3x Boost are the standout chips this sprint weekend. A clearly def
     thumbnail: 'linear-gradient(135deg, #0a1a00 0%, #1a3d00 50%, #0a1a00 100%)',
     thumbnailBg: 'rgba(0,212,126,0.2)',
     thumbnailIcon: 'au',
+    ogImage: 'https://formulahub.live/og/race-week-preview-australian-gp-2026',
     content: `**THE SETUP**
 
 The 2026 season begins here. New regulations, new cars, and — for the first time in years — genuine uncertainty about who the front-runners will be. Preseason testing at Bahrain gave us clues rather than answers. Mercedes looked composed across long runs, Ferrari showed strong one-lap pace, and McLaren's tyre management appeared to be a step forward over 2025. Red Bull arrived with questions still unanswered about their power unit partnership. For F1 Fantasy managers, the season opener is the hardest week to call — and the most important not to get wrong.

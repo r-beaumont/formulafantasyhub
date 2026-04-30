@@ -1,11 +1,44 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import ShareBar from '@/components/ShareBar'
 import { articles, getArticleBySlug } from '@/lib/articles'
 
 export function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }))
+}
+
+export async function generateMetadata(
+  { params }: { params: { slug: string } }
+): Promise<Metadata> {
+  const article = getArticleBySlug(params.slug)
+  if (!article) return {}
+
+  const ogImage = article.ogImage ?? `https://formulahub.live/og/${article.slug}`
+
+  return {
+    title: `${article.title} | Formula Hub`,
+    description: article.excerpt,
+    alternates: { canonical: `https://formulahub.live/news/${article.slug}` },
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      url: `https://formulahub.live/news/${article.slug}`,
+      siteName: 'Formula Hub',
+      type: 'article',
+      images: [{ url: ogImage, width: 1200, height: 630, alt: article.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: '@F_FantasyHub',
+      creator: '@F_FantasyHub',
+      title: article.title,
+      description: article.excerpt,
+      images: [ogImage],
+    },
+  }
 }
 
 const categoryColors: Record<string, { color: string; bg: string }> = {
@@ -92,6 +125,9 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
             </div>
           </div>
 
+          {/* Share bar — Location A */}
+          <ShareBar title={article.title} slug={article.slug} showLabel={true} />
+
           {/* Excerpt callout */}
           <div style={{ background: 'rgba(232,0,45,0.06)', border: '1px solid rgba(232,0,45,0.2)', borderLeft: '3px solid #E8002D', borderRadius: '8px', padding: '16px 20px', marginBottom: '32px' }}>
             <p style={{ fontSize: '15px', color: '#8A9AB0', lineHeight: 1.7, margin: 0, fontStyle: 'italic' }}>{article.excerpt}</p>
@@ -99,6 +135,9 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
 
           {/* Content */}
           <div>{renderContent(article.content)}</div>
+
+          {/* Share bar — Location B */}
+          <ShareBar title={article.title} slug={article.slug} />
 
           {/* Related articles */}
           {otherArticles.length > 0 && (
