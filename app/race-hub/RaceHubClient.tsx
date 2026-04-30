@@ -720,7 +720,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                 <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: '24px', paddingTop: '24px' }}>
 
                   {/* ── SECTION 2: DNF HISTORY ── */}
-                  <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '14px' }}>DNF History</div>
+                  <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '14px' }}>DNF/DSQ History</div>
 
                   {overview.dnfHistory.y2023 === null && overview.dnfHistory.y2024 === null && overview.dnfHistory.y2025 === null ? (
                     <div style={{ textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px', padding: '8px 0' }}>No historical data — debut circuit</div>
@@ -742,12 +742,12 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                       {/* Large average */}
                       <div style={{ textAlign: 'center' as const, marginBottom: '14px' }}>
                         <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '52px', fontWeight: 700, color: '#F0F4F8', lineHeight: 1 }}>{overview.dnfHistory.avg}</div>
-                        <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '4px' }}>Average DNFs per Race (2023–2025)</div>
+                        <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '4px' }}>Average DNFs/DSQs Per Race (2023–2025)</div>
                       </div>
-                      {/* DNF Risk Indicator */}
+                      {/* Risk Indicator */}
                       {dnfRisk && (
                         <div>
-                          <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '8px' }}>DNF Risk Indicator</div>
+                          <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#5A6A7A', marginBottom: '8px' }}>Risk Indicator</div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: dnfRisk.bg, borderRadius: '8px', padding: '12px 14px' }}>
                             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: dnfRisk.color, flexShrink: 0 }} />
                             <div>
