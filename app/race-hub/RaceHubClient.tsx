@@ -1047,8 +1047,8 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
               { name: 'Soft',   color: '#E8002D', code: 'C5', desc: 'Fast qualifying tyre. Degrades quickly in Miami heat. Commonly used at race start.' },
             ],
             strategies: [
-              { name: '1-Stop Soft → Hard',       stops: 1, laps: ['Lap 1–18: Soft',   'Pit ~Lap 18', 'Lap 19–57: Hard'],                                              note: 'Frontrunner default. Gets the soft out of the way early and covers off the undercut threat.' },
-              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–25: Medium', 'Pit ~Lap 25', 'Lap 26–57: Hard'],                                              note: 'Conservative option. Suits drivers starting mid-grid who want track position in the second stint.' },
+              { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–27: Medium', 'Pit ~Lap 27', 'Lap 28–57: Hard'],                                              note: 'Benchmark strategy. Delivered the race win in 2025 and expected to be the frontrunner default again this year.' },
+              { name: '1-Stop Soft → Hard',       stops: 1, laps: ['Lap 1–18: Soft',   'Pit ~Lap 18', 'Lap 19–57: Hard'],                                              note: 'Aggressive option for drivers looking to gain track position off the line. Higher tyre risk in Miami heat.' },
               { name: '2-Stop Soft → Med → Hard', stops: 2, laps: ['Lap 1–15: Soft',   'Pit ~Lap 15', 'Lap 16–36: Medium', 'Pit ~Lap 36', 'Lap 37–57: Hard'], note: 'Used after safety car or if degradation is high. Can be reactive to race events.' },
             ],
           },
