@@ -523,12 +523,12 @@ function InsightsTab() {
   })
 
   const tableTitle  = view === 'overtakes' ? 'Overtakes per Race' : 'DNFs per Race'
-  const cols: { key: SortCol; label: string }[] = [
-    { key: 'circuit', label: 'Circuit'  },
-    { key: '2023',    label: '2023'     },
-    { key: '2024',    label: '2024'     },
-    { key: '2025',    label: '2025'     },
-    { key: 'avg',     label: 'Average'  },
+  const cols: { key: SortCol; label: string; width?: string }[] = [
+    { key: 'circuit', label: 'Circuit'                    },
+    { key: '2023',    label: '2023',    width: '65px'     },
+    { key: '2024',    label: '2024',    width: '65px'     },
+    { key: '2025',    label: '2025',    width: '65px'     },
+    { key: 'avg',     label: 'Average', width: '85px'     },
   ]
 
   function arrow(col: SortCol) {
@@ -597,7 +597,7 @@ function InsightsTab() {
 
         {/* Table */}
         <div style={{ overflowX: 'auto' as const }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' as const, minWidth: '480px' }}>
+          <table style={{ width: '100%', tableLayout: 'fixed' as const, borderCollapse: 'collapse' as const, minWidth: '640px' }}>
             <thead>
               <tr style={{ background: '#131A21', borderBottom: '0.5px solid rgba(255,255,255,0.07)' }}>
                 {cols.map((col, colIdx) => (
@@ -606,6 +606,7 @@ function InsightsTab() {
                       onClick={() => handleSort(col.key)}
                       style={{
                         padding: '10px 12px',
+                        ...(col.width ? { width: col.width } : {}),
                         fontFamily: 'DM Sans, sans-serif',
                         fontSize: '10px',
                         fontWeight: 600,
@@ -617,6 +618,7 @@ function InsightsTab() {
                         paddingLeft: col.key === 'circuit' ? '20px' : '12px',
                         whiteSpace: 'nowrap' as const,
                         userSelect: 'none' as const,
+                        overflow: 'hidden' as const,
                       }}
                     >
                       {col.label}{arrow(col.key)}
@@ -625,7 +627,7 @@ function InsightsTab() {
                     {colIdx === 0 && (
                       <th
                         onClick={() => handleSort('badge')}
-                        style={{ padding: '10px 12px', width: '150px', minWidth: '150px', fontFamily: 'DM Sans, sans-serif', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: sortCol === 'badge' ? '#E8002D' : '#5A6A7A', textAlign: 'left' as const, whiteSpace: 'nowrap' as const, cursor: 'pointer', userSelect: 'none' as const }}
+                        style={{ padding: '10px 12px', width: '185px', fontFamily: 'DM Sans, sans-serif', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: sortCol === 'badge' ? '#E8002D' : '#5A6A7A', textAlign: 'left' as const, whiteSpace: 'nowrap' as const, cursor: 'pointer', userSelect: 'none' as const, overflow: 'hidden' as const }}
                       >
                         {view === 'overtakes' ? 'Overtaking Difficulty' : 'Rain Risk'}{arrow('badge')}
                       </th>
@@ -653,7 +655,7 @@ function InsightsTab() {
                     </div>
                   </td>
                   {/* Badge column — OT Difficulty (overtakes) or Rain Risk (DNFs) */}
-                  <td style={{ padding: '10px 12px', width: '150px', minWidth: '150px', whiteSpace: 'nowrap' as const }}>
+                  <td style={{ padding: '10px 12px', width: '185px', overflow: 'hidden' as const }}>
                     <RiskBadge level={view === 'overtakes' ? otDifficulty[row.circuit] : rainRisk[row.circuit]} />
                   </td>
                   {/* 2023 */}
