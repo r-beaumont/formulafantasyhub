@@ -13,6 +13,7 @@ const links = [
   { href: '/standings',  label: 'Standings' },
   { href: '/news',       label: 'News' },
   { href: '/videos',     label: 'Videos' },
+  { href: '/about',      label: 'About' },
 ]
 
 export default function Navbar() {
