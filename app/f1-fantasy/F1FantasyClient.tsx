@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 
 const card = { background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' as const }
@@ -430,7 +430,7 @@ const otDifficulty: Record<string, 'HIGH' | 'MEDIUM' | 'LOW'> = {
   'Brazil':        'LOW',
   'Las Vegas':     'LOW',
   'Qatar':         'MEDIUM',
-  'Abu Dhabi':     'MEDIUM',
+  'Abu Dhabi':     'LOW',
 }
 
 const riskColors = {
@@ -593,9 +593,8 @@ function InsightsTab() {
             <thead>
               <tr style={{ background: '#131A21', borderBottom: '0.5px solid rgba(255,255,255,0.07)' }}>
                 {cols.map((col, colIdx) => (
-                  <>
+                  <React.Fragment key={col.key}>
                     <th
-                      key={col.key}
                       onClick={() => handleSort(col.key)}
                       style={{
                         padding: '10px 12px',
@@ -614,13 +613,13 @@ function InsightsTab() {
                     >
                       {col.label}{arrow(col.key)}
                     </th>
-                    {/* Non-sortable badge column injected after Circuit */}
+                    {/* Non-sortable badge column — fixed width so toggling views doesn't shift other columns */}
                     {colIdx === 0 && (
-                      <th key="badge-col" style={{ padding: '10px 12px', fontFamily: 'DM Sans, sans-serif', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: '#5A6A7A', textAlign: 'left' as const, whiteSpace: 'nowrap' as const }}>
+                      <th style={{ padding: '10px 12px', width: '130px', minWidth: '130px', fontFamily: 'DM Sans, sans-serif', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: '#5A6A7A', textAlign: 'left' as const, whiteSpace: 'nowrap' as const }}>
                         {view === 'overtakes' ? 'OT Difficulty' : 'Rain Risk'}
                       </th>
                     )}
-                  </>
+                  </React.Fragment>
                 ))}
               </tr>
             </thead>
@@ -643,7 +642,7 @@ function InsightsTab() {
                     </div>
                   </td>
                   {/* Badge column — OT Difficulty (overtakes) or Rain Risk (DNFs) */}
-                  <td style={{ padding: '10px 12px', whiteSpace: 'nowrap' as const }}>
+                  <td style={{ padding: '10px 12px', width: '130px', minWidth: '130px', whiteSpace: 'nowrap' as const }}>
                     <RiskBadge level={view === 'overtakes' ? otDifficulty[row.circuit] : rainRisk[row.circuit]} />
                   </td>
                   {/* 2023 */}
