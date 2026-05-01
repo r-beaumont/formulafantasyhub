@@ -773,110 +773,85 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
 
       {/* RACE INFO TAB */}
       {activeTab === 'race-info' && (() => {
-        const isCurrentRace = selectedRound === CURRENT_RACE.round
-        // For the upcoming current race, always prefer CURRENT_RACE.sessions over OpenF1.
-        // OpenF1's 'latest' endpoint returns the previous race's sessions until the new weekend begins.
-        const useStaticSessions = !loading && isCurrentRace && !selectedRace.completed && CURRENT_RACE.sessions.length > 0
-        const calendarSessData = SEASON_CALENDAR.find(r => r.round === selectedRound)?.sessions
-        const useCalendarSessions = !loading && sessions.length === 0 && !useStaticSessions && !!calendarSessData?.length
         const raceTimezone = selectedRace?.timezone ?? 'UTC'
+        const now = new Date()
+        const shortMap: Record<string, string> = {
+          'Practice 1': 'FP1', 'Practice 2': 'FP2', 'Practice 3': 'FP3',
+          'Sprint Qualifying': 'SQ', 'Sprint': 'SPR',
+          'Qualifying': 'QUAL', 'Race': 'RACE',
+        }
+
+        // Build a unified session list for all 22 rounds using a single data structure.
+        // Priority: CURRENT_RACE static data (current round) → SEASON_CALENDAR sessions → OpenF1 fallback (R1/R2).
+        type USession = { name: string; short: string; isoDate: string; isCompleted: boolean }
+        let displaySessions: USession[] = []
+
+        if (selectedRound === CURRENT_RACE.round) {
+          // Current race — use CURRENT_RACE which has per-session completed flags
+          displaySessions = CURRENT_RACE.sessions.map(s => ({
+            name: s.name,
+            short: s.short ?? shortMap[s.name] ?? s.name,
+            isoDate: s.dateISO ?? '',
+            isCompleted: s.completed,
+          }))
+        } else {
+          const calSessions = SEASON_CALENDAR.find(r => r.round === selectedRound)?.sessions
+          if (calSessions?.length) {
+            // All other rounds with calendar data (R3–R22 except current)
+            displaySessions = calSessions.map(s => ({
+              name: s.name,
+              short: shortMap[s.name] ?? s.name,
+              isoDate: s.date,
+              isCompleted: new Date(s.date) < now,
+            }))
+          } else if (sessions.length > 0) {
+            // R1/R2 fallback — completed races with OpenF1 data
+            displaySessions = sessions.map((s: any) => ({
+              name: s.session_name,
+              short: shortMap[s.session_name] ?? s.session_name,
+              isoDate: s.date_start ?? '',
+              isCompleted: s.date_start ? new Date(s.date_start) < now : true,
+            }))
+          }
+        }
+
+        const nextIdx = displaySessions.findIndex(s => !s.isCompleted)
+
         return (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px' }}>
             <div style={card}>
               <div style={cardHeader}>
                 <span style={cardTitle}>Session Schedule</span>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  {/* Timezone toggle */}
                   <div style={{ display: 'flex', background: '#141B22', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.07)', overflow: 'hidden' }}>
-                    <button
-                      onClick={() => setUseLocalTime(false)}
-                      style={{
-                        background: !useLocalTime ? 'rgba(232,0,45,0.15)' : 'transparent',
-                        color: !useLocalTime ? '#E8002D' : '#5A6A7A',
-                        border: 'none', padding: '4px 10px', cursor: 'pointer',
-                        fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.5px',
-                      }}
-                    >Track</button>
-                    <button
-                      onClick={() => setUseLocalTime(true)}
-                      style={{
-                        background: useLocalTime ? 'rgba(232,0,45,0.15)' : 'transparent',
-                        color: useLocalTime ? '#E8002D' : '#5A6A7A',
-                        border: 'none', borderLeft: '1px solid rgba(255,255,255,0.07)',
-                        padding: '4px 10px', cursor: 'pointer',
-                        fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.5px',
-                      }}
-                    >Local</button>
+                    <button onClick={() => setUseLocalTime(false)} style={{ background: !useLocalTime ? 'rgba(232,0,45,0.15)' : 'transparent', color: !useLocalTime ? '#E8002D' : '#5A6A7A', border: 'none', padding: '4px 10px', cursor: 'pointer', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>Track</button>
+                    <button onClick={() => setUseLocalTime(true)}  style={{ background: useLocalTime  ? 'rgba(232,0,45,0.15)' : 'transparent', color: useLocalTime  ? '#E8002D' : '#5A6A7A', border: 'none', borderLeft: '1px solid rgba(255,255,255,0.07)', padding: '4px 10px', cursor: 'pointer', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>Local</button>
                   </div>
                   <Badge type={selectedRace.completed ? 'done' : 'live'} label={selectedRace.completed ? 'Completed' : 'Upcoming'} />
                 </div>
               </div>
               <div style={{ padding: '16px 20px' }}>
-                {loading ? <Loader label="sessions" /> : sessions.length === 0 && !useStaticSessions && !useCalendarSessions ? (
-                  <div style={{ color: '#5A6A7A', fontSize: '13px', padding: '20px 0' }}>
-                    {selectedRace.completed ? 'Session data not yet available' : `Sessions will appear closer to race weekend (${selectedRace.date})`}
-                  </div>
-                ) : useCalendarSessions ? (
-                  calendarSessData!.map((s, i) => {
-                    const now = new Date()
-                    const sessionDate = new Date(s.date)
-                    const isCompleted = sessionDate < now
-                    const isNext = !isCompleted && calendarSessData!.findIndex(x => new Date(x.date) >= now) === i
-                    const shortMap: Record<string, string> = { 'Practice 1': 'FP1', 'Practice 2': 'FP2', 'Practice 3': 'FP3', 'Sprint Qualifying': 'SQ', 'Sprint': 'SPRINT', 'Qualifying': 'QUAL', 'Race': 'RACE' }
-                    const shortLabel = shortMap[s.name] || s.name
-                    const { dateLabel, timeLabel: displayTime } = formatSessionDateTime(s.date, raceTimezone, useLocalTime)
-                    return (
-                      <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < calendarSessData!.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', opacity: isCompleted ? 0.45 : 1 }}>
-                        <div style={{ width: '52px', fontFamily: 'Bebas Neue, sans-serif', fontSize: '12px', letterSpacing: '0.5px', color: isNext ? '#E8002D' : isCompleted ? '#3A4A5A' : '#8A9AB0', textAlign: 'center' as const, background: isNext ? 'rgba(232,0,45,0.1)' : 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>
-                          {shortLabel}
-                        </div>
-                        <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: '13px', fontWeight: 600, color: isCompleted ? '#3A4A5A' : '#F0F4F8' }}>{s.name}</div>
-                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>{dateLabel} · {displayTime}</div>
-                        </div>
-                        {isNext && <span style={{ fontSize: '9px', fontWeight: 700, padding: '3px 7px', borderRadius: '20px', background: '#E8002D', color: 'white', textTransform: 'uppercase' as const, letterSpacing: '0.5px', flexShrink: 0 }}>Next</span>}
-                        {isCompleted && <span style={{ fontSize: '12px', color: '#00D47E', flexShrink: 0 }}>✓</span>}
+                {loading ? <Loader label="sessions" /> : displaySessions.length === 0 ? (
+                  <div style={{ color: '#5A6A7A', fontSize: '13px', padding: '20px 0' }}>Session data not available.</div>
+                ) : displaySessions.map((s, i) => {
+                  const isNext = i === nextIdx
+                  const { dateLabel, timeLabel } = s.isoDate
+                    ? formatSessionDateTime(s.isoDate, raceTimezone, useLocalTime)
+                    : { dateLabel: '—', timeLabel: '—' }
+                  return (
+                    <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < displaySessions.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', opacity: s.isCompleted ? 0.45 : 1 }}>
+                      <div style={{ width: '52px', fontFamily: 'Bebas Neue, sans-serif', fontSize: '12px', letterSpacing: '0.5px', color: isNext ? '#E8002D' : s.isCompleted ? '#3A4A5A' : '#8A9AB0', textAlign: 'center' as const, background: isNext ? 'rgba(232,0,45,0.1)' : 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>
+                        {s.short}
                       </div>
-                    )
-                  })
-                ) : useStaticSessions ? (
-                  CURRENT_RACE.sessions.map((s, i) => {
-                    const nextSession = CURRENT_RACE.sessions.find(x => !x.completed)
-                    const isNext = s === nextSession
-                    const { dateLabel, timeLabel: displayTime } = s.dateISO
-                      ? formatSessionDateTime(s.dateISO, CURRENT_RACE.timezone, useLocalTime)
-                      : { dateLabel: s.date, timeLabel: useLocalTime ? new Date(s.dateISO ?? '').toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) : s.timeLocal }
-                    return (
-                      <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < CURRENT_RACE.sessions.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', opacity: s.completed ? 0.45 : 1 }}>
-                        <div style={{ width: '52px', fontFamily: 'Bebas Neue, sans-serif', fontSize: '12px', letterSpacing: '0.5px', color: isNext ? '#E8002D' : s.completed ? '#3A4A5A' : '#8A9AB0', textAlign: 'center' as const, background: isNext ? 'rgba(232,0,45,0.1)' : 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>
-                          {s.short}
-                        </div>
-                        <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: '13px', fontWeight: 600, color: s.completed ? '#3A4A5A' : '#F0F4F8' }}>{s.name}</div>
-                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>
-                            {dateLabel} · {displayTime}
-                          </div>
-                        </div>
-                        {isNext && <span style={{ fontSize: '9px', fontWeight: 700, padding: '3px 7px', borderRadius: '20px', background: '#E8002D', color: 'white', textTransform: 'uppercase' as const, letterSpacing: '0.5px', flexShrink: 0 }}>Next</span>}
-                        {s.completed && <span style={{ fontSize: '12px', color: '#00D47E', flexShrink: 0 }}>✓</span>}
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: '13px', fontWeight: 600, color: s.isCompleted ? '#3A4A5A' : '#F0F4F8' }}>{s.name}</div>
+                        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>{dateLabel} · {timeLabel}</div>
                       </div>
-                    )
-                  })
-                ) : sessions.map((s: any, i: number) => (
-                  <div key={s.session_key} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < sessions.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: '13px', fontWeight: 600 }}>{s.session_name}</div>
-                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>
-                        {s.date_start
-                          ? (() => {
-                              const { dateLabel, timeLabel } = formatSessionDateTime(s.date_start, raceTimezone, useLocalTime)
-                              return `${dateLabel} · ${timeLabel}`
-                            })()
-                          : '—'}
-                      </div>
+                      {isNext     && <span style={{ fontSize: '9px', fontWeight: 700, padding: '3px 7px', borderRadius: '20px', background: '#E8002D', color: 'white', textTransform: 'uppercase' as const, letterSpacing: '0.5px', flexShrink: 0 }}>Next</span>}
+                      {s.isCompleted && <span style={{ fontSize: '12px', color: '#00D47E', flexShrink: 0 }}>✓</span>}
                     </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             </div>
           </div>
