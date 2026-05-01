@@ -323,7 +323,7 @@ function ChipOverviewTab() {
 // ── Insights tab ───────────────────────────────────────────────────────────────
 
 type SortDir = 'asc' | 'desc'
-type SortCol = 'circuit' | '2023' | '2024' | '2025' | 'avg'
+type SortCol = 'circuit' | '2023' | '2024' | '2025' | 'avg' | 'badge'
 
 interface CircuitRow {
   circuit: string
@@ -501,10 +501,18 @@ function InsightsTab() {
     }
   }
 
+  const badgeRank: Record<string, number> = { LOW: 1, MEDIUM: 2, HIGH: 3 }
+
   const sorted = [...withAvg].sort((a, b) => {
     const dir = sortDir === 'desc' ? -1 : 1
     if (sortCol === 'circuit') {
       return dir * a.circuit.localeCompare(b.circuit)
+    }
+    if (sortCol === 'badge') {
+      const map = view === 'overtakes' ? otDifficulty : rainRisk
+      const ra = badgeRank[map[a.circuit] ?? ''] ?? 0
+      const rb = badgeRank[map[b.circuit] ?? ''] ?? 0
+      return dir * (ra - rb)
     }
     const va = sortCol === 'avg' ? a.avg : a[`y${sortCol}` as keyof typeof a] as number | null
     const vb = sortCol === 'avg' ? b.avg : b[`y${sortCol}` as keyof typeof b] as number | null
@@ -613,10 +621,13 @@ function InsightsTab() {
                     >
                       {col.label}{arrow(col.key)}
                     </th>
-                    {/* Non-sortable badge column — fixed width so toggling views doesn't shift other columns */}
+                    {/* Sortable badge column */}
                     {colIdx === 0 && (
-                      <th style={{ padding: '10px 12px', width: '130px', minWidth: '130px', fontFamily: 'DM Sans, sans-serif', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: '#5A6A7A', textAlign: 'left' as const, whiteSpace: 'nowrap' as const }}>
-                        {view === 'overtakes' ? 'OT Difficulty' : 'Rain Risk'}
+                      <th
+                        onClick={() => handleSort('badge')}
+                        style={{ padding: '10px 12px', width: '150px', minWidth: '150px', fontFamily: 'DM Sans, sans-serif', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: sortCol === 'badge' ? '#E8002D' : '#5A6A7A', textAlign: 'left' as const, whiteSpace: 'nowrap' as const, cursor: 'pointer', userSelect: 'none' as const }}
+                      >
+                        {view === 'overtakes' ? 'Overtaking Difficulty' : 'Rain Risk'}{arrow('badge')}
                       </th>
                     )}
                   </React.Fragment>
@@ -642,7 +653,7 @@ function InsightsTab() {
                     </div>
                   </td>
                   {/* Badge column — OT Difficulty (overtakes) or Rain Risk (DNFs) */}
-                  <td style={{ padding: '10px 12px', width: '130px', minWidth: '130px', whiteSpace: 'nowrap' as const }}>
+                  <td style={{ padding: '10px 12px', width: '150px', minWidth: '150px', whiteSpace: 'nowrap' as const }}>
                     <RiskBadge level={view === 'overtakes' ? otDifficulty[row.circuit] : rainRisk[row.circuit]} />
                   </td>
                   {/* 2023 */}
