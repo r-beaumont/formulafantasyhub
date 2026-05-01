@@ -400,7 +400,7 @@ const rainRisk: Record<string, 'HIGH' | 'MEDIUM' | 'LOW'> = {
   'Madrid':        'LOW',
   'Azerbaijan':    'MEDIUM',
   'Singapore':     'HIGH',
-  'United States': 'MEDIUM',
+  'United States': 'LOW',
   'Mexico':        'LOW',
   'Brazil':        'HIGH',
   'Las Vegas':     'LOW',
@@ -524,11 +524,11 @@ function InsightsTab() {
 
   const tableTitle  = view === 'overtakes' ? 'Overtakes per Race' : 'DNFs per Race'
   const cols: { key: SortCol; label: string; width?: string }[] = [
-    { key: 'circuit', label: 'Circuit'                    },
-    { key: '2023',    label: '2023',    width: '65px'     },
-    { key: '2024',    label: '2024',    width: '65px'     },
-    { key: '2025',    label: '2025',    width: '65px'     },
-    { key: 'avg',     label: 'Average', width: '85px'     },
+    { key: 'circuit', label: 'Circuit', width: '24%'  },
+    { key: '2023',    label: '2023',    width: '13%'  },
+    { key: '2024',    label: '2024',    width: '13%'  },
+    { key: '2025',    label: '2025',    width: '13%'  },
+    { key: 'avg',     label: 'Average', width: '15%'  },
   ]
 
   function arrow(col: SortCol) {
@@ -627,7 +627,7 @@ function InsightsTab() {
                     {colIdx === 0 && (
                       <th
                         onClick={() => handleSort('badge')}
-                        style={{ padding: '10px 12px', width: '185px', fontFamily: 'DM Sans, sans-serif', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: sortCol === 'badge' ? '#E8002D' : '#5A6A7A', textAlign: 'left' as const, whiteSpace: 'nowrap' as const, cursor: 'pointer', userSelect: 'none' as const, overflow: 'hidden' as const }}
+                        style={{ padding: '10px 12px', width: '22%', fontFamily: 'DM Sans, sans-serif', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: sortCol === 'badge' ? '#E8002D' : '#5A6A7A', textAlign: 'left' as const, whiteSpace: 'nowrap' as const, cursor: 'pointer', userSelect: 'none' as const, overflow: 'hidden' as const }}
                       >
                         {view === 'overtakes' ? 'Overtaking Difficulty' : 'Rain Risk'}{arrow('badge')}
                       </th>
@@ -655,7 +655,7 @@ function InsightsTab() {
                     </div>
                   </td>
                   {/* Badge column — OT Difficulty (overtakes) or Rain Risk (DNFs) */}
-                  <td style={{ padding: '10px 12px', width: '185px', overflow: 'hidden' as const }}>
+                  <td style={{ padding: '10px 12px', width: '22%', overflow: 'hidden' as const }}>
                     <RiskBadge level={view === 'overtakes' ? otDifficulty[row.circuit] : rainRisk[row.circuit]} />
                   </td>
                   {/* 2023 */}
