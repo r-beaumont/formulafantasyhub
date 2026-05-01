@@ -197,7 +197,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       mostPolesConstructor: 'McLaren', mostPolesConstructorCount: 12,
       avgOvertakes: 65, overtakeSeasonsLabel: '2023–2025',
       overtakes2023: 81, overtakes2024: 85, overtakes2025: 28,
-      gridImportance: 'MEDIUM',
+      gridImportance: 'HIGH',
       totalGPs: 36, firstGP: 1987, circuitLength: '5.807 km',
       dnfHistory: { y2023: 5, y2024: 3, y2025: 0, avg: 2.67 },
     },

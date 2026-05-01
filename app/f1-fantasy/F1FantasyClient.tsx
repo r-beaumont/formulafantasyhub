@@ -411,7 +411,7 @@ const rainRisk: Record<string, 'HIGH' | 'MEDIUM' | 'LOW'> = {
 const otDifficulty: Record<string, 'HIGH' | 'MEDIUM' | 'LOW'> = {
   'Australia':     'MEDIUM',
   'China':         'LOW',
-  'Japan':         'MEDIUM',
+  'Japan':         'HIGH',
   'Miami':         'LOW',
   'Canada':        'MEDIUM',
   'Monaco':        'HIGH',
