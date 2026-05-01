@@ -3,8 +3,6 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-const CHANNEL_ID = 'UC8vDGmYVis-6zsmAMoVoPDA'
-const API_KEY = 'AIzaSyBSTj2GNQ1HLAa2WG9UCFxwohcSt2Uj-qA'
 
 interface Video {
   id: string
@@ -36,13 +34,10 @@ export default function VideosClient() {
   useEffect(() => {
     async function fetchVideos() {
       try {
-        const [searchRes, liveRes] = await Promise.all([
-          fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&order=date&maxResults=12&type=video`),
-          fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&eventType=live&type=video&maxResults=5`),
-        ])
+        const res = await fetch('/api/youtube')
+        if (!res.ok) throw new Error('Failed to fetch videos')
+        const { videos: data, live: liveData } = await res.json()
 
-        if (!searchRes.ok) throw new Error('Failed to fetch videos')
-        const data = await searchRes.json()
         const mapped: Video[] = (data.items || [])
           .map((item: any) => ({
             id: item.id.videoId,
@@ -53,20 +48,17 @@ export default function VideosClient() {
           }))
         setVideos(mapped)
 
-        if (liveRes.ok) {
-          const liveData = await liveRes.json()
-          const liveIds = new Set(mapped.map(v => v.id))
-          const liveMapped: Video[] = (liveData.items || [])
-            .map((item: any) => ({
-              id: item.id.videoId,
-              title: item.snippet.title,
-              description: item.snippet.description,
-              publishedAt: item.snippet.publishedAt,
-              thumbnail: item.snippet.thumbnails?.high?.url || item.snippet.thumbnails?.default?.url,
-            }))
-            .filter((v: Video) => !liveIds.has(v.id))
-          setLiveStreams(liveMapped)
-        }
+        const liveIds = new Set(mapped.map((v: Video) => v.id))
+        const liveMapped: Video[] = (liveData.items || [])
+          .map((item: any) => ({
+            id: item.id.videoId,
+            title: item.snippet.title,
+            description: item.snippet.description,
+            publishedAt: item.snippet.publishedAt,
+            thumbnail: item.snippet.thumbnails?.high?.url || item.snippet.thumbnails?.default?.url,
+          }))
+          .filter((v: Video) => !liveIds.has(v.id))
+        setLiveStreams(liveMapped)
       } catch (e) {
         setError('Could not load videos — visit the YouTube channel directly.')
       } finally {
