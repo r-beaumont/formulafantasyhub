@@ -543,7 +543,7 @@ function InsightsTab() {
       <div style={{ background: '#0E1318', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '20px 24px', marginBottom: '12px', display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
         <div style={{ fontSize: '22px', flexShrink: 0, marginTop: '2px' }}>📊</div>
         <div>
-          <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', fontWeight: 600, color: '#E8002D', textTransform: 'uppercase' as const, letterSpacing: '0.1em', marginBottom: '8px' }}>F1 Fantasy Insights</div>
+          <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', fontWeight: 600, color: '#E8002D', textTransform: 'uppercase' as const, letterSpacing: '0.1em', marginBottom: '8px' }}>F1 Fantasy Statistics</div>
           <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '14px', color: '#8A9BB0', lineHeight: 1.6, margin: 0 }}>
             Circuit data to drive your team forward — three years of overtaking and DNF history across every track on the 2026 calendar, fully sortable so you can spot the patterns that matter.
           </p>
@@ -688,12 +688,12 @@ function InsightsTab() {
 // ── Main client ────────────────────────────────────────────────────────────────
 
 export default function F1FantasyClient() {
-  const [activeTab, setActiveTab] = useState<'how-to-play' | 'chip-overview' | 'insights'>('how-to-play')
+  const [activeTab, setActiveTab] = useState<'how-to-play' | 'chip-overview' | 'statistics'>('how-to-play')
 
   const tabs = [
     { id: 'how-to-play',   label: 'How to Play'   },
     { id: 'chip-overview', label: 'Chip Overview'  },
-    { id: 'insights',      label: 'Insights'       },
+    { id: 'statistics',    label: 'Statistics'     },
   ] as const
 
   return (
@@ -735,7 +735,7 @@ export default function F1FantasyClient() {
       {/* Tab content */}
       {activeTab === 'chip-overview' && <ChipOverviewTab />}
       {activeTab === 'how-to-play'   && <HowToPlayTab />}
-      {activeTab === 'insights'      && <InsightsTab />}
+      {activeTab === 'statistics'    && <InsightsTab />}
 
     </div>
   )
