@@ -383,6 +383,81 @@ const dnfData: CircuitRow[] = [
   { circuit: 'Abu Dhabi',    flag: 'ae', y2023: 0,    y2024: 3,   y2025: 0   },
 ]
 
+const rainRisk: Record<string, 'HIGH' | 'MEDIUM' | 'LOW'> = {
+  'Australia':     'MEDIUM',
+  'China':         'MEDIUM',
+  'Japan':         'MEDIUM',
+  'Miami':         'HIGH',
+  'Canada':        'HIGH',
+  'Monaco':        'MEDIUM',
+  'Spain':         'LOW',
+  'Austria':       'MEDIUM',
+  'Britain':       'HIGH',
+  'Belgium':       'HIGH',
+  'Hungary':       'MEDIUM',
+  'Netherlands':   'HIGH',
+  'Italy':         'MEDIUM',
+  'Madrid':        'LOW',
+  'Azerbaijan':    'MEDIUM',
+  'Singapore':     'HIGH',
+  'United States': 'MEDIUM',
+  'Mexico':        'LOW',
+  'Brazil':        'HIGH',
+  'Las Vegas':     'LOW',
+  'Qatar':         'LOW',
+  'Abu Dhabi':     'LOW',
+}
+
+const otDifficulty: Record<string, 'HIGH' | 'MEDIUM' | 'LOW'> = {
+  'Australia':     'MEDIUM',
+  'China':         'LOW',
+  'Japan':         'MEDIUM',
+  'Miami':         'LOW',
+  'Canada':        'MEDIUM',
+  'Monaco':        'HIGH',
+  'Spain':         'LOW',
+  'Austria':       'LOW',
+  'Britain':       'MEDIUM',
+  'Belgium':       'MEDIUM',
+  'Hungary':       'HIGH',
+  'Netherlands':   'HIGH',
+  'Italy':         'MEDIUM',
+  'Madrid':        'MEDIUM',
+  'Azerbaijan':    'MEDIUM',
+  'Singapore':     'HIGH',
+  'United States': 'LOW',
+  'Mexico':        'LOW',
+  'Brazil':        'LOW',
+  'Las Vegas':     'LOW',
+  'Qatar':         'MEDIUM',
+  'Abu Dhabi':     'MEDIUM',
+}
+
+const riskColors = {
+  HIGH:   { color: '#E8002D', bg: 'rgba(232,0,45,0.12)',   border: 'rgba(232,0,45,0.4)'   },
+  MEDIUM: { color: '#FF8700', bg: 'rgba(255,135,0,0.12)',  border: 'rgba(255,135,0,0.4)'  },
+  LOW:    { color: '#00C851', bg: 'rgba(0,200,81,0.12)',   border: 'rgba(0,200,81,0.4)'   },
+}
+
+function RiskBadge({ level }: { level: 'HIGH' | 'MEDIUM' | 'LOW' | undefined }) {
+  if (!level) return <span style={{ color: '#5A6A7A', fontFamily: 'JetBrains Mono, monospace', fontSize: '11px' }}>—</span>
+  const c = riskColors[level]
+  return (
+    <span style={{
+      display: 'inline-block',
+      padding: '2px 10px',
+      borderRadius: '4px',
+      fontFamily: 'JetBrains Mono, monospace',
+      fontSize: '11px',
+      fontWeight: 600,
+      letterSpacing: '0.05em',
+      background: c.bg,
+      border: `0.5px solid ${c.border}`,
+      color: c.color,
+    }}>{level}</span>
+  )
+}
+
 function calcAvg(row: CircuitRow): number | null {
   const vals = [row.y2023, row.y2024, row.y2025].filter((v): v is number => v !== null)
   if (vals.length === 0) return null
@@ -517,27 +592,35 @@ function InsightsTab() {
           <table style={{ width: '100%', borderCollapse: 'collapse' as const, minWidth: '480px' }}>
             <thead>
               <tr style={{ background: '#131A21', borderBottom: '0.5px solid rgba(255,255,255,0.07)' }}>
-                {cols.map(col => (
-                  <th
-                    key={col.key}
-                    onClick={() => handleSort(col.key)}
-                    style={{
-                      padding: '10px 12px',
-                      fontFamily: 'DM Sans, sans-serif',
-                      fontSize: '10px',
-                      fontWeight: 600,
-                      textTransform: 'uppercase' as const,
-                      letterSpacing: '0.08em',
-                      color: sortCol === col.key ? '#E8002D' : '#5A6A7A',
-                      textAlign: col.key === 'circuit' ? 'left' as const : 'right' as const,
-                      cursor: 'pointer',
-                      paddingLeft: col.key === 'circuit' ? '20px' : '12px',
-                      whiteSpace: 'nowrap' as const,
-                      userSelect: 'none' as const,
-                    }}
-                  >
-                    {col.label}{arrow(col.key)}
-                  </th>
+                {cols.map((col, colIdx) => (
+                  <>
+                    <th
+                      key={col.key}
+                      onClick={() => handleSort(col.key)}
+                      style={{
+                        padding: '10px 12px',
+                        fontFamily: 'DM Sans, sans-serif',
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        textTransform: 'uppercase' as const,
+                        letterSpacing: '0.08em',
+                        color: sortCol === col.key ? '#E8002D' : '#5A6A7A',
+                        textAlign: col.key === 'circuit' ? 'left' as const : 'right' as const,
+                        cursor: 'pointer',
+                        paddingLeft: col.key === 'circuit' ? '20px' : '12px',
+                        whiteSpace: 'nowrap' as const,
+                        userSelect: 'none' as const,
+                      }}
+                    >
+                      {col.label}{arrow(col.key)}
+                    </th>
+                    {/* Non-sortable badge column injected after Circuit */}
+                    {colIdx === 0 && (
+                      <th key="badge-col" style={{ padding: '10px 12px', fontFamily: 'DM Sans, sans-serif', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: '#5A6A7A', textAlign: 'left' as const, whiteSpace: 'nowrap' as const }}>
+                        {view === 'overtakes' ? 'OT Difficulty' : 'Rain Risk'}
+                      </th>
+                    )}
+                  </>
                 ))}
               </tr>
             </thead>
@@ -558,6 +641,10 @@ function InsightsTab() {
                       <span className={`fi fi-${row.flag}`} style={{ width: '1.2em', borderRadius: '2px', flexShrink: 0 }} />
                       <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '13px', fontWeight: 500, color: '#F0F4F8' }}>{row.circuit}</span>
                     </div>
+                  </td>
+                  {/* Badge column — OT Difficulty (overtakes) or Rain Risk (DNFs) */}
+                  <td style={{ padding: '10px 12px', whiteSpace: 'nowrap' as const }}>
+                    <RiskBadge level={view === 'overtakes' ? otDifficulty[row.circuit] : rainRisk[row.circuit]} />
                   </td>
                   {/* 2023 */}
                   <td style={{ padding: '10px 12px', textAlign: 'right' as const, fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: row.y2023 !== null ? '#F0F4F8' : '#5A6A7A' }}>
