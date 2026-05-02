@@ -681,6 +681,41 @@ function InsightsTab() {
         </div>
       </div>
 
+      {/* Legend note */}
+      <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: '16px', marginTop: '12px', padding: '0 4px' }}>
+        {view === 'overtakes' ? (
+          <>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+              <span style={{ display: 'inline-block', marginTop: '2px', padding: '1px 8px', borderRadius: '4px', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', fontWeight: 700, color: riskColors.HIGH.color, background: riskColors.HIGH.bg, border: `0.5px solid ${riskColors.HIGH.border}`, whiteSpace: 'nowrap' as const, flexShrink: 0 }}>HIGH</span>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>Few genuine overtaking opportunities; starting position has a strong bearing on final result.</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+              <span style={{ display: 'inline-block', marginTop: '2px', padding: '1px 8px', borderRadius: '4px', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', fontWeight: 700, color: riskColors.MEDIUM.color, background: riskColors.MEDIUM.bg, border: `0.5px solid ${riskColors.MEDIUM.border}`, whiteSpace: 'nowrap' as const, flexShrink: 0 }}>MEDIUM</span>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>Moderate passing frequency; strategy and race pace share influence with qualifying position.</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+              <span style={{ display: 'inline-block', marginTop: '2px', padding: '1px 8px', borderRadius: '4px', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', fontWeight: 700, color: riskColors.LOW.color, background: riskColors.LOW.bg, border: `0.5px solid ${riskColors.LOW.border}`, whiteSpace: 'nowrap' as const, flexShrink: 0 }}>LOW</span>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>High overtaking frequency; drivers can recover positions through race pace and strategy.</span>
+            </div>
+          </>
+        ) : (
+          <>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+              <span style={{ display: 'inline-block', marginTop: '2px', padding: '1px 8px', borderRadius: '4px', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', fontWeight: 700, color: riskColors.HIGH.color, background: riskColors.HIGH.bg, border: `0.5px solid ${riskColors.HIGH.border}`, whiteSpace: 'nowrap' as const, flexShrink: 0 }}>HIGH</span>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>Historically elevated rainfall probability; expect variable conditions and higher DNF rates.</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+              <span style={{ display: 'inline-block', marginTop: '2px', padding: '1px 8px', borderRadius: '4px', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', fontWeight: 700, color: riskColors.MEDIUM.color, background: riskColors.MEDIUM.bg, border: `0.5px solid ${riskColors.MEDIUM.border}`, whiteSpace: 'nowrap' as const, flexShrink: 0 }}>MEDIUM</span>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>Moderate likelihood of rain; conditions may shift during the session.</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+              <span style={{ display: 'inline-block', marginTop: '2px', padding: '1px 8px', borderRadius: '4px', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', fontWeight: 700, color: riskColors.LOW.color, background: riskColors.LOW.bg, border: `0.5px solid ${riskColors.LOW.border}`, whiteSpace: 'nowrap' as const, flexShrink: 0 }}>LOW</span>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>Typically dry conditions; more predictable scoring environment.</span>
+            </div>
+          </>
+        )}
+      </div>
+
     </div>
   )
 }
