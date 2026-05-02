@@ -208,7 +208,7 @@ export default function CalendarClient() {
                           const short = shortMap[s.name] || s.name
                           const now = new Date()
                           const dt  = new Date(s.date)
-                          const done = dt < now
+                          const done = dt.getTime() + (s.duration ?? 120) * 60 * 1000 < now.getTime()
                           const dateStr = dt.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: race.timezone })
                           const timeStr = dt.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: race.timezone })
                           return (

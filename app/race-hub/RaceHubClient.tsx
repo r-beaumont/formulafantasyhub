@@ -802,7 +802,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
               name: s.name,
               short: shortMap[s.name] ?? s.name,
               isoDate: s.date,
-              isCompleted: new Date(s.date) < now,
+              isCompleted: new Date(s.date).getTime() + (s.duration ?? 120) * 60 * 1000 < now.getTime(),
             }))
           } else if (sessions.length > 0) {
             // R1/R2 fallback — completed races with OpenF1 data

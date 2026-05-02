@@ -29,11 +29,11 @@ function formatTrackTime(
   }
 }
 
-/** A session is completed if its `completed` flag is set OR if 2 hours have passed since scheduled start. */
-function isCompleted(s: { completed: boolean; dateISO?: string }): boolean {
+function isCompleted(s: { completed: boolean; dateISO?: string; duration?: number }): boolean {
   if (s.completed) return true
   if (!s.dateISO) return false
-  return Date.now() > new Date(s.dateISO).getTime() + 2 * 60 * 60 * 1000
+  const durationMs = (s.duration ?? 120) * 60 * 1000
+  return Date.now() > new Date(s.dateISO).getTime() + durationMs
 }
 
 export default function RaceWeekendCard() {

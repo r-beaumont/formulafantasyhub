@@ -6,6 +6,7 @@ export interface Session {
   timeUTC: string
   timeLocal: string
   completed: boolean
+  duration?: number  // minutes — used to calculate scheduled end time
 }
 
 export interface Race {
@@ -30,11 +31,11 @@ export const CURRENT_RACE: Race = {
   isSprint: true,
   timezone: 'America/New_York',
   sessions: [
-    { name: 'Practice 1',        short: 'FP1',  date: 'Fri 1 May', dateISO: '2026-05-01T16:30:00Z', timeUTC: '16:30 UTC', timeLocal: '12:30 EDT', completed: false },
-    { name: 'Sprint Qualifying', short: 'SQ',   date: 'Fri 1 May', dateISO: '2026-05-01T20:30:00Z', timeUTC: '20:30 UTC', timeLocal: '16:30 EDT', completed: false },
-    { name: 'Sprint',            short: 'SPR',  date: 'Sat 2 May', dateISO: '2026-05-02T16:00:00Z', timeUTC: '16:00 UTC', timeLocal: '12:00 EDT', completed: false },
-    { name: 'Qualifying',        short: 'QUAL', date: 'Sat 2 May', dateISO: '2026-05-02T20:00:00Z', timeUTC: '20:00 UTC', timeLocal: '16:00 EDT', completed: false },
-    { name: 'Race',              short: 'RACE', date: 'Sun 3 May', dateISO: '2026-05-03T20:00:00Z', timeUTC: '20:00 UTC', timeLocal: '16:00 EDT', completed: false },
+    { name: 'Practice 1',        short: 'FP1',  date: 'Fri 1 May', dateISO: '2026-05-01T16:30:00Z', timeUTC: '16:30 UTC', timeLocal: '12:30 EDT', completed: false, duration: 60  },
+    { name: 'Sprint Qualifying', short: 'SQ',   date: 'Fri 1 May', dateISO: '2026-05-01T20:30:00Z', timeUTC: '20:30 UTC', timeLocal: '16:30 EDT', completed: false, duration: 44  },
+    { name: 'Sprint',            short: 'SPR',  date: 'Sat 2 May', dateISO: '2026-05-02T16:00:00Z', timeUTC: '16:00 UTC', timeLocal: '12:00 EDT', completed: false, duration: 60  },
+    { name: 'Qualifying',        short: 'QUAL', date: 'Sat 2 May', dateISO: '2026-05-02T20:00:00Z', timeUTC: '20:00 UTC', timeLocal: '16:00 EDT', completed: false, duration: 60  },
+    { name: 'Race',              short: 'RACE', date: 'Sun 3 May', dateISO: '2026-05-03T20:00:00Z', timeUTC: '20:00 UTC', timeLocal: '16:00 EDT', completed: false, duration: 120 },
   ],
 }
 
