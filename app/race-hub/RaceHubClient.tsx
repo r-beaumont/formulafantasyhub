@@ -815,8 +815,6 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
           }
         }
 
-        const nextIdx = displaySessions.findIndex(s => !s.isCompleted)
-
         return (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px' }}>
             <div style={card}>
@@ -834,20 +832,18 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                 {loading ? <Loader label="sessions" /> : displaySessions.length === 0 ? (
                   <div style={{ color: '#5A6A7A', fontSize: '13px', padding: '20px 0' }}>Session data not available.</div>
                 ) : displaySessions.map((s, i) => {
-                  const isNext = i === nextIdx
                   const { dateLabel, timeLabel } = s.isoDate
                     ? formatSessionDateTime(s.isoDate, raceTimezone, useLocalTime)
                     : { dateLabel: '—', timeLabel: '—' }
                   return (
                     <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < displaySessions.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', opacity: s.isCompleted ? 0.45 : 1 }}>
-                      <div style={{ width: '52px', fontFamily: 'Bebas Neue, sans-serif', fontSize: '12px', letterSpacing: '0.5px', color: isNext ? '#E8002D' : s.isCompleted ? '#3A4A5A' : '#8A9AB0', textAlign: 'center' as const, background: isNext ? 'rgba(232,0,45,0.1)' : 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>
+                      <div style={{ width: '52px', fontFamily: 'Bebas Neue, sans-serif', fontSize: '12px', letterSpacing: '0.5px', color: s.isCompleted ? '#3A4A5A' : '#8A9AB0', textAlign: 'center' as const, background: 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>
                         {s.short}
                       </div>
                       <div style={{ flex: 1 }}>
                         <div style={{ fontSize: '13px', fontWeight: 600, color: s.isCompleted ? '#3A4A5A' : '#F0F4F8' }}>{s.name}</div>
                         <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>{dateLabel} · {timeLabel}</div>
                       </div>
-                      {isNext     && <span style={{ fontSize: '9px', fontWeight: 700, padding: '3px 7px', borderRadius: '20px', background: '#E8002D', color: 'white', textTransform: 'uppercase' as const, letterSpacing: '0.5px', flexShrink: 0 }}>Next</span>}
                       {s.isCompleted && <span style={{ fontSize: '12px', color: '#00D47E', flexShrink: 0 }}>✓</span>}
                     </div>
                   )
