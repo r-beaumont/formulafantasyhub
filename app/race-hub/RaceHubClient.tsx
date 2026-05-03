@@ -956,7 +956,8 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                           {section.label === 'Race Weekend' && <div style={{ width: '6px', height: '6px', background: '#E8002D', borderRadius: '50%' }} />}
                           {section.label}
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '6px' }}>
+                        <div style={{ overflowX: 'auto' as const, margin: '0 -4px', padding: '0 4px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '6px', minWidth: '440px' }}>
                           {section.days.map((day: any) => {
                             const d = new Date(day.date + 'T12:00:00Z')
                             const dayLabel = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' })
@@ -983,6 +984,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                               </div>
                             )
                           })}
+                        </div>
                         </div>
                       </div>
                     ))}
