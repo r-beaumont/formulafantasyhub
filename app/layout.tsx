@@ -9,6 +9,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://formulahub.live'),
+  manifest: '/manifest.json',
   title: 'Formula Hub',
   description: 'F1 race data, championship standings and F1 Fantasy strategy from Rob Beaumont — official Formula 1 Fantasy columnist.',
   alternates: { canonical: 'https://formulahub.live' },
