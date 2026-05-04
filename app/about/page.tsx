@@ -147,26 +147,25 @@ export default function AboutPage() {
           {/* Section 2 — About Formula Hub */}
           <div style={card}>
             <div style={sectionLabel}>About Formula Hub</div>
-            <Image
-              src="/rob2.png"
-              alt="Formula Hub"
-              width={260}
-              height={340}
-              className="about-float-img"
-              style={{ borderRadius: '10px' }}
-            />
             <p style={para}>
               Formula Hub is for every F1 fan, whether you follow the championship religiously, dabble in F1 Fantasy, or just want to understand what's happening on and off the track. The goal has always been simple: bring race data, championship standings, fantasy strategy, and genuine analysis together in one place, presented in a way that actually makes sense.
             </p>
             <p style={{ ...para, marginBottom: 0 }}>
               The site is always growing. More content, more in-depth analysis, and more tools are on the way, covering both the sport itself and the fantasy game that has captured the imagination of millions of fans worldwide.
             </p>
-            <div style={{ clear: 'both' }} />
           </div>
 
           {/* Section 3 — The Community */}
           <div style={card}>
             <div style={sectionLabel}>The Community</div>
+            <Image
+              src="/rob2.png"
+              alt="Rob Beaumont with the Formula Hub community"
+              width={260}
+              height={340}
+              className="about-float-img"
+              style={{ borderRadius: '10px' }}
+            />
             <p style={para}>
               When Rob launched Formula Fantasy Hub in 2022, dedicated F1 Fantasy content was a largely untapped space. There were very few creators making it their focus, and even fewer doing it well. He saw the gap and went for it.
             </p>
@@ -179,19 +178,12 @@ export default function AboutPage() {
             <p style={{ ...para, marginBottom: 0 }}>
               F1 Fantasy itself has grown enormously over that time too. The number of dedicated content creators has increased, the player base keeps expanding, and the conversation around the game gets richer with every season. It's an exciting time to be involved, and by all accounts it's only going to get bigger.
             </p>
+            <div style={{ clear: 'both' }} />
           </div>
 
           {/* Section 4 — The Writing */}
           <div style={card}>
             <div style={sectionLabel}>The Writing</div>
-            <Image
-              src="/rob3.png"
-              alt="Rob Beaumont writing"
-              width={260}
-              height={340}
-              className="about-float-img"
-              style={{ borderRadius: '10px' }}
-            />
             <p style={para}>
               Long before Rob was writing professionally, sport was already filling his notebooks. As a kid he would scribble down scores and match reports, pore over the statistics in the sports section of the newspaper, and mock commentate games from his living room. The love of communicating sport, of breaking it down and making sense of it for others, was always there.
             </p>
@@ -201,7 +193,6 @@ export default function AboutPage() {
             <p style={{ ...para, marginBottom: 0 }}>
               Today, Rob is the lead F1 Fantasy columnist for formula1.com, the official home of the sport, where his weekly Strategist Selection column helps fans decide who to pick, who to sell, and how to deploy their chips. His writing has also appeared in Motorsport.com, Motorsport Magazine, and across other motorsport publications. Along the way, he has had the chance to sit down with some of the sport's most respected voices, including Laura Winter, Lawrence Barretto, Alex Brundle, and Nate Saunders.
             </p>
-            <div style={{ clear: 'both' }} />
           </div>
 
           {/* Section 5 — Get in Touch */}
