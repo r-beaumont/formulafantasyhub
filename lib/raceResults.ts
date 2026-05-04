@@ -440,6 +440,40 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     ],
   },
 
+  4: {
+    round: 4,
+    name: 'Miami',
+    flag: 'us',
+    isSprint: true,
+    qualifying: [
+      // P1 verified — Kimi Antonelli on pole
+      { position: 1, name: 'Kimi Antonelli', team: 'Mercedes', team_colour: '#27F4D2', q1: null, q2: null, q3: null, time: '—' },
+      // TODO: P2–P22 pending FIA classification verification
+    ],
+    sprintRace: [
+      { position: 1, name: 'Lando Norris',     team: 'McLaren',         team_colour: '#FF8000', time: '—', gap: '—'       },
+      { position: 2, name: 'Oscar Piastri',    team: 'McLaren',         team_colour: '#FF8000', time: '—', gap: '—'       },
+      { position: 3, name: 'Charles Leclerc',  team: 'Ferrari',         team_colour: '#E8002D', time: '—', gap: '—'       },
+      { position: 4, name: 'George Russell',   team: 'Mercedes',        team_colour: '#27F4D2', time: '—', gap: '—'       },
+      { position: 5, name: 'Max Verstappen',   team: 'Red Bull Racing', team_colour: '#3671C6', time: '—', gap: '—'       },
+      { position: 6, name: 'Kimi Antonelli',   team: 'Mercedes',        team_colour: '#27F4D2', time: '—', gap: '—'       },
+      { position: 7, name: 'Lewis Hamilton',   team: 'Ferrari',         team_colour: '#E8002D', time: '—', gap: '—'       },
+      { position: 8, name: 'Pierre Gasly',     team: 'Alpine',          team_colour: '#FF69B4', time: '—', gap: '—'       },
+    ],
+    race: [
+      { position: 1,  name: 'Kimi Antonelli',   team: 'Mercedes',        team_colour: '#27F4D2', time: '—', gap: '—'      },
+      { position: 2,  name: 'Lando Norris',     team: 'McLaren',         team_colour: '#FF8000', time: '—', gap: '—'      },
+      { position: 3,  name: 'Oscar Piastri',    team: 'McLaren',         team_colour: '#FF8000', time: '—', gap: '—'      },
+      { position: 4,  name: 'George Russell',   team: 'Mercedes',        team_colour: '#27F4D2', time: '—', gap: '—'      },
+      { position: 5,  name: 'Max Verstappen',   team: 'Red Bull Racing', team_colour: '#3671C6', time: '—', gap: '—'      },
+      { position: 6,  name: 'Lewis Hamilton',   team: 'Ferrari',         team_colour: '#E8002D', time: '—', gap: '—'      },
+      { position: 7,  name: 'Franco Colapinto', team: 'Alpine',          team_colour: '#FF69B4', time: '—', gap: '—'      },
+      { position: 8,  name: 'Charles Leclerc',  team: 'Ferrari',         team_colour: '#E8002D', time: '—', gap: '—'      },
+      { position: 9,  name: 'Carlos Sainz',     team: 'Williams',        team_colour: '#64C4FF', time: '—', gap: '—'      },
+      { position: 10, name: 'Alex Albon',       team: 'Williams',        team_colour: '#64C4FF', time: '—', gap: '—'      },
+    ],
+  },
+
 }
 
 // ─── 2026 Team & Driver Lineup ───────────────────────────────────────────────
