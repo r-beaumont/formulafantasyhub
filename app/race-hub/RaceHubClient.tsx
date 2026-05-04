@@ -98,20 +98,28 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
         setStandings(standData)
 
         if (selectedRace.meeting_key) {
-          // Use 'latest' for the current race weekend — guarantees correct OpenF1 meeting key
-          const meetingParam = selectedRound === CURRENT_RACE.round ? 'latest' : selectedRace.meeting_key
+          // Use 'latest' only when the race weekend has actually started — otherwise OpenF1
+          // 'latest' returns the previous race's data, leaking stale weather into future rounds
+          const weekendStarted = selectedRace.weekendStartISO
+            ? new Date(selectedRace.weekendStartISO + 'T00:00:00Z').getTime() <= Date.now()
+            : false
+          const meetingParam = (selectedRound === CURRENT_RACE.round && weekendStarted)
+            ? 'latest'
+            : selectedRace.meeting_key
           const sessRes = await fetch(`/api/f1/sessions?meeting_key=${meetingParam}`)
           const sessData = await sessRes.json()
           setSessions(Array.isArray(sessData) ? sessData : [])
 
           if (Array.isArray(sessData) && sessData.length) {
-            // Use the most recently started session — future sessions have no weather data
+            // Only fetch weather for sessions that have already started
             const now = Date.now()
             const started = sessData.filter((s: any) => s.date_start && new Date(s.date_start).getTime() <= now)
-            const weatherSess = started.length > 0 ? started[started.length - 1] : sessData[0]
-            const weatherRes = await fetch(`/api/f1/weather?session_key=${weatherSess.session_key}`)
-            const weatherData = await weatherRes.json()
-            setWeather(weatherData)
+            if (started.length > 0) {
+              const weatherSess = started[started.length - 1]
+              const weatherRes = await fetch(`/api/f1/weather?session_key=${weatherSess.session_key}`)
+              const weatherData = await weatherRes.json()
+              setWeather(weatherData)
+            }
           }
         }
       } catch (e) { console.error(e) }
@@ -127,7 +135,8 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       try {
         const now = Date.now()
         const started = sessions.filter((s: any) => s.date_start && new Date(s.date_start).getTime() <= now)
-        const weatherSess = started.length > 0 ? started[started.length - 1] : sessions[0]
+        if (started.length === 0) return
+        const weatherSess = started[started.length - 1]
         const res = await fetch(`/api/f1/weather?session_key=${weatherSess.session_key}`)
         const data = await res.json()
         if (data && !data.error) setWeather(data)
