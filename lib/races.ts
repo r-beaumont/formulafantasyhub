@@ -31,11 +31,11 @@ export const CURRENT_RACE: Race = {
   isSprint: true,
   timezone: 'America/Toronto',
   sessions: [
-    { name: 'Practice 1',        short: 'FP1',  date: 'Fri 22 May', dateISO: '2026-05-22T15:30:00Z', timeUTC: '15:30 UTC', timeLocal: '11:30 EDT', completed: false, duration: 60  },
-    { name: 'Sprint Qualifying', short: 'SQ',   date: 'Fri 22 May', dateISO: '2026-05-22T19:30:00Z', timeUTC: '19:30 UTC', timeLocal: '15:30 EDT', completed: false, duration: 44  },
-    { name: 'Sprint',            short: 'SPR',  date: 'Sat 23 May', dateISO: '2026-05-23T15:00:00Z', timeUTC: '15:00 UTC', timeLocal: '11:00 EDT', completed: false, duration: 60  },
-    { name: 'Qualifying',        short: 'QUAL', date: 'Sat 23 May', dateISO: '2026-05-23T19:00:00Z', timeUTC: '19:00 UTC', timeLocal: '15:00 EDT', completed: false, duration: 60  },
-    { name: 'Race',              short: 'RACE', date: 'Sun 24 May', dateISO: '2026-05-24T19:00:00Z', timeUTC: '19:00 UTC', timeLocal: '15:00 EDT', completed: false, duration: 120 },
+    { name: 'Practice 1',        short: 'FP1',  date: 'Fri 22 May', dateISO: '2026-05-22T16:30:00Z', timeUTC: '16:30 UTC', timeLocal: '12:30 EDT', completed: false, duration: 60  },
+    { name: 'Sprint Qualifying', short: 'SQ',   date: 'Fri 22 May', dateISO: '2026-05-22T20:30:00Z', timeUTC: '20:30 UTC', timeLocal: '16:30 EDT', completed: false, duration: 44  },
+    { name: 'Sprint',            short: 'SPR',  date: 'Sat 23 May', dateISO: '2026-05-23T16:00:00Z', timeUTC: '16:00 UTC', timeLocal: '12:00 EDT', completed: false, duration: 60  },
+    { name: 'Qualifying',        short: 'QUAL', date: 'Sat 23 May', dateISO: '2026-05-23T20:00:00Z', timeUTC: '20:00 UTC', timeLocal: '16:00 EDT', completed: false, duration: 60  },
+    { name: 'Race',              short: 'RACE', date: 'Sun 24 May', dateISO: '2026-05-24T20:00:00Z', timeUTC: '20:00 UTC', timeLocal: '16:00 EDT', completed: false, duration: 120 },
   ],
 }
 
@@ -156,11 +156,11 @@ export const SEASON_CALENDAR: {
     weekendStartISO: '2026-05-22',
     timezone: 'America/Toronto',
     sessions: [
-      { name: 'Practice 1',        date: '2026-05-22T15:30:00.000Z', duration: 60  },
-      { name: 'Sprint Qualifying', date: '2026-05-22T19:30:00.000Z', duration: 44  },
-      { name: 'Sprint',            date: '2026-05-23T15:00:00.000Z', duration: 60  },
-      { name: 'Qualifying',        date: '2026-05-23T19:00:00.000Z', duration: 60  },
-      { name: 'Race',              date: '2026-05-24T19:00:00.000Z', duration: 120 },
+      { name: 'Practice 1',        date: '2026-05-22T16:30:00.000Z', duration: 60  },
+      { name: 'Sprint Qualifying', date: '2026-05-22T20:30:00.000Z', duration: 44  },
+      { name: 'Sprint',            date: '2026-05-23T16:00:00.000Z', duration: 60  },
+      { name: 'Qualifying',        date: '2026-05-23T20:00:00.000Z', duration: 60  },
+      { name: 'Race',              date: '2026-05-24T20:00:00.000Z', duration: 120 },
     ],
   },
   {
