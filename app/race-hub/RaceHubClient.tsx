@@ -61,7 +61,7 @@ function formatDelta(seconds: number | null | undefined): string {
 
 export default function RaceHubClient() {
   const [activeTab, setActiveTab] = useState<'overview' | 'race-info' | 'weather' | 'pitwall'>('overview')
-  const [selectedRound, setSelectedRound] = useState(4)
+  const [selectedRound, setSelectedRound] = useState(CURRENT_RACE.round)
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   // Read URL params on mount (?round=N&tab=results deep-link from standings)
