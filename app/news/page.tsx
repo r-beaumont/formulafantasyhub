@@ -46,7 +46,7 @@ export default function NewsPage() {
             <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase' }}>News</span>
           </div>
           <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '56px', letterSpacing: '1px', lineHeight: 1 }}>Latest News</div>
-          <p style={{ color: '#5A6A7A', fontSize: '13px', marginTop: '8px' }}>F1 and F1 Fantasy news, analysis and insights</p>
+          <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, marginTop: '8px' }}>F1 and F1 Fantasy news, analysis and insights.</p>
         </div>
 
         {/* Tag filter */}

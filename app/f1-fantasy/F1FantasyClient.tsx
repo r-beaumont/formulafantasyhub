@@ -742,7 +742,7 @@ export default function F1FantasyClient() {
         </div>
         <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(2.5rem,5vw,3.5rem)', lineHeight: 1, marginBottom: '8px' }}>F1 Fantasy Hub</div>
         <p style={{ color: '#5A6A7A', fontSize: '14px', maxWidth: '600px', lineHeight: 1.6 }}>
-          F1 Fantasy strategy, news and analysis from Rob Beaumont — official F1 Fantasy columnist for formula1.com.
+          F1 Fantasy strategy, news and analysis.
         </p>
       </div>
 
