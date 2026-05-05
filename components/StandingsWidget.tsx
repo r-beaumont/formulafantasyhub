@@ -42,24 +42,24 @@ export default function StandingsWidget({ limit = 5, showLink = true, type = 'bo
             {showLink && <Link href="/standings" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>Full →</Link>}
           </div>
           <div style={{ padding: '8px 20px' }}>
-            {drivers.map((d) => {
-              const maxPts = drivers[0]?.points || 1
-              return (
+            {(() => {
+              const maxPts = Math.max(...drivers.map(d => d.points), 0) || 1
+              return drivers.map((d) => (
                 <div key={d.name} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 0', minHeight: '50px', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: posColor(d.position), width: '20px', fontWeight: d.position <= 3 ? 600 : 400 }}>{d.position}</span>
                   <div style={{ width: '3px', height: '26px', borderRadius: '2px', background: d.team_colour, flexShrink: 0 }} />
                   <span className={`fi fi-${d.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
-                  <div style={{ flex: 1 }}>
+                  <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontSize: '13px', fontWeight: 500 }}>{d.name}</div>
                     <div style={{ fontSize: '11px', color: '#5A6A7A' }}>{d.team}</div>
                   </div>
-                  <div style={{ width: '60px', height: '3px', background: '#1C2630', borderRadius: '2px', overflow: 'hidden' }}>
+                  <div style={{ width: '60px', height: '3px', background: '#1C2630', borderRadius: '2px', overflow: 'hidden', flexShrink: 0 }}>
                     <div style={{ width: `${(d.points / maxPts) * 100}%`, height: '100%', background: d.team_colour, opacity: 0.8 }} />
                   </div>
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 600 }}>{d.points}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 600, width: '32px', textAlign: 'right' as const }}>{d.points}</span>
                 </div>
-              )
-            })}
+              ))
+            })()}
           </div>
         </div>
       )}
