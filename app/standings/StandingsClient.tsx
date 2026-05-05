@@ -94,6 +94,20 @@ for (const calR of completedCalRounds) {
   _raceConPodium[calR.round] = w.race.slice(0, 3).map(r => r.team)
 }
 
+const ENGINE_MAP: Record<string, string> = {
+  'McLaren':      'Mercedes',
+  'Mercedes':     'Mercedes',
+  'Red Bull':     'Red Bull Ford',
+  'Ferrari':      'Ferrari',
+  'Williams':     'Mercedes',
+  'Racing Bulls': 'Red Bull Ford',
+  'Aston Martin': 'Honda',
+  'Haas':         'Ferrari',
+  'Audi':         'Audi',
+  'Alpine':       'Mercedes',
+  'Cadillac':     'Ferrari',
+}
+
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function StandingsClient() {
@@ -164,7 +178,8 @@ export default function StandingsClient() {
       return dir * (b.points - a.points)
     })
 
-  const maxConPts = [...constructors].sort((a, b) => b.points - a.points)[0]?.points || 1
+  const maxConPts    = [...constructors].sort((a, b) => b.points - a.points)[0]?.points || 1
+  const maxDriverPts = [...drivers].sort((a, b) => b.points - a.points)[0]?.points || 1
 
   const thStyle = (leftAlign?: boolean): React.CSSProperties => ({
     fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px',
@@ -321,21 +336,23 @@ export default function StandingsClient() {
 
         <div style={{ overflowX: 'auto' }}>
           {/* Header row */}
-          <div style={{ display: 'grid', gridTemplateColumns: '28px 220px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px', padding: '8px 24px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)', minWidth: '600px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '28px 220px 120px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px', padding: '8px 24px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)', minWidth: '720px' }}>
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: 'center' as const }}>#</span>
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Driver</span>
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Team</span>
+            <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Points</span>
             <span onClick={() => setSortMode('points')}  style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: sortMode === 'points'  ? '#F0F4F8' : '#5A6A7A', textAlign: 'right' as const, cursor: 'pointer', userSelect: 'none' as const }}>PTS {sortMode === 'points'  ? '↓' : ''}</span>
             <span onClick={() => setSortMode('wins')}    style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: sortMode === 'wins'    ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>WINS {sortMode === 'wins'    ? '↓' : ''}</span>
             <span onClick={() => setSortMode('podiums')} style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: sortMode === 'podiums' ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>PODS {sortMode === 'podiums' ? '↓' : ''}</span>
             <span onClick={() => setSortMode('poles')}   style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: sortMode === 'poles'   ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>POLES {sortMode === 'poles'   ? '↓' : ''}</span>
           </div>
           {/* Data rows */}
-          <div style={{ padding: '8px 24px 20px', display: 'flex', flexDirection: 'column', gap: '2px', minWidth: '600px' }}>
+          <div style={{ padding: '8px 24px 20px', display: 'flex', flexDirection: 'column', gap: '2px', minWidth: '720px' }}>
             {sorted.map((d, i) => {
               const rank = i + 1
+              const barPct = maxDriverPts > 0 ? (d.points / maxDriverPts) * 100 : 0
               return (
-                <div key={d.id} style={{ display: 'grid', gridTemplateColumns: '28px 220px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px', padding: '7px 0', borderBottom: '1px solid rgba(255,255,255,0.03)', background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
+                <div key={d.id} style={{ display: 'grid', gridTemplateColumns: '28px 220px 120px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px', padding: '7px 0', borderBottom: '1px solid rgba(255,255,255,0.03)', background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: posColor(rank), fontWeight: rank <= 3 ? 600 : 400, textAlign: 'center' as const }}>{rank}</span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflow: 'hidden' }}>
                     <div style={{ width: '3px', height: '22px', borderRadius: '2px', background: d.teamColor, flexShrink: 0 }} />
@@ -343,6 +360,9 @@ export default function StandingsClient() {
                     <span style={{ fontSize: '13px', fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.name}</span>
                   </div>
                   <span style={{ fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.team}</span>
+                  <div style={{ height: '6px', background: '#141B22', borderRadius: '3px', overflow: 'hidden', minWidth: '40px' }}>
+                    <div style={{ width: `${barPct}%`, minWidth: d.points > 0 ? '4px' : '0', height: '100%', background: d.teamColor, borderRadius: '3px', opacity: 0.85, transition: 'width 0.6s ease' }} />
+                  </div>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 700, color: d.points > 0 ? '#F0F4F8' : '#3A4A5A', textAlign: 'right' as const }}>{d.points}</span>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: d.wins > 0 ? '#FFD700' : '#3A4A5A', textAlign: 'center' as const, fontWeight: d.wins > 0 ? 700 : 400 }}>{d.wins > 0 ? d.wins : '0'}</span>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: d.podiums > 0 ? '#C0C0C0' : '#3A4A5A', textAlign: 'center' as const }}>{d.podiums > 0 ? d.podiums : '—'}</span>
@@ -363,27 +383,29 @@ export default function StandingsClient() {
         </div>
 
         <div style={{ overflowX: 'auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '28px 220px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px', padding: '8px 24px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)', minWidth: '600px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '28px 220px 120px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px', padding: '8px 24px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)', minWidth: '720px' }}>
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: 'center' as const }}>#</span>
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Constructor</span>
+            <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Engine</span>
             <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A' }}>Points</span>
             <span onClick={() => toggleConSort('points')}  style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'points'  ? '#F0F4F8' : '#5A6A7A', textAlign: 'right' as const, cursor: 'pointer', userSelect: 'none' as const }}>PTS {conSortMode === 'points'  ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
             <span onClick={() => toggleConSort('wins')}    style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'wins'    ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>WINS {conSortMode === 'wins'    ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
             <span onClick={() => toggleConSort('podiums')} style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'podiums' ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>PODS {conSortMode === 'podiums' ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
             <span onClick={() => toggleConSort('poles')}   style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: conSortMode === 'poles'   ? '#F0F4F8' : '#5A6A7A', textAlign: 'center' as const, cursor: 'pointer', userSelect: 'none' as const }}>POLES {conSortMode === 'poles'   ? (conSortDir === 'desc' ? '↓' : '↑') : ''}</span>
           </div>
-          <div style={{ padding: '8px 24px 20px', display: 'flex', flexDirection: 'column', gap: '12px', minWidth: '620px' }}>
+          <div style={{ padding: '8px 24px 20px', display: 'flex', flexDirection: 'column', gap: '12px', minWidth: '720px' }}>
             {constructors.map((c, i) => {
               const barPct = maxConPts > 0 ? (c.points / maxConPts) * 100 : 0
               const cStats = constructorStats[c.name] || { wins: 0, podiums: 0, poles: 0 }
               return (
-                <div key={c.name} style={{ display: 'grid', gridTemplateColumns: '28px 220px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px' }}>
+                <div key={c.name} style={{ display: 'grid', gridTemplateColumns: '28px 220px 120px 1fr 56px 52px 52px 52px', alignItems: 'center', gap: '12px' }}>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: posColor(i + 1), fontWeight: i < 3 ? 600 : 400, textAlign: 'center' as const }}>{i + 1}</span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <div style={{ width: '3px', height: '22px', borderRadius: '2px', background: c.color, flexShrink: 0 }} />
                     <span className={`fi fi-${c.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', flexShrink: 0 }}></span>
                     <span style={{ fontSize: '13px', fontWeight: 600, color: c.points > 0 ? '#F0F4F8' : '#5A6A7A', whiteSpace: 'nowrap' }}>{c.name}</span>
                   </div>
+                  <span style={{ fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{ENGINE_MAP[c.name] ?? '—'}</span>
                   <div style={{ height: '6px', background: '#141B22', borderRadius: '3px', overflow: 'hidden', minWidth: '40px' }}>
                     <div style={{ width: `${barPct}%`, minWidth: c.points > 0 ? '4px' : '0', height: '100%', background: c.color, borderRadius: '3px', opacity: 0.85, transition: 'width 0.6s ease', flexShrink: 0 }} />
                   </div>
