@@ -80,6 +80,7 @@ export default function VideosClient() {
         <div>
           <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase', marginBottom: '6px' }}>Videos</div>
           <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '56px', letterSpacing: '1px', lineHeight: 1 }}>YouTube Channel</div>
+          <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, marginTop: '8px' }}>Race week previews, post-race reviews and live deadline sessions — every grand prix.</p>
         </div>
         <a href="https://www.youtube.com/@formulafantasyhub" target="_blank" rel="noopener noreferrer" style={{
           display: 'flex', alignItems: 'center', gap: '8px',
