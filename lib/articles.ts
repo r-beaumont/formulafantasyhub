@@ -54,7 +54,7 @@ Max Verstappen qualified second and looked set to challenge at the front before 
 
 **Charles Leclerc's afternoon fell apart at the worst possible moment**
 
-Leclerc had Lando Norris in his sights for second place with the gap closing, before he lost the rear, saved the car from the wall but took enough damage to kill his pace entirely — and Oscar Piastri, who had been nine seconds back, suddenly had all the invitation he needed. A 20-second post-race time penalty for the incident then dropped Leclerc from sixth on the road to eighth in the final results, which made a painful afternoon feel even longer. He is still third in the championship, but Miami was a reminder of just how quickly things can turn in a season this tight.
+Leclerc had held third place through much of the race, only to relinquish the position to Piastri heading into the final lap. Trying to recover it, he pushed too hard, lost the car and collected the wall — not enough to stop him but enough to do real damage. Russell and Verstappen, who had been closing, suddenly had an easy target, and Leclerc was powerless to hold them off. A 20-second post-race time penalty for the incident then dropped him from sixth on the road to eighth in the final results, which made a painful afternoon feel even longer. He is still third in the championship, but Miami was a reminder of just how quickly things can turn in a season this tight.
 
 ---
 
