@@ -17,6 +17,56 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'miami-gp-2026-what-we-learned',
+    title: 'What We Learned: Miami Grand Prix',
+    excerpt: 'Kimi Antonelli tightens his championship grip, McLaren leave points on the table, and Red Bull face some uncomfortable truths. Here is what the 2026 Miami Grand Prix told us.',
+    readTime: 4,
+    date: 'May 4, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0a00 0%, #3d1f00 50%, #1a0a00 100%)',
+    thumbnailBg: 'rgba(255,140,0,0.2)',
+    thumbnailIcon: 'us',
+    ogImage: 'https://formulahub.live/og/miami-gp-2026-what-we-learned',
+    content: `Four races in and the 2026 season is already telling us things. Miami did what Miami tends to do — delivered heat, drama, and a few moments that will linger long after the paddock has packed up and moved on. Here is what stood out.
+
+---
+
+**Kimi Antonelli is a genuine championship threat**
+
+When a 19-year-old in only his second Formula 1 season wins three of the opening four races, the "impressive for his age" framing eventually has to give way to something more straightforward — Kimi Antonelli is simply one of the fastest drivers in the field right now. He took pole, led from the front, and barely put a wheel wrong all weekend in Miami, prompting Toto Wolff to call it his best race in Formula 1 to date. With 100 points and a growing gap at the top of the standings, the rest of the grid is running out of reasons not to take him completely seriously.
+
+---
+
+**McLaren are fast enough to win — but small margins are costing them**
+
+The MCL40 had the pace to win in Miami, and Lando Norris proved that emphatically by taking Sprint victory on Saturday. The problem is that Andrea Stella admitted "execution and optimisation" errors cost them a genuine shot at the race win on Sunday — a candid assessment that suggests McLaren are aware the gap between themselves and the top step is one of their own making as much as anything else. Oscar Piastri salvaged a podium finish to give the weekend some gloss, but McLaren will know they left Miami with less than they deserved.
+
+---
+
+**Red Bull and Verstappen are both better than their situation suggests**
+
+Max Verstappen qualified second and looked set to challenge at the front before a costly error on the opening lap dropped him outside the top ten and changed the complexion of his afternoon entirely. What followed said a lot about him — a composed, relentless recovery through the field that earned fifth at the flag and the Driver of the Day award from fans who appreciated the effort. The uncomfortable truth, though, is that the RB21 is not a frontrunning car right now, and the second seat is contributing almost nothing to the points tally on Sundays — sitting fourth in the constructors' championship with 38 points, less than a quarter of Mercedes' haul, that is a problem Verstappen's talent alone cannot solve.
+
+---
+
+**Charles Leclerc's afternoon fell apart at the worst possible moment**
+
+Leclerc had Lando Norris in his sights for second place with the gap closing, before he lost the rear, saved the car from the wall but took enough damage to kill his pace entirely — and Oscar Piastri, who had been nine seconds back, suddenly had all the invitation he needed. A 20-second post-race time penalty for the incident then dropped Leclerc from sixth on the road to eighth in the final results, which made a painful afternoon feel even longer. He is still third in the championship, but Miami was a reminder of just how quickly things can turn in a season this tight.
+
+---
+
+**Williams are quietly moving in the right direction**
+
+A double points finish from Williams is easy to scroll past, but it probably should not be, with both Carlos Sainz and Alex Albon delivering clean, composed races to finish inside the top ten at a circuit where the midfield margins are wafer thin. It is not a small thing for a team whose preseason was dominated by questions about the FW48's weight and whether it was genuinely ready to compete at this level. Williams have had false dawns before, but there is something a little more consistent about what they are showing this year — and that is worth watching.
+
+---
+
+Canada is next — the Wall of Champions, long straights, heavy braking zones, and weather that can rewrite a race weekend inside a single session. The standings are taking shape, but with eighteen rounds still to run, nothing is close to decided yet.`,
+  },
+  {
     slug: 'miami-gp-2026-technical-upgrades',
     title: 'Upgrades Preview: Miami Grand Prix',
     excerpt: "Formula 1 lands in Miami with the first proper development race of the season. Here's how the grid stacks up across all eleven teams.",
