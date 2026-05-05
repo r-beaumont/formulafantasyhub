@@ -97,7 +97,7 @@ for (const calR of completedCalRounds) {
 const ENGINE_MAP: Record<string, string> = {
   'McLaren':      'Mercedes',
   'Mercedes':     'Mercedes',
-  'Red Bull':     'Red Bull Ford',
+  'Red Bull Racing': 'Red Bull Ford',
   'Ferrari':      'Ferrari',
   'Williams':     'Mercedes',
   'Racing Bulls': 'Red Bull Ford',
