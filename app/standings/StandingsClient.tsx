@@ -181,17 +181,24 @@ export default function StandingsClient() {
   const maxConPts    = [...constructors].sort((a, b) => b.points - a.points)[0]?.points || 1
   const maxDriverPts = [...drivers].sort((a, b) => b.points - a.points)[0]?.points || 1
 
-  const thStyle = (leftAlign?: boolean): React.CSSProperties => ({
+  const thStyle = (leftAlign?: boolean, sticky?: boolean): React.CSSProperties => ({
     fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px',
     color: '#5A6A7A', padding: '10px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)',
     textAlign: leftAlign ? 'left' : 'center', whiteSpace: 'nowrap',
+    ...(sticky ? { position: 'sticky', left: 0, background: '#0E1318', zIndex: 2 } : {}),
   })
 
-  const tdMono = (color?: string): React.CSSProperties => ({
+  const tdMono = (color?: string, sticky?: boolean): React.CSSProperties => ({
     padding: '9px 12px', borderBottom: '1px solid rgba(255,255,255,0.03)',
     fontFamily: 'JetBrains Mono, monospace', fontSize: '12px',
     textAlign: 'center', color: color || '#5A6A7A',
+    ...(sticky ? { position: 'sticky', left: 0, background: '#0E1318', zIndex: 1 } : {}),
   })
+
+  const tdName: React.CSSProperties = {
+    padding: '8px 12px', borderBottom: '1px solid rgba(255,255,255,0.03)',
+    position: 'sticky', left: '36px', background: '#0E1318', zIndex: 1,
+  }
 
   // Season overview leaders
   const driversLeader = sorted[0]
@@ -507,8 +514,8 @@ export default function StandingsClient() {
             <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '420px' }}>
               <thead>
                 <tr>
-                  <th style={{ ...thStyle(false), width: '36px' }}>#</th>
-                  <th style={{ ...thStyle(true), minWidth: '160px' }}>Driver</th>
+                  <th style={{ ...thStyle(false, true), width: '36px' }}>#</th>
+                  <th style={{ ...thStyle(true), minWidth: '160px', position: 'sticky', left: '36px', background: '#0E1318', zIndex: 2 }}>Driver</th>
                   {completedCalRounds.map(calR => (
                     <th key={calR.round} style={{ ...thStyle(false), minWidth: '44px' }}>
                       <span className={`fi fi-${calR.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
@@ -520,8 +527,8 @@ export default function StandingsClient() {
               <tbody>
                 {driverPprData.map((d, i) => (
                   <tr key={d.name} style={{ background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
-                    <td style={{ ...tdMono(posColor(i + 1)), fontWeight: i < 3 ? 600 : 400 }}>{i + 1}</td>
-                    <td style={{ padding: '8px 12px', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
+                    <td style={{ ...tdMono(posColor(i + 1), true), fontWeight: i < 3 ? 600 : 400 }}>{i + 1}</td>
+                    <td style={tdName}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
                         <div style={{ width: '3px', height: '20px', borderRadius: '2px', background: d.teamColor, flexShrink: 0 }} />
                         <span className={`fi fi-${_driverFlagMap[d.name] ?? ''}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', flexShrink: 0 }}></span>
@@ -551,8 +558,8 @@ export default function StandingsClient() {
             <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '380px' }}>
               <thead>
                 <tr>
-                  <th style={{ ...thStyle(false), width: '36px' }}>#</th>
-                  <th style={{ ...thStyle(true), minWidth: '160px' }}>Constructor</th>
+                  <th style={{ ...thStyle(false, true), width: '36px' }}>#</th>
+                  <th style={{ ...thStyle(true), minWidth: '160px', position: 'sticky', left: '36px', background: '#0E1318', zIndex: 2 }}>Constructor</th>
                   {completedCalRounds.map(calR => (
                     <th key={calR.round} style={{ ...thStyle(false), minWidth: '44px' }}>
                       <span className={`fi fi-${calR.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
@@ -564,8 +571,8 @@ export default function StandingsClient() {
               <tbody>
                 {conPprData.map((c, i) => (
                   <tr key={c.team} style={{ background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
-                    <td style={{ ...tdMono(posColor(i + 1)), fontWeight: i < 3 ? 600 : 400 }}>{i + 1}</td>
-                    <td style={{ padding: '8px 12px', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
+                    <td style={{ ...tdMono(posColor(i + 1), true), fontWeight: i < 3 ? 600 : 400 }}>{i + 1}</td>
+                    <td style={tdName}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <div style={{ width: '3px', height: '20px', borderRadius: '2px', background: c.color, flexShrink: 0 }} />
                         <span className={`fi fi-${_conFlagMap[c.team] ?? ''}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', flexShrink: 0 }}></span>
