@@ -597,9 +597,9 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
         const dnfAvgNum = typeof overview.dnfHistory.avg === 'number' ? overview.dnfHistory.avg : null
         const dnfRisk = dnfAvgNum !== null
           ? dnfAvgNum >= 3.0
-            ? { label: 'HIGH',   color: '#E8002D', bg: 'rgba(232,0,45,0.15)',    desc: 'High DNF risk — strongly consider chip protection' }
+            ? { label: 'HIGH',   color: '#E8002D', bg: 'rgba(232,0,45,0.15)',    desc: 'High DNF risk historically' }
             : dnfAvgNum >= 1.5
-            ? { label: 'MEDIUM', color: '#FF8700', bg: 'rgba(255,135,0,0.15)',   desc: 'Moderate DNF risk — consider chip protection' }
+            ? { label: 'MEDIUM', color: '#FF8700', bg: 'rgba(255,135,0,0.15)',   desc: 'Moderate DNF risk historically' }
             : { label: 'LOW',    color: '#00C851', bg: 'rgba(0,200,81,0.15)',    desc: 'Low DNF risk historically' }
           : null
 
