@@ -1083,7 +1083,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
           5: { // Canada — Circuit Gilles Villeneuve
             downforce: 'Medium / Low',
             downforceLevel: 2,
-            downforceNote: 'The Circuit Gilles Villeneuve features long straights connected by heavy braking zones and low-speed chicanes. Teams prioritise aerodynamic efficiency and straight-line top speed over maximum cornering grip, running medium-low downforce configurations to maximise performance on the long blasts between the walls.',
+            downforceNote: 'The Circuit Gilles Villeneuve features long straights connected by heavy braking zones and low-speed chicanes. Teams prioritise aerodynamic efficiency and straight-line top speed over maximum cornering grip, running medium-low downforce configurations.',
             compounds: [
               { name: 'Hard',   color: '#FFFFFF', code: 'C3', desc: 'Durable option for a long opening stint. Suits the mixed-nature layout.' },
               { name: 'Medium', color: '#FFD700', code: 'C4', desc: 'Versatile race tyre. Works in either stint of a 1-stop strategy.' },
