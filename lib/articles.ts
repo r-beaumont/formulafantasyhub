@@ -19,7 +19,7 @@ export const articles: Article[] = [
   {
     slug: 'canadian-gp-2026-technical-upgrades',
     title: 'Upgrades Preview: Canadian Grand Prix',
-    excerpt: 'Montreal doubles as a development checkpoint as the 2026 season moves into its European phase. Here is how all eleven teams stack up heading into Canada.',
+    excerpt: 'Montreal doubles as a development checkpoint as the 2026 season moves closer to the European stage of the calendar. Here is how all eleven teams stack up heading into Canada.',
     readTime: 5,
     date: 'May 19, 2026',
     tag: 'Technical',
