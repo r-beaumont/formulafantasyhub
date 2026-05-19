@@ -78,7 +78,7 @@ export default function BottomNav() {
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
         zIndex: 200,
-        paddingBottom: 'env(safe-area-inset-bottom)',
+        paddingBottom: '34px',
         display: 'flex',
       }}
     >
