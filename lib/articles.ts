@@ -17,6 +17,116 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'canadian-gp-2026-technical-upgrades',
+    title: 'Canadian GP 2026: The Development Race Heats Up in Montreal',
+    excerpt: 'Montreal doubles as a development checkpoint as the 2026 season moves into its European phase. Here is how all eleven teams stack up heading into Canada.',
+    readTime: 5,
+    date: 'May 19, 2026',
+    tag: 'Technical',
+    category: 'Technical',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #CC0000, #8B0000)',
+    thumbnailBg: 'rgba(204,0,0,0.15)',
+    thumbnailIcon: 'ca',
+    ogImage: 'https://formulahub.live/og/canadian-gp-2026-technical-upgrades',
+    content: `Montreal has a habit of sorting the grid out in ways that other circuits don't. The Circuit Gilles Villeneuve's long straights, heavy braking zones and punishing wall proximity make it one of the more demanding venues on the calendar for both machinery and nerves. With several teams arriving with meaningful new parts, this weekend doubles as a development checkpoint as the season moves into its European phase.
+
+---
+
+**Mercedes**
+
+Mercedes arrive in Montreal meaning business. The W17 receives what the team is describing as a major aerodynamic package, with front wing changes and a revised underbody flow concept that is expected to yield around 0.3 seconds of lap time gain. Alongside the aero work, a lighter gearbox has been introduced, and there is an electronics fix specifically targeting the wheelspin issues that have plagued Kimi Antonelli through the opening rounds. After three consecutive wins to open the season, the ambition is clear: consolidate at the front and extend the gap.
+
+_Headline Upgrades: Major aero package with front wing changes and revised underbody flow. Lighter W17 gearbox. Electronics fix targeting Antonelli's wheelspin issues. Approximately 0.3s of aerodynamic gains anticipated._
+
+---
+
+**Ferrari**
+
+Ferrari's approach to Montreal is measured. The front wing remains the talking point in the Maranello garage, but the expectation internally is that Canada will bring only minor tweaks and adjustments rather than a wholesale development step. The Scuderia's focus is firmly on Barcelona, where a larger and more significant package is understood to be in preparation. For now, Montreal is about maintaining points and learning rather than launching an assault on the front runners.
+
+_Headline Upgrades: Minor front wing adjustments. Circuit-specific setup tweaks. Larger development package reserved for Barcelona._
+
+---
+
+**McLaren**
+
+McLaren continue to build momentum on the back of their Miami reset, rolling out the second half of that upgrade package in Canada. More visible changes are expected to arrive at the front wing and central section of the MCL40, a car that already features one of the most distinctive front wing designs on the grid. The trajectory is encouraging; each successive upgrade has brought greater clarity about where the car wants to operate, and Canada offers another opportunity to bank learning ahead of the European swing.
+
+_Headline Upgrades: Continuation of Miami upgrade package. Further front wing and central section changes. Progressive development rollout building on Miami B-spec foundation._
+
+---
+
+**Red Bull**
+
+Red Bull's technical director Pierre Waché has confirmed a small but targeted upgrade package for Canada, with more substantial development pieces understood to be incoming during the European season. The RB22 has shown raw pace in flashes without always converting it into results, and these incremental additions are aimed at giving Verstappen and Hadjar more consistent tools to work with. The bigger step is coming; Montreal is about keeping pace in the interim.
+
+_Headline Upgrades: Small confirmed upgrade package with targeted development pieces. Further significant updates planned for the European season._
+
+---
+
+**Alpine**
+
+Alpine arrive with one of the more structurally interesting updates of the weekend. Franco Colapinto receives the same rear wing specification as Pierre Gasly, bringing full parity between the two drivers in the garage for the first time this season. Alongside that, a new gearbox — lighter and more compact — has been introduced, with a series of technical modifications developed in parallel with it. For a team still finding its footing with the A526, these are meaningful structural gains.
+
+_Headline Upgrades: Rear wing specification equalised across both drivers. New lighter and more compact gearbox. Associated technical modifications introduced alongside the gearbox upgrade._
+
+---
+
+**Audi**
+
+Audi head to Montreal with what those close to the team are describing as a significant upgrade package, though specific details have been kept close to the chest. What is known is that the team remain committed to their vertical sidepod and underfloor concept, and the changes coming to Canada are understood to build on that philosophy rather than challenge it. Reports from the paddock point to a floor upgrade and revised brake ducts as the headline items, with the team firmly believing in the direction they have chosen heading into the European season.
+
+_Headline Upgrades: Significant package with limited details confirmed. Retained vertical sidepod and underfloor concept. Floor upgrade and brake duct revisions reported._
+
+---
+
+**Racing Bulls**
+
+If Miami was a step forward for Racing Bulls, Canada is a leap. The VCARB02 arrives with what the team is billing as a massive upgrade package, building on what debuted at the previous round with an even larger development step that spans all areas of the car. The changes are expected to be highly visible, touching the bodywork, aerodynamic surfaces and mechanical components alike. After a difficult showing in Miami, the team has responded with urgency; this is a full-scale push to reassert themselves in the midfield fight.
+
+_Headline Upgrades: Massive upgrade package spanning all areas of the car. Highly visible changes across bodywork and aerodynamic surfaces. Largest single development step of the team's season to date._
+
+---
+
+**Williams**
+
+Williams continue to chip away at the FW48's limitations, bringing a continuation of the Miami upgrade package to Montreal with further minor aerodynamic pieces added to the car. The overweight issue that has hampered them throughout the early part of the season has not been fully resolved, though the weight reduction work initiated in Miami has helped. More upgrades are in the pipeline, and the direction of development is becoming clearer — even if the full picture remains a work in progress.
+
+_Headline Upgrades: Continuation of Miami upgrade package. Additional minor aerodynamic components. Ongoing weight reduction programme._
+
+---
+
+**Haas**
+
+Haas arrive in Canada with arguably the most intriguing upgrade story of the weekend. A package originally planned for an earlier round has been delayed but, according to the team, the extra development time has been well spent. The update brings significant changes to the mid-section of the VF26, with revised sidepods and a reworked engine cover forming the centrepiece of a package aimed at unlocking a meaningful performance gain. The target is a new aerodynamic philosophy that moves the car closer to the midfield front-runners.
+
+_Headline Upgrades: Delayed but significant package now arriving. Revised sidepods and engine cover. Mid-section aerodynamic philosophy overhaul targeting substantial performance gain._
+
+---
+
+**Cadillac**
+
+Cadillac's development march continues in Montreal, with the team building on the Miami package through a series of smaller but essential aerodynamic additions. Significant work remains ongoing on the mid-section bodywork, an area that the team identifies as a key development frontier for the MAC26. The gains are incremental rather than transformative, but for a team in only its second season, the consistency of the upgrade cadence is itself a positive signal.
+
+_Headline Upgrades: Continuation of Miami upgrade package. Additional essential aerodynamic components. Significant ongoing development work on mid-section bodywork._
+
+---
+
+**Aston Martin**
+
+Aston Martin's Canadian package takes a different approach to the rest of the field, with the focus falling on the power unit rather than the aerodynamic surfaces. Optimised output from the Honda RA626H internal combustion engine arrives alongside improved MGU-K energy recovery and deployment, with a specific fix targeting the power clipping that has cost the team on long straights this season. The result is smoother and more consistent power delivery through every phase of the lap — a straightforward but important improvement on a circuit that will expose any inefficiency in energy management.
+
+_Headline Upgrades: Optimised Honda RA626H ICE output. Improved MGU-K energy recovery and deployment. Reduced power clipping on long straights._
+
+---
+
+**Final Thought**
+
+Montreal is one of those circuits where the upgrade story can shift the narrative quickly. A team that arrives with the right package on a circuit that rewards straight-line efficiency and braking precision can punch above its weight; one that arrives underprepared can easily find itself exposed. With Mercedes leading a field that is developing at pace across the board, the gaps at the front and across the midfield are set to look different by Sunday evening. The development race, much like the championship fight itself, is very much alive.`,
+  },
+  {
     slug: 'race-week-preview-canada-gp-2026',
     title: 'Race Week Preview: Canadian Grand Prix',
     excerpt: 'Antonelli is three-from-three, the field showed promise in Miami, and Montreal is where someone either lands a punch or Mercedes bury them.',
