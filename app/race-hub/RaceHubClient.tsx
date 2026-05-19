@@ -960,6 +960,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                     <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                       {[
                         { label: 'Air Temp', value: `${currentConditions.temperature_2m?.toFixed(1) ?? '—'}°C`, icon: '🌡️' },
+                        { label: 'Track Temp', value: 'N/A', icon: '🏎️' },
                         { label: 'Wind Speed', value: `${(currentConditions.wind_speed_10m ?? 0).toFixed(1)} km/h`, icon: '💨' },
                         { label: 'Wind Dir', value: `${currentConditions.wind_direction_10m ?? '—'}°`, icon: '🧭' },
                         { label: 'Humidity', value: `${currentConditions.relative_humidity_2m?.toFixed(0) ?? '—'}%`, icon: '💧' },
