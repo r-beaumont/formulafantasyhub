@@ -108,7 +108,7 @@ _Headline Upgrades: Delayed but significant package now arriving. Revised sidepo
 
 **Cadillac**
 
-Cadillac's development march continues in Montreal, with the team building on the Miami package through a series of smaller but essential aerodynamic additions. Significant work remains ongoing on the mid-section bodywork, an area that the team identifies as a key development frontier for the MAC26. The gains are incremental rather than transformative, but for a team in only its second season, the consistency of the upgrade cadence is itself a positive signal.
+Cadillac's development march continues in Montreal, with the team building on the Miami package through a series of smaller but essential aerodynamic additions. Significant work remains ongoing on the mid-section bodywork, an area that the team identifies as a key development frontier for the MAC26. The gains are incremental rather than transformative, but for a team in only its first season, the consistency of the upgrade cadence is itself a positive signal.
 
 _Headline Upgrades: Continuation of Miami upgrade package. Additional essential aerodynamic components. Significant ongoing development work on mid-section bodywork._
 
