@@ -78,6 +78,7 @@ export default function RaceHubClient() {
   const [sessions, setSessions] = useState<any[]>([])
 const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[] }>({ drivers: [], constructors: [] })
   const [weather, setWeather] = useState<any>(null)
+  const [currentConditions, setCurrentConditions] = useState<any>(null)
   const [forecast, setForecast] = useState<any>(null)
   const [forecastLoading, setForecastLoading] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -89,6 +90,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
     // Always clear stale data from previous round immediately
     setSessions([])
     setWeather(null)
+    setCurrentConditions(null)
 
     async function load() {
       setLoading(true)
@@ -145,6 +147,21 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
     const id = setInterval(poll, 20 * 60 * 1000)
     return () => clearInterval(id)
   }, [sessions])
+
+  // Fetch ambient conditions from Open-Meteo, refresh every 60 minutes
+  useEffect(() => {
+    if (!selectedRace.lat || !selectedRace.lon) return
+    const fetchConditions = async () => {
+      try {
+        const res = await fetch(`/api/current-conditions?lat=${selectedRace.lat}&lon=${selectedRace.lon}`)
+        const data = await res.json()
+        if (data && !data.error) setCurrentConditions(data)
+      } catch {}
+    }
+    fetchConditions()
+    const id = setInterval(fetchConditions, 60 * 60 * 1000)
+    return () => clearInterval(id)
+  }, [selectedRound])
 
   useEffect(() => {
     if (!selectedRace.lat || !selectedRace.lon || !selectedRace.weekendStartISO) return
@@ -915,12 +932,10 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
             <div style={card}>
               <div style={cardHeader}>
                 <span style={cardTitle}>Live Track Conditions</span>
-                <Badge type="live" label="Live" />
+                {weather ? <Badge type="live" label="Live" /> : <Badge type="new" label="Open-Meteo" />}
               </div>
               <div style={{ padding: '20px' }}>
-                {loading ? <Loader label="weather" /> : !weather ? (
-                  <div style={{ color: '#5A6A7A', fontSize: '13px' }}>No live track data available — check back during the race weekend</div>
-                ) : (
+                {loading ? <Loader label="weather" /> : weather ? (
                   <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                     {[
                       { label: 'Air Temp', value: `${weather.air_temperature?.toFixed(1) ?? '—'}°C`, icon: '🌡️' },
@@ -937,6 +952,35 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                       </div>
                     ))}
                   </div>
+                ) : currentConditions ? (
+                  <>
+                    <div style={{ fontSize: '10px', color: '#5A6A7A', marginBottom: '12px', letterSpacing: '0.5px' }}>
+                      Ambient conditions — live session data available during race weekends
+                    </div>
+                    <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                      {[
+                        { label: 'Air Temp', value: `${currentConditions.temperature_2m?.toFixed(1) ?? '—'}°C`, icon: '🌡️' },
+                        { label: 'Wind Speed', value: `${(currentConditions.wind_speed_10m ?? 0).toFixed(1)} km/h`, icon: '💨' },
+                        { label: 'Wind Dir', value: `${currentConditions.wind_direction_10m ?? '—'}°`, icon: '🧭' },
+                        { label: 'Humidity', value: `${currentConditions.relative_humidity_2m?.toFixed(0) ?? '—'}%`, icon: '💧' },
+                        { label: 'Pressure', value: `${currentConditions.surface_pressure?.toFixed(1) ?? '—'} hPa`, icon: '📊' },
+                        { label: 'Rainfall', value: (currentConditions.precipitation ?? 0) > 0 ? `${currentConditions.precipitation?.toFixed(1)} mm 🌧️` : 'None ☀️', icon: '🌦️' },
+                      ].map((stat) => (
+                        <div key={stat.label} style={{ background: '#141B22', borderRadius: '8px', padding: '14px' }}>
+                          <div style={{ fontSize: '11px', color: '#5A6A7A', textTransform: 'uppercase' as const, letterSpacing: '1px', marginBottom: '6px' }}>{stat.icon} {stat.label}</div>
+                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '18px', fontWeight: 600 }}>{stat.value}</div>
+                        </div>
+                      ))}
+                    </div>
+                    {currentConditions.weather_code !== undefined && (
+                      <div style={{ marginTop: '12px', padding: '10px 14px', background: '#141B22', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <span style={{ fontSize: '20px' }}>{wmoIcon(currentConditions.weather_code)}</span>
+                        <span style={{ fontSize: '13px', color: '#8A9AB0' }}>{wmoLabel(currentConditions.weather_code)}</span>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div style={{ color: '#5A6A7A', fontSize: '13px' }}>No conditions data available</div>
                 )}
               </div>
             </div>
