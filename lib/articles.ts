@@ -18,7 +18,7 @@ export interface Article {
 export const articles: Article[] = [
   {
     slug: 'canadian-gp-2026-technical-upgrades',
-    title: 'Canadian GP 2026: The Development Race Heats Up in Montreal',
+    title: 'Upgrades Preview: Canadian Grand Prix',
     excerpt: 'Montreal doubles as a development checkpoint as the 2026 season moves into its European phase. Here is how all eleven teams stack up heading into Canada.',
     readTime: 5,
     date: 'May 19, 2026',
@@ -26,8 +26,8 @@ export const articles: Article[] = [
     category: 'Technical',
     articleType: 'F1',
     premium: false,
-    thumbnail: 'linear-gradient(135deg, #CC0000, #8B0000)',
-    thumbnailBg: 'rgba(204,0,0,0.15)',
+    thumbnail: 'linear-gradient(135deg, #2D1B69, #1a0a3d)',
+    thumbnailBg: 'rgba(90,50,180,0.2)',
     thumbnailIcon: 'ca',
     ogImage: 'https://formulahub.live/og/canadian-gp-2026-technical-upgrades',
     content: `Montreal has a habit of sorting the grid out in ways that other circuits don't. The Circuit Gilles Villeneuve's long straights, heavy braking zones and punishing wall proximity make it one of the more demanding venues on the calendar for both machinery and nerves. With several teams arriving with meaningful new parts, this weekend doubles as a development checkpoint as the season moves into its European phase.
