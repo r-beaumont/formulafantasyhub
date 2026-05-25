@@ -26,13 +26,11 @@ export const articles: Article[] = [
     category: 'Race Review',
     articleType: 'F1',
     premium: false,
-    thumbnail: 'linear-gradient(135deg, #0d0008 0%, #2a000f 50%, #0d0008 100%)',
-    thumbnailBg: 'rgba(216,6,33,0.2)',
+    thumbnail: 'linear-gradient(135deg, #001a08 0%, #003d12 50%, #001a08 100%)',
+    thumbnailBg: 'rgba(0,100,30,0.2)',
     thumbnailIcon: 'ca',
     ogImage: 'https://formulahub.live/og/canadian-gp-2026-what-we-learned',
-    content: `Kimi Antonelli wins again, George Russell's afternoon ends in a power unit failure and a flying head rest, and Lewis Hamilton finally looks like himself in a Ferrari. Here is what the 2026 Canadian Grand Prix told us.
-
-Montreal delivered exactly what it usually does: chaos, retirements, and a race that looked like it was heading one way before turning on its head entirely. Six cars failed to see the flag. The championship picture shifted more in seventy laps than it had in the previous month.
+    content: `Montreal delivered exactly what it usually does: chaos, retirements, and a race that looked like it was heading one way before turning on its head entirely. Six cars failed to see the flag. The championship picture shifted more in seventy laps than it had in the previous month.
 
 ---
 
