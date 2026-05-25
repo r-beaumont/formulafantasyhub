@@ -124,10 +124,10 @@ export const CON_STATS_MAP: Record<string, ConstructorStats> = Object.fromEntrie
 if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'test') {
   console.log('\n── seasonStats verification ──────────────────────────────')
   const check = [
-    { name: 'George Russell',  expPts: 80,  expWins: 1, expPodiums: 2, expPoles: 1 },
-    { name: 'Kimi Antonelli',  expPts: 100, expWins: 3, expPodiums: 4, expPoles: 3 },
-    { name: 'Charles Leclerc', expPts: 59,  expWins: 0, expPodiums: 2, expPoles: 0 },
-    { name: 'Lewis Hamilton',  expPts: 51,  expWins: 0, expPodiums: 1, expPoles: 0 },
+    { name: 'George Russell',  expPts: 88,  expWins: 1, expPodiums: 2, expPoles: 2 },
+    { name: 'Kimi Antonelli',  expPts: 131, expWins: 4, expPodiums: 5, expPoles: 3 },
+    { name: 'Charles Leclerc', expPts: 75,  expWins: 0, expPodiums: 2, expPoles: 0 },
+    { name: 'Lewis Hamilton',  expPts: 72,  expWins: 0, expPodiums: 2, expPoles: 0 },
   ]
   for (const { name, expPts, expWins, expPodiums, expPoles } of check) {
     const d = DRIVER_STATS_MAP[name]
