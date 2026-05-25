@@ -17,6 +17,58 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'canadian-gp-2026-what-we-learned',
+    title: 'What We Learned: Canadian Grand Prix',
+    excerpt: "Kimi Antonelli wins again, George Russell's 38-race retirement streak ends in Montreal, and McLaren have another Sunday to forget. Here is what the 2026 Canadian Grand Prix told us.",
+    readTime: 4,
+    date: 'May 25, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #0d0008 0%, #2a000f 50%, #0d0008 100%)',
+    thumbnailBg: 'rgba(216,6,33,0.2)',
+    thumbnailIcon: 'ca',
+    ogImage: 'https://formulahub.live/og/canadian-gp-2026-what-we-learned',
+    content: `Kimi Antonelli wins again, George Russell's afternoon ends in a power unit failure and a flying head rest, and Lewis Hamilton finally looks like himself in a Ferrari. Here is what the 2026 Canadian Grand Prix told us.
+
+Montreal delivered exactly what it usually does: chaos, retirements, and a race that looked like it was heading one way before turning on its head entirely. Six cars failed to see the flag. The championship picture shifted more in seventy laps than it had in the previous month.
+
+---
+
+**Kimi Antonelli does not need clean races to win**
+
+There was a version of this race where George Russell wins comfortably. He had pole for both qualifying sessions, won the Sprint, led the main event from early on, and had the pace to match. Instead, a power unit failure on Lap 30 forced Russell to pull off and handed Antonelli clear air and a race he would not let go. The easy read is that Antonelli got lucky. The honest one is that he was right there, pushing his teammate, converting every opportunity, and doing exactly what championship contenders do: being in position when the race comes to them. Four wins from five rounds. 131 points. A 43-point buffer over the man he shares a garage with. This is no longer a story about a promising youngster; it is a story about the driver most likely to be world champion.
+
+---
+
+**George Russell's Canadian weekend went from brilliant to painful in thirty laps**
+
+Russell had dominated proceedings on Friday and Saturday. For the first quarter of the race he looked every inch the man who could close the gap to his teammate. Then the power unit let go, and a 38-grand prix streak without a retirement ended in Canada. Everything that followed made a bad afternoon worse. Russell's frustration boiled over into throwing his head rest onto the track, earning him a suspended €5,000 fine and a great deal of unnecessary attention. Until Mercedes can confirm this was an isolated failure, every Fantasy manager carrying Russell at his price point has a decision to make.
+
+---
+
+**Lewis Hamilton is finding his feet at Ferrari, and it matters**
+
+Hamilton's second place in Montreal was his best result in a Ferrari, and the manner of it said something important: he passed Verstappen on track late in the race, held the position under pressure, and looked composed rather than combative. There have been flashes of this before, but not this consistency. Fourth in the championship and closing, Hamilton is no longer a story about a difficult transition; he is becoming a genuine factor in how this season plays out.
+
+---
+
+**McLaren's weekend collapsed almost entirely of their own making**
+
+Friday and Saturday had looked promising, and the MCL40 had the pace to back it up. What followed on Sunday was one of the more painful afternoons the team has had in a while. Gambling on intermediate tyres while the rest of the top ten started on slicks backfired almost immediately. Piastri then made contact with Albon, retired the Williams driver, and collected a ten-second penalty he could not recover from. Norris eventually parked at the hairpin with yet another mechanical failure. McLaren have now contended with engine reliability issues in more than half of their race weekends this season. The pace is there to fight at the front. Almost everything else is getting in the way.
+
+---
+
+**Franco Colapinto is not a one-off**
+
+Alpine finishing sixth and eighth with Colapinto and Gasly at a power circuit is not a result that happens by accident. Colapinto in particular has delivered in back-to-back rounds, and Alpine's upgrade package appears to have moved them meaningfully up the midfield order. He has now posted points finishes in all three sprint weekends this season, and back-to-back Q3 appearances suggest the pace is real rather than circumstantial. Monaco is next, a circuit that historically rewards strong qualifying above almost everything else, which should suit the Argentine just fine.
+
+---
+
+Monaco is next, and it could not be more different from what we have just witnessed. Where Montreal is about raw power and heavy braking, the streets of the principality demand precision, patience, and a car that can qualify on the front rows because overtaking is close to impossible once the race begins. Ferrari have performed well there over the last two seasons, and the circuit's unique demands have a habit of reshuffling the order in ways that even the most dominant teams cannot always control. The championship picture is becoming clearer by the week.`,
+  },
+  {
     slug: 'canadian-gp-2026-technical-upgrades',
     title: 'Upgrades Preview: Canadian Grand Prix',
     excerpt: 'Montreal doubles as a development checkpoint as the 2026 season moves closer to the European stage of the calendar. Here is how all eleven teams stack up heading into Canada.',
