@@ -76,6 +76,16 @@ body::before {
 }
 [data-theme="light"] body::before { display: none; }
 
+[data-theme="light"] nav,
+[data-theme="light"] header {
+  background: rgba(240,242,245,0.95) !important;
+  border-bottom-color: rgba(0,0,0,0.1) !important;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: var(--surface3);
+}
+
 ::selection { background: var(--red); color: white; }
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }

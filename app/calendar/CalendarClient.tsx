@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -31,10 +31,10 @@ export default function CalendarClient() {
   }
 
   return (
-    <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' }}>
+    <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden' }}>
       {/* Card header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-        <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid var(--border)' }}>
+        <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'var(--muted)' }}>
           2026 Racing Calendar
         </span>
         <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' as const, background: 'rgba(0,168,255,0.12)', color: '#00A8FF' }}>
@@ -61,7 +61,7 @@ export default function CalendarClient() {
           let badgeBg: string
           let badgeColor: string
           if (isCalledOff) {
-            badgeText = 'Cancelled'; badgeBg = 'rgba(255,255,255,0.06)'; badgeColor = '#5A6A7A'
+            badgeText = 'Cancelled'; badgeBg = 'rgba(255,255,255,0.06)'; badgeColor = 'var(--muted)'
           } else if (race.completed && winnerSurname) {
             badgeText = `${winnerSurname} WIN`; badgeBg = 'rgba(0,212,126,0.12)'; badgeColor = '#00D47E'
           } else if (race.completed) {
@@ -95,7 +95,7 @@ export default function CalendarClient() {
                 }}
               >
                 {/* Round */}
-                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 700, color: '#5A6A7A', width: '26px', flexShrink: 0 }}>
+                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 700, color: 'var(--muted)', width: '26px', flexShrink: 0 }}>
                   R{race.round}
                 </span>
 
@@ -109,7 +109,7 @@ export default function CalendarClient() {
                       fontFamily: 'Bebas Neue, sans-serif',
                       fontSize: '16px',
                       letterSpacing: '0.5px',
-                      color: isCalledOff ? '#3A4A5A' : '#F0F4F8',
+                      color: isCalledOff ? 'var(--muted2)' : 'var(--text)',
                       lineHeight: 1.1,
                     }}>
                       {race.name}
@@ -120,13 +120,13 @@ export default function CalendarClient() {
                       </span>
                     )}
                   </div>
-                  <div style={{ fontSize: '11px', color: '#3A4A5A', marginTop: '1px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }}>
+                  <div style={{ fontSize: '11px', color: 'var(--muted2)', marginTop: '1px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }}>
                     {race.circuit}
                   </div>
                 </div>
 
                 {/* Date — hidden on very small screens via inline style */}
-                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', flexShrink: 0 }}>
+                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: 'var(--muted)', flexShrink: 0 }}>
                   {race.dateRange || race.date}
                 </span>
 
@@ -142,7 +142,7 @@ export default function CalendarClient() {
                 {/* Chevron */}
                 {!isCalledOff && (
                   <span style={{
-                    fontSize: '10px', color: '#5A6A7A', flexShrink: 0,
+                    fontSize: '10px', color: 'var(--muted)', flexShrink: 0,
                     display: 'inline-block',
                     transition: 'transform 0.3s ease',
                     transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
@@ -157,14 +157,14 @@ export default function CalendarClient() {
                 transition: 'max-height 0.35s ease',
               }}>
                 <div style={{
-                  background: '#0E1318',
+                  background: 'var(--surface)',
                   borderTop: '1px solid rgba(232,0,45,0.12)',
                   padding: '16px 20px 18px',
                   paddingLeft: '20px',
                 }}>
                   {/* Expanded title */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px', flexWrap: 'wrap' as const }}>
-                    <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '24px', letterSpacing: '1px', color: '#F0F4F8', lineHeight: 1, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '24px', letterSpacing: '1px', color: 'var(--text)', lineHeight: 1, display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <span className={`fi fi-${race.flag}`} style={{ width: '1em', borderRadius: '2px', display: 'inline-block', flexShrink: 0 }} />
                       {race.name} Grand Prix
                     </span>
@@ -183,10 +183,10 @@ export default function CalendarClient() {
                       { label: 'Round',   value: `${race.round} of 22` },
                     ].map(item => (
                       <div key={item.label} style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '8px', padding: '9px 12px' }}>
-                        <div style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.4px', marginBottom: '3px' }}>
+                        <div style={{ fontSize: '10px', color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.4px', marginBottom: '3px' }}>
                           {item.label}
                         </div>
-                        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#F0F4F8', fontWeight: 600 }}>
+                        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: 'var(--text)', fontWeight: 600 }}>
                           {item.value}
                         </div>
                       </div>
@@ -196,7 +196,7 @@ export default function CalendarClient() {
                   {/* Sessions — only show for upcoming races */}
                   {!race.completed && race.sessions && race.sessions.length > 0 && (
                     <div style={{ marginBottom: '14px' }}>
-                      <div style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.4px', marginBottom: '7px' }}>
+                      <div style={{ fontSize: '10px', color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.4px', marginBottom: '7px' }}>
                         Session Schedule
                       </div>
                       <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '5px' }}>
@@ -213,11 +213,11 @@ export default function CalendarClient() {
                           const timeStr = dt.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: race.timezone })
                           return (
                             <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '10px', opacity: done ? 0.45 : 1 }}>
-                              <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '11px', letterSpacing: '0.5px', color: done ? '#3A4A5A' : '#8A9AB0', background: 'rgba(255,255,255,0.04)', padding: '2px 6px', borderRadius: '4px', width: '42px', textAlign: 'center' as const, flexShrink: 0 }}>
+                              <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '11px', letterSpacing: '0.5px', color: done ? 'var(--muted2)' : '#8A9AB0', background: 'rgba(255,255,255,0.04)', padding: '2px 6px', borderRadius: '4px', width: '42px', textAlign: 'center' as const, flexShrink: 0 }}>
                                 {short}
                               </span>
-                              <span style={{ fontSize: '12px', color: done ? '#3A4A5A' : '#F0F4F8', flex: 1 }}>{s.name}</span>
-                              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#5A6A7A' }}>{dateStr} · {timeStr}</span>
+                              <span style={{ fontSize: '12px', color: done ? 'var(--muted2)' : 'var(--text)', flex: 1 }}>{s.name}</span>
+                              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: 'var(--muted)' }}>{dateStr} · {timeStr}</span>
                               {done && <span style={{ fontSize: '11px', color: '#00D47E' }}>✓</span>}
                             </div>
                           )
@@ -239,7 +239,7 @@ export default function CalendarClient() {
                     <button
                       onClick={() => router.push(`/race-hub?round=${race.round}`)}
                       style={{
-                        background: '#E8002D', color: 'white', border: 'none', borderRadius: '8px',
+                        background: '#E8002D', color: 'var(--text)', border: 'none', borderRadius: '8px',
                         padding: '8px 18px', fontSize: '12px', fontWeight: 700, cursor: 'pointer',
                         letterSpacing: '0.3px',
                       }}

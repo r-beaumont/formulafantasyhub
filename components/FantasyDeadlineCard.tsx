@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -41,10 +41,10 @@ export default function FantasyDeadlineCard() {
   const lockLabel = CURRENT_RACE.isSprint ? 'Lineups Lock at Sprint Race' : 'Lineups Lock at Qualifying'
 
   return (
-    <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg,#FFB800,rgba(255,184,0,0.2))' }} />
-      <div style={{ display: 'flex', alignItems: 'center', padding: '16px 20px 12px', minHeight: '52px', boxSizing: 'border-box' as const, borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-        <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>
+      <div style={{ display: 'flex', alignItems: 'center', padding: '16px 20px 12px', minHeight: '52px', boxSizing: 'border-box' as const, borderBottom: '1px solid var(--border)' }}>
+        <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'var(--muted)' }}>
           ⏱️ F1 Fantasy Team Lock Deadline
         </span>
       </div>
@@ -64,18 +64,18 @@ export default function FantasyDeadlineCard() {
               { value: timeLeft.minutes, label: 'MIN' },
               { value: timeLeft.seconds, label: 'SEC' },
             ].map(({ value, label }) => (
-              <div key={label} style={{ background: '#141B22', border: '1px solid rgba(255,184,0,0.15)', borderRadius: '8px', padding: '10px 6px', textAlign: 'center' as const }}>
+              <div key={label} style={{ background: 'var(--surface2)', border: '1px solid rgba(255,184,0,0.15)', borderRadius: '8px', padding: '10px 6px', textAlign: 'center' as const }}>
                 <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '22px', fontWeight: 700, color: '#FFB800', lineHeight: 1 }}>
                   {pad(value)}
                 </div>
-                <div style={{ fontSize: '9px', fontWeight: 600, letterSpacing: '0.8px', color: '#3A4A5A', marginTop: '4px' }}>{label}</div>
+                <div style={{ fontSize: '9px', fontWeight: 600, letterSpacing: '0.8px', color: 'var(--muted2)', marginTop: '4px' }}>{label}</div>
               </div>
             ))}
           </div>
         ) : (
           <div style={{ textAlign: 'center' as const, padding: '20px 0' }}>
             <div style={{ fontSize: '13px', color: '#E8002D', fontWeight: 600 }}>Deadline passed</div>
-            <div style={{ fontSize: '11px', color: '#3A4A5A', marginTop: '4px' }}>Transfers are locked</div>
+            <div style={{ fontSize: '11px', color: 'var(--muted2)', marginTop: '4px' }}>Transfers are locked</div>
           </div>
         )}
       </div>

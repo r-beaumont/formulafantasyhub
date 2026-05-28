@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import Navbar from '@/components/Navbar'
@@ -46,7 +46,7 @@ export default function NewsPage() {
             <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase' }}>News</span>
           </div>
           <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '56px', letterSpacing: '1px', lineHeight: 1 }}>Latest News</div>
-          <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, marginTop: '8px' }}>F1 and F1 Fantasy news, analysis and insights.</p>
+          <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.7, marginTop: '8px' }}>F1 and F1 Fantasy news, analysis and insights.</p>
         </div>
 
         {/* Tag filter */}
@@ -58,8 +58,8 @@ export default function NewsPage() {
               style={{
                 background: activeTag === tag
                   ? (tag === 'F1 Fantasy' ? '#E8002D' : tag === 'F1' ? '#00A8FF' : '#E8002D')
-                  : '#141B22',
-                color: activeTag === tag ? 'white' : '#5A6A7A',
+                  : 'var(--surface2)',
+                color: activeTag === tag ? 'var(--text)' : 'var(--muted)',
                 border: '1px solid',
                 borderColor: activeTag === tag
                   ? (tag === 'F1 Fantasy' ? '#E8002D' : tag === 'F1' ? '#00A8FF' : '#E8002D')
@@ -81,7 +81,7 @@ export default function NewsPage() {
         {(activeTag === 'All' || featured.articleType === activeTag) && (
           <Link href={`/news/${featured.slug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block', marginBottom: '28px' }}>
             <div className="mob-1col" style={{
-              background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)',
+              background: 'var(--surface)', border: '1px solid var(--border)',
               borderRadius: '16px', overflow: 'hidden', display: 'grid',
               gridTemplateColumns: '1fr 1fr', cursor: 'pointer',
               transition: 'border-color 0.2s',
@@ -93,26 +93,26 @@ export default function NewsPage() {
                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '100px', background: 'linear-gradient(transparent,rgba(14,19,24,0.95))', zIndex: 2 }} />
                 {/* Latest badge */}
                 <div style={{ position: 'absolute', top: '16px', left: '16px', zIndex: 3 }}>
-                  <span style={{ fontSize: '10px', fontWeight: 700, padding: '4px 10px', borderRadius: '20px', background: '#E8002D', color: 'white', textTransform: 'uppercase', letterSpacing: '1px' }}>Latest</span>
+                  <span style={{ fontSize: '10px', fontWeight: 700, padding: '4px 10px', borderRadius: '20px', background: '#E8002D', color: 'var(--text)', textTransform: 'uppercase', letterSpacing: '1px' }}>Latest</span>
                 </div>
               </div>
               {/* Right — content */}
               <div style={{ padding: '40px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '16px' }}>
                   <span style={{ fontSize: '10px', fontWeight: 700, padding: '3px 10px', borderRadius: '20px', background: featured.articleType === 'F1 Fantasy' ? 'rgba(232,0,45,0.15)' : 'rgba(0,168,255,0.15)', color: featured.articleType === 'F1 Fantasy' ? '#E8002D' : '#00A8FF', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{featured.articleType}</span>
-                  <span style={{ fontSize: '10px', fontWeight: 700, padding: '3px 10px', borderRadius: '20px', background: categoryColors[featured.category]?.bg || 'rgba(255,255,255,0.1)', color: categoryColors[featured.category]?.color || '#F0F4F8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{featured.tag}</span>
-                  <span style={{ fontSize: '11px', color: '#3A4A5A', marginLeft: 'auto', fontFamily: 'JetBrains Mono, monospace' }}>⏱ {featured.readTime} min read</span>
+                  <span style={{ fontSize: '10px', fontWeight: 700, padding: '3px 10px', borderRadius: '20px', background: categoryColors[featured.category]?.bg || 'rgba(255,255,255,0.1)', color: categoryColors[featured.category]?.color || 'var(--text)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{featured.tag}</span>
+                  <span style={{ fontSize: '11px', color: 'var(--muted2)', marginLeft: 'auto', fontFamily: 'JetBrains Mono, monospace' }}>⏱ {featured.readTime} min read</span>
                 </div>
-                <h2 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', lineHeight: 1.1, marginBottom: '16px', color: '#F0F4F8', letterSpacing: '0.5px' }}>
+                <h2 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', lineHeight: 1.1, marginBottom: '16px', color: 'var(--text)', letterSpacing: '0.5px' }}>
                   {featured.title}
                 </h2>
-                <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, marginBottom: '24px' }}>{featured.excerpt}</p>
+                <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.7, marginBottom: '24px' }}>{featured.excerpt}</p>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg,#E8002D,#FF6B6B)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 700, color: 'white' }}>R</div>
+                    <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg,#E8002D,#FF6B6B)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 700, color: 'var(--text)' }}>R</div>
                     <div>
                       <div style={{ fontSize: '12px', fontWeight: 600 }}>Rob Beaumont</div>
-                      <div style={{ fontSize: '11px', color: '#3A4A5A' }}>{featured.date}</div>
+                      <div style={{ fontSize: '11px', color: 'var(--muted2)' }}>{featured.date}</div>
                     </div>
                   </div>
                   <span style={{ fontSize: '13px', color: '#E8002D', fontWeight: 600 }}>Read article →</span>
@@ -138,11 +138,11 @@ export default function NewsPage() {
 }
 
 function NewsCard({ article }: { article: any }) {
-  const cat = categoryColors[article.category] || { color: '#5A6A7A', bg: 'rgba(255,255,255,0.08)' }
+  const cat = categoryColors[article.category] || { color: 'var(--muted)', bg: 'rgba(255,255,255,0.08)' }
   return (
     <Link href={`/news/${article.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
       <div style={{
-        background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)',
+        background: 'var(--surface)', border: '1px solid var(--border)',
         borderRadius: '14px', overflow: 'hidden', cursor: 'pointer', height: '100%',
         display: 'flex', flexDirection: 'column',
         transition: 'border-color 0.2s, transform 0.2s',
@@ -158,12 +158,12 @@ function NewsCard({ article }: { article: any }) {
           <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginBottom: '10px', flexWrap: 'wrap' }}>
             <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 8px', borderRadius: '20px', background: article.articleType === 'F1 Fantasy' ? 'rgba(232,0,45,0.15)' : 'rgba(0,168,255,0.15)', color: article.articleType === 'F1 Fantasy' ? '#E8002D' : '#00A8FF', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{article.articleType}</span>
             <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 8px', borderRadius: '20px', background: cat.bg, color: cat.color, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{article.tag}</span>
-            <span style={{ fontSize: '10px', color: '#3A4A5A', marginLeft: 'auto', fontFamily: 'JetBrains Mono, monospace' }}>⏱ {article.readTime}m</span>
+            <span style={{ fontSize: '10px', color: 'var(--muted2)', marginLeft: 'auto', fontFamily: 'JetBrains Mono, monospace' }}>⏱ {article.readTime}m</span>
           </div>
-          <h3 style={{ fontSize: '14px', fontWeight: 700, lineHeight: 1.4, marginBottom: '8px', flex: 1, color: '#F0F4F8' }}>{article.title}</h3>
-          <p style={{ fontSize: '12px', color: '#5A6A7A', lineHeight: 1.6, marginBottom: '12px' }}>{article.excerpt.slice(0, 80)}...</p>
+          <h3 style={{ fontSize: '14px', fontWeight: 700, lineHeight: 1.4, marginBottom: '8px', flex: 1, color: 'var(--text)' }}>{article.title}</h3>
+          <p style={{ fontSize: '12px', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '12px' }}>{article.excerpt.slice(0, 80)}...</p>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto' }}>
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#3A4A5A' }}>{article.date}</span>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: 'var(--muted2)' }}>{article.date}</span>
             <span style={{ fontSize: '12px', color: '#E8002D', fontWeight: 600 }}>Read →</span>
           </div>
         </div>

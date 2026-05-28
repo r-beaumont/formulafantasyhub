@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Image from 'next/image'
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
 }
 
 const card: React.CSSProperties = {
-  background: '#0E1318',
-  border: '0.5px solid rgba(255,255,255,0.07)',
+  background: 'var(--surface)',
+  border: '0.5px solid var(--border)',
   borderRadius: '12px',
   padding: '32px',
   marginBottom: '20px',
@@ -37,7 +37,7 @@ const sectionLabel: React.CSSProperties = {
   fontFamily: 'DM Sans, sans-serif',
   fontSize: '11px',
   fontWeight: 600,
-  color: '#5A6A7A',
+  color: 'var(--muted)',
   textTransform: 'uppercase',
   letterSpacing: '0.08em',
   marginBottom: '20px',
@@ -81,7 +81,7 @@ export default function AboutPage() {
   }
 
   const contactBtn: React.CSSProperties = {
-    background: '#0E1318',
+    background: 'var(--surface)',
     border: '0.5px solid rgba(255,255,255,0.12)',
     borderRadius: '8px',
     padding: '10px 20px',
@@ -104,7 +104,7 @@ export default function AboutPage() {
         @media (max-width: 600px) {
           .about-float-img { float: none !important; width: 100% !important; margin-left: 0 !important; margin-bottom: 20px !important; }
         }
-        .contact-btn:hover { border-color: rgba(255,255,255,0.3) !important; color: #F0F4F8 !important; }
+        .contact-btn:hover { border-color: rgba(255,255,255,0.3) !important; color: var(--text) !important; }
       `}</style>
       <Navbar />
       <main style={{ position: 'relative', zIndex: 1 }}>

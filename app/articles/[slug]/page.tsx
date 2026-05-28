@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
@@ -57,7 +57,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
 
   const userIsPremium = false
   const showGate = article.premium && !userIsPremium
-  const cat = categoryColors[article.category] || { color: '#5A6A7A', bg: 'rgba(255,255,255,0.08)' }
+  const cat = categoryColors[article.category] || { color: 'var(--muted)', bg: 'rgba(255,255,255,0.08)' }
   const related = articles.filter(a => a.slug !== article.slug && a.category === article.category).slice(0, 2)
   const otherArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3)
 
@@ -66,7 +66,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     return content.split('\n\n').map((block, i) => {
       if (block.startsWith('**') && block.endsWith('**')) {
         return (
-          <h2 key={i} style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '28px', letterSpacing: '0.5px', color: '#F0F4F8', marginTop: '40px', marginBottom: '16px', paddingBottom: '10px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+          <h2 key={i} style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '28px', letterSpacing: '0.5px', color: 'var(--text)', marginTop: '40px', marginBottom: '16px', paddingBottom: '10px', borderBottom: '1px solid var(--border)' }}>
             {block.replace(/\*\*/g, '')}
           </h2>
         )
@@ -115,20 +115,20 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
               ? <span style={{ fontSize: '10px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: 'rgba(232,0,45,0.15)', color: '#E8002D', textTransform: 'uppercase' as const }}>Premium</span>
               : <span style={{ fontSize: '10px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: 'rgba(0,212,126,0.12)', color: '#00D47E', textTransform: 'uppercase' as const }}>Free</span>
             }
-            <span style={{ fontSize: '11px', color: '#3A4A5A', marginLeft: 'auto', fontFamily: 'JetBrains Mono, monospace' }}>⏱ {article.readTime} min read</span>
+            <span style={{ fontSize: '11px', color: 'var(--muted2)', marginLeft: 'auto', fontFamily: 'JetBrains Mono, monospace' }}>⏱ {article.readTime} min read</span>
           </div>
 
           {/* Title */}
-          <h1 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(2rem,5vw,3.2rem)', lineHeight: 1.05, letterSpacing: '0.5px', marginBottom: '24px', color: '#F0F4F8' }}>
+          <h1 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(2rem,5vw,3.2rem)', lineHeight: 1.05, letterSpacing: '0.5px', marginBottom: '24px', color: 'var(--text)' }}>
             {article.title}
           </h1>
 
           {/* Byline */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px 0', marginBottom: '32px', borderTop: '1px solid rgba(255,255,255,0.07)', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-            <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg,#E8002D,#FF6B6B)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: 700, color: 'white', flexShrink: 0 }}>R</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px 0', marginBottom: '32px', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+            <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg,#E8002D,#FF6B6B)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: 700, color: 'var(--text)', flexShrink: 0 }}>R</div>
             <div>
-              <div style={{ fontSize: '14px', fontWeight: 600, color: '#F0F4F8' }}>Rob Beaumont</div>
-              <div style={{ fontSize: '12px', color: '#5A6A7A' }}>{article.date}</div>
+              <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text)' }}>Rob Beaumont</div>
+              <div style={{ fontSize: '12px', color: 'var(--muted)' }}>{article.date}</div>
             </div>
           </div>
 
@@ -146,17 +146,17 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
               {renderContent(article.content.split('\n\n').slice(0, 2).join('\n\n'))}
               {/* Premium gate */}
               <div style={{ background: 'linear-gradient(180deg, rgba(8,12,16,0) 0%, #080C10 60%)', position: 'relative', marginTop: '-40px', paddingTop: '40px' }}>
-                <div style={{ background: '#0E1318', border: '1px solid rgba(232,0,45,0.3)', borderRadius: '16px', padding: '40px', textAlign: 'center' as const }}>
+                <div style={{ background: 'var(--surface)', border: '1px solid rgba(232,0,45,0.3)', borderRadius: '16px', padding: '40px', textAlign: 'center' as const }}>
                   <div style={{ fontSize: '40px', marginBottom: '16px' }}>🔒</div>
                   <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '32px', marginBottom: '8px' }}>Premium Article</div>
-                  <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, maxWidth: '400px', margin: '0 auto 24px' }}>
+                  <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.7, maxWidth: '400px', margin: '0 auto 24px' }}>
                     Full strategy breakdown, price change analysis, lineup recommendations and chip timing — all for €5/month.
                   </p>
                   <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' as const }}>
-                    <Link href="/subscribe" style={{ background: '#E8002D', color: 'white', padding: '12px 28px', borderRadius: '8px', textDecoration: 'none', fontWeight: 700, fontSize: '14px', boxShadow: '0 0 24px rgba(232,0,45,0.3)' }}>
+                    <Link href="/subscribe" style={{ background: '#E8002D', color: 'var(--text)', padding: '12px 28px', borderRadius: '8px', textDecoration: 'none', fontWeight: 700, fontSize: '14px', boxShadow: '0 0 24px rgba(232,0,45,0.3)' }}>
                       Subscribe for €5/month →
                     </Link>
-                    <Link href="/articles" style={{ background: 'transparent', color: '#5A6A7A', padding: '12px 24px', borderRadius: '8px', textDecoration: 'none', fontWeight: 600, fontSize: '14px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                    <Link href="/articles" style={{ background: 'transparent', color: 'var(--muted)', padding: '12px 24px', borderRadius: '8px', textDecoration: 'none', fontWeight: 600, fontSize: '14px', border: '1px solid rgba(255,255,255,0.1)' }}>
                       Browse free articles
                     </Link>
                   </div>
@@ -176,10 +176,10 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
               <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '28px', letterSpacing: '1px', marginBottom: '16px' }}>More Articles</div>
               <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '12px' }}>
                 {otherArticles.map(a => {
-                  const c = categoryColors[a.category] || { color: '#5A6A7A', bg: 'rgba(255,255,255,0.08)' }
+                  const c = categoryColors[a.category] || { color: 'var(--muted)', bg: 'rgba(255,255,255,0.08)' }
                   return (
                     <Link key={a.slug} href={`/articles/${a.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                      <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '12px', overflow: 'hidden' }}>
+                      <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '12px', overflow: 'hidden' }}>
                         <div style={{ height: '80px', background: a.thumbnail, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
                           <div style={{ position: 'absolute', inset: 0, background: a.thumbnailBg, opacity: 0.6 }} />
                           {/^[a-z]{2}$/.test(a.thumbnailIcon)
@@ -189,7 +189,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                         </div>
                         <div style={{ padding: '12px' }}>
                           <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', background: c.bg, color: c.color, textTransform: 'uppercase' as const }}>{a.tag}</span>
-                          <p style={{ fontSize: '12px', fontWeight: 600, lineHeight: 1.4, marginTop: '6px', color: '#F0F4F8' }}>{a.title.slice(0, 60)}...</p>
+                          <p style={{ fontSize: '12px', fontWeight: 600, lineHeight: 1.4, marginTop: '6px', color: 'var(--text)' }}>{a.title.slice(0, 60)}...</p>
                         </div>
                       </div>
                     </Link>

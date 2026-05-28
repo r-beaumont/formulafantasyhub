@@ -1,11 +1,11 @@
-'use client'
+﻿'use client'
 
 import React, { useState } from 'react'
 import Link from 'next/link'
 
-const card = { background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' as const }
-const cardHeader = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }
-const cardTitle = { fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }
+const card = { background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden' as const }
+const cardHeader = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid var(--border)' }
+const cardTitle = { fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'var(--muted)' }
 
 // ── How to Play tab ────────────────────────────────────────────────────────────
 
@@ -15,7 +15,7 @@ function ScoringTable({ title, note, rows, cols }: { title: string; note?: strin
       <div style={cardHeader}>
         <div>
           <span style={cardTitle}>{title}</span>
-          {note && <div style={{ fontSize: '11px', color: '#5A6A7A', marginTop: '4px', fontWeight: 400, letterSpacing: 0, textTransform: 'none' as const }}>{note}</div>}
+          {note && <div style={{ fontSize: '11px', color: 'var(--muted)', marginTop: '4px', fontWeight: 400, letterSpacing: 0, textTransform: 'none' as const }}>{note}</div>}
         </div>
       </div>
       <div style={{ overflowX: 'auto' }}>
@@ -25,9 +25,9 @@ function ScoringTable({ title, note, rows, cols }: { title: string; note?: strin
             {cols.slice(1).map((_, i) => <col key={i} style={{ width: '80px' }} />)}
           </colgroup>
           <thead>
-            <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+            <tr style={{ borderBottom: '1px solid var(--border)' }}>
               {cols.map((c, i) => (
-                <th key={c} style={{ padding: '10px 24px', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '1px', color: '#5A6A7A', textAlign: i === 0 ? 'left' as const : 'right' as const }}>{c}</th>
+                <th key={c} style={{ padding: '10px 24px', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '1px', color: 'var(--muted)', textAlign: i === 0 ? 'left' as const : 'right' as const }}>{c}</th>
               ))}
             </tr>
           </thead>
@@ -35,7 +35,7 @@ function ScoringTable({ title, note, rows, cols }: { title: string; note?: strin
             {rows.map((row, i) => (
               <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                 {row.map((cell, j) => (
-                  <td key={j} style={{ padding: '10px 24px', fontSize: '13px', color: typeof cell === 'number' && cell > 0 ? '#00D47E' : typeof cell === 'number' && cell < 0 ? '#E8002D' : '#F0F4F8', fontFamily: typeof cell === 'number' ? 'JetBrains Mono, monospace' : 'inherit', fontWeight: j === 0 ? 500 : 400, textAlign: j === 0 ? 'left' as const : 'right' as const, whiteSpace: j > 0 ? 'nowrap' as const : undefined }}>
+                  <td key={j} style={{ padding: '10px 24px', fontSize: '13px', color: typeof cell === 'number' && cell > 0 ? '#00D47E' : typeof cell === 'number' && cell < 0 ? '#E8002D' : 'var(--text)', fontFamily: typeof cell === 'number' ? 'JetBrains Mono, monospace' : 'inherit', fontWeight: j === 0 ? 500 : 400, textAlign: j === 0 ? 'left' as const : 'right' as const, whiteSpace: j > 0 ? 'nowrap' as const : undefined }}>
                     {typeof cell === 'number' && cell > 0 ? `+${cell}` : cell}
                   </td>
                 ))}
@@ -52,7 +52,7 @@ function SessionHeader({ label, color }: { label: string; color: string }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '32px 0 16px' }}>
       <div style={{ width: '4px', height: '28px', background: color, borderRadius: '2px' }} />
-      <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '28px', color: '#F0F4F8', letterSpacing: '1px' }}>{label}</span>
+      <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '28px', color: 'var(--text)', letterSpacing: '1px' }}>{label}</span>
     </div>
   )
 }
@@ -63,7 +63,7 @@ function HowToPlayTab() {
       {/* Intro */}
       <div style={{ ...card, padding: '28px', marginBottom: '8px' }}>
         <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '32px', marginBottom: '12px' }}>How F1 Fantasy Works</div>
-        <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, marginBottom: '16px' }}>
+        <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.7, marginBottom: '16px' }}>
           Each week you select 5 drivers and 2 constructors within a budget. Points are scored based on race performance across Qualifying, the Sprint (at sprint weekends) and the main Grand Prix.
         </p>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' as const }}>
@@ -73,7 +73,7 @@ function HowToPlayTab() {
             { label: '1 2x Boost Driver', icon: '🚀', color: '#E8002D' },
             { label: '$100M Budget', icon: '💰', color: '#00D47E' },
           ].map(item => (
-            <div key={item.label} style={{ background: '#141B22', borderRadius: '8px', padding: '10px 16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div key={item.label} style={{ background: 'var(--surface2)', borderRadius: '8px', padding: '10px 16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <span style={{ fontSize: '18px' }}>{item.icon}</span>
               <span style={{ fontSize: '13px', fontWeight: 600, color: item.color }}>{item.label}</span>
             </div>
@@ -206,7 +206,7 @@ function HowToPlayTab() {
 
       {/* ── FOOTNOTES ── */}
       <div style={{ ...card, padding: '24px', marginTop: '8px' }}>
-        <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A', marginBottom: '14px' }}>Notes</div>
+        <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'var(--muted)', marginBottom: '14px' }}>Notes</div>
         <ul style={{ margin: 0, padding: '0 0 0 18px', display: 'flex', flexDirection: 'column' as const, gap: '10px' }}>
           {[
             'Positions gained and lost are calculated based on the starting and finishing position of the driver in the race, not their qualifying result.',
@@ -217,7 +217,7 @@ function HowToPlayTab() {
             'DNF and Not Classified penalties apply to all drivers including those classed as inactive or not included in the final starting grid.',
             'The current world record pit stop time is 1.8 seconds, set by McLaren at the Qatar Grand Prix 2023.',
           ].map((note, i) => (
-            <li key={i} style={{ fontSize: '13px', color: '#5A6A7A', lineHeight: 1.65 }}>{note}</li>
+            <li key={i} style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.65 }}>{note}</li>
           ))}
         </ul>
       </div>
@@ -283,15 +283,15 @@ function ChipOverviewTab() {
   return (
     <div>
       <div style={{ ...card, padding: '20px 24px', marginBottom: '16px' }}>
-        <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, margin: 0 }}>
+        <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.7, margin: 0 }}>
           Each manager receives one of each chip per season. Chips cannot be used simultaneously. Once activated, a chip cannot be reversed — think strategically before you use it.
         </p>
       </div>
       <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '16px' }}>
         {chips.map(chip => (
           <div key={chip.name} style={{
-            background: '#0E1318',
-            border: chip.priority ? `1px solid ${chip.accent}40` : '1px solid rgba(255,255,255,0.07)',
+            background: 'var(--surface)',
+            border: chip.priority ? `1px solid ${chip.accent}40` : '1px solid var(--border)',
             borderLeft: `4px solid ${chip.accent}`,
             borderRadius: '14px',
             padding: '24px',
@@ -440,7 +440,7 @@ const riskColors = {
 }
 
 function RiskBadge({ level }: { level: 'HIGH' | 'MEDIUM' | 'LOW' | undefined }) {
-  if (!level) return <span style={{ color: '#5A6A7A', fontFamily: 'JetBrains Mono, monospace', fontSize: '11px' }}>—</span>
+  if (!level) return <span style={{ color: 'var(--muted)', fontFamily: 'JetBrains Mono, monospace', fontSize: '11px' }}>—</span>
   const c = riskColors[level]
   return (
     <span style={{
@@ -480,7 +480,7 @@ function InsightsTab() {
   const q65 = numericAvgs[Math.floor(numericAvgs.length * 0.35)] ?? 0
 
   function avgColor(avg: number | null): string {
-    if (avg === null) return '#5A6A7A'
+    if (avg === null) return 'var(--muted)'
     if (view === 'overtakes') {
       if (avg >= q25) return '#F07070'
       if (avg <= q65) return '#70C090'
@@ -532,7 +532,7 @@ function InsightsTab() {
   ]
 
   function arrow(col: SortCol) {
-    if (col !== sortCol) return <span style={{ color: '#3A4A5A', marginLeft: '4px' }}>↕</span>
+    if (col !== sortCol) return <span style={{ color: 'var(--muted2)', marginLeft: '4px' }}>↕</span>
     return <span style={{ color: '#E8002D', marginLeft: '4px' }}>{sortDir === 'desc' ? '↓' : '↑'}</span>
   }
 
@@ -540,7 +540,7 @@ function InsightsTab() {
     <div>
 
       {/* Section 1 — Intro banner */}
-      <div style={{ background: '#0E1318', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '20px 24px', marginBottom: '12px', display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
+      <div style={{ background: 'var(--surface)', border: '0.5px solid var(--border)', borderRadius: '12px', padding: '20px 24px', marginBottom: '12px', display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
         <div style={{ fontSize: '22px', flexShrink: 0, marginTop: '2px' }}>📊</div>
         <div>
           <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', fontWeight: 600, color: '#E8002D', textTransform: 'uppercase' as const, letterSpacing: '0.1em', marginBottom: '8px' }}>F1 Fantasy Statistics</div>
@@ -576,8 +576,8 @@ function InsightsTab() {
                 borderRadius: '6px',
                 cursor: 'pointer',
                 background: active ? 'rgba(232,0,45,0.12)' : 'transparent',
-                color: active ? '#E8002D' : '#5A6A7A',
-                border: active ? '0.5px solid rgba(232,0,45,0.3)' : '0.5px solid rgba(255,255,255,0.07)',
+                color: active ? '#E8002D' : 'var(--muted)',
+                border: active ? '0.5px solid rgba(232,0,45,0.3)' : '0.5px solid var(--border)',
                 transition: 'all 0.15s',
               }}
             >
@@ -588,18 +588,18 @@ function InsightsTab() {
       </div>
 
       {/* Section 4 — Sortable table */}
-      <div style={{ background: '#0E1318', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '12px', overflow: 'hidden' as const }}>
+      <div style={{ background: 'var(--surface)', border: '0.5px solid var(--border)', borderRadius: '12px', overflow: 'hidden' as const }}>
         {/* Card header */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 20px', borderBottom: '0.5px solid rgba(255,255,255,0.07)' }}>
-          <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: '#5A6A7A' }}>{tableTitle}</span>
-          <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', color: '#5A6A7A' }}>Click any column to sort</span>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 20px', borderBottom: '0.5px solid var(--border)' }}>
+          <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--muted)' }}>{tableTitle}</span>
+          <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '11px', color: 'var(--muted)' }}>Click any column to sort</span>
         </div>
 
         {/* Table */}
         <div style={{ overflowX: 'auto' as const }}>
           <table style={{ width: '100%', tableLayout: 'fixed' as const, borderCollapse: 'collapse' as const, minWidth: '640px' }}>
             <thead>
-              <tr style={{ background: '#131A21', borderBottom: '0.5px solid rgba(255,255,255,0.07)' }}>
+              <tr style={{ background: '#131A21', borderBottom: '0.5px solid var(--border)' }}>
                 {cols.map((col, colIdx) => (
                   <React.Fragment key={col.key}>
                     <th
@@ -612,7 +612,7 @@ function InsightsTab() {
                         fontWeight: 600,
                         textTransform: 'uppercase' as const,
                         letterSpacing: '0.08em',
-                        color: sortCol === col.key ? '#E8002D' : '#5A6A7A',
+                        color: sortCol === col.key ? '#E8002D' : 'var(--muted)',
                         textAlign: col.key === 'circuit' ? 'left' as const : 'right' as const,
                         cursor: 'pointer',
                         paddingLeft: col.key === 'circuit' ? '20px' : '12px',
@@ -627,7 +627,7 @@ function InsightsTab() {
                     {colIdx === 0 && (
                       <th
                         onClick={() => handleSort('badge')}
-                        style={{ padding: '10px 12px', width: '22%', fontFamily: 'DM Sans, sans-serif', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: sortCol === 'badge' ? '#E8002D' : '#5A6A7A', textAlign: 'left' as const, whiteSpace: 'nowrap' as const, cursor: 'pointer', userSelect: 'none' as const, overflow: 'hidden' as const }}
+                        style={{ padding: '10px 12px', width: '22%', fontFamily: 'DM Sans, sans-serif', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: sortCol === 'badge' ? '#E8002D' : 'var(--muted)', textAlign: 'left' as const, whiteSpace: 'nowrap' as const, cursor: 'pointer', userSelect: 'none' as const, overflow: 'hidden' as const }}
                       >
                         {view === 'overtakes' ? 'Overtaking Difficulty' : 'Rain Risk'}{arrow('badge')}
                       </th>
@@ -641,7 +641,7 @@ function InsightsTab() {
                 <tr
                   key={row.circuit}
                   style={{
-                    borderBottom: idx < sorted.length - 1 ? '0.5px solid rgba(255,255,255,0.07)' : 'none',
+                    borderBottom: idx < sorted.length - 1 ? '0.5px solid var(--border)' : 'none',
                     transition: 'background 0.1s',
                   }}
                   onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.04)')}
@@ -651,7 +651,7 @@ function InsightsTab() {
                   <td style={{ padding: '10px 12px', paddingLeft: '20px', whiteSpace: 'nowrap' as const }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <span className={`fi fi-${row.flag}`} style={{ width: '1.2em', borderRadius: '2px', flexShrink: 0 }} />
-                      <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '13px', fontWeight: 500, color: '#F0F4F8' }}>{row.circuit}</span>
+                      <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '13px', fontWeight: 500, color: 'var(--text)' }}>{row.circuit}</span>
                     </div>
                   </td>
                   {/* Badge column — OT Difficulty (overtakes) or Rain Risk (DNFs) */}
@@ -659,15 +659,15 @@ function InsightsTab() {
                     <RiskBadge level={view === 'overtakes' ? otDifficulty[row.circuit] : rainRisk[row.circuit]} />
                   </td>
                   {/* 2023 */}
-                  <td style={{ padding: '10px 12px', textAlign: 'right' as const, fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: row.y2023 !== null ? '#F0F4F8' : '#5A6A7A' }}>
+                  <td style={{ padding: '10px 12px', textAlign: 'right' as const, fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: row.y2023 !== null ? 'var(--text)' : 'var(--muted)' }}>
                     {row.y2023 !== null ? row.y2023 : '—'}
                   </td>
                   {/* 2024 */}
-                  <td style={{ padding: '10px 12px', textAlign: 'right' as const, fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: row.y2024 !== null ? '#F0F4F8' : '#5A6A7A' }}>
+                  <td style={{ padding: '10px 12px', textAlign: 'right' as const, fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: row.y2024 !== null ? 'var(--text)' : 'var(--muted)' }}>
                     {row.y2024 !== null ? row.y2024 : '—'}
                   </td>
                   {/* 2025 */}
-                  <td style={{ padding: '10px 12px', textAlign: 'right' as const, fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: row.y2025 !== null ? '#F0F4F8' : '#5A6A7A' }}>
+                  <td style={{ padding: '10px 12px', textAlign: 'right' as const, fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: row.y2025 !== null ? 'var(--text)' : 'var(--muted)' }}>
                     {row.y2025 !== null ? row.y2025 : '—'}
                   </td>
                   {/* Average */}
@@ -687,30 +687,30 @@ function InsightsTab() {
           <>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
               <span style={{ display: 'inline-block', marginTop: '2px', padding: '1px 8px', borderRadius: '4px', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', fontWeight: 700, color: riskColors.HIGH.color, background: riskColors.HIGH.bg, border: `0.5px solid ${riskColors.HIGH.border}`, whiteSpace: 'nowrap' as const, flexShrink: 0 }}>HIGH</span>
-              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>Few genuine overtaking opportunities; starting position has a strong bearing on final result.</span>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: 'var(--muted)', lineHeight: 1.5 }}>Few genuine overtaking opportunities; starting position has a strong bearing on final result.</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
               <span style={{ display: 'inline-block', marginTop: '2px', padding: '1px 8px', borderRadius: '4px', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', fontWeight: 700, color: riskColors.MEDIUM.color, background: riskColors.MEDIUM.bg, border: `0.5px solid ${riskColors.MEDIUM.border}`, whiteSpace: 'nowrap' as const, flexShrink: 0 }}>MEDIUM</span>
-              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>Moderate passing frequency; strategy and race pace share influence with qualifying position.</span>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: 'var(--muted)', lineHeight: 1.5 }}>Moderate passing frequency; strategy and race pace share influence with qualifying position.</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
               <span style={{ display: 'inline-block', marginTop: '2px', padding: '1px 8px', borderRadius: '4px', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', fontWeight: 700, color: riskColors.LOW.color, background: riskColors.LOW.bg, border: `0.5px solid ${riskColors.LOW.border}`, whiteSpace: 'nowrap' as const, flexShrink: 0 }}>LOW</span>
-              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>High overtaking frequency; drivers can recover positions through race pace and strategy.</span>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: 'var(--muted)', lineHeight: 1.5 }}>High overtaking frequency; drivers can recover positions through race pace and strategy.</span>
             </div>
           </>
         ) : (
           <>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
               <span style={{ display: 'inline-block', marginTop: '2px', padding: '1px 8px', borderRadius: '4px', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', fontWeight: 700, color: riskColors.HIGH.color, background: riskColors.HIGH.bg, border: `0.5px solid ${riskColors.HIGH.border}`, whiteSpace: 'nowrap' as const, flexShrink: 0 }}>HIGH</span>
-              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>Historically elevated rainfall probability; expect variable conditions and higher DNF rates.</span>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: 'var(--muted)', lineHeight: 1.5 }}>Historically elevated rainfall probability; expect variable conditions and higher DNF rates.</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
               <span style={{ display: 'inline-block', marginTop: '2px', padding: '1px 8px', borderRadius: '4px', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', fontWeight: 700, color: riskColors.MEDIUM.color, background: riskColors.MEDIUM.bg, border: `0.5px solid ${riskColors.MEDIUM.border}`, whiteSpace: 'nowrap' as const, flexShrink: 0 }}>MEDIUM</span>
-              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>Moderate likelihood of rain; conditions may shift during the session.</span>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: 'var(--muted)', lineHeight: 1.5 }}>Moderate likelihood of rain; conditions may shift during the session.</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
               <span style={{ display: 'inline-block', marginTop: '2px', padding: '1px 8px', borderRadius: '4px', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', fontWeight: 700, color: riskColors.LOW.color, background: riskColors.LOW.bg, border: `0.5px solid ${riskColors.LOW.border}`, whiteSpace: 'nowrap' as const, flexShrink: 0 }}>LOW</span>
-              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', lineHeight: 1.5 }}>Typically dry conditions; more predictable scoring environment.</span>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: 'var(--muted)', lineHeight: 1.5 }}>Typically dry conditions; more predictable scoring environment.</span>
             </div>
           </>
         )}
@@ -741,7 +741,7 @@ export default function F1FantasyClient() {
           <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase' as const }}>F1 Fantasy</span>
         </div>
         <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(2.5rem,5vw,3.5rem)', lineHeight: 1, marginBottom: '8px' }}>F1 Fantasy Hub</div>
-        <p style={{ color: '#5A6A7A', fontSize: '14px', maxWidth: '600px', lineHeight: 1.6 }}>
+        <p style={{ color: 'var(--muted)', fontSize: '14px', maxWidth: '600px', lineHeight: 1.6 }}>
           Chip decisions, circuit data and race-by-race strategy to help you build a winning team.
         </p>
       </div>
@@ -753,8 +753,8 @@ export default function F1FantasyClient() {
             key={t.id}
             onClick={() => setActiveTab(t.id)}
             style={{
-              background: activeTab === t.id ? '#E8002D' : '#141B22',
-              color: activeTab === t.id ? 'white' : '#5A6A7A',
+              background: activeTab === t.id ? '#E8002D' : 'var(--surface2)',
+              color: activeTab === t.id ? 'var(--text)' : 'var(--muted)',
               border: '1px solid',
               borderColor: activeTab === t.id ? '#E8002D' : 'rgba(255,255,255,0.1)',
               padding: '8px 20px', borderRadius: '8px',

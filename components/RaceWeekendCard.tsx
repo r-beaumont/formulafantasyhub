@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import Link from 'next/link'
 import { useState } from 'react'
@@ -41,23 +41,23 @@ export default function RaceWeekendCard() {
   const nextSession = CURRENT_RACE.sessions.find(s => !isCompleted(s))
 
   return (
-    <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg,#E8002D,rgba(232,0,45,0.2))' }} />
 
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', minHeight: '52px', boxSizing: 'border-box' as const, borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', minHeight: '52px', boxSizing: 'border-box' as const, borderBottom: '1px solid var(--border)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <span className={`fi fi-${CURRENT_RACE.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }} />
-          <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>Current Race Weekend</span>
+          <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'var(--muted)' }}>Current Race Weekend</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           {/* Timezone toggle */}
-          <div style={{ display: 'flex', background: '#141B22', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.07)', overflow: 'hidden' }}>
+          <div style={{ display: 'flex', background: 'var(--surface2)', borderRadius: '6px', border: '1px solid var(--border)', overflow: 'hidden' }}>
             <button
               onClick={() => setUseLocalTime(false)}
               style={{
                 background: !useLocalTime ? 'rgba(232,0,45,0.15)' : 'transparent',
-                color: !useLocalTime ? '#E8002D' : '#5A6A7A',
+                color: !useLocalTime ? '#E8002D' : 'var(--muted)',
                 border: 'none', padding: '4px 10px', cursor: 'pointer',
                 fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.5px',
               }}
@@ -66,8 +66,8 @@ export default function RaceWeekendCard() {
               onClick={() => setUseLocalTime(true)}
               style={{
                 background: useLocalTime ? 'rgba(232,0,45,0.15)' : 'transparent',
-                color: useLocalTime ? '#E8002D' : '#5A6A7A',
-                border: 'none', borderLeft: '1px solid rgba(255,255,255,0.07)',
+                color: useLocalTime ? '#E8002D' : 'var(--muted)',
+                border: 'none', borderLeft: '1px solid var(--border)',
                 padding: '4px 10px', cursor: 'pointer',
                 fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.5px',
               }}
@@ -95,22 +95,22 @@ export default function RaceWeekendCard() {
               <div
                 key={s.name}
                 style={{
-                  background: isNext ? 'rgba(232,0,45,0.08)' : '#141B22',
+                  background: isNext ? 'rgba(232,0,45,0.08)' : 'var(--surface2)',
                   border: isNext ? '1px solid rgba(232,0,45,0.4)' : '1px solid rgba(255,255,255,0.05)',
                   borderRadius: '8px',
                   padding: '10px 12px',
                 }}
               >
-                <div style={{ fontSize: '9px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: done ? '#3A4A5A' : isNext ? '#E8002D' : '#5A6A7A', marginBottom: '4px' }}>
+                <div style={{ fontSize: '9px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1px', color: done ? 'var(--muted2)' : isNext ? '#E8002D' : 'var(--muted)', marginBottom: '4px' }}>
                   {done ? '✓' : isNext ? '● Next' : '○'}
                 </div>
-                <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '14px', color: done ? '#3A4A5A' : '#F0F4F8', marginBottom: '2px' }}>
+                <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '14px', color: done ? 'var(--muted2)' : 'var(--text)', marginBottom: '2px' }}>
                   {s.name}
                 </div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: done ? '#3A4A5A' : '#FFB800' }}>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: done ? 'var(--muted2)' : '#FFB800' }}>
                   {displayTime}
                 </div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '9px', color: done ? '#3A4A5A' : '#5A6A7A', marginTop: '2px', letterSpacing: '0.5px' }}>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '9px', color: done ? 'var(--muted2)' : 'var(--muted)', marginTop: '2px', letterSpacing: '0.5px' }}>
                   {displayDay}
                 </div>
               </div>

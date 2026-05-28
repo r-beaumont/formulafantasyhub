@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
@@ -40,9 +40,9 @@ export default function Navbar() {
     <>
       <style>{`
         @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
-        .nav-link:hover { color: #F0F4F8 !important; background: #141B22 !important; }
+        .nav-link:hover { color: var(--text) !important; background: var(--surface2) !important; }
         [data-theme="light"] .nav-link:hover { color: #0D1117 !important; background: #E8EAED !important; }
-        .theme-toggle:hover { background: rgba(255,255,255,0.07) !important; }
+        .theme-toggle:hover { background: var(--border) !important; }
         [data-theme="light"] .theme-toggle:hover { background: rgba(0,0,0,0.06) !important; }
       `}</style>
       <nav style={{
@@ -57,7 +57,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', flexShrink: 0 }}>
           <Image src="/logo.png" alt="Formula Hub" width={36} height={36} style={{ borderRadius: '50%' }} />
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 800, fontSize: '22px', letterSpacing: '1px', color: '#F0F4F8' }}>
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 800, fontSize: '22px', letterSpacing: '1px', color: 'var(--text)' }}>
             FORMULA <span style={{ color: '#E8002D' }}>HUB</span>
           </span>
         </Link>
@@ -69,7 +69,7 @@ export default function Navbar() {
             return (
               <li key={link.href}>
                 <Link href={link.href} className="nav-link" onClick={() => setMenuOpen(false)} style={{
-                  color: active ? '#E8002D' : '#5A6A7A',
+                  color: active ? '#E8002D' : 'var(--muted)',
                   textDecoration: 'none', fontSize: '13px', fontWeight: 500,
                   padding: '8px 14px', borderRadius: '6px', display: 'block',
                   background: active ? 'rgba(232,0,45,0.1)' : 'transparent',
@@ -89,7 +89,7 @@ export default function Navbar() {
                 width: '100%', height: '38px', borderRadius: '6px',
                 display: 'flex', alignItems: 'center',
                 gap: '10px', padding: '0 14px',
-                fontSize: '13px', fontWeight: 500, color: '#5A6A7A',
+                fontSize: '13px', fontWeight: 500, color: 'var(--muted)',
                 letterSpacing: '0.3px',
               }}
             >
@@ -116,7 +116,7 @@ export default function Navbar() {
             {theme === 'dark' ? '🌙' : '☀️'}
           </button>
           {/* Race badge — hidden on mobile */}
-          <div className="nav-race-badge" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(232,0,45,0.08)', border: '1px solid rgba(232,0,45,0.2)', borderRadius: '20px', padding: '6px 14px', fontSize: '12px', fontWeight: 500, color: '#F0F4F8' }}>
+          <div className="nav-race-badge" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(232,0,45,0.08)', border: '1px solid rgba(232,0,45,0.2)', borderRadius: '20px', padding: '6px 14px', fontSize: '12px', fontWeight: 500, color: 'var(--text)' }}>
             <div style={{ width: '7px', height: '7px', background: '#E8002D', borderRadius: '50%', animation: 'pulse 2s infinite', flexShrink: 0 }} />
             <span className={`fi fi-${CURRENT_RACE.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span> {CURRENT_RACE.shortName} · R{CURRENT_RACE.round}
           </div>
@@ -125,11 +125,11 @@ export default function Navbar() {
             className="nav-hamburger"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
-            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '6px', color: '#F0F4F8' }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '6px', color: 'var(--text)' }}
           >
-            <div style={{ width: '22px', height: '2px', background: menuOpen ? '#E8002D' : '#F0F4F8', borderRadius: '1px', transition: 'all 0.2s', transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }} />
-            <div style={{ width: '22px', height: '2px', background: '#F0F4F8', borderRadius: '1px', opacity: menuOpen ? 0 : 1, transition: 'all 0.2s' }} />
-            <div style={{ width: '22px', height: '2px', background: menuOpen ? '#E8002D' : '#F0F4F8', borderRadius: '1px', transition: 'all 0.2s', transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }} />
+            <div style={{ width: '22px', height: '2px', background: menuOpen ? '#E8002D' : 'var(--text)', borderRadius: '1px', transition: 'all 0.2s', transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }} />
+            <div style={{ width: '22px', height: '2px', background: 'var(--text)', borderRadius: '1px', opacity: menuOpen ? 0 : 1, transition: 'all 0.2s' }} />
+            <div style={{ width: '22px', height: '2px', background: menuOpen ? '#E8002D' : 'var(--text)', borderRadius: '1px', transition: 'all 0.2s', transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }} />
           </button>
         </div>
       </nav>

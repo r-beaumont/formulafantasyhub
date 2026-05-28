@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -68,31 +68,31 @@ export default function WeatherCard() {
   const dayLabels = ['Fri', 'Sat', 'Sun']
 
   return (
-    <div style={{ background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
       {/* Blue accent band — matches #00BFFF tile theme */}
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg,#00BFFF,rgba(0,191,255,0.2))' }} />
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', minHeight: '52px', boxSizing: 'border-box' as const, borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-        <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }}>🌤️ Weather</span>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', minHeight: '52px', boxSizing: 'border-box' as const, borderBottom: '1px solid var(--border)' }}>
+        <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'var(--muted)' }}>🌤️ Weather</span>
         <span className={`fi fi-${CURRENT_RACE.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
       </div>
 
       <div style={{ padding: '10px 16px 0', flex: 1 }}>
         {loading ? (
-          <div style={{ padding: '18px 0', textAlign: 'center' as const, fontSize: '11px', color: '#3A4A5A', fontFamily: 'JetBrains Mono, monospace' }}>Loading…</div>
+          <div style={{ padding: '18px 0', textAlign: 'center' as const, fontSize: '11px', color: 'var(--muted2)', fontFamily: 'JetBrains Mono, monospace' }}>Loading…</div>
         ) : days.length === 0 ? (
-          <div style={{ padding: '18px 0', textAlign: 'center' as const, fontSize: '11px', color: '#3A4A5A' }}>No forecast available</div>
+          <div style={{ padding: '18px 0', textAlign: 'center' as const, fontSize: '11px', color: 'var(--muted2)' }}>No forecast available</div>
         ) : (
           days.map((w, i) => {
             const rainHigh = w.rainChance >= 60
             const rainMed  = w.rainChance >= 30
-            const rainColor = rainHigh ? '#E8002D' : rainMed ? '#FFB800' : '#5A6A7A'
+            const rainColor = rainHigh ? '#E8002D' : rainMed ? '#FFB800' : 'var(--muted)'
             return (
               <div key={w.date} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '7px 0', borderBottom: i < days.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
                 <span style={{ fontSize: '18px', flexShrink: 0 }}>{wmoIcon(w.code)}</span>
-                <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '15px', color: '#5A6A7A', width: '28px', flexShrink: 0 }}>{dayLabels[i]}</span>
+                <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '15px', color: 'var(--muted)', width: '28px', flexShrink: 0 }}>{dayLabels[i]}</span>
                 <div style={{ flex: 1 }}>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 600 }}>{Math.round(w.maxTemp)}°</span>
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', marginLeft: '4px' }}>{Math.round(w.minTemp)}°</span>
+                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: 'var(--muted)', marginLeft: '4px' }}>{Math.round(w.minTemp)}°</span>
                 </div>
                 <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: rainColor, flexShrink: 0 }}>💧{w.rainChance}%</span>
               </div>

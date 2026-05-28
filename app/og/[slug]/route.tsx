@@ -1,4 +1,4 @@
-import { ImageResponse } from 'next/og'
+﻿import { ImageResponse } from 'next/og'
 import { getArticleBySlug } from '@/lib/articles'
 
 export const runtime = 'edge'

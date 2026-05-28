@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect, useRef } from 'react'
 import { RACE_WEEKENDS } from '@/lib/raceResults'
@@ -160,8 +160,8 @@ function padTo22Race(rows: RaceRow[]): RaceRow[] {
 // ─── Shared card styles ───────────────────────────────────────────────────────
 
 const card = {
-  background: '#0E1318',
-  border: '1px solid rgba(255,255,255,0.07)',
+  background: 'var(--surface)',
+  border: '1px solid var(--border)',
   borderRadius: '14px',
   overflow: 'hidden' as const,
 }
@@ -170,22 +170,22 @@ const cardHeader = {
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: '16px 20px 12px',
-  borderBottom: '1px solid rgba(255,255,255,0.07)',
+  borderBottom: '1px solid var(--border)',
 }
 const cardTitle = {
   fontSize: '12px',
   fontWeight: 600,
   textTransform: 'uppercase' as const,
   letterSpacing: '1.5px',
-  color: '#5A6A7A',
+  color: 'var(--muted)',
 }
 
 // ─── Time cell helper ─────────────────────────────────────────────────────────
 
 function timeCell(t: string | null): { text: string; color: string } {
-  if (!t) return { text: '—', color: '#3A4A5A' }
-  if (t === 'NO TIME SET') return { text: 'NO TIME SET', color: '#3A4A5A' }
-  return { text: t, color: '#F0F4F8' }
+  if (!t) return { text: '—', color: 'var(--muted2)' }
+  if (t === 'NO TIME SET') return { text: 'NO TIME SET', color: 'var(--muted2)' }
+  return { text: t, color: 'var(--text)' }
 }
 
 // ─── Status badge ─────────────────────────────────────────────────────────────
@@ -205,7 +205,7 @@ function StatusBadge({ polling, concluded }: { polling: boolean; concluded: bool
   if (concluded) {
     return (
       <span style={{
-        fontSize: '10px', fontWeight: 700, color: '#5A6A7A', letterSpacing: '1px',
+        fontSize: '10px', fontWeight: 700, color: 'var(--muted)', letterSpacing: '1px',
         padding: '3px 8px', borderRadius: '4px', background: 'rgba(255,255,255,0.06)',
       }}>FINAL</span>
     )
@@ -214,7 +214,7 @@ function StatusBadge({ polling, concluded }: { polling: boolean; concluded: bool
     <span style={{
       fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px',
       letterSpacing: '0.5px', textTransform: 'uppercase' as const,
-      background: 'rgba(255,255,255,0.06)', color: '#5A6A7A',
+      background: 'rgba(255,255,255,0.06)', color: 'var(--muted)',
     }}>2026 Results</span>
   )
 }
@@ -226,10 +226,10 @@ function SectionDivider({ label }: { label: string }) {
     <div style={{
       padding: '5px 20px',
       background: 'rgba(255,255,255,0.02)',
-      borderBottom: '1px solid rgba(255,255,255,0.07)',
-      borderTop: '1px solid rgba(255,255,255,0.07)',
+      borderBottom: '1px solid var(--border)',
+      borderTop: '1px solid var(--border)',
     }}>
-      <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#3A4A5A' }}>
+      <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: 'var(--muted2)' }}>
         {label}
       </span>
     </div>
@@ -248,10 +248,10 @@ function PracticeTable({ data }: { data: PracticeRow[] }) {
           gridTemplateColumns: '36px 4px 1fr 120px 120px 100px',
           gap: '0 12px',
           padding: '8px 20px 6px',
-          borderBottom: '1px solid rgba(255,255,255,0.07)',
+          borderBottom: '1px solid var(--border)',
         }}>
           {['POS', '', 'DRIVER', 'TEAM', 'TIME', 'GAP'].map((h, i) => (
-            <span key={i} style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: i >= 4 ? 'right' as const : 'left' as const }}>
+            <span key={i} style={{ fontSize: '10px', color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: i >= 4 ? 'right' as const : 'left' as const }}>
               {h}
             </span>
           ))}
@@ -273,7 +273,7 @@ function PracticeTable({ data }: { data: PracticeRow[] }) {
                 borderBottom: '1px solid rgba(255,255,255,0.04)',
               }}
             >
-              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 700 : 400, color: pos_colors[r.position] ?? '#5A6A7A' }}>
+              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 700 : 400, color: pos_colors[r.position] ?? 'var(--muted)' }}>
                 {r.position}
               </span>
               <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
@@ -285,7 +285,7 @@ function PracticeTable({ data }: { data: PracticeRow[] }) {
                   {r.name}
                 </span>
               </div>
-              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: 'var(--muted)', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>
                 {shortenTeam(r.team)}
               </span>
               <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: r.position === 1 ? '#FFB800' : t.color, textAlign: 'right' as const, whiteSpace: 'nowrap' as const }}>
@@ -331,7 +331,7 @@ function QualifyingTable({ data, qualifier = 'Q' }: { data: QualRow[]; qualifier
         borderBottom: '1px solid rgba(255,255,255,0.04)',
         opacity: inQ1Only ? 0.5 : inQ2Only ? 0.75 : 1,
       }}>
-        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 700 : 400, color: pos_colors[r.position] ?? '#5A6A7A' }}>
+        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 700 : 400, color: pos_colors[r.position] ?? 'var(--muted)' }}>
           {r.position}
         </span>
         <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
@@ -343,7 +343,7 @@ function QualifyingTable({ data, qualifier = 'Q' }: { data: QualRow[]; qualifier
             {r.name}
           </span>
         </div>
-        <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+        <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: 'var(--muted)', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>
           {shortenTeam(r.team)}
         </span>
         <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: q1c.color, textAlign: 'right' as const, whiteSpace: 'nowrap' as const }}>
@@ -374,10 +374,10 @@ function QualifyingTable({ data, qualifier = 'Q' }: { data: QualRow[]; qualifier
           gridTemplateColumns: '36px 4px 1fr 120px 110px 110px 110px',
           gap: '0 10px',
           padding: '8px 20px 6px',
-          borderBottom: '1px solid rgba(255,255,255,0.07)',
+          borderBottom: '1px solid var(--border)',
         }}>
           {['POS', '', 'DRIVER', 'TEAM', `${qualifier}1`, `${qualifier}2`, `${qualifier}3`].map((h, i) => (
-            <span key={i} style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: i >= 4 ? 'right' as const : 'left' as const }}>
+            <span key={i} style={{ fontSize: '10px', color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: i >= 4 ? 'right' as const : 'left' as const }}>
               {h}
             </span>
           ))}
@@ -415,10 +415,10 @@ function RaceTable({ data }: { data: RaceRow[] }) {
           gridTemplateColumns: '36px 4px 1fr 140px 120px',
           gap: '0 12px',
           padding: '8px 20px 6px',
-          borderBottom: '1px solid rgba(255,255,255,0.07)',
+          borderBottom: '1px solid var(--border)',
         }}>
           {['POS', '', 'DRIVER', 'TEAM', 'GAP'].map((h, i) => (
-            <span key={i} style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: i >= 4 ? 'right' as const : 'left' as const }}>
+            <span key={i} style={{ fontSize: '10px', color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: i >= 4 ? 'right' as const : 'left' as const }}>
               {h}
             </span>
           ))}
@@ -439,7 +439,7 @@ function RaceTable({ data }: { data: RaceRow[] }) {
                 borderBottom: '1px solid rgba(255,255,255,0.04)',
               }}
             >
-              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 700 : 400, color: pos_colors[r.position] ?? '#5A6A7A' }}>
+              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 700 : 400, color: pos_colors[r.position] ?? 'var(--muted)' }}>
                 {r.position}
               </span>
               <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
@@ -451,7 +451,7 @@ function RaceTable({ data }: { data: RaceRow[] }) {
                   {r.name}
                 </span>
               </div>
-              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: 'var(--muted)', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>
                 {shortenTeam(r.team)}
               </span>
               <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: r.position === 1 ? '#FFB800' : g.color, textAlign: 'right' as const, whiteSpace: 'nowrap' as const }}>
@@ -657,7 +657,7 @@ export default function ResultsTab({ selectedRound, sessions }: { selectedRound:
 
     if (loadingLive && !tabHasStaticData(tab) && !livePracticeData && !liveQualData && !liveRaceData) {
       return (
-        <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
+        <div style={{ padding: '40px', textAlign: 'center' as const, color: 'var(--muted)', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
           Loading live data…
         </div>
       )
@@ -705,7 +705,7 @@ export default function ResultsTab({ selectedRound, sessions }: { selectedRound:
   if (!weekend && (!sessions || sessions.length === 0)) {
     return (
       <div style={card}>
-        <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
+        <div style={{ padding: '40px', textAlign: 'center' as const, color: 'var(--muted)', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
           No data available for this round
         </div>
       </div>
@@ -726,7 +726,7 @@ export default function ResultsTab({ selectedRound, sessions }: { selectedRound:
     }
     return (
       <div style={card}>
-        <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
+        <div style={{ padding: '40px', textAlign: 'center' as const, color: 'var(--muted)', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
           Session data not yet available
         </div>
       </div>
@@ -755,17 +755,17 @@ export default function ResultsTab({ selectedRound, sessions }: { selectedRound:
       {/* Session tabs */}
       <div style={{
         display: 'flex', gap: '6px', padding: '12px 20px',
-        borderBottom: '1px solid rgba(255,255,255,0.07)', flexWrap: 'wrap' as const,
+        borderBottom: '1px solid var(--border)', flexWrap: 'wrap' as const,
       }}>
         {sessionTabs.map(t => (
           <button
             key={t.id}
             onClick={() => setActiveSession(t.id)}
             style={{
-              background:   effectiveSession === t.id ? '#E8002D' : '#141B22',
-              color:        effectiveSession === t.id ? 'white'   : '#5A6A7A',
+              background:   effectiveSession === t.id ? '#E8002D' : 'var(--surface2)',
+              color:        effectiveSession === t.id ? 'var(--text)'   : 'var(--muted)',
               border:       '1px solid',
-              borderColor:  effectiveSession === t.id ? '#E8002D' : 'rgba(255,255,255,0.07)',
+              borderColor:  effectiveSession === t.id ? '#E8002D' : 'var(--border)',
               padding:      '5px 14px',
               borderRadius: '6px',
               cursor:       'pointer',
@@ -781,7 +781,7 @@ export default function ResultsTab({ selectedRound, sessions }: { selectedRound:
 
       {/* Table */}
       {renderTable() ?? (
-        <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
+        <div style={{ padding: '40px', textAlign: 'center' as const, color: 'var(--muted)', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
           {loadingLive ? 'Loading live data…' : 'No data available yet — retrying automatically'}
         </div>
       )}

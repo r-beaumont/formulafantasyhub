@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
@@ -68,7 +68,7 @@ export default function VideosClient() {
     fetchVideos()
   }, [])
 
-  const c = { background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' as const }
+  const c = { background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden' as const }
   const featured = videos[0]
   const rest = videos.slice(1)
 
@@ -80,11 +80,11 @@ export default function VideosClient() {
         <div>
           <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '2px', color: '#E8002D', textTransform: 'uppercase', marginBottom: '6px' }}>Videos</div>
           <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '56px', letterSpacing: '1px', lineHeight: 1 }}>YouTube Channel</div>
-          <p style={{ color: '#5A6A7A', fontSize: '14px', lineHeight: 1.7, marginTop: '8px' }}>Race week previews, post-race reviews and live deadline sessions — every grand prix.</p>
+          <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.7, marginTop: '8px' }}>Race week previews, post-race reviews and live deadline sessions — every grand prix.</p>
         </div>
         <a href="https://www.youtube.com/@formulafantasyhub" target="_blank" rel="noopener noreferrer" style={{
           display: 'flex', alignItems: 'center', gap: '8px',
-          background: '#E8002D', color: 'white', padding: '10px 20px',
+          background: '#E8002D', color: 'var(--text)', padding: '10px 20px',
           borderRadius: '8px', textDecoration: 'none', fontSize: '13px', fontWeight: 600,
         }}>
           ▶ Subscribe on YouTube
@@ -94,14 +94,14 @@ export default function VideosClient() {
       {/* Upcoming */}
       {UPCOMING.length > 0 && (
         <div style={{ ...c, marginBottom: '24px', padding: '16px 20px' }}>
-          <div style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1.5px', color: '#5A6A7A', marginBottom: '12px' }}>Upcoming</div>
+          <div style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--muted)', marginBottom: '12px' }}>Upcoming</div>
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
             {UPCOMING.map((u) => (
-              <div key={u.title} style={{ display: 'flex', alignItems: 'center', gap: '12px', background: '#141B22', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '8px', padding: '12px 16px' }}>
+              <div key={u.title} style={{ display: 'flex', alignItems: 'center', gap: '12px', background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: '8px', padding: '12px 16px' }}>
                 <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: u.type === 'Live' ? '#E8002D' : '#FFB800', animation: u.type === 'Live' ? 'pulse 2s infinite' : 'none', flexShrink: 0 }} />
                 <div>
                   <div style={{ fontSize: '13px', fontWeight: 600 }}>{u.title}</div>
-                  <div style={{ fontSize: '11px', color: '#5A6A7A', marginTop: '2px' }}>{u.type} · {u.date} · {u.time}</div>
+                  <div style={{ fontSize: '11px', color: 'var(--muted)', marginTop: '2px' }}>{u.type} · {u.date} · {u.time}</div>
                 </div>
               </div>
             ))}
@@ -112,15 +112,15 @@ export default function VideosClient() {
       {/* Loading state */}
       {loading && (
         <div style={{ ...c, padding: '60px', textAlign: 'center' }}>
-          <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '24px', color: '#5A6A7A', marginBottom: '8px' }}>Loading videos...</div>
-          <div style={{ fontSize: '13px', color: '#3A4A5A' }}>Fetching latest from YouTube</div>
+          <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '24px', color: 'var(--muted)', marginBottom: '8px' }}>Loading videos...</div>
+          <div style={{ fontSize: '13px', color: 'var(--muted2)' }}>Fetching latest from YouTube</div>
         </div>
       )}
 
       {/* Error state */}
       {error && (
         <div style={{ ...c, padding: '40px', textAlign: 'center' }}>
-          <div style={{ fontSize: '13px', color: '#5A6A7A', marginBottom: '16px' }}>{error}</div>
+          <div style={{ fontSize: '13px', color: 'var(--muted)', marginBottom: '16px' }}>{error}</div>
           <a href="https://www.youtube.com/@formulafantasyhub" target="_blank" rel="noopener noreferrer" style={{ color: '#E8002D', textDecoration: 'none', fontWeight: 600 }}>
             Watch on YouTube →
           </a>
@@ -136,8 +136,8 @@ export default function VideosClient() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '16px' }}>
             {liveStreams.map(stream => (
-              <div key={stream.id} style={{ background: '#0E1318', border: '1px solid rgba(232,0,45,0.4)', borderRadius: '14px', overflow: 'hidden' }}>
-                <div style={{ position: 'relative', paddingBottom: '56.25%', background: '#080C10' }}>
+              <div key={stream.id} style={{ background: 'var(--surface)', border: '1px solid rgba(232,0,45,0.4)', borderRadius: '14px', overflow: 'hidden' }}>
+                <div style={{ position: 'relative', paddingBottom: '56.25%', background: 'var(--bg)' }}>
                   <iframe
                     src={`https://www.youtube.com/embed/${stream.id}?autoplay=0`}
                     style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
@@ -161,7 +161,7 @@ export default function VideosClient() {
       {!loading && !error && featured && (
         <div style={{ ...c, marginBottom: '24px' }}>
           <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
-            <div style={{ position: 'relative', paddingBottom: '56.25%', background: '#080C10' }}>
+            <div style={{ position: 'relative', paddingBottom: '56.25%', background: 'var(--bg)' }}>
               <iframe
                 src={`https://www.youtube.com/embed/${featured.id}`}
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
@@ -176,10 +176,10 @@ export default function VideosClient() {
               <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '26px', lineHeight: 1.1, marginBottom: '12px' }}>
                 {featured.title}
               </div>
-              <p style={{ color: '#5A6A7A', fontSize: '13px', lineHeight: 1.7, marginBottom: '20px' }}>
+              <p style={{ color: 'var(--muted)', fontSize: '13px', lineHeight: 1.7, marginBottom: '20px' }}>
                 {featured.description.slice(0, 150)}{featured.description.length > 150 ? '...' : ''}
               </p>
-              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#3A4A5A' }}>
+              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: 'var(--muted2)' }}>
                 {timeAgo(featured.publishedAt)}
               </div>
             </div>
@@ -196,7 +196,7 @@ export default function VideosClient() {
           <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '32px' }}>
             {rest.map((video) => (
               <div key={video.id} style={c}>
-                <div style={{ position: 'relative', paddingBottom: '56.25%', background: '#080C10' }}>
+                <div style={{ position: 'relative', paddingBottom: '56.25%', background: 'var(--bg)' }}>
                   <iframe
                     src={`https://www.youtube.com/embed/${video.id}`}
                     style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
@@ -206,7 +206,7 @@ export default function VideosClient() {
                 </div>
                 <div style={{ padding: '14px 16px' }}>
                   <div style={{ fontSize: '13px', fontWeight: 600, lineHeight: 1.4, marginBottom: '8px' }}>{video.title}</div>
-                  <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#3A4A5A' }}>{timeAgo(video.publishedAt)}</div>
+                  <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: 'var(--muted2)' }}>{timeAgo(video.publishedAt)}</div>
                 </div>
               </div>
             ))}
@@ -218,11 +218,11 @@ export default function VideosClient() {
       <div style={{ ...c, padding: '48px', textAlign: 'center' }}>
         <div style={{ fontSize: '36px', marginBottom: '12px' }}>▶</div>
         <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', marginBottom: '12px' }}>10,000+ subscribers and growing</div>
-        <p style={{ color: '#5A6A7A', maxWidth: '400px', margin: '0 auto 24px', lineHeight: 1.7, fontSize: '14px' }}>
+        <p style={{ color: 'var(--muted)', maxWidth: '400px', margin: '0 auto 24px', lineHeight: 1.7, fontSize: '14px' }}>
           New videos every race week — previews, reviews, strategy guides and deadline livestreams.
         </p>
         <a href="https://www.youtube.com/@formulafantasyhub" target="_blank" rel="noopener noreferrer" style={{
-          display: 'inline-block', background: '#E8002D', color: 'white',
+          display: 'inline-block', background: '#E8002D', color: 'var(--text)',
           padding: '12px 32px', borderRadius: '8px', textDecoration: 'none',
           fontWeight: 600, fontSize: '14px',
         }}>

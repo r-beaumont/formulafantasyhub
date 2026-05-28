@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect, useRef } from 'react'
 import { DRIVERS } from '@/lib/drivers'
@@ -159,16 +159,16 @@ function padTo22Race(rows: RaceRow[]): RaceRow[] {
 }
 
 function timeCell(t: string | null): { text: string; color: string } {
-  if (!t)               return { text: '—',           color: '#3A4A5A' }
-  if (t === 'NO TIME SET') return { text: 'NO TIME SET', color: '#3A4A5A' }
-  return { text: t, color: '#F0F4F8' }
+  if (!t)               return { text: '—',           color: 'var(--muted2)' }
+  if (t === 'NO TIME SET') return { text: 'NO TIME SET', color: 'var(--muted2)' }
+  return { text: t, color: 'var(--text)' }
 }
 
 // ─── Shared styles ────────────────────────────────────────────────────────────
 
 const card = {
-  background: '#0E1318',
-  border: '1px solid rgba(255,255,255,0.07)',
+  background: 'var(--surface)',
+  border: '1px solid var(--border)',
   borderRadius: '14px',
   overflow: 'hidden' as const,
 }
@@ -178,7 +178,7 @@ const cardHeader = {
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: '16px 20px 12px',
-  borderBottom: '1px solid rgba(255,255,255,0.07)',
+  borderBottom: '1px solid var(--border)',
 }
 
 const cardTitle = {
@@ -186,7 +186,7 @@ const cardTitle = {
   fontWeight: 600,
   textTransform: 'uppercase' as const,
   letterSpacing: '1.5px',
-  color: '#5A6A7A',
+  color: 'var(--muted)',
 }
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -202,13 +202,13 @@ function StatusBadge({ polling, concluded }: { polling: boolean; concluded: bool
   }
   if (concluded) {
     return (
-      <span style={{ fontSize: '10px', fontWeight: 700, color: '#5A6A7A', letterSpacing: '1px', padding: '3px 8px', borderRadius: '4px', background: 'rgba(255,255,255,0.06)' }}>
+      <span style={{ fontSize: '10px', fontWeight: 700, color: 'var(--muted)', letterSpacing: '1px', padding: '3px 8px', borderRadius: '4px', background: 'rgba(255,255,255,0.06)' }}>
         FINAL
       </span>
     )
   }
   return (
-    <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' as const, background: 'rgba(255,255,255,0.06)', color: '#5A6A7A' }}>
+    <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' as const, background: 'rgba(255,255,255,0.06)', color: 'var(--muted)' }}>
       2026 Results
     </span>
   )
@@ -216,8 +216,8 @@ function StatusBadge({ polling, concluded }: { polling: boolean; concluded: bool
 
 function SectionDivider({ label }: { label: string }) {
   return (
-    <div style={{ padding: '5px 20px', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.07)', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-      <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#3A4A5A' }}>
+    <div style={{ padding: '5px 20px', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid var(--border)', borderTop: '1px solid var(--border)' }}>
+      <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: 'var(--muted2)' }}>
         {label}
       </span>
     </div>
@@ -241,9 +241,9 @@ function PracticeTable({ data }: { data: PracticeRow[] }) {
   return (
     <div style={{ overflowX: 'auto' }}>
       <div style={{ minWidth: '520px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '36px 4px 1fr 120px 120px 100px', gap: '0 12px', padding: '8px 20px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '36px 4px 1fr 120px 120px 100px', gap: '0 12px', padding: '8px 20px 6px', borderBottom: '1px solid var(--border)' }}>
           {['POS', '', 'DRIVER', 'TEAM', 'TIME', 'GAP'].map((h, i) => (
-            <span key={i} style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: i >= 4 ? 'right' as const : 'left' as const }}>{h}</span>
+            <span key={i} style={{ fontSize: '10px', color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: i >= 4 ? 'right' as const : 'left' as const }}>{h}</span>
           ))}
         </div>
         {data.map(r => {
@@ -251,10 +251,10 @@ function PracticeTable({ data }: { data: PracticeRow[] }) {
           const g = timeCell(r.gap)
           return (
             <div key={r.position} style={{ display: 'grid', gridTemplateColumns: '36px 4px 1fr 120px 120px 100px', gap: '0 12px', alignItems: 'center', minHeight: '46px', padding: '0 20px', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 700 : 400, color: pos_colors[r.position] ?? '#5A6A7A' }}>{r.position}</span>
+              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 700 : 400, color: pos_colors[r.position] ?? 'var(--muted)' }}>{r.position}</span>
               <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
               <DriverCell name={r.name} />
-              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{shortenTeam(r.team)}</span>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: 'var(--muted)', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{shortenTeam(r.team)}</span>
               <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: r.position === 1 ? '#FFB800' : t.color, textAlign: 'right' as const, whiteSpace: 'nowrap' as const }}>{t.text}</span>
               <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: g.color, textAlign: 'right' as const, whiteSpace: 'nowrap' as const }}>{r.position === 1 ? '—' : g.text}</span>
             </div>
@@ -278,10 +278,10 @@ function QualifyingTable({ data, qualifier = 'Q' }: { data: QualRow[]; qualifier
     const q3c = timeCell(r.q3)
     return (
       <div style={{ display: 'grid', gridTemplateColumns: '36px 4px 1fr 120px 110px 110px 110px', gap: '0 10px', alignItems: 'center', minHeight: '46px', padding: '0 20px', borderBottom: '1px solid rgba(255,255,255,0.04)', opacity: muted ? 0.5 : dimmed ? 0.75 : 1 }}>
-        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 700 : 400, color: pos_colors[r.position] ?? '#5A6A7A' }}>{r.position}</span>
+        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 700 : 400, color: pos_colors[r.position] ?? 'var(--muted)' }}>{r.position}</span>
         <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
         <DriverCell name={r.name} />
-        <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{shortenTeam(r.team)}</span>
+        <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: 'var(--muted)', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{shortenTeam(r.team)}</span>
         <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: q1c.color, textAlign: 'right' as const, whiteSpace: 'nowrap' as const }}>{q1c.text}</span>
         <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: q2c.color, textAlign: 'right' as const, whiteSpace: 'nowrap' as const }}>{q2c.text}</span>
         <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', fontWeight: r.q3 && r.position <= 3 ? 700 : 400, color: r.position === 1 && r.q3 ? '#FFB800' : q3c.color, textAlign: 'right' as const, whiteSpace: 'nowrap' as const }}>{q3c.text}</span>
@@ -292,9 +292,9 @@ function QualifyingTable({ data, qualifier = 'Q' }: { data: QualRow[]; qualifier
   return (
     <div style={{ overflowX: 'auto' }}>
       <div style={{ minWidth: '620px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '36px 4px 1fr 120px 110px 110px 110px', gap: '0 10px', padding: '8px 20px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '36px 4px 1fr 120px 110px 110px 110px', gap: '0 10px', padding: '8px 20px 6px', borderBottom: '1px solid var(--border)' }}>
           {['POS', '', 'DRIVER', 'TEAM', `${qualifier}1`, `${qualifier}2`, `${qualifier}3`].map((h, i) => (
-            <span key={i} style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: i >= 4 ? 'right' as const : 'left' as const }}>{h}</span>
+            <span key={i} style={{ fontSize: '10px', color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: i >= 4 ? 'right' as const : 'left' as const }}>{h}</span>
           ))}
         </div>
         {reachedQ3.map(r => <Row key={r.position} r={r} />)}
@@ -319,19 +319,19 @@ function RaceTable({ data }: { data: RaceRow[] }) {
   return (
     <div style={{ overflowX: 'auto' }}>
       <div style={{ minWidth: '480px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '36px 4px 1fr 140px 120px', gap: '0 12px', padding: '8px 20px 6px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '36px 4px 1fr 140px 120px', gap: '0 12px', padding: '8px 20px 6px', borderBottom: '1px solid var(--border)' }}>
           {['POS', '', 'DRIVER', 'TEAM', 'GAP'].map((h, i) => (
-            <span key={i} style={{ fontSize: '10px', color: '#5A6A7A', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: i >= 4 ? 'right' as const : 'left' as const }}>{h}</span>
+            <span key={i} style={{ fontSize: '10px', color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase' as const, textAlign: i >= 4 ? 'right' as const : 'left' as const }}>{h}</span>
           ))}
         </div>
         {data.map(r => {
           const g = timeCell(r.gap)
           return (
             <div key={r.position} style={{ display: 'grid', gridTemplateColumns: '36px 4px 1fr 140px 120px', gap: '0 12px', alignItems: 'center', minHeight: '46px', padding: '0 20px', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 700 : 400, color: pos_colors[r.position] ?? '#5A6A7A' }}>{r.position}</span>
+              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: r.position <= 3 ? 700 : 400, color: pos_colors[r.position] ?? 'var(--muted)' }}>{r.position}</span>
               <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: r.team_colour }} />
               <DriverCell name={r.name} />
-              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#5A6A7A', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{shortenTeam(r.team)}</span>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: 'var(--muted)', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{shortenTeam(r.team)}</span>
               <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: r.position === 1 ? '#FFB800' : g.color, textAlign: 'right' as const, whiteSpace: 'nowrap' as const }}>{r.position === 1 ? '—' : g.text}</span>
             </div>
           )
@@ -510,7 +510,7 @@ export default function RaceHubLive({ meeting_key, flag, name, isSprint = false 
   if (loadingSessions) {
     return (
       <div style={card}>
-        <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
+        <div style={{ padding: '40px', textAlign: 'center' as const, color: 'var(--muted)', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
           Loading session data…
         </div>
       </div>
@@ -520,7 +520,7 @@ export default function RaceHubLive({ meeting_key, flag, name, isSprint = false 
   if (sessionTabs.length === 0) {
     return (
       <div style={card}>
-        <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
+        <div style={{ padding: '40px', textAlign: 'center' as const, color: 'var(--muted)', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
           Session data not yet available
         </div>
       </div>
@@ -532,7 +532,7 @@ export default function RaceHubLive({ meeting_key, flag, name, isSprint = false 
   function renderTable() {
     if (loadingData && !practiceData && !qualData && !raceData) {
       return (
-        <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
+        <div style={{ padding: '40px', textAlign: 'center' as const, color: 'var(--muted)', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
           Loading live data…
         </div>
       )
@@ -546,7 +546,7 @@ export default function RaceHubLive({ meeting_key, flag, name, isSprint = false 
     if (!isQual && !isRace && practiceData) return <PracticeTable data={practiceData} />
 
     return (
-      <div style={{ padding: '40px', textAlign: 'center' as const, color: '#5A6A7A', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
+      <div style={{ padding: '40px', textAlign: 'center' as const, color: 'var(--muted)', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
         No data available yet
       </div>
     )
@@ -566,15 +566,15 @@ export default function RaceHubLive({ meeting_key, flag, name, isSprint = false 
       </div>
 
       {/* Session tabs */}
-      <div style={{ display: 'flex', gap: '6px', padding: '12px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)', flexWrap: 'wrap' as const }}>
+      <div style={{ display: 'flex', gap: '6px', padding: '12px 20px', borderBottom: '1px solid var(--border)', flexWrap: 'wrap' as const }}>
         {sessionTabs.map(t => (
           <button
             key={t.id}
             onClick={() => setActiveTab(t.id)}
             style={{
-              background: activeTab === t.id ? 'rgba(232,0,45,0.15)' : '#141B22',
-              color: activeTab === t.id ? '#E8002D' : '#5A6A7A',
-              border: activeTab === t.id ? '1px solid rgba(232,0,45,0.4)' : '1px solid rgba(255,255,255,0.07)',
+              background: activeTab === t.id ? 'rgba(232,0,45,0.15)' : 'var(--surface2)',
+              color: activeTab === t.id ? '#E8002D' : 'var(--muted)',
+              border: activeTab === t.id ? '1px solid rgba(232,0,45,0.4)' : '1px solid var(--border)',
               borderRadius: '6px',
               padding: '5px 14px',
               cursor: 'pointer',

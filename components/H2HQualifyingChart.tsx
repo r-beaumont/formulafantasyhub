@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { teams2026, qualifyingSessions } from '@/lib/raceResults'
 
@@ -52,8 +52,8 @@ export default function H2HQualifyingChart() {
     return { team: team.team, colour: team.colour, leadingDriver, trailingDriver, leadingWins, trailingWins, avgGap, normalizedGaps }
   })
 
-  const card   = { background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' as const }
-  const header = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)', flexWrap: 'wrap' as const, gap: '10px' }
+  const card   = { background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden' as const }
+  const header = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid var(--border)', flexWrap: 'wrap' as const, gap: '10px' }
 
   return (
     <div style={card}>
@@ -65,24 +65,24 @@ export default function H2HQualifyingChart() {
       `}</style>
 
       <div style={header}>
-        <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '22px', letterSpacing: '1.5px', color: '#F0F4F8' }}>
+        <span style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '22px', letterSpacing: '1.5px', color: 'var(--text)' }}>
           Teammate Qualifying Gaps
         </span>
         {/* Legend */}
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: '#5A6A7A', fontFamily: 'DM Sans, sans-serif' }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: 'var(--muted)', fontFamily: 'DM Sans, sans-serif' }}>
             <svg width="18" height="18" style={{ flexShrink: 0 }}>
               <circle cx="9" cy="9" r="8" fill="rgba(255,255,255,0.25)" />
             </svg>
             Standard Q
           </span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: '#5A6A7A', fontFamily: 'DM Sans, sans-serif' }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: 'var(--muted)', fontFamily: 'DM Sans, sans-serif' }}>
             <svg width="14" height="14" style={{ flexShrink: 0 }}>
               <circle cx="7" cy="7" r="6" fill="rgba(255,255,255,0.18)" />
             </svg>
             Sprint SQ
           </span>
-          <span style={{ fontSize: '11px', color: '#5A6A7A', fontFamily: 'DM Sans, sans-serif' }}>
+          <span style={{ fontSize: '11px', color: 'var(--muted)', fontFamily: 'DM Sans, sans-serif' }}>
             ← left of zero = faster
           </span>
         </div>
@@ -110,8 +110,8 @@ export default function H2HQualifyingChart() {
             >
               {/* Left — leading driver */}
               <div className="h2h-sidebar" style={{ width: '68px', textAlign: 'right' as const }}>
-                <div className="h2h-name" style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 700, color: '#F0F4F8', letterSpacing: '0.5px' }}>{leadAbbr}</div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 700, color: '#F0F4F8' }}>{stat.leadingWins}W</div>
+                <div className="h2h-name" style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 700, color: 'var(--text)', letterSpacing: '0.5px' }}>{leadAbbr}</div>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 700, color: 'var(--text)' }}>{stat.leadingWins}W</div>
                 <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#00D47E' }}>
                   {stat.avgGap <= 0 ? '-' : '+'}{avgDisplay}s
                 </div>
@@ -173,8 +173,8 @@ export default function H2HQualifyingChart() {
 
               {/* Right — trailing driver */}
               <div className="h2h-sidebar" style={{ width: '68px', textAlign: 'left' as const }}>
-                <div className="h2h-name" style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 700, color: '#5A6A7A', letterSpacing: '0.5px' }}>{trailAbbr}</div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 700, color: '#5A6A7A' }}>{stat.trailingWins}W</div>
+                <div className="h2h-name" style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', fontWeight: 700, color: 'var(--muted)', letterSpacing: '0.5px' }}>{trailAbbr}</div>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 700, color: 'var(--muted)' }}>{stat.trailingWins}W</div>
                 <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#E8002D' }}>
                   +{avgDisplay}s
                 </div>
@@ -187,9 +187,9 @@ export default function H2HQualifyingChart() {
         <div style={{ display: 'grid', gridTemplateColumns: '68px 1fr 68px', gap: '8px', padding: '4px 16px 12px' }}>
           <div />
           <div style={{ display: 'flex', justifyContent: 'space-between', paddingLeft: '2px', paddingRight: '2px' }}>
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#5A6A7A' }}>-1.5s</span>
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#5A6A7A' }}>0</span>
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: '#5A6A7A' }}>+1.5s</span>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: 'var(--muted)' }}>-1.5s</span>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: 'var(--muted)' }}>0</span>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: 'var(--muted)' }}>+1.5s</span>
           </div>
           <div />
         </div>

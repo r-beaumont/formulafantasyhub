@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { DRIVER_STANDINGS, CONSTRUCTOR_STANDINGS } from '@/lib/standings'
@@ -28,10 +28,10 @@ export default function StandingsWidget({ limit = 5, showLink = true, type = 'bo
       .catch(() => {})
   }, [limit])
 
-  const posColor = (pos: number) => ({ 1: '#FFD700', 2: '#C0C0C0', 3: '#CD7F32' }[pos] || '#3A4A5A')
-  const card = { background: '#0E1318', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '14px', overflow: 'hidden' as const }
-  const header = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid rgba(255,255,255,0.07)' }
-  const title = { fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#5A6A7A' }
+  const posColor = (pos: number) => ({ 1: '#FFD700', 2: '#C0C0C0', 3: '#CD7F32' }[pos] || 'var(--muted2)')
+  const card = { background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden' as const }
+  const header = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid var(--border)' }
+  const title = { fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'var(--muted)' }
 
   return (
     <>
@@ -51,9 +51,9 @@ export default function StandingsWidget({ limit = 5, showLink = true, type = 'bo
                   <span className={`fi fi-${d.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontSize: '13px', fontWeight: 500 }}>{d.name}</div>
-                    <div style={{ fontSize: '11px', color: '#5A6A7A' }}>{d.team}</div>
+                    <div style={{ fontSize: '11px', color: 'var(--muted)' }}>{d.team}</div>
                   </div>
-                  <div style={{ width: '60px', height: '3px', background: '#1C2630', borderRadius: '2px', overflow: 'hidden', flexShrink: 0 }}>
+                  <div style={{ width: '60px', height: '3px', background: 'var(--surface3)', borderRadius: '2px', overflow: 'hidden', flexShrink: 0 }}>
                     <div style={{ width: `${(d.points / maxPts) * 100}%`, height: '100%', background: d.team_colour, opacity: 0.8 }} />
                   </div>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 600, width: '32px', textAlign: 'right' as const }}>{d.points}</span>
@@ -78,7 +78,7 @@ export default function StandingsWidget({ limit = 5, showLink = true, type = 'bo
                   <div style={{ width: '3px', height: '26px', borderRadius: '2px', background: c.team_colour, flexShrink: 0 }} />
                   <span className={`fi fi-${c.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
                   <span style={{ flex: 1, fontSize: '13px', fontWeight: 500, display: 'flex', alignItems: 'center' }}>{c.team}</span>
-                  <div style={{ width: '60px', height: '3px', background: '#1C2630', borderRadius: '2px', overflow: 'hidden' }}>
+                  <div style={{ width: '60px', height: '3px', background: 'var(--surface3)', borderRadius: '2px', overflow: 'hidden' }}>
                     <div style={{ width: `${(c.points / maxPts) * 100}%`, height: '100%', background: c.team_colour, opacity: 0.8 }} />
                   </div>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 600, width: '32px', textAlign: 'right' as const }}>{c.points}</span>

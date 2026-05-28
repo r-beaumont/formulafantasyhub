@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 
@@ -35,7 +35,7 @@ export default function ShareBar({ title, slug, showLabel = false }: ShareBarPro
   }
 
   const btn: React.CSSProperties = {
-    background: '#0E1318',
+    background: 'var(--surface)',
     border: '0.5px solid rgba(255,255,255,0.1)',
     borderRadius: '8px',
     padding: '8px 16px',
@@ -57,7 +57,7 @@ export default function ShareBar({ title, slug, showLabel = false }: ShareBarPro
         <div style={{
           fontFamily: 'DM Sans, sans-serif',
           fontSize: '11px',
-          color: '#5A6A7A',
+          color: 'var(--muted)',
           textTransform: 'uppercase',
           letterSpacing: '0.08em',
           marginBottom: '8px',
@@ -97,7 +97,7 @@ export default function ShareBar({ title, slug, showLabel = false }: ShareBarPro
           onMouseEnter={e => {
             if (!copied) {
               const el = e.currentTarget as HTMLElement
-              el.style.color = '#F0F4F8'
+              el.style.color = 'var(--text)'
               el.style.borderColor = 'rgba(255,255,255,0.25)'
             }
           }}
