@@ -1152,7 +1152,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
             strategies: [
               { name: '1-Stop Soft → Medium',     stops: 1, laps: ['Lap 1–20: Soft',   'Pit ~Lap 20', 'Lap 21–78: Medium'], note: 'Classic Monaco strategy. Track position is everything — overtaking is virtually impossible without a safety car or pit-stop error.' },
               { name: '1-Stop Medium → Medium',    stops: 1, laps: ['Lap 1–38: Medium', 'Pit ~Lap 38', 'Lap 39–78: Medium'], note: 'Used by teams starting in clean air who can run long on the first set. Minimises pit exposure time.' },
-              { name: '0-Stop (no pit)',            stops: 0, laps: ['Lap 1–78: Medium (or Hard)'],                           note: 'Rare but attempted in specific circumstances. Tyre management and VSC timing is key. Track position advantage must be decisive.' },
+              { name: '0-Stop (no pit)',            stops: 0, laps: ['Lap 1–78: Medium (or Hard)'],                           note: 'Viable only if a red flag neutralises the race early and allows a free tyre change under the restart. Without a red flag, completing race distance on one set is extremely difficult.' },
             ],
           },
           7: { // Barcelona-Catalunya — Spain
