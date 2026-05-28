@@ -716,15 +716,15 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                       <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '4px' }}>Average Overtakes per Race ({overview.overtakeSeasonsLabel})</div>
                     </div>
                     {/* Year table */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '16px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '7px', marginBottom: '12px' }}>
                       {([
                         { year: '2023', val: overview.overtakes2023 },
                         { year: '2024', val: overview.overtakes2024 },
                         { year: '2025', val: overview.overtakes2025 },
                       ] as { year: string; val: number | null }[]).map(({ year, val }) => (
-                        <div key={year} style={{ textAlign: 'center' as const }}>
-                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', textTransform: 'uppercase' as const, letterSpacing: '0.5px', marginBottom: '4px' }}>{year}</div>
-                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '22px', fontWeight: 600, color: val !== null ? '#F0F4F8' : '#5A6A7A' }}>{val !== null ? val : '—'}</div>
+                        <div key={year} style={{ background: '#151A21', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 8px', textAlign: 'center' as const }}>
+                          <div style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: val !== null ? '#E8002D' : 'rgba(255,255,255,0.2)', marginBottom: '6px' }}>{year}</div>
+                          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '24px', fontWeight: 700, color: val !== null ? '#ffffff' : 'rgba(255,255,255,0.2)', lineHeight: 1 }}>{val !== null ? val : '—'}</div>
                         </div>
                       ))}
                     </div>
@@ -758,15 +758,15 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                         <div style={{ fontSize: '12px', color: '#5A6A7A', marginTop: '4px' }}>Average DNFs per Race (2023–2025)</div>
                       </div>
                       {/* Year table */}
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '16px' }}>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '7px', marginBottom: '12px' }}>
                         {([
                           { year: '2023', val: overview.dnfHistory.y2023 },
                           { year: '2024', val: overview.dnfHistory.y2024 },
                           { year: '2025', val: overview.dnfHistory.y2025 },
                         ] as { year: string; val: number | null }[]).map(({ year, val }) => (
-                          <div key={year} style={{ textAlign: 'center' as const }}>
-                            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: '#5A6A7A', textTransform: 'uppercase' as const, letterSpacing: '0.5px', marginBottom: '4px' }}>{year}</div>
-                            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '22px', fontWeight: 600, color: val !== null ? '#F0F4F8' : '#5A6A7A' }}>{val !== null ? val : '—'}</div>
+                          <div key={year} style={{ background: '#151A21', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 8px', textAlign: 'center' as const }}>
+                            <div style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: val !== null ? '#E8002D' : 'rgba(255,255,255,0.2)', marginBottom: '6px' }}>{year}</div>
+                            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '24px', fontWeight: 700, color: val !== null ? '#ffffff' : 'rgba(255,255,255,0.2)', lineHeight: 1 }}>{val !== null ? val : '—'}</div>
                           </div>
                         ))}
                       </div>
