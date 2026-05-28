@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { CURRENT_RACE } from '@/lib/races'
 
@@ -19,12 +19,31 @@ const links = [
 export default function Navbar() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
+
+  useEffect(() => {
+    if (document.documentElement.getAttribute('data-theme') === 'light') setTheme('light')
+  }, [])
+
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark'
+    setTheme(next)
+    if (next === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light')
+    } else {
+      document.documentElement.removeAttribute('data-theme')
+    }
+    try { localStorage.setItem('theme', next) } catch (_) {}
+  }
 
   return (
     <>
       <style>{`
         @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
         .nav-link:hover { color: #F0F4F8 !important; background: #141B22 !important; }
+        [data-theme="light"] .nav-link:hover { color: #0D1117 !important; background: #E8EAED !important; }
+        .theme-toggle:hover { background: rgba(255,255,255,0.07) !important; }
+        [data-theme="light"] .theme-toggle:hover { background: rgba(0,0,0,0.06) !important; }
       `}</style>
       <nav style={{
         position: 'sticky', top: 0, zIndex: 100,
@@ -60,10 +79,42 @@ export default function Navbar() {
               </li>
             )
           })}
+          {/* Theme toggle at bottom of mobile dropdown */}
+          <li className="nav-theme-mobile" style={{ marginTop: '4px', paddingTop: '8px', borderTop: '1px solid var(--border)' }}>
+            <button
+              onClick={toggleTheme}
+              className="theme-toggle"
+              style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                width: '100%', height: '38px', borderRadius: '6px',
+                display: 'flex', alignItems: 'center',
+                gap: '10px', padding: '0 14px',
+                fontSize: '13px', fontWeight: 500, color: '#5A6A7A',
+                letterSpacing: '0.3px',
+              }}
+            >
+              <span style={{ fontSize: '16px' }}>{theme === 'dark' ? '🌙' : '☀️'}</span>
+              <span>{theme === 'dark' ? 'Light mode' : 'Dark mode'}</span>
+            </button>
+          </li>
         </ul>
 
         {/* Right side */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+          {/* Theme toggle — desktop only; also in mobile dropdown below */}
+          <button
+            onClick={toggleTheme}
+            className="theme-toggle nav-theme-desktop"
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              width: '34px', height: '34px', borderRadius: '8px',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '16px', flexShrink: 0,
+            }}
+          >
+            {theme === 'dark' ? '🌙' : '☀️'}
+          </button>
           {/* Race badge — hidden on mobile */}
           <div className="nav-race-badge" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(232,0,45,0.08)', border: '1px solid rgba(232,0,45,0.2)', borderRadius: '20px', padding: '6px 14px', fontSize: '12px', fontWeight: 500, color: '#F0F4F8' }}>
             <div style={{ width: '7px', height: '7px', background: '#E8002D', borderRadius: '50%', animation: 'pulse 2s infinite', flexShrink: 0 }} />
