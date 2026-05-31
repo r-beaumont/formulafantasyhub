@@ -323,6 +323,7 @@ function ChipOverviewTab() {
 // ── CSV helpers ────────────────────────────────────────────────────────────────
 
 function parseCSVLine(line: string): string[] {
+  line = line.replace(/\r/g, '')
   const result: string[] = []
   let cur = ''
   let inQ = false
