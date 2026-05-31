@@ -480,8 +480,8 @@ function DriverHistoryPanel() {
   }
 
   const starts     = aggEntry ? Number(aggEntry['Starts']) : 0
-  const wins       = aggEntry ? Number(aggEntry['Wins']) : 0
-  const podiums    = aggEntry ? Number(aggEntry['Podiums']) : 0
+  const wins       = yearRows.filter(r => parseInt(r['Race Finish Position'], 10) === 1).length
+  const podiums    = yearRows.filter(r => { const p = parseInt(r['Race Finish Position'], 10); return !isNaN(p) && p <= 3 }).length
   const rawDnfPct  = aggEntry ? Number((aggEntry['DNF %'] ?? '0').replace('%', '')) : 0
   const dnfPct     = isNaN(rawDnfPct) ? 0 : rawDnfPct
   const retirements = Math.round(dnfPct / 100 * starts)
