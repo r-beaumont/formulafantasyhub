@@ -1,7 +1,8 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
+import { AGGREGATED_STATS, RAW_RESULTS, NO_APPEARANCES } from '@/src/data/driverHistoryData'
 
 const card = { background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden' as const }
 const cardHeader = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid var(--border)' }
@@ -320,32 +321,6 @@ function ChipOverviewTab() {
   )
 }
 
-// ── CSV helpers ────────────────────────────────────────────────────────────────
-
-function parseCSVLine(line: string): string[] {
-  line = line.replace(/\r/g, '')
-  const result: string[] = []
-  let cur = ''
-  let inQ = false
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i]
-    if (c === '"') { inQ = !inQ }
-    else if (c === ',' && !inQ) { result.push(cur.trim()); cur = '' }
-    else { cur += c }
-  }
-  result.push(cur.trim())
-  return result
-}
-
-function parseCSV(text: string): Record<string, string>[] {
-  const lines = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim().split('\n')
-  const headers = parseCSVLine(lines[0])
-  return lines.slice(1).filter(l => l.trim()).map(line => {
-    const vals = parseCSVLine(line)
-    return Object.fromEntries(headers.map((h, i) => [h, (vals[i] ?? '').trim()]))
-  })
-}
-
 // ── Driver History data ────────────────────────────────────────────────────────
 
 const DRIVER_LIST = [
@@ -374,64 +349,43 @@ const DRIVER_LIST = [
 ]
 
 const CIRCUIT_LIST: { value: string; display: string; cancelled?: boolean }[] = [
-  { value: 'Albert Park',                    display: 'Albert Park (Australia)' },
-  { value: 'Shanghai International Circuit', display: 'Shanghai International Circuit (China)' },
-  { value: 'Suzuka Circuit',                 display: 'Suzuka Circuit (Japan)' },
-  { value: 'Miami International Autodrome',  display: 'Miami International Autodrome' },
-  { value: 'Circuit Gilles Villeneuve',      display: 'Circuit Gilles Villeneuve (Canada)' },
-  { value: 'Circuit de Monaco',              display: 'Circuit de Monaco' },
-  { value: 'Circuit de Barcelona-Catalunya', display: 'Circuit de Barcelona-Catalunya' },
-  { value: 'Red Bull Ring',                  display: 'Red Bull Ring (Austria)' },
-  { value: 'Silverstone Circuit',            display: 'Silverstone Circuit' },
-  { value: 'Circuit de Spa-Francorchamps',   display: 'Circuit de Spa-Francorchamps' },
-  { value: 'Hungaroring',                    display: 'Hungaroring' },
-  { value: 'Circuit Zandvoort',              display: 'Circuit Zandvoort' },
-  { value: 'Autodromo Nazionale di Monza',   display: 'Autodromo Nazionale di Monza' },
-  { value: 'Madrid Street Circuit',          display: 'Madrid Street Circuit' },
-  { value: 'Baku City Circuit',              display: 'Baku City Circuit' },
-  { value: 'Marina Bay Street Circuit',      display: 'Marina Bay Street Circuit (Singapore)' },
-  { value: 'Circuit of the Americas',        display: 'Circuit of the Americas (Austin)' },
-  { value: 'Autodromo Hermanos Rodriguez',   display: 'Autodromo Hermanos Rodriguez (Mexico)' },
-  { value: 'Autodromo Jose Carlos Pace',     display: 'Autodromo Jose Carlos Pace (Interlagos)' },
-  { value: 'Las Vegas Strip Circuit',        display: 'Las Vegas Strip Circuit' },
-  { value: 'Lusail International Circuit',   display: 'Lusail International Circuit (Qatar)' },
-  { value: 'Yas Marina Circuit',             display: 'Yas Marina Circuit (Abu Dhabi)' },
-  { value: 'Bahrain International Circuit',  display: 'Bahrain International Circuit (Cancelled 2026)', cancelled: true },
-  { value: 'Jeddah Corniche Circuit',        display: 'Jeddah Corniche Circuit (Saudi Arabia) (Cancelled 2026)', cancelled: true },
+  { value: 'Albert Park (Australia)',                display: 'Albert Park (Australia)' },
+  { value: 'Shanghai International Circuit (China)', display: 'Shanghai International Circuit (China)' },
+  { value: 'Suzuka Circuit (Japan)',                 display: 'Suzuka Circuit (Japan)' },
+  { value: 'Miami International Autodrome',          display: 'Miami International Autodrome' },
+  { value: 'Circuit Gilles Villeneuve (Canada)',     display: 'Circuit Gilles Villeneuve (Canada)' },
+  { value: 'Circuit de Monaco',                     display: 'Circuit de Monaco' },
+  { value: 'Circuit de Barcelona-Catalunya',        display: 'Circuit de Barcelona-Catalunya' },
+  { value: 'Red Bull Ring (Austria)',                display: 'Red Bull Ring (Austria)' },
+  { value: 'Silverstone Circuit',                   display: 'Silverstone Circuit' },
+  { value: 'Circuit de Spa-Francorchamps',          display: 'Circuit de Spa-Francorchamps' },
+  { value: 'Hungaroring',                           display: 'Hungaroring' },
+  { value: 'Circuit Zandvoort',                     display: 'Circuit Zandvoort' },
+  { value: 'Autodromo Nazionale di Monza',          display: 'Autodromo Nazionale di Monza' },
+  { value: 'Madrid Street Circuit',                 display: 'Madrid Street Circuit' },
+  { value: 'Baku City Circuit',                     display: 'Baku City Circuit' },
+  { value: 'Marina Bay Street Circuit (Singapore)', display: 'Marina Bay Street Circuit (Singapore)' },
+  { value: 'Circuit of the Americas (Austin)',      display: 'Circuit of the Americas (Austin)' },
+  { value: 'Autodromo Hermanos Rodriguez (Mexico)', display: 'Autodromo Hermanos Rodriguez (Mexico)' },
+  { value: 'Autodromo Jose Carlos Pace (Interlagos)', display: 'Autodromo Jose Carlos Pace (Interlagos)' },
+  { value: 'Las Vegas Strip Circuit',               display: 'Las Vegas Strip Circuit' },
+  { value: 'Lusail International Circuit (Qatar)',  display: 'Lusail International Circuit (Qatar)' },
+  { value: 'Yas Marina Circuit (Abu Dhabi)',        display: 'Yas Marina Circuit (Abu Dhabi)' },
+  { value: 'Bahrain International Circuit',         display: 'Bahrain International Circuit (Cancelled 2026)', cancelled: true },
+  { value: 'Jeddah Corniche Circuit (Saudi Arabia)', display: 'Jeddah Corniche Circuit (Saudi Arabia) (Cancelled 2026)', cancelled: true },
 ]
 
 // ── Driver History panel ───────────────────────────────────────────────────────
 
 function DriverHistoryPanel() {
-  const [driver,    setDriver]    = useState('Lando Norris')
-  const [circuit,   setCircuit]   = useState('Silverstone Circuit')
-  const [rawData,   setRawData]   = useState<Record<string, string>[]>([])
-  const [aggData,   setAggData]   = useState<Record<string, string>[]>([])
-  const [noAppData, setNoAppData] = useState<Record<string, string>[]>([])
-  const [loading,   setLoading]   = useState(true)
-  const [loadError, setLoadError] = useState(false)
+  const [driver,  setDriver]  = useState('Lando Norris')
+  const [circuit, setCircuit] = useState('Silverstone Circuit')
 
-  useEffect(() => {
-    Promise.all([
-      fetch('/data/f1_raw_results.csv').then(r => { if (!r.ok) throw new Error('missing'); return r.text() }),
-      fetch('/data/f1_aggregated_stats.csv').then(r => { if (!r.ok) throw new Error('missing'); return r.text() }),
-      fetch('/data/f1_no_appearances.csv').then(r => { if (!r.ok) throw new Error('missing'); return r.text() }),
-    ]).then(([raw, agg, noApp]) => {
-      setRawData(parseCSV(raw))
-      setAggData(parseCSV(agg))
-      setNoAppData(parseCSV(noApp))
-      setLoading(false)
-    }).catch(() => {
-      setLoadError(true)
-      setLoading(false)
-    })
-  }, [])
-
-  const aggEntry   = aggData.find(r => r['Driver'] === driver && r['Circuit'] === circuit)
-  const noAppEntry = noAppData.find(r => r['Driver'] === driver && r['Circuit'] === circuit)
-  const yearRows   = rawData
-    .filter(r => r['Driver'] === driver && r['Circuit'] === circuit)
-    .sort((a, b) => Number(a['Year']) - Number(b['Year']))
+  const stats     = AGGREGATED_STATS[driver]?.[circuit]
+  const noAppNote = NO_APPEARANCES[driver]?.[circuit]
+  const yearRows  = (RAW_RESULTS[`${driver}||${circuit}`] ?? [])
+                      .slice()
+                      .sort((a, b) => Number(a.year) - Number(b.year))
 
   function gridDisplay(val: string): string {
     if (!val) return '—'
@@ -448,7 +402,7 @@ function DriverHistoryPanel() {
 
   function finishColor(val: string): string {
     if (!val) return 'var(--muted)'
-    const n = Number(val)
+    const n = parseInt(val, 10)
     if (!isNaN(n)) {
       if (n === 1)  return '#00C851'
       if (n <= 3)   return '#FFD700'
@@ -479,18 +433,17 @@ function DriverHistoryPanel() {
     return 'var(--text)'
   }
 
-  const starts     = aggEntry ? Number(aggEntry['Starts']) : 0
-  const wins       = yearRows.filter(r => parseInt(r['Race Finish Position'], 10) === 1).length
-  const podiums    = yearRows.filter(r => { const p = parseInt(r['Race Finish Position'], 10); return !isNaN(p) && p <= 3 }).length
-  const rawDnfPct  = aggEntry ? Number((aggEntry['DNF %'] ?? '0').replace('%', '')) : 0
-  const dnfPct     = isNaN(rawDnfPct) ? 0 : rawDnfPct
+  const starts      = stats ? stats.starts : 0
+  const wins        = stats ? stats.wins : 0
+  const podiums     = stats ? stats.podiums : 0
+  const dnfPct      = stats ? stats.dnfPct : 0
   const retirements = Math.round(dnfPct / 100 * starts)
-  const winRate    = starts > 0 ? Math.round((wins / starts) * 100) : 0
-  const podiumRate = starts > 0 ? Math.round((podiums / starts) * 100) : 0
+  const winRate     = starts > 0 ? Math.round((wins / starts) * 100) : 0
+  const podiumRate  = starts > 0 ? Math.round((podiums / starts) * 100) : 0
 
   function dnfColor(): string {
-    if (dnfPct === 0)   return '#00C851'
-    if (dnfPct <= 20)   return '#FF8700'
+    if (dnfPct === 0)  return '#00C851'
+    if (dnfPct <= 20)  return '#FF8700'
     return '#E8002D'
   }
 
@@ -519,28 +472,7 @@ function DriverHistoryPanel() {
     marginBottom: '6px',
   }
 
-  if (loading) {
-    return (
-      <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--muted)', fontFamily: 'DM Sans, sans-serif', fontSize: '14px' }}>
-        Loading driver data…
-      </div>
-    )
-  }
-
-  if (loadError) {
-    return (
-      <div style={{ background: 'var(--surface)', border: '0.5px solid var(--border)', borderRadius: '12px', padding: '40px 24px', textAlign: 'center' }}>
-        <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '24px', color: 'var(--muted)', marginBottom: '10px' }}>Data Not Available</div>
-        <div style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.6 }}>
-          CSV data files have not been uploaded yet. Place the three CSV files in{' '}
-          <code style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', background: 'var(--surface2)', padding: '2px 6px', borderRadius: '4px' }}>public/data/</code>{' '}
-          to enable this feature.
-        </div>
-      </div>
-    )
-  }
-
-  const showNoData = !aggEntry || !!noAppEntry
+  const showNoData = !stats || !!noAppNote
   const circuitDisplayName = CIRCUIT_LIST.find(c => c.value === circuit)?.display ?? circuit
 
   return (
@@ -583,11 +515,7 @@ function DriverHistoryPanel() {
             No Historical Data
           </div>
           <div style={{ fontSize: '13px', color: 'var(--muted)', maxWidth: '380px', margin: '0 auto', lineHeight: 1.65 }}>
-            {noAppEntry
-              ? noAppEntry['Note']
-              : driver === 'Arvid Lindblad'
-                ? 'No F1 starts'
-                : 'No prior appearances at this circuit'}
+            {noAppNote ?? 'No prior appearances at this circuit'}
           </div>
         </div>
       ) : (
@@ -615,7 +543,7 @@ function DriverHistoryPanel() {
                 color: '#E8002D', whiteSpace: 'nowrap',
                 fontFamily: 'JetBrains Mono, monospace', flexShrink: 0,
               }}>
-                {aggEntry!['Years Active At Circuit']}
+                {stats!.years}
               </span>
             </div>
           </div>
@@ -653,11 +581,11 @@ function DriverHistoryPanel() {
             {/* Secondary stats — 5 columns */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px', marginBottom: '20px' }}>
               {[
-                { label: 'Avg Grid',      val: fmtStat(aggEntry!['Avg Grid']),          color: undefined },
-                { label: 'Avg Finish',    val: fmtStat(aggEntry!['Avg Finish']),         color: undefined },
-                { label: 'Median Grid',   val: fmtStat(aggEntry!['Median Grid']),        color: undefined },
-                { label: 'Median Finish', val: fmtStat(aggEntry!['Median Finish']),      color: undefined },
-                { label: 'Best Finish',   val: fmtBestFinish(aggEntry!['Best Finish']),  color: bestFinishColor(aggEntry!['Best Finish']) },
+                { label: 'Avg Grid',      val: fmtStat(stats!.avgGrid),         color: undefined },
+                { label: 'Avg Finish',    val: fmtStat(stats!.avgFinish),        color: undefined },
+                { label: 'Median Grid',   val: fmtStat(stats!.medianGrid),       color: undefined },
+                { label: 'Median Finish', val: fmtStat(stats!.medianFinish),     color: undefined },
+                { label: 'Best Finish',   val: fmtBestFinish(stats!.bestFinish), color: bestFinishColor(stats!.bestFinish) },
               ].map(({ label, val, color }) => (
                 <div key={label} style={{ background: 'var(--surface2)', borderRadius: '8px', padding: '10px 6px', textAlign: 'center' }}>
                   <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '16px', fontWeight: 700, color: color ?? 'var(--text)', lineHeight: 1 }}>{val}</div>
@@ -694,36 +622,32 @@ function DriverHistoryPanel() {
                         </tr>
                       </thead>
                       <tbody>
-                        {yearRows.map((row, idx) => {
-                          const finPos  = row['Race Finish Position'] ?? ''
-                          const gridPos = row['Grid Position'] ?? ''
-                          return (
-                            <tr
-                              key={idx}
-                              style={{ borderBottom: idx < yearRows.length - 1 ? '0.5px solid var(--border)' : 'none' }}
-                            >
-                              <td style={{ padding: '9px 14px', fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: 'var(--text)', fontWeight: 600 }}>
-                                {row['Year']}
-                              </td>
-                              <td style={{ padding: '9px 14px', textAlign: 'center', fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: 'var(--muted)' }}>
-                                {gridDisplay(gridPos)}
-                              </td>
-                              <td style={{ padding: '9px 14px', textAlign: 'center', fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: finishColor(finPos), fontWeight: Number(finPos) === 1 ? 700 : 400 }}>
-                                {finishDisplay(finPos)}
-                              </td>
-                              <td style={{ padding: '9px 14px' }}>
-                                <span style={{
-                                  display: 'inline-block', fontSize: '11px', fontWeight: 500,
-                                  padding: '2px 10px', borderRadius: '4px',
-                                  background: 'var(--surface3)', color: 'var(--muted)',
-                                  whiteSpace: 'nowrap',
-                                }}>
-                                  {row['Team']}
-                                </span>
-                              </td>
-                            </tr>
-                          )
-                        })}
+                        {yearRows.map((row, idx) => (
+                          <tr
+                            key={idx}
+                            style={{ borderBottom: idx < yearRows.length - 1 ? '0.5px solid var(--border)' : 'none' }}
+                          >
+                            <td style={{ padding: '9px 14px', fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: 'var(--text)', fontWeight: 600 }}>
+                              {row.year}
+                            </td>
+                            <td style={{ padding: '9px 14px', textAlign: 'center', fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: 'var(--muted)' }}>
+                              {gridDisplay(row.grid)}
+                            </td>
+                            <td style={{ padding: '9px 14px', textAlign: 'center', fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: finishColor(row.finish), fontWeight: parseInt(row.finish, 10) === 1 ? 700 : 400 }}>
+                              {finishDisplay(row.finish)}
+                            </td>
+                            <td style={{ padding: '9px 14px' }}>
+                              <span style={{
+                                display: 'inline-block', fontSize: '11px', fontWeight: 500,
+                                padding: '2px 10px', borderRadius: '4px',
+                                background: 'var(--surface3)', color: 'var(--muted)',
+                                whiteSpace: 'nowrap',
+                              }}>
+                                {row.team}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </div>
