@@ -21,7 +21,7 @@ export const articles: Article[] = [
     title: 'Race Week Preview: Monaco Grand Prix',
     excerpt: "Antonelli's won four in a row. Monaco is about to test whether that actually means anything.",
     readTime: 4,
-    date: 'Jun 4, 2026',
+    date: 'Jun 1, 2026',
     tag: 'Race Preview',
     category: 'Race Preview',
     articleType: 'F1 Fantasy',
@@ -32,7 +32,7 @@ export const articles: Article[] = [
     ogImage: 'https://formulahub.live/og/race-week-preview-monaco-gp-2026',
     content: `**THE SETUP**
 
-You could make the case that the 2026 season is already over. Antonelli leads by 43 points after four consecutive wins, Mercedes have nearly doubled Ferrari's constructors' tally, and George Russell has found race finishes difficult to come by. But Monaco doesn't care about any of that. It's a circuit that has historically made fools of championship leaders and handed victories to drivers who've spent three weeks looking very ordinary. Ferrari haven't won a race all season, and there's a reasonable chance that changes on Sunday.
+You could make the case that the 2026 season is already over. Antonelli leads by 43 points after four consecutive wins, Mercedes have nearly doubled Ferrari's constructors' tally, and George Russell has found race wins difficult to come by. But Monaco doesn't care about any of that. It's a circuit that has historically made fools of championship leaders and handed victories to drivers who've spent three weeks looking very ordinary. Ferrari haven't won a race all season, and there's a reasonable chance that changes on Sunday.
 
 **THE CIRCUIT**
 
