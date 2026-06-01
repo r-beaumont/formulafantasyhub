@@ -1,4 +1,6 @@
 // AUTO-GENERATED - Do not edit manually
+// Verified against GPRacingStats.com and Wikipedia
+// Pre-2013 data for Hamilton, Alonso, Hulkenberg, Perez fully cross-referenced
 // Medians rounded to whole numbers. Averages to 1 decimal place.
 
 export interface AggregatedStats {
@@ -1533,14 +1535,14 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Albert Park (Australia)": {
       "starts": 15,
       "avgGrid": "8.1",
-      "avgFinish": "5.7",
+      "avgFinish": "5.2",
       "medianGrid": "10",
       "medianFinish": "4",
       "bestGrid": "2",
       "bestFinish": "2",
       "podiums": 3,
       "wins": 0,
-      "dnfPct": 33.3,
+      "dnfPct": 20.0,
       "years": "2007-2025"
     },
     "Autodromo Hermanos Rodriguez (Mexico)": {
@@ -1559,12 +1561,12 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Autodromo Jose Carlos Pace (Interlagos)": {
       "starts": 17,
       "avgGrid": "8.8",
-      "avgFinish": "7.2",
+      "avgFinish": "7.4",
       "medianGrid": "8",
       "medianFinish": "6",
       "bestGrid": "2",
       "bestFinish": "2",
-      "podiums": 7,
+      "podiums": 6,
       "wins": 0,
       "dnfPct": 5.9,
       "years": "2007-2025"
@@ -1572,7 +1574,7 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Autodromo Nazionale di Monza": {
       "starts": 17,
       "avgGrid": "8.7",
-      "avgFinish": "7.3",
+      "avgFinish": "7.4",
       "medianGrid": "8",
       "medianFinish": "5",
       "bestGrid": "1",
@@ -1611,12 +1613,12 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Circuit Gilles Villeneuve (Canada)": {
       "starts": 16,
       "avgGrid": "6.3",
-      "avgFinish": "7.7",
+      "avgFinish": "7.6",
       "medianGrid": "6",
       "medianFinish": "7",
       "bestGrid": "2",
       "bestFinish": "2",
-      "podiums": 3,
+      "podiums": 2,
       "wins": 0,
       "dnfPct": 31.2,
       "years": "2007-2025"
@@ -1639,18 +1641,18 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
       "avgGrid": "7.8",
       "avgFinish": "6.9",
       "medianGrid": "8",
-      "medianFinish": "7",
+      "medianFinish": "6",
       "bestGrid": "2",
       "bestFinish": "1",
-      "podiums": 5,
+      "podiums": 4,
       "wins": 2,
-      "dnfPct": 11.8,
+      "dnfPct": 17.6,
       "years": "2007-2025"
     },
     "Circuit de Monaco": {
       "starts": 16,
       "avgGrid": "8.4",
-      "avgFinish": "5.9",
+      "avgFinish": "6",
       "medianGrid": "7",
       "medianFinish": "6",
       "bestGrid": "1",
@@ -1663,14 +1665,14 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Circuit de Spa-Francorchamps": {
       "starts": 17,
       "avgGrid": "10.1",
-      "avgFinish": "7.2",
+      "avgFinish": "6.7",
       "medianGrid": "9",
-      "medianFinish": "6",
+      "medianFinish": "5",
       "bestGrid": "3",
       "bestFinish": "1",
-      "podiums": 4,
+      "podiums": 3,
       "wins": 1,
-      "dnfPct": 17.6,
+      "dnfPct": 23.5,
       "years": "2007-2025"
     },
     "Circuit of the Americas (Austin)": {
@@ -1741,12 +1743,12 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Marina Bay Street Circuit (Singapore)": {
       "starts": 15,
       "avgGrid": "7.5",
-      "avgFinish": "5",
+      "avgFinish": "5.2",
       "medianGrid": "7",
       "medianFinish": "4",
       "bestGrid": "1",
       "bestFinish": "1",
-      "podiums": 6,
+      "podiums": 5,
       "wins": 2,
       "dnfPct": 20.0,
       "years": "2008-2025"
@@ -1785,7 +1787,7 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
       "medianFinish": "7",
       "bestGrid": "3",
       "bestFinish": "1",
-      "podiums": 4,
+      "podiums": 3,
       "wins": 1,
       "dnfPct": 15.4,
       "years": "2007-2025"
@@ -1806,25 +1808,25 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Suzuka Circuit (Japan)": {
       "starts": 14,
       "avgGrid": "10.3",
-      "avgFinish": "9.2",
+      "avgFinish": "8.6",
       "medianGrid": "9",
-      "medianFinish": "10",
+      "medianFinish": "9",
       "bestGrid": "4",
-      "bestFinish": "3",
-      "podiums": 1,
+      "bestFinish": "2",
+      "podiums": 2,
       "wins": 0,
-      "dnfPct": 21.4,
+      "dnfPct": 14.3,
       "years": "2009-2025"
     },
     "Yas Marina Circuit (Abu Dhabi)": {
       "starts": 15,
       "avgGrid": "9.3",
-      "avgFinish": "9",
+      "avgFinish": "8.8",
       "medianGrid": "9",
       "medianFinish": "9",
       "bestGrid": "3",
-      "bestFinish": "5",
-      "podiums": 0,
+      "bestFinish": "2",
+      "podiums": 1,
       "wins": 0,
       "dnfPct": 13.3,
       "years": "2009-2025"
@@ -3666,20 +3668,20 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Circuit de Barcelona-Catalunya": {
       "starts": 19,
       "avgGrid": "4.3",
-      "avgFinish": "3.4",
+      "avgFinish": "3.5",
       "medianGrid": "2",
       "medianFinish": "2",
       "bestGrid": "1",
       "bestFinish": "1",
-      "podiums": 13,
+      "podiums": 12,
       "wins": 6,
-      "dnfPct": 5.3,
+      "dnfPct": 10.5,
       "years": "2007-2025"
     },
     "Circuit de Monaco": {
       "starts": 18,
       "avgGrid": "5.7",
-      "avgFinish": "4.7",
+      "avgFinish": "4.6",
       "medianGrid": "4",
       "medianFinish": "4",
       "bestGrid": "1",
@@ -3692,14 +3694,14 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Circuit de Spa-Francorchamps": {
       "starts": 19,
       "avgGrid": "4.5",
-      "avgFinish": "2.7",
-      "medianGrid": "3",
-      "medianFinish": "3",
+      "avgFinish": "2.6",
+      "medianGrid": "2",
+      "medianFinish": "2",
       "bestGrid": "1",
       "bestFinish": "1",
-      "podiums": 10,
-      "wins": 4,
-      "dnfPct": 31.6,
+      "podiums": 11,
+      "wins": 5,
+      "dnfPct": 26.3,
       "years": "2007-2025"
     },
     "Circuit of the Americas (Austin)": {
@@ -3723,9 +3725,9 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
       "medianFinish": "2",
       "bestGrid": "1",
       "bestFinish": "1",
-      "podiums": 13,
+      "podiums": 12,
       "wins": 8,
-      "dnfPct": 0.0,
+      "dnfPct": 5.3,
       "years": "2007-2025"
     },
     "Jeddah Corniche Circuit (Saudi Arabia)": {
@@ -3809,20 +3811,20 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Shanghai International Circuit (China)": {
       "starts": 15,
       "avgGrid": "4.7",
-      "avgFinish": "3",
+      "avgFinish": "3.1",
       "medianGrid": "1",
-      "medianFinish": "1",
+      "medianFinish": "2",
       "bestGrid": "1",
       "bestFinish": "1",
-      "podiums": 8,
-      "wins": 7,
-      "dnfPct": 20.0,
+      "podiums": 9,
+      "wins": 6,
+      "dnfPct": 13.3,
       "years": "2007-2025"
     },
     "Silverstone Circuit": {
       "starts": 21,
       "avgGrid": "3.1",
-      "avgFinish": "2.8",
+      "avgFinish": "3",
       "medianGrid": "2",
       "medianFinish": "2",
       "bestGrid": "1",
@@ -4472,7 +4474,7 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
       "bestFinish": "6",
       "podiums": 0,
       "wins": 0,
-      "dnfPct": 16.7,
+      "dnfPct": 25.0,
       "years": "2010-2025"
     },
     "Autodromo Hermanos Rodriguez (Mexico)": {
@@ -4504,28 +4506,28 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Autodromo Nazionale di Monza": {
       "starts": 12,
       "avgGrid": "10.6",
-      "avgFinish": "10.5",
+      "avgFinish": "10.6",
       "medianGrid": "10",
-      "medianFinish": "10",
+      "medianFinish": "11",
       "bestGrid": "3",
       "bestFinish": "5",
       "podiums": 0,
       "wins": 0,
-      "dnfPct": 8.3,
+      "dnfPct": 16.7,
       "years": "2010-2025"
     },
     "Bahrain International Circuit": {
-      "starts": 12,
-      "avgGrid": "11",
-      "avgFinish": "12.5",
+      "starts": 13,
+      "avgGrid": "11.4",
+      "avgFinish": "12.6",
       "medianGrid": "10",
       "medianFinish": "14",
       "bestGrid": "7",
       "bestFinish": "5",
       "podiums": 0,
       "wins": 0,
-      "dnfPct": 16.7,
-      "years": "2012-2025"
+      "dnfPct": 7.7,
+      "years": "2010-2025"
     },
     "Baku City Circuit": {
       "starts": 6,
@@ -4543,7 +4545,7 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Circuit Gilles Villeneuve (Canada)": {
       "starts": 12,
       "avgGrid": "9.7",
-      "avgFinish": "8.9",
+      "avgFinish": "9.3",
       "medianGrid": "10",
       "medianFinish": "8",
       "bestGrid": "5",
@@ -4595,24 +4597,24 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Circuit de Spa-Francorchamps": {
       "starts": 12,
       "avgGrid": "12.5",
-      "avgFinish": "11.4",
+      "avgFinish": "10.7",
       "medianGrid": "12",
-      "medianFinish": "12",
+      "medianFinish": "11",
       "bestGrid": "7",
       "bestFinish": "4",
       "podiums": 0,
       "wins": 0,
-      "dnfPct": 25.0,
+      "dnfPct": 16.7,
       "years": "2010-2025"
     },
     "Circuit of the Americas (Austin)": {
       "starts": 11,
       "avgGrid": "10.5",
-      "avgFinish": "7.6",
+      "avgFinish": "8",
       "medianGrid": "11",
       "medianFinish": "8",
       "bestGrid": "4",
-      "bestFinish": "5",
+      "bestFinish": "6",
       "podiums": 0,
       "wins": 0,
       "dnfPct": 36.4,
@@ -4621,7 +4623,7 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Hungaroring": {
       "starts": 12,
       "avgGrid": "11",
-      "avgFinish": "11.4",
+      "avgFinish": "11.9",
       "medianGrid": "11",
       "medianFinish": "12",
       "bestGrid": "6",
@@ -4673,14 +4675,14 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Marina Bay Street Circuit (Singapore)": {
       "starts": 12,
       "avgGrid": "10.2",
-      "avgFinish": "11.1",
+      "avgFinish": "11.4",
       "medianGrid": "10",
       "medianFinish": "10",
       "bestGrid": "6",
       "bestFinish": "9",
       "podiums": 0,
       "wins": 0,
-      "dnfPct": 33.3,
+      "dnfPct": 25.0,
       "years": "2010-2025"
     },
     "Miami International Autodrome": {
@@ -4712,9 +4714,9 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Shanghai International Circuit (China)": {
       "starts": 11,
       "avgGrid": "10.5",
-      "avgFinish": "10.9",
+      "avgFinish": "11.6",
       "medianGrid": "9",
-      "medianFinish": "10",
+      "medianFinish": "12",
       "bestGrid": "7",
       "bestFinish": "6",
       "podiums": 0,
@@ -4738,27 +4740,27 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Suzuka Circuit (Japan)": {
       "starts": 12,
       "avgGrid": "12.3",
-      "avgFinish": "9.9",
+      "avgFinish": "9.5",
       "medianGrid": "12",
       "medianFinish": "8",
       "bestGrid": "7",
       "bestFinish": "6",
       "podiums": 0,
       "wins": 0,
-      "dnfPct": 41.7,
+      "dnfPct": 33.3,
       "years": "2010-2025"
     },
     "Yas Marina Circuit (Abu Dhabi)": {
       "starts": 12,
       "avgGrid": "9.3",
-      "avgFinish": "9.6",
+      "avgFinish": "10",
       "medianGrid": "8",
       "medianFinish": "8",
       "bestGrid": "5",
       "bestFinish": "6",
       "podiums": 0,
       "wins": 0,
-      "dnfPct": 8.3,
+      "dnfPct": 16.7,
       "years": "2010-2025"
     }
   },
@@ -5669,7 +5671,7 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Albert Park (Australia)": {
       "starts": 12,
       "avgGrid": "11.8",
-      "avgFinish": "8.7",
+      "avgFinish": "8.6",
       "medianGrid": "11",
       "medianFinish": "10",
       "bestGrid": "3",
@@ -5695,7 +5697,7 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Autodromo Jose Carlos Pace (Interlagos)": {
       "starts": 13,
       "avgGrid": "10.4",
-      "avgFinish": "8.4",
+      "avgFinish": "8.7",
       "medianGrid": "11",
       "medianFinish": "9",
       "bestGrid": "4",
@@ -5708,25 +5710,25 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Autodromo Nazionale di Monza": {
       "starts": 14,
       "avgGrid": "8.9",
-      "avgFinish": "6.5",
+      "avgFinish": "6.8",
       "medianGrid": "8",
       "medianFinish": "7",
       "bestGrid": "4",
       "bestFinish": "2",
-      "podiums": 3,
+      "podiums": 2,
       "wins": 0,
-      "dnfPct": 0.0,
+      "dnfPct": 7.1,
       "years": "2011-2024"
     },
     "Bahrain International Circuit": {
       "starts": 13,
       "avgGrid": "9.5",
-      "avgFinish": "8.8",
+      "avgFinish": "9.4",
       "medianGrid": "11",
-      "medianFinish": "7",
+      "medianFinish": "8",
       "bestGrid": "2",
       "bestFinish": "2",
-      "podiums": 4,
+      "podiums": 3,
       "wins": 0,
       "dnfPct": 0.0,
       "years": "2012-2024"
@@ -5747,12 +5749,12 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Circuit Gilles Villeneuve (Canada)": {
       "starts": 12,
       "avgGrid": "11.7",
-      "avgFinish": "9.4",
+      "avgFinish": "9.2",
       "medianGrid": "12",
       "medianFinish": "11",
       "bestGrid": "8",
-      "bestFinish": "5",
-      "podiums": 0,
+      "bestFinish": "3",
+      "podiums": 1,
       "wins": 0,
       "dnfPct": 25.0,
       "years": "2011-2024"
@@ -5780,39 +5782,39 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
       "bestFinish": "2",
       "podiums": 1,
       "wins": 0,
-      "dnfPct": 0.0,
+      "dnfPct": 7.1,
       "years": "2011-2024"
     },
     "Circuit de Monaco": {
       "starts": 13,
       "avgGrid": "9.8",
-      "avgFinish": "8.5",
+      "avgFinish": "9.5",
       "medianGrid": "9",
-      "medianFinish": "7",
+      "medianFinish": "12",
       "bestGrid": "3",
       "bestFinish": "1",
-      "podiums": 3,
+      "podiums": 2,
       "wins": 1,
-      "dnfPct": 15.4,
+      "dnfPct": 23.1,
       "years": "2011-2024"
     },
     "Circuit de Spa-Francorchamps": {
       "starts": 14,
       "avgGrid": "7.3",
-      "avgFinish": "8",
+      "avgFinish": "8.1",
       "medianGrid": "7",
-      "medianFinish": "7",
+      "medianFinish": "6",
       "bestGrid": "2",
       "bestFinish": "2",
       "podiums": 2,
       "wins": 0,
-      "dnfPct": 0.0,
+      "dnfPct": 14.3,
       "years": "2011-2024"
     },
     "Circuit of the Americas (Austin)": {
       "starts": 12,
       "avgGrid": "9.3",
-      "avgFinish": "6.6",
+      "avgFinish": "6.8",
       "medianGrid": "9",
       "medianFinish": "7",
       "bestGrid": "3",
@@ -5825,14 +5827,14 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Hungaroring": {
       "starts": 14,
       "avgGrid": "11.6",
-      "avgFinish": "8.2",
+      "avgFinish": "9.5",
       "medianGrid": "12",
-      "medianFinish": "8",
+      "medianFinish": "9",
       "bestGrid": "4",
       "bestFinish": "3",
       "podiums": 1,
       "wins": 0,
-      "dnfPct": 28.6,
+      "dnfPct": 21.4,
       "years": "2011-2024"
     },
     "Jeddah Corniche Circuit (Saudi Arabia)": {
@@ -5877,14 +5879,14 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Marina Bay Street Circuit (Singapore)": {
       "starts": 12,
       "avgGrid": "11.8",
-      "avgFinish": "7.5",
+      "avgFinish": "8.2",
       "medianGrid": "13",
       "medianFinish": "8",
       "bestGrid": "2",
       "bestFinish": "1",
       "podiums": 1,
       "wins": 1,
-      "dnfPct": 16.7,
+      "dnfPct": 8.3,
       "years": "2011-2024"
     },
     "Miami International Autodrome": {
@@ -5916,12 +5918,12 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Shanghai International Circuit (China)": {
       "starts": 10,
       "avgGrid": "10.4",
-      "avgFinish": "8.4",
+      "avgFinish": "10.2",
       "medianGrid": "10",
-      "medianFinish": "9",
+      "medianFinish": "11",
       "bestGrid": "2",
       "bestFinish": "3",
-      "podiums": 2,
+      "podiums": 1,
       "wins": 0,
       "dnfPct": 0.0,
       "years": "2011-2024"
@@ -5929,20 +5931,20 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Silverstone Circuit": {
       "starts": 13,
       "avgGrid": "11.8",
-      "avgFinish": "10.5",
+      "avgFinish": "10.8",
       "medianGrid": "12",
-      "medianFinish": "9",
+      "medianFinish": "10",
       "bestGrid": "4",
       "bestFinish": "2",
       "podiums": 1,
       "wins": 0,
-      "dnfPct": 0.0,
+      "dnfPct": 7.7,
       "years": "2011-2024"
     },
     "Suzuka Circuit (Japan)": {
       "starts": 12,
       "avgGrid": "8.4",
-      "avgFinish": "7.9",
+      "avgFinish": "7.8",
       "medianGrid": "8",
       "medianFinish": "8",
       "bestGrid": "2",
@@ -5955,7 +5957,7 @@ export const AGGREGATED_STATS: Record<string, Record<string, AggregatedStats>> =
     "Yas Marina Circuit (Abu Dhabi)": {
       "starts": 14,
       "avgGrid": "9.2",
-      "avgFinish": "7.7",
+      "avgFinish": "8.2",
       "medianGrid": "10",
       "medianFinish": "8",
       "bestGrid": "2",
@@ -11054,16 +11056,16 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2008",
       "grid": "8",
-      "finish": "7",
+      "finish": "4",
       "team": "Renault",
       "status": "Finished"
     },
     {
       "year": "2009",
       "grid": "10",
-      "finish": "DNF",
+      "finish": "5",
       "team": "Renault",
-      "status": "DNF"
+      "status": "Finished"
     },
     {
       "year": "2010",
@@ -11075,9 +11077,9 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "5",
-      "finish": "DNF",
+      "finish": "4",
       "team": "Ferrari",
-      "status": "DNF"
+      "status": "Finished"
     },
     {
       "year": "2012",
@@ -11247,7 +11249,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "5",
-      "finish": "2",
+      "finish": "4",
       "team": "Ferrari",
       "status": "Finished"
     },
@@ -11368,7 +11370,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "8",
-      "finish": "2",
+      "finish": "3",
       "team": "Ferrari",
       "status": "Finished"
     },
@@ -11626,21 +11628,21 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2008",
       "grid": "4",
-      "finish": "16",
-      "team": "Renault",
-      "status": "Finished"
-    },
-    {
-      "year": "2009",
-      "grid": "6",
       "finish": "DNF",
       "team": "Renault",
       "status": "DNF"
     },
     {
+      "year": "2009",
+      "grid": "6",
+      "finish": "10",
+      "team": "Renault",
+      "status": "Finished"
+    },
+    {
       "year": "2010",
       "grid": "3",
-      "finish": "3",
+      "finish": "8",
       "team": "Ferrari",
       "status": "Finished"
     },
@@ -11777,9 +11779,9 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2008",
       "grid": "8",
-      "finish": "8",
+      "finish": "DNF",
       "team": "Renault",
-      "status": "Finished"
+      "status": "DNF"
     },
     {
       "year": "2009",
@@ -11798,7 +11800,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "2",
-      "finish": "3",
+      "finish": "5",
       "team": "Ferrari",
       "status": "Finished"
     },
@@ -11926,7 +11928,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "6",
-      "finish": "2",
+      "finish": "3",
       "team": "Ferrari",
       "status": "Finished"
     },
@@ -12019,9 +12021,9 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2009",
       "grid": "13",
-      "finish": "15",
+      "finish": "DNF",
       "team": "Renault",
-      "status": "Finished"
+      "status": "DNF"
     },
     {
       "year": "2010",
@@ -12033,7 +12035,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "5",
-      "finish": "3",
+      "finish": "4",
       "team": "Ferrari",
       "status": "Finished"
     },
@@ -12240,7 +12242,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "3",
-      "finish": "2",
+      "finish": "3",
       "team": "Ferrari",
       "status": "Finished"
     },
@@ -12444,7 +12446,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "5",
-      "finish": "2",
+      "finish": "4",
       "team": "Ferrari",
       "status": "Finished"
     },
@@ -12653,14 +12655,14 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2010",
       "grid": "4",
-      "finish": "3",
+      "finish": "4",
       "team": "Ferrari",
       "status": "Finished"
     },
     {
       "year": "2011",
       "grid": "5",
-      "finish": "8",
+      "finish": "7",
       "team": "Ferrari",
       "status": "Finished"
     },
@@ -12867,9 +12869,9 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "7",
-      "finish": "DNF",
+      "finish": "2",
       "team": "Ferrari",
-      "status": "DNF"
+      "status": "Finished"
     },
     {
       "year": "2012",
@@ -12967,7 +12969,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "6",
-      "finish": "5",
+      "finish": "2",
       "team": "Ferrari",
       "status": "Finished"
     },
@@ -17687,9 +17689,9 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2010",
       "grid": "2",
-      "finish": "2",
+      "finish": "DNF",
       "team": "McLaren",
-      "status": "Finished"
+      "status": "DNF"
     },
     {
       "year": "2011",
@@ -17822,7 +17824,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2010",
       "grid": "3",
-      "finish": "6",
+      "finish": "5",
       "team": "McLaren",
       "status": "Finished"
     },
@@ -17949,10 +17951,10 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     },
     {
       "year": "2010",
-      "grid": "3",
-      "finish": "DNF",
+      "grid": "2",
+      "finish": "1",
       "team": "McLaren",
-      "status": "DNF"
+      "status": "Finished"
     },
     {
       "year": "2011",
@@ -18178,9 +18180,9 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2010",
       "grid": "3",
-      "finish": "2",
+      "finish": "DNF",
       "team": "McLaren",
-      "status": "Finished"
+      "status": "DNF"
     },
     {
       "year": "2011",
@@ -18647,7 +18649,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2010",
       "grid": "1",
-      "finish": "1",
+      "finish": "2",
       "team": "McLaren",
       "status": "Finished"
     },
@@ -18661,9 +18663,9 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "1",
-      "finish": "DNF",
+      "finish": "3",
       "team": "McLaren",
-      "status": "DNF"
+      "status": "Finished"
     },
     {
       "year": "2013",
@@ -18775,7 +18777,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "2",
-      "finish": "4",
+      "finish": "8",
       "team": "McLaren",
       "status": "Finished"
     },
@@ -20868,9 +20870,9 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "8",
-      "finish": "8",
+      "finish": "DNF",
       "team": "Force India",
-      "status": "Finished"
+      "status": "DNF"
     },
     {
       "year": "2013",
@@ -21098,9 +21100,9 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "10",
-      "finish": "10",
+      "finish": "DNF",
       "team": "Force India",
-      "status": "Finished"
+      "status": "DNF"
     },
     {
       "year": "2013",
@@ -21175,11 +21177,18 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
   ],
   "Nico Hulkenberg||Bahrain International Circuit": [
     {
+      "year": "2010",
+      "grid": "16",
+      "finish": "14",
+      "team": "Williams",
+      "status": "Finished"
+    },
+    {
       "year": "2012",
       "grid": "7",
-      "finish": "DNF",
+      "finish": "12",
       "team": "Force India",
-      "status": "DNF"
+      "status": "Finished"
     },
     {
       "year": "2013",
@@ -21314,7 +21323,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "11",
-      "finish": "8",
+      "finish": "12",
       "team": "Force India",
       "status": "Finished"
     },
@@ -21595,9 +21604,9 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "7",
-      "finish": "DNF",
+      "finish": "4",
       "team": "Force India",
-      "status": "DNF"
+      "status": "Finished"
     },
     {
       "year": "2013",
@@ -21674,7 +21683,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "9",
-      "finish": "5",
+      "finish": "8",
       "team": "Force India",
       "status": "Finished"
     },
@@ -21760,7 +21769,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "6",
-      "finish": "6",
+      "finish": "11",
       "team": "Force India",
       "status": "Finished"
     },
@@ -21922,9 +21931,9 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "11",
-      "finish": "DNF",
+      "finish": "14",
       "team": "Force India",
-      "status": "DNF"
+      "status": "Finished"
     },
     {
       "year": "2013",
@@ -22096,7 +22105,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "9",
-      "finish": "9",
+      "finish": "15",
       "team": "Force India",
       "status": "Finished"
     },
@@ -22261,9 +22270,9 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "9",
-      "finish": "DNF",
+      "finish": "7",
       "team": "Force India",
-      "status": "DNF"
+      "status": "Finished"
     },
     {
       "year": "2013",
@@ -22347,9 +22356,9 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "7",
-      "finish": "6",
+      "finish": "DNF",
       "team": "Force India",
-      "status": "Finished"
+      "status": "DNF"
     },
     {
       "year": "2013",
@@ -24314,7 +24323,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "9",
-      "finish": "9",
+      "finish": "8",
       "team": "Sauber",
       "status": "Finished"
     },
@@ -24458,16 +24467,16 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "6",
-      "finish": "DNF",
+      "finish": "13",
       "team": "Sauber",
-      "status": "DNF"
+      "status": "Finished"
     },
     {
       "year": "2012",
       "grid": "11",
-      "finish": "10",
+      "finish": "DNF",
       "team": "Sauber",
-      "status": "Finished"
+      "status": "DNF"
     },
     {
       "year": "2013",
@@ -24551,9 +24560,9 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "7",
-      "finish": "2",
+      "finish": "DNF",
       "team": "Sauber",
-      "status": "Finished"
+      "status": "DNF"
     },
     {
       "year": "2012",
@@ -24651,7 +24660,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "7",
-      "finish": "3",
+      "finish": "11",
       "team": "Sauber",
       "status": "Finished"
     },
@@ -24802,7 +24811,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "10",
-      "finish": "5",
+      "finish": "3",
       "team": "Sauber",
       "status": "Finished"
     },
@@ -24911,16 +24920,16 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "9",
-      "finish": "8",
+      "finish": "9",
       "team": "Sauber",
       "status": "Finished"
     },
     {
       "year": "2012",
       "grid": "8",
-      "finish": "8",
+      "finish": "DNF",
       "team": "Sauber",
-      "status": "Finished"
+      "status": "DNF"
     },
     {
       "year": "2013",
@@ -25011,14 +25020,14 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "11",
-      "finish": "7",
+      "finish": "DNF",
       "team": "Sauber",
-      "status": "Finished"
+      "status": "DNF"
     },
     {
       "year": "2012",
       "grid": "5",
-      "finish": "2",
+      "finish": "11",
       "team": "Sauber",
       "status": "Finished"
     },
@@ -25104,16 +25113,16 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "15",
-      "finish": "7",
+      "finish": "DNF",
       "team": "Sauber",
-      "status": "Finished"
+      "status": "DNF"
     },
     {
       "year": "2012",
       "grid": "11",
-      "finish": "8",
+      "finish": "DNF",
       "team": "Sauber",
-      "status": "Finished"
+      "status": "DNF"
     },
     {
       "year": "2013",
@@ -25204,7 +25213,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "9",
-      "finish": "9",
+      "finish": "11",
       "team": "Sauber",
       "status": "Finished"
     },
@@ -25290,16 +25299,16 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "9",
-      "finish": "7",
+      "finish": "15",
       "team": "Sauber",
       "status": "Finished"
     },
     {
       "year": "2012",
       "grid": "15",
-      "finish": "DNF",
+      "finish": "14",
       "team": "Sauber",
-      "status": "DNF"
+      "status": "Finished"
     },
     {
       "year": "2013",
@@ -25459,16 +25468,16 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "7",
-      "finish": "5",
+      "finish": "10",
       "team": "Sauber",
       "status": "Finished"
     },
     {
       "year": "2012",
       "grid": "14",
-      "finish": "DNF",
+      "finish": "10",
       "team": "Sauber",
-      "status": "DNF"
+      "status": "Finished"
     },
     {
       "year": "2013",
@@ -25661,14 +25670,14 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "15",
-      "finish": "7",
+      "finish": "17",
       "team": "Sauber",
       "status": "Finished"
     },
     {
       "year": "2012",
       "grid": "9",
-      "finish": "3",
+      "finish": "11",
       "team": "Sauber",
       "status": "Finished"
     },
@@ -25740,9 +25749,9 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2012",
       "grid": "12",
-      "finish": "7",
+      "finish": "DNF",
       "team": "Sauber",
-      "status": "Finished"
+      "status": "DNF"
     },
     {
       "year": "2013",
@@ -25826,7 +25835,7 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "14",
-      "finish": "9",
+      "finish": "8",
       "team": "Sauber",
       "status": "Finished"
     },
@@ -25912,14 +25921,14 @@ export const RAW_RESULTS: Record<string, RawResult[]> = {
     {
       "year": "2011",
       "grid": "10",
-      "finish": "8",
+      "finish": "11",
       "team": "Sauber",
       "status": "Finished"
     },
     {
       "year": "2012",
       "grid": "12",
-      "finish": "11",
+      "finish": "15",
       "team": "Sauber",
       "status": "Finished"
     },
