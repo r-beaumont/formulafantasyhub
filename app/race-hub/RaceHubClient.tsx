@@ -722,7 +722,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                         { year: '2024', val: overview.overtakes2024 },
                         { year: '2025', val: overview.overtakes2025 },
                       ] as { year: string; val: number | null }[]).map(({ year, val }) => (
-                        <div key={year} style={{ background: '#151A21', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 8px', textAlign: 'center' as const }}>
+                        <div key={year} style={{ background: 'var(--surface2)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 8px', textAlign: 'center' as const }}>
                           <div style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: val !== null ? '#E8002D' : 'rgba(255,255,255,0.2)', marginBottom: '6px' }}>{year}</div>
                           <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '24px', fontWeight: 700, color: val !== null ? 'var(--text)' : 'rgba(255,255,255,0.2)', lineHeight: 1 }}>{val !== null ? val : '—'}</div>
                         </div>
@@ -764,7 +764,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                           { year: '2024', val: overview.dnfHistory.y2024 },
                           { year: '2025', val: overview.dnfHistory.y2025 },
                         ] as { year: string; val: number | null }[]).map(({ year, val }) => (
-                          <div key={year} style={{ background: '#151A21', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 8px', textAlign: 'center' as const }}>
+                          <div key={year} style={{ background: 'var(--surface2)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 8px', textAlign: 'center' as const }}>
                             <div style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: val !== null ? '#E8002D' : 'rgba(255,255,255,0.2)', marginBottom: '6px' }}>{year}</div>
                             <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '24px', fontWeight: 700, color: val !== null ? 'var(--text)' : 'rgba(255,255,255,0.2)', lineHeight: 1 }}>{val !== null ? val : '—'}</div>
                           </div>
