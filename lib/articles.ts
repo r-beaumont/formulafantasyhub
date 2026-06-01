@@ -17,6 +17,76 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-monaco-gp-2026',
+    title: 'Race Week Preview: Monaco Grand Prix',
+    excerpt: "Antonelli's won four in a row. Monaco is about to test whether that actually means anything.",
+    readTime: 4,
+    date: 'Jun 4, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0008 0%, #3d0015 50%, #1a0008 100%)',
+    thumbnailBg: 'rgba(180,0,50,0.25)',
+    thumbnailIcon: 'mc',
+    ogImage: 'https://formulahub.live/og/race-week-preview-monaco-gp-2026',
+    content: `**THE SETUP**
+
+You could make the case that the 2026 season is already over. Antonelli leads by 43 points after four consecutive wins, Mercedes have nearly doubled Ferrari's constructors' tally, and George Russell has found race finishes difficult to come by. But Monaco doesn't care about any of that. It's a circuit that has historically made fools of championship leaders and handed victories to drivers who've spent three weeks looking very ordinary. Ferrari haven't won a race all season, and there's a reasonable chance that changes on Sunday.
+
+**THE CIRCUIT**
+
+Everything about Monaco comes down to one simple truth: if you start at the front, you finish at the front. Tyres barely degrade, undercuts rarely work, and the safety car comes out almost every year because the barriers are eighteen inches from the racing line at every corner. What this means for Fantasy is that qualifying isn't just important, it's everything. Build your team for Saturday and trust that Sunday will more or less sort itself out in exactly the same order.
+
+**THE WEATHER**
+
+There is some rain in the forecast for the weekend, though nothing that looks likely to transform the event entirely. Even a damp qualifying hour at Monaco is enough to scramble the grid, so it is worth keeping a close eye on the Saturday forecast before locking your team in.
+
+---
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Charles Leclerc**
+
+If there is one race on the calendar where you rotate away from Antonelli, it is this one, and the case for Leclerc writes itself. He has qualified on the front row in four of the last five Monaco Grands Prix and taken Driver of the Day honours in each of the last two years. Ferrari have been particularly strong through the slow corners all season, which is precisely what Monaco demands lap after lap. Mercedes, by contrast, have not typically performed well here in recent years, which further shifts the balance. Back him.
+
+**Franco Colapinto**
+
+Colapinto had a strong Miami before delivering a career-best P6 in Canada, and has now made two Q3 appearances this season. He represents genuine value for a driver who clearly has the racecraft for tight, technical circuits. The Alpine package showed real pace in Montreal and if that carries over to Monaco's slow, demanding corners, Colapinto is the pick of the midfield budget options this weekend.
+
+---
+
+🟡 HOLD
+
+**Kimi Antonelli**
+
+62 points in Canada confirms he is in the form of his life, and this is not a sell. That said, Mercedes have not historically performed well at Monaco, which tempers his ceiling this weekend relative to circuits that have suited the car. Hold him, particularly if you have other priority transfers to make on assets that are likely to fall in value.
+
+**Liam Lawson**
+
+Lawson's DNF in Miami drops off his scoring average after this round, which makes him a solid longer-term hold. He showed real pace with 23 points in Canada and at a circuit where positions are difficult to lose once gained on Saturday, there is a reasonable case for him returning a decent score here too.
+
+---
+
+🔴 SELL
+
+**Sergio Pérez**
+
+Pérez has contributed some solid scoring moments this season, but a score of minus-11 in Canada puts him at risk of a price drop and Monaco does not offer the kind of environment where lost ground is easily recovered. Track position is everything here and the opportunity to move through the field simply does not exist in the way it might elsewhere. There are cleaner choices at this price level.
+
+**Fernando Alonso**
+
+The Aston Martin is not a competitive package right now and a score of minus-26 in Canada reflects where the car currently sits. With the team looking likely to lose further value in the coming rounds, there is little in the current trajectory to suggest Monaco will be any different. Move the budget somewhere with better prospects.
+
+---
+
+**THE CHIPS**
+
+Two chips are worth considering this weekend. The Final Fix carries particular value at Monaco given that qualifying almost always determines the race result, and the ability to swap a driver who has qualified poorly for someone starting near the front is more useful here than at almost any other circuit. With some rain in the forecast adding an element of uncertainty to Saturday, holding it in reserve until after qualifying is the right approach. See where the grid lands before you decide. The Limitless chip also carries genuine appeal given the potential for a significant points delta between Limitless and non-Limitless teams at a circuit where the scoring spread can be wide.`,
+  },
+  {
     slug: 'canadian-gp-2026-what-we-learned',
     title: 'What We Learned: Canadian Grand Prix',
     excerpt: "Kimi Antonelli wins again, George Russell's 38-race retirement streak ends in Montreal, and McLaren have another Sunday to forget. Here is what the 2026 Canadian Grand Prix told us.",
