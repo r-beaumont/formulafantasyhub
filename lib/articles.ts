@@ -26,8 +26,8 @@ export const articles: Article[] = [
     category: 'Race Preview',
     articleType: 'F1 Fantasy',
     premium: false,
-    thumbnail: 'linear-gradient(135deg, #1a0008 0%, #3d0015 50%, #1a0008 100%)',
-    thumbnailBg: 'rgba(180,0,50,0.25)',
+    thumbnail: 'linear-gradient(135deg, #12151a 0%, #3a404a 50%, #12151a 100%)',
+    thumbnailBg: 'rgba(160,170,185,0.25)',
     thumbnailIcon: 'mc',
     ogImage: 'https://formulahub.live/og/race-week-preview-monaco-gp-2026',
     content: `**THE SETUP**
