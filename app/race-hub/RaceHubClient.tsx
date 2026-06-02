@@ -1150,8 +1150,8 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
               { name: 'Soft',   color: '#E8002D', code: 'C5', desc: 'Often used at race start for track position — then switched to Medium for the long run home.' },
             ],
             strategies: [
-              { name: '1-Stop Soft → Medium',     stops: 1, laps: ['Lap 1–20: Soft',   'Pit ~Lap 20', 'Lap 21–78: Medium'], note: 'Classic Monaco strategy. Track position is everything — overtaking is virtually impossible without a safety car or pit-stop error.' },
-              { name: '1-Stop Medium → Medium',    stops: 1, laps: ['Lap 1–38: Medium', 'Pit ~Lap 38', 'Lap 39–78: Medium'], note: 'Used by teams starting in clean air who can run long on the first set. Minimises pit exposure time.' },
+              { name: '1-Stop Medium → Hard',      stops: 1, laps: ['Lap 1–38: Medium', 'Pit ~Lap 38', 'Lap 39–78: Hard'],   note: 'Benchmark Monaco strategy. Front-runners managing clean air can run the Medium deep into the race and cover the Hard comfortably to the flag.' },
+              { name: '1-Stop Soft → Hard',        stops: 1, laps: ['Lap 1–20: Soft',   'Pit ~Lap 20', 'Lap 21–78: Hard'],   note: 'Aggressive gamble — typically chosen by drivers starting outside the top 8 who need a grid advantage. The extended Hard stint is demanding but the lack of overtaking makes track position the priority.' },
               { name: '0-Stop (no pit)',            stops: 0, laps: ['Lap 1–78: Medium (or Hard)'],                           note: 'Viable only if a red flag neutralises the race early and allows a free tyre change under the restart. Without a red flag, completing race distance on one set is extremely difficult.' },
             ],
           },
