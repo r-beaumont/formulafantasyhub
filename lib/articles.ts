@@ -30,6 +30,7 @@ export const articles: Article[] = [
     thumbnail: 'linear-gradient(135deg, #1a0a3d 0%, #3d1b6e 50%, #1a0a3d 100%)',
     thumbnailBg: 'rgba(155,89,182,0.25)',
     thumbnailIcon: 'mc',
+    thumbnailImage: '/thumbnail-other-articles.png',
     ogImage: 'https://formulahub.live/og/tommy-bellingham-f1-fantasy-2026',
     content: `**The P1 Journey**
 
