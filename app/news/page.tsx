@@ -21,7 +21,7 @@ type TagFilter = 'All' | 'F1 Fantasy' | 'F1'
 function ThumbnailIcon({ icon, size }: { icon: string; size: number }) {
   const isFlag = /^[a-z]{2}$/.test(icon)
   if (isFlag) {
-    return <span className={`fi fi-${icon}`} style={{ width: `${size * 0.9}px`, height: `${size * 0.65}px`, display: 'inline-block', borderRadius: '4px', position: 'relative', zIndex: 1 }} />
+    return <span className={`fi fi-${icon}`} style={{ width: `${size * 0.9}px`, height: `${size * 0.65}px`, display: 'inline-block', borderRadius: '4px', position: 'relative', zIndex: 1, overflow: 'hidden' }} />
   }
   return <span style={{ fontSize: `${size}px`, position: 'relative', zIndex: 1, filter: 'drop-shadow(0 4px 24px rgba(0,0,0,0.5))' }}>{icon}</span>
 }
