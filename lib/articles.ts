@@ -18,7 +18,7 @@ export interface Article {
 export const articles: Article[] = [
   {
     slug: 'tommy-bellingham-f1-fantasy-2026',
-    title: "62nd in the World: Inside Tommy Bellingham's F1 Fantasy Season",
+    title: "62nd in the World: Inside Tom Bellingham's F1 Fantasy Season",
     excerpt: 'The P1 with Matt and Tommy co-host breaks down every key decision behind one of the most impressive F1 Fantasy campaigns of 2026.',
     readTime: 5,
     date: 'Jun 2, 2026',
