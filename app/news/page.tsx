@@ -150,7 +150,7 @@ function NewsCard({ article }: { article: any }) {
       }}>
         {/* Thumbnail */}
         <div style={{ height: '160px', backgroundImage: article.thumbnailImage ? `url('${article.thumbnailImage}')` : article.thumbnail, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-          <div style={{ position: 'absolute', inset: 0, background: article.thumbnailBg, opacity: 0.7 }} />
+          <div style={{ position: 'absolute', inset: 0, background: article.thumbnailBg, opacity: article.thumbnailImage ? 0.4 : 0.7 }} />
           <ThumbnailIcon icon={article.thumbnailIcon} size={56} />
           <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(transparent,rgba(14,19,24,0.95))', zIndex: 1 }} />
         </div>

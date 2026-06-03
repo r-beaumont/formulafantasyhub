@@ -115,7 +115,7 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
 
         {/* Hero thumbnail */}
         <div style={{ height: '320px', backgroundImage: article.thumbnailImage ? `url('${article.thumbnailImage}')` : article.thumbnail, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ position: 'absolute', inset: 0, background: article.thumbnailBg, opacity: 0.6 }} />
+          <div style={{ position: 'absolute', inset: 0, background: article.thumbnailBg, opacity: article.thumbnailImage ? 0.4 : 0.6 }} />
           {/^[a-z]{2}$/.test(article.thumbnailIcon)
             ? <span className={`fi fi-${article.thumbnailIcon}`} style={{ width: '180px', height: '120px', display: 'inline-block', borderRadius: '8px', position: 'relative', zIndex: 1, boxShadow: '0 8px 32px rgba(0,0,0,0.6)', overflow: 'hidden' }} />
             : <span style={{ fontSize: '120px', position: 'relative', zIndex: 1, filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.6))' }}>{article.thumbnailIcon}</span>
@@ -172,7 +172,7 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
                     <Link key={a.slug} href={`/news/${a.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                       <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '12px', overflow: 'hidden' }}>
                         <div style={{ height: '80px', backgroundImage: a.thumbnailImage ? `url('${a.thumbnailImage}')` : a.thumbnail, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-                          <div style={{ position: 'absolute', inset: 0, background: a.thumbnailBg, opacity: 0.6 }} />
+                          <div style={{ position: 'absolute', inset: 0, background: a.thumbnailBg, opacity: a.thumbnailImage ? 0.4 : 0.6 }} />
                           {/^[a-z]{2}$/.test(a.thumbnailIcon)
                             ? <span className={`fi fi-${a.thumbnailIcon}`} style={{ width: '48px', height: '32px', display: 'inline-block', borderRadius: '4px', position: 'relative', zIndex: 1, overflow: 'hidden' }} />
                             : <span style={{ fontSize: '32px', position: 'relative', zIndex: 1 }}>{a.thumbnailIcon}</span>
