@@ -19,7 +19,7 @@ export const articles: Article[] = [
   {
     slug: 'tommy-bellingham-f1-fantasy-2026',
     title: "62nd in the World: Inside Tom Bellingham's F1 Fantasy Season",
-    excerpt: 'The P1 with Matt and Tommy co-host breaks down every key decision behind one of the most impressive F1 Fantasy campaigns of 2026 so far.',
+    excerpt: 'Rob Beaumont sat down with the P1 with Matt and Tommy co-host to break down every key decision behind one of the most impressive F1 Fantasy campaigns of 2026 so far.',
     readTime: 5,
     date: 'Jun 2, 2026',
     tag: 'Guest Interview',
@@ -76,7 +76,9 @@ Tommy shows no signs of slowing down. With his two biggest chips already deploye
 
 ---
 
-_You can find Matt and Tommy at P1 with Matt and Tommy across YouTube, Instagram, and TikTok. Live race watch-alongs every Grand Prix weekend._`,
+_You can find Matt and Tommy at P1 with Matt and Tommy across YouTube, Instagram, and TikTok. Live race watch-alongs every Grand Prix weekend._
+
+The full interview with Tommy can be found [here](https://youtu.be/nkSO_awhDL0?si=QGpCQgdDrRgYrygs).`,
   },
   {
     slug: 'race-week-preview-monaco-gp-2026',

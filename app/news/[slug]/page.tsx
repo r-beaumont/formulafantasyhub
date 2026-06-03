@@ -59,6 +59,27 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
   const cat = categoryColors[article.category] || { color: 'var(--muted)', bg: 'rgba(255,255,255,0.08)' }
   const otherArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3)
 
+  const renderInline = (text: string): React.ReactNode => {
+    const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g
+    if (!linkRegex.test(text)) return text
+    linkRegex.lastIndex = 0
+    const parts: React.ReactNode[] = []
+    let lastIndex = 0
+    let match
+    while ((match = linkRegex.exec(text)) !== null) {
+      if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index))
+      parts.push(
+        <a key={match.index} href={match[2]} target="_blank" rel="noopener noreferrer"
+           style={{ color: '#E8002D', textDecoration: 'underline' }}>
+          {match[1]}
+        </a>
+      )
+      lastIndex = match.index + match[0].length
+    }
+    if (lastIndex < text.length) parts.push(text.slice(lastIndex))
+    return parts
+  }
+
   const renderContent = (content: string) => {
     return content.split('\n\n').map((block, i) => {
       if (block.startsWith('**') && block.endsWith('**')) {
@@ -81,7 +102,7 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
       if (block.trim() === '') return null
       return (
         <p key={i} style={{ fontSize: '16px', color: '#8A9AB0', lineHeight: 1.85, marginBottom: '20px' }}>
-          {block}
+          {renderInline(block)}
         </p>
       )
     })
