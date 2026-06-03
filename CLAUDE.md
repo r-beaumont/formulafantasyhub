@@ -386,4 +386,21 @@ Note: 2026 regulations are expected to increase on-track overtaking across all c
 
 ---
 
+## ARTICLE THUMBNAIL RULES
+
+Each article in `lib/articles.ts` has an optional `thumbnailImage` field pointing to a file in `/public/`. When set, this image is used as the card and hero background instead of the CSS gradient in `thumbnail`. The `thumbnailBg` overlay and centred flag icon are always rendered on top of whichever background is active.
+
+**Thumbnail image assignments by article type:**
+
+| Article type | thumbnailImage |
+|---|---|
+| Race Preview | `/thumbnail-race-preview.png` |
+| Technical Upgrades | `/thumbnail-upgrades-preview.png` |
+| What We Learned / Race Recap | `/thumbnail-what-we-learned.png` |
+| Guest Interview | no thumbnailImage — keep gradient |
+
+All thumbnail images must be committed to git in `/public/` before deploying. Untracked files in `/public/` are invisible to Vercel.
+
+---
+
 *End of CLAUDE.md — updated March 2026*

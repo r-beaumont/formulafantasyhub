@@ -165,7 +165,7 @@ Two chips are worth considering this weekend. The Final Fix carries particular v
     thumbnail: 'linear-gradient(135deg, #001a08 0%, #003d12 50%, #001a08 100%)',
     thumbnailBg: 'rgba(0,100,30,0.2)',
     thumbnailIcon: 'ca',
-    thumbnailImage: '/thumbnail-race-preview.png',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
     ogImage: 'https://formulahub.live/og/canadian-gp-2026-what-we-learned',
     content: `Montreal delivered exactly what it usually does: chaos, retirements, and a race that looked like it was heading one way before turning on its head entirely. Six cars failed to see the flag. The championship picture shifted more in seventy laps than it had in the previous month.
 
@@ -398,7 +398,7 @@ _Deadline: Friday 22 May, 09:30 ET (Sprint Qualifying lock). Get your transfers 
     thumbnail: 'linear-gradient(135deg, #1a0a00 0%, #3d1f00 50%, #1a0a00 100%)',
     thumbnailBg: 'rgba(255,140,0,0.2)',
     thumbnailIcon: 'us',
-    thumbnailImage: '/thumbnail-race-preview.png',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
     ogImage: 'https://formulahub.live/og/miami-gp-2026-what-we-learned',
     content: `Four races in and the 2026 season is already telling us things. Miami did what Miami tends to do — delivered heat, drama, and a few moments that will linger long after the paddock has packed up and moved on. Here is what stood out.
 
