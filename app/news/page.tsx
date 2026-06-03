@@ -7,12 +7,13 @@ import Link from 'next/link'
 import { articles } from '@/lib/articles'
 
 const categoryColors: Record<string, { color: string; bg: string }> = {
-  'Race Preview':  { color: '#E8002D', bg: 'rgba(232,0,45,0.12)' },
-  'Race Review':   { color: '#FFB800', bg: 'rgba(255,184,0,0.12)' },
-  'Strategy':      { color: '#00A8FF', bg: 'rgba(0,168,255,0.12)' },
-  'Price Changes': { color: '#00D47E', bg: 'rgba(0,212,126,0.12)' },
-  'Data Analysis': { color: '#FF69B4', bg: 'rgba(255,105,180,0.12)' },
-  'News':          { color: '#C0C0C0', bg: 'rgba(192,192,192,0.12)' },
+  'Race Preview':    { color: '#E8002D', bg: 'rgba(232,0,45,0.12)' },
+  'Race Review':     { color: '#FFB800', bg: 'rgba(255,184,0,0.12)' },
+  'Strategy':        { color: '#00A8FF', bg: 'rgba(0,168,255,0.12)' },
+  'Price Changes':   { color: '#00D47E', bg: 'rgba(0,212,126,0.12)' },
+  'Data Analysis':   { color: '#FF69B4', bg: 'rgba(255,105,180,0.12)' },
+  'News':            { color: '#C0C0C0', bg: 'rgba(192,192,192,0.12)' },
+  'Guest Interview': { color: '#9B59B6', bg: 'rgba(155,89,182,0.12)' },
 }
 
 type TagFilter = 'All' | 'F1 Fantasy' | 'F1'

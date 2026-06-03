@@ -5,7 +5,7 @@ export interface Article {
   content: string
   date: string
   tag: string
-  category: 'Race Preview' | 'Race Review' | 'Strategy' | 'Price Changes' | 'Data Analysis' | 'News' | 'Technical'
+  category: 'Race Preview' | 'Race Review' | 'Strategy' | 'Price Changes' | 'Data Analysis' | 'News' | 'Technical' | 'Guest Interview'
   articleType: 'F1 Fantasy' | 'F1'
   premium: boolean
   thumbnail: string
@@ -16,6 +16,68 @@ export interface Article {
 }
 
 export const articles: Article[] = [
+  {
+    slug: 'tommy-bellingham-f1-fantasy-2026',
+    title: "62nd in the World: Inside Tommy Bellingham's F1 Fantasy Season",
+    excerpt: 'The P1 with Matt and Tommy co-host breaks down every key decision behind one of the most impressive F1 Fantasy campaigns of 2026.',
+    readTime: 5,
+    date: 'Jun 2, 2026',
+    tag: 'Guest Interview',
+    category: 'Guest Interview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0a3d 0%, #3d1b6e 50%, #1a0a3d 100%)',
+    thumbnailBg: 'rgba(155,89,182,0.25)',
+    thumbnailIcon: 'mc',
+    ogImage: 'https://formulahub.live/og/tommy-bellingham-f1-fantasy-2026',
+    content: `**The P1 Journey**
+
+Tommy is one half of P1 with Matt and Tommy, now in its fourth season of F1 podcasting. The pair met through WTF1, which Tommy built from a university project into a major social media platform before eventually going full-time. What started as a bedroom podcast has grown into a global operation: sell-out live shows across the UK, North America, and most recently Australia, where the Delusion Tour wrapped up with two packed shows in Sydney alone.
+
+**Monaco: What to Expect**
+
+Tommy and Matt are heading to Monaco this weekend. It is Tommy's second visit, his first being in 2023 on the Red Bull Energy Station, but the circuit holds an even deeper personal connection: he and his dad saved up for years to attend Monaco as his very first F1 race as a kid.
+
+On whether Monaco lives up to the hype as a spectator, Tommy was candid. The race itself can be processional, but the visual spectacle of modern cars threading through those narrow streets is unmatched at any circuit. The slower pace of the race also means it is easier to follow from the grandstand than faster circuits where you miss everything in a blink.
+
+On the racing front, Tommy thinks this could be a bogey weekend for Mercedes. He drew comparisons to the dominant Red Bull era when Monaco regularly produced upsets and pointed to Ferrari and McLaren, particularly Charles Leclerc, as the teams most likely to challenge. "If Ferrari are going to win a race this year, this has to be the one."
+
+**The 2026 Season in Context**
+
+Three races in, Kimi Antonelli leads the Championship with back-to-back wins in China and Japan. Tommy does not think it is a foregone conclusion and expects George Russell to claw back the deficit, but draws a direct parallel to Oscar Piastri's surprise charge in 2025. "The expectation is on George, which takes the pressure off Kimi completely."
+
+Both agreed Mercedes remain the dominant force, with their straight-line advantage particularly evident in China. Whether that edge holds at slower, more technical circuits like Monaco and Barcelona remains to be seen.
+
+**F1 Fantasy: The Strategy Behind 62nd in the World**
+
+Tommy used his two most powerful chips, 3x Boost and Limitless, across the first four races of the season, a bold call that paid off handsomely.
+
+China (3x Boost): The core logic was stacking Mercedes and Ferrari as constructors, banking on the two teams locking out the top four positions in the early races while the new regulations bedded in. That forced a midfield-heavy driver lineup, with Antonelli as the key bet. Hulkenberg was the 2x Boost driver, a call Tommy admits was driven more by budget headroom than conviction, but one that gave him room to run both premium constructors.
+
+Miami (Limitless): Triple Mercedes, triple McLaren, with Leclerc also featuring. Russell was the 2x Boost driver. The thinking: use the big chips early while the performance gaps are at their widest, before the field converges. "The advantage is probably the biggest it'll ever be right now."
+
+Canada: Tommy switched Ferrari for McLaren ahead of the sprint, a logical call that was undermined by the team putting both drivers on intermediate tyres and Norris retiring due to engine failure. He still held top 100, which he was satisfied with given the circumstances.
+
+His weekly process is deliberately low-maintenance. He locks his team in before practice rather than reacting to session data, avoiding the temptation to overthink late changes. The priority is having the team set before content production takes over on race weekends.
+
+**Key Takeaways for F1 Fantasy Players**
+
+- Stack the top teams early. When one or two constructors are clearly dominant, running both is often worth more than two premium drivers, especially with the qualifying teamwork and pit stop bonuses on offer.
+
+- Use big chips when the gaps are biggest. The performance delta between the front and midfield is rarely larger than in the opening races of a new regulation era. Waiting too long reduces the upside.
+
+- Budget drivers are more than fillers. Colapinto and Lawson have both delivered value this season. The key is reliability: a cheap driver who finishes scores more than an expensive one who does not.
+
+- P11 is a fantasy dead zone. No qualifying points, no positions gained, no overtakes. Drivers hovering around that position all race are among the worst assets in the game regardless of price.
+
+- Audi are the cautionary tale of 2026. Strong in practice, poor reliability, and qualifying too well to farm overtake points. Tommy described them as "almost the worst possible team and driver combination you can have in F1 Fantasy."
+
+Tommy shows no signs of slowing down. With his two biggest chips already deployed and a taste for bold, high-conviction calls, he is eyeing the remaining races as an opportunity to unlock edge case advantages that most managers would never consider. Whether that is a Final Fix at Monaco, a well-timed differential at a street circuit, or another instinct-driven team overhaul, one thing is clear: Tommy is not here to play it safe. With plenty of racing still to come and the Championship fight between Antonelli and Russell only just getting started, Rob will be checking back in with Tommy later in the year to see how far that bold strategy can take him. Watch this space.
+
+---
+
+_You can find Matt and Tommy at P1 with Matt and Tommy across YouTube, Instagram, and TikTok. Live race watch-alongs every Grand Prix weekend._`,
+  },
   {
     slug: 'race-week-preview-monaco-gp-2026',
     title: 'Race Week Preview: Monaco Grand Prix',
