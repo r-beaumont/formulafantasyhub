@@ -88,9 +88,14 @@ export default function NewsPage() {
               transition: 'border-color 0.2s',
             }}>
               {/* Left — big thumbnail */}
-              <div className="mob-featured-thumb" style={{ height: '340px', background: featured.thumbnail, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div style={{ position: 'absolute', inset: 0, background: featured.thumbnailBg }} />
-                <ThumbnailIcon icon={featured.thumbnailIcon} size={100} />
+              <div className="mob-featured-thumb" style={{ height: '340px', background: featured.thumbnailImage ? `url(${featured.thumbnailImage}) center/cover no-repeat` : featured.thumbnail, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                {!featured.thumbnailImage && <div style={{ position: 'absolute', inset: 0, background: featured.thumbnailBg }} />}
+                {!featured.thumbnailImage && <ThumbnailIcon icon={featured.thumbnailIcon} size={100} />}
+                {featured.thumbnailImage && (
+                  <div style={{ position: 'absolute', bottom: '10px', left: '10px', zIndex: 3, background: 'rgba(0,0,0,0.6)', borderRadius: '6px', padding: '4px 8px', display: 'flex', alignItems: 'center' }}>
+                    <span className={`fi fi-${featured.thumbnailIcon}`} style={{ width: '30px', height: '20px', display: 'inline-block', borderRadius: '2px', overflow: 'hidden' }} />
+                  </div>
+                )}
                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '100px', background: 'linear-gradient(transparent,rgba(14,19,24,0.95))', zIndex: 2 }} />
                 {/* Latest badge */}
                 <div style={{ position: 'absolute', top: '16px', left: '16px', zIndex: 3 }}>
@@ -149,9 +154,14 @@ function NewsCard({ article }: { article: any }) {
         transition: 'border-color 0.2s, transform 0.2s',
       }}>
         {/* Thumbnail */}
-        <div style={{ height: '160px', background: article.thumbnail, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-          <div style={{ position: 'absolute', inset: 0, background: article.thumbnailBg, opacity: 0.7 }} />
-          <ThumbnailIcon icon={article.thumbnailIcon} size={56} />
+        <div style={{ height: '160px', background: article.thumbnailImage ? `url(${article.thumbnailImage}) center/cover no-repeat` : article.thumbnail, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          {!article.thumbnailImage && <div style={{ position: 'absolute', inset: 0, background: article.thumbnailBg, opacity: 0.7 }} />}
+          {!article.thumbnailImage && <ThumbnailIcon icon={article.thumbnailIcon} size={56} />}
+          {article.thumbnailImage && (
+            <div style={{ position: 'absolute', bottom: '10px', left: '10px', zIndex: 3, background: 'rgba(0,0,0,0.6)', borderRadius: '6px', padding: '4px 8px', display: 'flex', alignItems: 'center' }}>
+              <span className={`fi fi-${article.thumbnailIcon}`} style={{ width: '30px', height: '20px', display: 'inline-block', borderRadius: '2px', overflow: 'hidden' }} />
+            </div>
+          )}
           <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(transparent,rgba(14,19,24,0.95))', zIndex: 1 }} />
         </div>
         {/* Content */}

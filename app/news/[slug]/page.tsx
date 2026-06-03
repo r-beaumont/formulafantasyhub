@@ -114,12 +114,18 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
       <main style={{ position: 'relative', zIndex: 1 }}>
 
         {/* Hero thumbnail */}
-        <div style={{ height: '320px', background: article.thumbnail, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ position: 'absolute', inset: 0, background: article.thumbnailBg, opacity: 0.6 }} />
-          {/^[a-z]{2}$/.test(article.thumbnailIcon)
-            ? <span className={`fi fi-${article.thumbnailIcon}`} style={{ width: '180px', height: '120px', display: 'inline-block', borderRadius: '8px', position: 'relative', zIndex: 1, boxShadow: '0 8px 32px rgba(0,0,0,0.6)', overflow: 'hidden' }} />
-            : <span style={{ fontSize: '120px', position: 'relative', zIndex: 1, filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.6))' }}>{article.thumbnailIcon}</span>
-          }
+        <div style={{ height: '320px', background: article.thumbnailImage ? `url(${article.thumbnailImage}) center/cover no-repeat` : article.thumbnail, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {!article.thumbnailImage && <div style={{ position: 'absolute', inset: 0, background: article.thumbnailBg, opacity: 0.6 }} />}
+          {!article.thumbnailImage && (
+            /^[a-z]{2}$/.test(article.thumbnailIcon)
+              ? <span className={`fi fi-${article.thumbnailIcon}`} style={{ width: '180px', height: '120px', display: 'inline-block', borderRadius: '8px', position: 'relative', zIndex: 1, boxShadow: '0 8px 32px rgba(0,0,0,0.6)', overflow: 'hidden' }} />
+              : <span style={{ fontSize: '120px', position: 'relative', zIndex: 1, filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.6))' }}>{article.thumbnailIcon}</span>
+          )}
+          {article.thumbnailImage && (
+            <div style={{ position: 'absolute', bottom: '10px', left: '10px', zIndex: 3, background: 'rgba(0,0,0,0.6)', borderRadius: '6px', padding: '4px 8px', display: 'flex', alignItems: 'center' }}>
+              <span className={`fi fi-${article.thumbnailIcon}`} style={{ width: '30px', height: '20px', display: 'inline-block', borderRadius: '2px', overflow: 'hidden' }} />
+            </div>
+          )}
           <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '160px', background: 'linear-gradient(transparent, #080C10)', zIndex: 2 }} />
         </div>
 
@@ -171,12 +177,18 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
                   return (
                     <Link key={a.slug} href={`/news/${a.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                       <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '12px', overflow: 'hidden' }}>
-                        <div style={{ height: '80px', background: a.thumbnail, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-                          <div style={{ position: 'absolute', inset: 0, background: a.thumbnailBg, opacity: 0.6 }} />
-                          {/^[a-z]{2}$/.test(a.thumbnailIcon)
-                            ? <span className={`fi fi-${a.thumbnailIcon}`} style={{ width: '48px', height: '32px', display: 'inline-block', borderRadius: '4px', position: 'relative', zIndex: 1, overflow: 'hidden' }} />
-                            : <span style={{ fontSize: '32px', position: 'relative', zIndex: 1 }}>{a.thumbnailIcon}</span>
-                          }
+                        <div style={{ height: '80px', background: a.thumbnailImage ? `url(${a.thumbnailImage}) center/cover no-repeat` : a.thumbnail, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                          {!a.thumbnailImage && <div style={{ position: 'absolute', inset: 0, background: a.thumbnailBg, opacity: 0.6 }} />}
+                          {!a.thumbnailImage && (
+                            /^[a-z]{2}$/.test(a.thumbnailIcon)
+                              ? <span className={`fi fi-${a.thumbnailIcon}`} style={{ width: '48px', height: '32px', display: 'inline-block', borderRadius: '4px', position: 'relative', zIndex: 1, overflow: 'hidden' }} />
+                              : <span style={{ fontSize: '32px', position: 'relative', zIndex: 1 }}>{a.thumbnailIcon}</span>
+                          )}
+                          {a.thumbnailImage && (
+                            <div style={{ position: 'absolute', bottom: '6px', left: '6px', zIndex: 3, background: 'rgba(0,0,0,0.6)', borderRadius: '4px', padding: '2px 5px', display: 'flex', alignItems: 'center' }}>
+                              <span className={`fi fi-${a.thumbnailIcon}`} style={{ width: '20px', height: '13px', display: 'inline-block', borderRadius: '2px', overflow: 'hidden' }} />
+                            </div>
+                          )}
                         </div>
                         <div style={{ padding: '12px' }}>
                           <div style={{ display: 'flex', gap: '4px', marginBottom: '6px', flexWrap: 'wrap' }}>

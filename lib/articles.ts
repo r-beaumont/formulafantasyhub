@@ -11,6 +11,7 @@ export interface Article {
   thumbnail: string
   thumbnailBg: string
   thumbnailIcon: string
+  thumbnailImage?: string
   readTime: number
   ogImage?: string
 }
@@ -93,6 +94,7 @@ The full interview with Tommy can be found [here](https://youtu.be/nkSO_awhDL0?s
     thumbnail: 'linear-gradient(135deg, #12151a 0%, #3a404a 50%, #12151a 100%)',
     thumbnailBg: 'rgba(160,170,185,0.25)',
     thumbnailIcon: 'mc',
+    thumbnailImage: '/thumbnail-race-preview.png',
     ogImage: 'https://formulahub.live/og/race-week-preview-monaco-gp-2026',
     content: `**THE SETUP**
 
@@ -163,6 +165,7 @@ Two chips are worth considering this weekend. The Final Fix carries particular v
     thumbnail: 'linear-gradient(135deg, #001a08 0%, #003d12 50%, #001a08 100%)',
     thumbnailBg: 'rgba(0,100,30,0.2)',
     thumbnailIcon: 'ca',
+    thumbnailImage: '/thumbnail-race-preview.png',
     ogImage: 'https://formulahub.live/og/canadian-gp-2026-what-we-learned',
     content: `Montreal delivered exactly what it usually does: chaos, retirements, and a race that looked like it was heading one way before turning on its head entirely. Six cars failed to see the flag. The championship picture shifted more in seventy laps than it had in the previous month.
 
@@ -213,6 +216,7 @@ Monaco is next, and it could not be more different from what we have just witnes
     thumbnail: 'linear-gradient(135deg, #2D1B69, #1a0a3d)',
     thumbnailBg: 'rgba(90,50,180,0.2)',
     thumbnailIcon: 'ca',
+    thumbnailImage: '/thumbnail-upgrades-preview.png',
     ogImage: 'https://formulahub.live/og/canadian-gp-2026-technical-upgrades',
     content: `Montreal has a habit of sorting the grid out in ways that other circuits don't. The Circuit Gilles Villeneuve's long straights, heavy braking zones and punishing wall proximity make it one of the more demanding venues on the calendar for both machinery and nerves. With several teams arriving with meaningful new parts, this weekend doubles as a development checkpoint as the season moves into its European phase.
 
@@ -323,6 +327,7 @@ Montreal is one of those circuits where the upgrade story can shift the narrativ
     thumbnail: 'linear-gradient(135deg, #1a0005 0%, #3d0015 50%, #1a0005 100%)',
     thumbnailBg: 'rgba(216,6,33,0.2)',
     thumbnailIcon: 'ca',
+    thumbnailImage: '/thumbnail-race-preview.png',
     ogImage: 'https://formulahub.live/og/race-week-preview-canada-gp-2026',
     content: `**THE SETUP**
 
@@ -393,6 +398,7 @@ _Deadline: Friday 22 May, 09:30 ET (Sprint Qualifying lock). Get your transfers 
     thumbnail: 'linear-gradient(135deg, #1a0a00 0%, #3d1f00 50%, #1a0a00 100%)',
     thumbnailBg: 'rgba(255,140,0,0.2)',
     thumbnailIcon: 'us',
+    thumbnailImage: '/thumbnail-race-preview.png',
     ogImage: 'https://formulahub.live/og/miami-gp-2026-what-we-learned',
     content: `Four races in and the 2026 season is already telling us things. Miami did what Miami tends to do — delivered heat, drama, and a few moments that will linger long after the paddock has packed up and moved on. Here is what stood out.
 
@@ -443,6 +449,7 @@ Canada is next — the Wall of Champions, long straights, heavy braking zones, a
     thumbnail: 'linear-gradient(135deg, #9E6070, #7A4055)',
     thumbnailBg: 'rgba(122,64,85,0.3)',
     thumbnailIcon: 'us',
+    thumbnailImage: '/thumbnail-upgrades-preview.png',
     ogImage: 'https://formulahub.live/og/miami-gp-2026-technical-upgrades',
     content: `After a strangely quiet gap in the calendar, Formula 1 lands in Miami with the first proper development race of the season. Some teams have arrived with solutions, others with questions; and a few with something closer to a gamble. Here's how the grid stacks up heading into the weekend.
 
@@ -551,6 +558,7 @@ Miami often flatters efficiency and exposes weakness, which makes it a useful ea
     thumbnail: 'linear-gradient(135deg, #001a2a 0%, #003d5c 50%, #001a2a 100%)',
     thumbnailBg: 'rgba(0,168,255,0.2)',
     thumbnailIcon: 'us',
+    thumbnailImage: '/thumbnail-race-preview.png',
     ogImage: 'https://formulahub.live/og/race-week-preview-miami-gp-2026',
     content: `**THE SETUP**
 
@@ -613,6 +621,7 @@ Miami is the first Sprint weekend of 2026 and chip selection matters. No Negativ
     thumbnail: 'linear-gradient(135deg, #1a1400 0%, #3d3000 50%, #1a1400 100%)',
     thumbnailBg: 'rgba(255,215,0,0.25)',
     thumbnailIcon: 'jp',
+    thumbnailImage: '/thumbnail-race-preview.png',
     ogImage: 'https://formulahub.live/og/race-week-preview-japanese-gp-2026',
     content: `**THE SETUP**
 
@@ -675,6 +684,7 @@ Suzuka's unpredictability in wet conditions makes Limitless a risk this week —
     thumbnail: 'linear-gradient(135deg, #1a0000 0%, #3d0000 50%, #1a0000 100%)',
     thumbnailBg: 'rgba(232,0,45,0.2)',
     thumbnailIcon: 'cn',
+    thumbnailImage: '/thumbnail-race-preview.png',
     ogImage: 'https://formulahub.live/og/race-week-preview-chinese-gp-2026',
     content: `**THE SETUP**
 
@@ -737,6 +747,7 @@ Limitless and 3x Boost are the standout chips this sprint weekend. A clearly def
     thumbnail: 'linear-gradient(135deg, #0a1a00 0%, #1a3d00 50%, #0a1a00 100%)',
     thumbnailBg: 'rgba(0,212,126,0.2)',
     thumbnailIcon: 'au',
+    thumbnailImage: '/thumbnail-race-preview.png',
     ogImage: 'https://formulahub.live/og/race-week-preview-australian-gp-2026',
     content: `**THE SETUP**
 
