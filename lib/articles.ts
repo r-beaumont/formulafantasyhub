@@ -18,6 +18,93 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'monaco-gp-2026-technical-upgrades',
+    title: 'Upgrades Preview: Monaco Grand Prix',
+    excerpt: 'Monaco brings out the most creative engineering of the season, with teams exploiting the rear wing actuator zone in ways nobody anticipated. Here is how the grid stacks up in the Principality.',
+    readTime: 5,
+    date: 'Jun 4, 2026',
+    tag: 'Technical',
+    category: 'Technical',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #12151a 0%, #2a3040 50%, #12151a 100%)',
+    thumbnailBg: 'rgba(100,110,130,0.2)',
+    thumbnailIcon: 'mc',
+    thumbnailImage: '/thumbnail-upgrades-preview.png',
+    ogImage: 'https://formulahub.live/og/monaco-gp-2026-technical-upgrades',
+    content: `Monaco has always brought out the engineers' most creative thinking, but few expected the technical story heading into the Principality to look quite like this. After big packages in Miami and Canada, the development narrative at Monaco has taken a genuinely unexpected turn. With no straight-line mode in play around the streets of Monte Carlo, teams have exploited a specific area of the car — the rear wing actuator zone — in ways that are as creative as they are unusual. The result is one of the more visually striking grids of the modern era.
+
+---
+
+**McLaren**
+
+McLaren's most eye-catching visual addition this weekend is a new cooling gill positioned on the top of the sidepod, part of a special 1000 GP livery package. In terms of performance hardware, the MCL40 has had its front wing actuator removed — a weight-saving measure being adopted across multiple teams — and at the rear, McLaren have introduced one of the more complex winglet solutions on the grid. A primary winglet sits at the front of the rear wing, while the rear features three smaller winglets cascading from top to bottom, extending progressively in length, with the lower two pieces connected. The combined effect is additional downforce and improved upwash on the rear section of the car.
+
+_Headline Upgrades: Front wing actuator removed for weight saving. Complex three-piece rear winglet cascade introduced. New cooling gill on sidepod top as part of 1000 GP livery package._
+
+---
+
+**Mercedes**
+
+Mercedes have produced what is widely regarded as the most extreme rear wing actuator solution of the Monaco weekend. Unlike several rivals who have removed the central strut entirely, the W17 retains it, with James Allison's team using it as the anchor point for an elaborate connected winglet assembly. The rear corner of the rear wing has also been revised, with more material added compared to the version introduced in Canada, and the curvature of the wing itself appears to have been updated. It is a package that looks striking in the paddock and has divided opinion aesthetically, but the engineering logic is consistent with everything Mercedes have been building towards in recent rounds.
+
+_Headline Upgrades: Most extreme rear wing actuator winglet solution on the grid. Central strut retained and used as structural anchor for connected winglet assembly. Revised rear wing corner with additional downforce material. Rear wing curvature updated from Canada specification._
+
+---
+
+**Ferrari**
+
+Ferrari have taken a relatively restrained approach to Monaco, with no significant visible upgrades to the rear of the SF26. At the front, the wing actuator has been blocked off, following a trend that is becoming near-universal across the paddock as teams prioritise weight reduction and improved ballast distribution. At the rear, a small central winglet has been added to the middle section of the rear wing — a modest but deliberate addition aimed at generating additional downforce around the Principality's slow and twisting layout.
+
+_Headline Upgrades: Front wing actuator removed. Small central rear wing winglet added. Rear wing actuator also understood to have been removed._
+
+---
+
+**Red Bull**
+
+Red Bull's rear wing actuator solution has generated some of the more animated paddock discussion this weekend, with observers describing it as among the stranger-looking pieces to appear on an F1 car in some time. The RB22 features a pronounced winglet arrangement that draws clear comparisons to the solution Alpine first introduced in Japan, with a front-facing element offering a sharper upwash profile and a second, more slanted piece working in conjunction with it. The overall effect is a meaningful rear downforce addition, and while the aesthetics are unconventional, the engineering intent is clear.
+
+_Headline Upgrades: Prominent rear wing actuator winglet introduced. Dual-element design with differing upwash angles. One of the more aggressive interpretations of this concept on the grid._
+
+---
+
+**Aston Martin**
+
+Aston Martin arrive without visible aerodynamic upgrades, but there is development work of a different kind on the AMR26. The team have found additional ways to extract performance from the Honda power unit without breaching regulations, with improved drivability the headline gain. Fernando Alonso has spoken openly about targeting Q2, with Q3 described as a realistic stretch goal. There has also been internal discussion about the setup philosophy being pursued by the team, and how a more precise approach to car configuration on a weekend-by-weekend basis should unlock more consistent performance as the season progresses.
+
+_Headline Upgrades: No aerodynamic changes. Optimised Honda power unit output for improved drivability. Revised setup philosophy targeting better weekend-to-weekend consistency._
+
+---
+
+**Racing Bulls**
+
+Racing Bulls have added a rear wing winglet to the VCARB02 for Monaco, though it is a more modest solution compared to some of their rivals. The addition is targeted specifically at the demands of Monaco's low-speed layout, generating incremental downforce and upwash at the rear of the car. It does not represent the scale of development seen in Miami or Canada, but on a circuit where small aerodynamic gains can translate meaningfully into lap time, the team will take whatever they can find.
+
+_Headline Upgrades: Small rear wing winglet added. Targeted low-speed downforce addition for Monaco-specific demands._
+
+---
+
+**Audi**
+
+Audi arrive with an interesting set of choices at Monaco. Their double-pylon front wing activation system, a distinctive feature of the R26 in recent rounds, has been removed for this weekend, though both configurations are present at the circuit. At the rear, Audi have introduced their own rear wing winglet solution — a more substantial interpretation than Ferrari's, featuring two distinct levels. The lower section dips inward while a secondary mini-winglet extends higher above it, creating a layered downforce-generating structure that is one of the more complex designs in the paddock this weekend.
+
+_Headline Upgrades: Double-pylon front wing activation removed for Monaco. Two-level rear wing winglet introduced. Both front wing configurations present at circuit._
+
+---
+
+**Cadillac**
+
+Cadillac have taken a notably clean approach to their Monaco package. The team have fully removed the rear wing actuator and replaced it with a central winglet similar in concept to Ferrari's. In addition, a rear corner wing extension has been added, replicating a solution first seen on the Mercedes in pre-season testing. The expectation is that this corner piece will remain on the car permanently rather than being a Monaco-only addition. It is a tidier, less theatrical package than some rivals, but executed with clear intent.
+
+_Headline Upgrades: Rear wing actuator fully removed. Central rear wing winglet added. Rear corner wing extension added, mirroring Mercedes pre-season solution._
+
+---
+
+**Final Thought**
+
+Monaco has always been the circuit where engineers find solutions that exist nowhere else on the calendar. This weekend, that tradition feels more alive than it has in years. The rear wing actuator zone has become an unlikely canvas for genuine technical creativity, with every team interpreting the same basic concept in a different way. Whether the winglets stay beyond Monaco remains to be seen — Singapore is the next obvious candidate circuit, though the presence of straight-line mode there makes it less certain. For now, the Principality is putting on a technical show to match the spectacle happening on the streets themselves.`,
+  },
+  {
     slug: 'tommy-bellingham-f1-fantasy-2026',
     title: "62nd in the World: Inside Tom Bellingham's F1 Fantasy Season",
     excerpt: 'Rob Beaumont sat down with the P1 with Matt and Tommy co-host to break down every key decision behind one of the most impressive F1 Fantasy campaigns of 2026 so far.',
