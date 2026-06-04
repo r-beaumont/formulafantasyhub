@@ -1395,13 +1395,6 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
           <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '20px' }}>
 
             {/* Disclaimer banner for upcoming rounds */}
-            {selectedRound >= 5 && !selectedRace.completed && (
-              <div style={{ background: 'rgba(255,183,0,0.08)', border: '0.5px solid rgba(255,183,0,0.25)', borderRadius: '8px', padding: '10px 16px' }}>
-                <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#B8960C', margin: 0, lineHeight: 1.5 }}>
-                  Based on 2025 season data. Tyre compounds and strategy data for 2026 will be updated once confirmed by Pirelli closer to each race weekend.
-                </p>
-              </div>
-            )}
 
             {/* Madrid debut — no historical data */}
             {selectedRound === 14 ? (
