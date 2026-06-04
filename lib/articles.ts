@@ -100,6 +100,12 @@ _Headline Upgrades: Rear wing actuator fully removed. Central rear wing winglet 
 
 ---
 
+**Williams, Haas and Alpine**
+
+Upgrade information for Williams, Haas and Alpine was not available at the time of publication. This article will be updated with their latest changes as soon as they are sourced.
+
+---
+
 **Final Thought**
 
 Monaco has always been the circuit where engineers find solutions that exist nowhere else on the calendar. This weekend, that tradition feels more alive than it has in years. The rear wing actuator zone has become an unlikely canvas for genuine technical creativity, with every team interpreting the same basic concept in a different way. Whether the winglets stay beyond Monaco remains to be seen — Singapore is the next obvious candidate circuit, though the presence of straight-line mode there makes it less certain. For now, the Principality is putting on a technical show to match the spectacle happening on the streets themselves.`,
