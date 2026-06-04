@@ -261,7 +261,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       overtakes2023: 36, overtakes2024: 17, overtakes2025: 4,
       gridImportance: 'HIGH',
       totalGPs: 71, firstGP: 1950, circuitLength: '3.337 km',
-      dnfHistory: { y2023: 2, y2024: 2, y2025: 0, avg: 1.33 },
+      dnfHistory: { y2023: 2, y2024: 4, y2025: 0, avg: 2.00 },
     },
     7: { // Spain — Circuit de Barcelona-Catalunya
       lastWinner: 'O. Piastri',

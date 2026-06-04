@@ -706,7 +706,7 @@ const dnfData: CircuitRow[] = [
   { circuit: 'Japan',        flag: 'jp', y2023: 5,    y2024: 3,   y2025: 0   },
   { circuit: 'Miami',        flag: 'us', y2023: 0,    y2024: 1,   y2025: 5   },
   { circuit: 'Canada',       flag: 'ca', y2023: 2,    y2024: 5,   y2025: 2   },
-  { circuit: 'Monaco',       flag: 'mc', y2023: 2,    y2024: 2,   y2025: 0   },
+  { circuit: 'Monaco',       flag: 'mc', y2023: 2,    y2024: 4,   y2025: 0   },
   { circuit: 'Spain',        flag: 'es', y2023: 0,    y2024: 0,   y2025: 3   },
   { circuit: 'Austria',      flag: 'at', y2023: 1,    y2024: 0,   y2025: 4   },
   { circuit: 'Britain',      flag: 'gb', y2023: 2,    y2024: 2,   y2025: 5   },
