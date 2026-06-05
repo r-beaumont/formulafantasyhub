@@ -205,7 +205,7 @@ export default function NewsCarousel({ articles }: { articles: Article[] }) {
                       transition: 'opacity 0.2s, border-color 0.2s',
                     }}
                   >
-                    <div style={{ height: '100px', overflow: 'hidden', position: 'relative', flexShrink: 0 }}>
+                    <div style={{ height: '100px', width: '100%', overflow: 'hidden', position: 'relative', flexShrink: 0 }}>
                       {renderThumb(sa)}
                     </div>
                     <div style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '6px', flex: 1 }}>
@@ -243,7 +243,7 @@ export default function NewsCarousel({ articles }: { articles: Article[] }) {
               <div key={ma.slug} style={{ minWidth: '100%', flexShrink: 0 }}>
                 <Link href={`/news/${ma.slug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
                   <div style={{ background: '#0E1318', border: '1px solid var(--border)', borderRadius: '12px', overflow: 'hidden' }}>
-                    <div style={{ height: '150px', position: 'relative' }}>
+                    <div style={{ height: '150px', width: '100%', overflow: 'hidden', position: 'relative', flexShrink: 0 }}>
                       {renderThumb(ma)}
                     </div>
                     <div style={{ padding: '14px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
