@@ -93,39 +93,38 @@ export default function Home() {
             ))}
           </div>
 
-          {/* NEWS + VIDEOS */}
-          <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-                <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'var(--muted)' }}>Latest News</span>
-                <Link href="/news" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>View all →</Link>
-              </div>
-              <NewsCarousel articles={latestArticles} />
+          {/* LATEST NEWS */}
+          <div style={{ marginBottom: '20px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+              <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'var(--muted)' }}>Latest News</span>
+              <Link href="/news" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>View all →</Link>
             </div>
+            <NewsCarousel articles={latestArticles} />
+          </div>
 
-            <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid var(--border)' }}>
-                <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'var(--muted)' }}>Latest Videos</span>
-                <Link href="/videos" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>View all →</Link>
-              </div>
-              <div style={{ padding: '20px', display: 'flex', flexDirection: 'column' as const, gap: '12px' }}>
-                <a href="https://www.youtube.com/@formulafantasyhub" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block' }}>
-                  <div style={{ position: 'relative', paddingBottom: '56.25%', background: 'var(--bg)', borderRadius: '8px', overflow: 'hidden', cursor: 'pointer' }}>
-                    <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center', gap: '14px' }}>
-                      <div style={{ width: '64px', height: '64px', background: '#E8002D', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 28px rgba(232,0,45,0.5)' }}>
-                        <div style={{ width: 0, height: 0, borderStyle: 'solid', borderWidth: '12px 0 12px 22px', borderColor: 'transparent transparent transparent white', marginLeft: '5px' }} />
-                      </div>
-                      <div style={{ textAlign: 'center' as const }}>
-                        <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text)' }}>Watch Latest Videos</div>
-                        <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '4px' }}>@formulafantasyhub</div>
-                      </div>
+          {/* LATEST VIDEOS */}
+          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid var(--border)' }}>
+              <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'var(--muted)' }}>Latest Videos</span>
+              <Link href="/videos" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>View all →</Link>
+            </div>
+            <div style={{ padding: '20px', display: 'flex', flexDirection: 'column' as const, gap: '12px' }}>
+              <a href="https://www.youtube.com/@formulafantasyhub" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block' }}>
+                <div style={{ position: 'relative', paddingBottom: '56.25%', background: 'var(--bg)', borderRadius: '8px', overflow: 'hidden', cursor: 'pointer' }}>
+                  <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center', gap: '14px' }}>
+                    <div style={{ width: '64px', height: '64px', background: '#E8002D', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 28px rgba(232,0,45,0.5)' }}>
+                      <div style={{ width: 0, height: 0, borderStyle: 'solid', borderWidth: '12px 0 12px 22px', borderColor: 'transparent transparent transparent white', marginLeft: '5px' }} />
+                    </div>
+                    <div style={{ textAlign: 'center' as const }}>
+                      <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text)' }}>Watch Latest Videos</div>
+                      <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '4px' }}>@formulafantasyhub</div>
                     </div>
                   </div>
-                </a>
-                <a href="https://www.youtube.com/@formulafantasyhub" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: '#E8002D', color: 'var(--text)', padding: '10px', borderRadius: '8px', textDecoration: 'none', fontSize: '13px', fontWeight: 600 }}>
-                  ▶ Subscribe on YouTube
-                </a>
-              </div>
+                </div>
+              </a>
+              <a href="https://www.youtube.com/@formulafantasyhub" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: '#E8002D', color: 'var(--text)', padding: '10px', borderRadius: '8px', textDecoration: 'none', fontSize: '13px', fontWeight: 600 }}>
+                ▶ Subscribe on YouTube
+              </a>
             </div>
           </div>
 
