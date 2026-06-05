@@ -7,6 +7,7 @@ import RaceWeekendCard from '@/components/RaceWeekendCard'
 import FantasyDeadlineCard from '@/components/FantasyDeadlineCard'
 import WeatherCard from '@/components/WeatherCard'
 import { articles } from '@/lib/articles'
+import NewsCarousel from '@/components/NewsCarousel'
 
 export const metadata: Metadata = {
   title: 'Formula Hub — F1 Race Data, Standings & Fantasy Strategy 2026',
@@ -94,27 +95,12 @@ export default function Home() {
 
           {/* NEWS + VIDEOS */}
           <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-            <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid var(--border)' }}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
                 <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'var(--muted)' }}>Latest News</span>
                 <Link href="/news" style={{ fontSize: '12px', color: '#E8002D', textDecoration: 'none', fontWeight: 500 }}>View all →</Link>
               </div>
-              <div style={{ padding: '8px 20px' }}>
-                {latestArticles.map((a, i) => (
-                  <Link key={a.slug} href={`/news/${a.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <div style={{ display: 'flex', gap: '14px', padding: '12px 0', borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.05)' : 'none', alignItems: 'center' }}>
-                      <div style={{ width: '4px', height: '48px', borderRadius: '2px', background: a.premium ? '#FFB800' : '#00D47E', flexShrink: 0 }} />
-                      <div style={{ flex: 1 }}>
-                        <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginBottom: '4px' }}>
-                          <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 6px', borderRadius: '3px', background: a.articleType === 'F1 Fantasy' ? 'rgba(232,0,45,0.15)' : 'rgba(0,168,255,0.15)', color: a.articleType === 'F1 Fantasy' ? '#E8002D' : '#00A8FF', textTransform: 'uppercase' as const }}>{a.articleType}</span>
-                        </div>
-                        <div style={{ fontSize: '13px', fontWeight: 600, lineHeight: 1.4, marginBottom: '2px' }}>{a.title}</div>
-                        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', color: 'var(--muted2)' }}>{a.date}</div>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+              <NewsCarousel articles={latestArticles} />
             </div>
 
             <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden' }}>
