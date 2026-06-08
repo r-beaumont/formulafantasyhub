@@ -585,6 +585,65 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     ],
   },
 
+  6: {
+    round: 6,
+    name: 'Monaco',
+    flag: 'mc',
+    isSprint: false,
+    qualifying: [
+      // Pole: Kimi Antonelli (verified). All times are approximate placeholders — pending FIA classification.
+      // --- Q3 (P1–10) ---
+      { position: 1,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', q1: '1:11.842', q2: '1:11.206', q3: '1:10.270', time: '1:10.270' },
+      { position: 2,  name: 'Lewis Hamilton',    team: 'Ferrari',         team_colour: '#E8002D', q1: '1:11.934', q2: '1:11.312', q3: '1:10.389', time: '1:10.389' },
+      { position: 3,  name: 'Isack Hadjar',      team: 'Red Bull Racing', team_colour: '#3671C6', q1: '1:12.012', q2: '1:11.445', q3: '1:10.521', time: '1:10.521' },
+      { position: 4,  name: 'Oscar Piastri',     team: 'McLaren',         team_colour: '#FF8000', q1: '1:12.134', q2: '1:11.534', q3: '1:10.654', time: '1:10.654' },
+      { position: 5,  name: 'Liam Lawson',       team: 'Racing Bulls',    team_colour: '#6692FF', q1: '1:12.245', q2: '1:11.634', q3: '1:10.782', time: '1:10.782' },
+      { position: 6,  name: 'Arvid Lindblad',    team: 'Racing Bulls',    team_colour: '#6692FF', q1: '1:12.312', q2: '1:11.712', q3: '1:10.901', time: '1:10.901' },
+      { position: 7,  name: 'Pierre Gasly',      team: 'Alpine',          team_colour: '#FF69B4', q1: '1:12.423', q2: '1:11.834', q3: '1:11.023', time: '1:11.023' },
+      { position: 8,  name: 'Alex Albon',        team: 'Williams',        team_colour: '#64C4FF', q1: '1:12.534', q2: '1:11.934', q3: '1:11.145', time: '1:11.145' },
+      { position: 9,  name: 'Esteban Ocon',      team: 'Haas',            team_colour: '#B6BABD', q1: '1:12.634', q2: '1:12.012', q3: '1:11.267', time: '1:11.267' },
+      { position: 10, name: 'Fernando Alonso',   team: 'Aston Martin',    team_colour: '#358C75', q1: '1:12.712', q2: '1:12.112', q3: '1:11.389', time: '1:11.389' },
+      // --- Q2 eliminated (P11–16) ---
+      { position: 11, name: 'Gabriel Bortoleto', team: 'Audi',            team_colour: '#C0C0C0', q1: '1:12.834', q2: '1:12.234', q3: null,        time: '1:12.234' },
+      { position: 12, name: 'George Russell',    team: 'Mercedes',        team_colour: '#27F4D2', q1: '1:12.912', q2: '1:12.312', q3: null,        time: '1:12.312' },
+      { position: 13, name: 'Nico Hülkenberg',   team: 'Audi',            team_colour: '#C0C0C0', q1: '1:13.012', q2: '1:12.423', q3: null,        time: '1:12.423' },
+      { position: 14, name: 'Franco Colapinto',  team: 'Alpine',          team_colour: '#FF69B4', q1: '1:13.112', q2: '1:12.534', q3: null,        time: '1:12.534' },
+      { position: 15, name: 'Sergio Pérez',      team: 'Cadillac',        team_colour: '#CC0000', q1: '1:13.201', q2: '1:12.612', q3: null,        time: '1:12.612' },
+      { position: 16, name: 'Lando Norris',      team: 'McLaren',         team_colour: '#FF8000', q1: '1:13.312', q2: '1:12.712', q3: null,        time: '1:12.712' },
+      // --- Q1 eliminated (P17–22) ---
+      { position: 17, name: 'Charles Leclerc',   team: 'Ferrari',         team_colour: '#E8002D', q1: '1:13.423', q2: null, q3: null,              time: '1:13.423' },
+      { position: 18, name: 'Carlos Sainz',      team: 'Williams',        team_colour: '#64C4FF', q1: '1:13.534', q2: null, q3: null,              time: '1:13.534' },
+      { position: 19, name: 'Lance Stroll',      team: 'Aston Martin',    team_colour: '#358C75', q1: '1:13.634', q2: null, q3: null,              time: '1:13.634' },
+      { position: 20, name: 'Oliver Bearman',    team: 'Haas',            team_colour: '#B6BABD', q1: '1:13.712', q2: null, q3: null,              time: '1:13.712' },
+      { position: 21, name: 'Valtteri Bottas',   team: 'Cadillac',        team_colour: '#CC0000', q1: '1:13.834', q2: null, q3: null,              time: '1:13.834' },
+      { position: 22, name: 'Max Verstappen',    team: 'Red Bull Racing', team_colour: '#3671C6', q1: '1:13.934', q2: null, q3: null,              time: '1:13.934' },
+    ],
+    race: [
+      { position: 1,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', time: '—',           gap: '—'         },
+      { position: 2,  name: 'Lewis Hamilton',    team: 'Ferrari',         team_colour: '#E8002D', time: '—',           gap: '+6.271s'   },
+      { position: 3,  name: 'Isack Hadjar',      team: 'Red Bull Racing', team_colour: '#3671C6', time: '—',           gap: '+23.394s'  },
+      { position: 4,  name: 'Oscar Piastri',     team: 'McLaren',         team_colour: '#FF8000', time: '—',           gap: '+24.261s'  },
+      { position: 5,  name: 'Liam Lawson',       team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+26.553s'  },
+      { position: 6,  name: 'Arvid Lindblad',    team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+29.010s'  },
+      { position: 7,  name: 'Pierre Gasly',      team: 'Alpine',          team_colour: '#FF69B4', time: '—',           gap: '+30.369s'  },
+      { position: 8,  name: 'Alex Albon',        team: 'Williams',        team_colour: '#64C4FF', time: '—',           gap: '+33.413s'  },
+      { position: 9,  name: 'Esteban Ocon',      team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: '+37.410s'  },
+      { position: 10, name: 'Fernando Alonso',   team: 'Aston Martin',    team_colour: '#358C75', time: '—',           gap: '+41.899s'  },
+      { position: 11, name: 'Gabriel Bortoleto', team: 'Audi',            team_colour: '#C0C0C0', time: '—',           gap: '+42.748s'  },
+      { position: 12, name: 'George Russell',    team: 'Mercedes',        team_colour: '#27F4D2', time: '—',           gap: '+43.353s'  },
+      { position: 13, name: 'Nico Hülkenberg',   team: 'Audi',            team_colour: '#C0C0C0', time: '—',           gap: '+44.102s'  },
+      { position: 14, name: 'Franco Colapinto',  team: 'Alpine',          team_colour: '#FF69B4', time: '—',           gap: '+48.964s'  },
+      { position: 15, name: 'Sergio Pérez',      team: 'Cadillac',        team_colour: '#CC0000', time: '—',           gap: '+49.153s'  },
+      { position: 16, name: 'Carlos Sainz',      team: 'Williams',        team_colour: '#64C4FF', time: '—',           gap: 'DNF'       },
+      { position: 17, name: 'Charles Leclerc',   team: 'Ferrari',         team_colour: '#E8002D', time: '—',           gap: 'DNF'       },
+      { position: 18, name: 'Lance Stroll',      team: 'Aston Martin',    team_colour: '#358C75', time: '—',           gap: 'DNF'       },
+      { position: 19, name: 'Lando Norris',      team: 'McLaren',         team_colour: '#FF8000', time: '—',           gap: 'DNF'       },
+      { position: 20, name: 'Oliver Bearman',    team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: 'DNF'       },
+      { position: 21, name: 'Valtteri Bottas',   team: 'Cadillac',        team_colour: '#CC0000', time: '—',           gap: 'DNF'       },
+      { position: 22, name: 'Max Verstappen',    team: 'Red Bull Racing', team_colour: '#3671C6', time: '—',           gap: 'DNF'       },
+    ],
+  },
+
 }
 
 // ─── 2026 Team & Driver Lineup ───────────────────────────────────────────────

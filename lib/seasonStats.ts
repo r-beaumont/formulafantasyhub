@@ -125,9 +125,9 @@ if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'test') {
   console.log('\n── seasonStats verification ──────────────────────────────')
   const check = [
     { name: 'George Russell',  expPts: 88,  expWins: 1, expPodiums: 2, expPoles: 2 },
-    { name: 'Kimi Antonelli',  expPts: 131, expWins: 4, expPodiums: 5, expPoles: 3 },
+    { name: 'Kimi Antonelli',  expPts: 156, expWins: 5, expPodiums: 6, expPoles: 4 },
     { name: 'Charles Leclerc', expPts: 75,  expWins: 0, expPodiums: 2, expPoles: 0 },
-    { name: 'Lewis Hamilton',  expPts: 72,  expWins: 0, expPodiums: 2, expPoles: 0 },
+    { name: 'Lewis Hamilton',  expPts: 90,  expWins: 0, expPodiums: 3, expPoles: 0 },
   ]
   for (const { name, expPts, expWins, expPodiums, expPoles } of check) {
     const d = DRIVER_STATS_MAP[name]
