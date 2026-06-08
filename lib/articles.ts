@@ -18,6 +18,57 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'monaco-gp-2026-what-we-learned',
+    title: 'What We Learned: Monaco Grand Prix',
+    excerpt: "Kimi Antonelli makes it five wins in a row, Charles Leclerc's Monaco curse reaches a new low, and George Russell's title challenge takes a serious hit. Here is what the 2026 Monaco Grand Prix told us.",
+    readTime: 4,
+    date: 'Jun 7, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0008 0%, #3d0018 50%, #1a0008 100%)',
+    thumbnailBg: 'rgba(232,0,45,0.2)',
+    thumbnailIcon: 'mc',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/monaco-gp-2026-what-we-learned',
+    content: `Monte Carlo delivered a Monaco Grand Prix that felt scripted for maximum drama, with seven retirements, a red flag, a standing restart, and a penalty frenzy that collectively rewrote the finishing order before a single trophy had been lifted. Through every eruption of chaos and every twist of the safety car, one driver remained entirely untouchable, and **Kimi Antonelli** converted pole position into a fifth consecutive victory to leave behind a championship picture that looks starker than it has at any point this season.
+
+---
+
+**Kimi Antonelli is pulling away from the field**
+
+At just 19 years old, **Kimi Antonelli** has now won five Formula 1 races in a row, and he has done it on the streets of Monaco, a circuit that historically punishes any lapse in focus and rarely rewards drivers who have not fully earned their place at the front. He started from pole, managed two restarts under sustained pressure from **Lewis Hamilton**, and crossed the line 6.2 seconds clear, extending his championship lead to 68 points over his own teammate. Mercedes left Monaco with a race win and 244 points in the constructors' standings, a lead over Ferrari that grew significantly thanks to a race that devastated their rivals as much as it rewarded them. The uncomfortable truth for every team on the grid is that Antonelli is not winning through fortune or circumstance; he is winning dominantly, and the season still has more than a dozen races left to run.
+
+---
+
+**George Russell's season is unravelling at the worst possible time**
+
+If Monaco had a single villain of circumstance, it was **George Russell**, whose afternoon unravelled through a combination of bad timing and a pit lane error that turned a minor infringement into a race-ending catastrophe. A software glitch tipped his car 0.1 km/h over the speed limit, earning him a five-second penalty. The real damage came when his crew began the tyre change before that penalty had been served, which the stewards treated as a failure to serve the original punishment and converted into a drive-through that sent Russell to the back of the field. He recovered to twelfth. He is now third in the championship, 68 points behind Antonelli, and while the gap is not mathematically terminal, closing it demands a level of flawless execution that Monaco suggested is some way from his current reality.
+
+---
+
+**Monaco produced chaos that no one could have scripted**
+
+Before a single lap was complete, **Max Verstappen**'s Red Bull had already died on the grid with a power unit failure, leaving the championship contender a spectator before the race had properly started. **Lance Stroll** crashed into the barriers to trigger the first safety car, **Valtteri Bottas** retired with overheating on lap 18, and **Oliver Bearman** was gone before half-distance. **Lando Norris** added his name to the list with a power unit failure of his own on lap 45, while four drivers from four different teams were each handed penalties for exceeding the pit lane speed limit by 0.1 km/h, a margin so small it barely registers as human error. With ten laps remaining, the track surface gave way at the final corner and triggered a red flag and a standing restart, the kind of lottery Monaco has no right to stage and yet somehow always finds a way to produce. Seven retirements, penalties scattered across the grid, and a red flag meant that Monaco 2026 was less a Formula 1 race and more a survival exercise.
+
+---
+
+**Charles Leclerc's Monaco curse just wrote its cruellest chapter yet**
+
+**Charles Leclerc** arrived in Monaco carrying the full weight of a complicated history at his home race, having already had a difficult qualifying session and been forced to fight back from a compromised starting position. He had done enough to run in the points when Ferrari stacked him behind **Lewis Hamilton** in the pit lane during the safety car window, forcing Leclerc to sit stationary while Hamilton served his five-second time penalty and watching the gap to the podium evaporate with nothing he could do about it. When the standing restart came, Leclerc was third, a position he had clawed back from almost nothing, and then on the formation lap he put his Ferrari into the wall. Not under racing pressure, not in a wheel-to-wheel battle, but on his home streets with the race still ahead of him. His record at the Principality now sits at one win from eight attempts, and the 2026 chapter did not merely continue the curse; it found a way to make it worse.
+
+---
+
+**Isack Hadjar is becoming exactly what Red Bull needed him to be**
+
+While his teammate was stranded on the grid and the race dissolved into carnage around him, **Isack Hadjar** drove with the composure of someone who had been doing this for years rather than months. He avoided the bulk of the lap-one chaos, fended off pressure from multiple rivals in the early stages, read the safety car windows correctly, and held his nerve through the standing restart while drivers with far more experience made costly errors around him. He crossed the line third to take his first Formula 1 podium, and when his radio message came through, the disbelief in his voice felt entirely earned. Red Bull signed Hadjar because they needed someone to develop into a championship asset over time, and what Monaco showed is that the development may be happening considerably faster than anyone expected.
+
+---
+
+The circuit moves to the Circuit de Barcelona-Catalunya next weekend, where the new-generation cars will face a very different challenge in the form of high-speed corners and a track that historically rewards raw pace over street-circuit survival instincts. After the mayhem of Monaco, Barcelona should bring a more straightforward weekend, and Antonelli will arrive carrying momentum that no other driver on the grid can currently claim to match.`,
+  },
+  {
     slug: 'monaco-gp-2026-technical-upgrades',
     title: 'Upgrades Preview: Monaco Grand Prix',
     excerpt: 'Thirty upgrades across eleven teams makes Monaco one of the more technically active weekends of the season, driven by the unique opportunity created by the removal of Active Aero. Here is how every team stacks up in the Principality.',
