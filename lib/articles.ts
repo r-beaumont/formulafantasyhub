@@ -58,7 +58,7 @@ Alpine's successful Right of Review has restored his Monaco podium, a result tha
 
 **Liam Lawson**
 
-Lawson needs just nine more points to trigger his next maximum price rise, and Racing Bulls have looked like a genuinely improving package in recent weeks rather than simply making up the numbers. He has already produced three double digit Fantasy hauls in his last four race weekends. With the car finally giving him something to work with, he looks like good value while he remains cheap.
+Racing Bulls have looked like a genuinely improving package in recent weeks rather than simply making up the numbers, and Lawson has been the beneficiary. He has already produced three double digit Fantasy hauls in his last four race weekends. With the car finally giving him something to work with, he looks like good value while he remains cheap.
 
 🟡 HOLD
 
@@ -68,21 +68,21 @@ He is in the form of his life, with five wins from six races and a strong claim 
 
 **Franco Colapinto**
 
-Colapinto continues to be one of the most dependable assets at his price point. Alpine are currently operating at the sharp end of the midfield, and his season average of 13.2 points per weekend shows no sign of dropping off. There is little reason to make a change here this week. He simply keeps delivering.
+Colapinto continues to be one of the most dependable assets at his price point. Alpine are currently operating at the sharp end of the midfield, and his season average of 11 points per weekend shows no sign of dropping off. There is little reason to make a change here this week. He simply keeps delivering.
 
 🔴 SELL
 
 **Valtteri Bottas**
 
-His retirement in Monaco is expected to bring the standard price reduction, and Cadillac's ongoing reliability issues do little to inspire confidence going forward. Bottas was already among the cheapest assets in the game as a budget option, and he now looks like a budget option carrying both a points problem and a price problem. Better to move on before that drop is reflected.
+His Monaco retirement brought with it the 0.6m price drop his owners feared, even as a budget enabling asset. Cadillac's ongoing reliability issues do little to inspire confidence going forward, and Bottas now looks like a budget option carrying both a points problem and a price problem. Better to move on before further drops compound the damage.
 
 **Esteban Ocon**
 
-Haas have slipped behind Alpine, Racing Bulls, and now even Audi in the midfield order. Ocon's overtaking numbers made him an interesting name to track earlier in the season, but the car is simply not competitive enough at present to justify his place in a team. This looks like a good moment to sell while his price still reflects a stronger period.
+At 10.1m, Ocon sits in one of the most competitive price brackets on the grid, and the value case is increasingly difficult to make. Midfield assets two to three million cheaper are delivering greater Fantasy production on a weekly basis, and Haas have slipped behind Alpine, Racing Bulls, and now even Audi in the constructors' order. For a driver at that price to justify his place in a team, he needs to be consistently threatening maximum price rises. Right now, he is not close to that threshold. This looks like a good moment to sell while his price still reflects a stronger period.
 
 **THE CHIPS**
 
-With no rain expected, No Negative does not make much sense in Barcelona, and there is no obvious trigger for Limitless either. That said, anyone carrying a cluster of struggling, falling priced assets — names like Stroll, Leclerc or Bottas — might find this a sensible weekend to deploy Wildcard. A clean reset now is preferable to watching those prices continue to slide over the coming races. If your team is in reasonable shape, there is no need to force anything. If it is weighed down by players trending in the wrong direction, this is the moment to act.`,
+Barcelona is rarely a circuit that calls for reactive chip use, and there is no obvious trigger for Limitless this weekend either. The chip worth thinking about is Wildcard. Anyone carrying a cluster of struggling, falling priced assets — names like Stroll, Leclerc or Bottas — might find this a sensible weekend to deploy it. A clean reset now is preferable to watching those prices continue to slide over the coming races. If your team is in reasonable shape, there is no need to force anything. If it is weighed down by players trending in the wrong direction, this is the moment to act.`,
   },
   {
     slug: 'monaco-gp-2026-what-we-learned',
