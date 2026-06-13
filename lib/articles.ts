@@ -18,6 +18,73 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-spanish-gp-2026',
+    title: 'Race Week Preview: Spanish Grand Prix',
+    excerpt: "Kimi Antonelli owns this championship, and now he wants Barcelona too. Here is your F1 Fantasy watchlist for Spain.",
+    readTime: 3,
+    date: 'Jun 10, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0a00 0%, #3d1800 50%, #1a0a00 100%)',
+    thumbnailBg: 'rgba(255,160,0,0.25)',
+    thumbnailIcon: 'es',
+    thumbnailImage: '/thumbnail-race-preview.png',
+    ogImage: 'https://formulahub.live/og/race-week-preview-spanish-gp-2026',
+    content: `**THE SETUP**
+
+Antonelli arrives in Spain with five wins from six races and a 66 point lead, with Mercedes averaging 96.6 Fantasy points per weekend across the season so far. It is the kind of dominance that recalls Verstappen's title runs, and Barcelona offers something extra: a chance at redemption. This is the circuit where he retired last year with an engine failure, part of a miserable run of results in his rookie campaign. He will be keen not to repeat that history.
+
+Monaco itself was anything but straightforward. Seven retirements and a flurry of penalties shaped the final order, with Russell finishing down in P13 in the same car that has been winning everything this season. Hamilton salvaged second place, and Hadjar claimed his second career podium, though Alpine's Right of Review has since reinstated Gasly to third, demoting Hadjar in the process and handing Gasly a result that could feed into his price over the coming races. Anyone whose team came through Monaco relatively unscathed is well placed heading into this weekend. Anyone who took a hit should treat Barcelona as the opportunity to reset.
+
+Friday practice added a further wrinkle. McLaren looked genuinely competitive in FP2, raising the possibility of a real challenge to Mercedes this weekend. It is worth keeping an eye on without overreacting to a single session, but it does suggest this race may not be the formality the championship table implies.
+
+**THE CIRCUIT**
+
+The Circuit de Barcelona-Catalunya runs to 66 laps across 4.657 kilometres, and with DRS removed from the regulations in 2026, overtaking now depends on genuine pace differences or smart tyre strategy rather than a simple drag reduction zone. That cuts both ways: the strongest cars should find it easier to assert themselves, but drivers who manage their tyres well will still find opportunities to move forward. Pirelli's data puts Barcelona at the maximum rating for both lateral load and tyre stress, with asphalt abrasion close behind, so multi-stop strategies are likely to be the order of the day. The circuit has also ranked among the top eight for overtakes in each of the last three seasons, with several midfield drivers posting double digit totals, and safety cars have played a decisive role in shaping results here before. This is not a circuit where the action stops once the lights go out.
+
+**THE WEATHER**
+
+The forecast points to warm, dry and sunny conditions throughout the weekend, with highs around 28 to 30 degrees Celsius from Friday through Sunday. With no rain in the picture, the No Negative chip is best left unused this week. The heat should only add to the tyre degradation already expected at this circuit, which favours drivers and teams capable of executing well timed two-stop strategies and making up ground late on fresh rubber.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Pierre Gasly**
+
+Alpine's successful Right of Review has restored his Monaco podium, a result that should still work its way into his price model and rolling average. He already carries one of the lowest thresholds on the grid for his next price rise, which makes him a strong candidate for a price increase once the numbers catch up with the result. Getting in now means getting ahead of that adjustment rather than reacting to it.
+
+**Liam Lawson**
+
+Lawson needs just nine more points to trigger his next maximum price rise, and Racing Bulls have looked like a genuinely improving package in recent weeks rather than simply making up the numbers. He has already produced three double digit Fantasy hauls in his last four race weekends. With the car finally giving him something to work with, he looks like good value while he remains cheap.
+
+🟡 HOLD
+
+**Kimi Antonelli**
+
+He is in the form of his life, with five wins from six races and a strong claim to being the best asset in the game right now. McLaren's pace in FP2 is worth noting, but a single strong Friday session does not erase a 66 point championship lead, and there is little reason to be talked out of a driver performing at this level. He remains the standout choice if you are considering a 2x Boost this weekend.
+
+**Franco Colapinto**
+
+Colapinto continues to be one of the most dependable assets at his price point. Alpine are currently operating at the sharp end of the midfield, and his season average of 13.2 points per weekend shows no sign of dropping off. There is little reason to make a change here this week. He simply keeps delivering.
+
+🔴 SELL
+
+**Valtteri Bottas**
+
+His retirement in Monaco is expected to bring the standard price reduction, and Cadillac's ongoing reliability issues do little to inspire confidence going forward. Bottas was already among the cheapest assets in the game as a budget option, and he now looks like a budget option carrying both a points problem and a price problem. Better to move on before that drop is reflected.
+
+**Esteban Ocon**
+
+Haas have slipped behind Alpine, Racing Bulls, and now even Audi in the midfield order. Ocon's overtaking numbers made him an interesting name to track earlier in the season, but the car is simply not competitive enough at present to justify his place in a team. This looks like a good moment to sell while his price still reflects a stronger period.
+
+**THE CHIPS**
+
+With no rain expected, No Negative does not make much sense in Barcelona, and there is no obvious trigger for Limitless either. That said, anyone carrying a cluster of struggling, falling priced assets — names like Stroll, Leclerc or Bottas — might find this a sensible weekend to deploy Wildcard. A clean reset now is preferable to watching those prices continue to slide over the coming races. If your team is in reasonable shape, there is no need to force anything. If it is weighed down by players trending in the wrong direction, this is the moment to act.`,
+  },
+  {
     slug: 'monaco-gp-2026-what-we-learned',
     title: 'What We Learned: Monaco Grand Prix',
     excerpt: "Kimi Antonelli makes it five wins in a row, Charles Leclerc's Monaco curse reaches a new low, and George Russell's title challenge takes a serious hit. Here is what the 2026 Monaco Grand Prix told us.",
