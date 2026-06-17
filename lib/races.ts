@@ -22,20 +22,20 @@ export interface Race {
 }
 
 export const CURRENT_RACE: Race = {
-  round: 7,
-  name: 'Spanish Grand Prix',
-  shortName: 'Spain',
-  circuit: 'Circuit de Barcelona-Catalunya',
-  country: 'Spain',
-  flag: 'es',
+  round: 8,
+  name: 'Austrian Grand Prix',
+  shortName: 'Austria',
+  circuit: 'Red Bull Ring',
+  country: 'Austria',
+  flag: 'at',
   isSprint: false,
-  timezone: 'Europe/Madrid',
+  timezone: 'Europe/Vienna',
   sessions: [
-    { name: 'Practice 1',  short: 'FP1',  date: 'Fri 12 Jun', dateISO: '2026-06-12T11:30:00Z', timeUTC: '11:30 UTC', timeLocal: '13:30 CEST', completed: false, duration: 60  },
-    { name: 'Practice 2',  short: 'FP2',  date: 'Fri 12 Jun', dateISO: '2026-06-12T15:00:00Z', timeUTC: '15:00 UTC', timeLocal: '17:00 CEST', completed: false, duration: 60  },
-    { name: 'Practice 3',  short: 'FP3',  date: 'Sat 13 Jun', dateISO: '2026-06-13T10:30:00Z', timeUTC: '10:30 UTC', timeLocal: '12:30 CEST', completed: false, duration: 60  },
-    { name: 'Qualifying',  short: 'QUAL', date: 'Sat 13 Jun', dateISO: '2026-06-13T14:00:00Z', timeUTC: '14:00 UTC', timeLocal: '16:00 CEST', completed: false, duration: 60  },
-    { name: 'Race',        short: 'RACE', date: 'Sun 14 Jun', dateISO: '2026-06-14T13:00:00Z', timeUTC: '13:00 UTC', timeLocal: '15:00 CEST', completed: false, duration: 120 },
+    { name: 'Practice 1',  short: 'FP1',  date: 'Fri 26 Jun', dateISO: '2026-06-26T11:30:00Z', timeUTC: '11:30 UTC', timeLocal: '13:30 CEST', completed: false, duration: 60  },
+    { name: 'Practice 2',  short: 'FP2',  date: 'Fri 26 Jun', dateISO: '2026-06-26T15:00:00Z', timeUTC: '15:00 UTC', timeLocal: '17:00 CEST', completed: false, duration: 60  },
+    { name: 'Practice 3',  short: 'FP3',  date: 'Sat 27 Jun', dateISO: '2026-06-27T10:30:00Z', timeUTC: '10:30 UTC', timeLocal: '12:30 CEST', completed: false, duration: 60  },
+    { name: 'Qualifying',  short: 'QUAL', date: 'Sat 27 Jun', dateISO: '2026-06-27T14:00:00Z', timeUTC: '14:00 UTC', timeLocal: '16:00 CEST', completed: false, duration: 60  },
+    { name: 'Race',        short: 'RACE', date: 'Sun 28 Jun', dateISO: '2026-06-28T13:00:00Z', timeUTC: '13:00 UTC', timeLocal: '15:00 CEST', completed: false, duration: 120 },
   ],
 }
 
@@ -196,7 +196,7 @@ export const SEASON_CALENDAR: {
     date: '14 Jun',
     dateRange: '12–14 Jun',
     sprint: false,
-    completed: false,
+    completed: true,
     calledOff: false,
     meeting_key: 1287,
     lat: 41.5700,
