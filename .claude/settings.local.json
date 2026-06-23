@@ -6,7 +6,18 @@
       "Bash(curl https://formulahub.live/race-hub)",
       "Bash(grep -r Russell C:UsersroberOneDriveDocumentsformulafantasyhub --include=*.ts --include=*.tsx --include=*.js -n)",
       "Bash(grep -r \"STATIC_RACE_RESULTS\\\\|sprintRace\\\\|race:\" C:UsersroberOneDriveDocumentsformulafantasyhub --include=*.ts --include=*.tsx -l)",
-      "Bash(gh run:*)"
+      "Bash(gh run:*)",
+      "Bash(npx --yes tsx -e ' *)",
+      "Bash(npx --yes tsx --version)",
+      "Bash(npx --yes tsx \"C:\\\\Users\\\\rober\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-rober-OneDrive-Documents-formulafantasyhub\\\\78d5e795-6d53-47dc-8862-220d821eae3e\\\\scratchpad\\\\dump-stats.mjs\")",
+      "Bash(npx --yes tsx dump-stats-temp.mjs)",
+      "Bash(awk ' *)",
+      "Skill(run)",
+      "Bash(timeout 40 bash -c 'until curl -sf http://localhost:3000 >/dev/null 2>&1; do sleep 1; done')",
+      "Bash(npx --yes playwright --version)",
+      "Bash(rm -f \"C:\\\\Users\\\\rober\\\\OneDrive\\\\Documents\\\\formulafantasyhub\\\\verify-article-temp.mjs\")",
+      "Bash(npm init *)",
+      "Bash(npm install *)"
     ]
   }
 }

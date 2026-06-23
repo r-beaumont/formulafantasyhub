@@ -18,6 +18,57 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'spanish-gp-2026-what-we-learned',
+    title: 'What We Learned: Spanish Grand Prix',
+    excerpt: "Lewis Hamilton ends Mercedes' six-race winning streak, Kimi Antonelli's championship lead takes its biggest hit of the season, and Aston Martin's reliability nightmare gets worse. Here is what the 2026 Spanish Grand Prix told us.",
+    readTime: 4,
+    date: 'Jun 15, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0700 0%, #3d1a00 50%, #1a0700 100%)',
+    thumbnailBg: 'rgba(255,200,0,0.2)',
+    thumbnailIcon: 'es',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/spanish-gp-2026-what-we-learned',
+    content: `Lewis Hamilton broke Mercedes' stranglehold on the 2026 season with his first win of the year in Barcelona, recovering from third on the grid to end a run of six straight Silver Arrows victories. Eight cars failed to see the chequered flag, including championship leader Kimi Antonelli, and a weekend that looked set to be a formality turned into one of the messiest afternoons of the year. The title fight, which looked settled a week ago, suddenly has room to breathe again.
+
+---
+
+**HAMILTON'S WIN ENDS MERCEDES' PERFECT START TO THE SEASON**
+
+**Lewis Hamilton** started third on the grid in Barcelona, with pole going to George Russell and Antonelli splitting them in second. By the chequered flag he had passed Russell, built a gap nobody seriously threatened through the middle stint, and crossed the line 19.5 seconds clear. It was his first win of the season and the first time all year anyone outside the Mercedes garage had taken the top step. Six straight victories before Spain — one for Russell, five in a row for Antonelli — had made the rest of the calendar feel like a formality. Hamilton and Ferrari just put a date on when that formality runs out.
+
+---
+
+**ANTONELLI'S LEAD JUST TOOK ITS BIGGEST HIT OF THE SEASON**
+
+**Kimi Antonelli** arrived in Spain with a 66 point lead over his nearest rival and five wins in six races. He left having failed to finish a race for the first time all season, and the retirement cost him the swing that mattered most. Hamilton's win combined with Antonelli's zero turns a runaway lead into something resembling a championship fight again. Antonelli still leads comfortably — 156 points to Hamilton's 115 and Russell's 106 — and nobody is suggesting the gap is suddenly close. But 41 points is a different proposition to 66, and Mercedes' cushion over Ferrari in the constructors' standings has been trimmed from 79 to 72 in a single afternoon.
+
+---
+
+**SPAIN WAS THE MESSIEST RACE OF THE SEASON SO FAR**
+
+Eight cars failed to finish in Barcelona, more than a third of the field, and the result owed as much to chaos as outright pace. **Charles Leclerc** retired, denying Ferrari a second car in the points on the same afternoon Hamilton won for the team. Further down the order, a yellow-flag infringement cost **Franco Colapinto** a ten-second penalty that dropped him from eighth to tenth, promoting Liam Lawson and Arvid Lindblad a place each. Spain looked, on paper, like a circuit where the fastest cars should cruise through. Instead it produced the season's highest attrition rate, and the order it left behind reflected who survived as much as who was fastest.
+
+---
+
+**ASTON MARTIN CANNOT BUY A FINISH RIGHT NOW**
+
+**Fernando Alonso** and **Lance Stroll** both retired in Spain, the third time this season neither Aston Martin has reached the chequered flag in the same race. Between them, the team has scored a single point through seven rounds — Alonso's, picked up in Monaco, the only one to show for half a season of running. There is a point where reliability stops looking like misfortune and starts looking systemic, and Aston Martin reached it months ago. The car is not obviously slower than much of the midfield it is meant to be racing; it simply does not finish often enough to prove it. Fifteen rounds remain, and at this rate Aston Martin are heading toward a points tally that would embarrass any team on the grid.
+
+---
+
+**AUSTRIA WILL SHOW WHETHER FERRARI'S WIN WAS A ONE-OFF**
+
+The Red Bull Ring is a different puzzle entirely — short, low-speed, and built around traction zones rather than the sweeping corners that just produced Ferrari's breakthrough. It is also Red Bull's home race, and after a season searching for answers, **Max Verstappen** and **Isack Hadjar** will want nothing more than to deliver one in front of their own crowd. The real question Austria answers is whether Spain was a glimpse of genuine Ferrari resurgence or a one-off built on Mercedes having a bad day at the worst possible time. For Fantasy managers weighing a 2x Boost or a Wildcard reset around a misfiring Aston Martin or Audi, Hamilton's pace and Antonelli's vulnerability are now part of the conversation.
+
+---
+
+The Austrian Grand Prix runs June 26–28 at the Red Bull Ring. Hamilton arrives with a maiden win and genuine momentum, and Antonelli arrives needing an immediate response.`,
+  },
+  {
     slug: 'race-week-preview-spanish-gp-2026',
     title: 'Race Week Preview: Spanish Grand Prix',
     excerpt: "Kimi Antonelli owns this championship, and now he wants Barcelona too. Here is your F1 Fantasy watchlist for Spain.",

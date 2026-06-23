@@ -60,20 +60,28 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
   const otherArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3)
 
   const renderInline = (text: string): React.ReactNode => {
-    const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g
-    if (!linkRegex.test(text)) return text
-    linkRegex.lastIndex = 0
+    const inlineRegex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g
+    if (!inlineRegex.test(text)) return text
+    inlineRegex.lastIndex = 0
     const parts: React.ReactNode[] = []
     let lastIndex = 0
     let match
-    while ((match = linkRegex.exec(text)) !== null) {
+    while ((match = inlineRegex.exec(text)) !== null) {
       if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index))
-      parts.push(
-        <a key={match.index} href={match[2]} target="_blank" rel="noopener noreferrer"
-           style={{ color: '#E8002D', textDecoration: 'underline' }}>
-          {match[1]}
-        </a>
-      )
+      if (match[1] !== undefined) {
+        parts.push(
+          <a key={match.index} href={match[2]} target="_blank" rel="noopener noreferrer"
+             style={{ color: '#E8002D', textDecoration: 'underline' }}>
+            {match[1]}
+          </a>
+        )
+      } else {
+        parts.push(
+          <strong key={match.index} style={{ color: 'var(--text)', fontWeight: 700 }}>
+            {match[3]}
+          </strong>
+        )
+      }
       lastIndex = match.index + match[0].length
     }
     if (lastIndex < text.length) parts.push(text.slice(lastIndex))
