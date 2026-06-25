@@ -18,6 +18,71 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-austrian-gp-2026',
+    title: 'Race Week Preview: Austrian Grand Prix',
+    excerpt: "Antonelli's win streak is over, Hamilton has a sniff of a title fight, and Red Bull's home race carries real stakes. Here is your F1 Fantasy watchlist for Austria.",
+    readTime: 4,
+    date: 'Jun 24, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0a00 0%, #3d1800 50%, #1a0a00 100%)',
+    thumbnailBg: 'rgba(255,160,0,0.25)',
+    thumbnailIcon: 'at',
+    thumbnailImage: '/thumbnail-race-preview.png',
+    ogImage: 'https://formulahub.live/og/race-week-preview-austrian-gp-2026',
+    content: `**THE SETUP**
+
+Kimi Antonelli's run of five straight wins came to an end in Barcelona, where he failed to finish a race for the first time all season while Lewis Hamilton took his first win of the year for Ferrari. Antonelli's championship lead has been cut from 66 points to 41 in a single weekend — he still leads on 156 to Hamilton's 115, with George Russell third on 106, fifty points off his teammate. Mercedes' cushion over Ferrari in the constructors' standings has shrunk too, from 79 points down to 72. Nobody is calling this a genuine title race yet, but for the first time all year it actually looks like one.
+
+Austria gives Red Bull every incentive to find answers at home. The Red Bull Ring rewards traction and mechanical grip through its slow corners rather than the sweeping layout that just handed Ferrari a result, and Max Verstappen and Isack Hadjar will want nothing more than a strong run in front of their own crowd. The bigger question hanging over the weekend is whether Spain was the start of a genuine Ferrari resurgence or a one-off built on Mercedes having a bad day at the worst time, and Austria is the first real chance to find out.
+
+**THE CIRCUIT**
+
+The Red Bull Ring is one of the best circuits on the calendar for Fantasy, and one of the most dangerous for overconfident managers. Turn 3 is a brutal braking zone and a genuine overtaking spot, so qualifying position doesn't dominate the way it does at Monaco or Hungary. Tyre degradation is high — thermal stress through the rear axle, plus an aging, abrasive track surface — which historically favours a one-stop but can flip to two once the heat properly bites. Safety car probability is moderate, and because the lap is so short, any incident bunches the field fast.
+
+**THE WEATHER**
+
+Hot is the headline. Sunday temperatures could hit 35°C, potentially the hottest race of the season. It should stay dry through qualifying on Saturday, but there's a real chance — somewhere in the 30 to 35% range — of late afternoon thunderstorms on race day. If that materialises, expect safety cars and chaos. If it stays dry, the heat alone will crank up tyre deg and make strategy the differentiator either way. Worth checking the forecast again Saturday morning before you lock in your team.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Arvid Lindblad**
+
+The budget pick of the weekend, full stop. Racing Bulls have genuine midfield pace right now, Lindblad has strung together two of his best results of the season, and his price-rise threshold is among the lowest on the grid. At his price he frees up budget for premium assets elsewhere. He's not a punt. He's the play.
+
+**Isack Hadjar**
+
+Three consecutive top-six finishes, and he's close to triggering his next price rise. This is Red Bull's home race and they've brought a meaningful upgrade package to Spielberg. Hadjar himself has talked up podium contention. If the upgrades land at their home circuit, you'll wish you'd got in earlier. Get in now.
+
+🟡 HOLD
+
+**Pierre Gasly**
+
+If you picked him up before Spain, this is an easy hold. Back-to-back seventh-place finishes, comfortably the pick of the midfield, and his price has been climbing steadily. He's still in the best midfield car on the grid. Keep him.
+
+**Kimi Antonelli**
+
+Don't panic-sell the championship leader off one retirement. He's been close to flawless all season and 41 points is still a serious buffer. Don't add more Mercedes exposure either, not until it's clear whether Barcelona was a one-off or something more structural. Hold what you have, and wait and see.
+
+🔴 SELL
+
+**Franco Colapinto**
+
+It's hard to justify owning Colapinto right now when his teammate is only fractionally pricier and guarantees more production week after week. The smarter move is downgrading to Lindblad and putting the saving toward an upgrade elsewhere — Lawson into a Gasly or a Hadjar, for instance. The budget works better everywhere else.
+
+**Esteban Ocon**
+
+Ocon is another driver who's hard to justify holding at his price point. Haas have fallen away badly this season, and premium-priced midfield drivers like him tend to be the first sacrifice when it's time to fund the heavier-hitting drivers and constructors you actually want. Better to get ahead of that decision now than be forced into it later.
+
+**THE CHIPS**
+
+No sprint this weekend, standard format. Wildcard is worth considering if you have the budget to move into a genuinely strong lineup without leaning on bottom-of-the-grid names like Stroll or Bottas to make the numbers work. If you're not there yet, treat this as a non-chip weekend. Patience is the play.`,
+  },
+  {
     slug: 'spanish-gp-2026-what-we-learned',
     title: 'What We Learned: Spanish Grand Prix',
     excerpt: "Lewis Hamilton ends Mercedes' six-race winning streak, Kimi Antonelli's championship lead takes its biggest hit of the season, and Aston Martin's reliability nightmare gets worse. Here is what the 2026 Spanish Grand Prix told us.",
