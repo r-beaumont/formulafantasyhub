@@ -32,71 +32,71 @@ export const articles: Article[] = [
     thumbnailIcon: 'at',
     thumbnailImage: '/thumbnail-upgrades-preview.png',
     ogImage: 'https://formulahub.live/og/austrian-gp-2026-technical-upgrades',
-    content: `Austria may look straightforward on paper, but the Red Bull Ring's rear-limited layout and demanding tyre characteristics make it one of the more technical venues for setup and development work. This weekend is shaping up to be one of the busiest of the season for upgrades, with both engine and aerodynamic developments arriving across the grid. Crucially, it marks the first time power unit upgrades will be fitted to cars in 2026 — and they are arriving at a team that already has considerable momentum.
+    content: `Austria may look straightforward on paper, but the Red Bull Ring's rear-limited layout and demanding tyre characteristics make it one of the more technical venues for setup and development work. This weekend is shaping up to be one of the busiest of the season for upgrades, with both engine and aerodynamic developments arriving across the grid. Crucially, it marks the first time power unit upgrades will be fitted to cars in 2026 — and they are arriving at teams that already have considerable momentum.
 
 ---
 
 **McLaren**
 
-More information on McLaren's Austria package will be shared when available.
+McLaren are not bringing a conventional upgrade package to Austria. Instead, the MCL40 will run an experimental upside-down rear wing — a flip-wing concept — during Friday practice only, as part of a data collection programme focused on drag reduction. The goal is to reduce drag on the straights while preserving cornering downforce and grip. Friday will serve as a direct comparison against the standard wing specification, with a race debut possible later in the season if the data is positive. It is an aggressive development programme rather than a guaranteed step forward this weekend.
 
-_Headline Upgrades: Further details to follow ahead of the race weekend._
+_Headline Upgrades: Experimental upside-down flip-wing rear wing concept. Friday evaluation only — data collection and direct comparison with standard wing. Drag reduction focus. Race debut possible later in season if data supports it._
 
 ---
 
 **Mercedes**
 
-Mercedes arrive in Austria without a significant aerodynamic upgrade, with only circuit-specific parts expected rather than a broader development push. The more pressing story surrounding the Silver Arrows this weekend is reliability. Multiple reports have pointed to a battery-related sensitivity issue with the W17's power unit — specifically, that the battery suffers under high temperatures and is more vulnerable when running outside its ideal operating range. Drivers have reportedly been instructed to avoid following other cars in close proximity for extended periods, as the additional heat generated in dirty air has been identified as the primary trigger. Canada was the clearest example, with George Russell's battery failing after a prolonged battle with his teammate. James Allison has acknowledged there is an issue, but a straightforward fix is not expected imminently — modifications are understood to be targeted at the next set of battery modules later in the season.
+Mercedes arrive in Austria without a performance-focused aerodynamic upgrade, with the team's entire development effort this weekend directed at reliability. Hybrid and battery updates arrive alongside heat management improvements and changes aimed at reducing the shutdown risk that has plagued the W17 in recent races. The goal is straightforward: ensure the car can run reliably at higher performance settings without the heat sensitivity, module failures and shutdown issues that have emerged in close racing situations. This is a reliability fix rather than a performance step, with one power unit upgrade opportunity still remaining for the team later in the season.
 
-_Headline Upgrades: No significant aerodynamic upgrade. Circuit-specific parts only. Ongoing battery reliability management with fix targeted at later in the season._
+_Headline Upgrades: Hybrid and battery updates. Heat management improvements. Reduced shutdown risk. Reliability focus — not a performance step. One PU upgrade token still remaining this season._
 
 ---
 
 **Red Bull**
 
-Red Bull's Austria package is one of the most anticipated of the weekend, and appropriately so given this is their home race. The headline item is a significant weight reduction programme, with the RB22 understood to be shedding approximately 7 kilograms to bring the car down towards the minimum weight limit — a gain that alone could be worth around a tenth and a half of lap time around the Red Bull Ring. Aerodynamic refinements are also expected, with revisions to the floor, front wing and sidepods all in the mix. A revised front wing was tested quietly at Barcelona, featuring changes to the endplate, flaps and main plane, but was not raced; that specification is expected to arrive in Austria. Tyre management and consistency within the performance window remain areas of focus, with degradation having been an ongoing challenge for the team.
+Red Bull bring what is described as their biggest package of the 2026 season and the most significant since Miami, building on incremental updates introduced across Miami, Imola and Barcelona. The headline item is a weight reduction of approximately 12 kilograms — bringing the RB22 to the minimum weight target for the first time — which alone represents a substantial performance gain at a circuit as elevation-sensitive as the Red Bull Ring. The floor has been revised with a new forward structure and updated bib geometry, while the sidepods have been reworked with a new inlet design, more aggressive drop-off, higher-walled sections and underslides for improved flow management. Front wing refinements complete the package. The targets are improved aerodynamic balance, better efficiency, reduced tyre wear and enhanced performance on elevation changes and under heavy braking.
 
-_Headline Upgrades: Approximately 7kg weight reduction targeting minimum weight limit. Revised front wing first seen in Barcelona testing. Floor, front wing and sidepod aerodynamic refinements._
+_Headline Upgrades: Approximately 12kg weight reduction — minimum weight target achieved for first time. Revised floor with new forward structure and bib geometry. Reworked sidepods with new inlet, drop-off and underslide design. Front wing refinements. Estimated major performance step._
 
 ---
 
 **Ferrari**
 
-Ferrari bring the most significant power unit upgrade of the weekend to Austria, and potentially of the season so far. Reports have pointed to a gain in the region of 15 horsepower from the internal combustion engine, derived from two sources. The first is a change to the engine's architecture itself, raising its operating temperature from 100 to 115 degrees Celsius for an estimated 5 to 7 horsepower gain. The second comes from fuel partner Shell, who have homologated a new biofuel specification understood to deliver a further 2 to 5 horsepower improvement in efficiency. This is the first of two engine upgrade tokens Ferrari plan to use this season, with the second earmarked for Zandvoort or Monza. Minor aerodynamic refinements to the diffuser area are also reported, following clarification from the FIA on a technical matter that had previously restricted what Ferrari could introduce in this area.
+Ferrari introduce the new 067/6 engine specification in Austria, paired with a new Shell fuel formulation, for a combined gain of approximately 5 to 7 horsepower — equivalent to around 5 kilowatts. This is Ferrari's first Aduo power unit upgrade of the season. Austria is identified by the team as one of the most power-sensitive circuits on the calendar, making it a logical venue for the introduction. The gain is described as noticeable rather than revolutionary on its own, but meaningful in the context of the tight margins at the front of the field.
 
-_Headline Upgrades: Significant power unit upgrade targeting approximately 15 horsepower gain. Engine operating temperature raised from 100 to 115 degrees Celsius. New Shell biofuel specification homologated. Minor diffuser refinements._
+_Headline Upgrades: New 067/6 engine specification. New Shell fuel formulation. Combined 5 to 7 horsepower gain. First Aduo power unit upgrade of the season._
 
 ---
 
 **Williams**
 
-Williams are confirmed to be bringing circuit-specific parts to Austria. Further detail on the composition of that package will be shared when available.
+Williams are confirmed to be bringing circuit-specific parts to Austria. No major upgrade package is reported, with the focus on minor aerodynamic tweaks, mechanical refinements and setup optimisations as part of the team's ongoing seasonal programme.
 
-_Headline Upgrades: Circuit-specific parts confirmed. Further details to follow ahead of the race weekend._
+_Headline Upgrades: Circuit-specific parts confirmed. Minor aero tweaks and mechanical refinements. No major upgrade package._
 
 ---
 
 **Racing Bulls**
 
-Racing Bulls may bring upgrades to Austria, though conflicting reports on the composition of any package mean the picture is not yet clear. More information will be shared when available.
+No major upgrade package is confirmed for Racing Bulls this weekend. Minor detail or development updates are expected as part of the team's ongoing seasonal programme, covering small aerodynamic tweaks, mechanical refinements and setup optimisations.
 
-_Headline Upgrades: Upgrades possible but unconfirmed. Further details to follow ahead of the race weekend._
+_Headline Upgrades: No major package confirmed. Minor aero tweaks and mechanical refinements expected._
 
 ---
 
 **Aston Martin**
 
-More information on Aston Martin's Austria package will be shared when available.
+No major upgrade package is confirmed for Aston Martin this weekend. Minor detail or development updates are expected as part of the team's ongoing seasonal programme, with focus areas of reliability, tyre management and incremental aerodynamic efficiency.
 
-_Headline Upgrades: Further details to follow ahead of the race weekend._
+_Headline Upgrades: No major package confirmed. Minor refinements and setup optimisations expected._
 
 ---
 
 **Haas**
 
-More information on Haas's Austria package will be shared when available.
+No major upgrade package is confirmed for Haas this weekend. Minor detail or development updates are expected as part of the team's ongoing seasonal programme, with focus areas of reliability, tyre management and incremental aerodynamic efficiency.
 
-_Headline Upgrades: Further details to follow ahead of the race weekend._
+_Headline Upgrades: No major package confirmed. Minor refinements and setup optimisations expected._
 
 ---
 
@@ -110,23 +110,23 @@ _Headline Upgrades: Approximately 10 horsepower power unit upgrade under Aduo re
 
 **Alpine**
 
-Alpine arrive in Austria with what is described as a major upgrade package, though its arrival here comes later than originally planned — the package was initially intended for Barcelona before delays pushed it back. A revised front and rear wing are both expected, alongside bodywork updates to the sidepods and engine cover. A floor upgrade is understood to be in development but is not anticipated before Silverstone. The new front wing is particularly important given the team's known weakness in high-speed understeer through the second sector, while improving one-lap pace — a consistent weakness this season — remains a key objective for the package.
+Alpine bring a major aerodynamic update to Austria, centred on revised front and rear wings. The package builds on Pierre Gasly's recent strong performances and is targeted at pushing the A526 higher in the midfield order. The package was originally planned for Barcelona before delays pushed it back, making Austria the first proper opportunity to see it in action. Other components are not prominently reported but development continues across the car.
 
-_Headline Upgrades: Major upgrade package delayed from Barcelona. Revised front and rear wing. Sidepod and engine cover bodywork updates. Floor upgrade in development, expected at Silverstone._
+_Headline Upgrades: Revised front wing. Revised rear wing. Package delayed from Barcelona. Goal to build on Gasly's recent form and push higher in the midfield._
 
 ---
 
 **Cadillac**
 
-Cadillac bring one of the most comprehensive aerodynamic packages of the weekend to Austria, with upgrades across virtually every section of the MAC26. Front wing, rear wing, sidepods, floor and diffuser are all understood to have been revised in what amounts to a near-complete bodywork makeover. As a Ferrari engine customer, Cadillac have the option of running Ferrari's upgraded power unit this weekend, but multiple sources indicate the team are not yet ready to take the new specification — preferring to observe its reliability before committing to the switch.
+Cadillac bring a substantial upgrade package to Austria as they continue their push to close on the midfield in their debut season. New and revised sidepods arrive alongside a revised floor and a series of other bodywork changes spanning multiple sections of the MAC26. A revised livery may also appear this weekend. The ambition is clear — accelerate progress towards the midfield battle, with Austria representing another meaningful step in a steady development programme.
 
-_Headline Upgrades: Comprehensive aerodynamic package covering front wing, rear wing, sidepods, floor and diffuser. Ferrari engine upgrade available but not expected to be taken this weekend._
+_Headline Upgrades: New and revised sidepods. Revised floor. Additional bodywork changes. Possible revised livery. Goal to accelerate progress towards the midfield._
 
 ---
 
 **Final Thought**
 
-Austria is shaping up to be one of the defining weekends of the 2026 season so far. Ferrari's power unit upgrade represents the most consequential single development of the year to date, while Red Bull's weight reduction and aerodynamic refinements at their home race give them a genuine opportunity to challenge at the front. The midfield picture is equally compelling, with Alpine finally delivering a long-awaited package and Cadillac continuing their steady climb. The Red Bull Ring rewards getting everything right — setup, strategy and reliability — and with so much new hardware in the paddock, the margins could be tighter than they have been all season.`,
+Austria is shaping up to be one of the defining weekends of the 2026 season so far. Red Bull's combination of weight reduction and aerodynamic refinements at their home race represents the biggest single package of the weekend, while Ferrari's power unit upgrade and Mercedes' reliability fix add further intrigue at the front. The midfield picture is equally compelling, with Alpine finally delivering a long-delayed package and Cadillac continuing their steady climb. The Red Bull Ring rewards getting everything right — setup, strategy and reliability — and with so much new hardware in the paddock, the margins could be tighter than they have been all season.`,
   },
   {
     slug: 'race-week-preview-austrian-gp-2026',
