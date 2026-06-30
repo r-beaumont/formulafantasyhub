@@ -8,8 +8,8 @@ import { RACE_WEEKENDS } from '@/lib/raceResults'
 export default function CalendarClient() {
   const router = useRouter()
 
-  // First non-completed, non-calledOff round is Japan R3
-  const nextRaceRound = SEASON_CALENDAR.find(r => !r.completed && !r.calledOff)?.round ?? 3
+  // First non-completed, non-calledOff round is Britain R9
+  const nextRaceRound = SEASON_CALENDAR.find(r => !r.completed && !r.calledOff)?.round ?? 9
 
   const [openRound, setOpenRound] = useState<number | null>(nextRaceRound)
   const rowRefs = useRef<Record<number, HTMLDivElement | null>>({})

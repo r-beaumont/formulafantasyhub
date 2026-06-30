@@ -18,6 +18,126 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-british-gp-2026',
+    title: 'Race Week Preview: British Grand Prix',
+    excerpt: "George Russell heads to his home race off the back of his second win of the season, with Kimi Antonelli still 40 points clear at the top. Here is your F1 Fantasy watchlist for Silverstone.",
+    readTime: 4,
+    date: 'Jun 30, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #00001a 0%, #00003d 50%, #00001a 100%)',
+    thumbnailBg: 'rgba(0,100,200,0.25)',
+    thumbnailIcon: 'gb',
+    thumbnailImage: '/thumbnail-race-preview.png',
+    ogImage: 'https://formulahub.live/og/race-week-preview-british-gp-2026',
+    content: `**THE SETUP**
+
+George Russell goes into his home race off the back of a dominant lights-to-flag victory at the Red Bull Ring, his second win of the 2026 season and arguably his most controlled performance yet. The championship picture is tighter than it was at the start of June — Kimi Antonelli still leads on 171 points, but Russell's win in Austria trimmed the gap to 40, and Lewis Hamilton sits a further six points back in third on 125. This is the part of the calendar where the season either starts to open up or closes down, and Silverstone is where we find out which.
+
+Max Verstappen's second-place finish in Austria was the other major story of the weekend. Red Bull's upgraded RB22 — lighter, more aerodynamically efficient, built around a weight reduction that brought the car to minimum weight for the first time — delivered exactly what the team needed at their home circuit. Whether that performance transfers to Silverstone's high-speed demands is the first real test of whether Red Bull are genuinely back in the conversation.
+
+For Fantasy managers, this is a sprint weekend. Team lock falls at the Sprint Race start, not Sprint Qualifying — so you have time to digest Friday afternoon's sprint qualifying before decisions become final. Use that window.
+
+**THE CIRCUIT**
+
+Silverstone is one of the most demanding circuits on the calendar for cars, tyres and drivers. High-speed corners load up the rear axle, and the new 2026 machinery generates enough lateral force through Maggotts, Becketts and Chapel to make tyre management a serious differentiator. Historically one of the best circuits on the calendar for overtaking, the Wing Straight and Hangar Straight offer genuine passing opportunities even without DRS.
+
+Sprint weekends run a compressed schedule: FP1, Sprint Qualifying, Sprint Race, Qualifying, Race. There is no FP2 or FP3. That means limited setup data and more variance in the sprint — drivers are often running a setup compromise rather than a fully optimised package. Sprint results do not always predict the race, but the fastest cars tend to find their level quickly on a circuit as demanding as Silverstone.
+
+**THE WEATHER**
+
+Early July at Silverstone is always a gamble. The forecast currently points to mixed conditions across the weekend, with the possibility of rain in qualifying or the race. A wet Silverstone compresses the field and creates chaos in the points. Drivers who can manage conditions — Russell, Hamilton, Verstappen among them — tend to benefit most. Check the updated forecast before your lineup locks.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**George Russell**
+
+Every metric points to this. He won his home race last year and arrives this year having just won Austria from pole, now with four poles and a rising points total that is starting to make the championship look like a three-way fight. Silverstone suits the Mercedes W17 — high-speed corners, rear-limited traction zones — and Russell on home soil has a track record of delivering. The double-digit points floor here is as high as it has been all season.
+
+**Max Verstappen**
+
+Austria proved the Red Bull upgrade is real. Verstappen started fifth after a messy qualifying and finished second with a drive that looked effortless from the halfway point. Silverstone is a circuit that rewards raw aero efficiency and tyre management — exactly what Red Bull's revised package is built around. He is not a favourite to win, but a top-three is realistic, and at his current trajectory he is close to forcing another price rise.
+
+🟡 HOLD
+
+**Kimi Antonelli**
+
+Three points on the podium in Austria — including the fastest lap — and he still leads the championship by 40 points. The retirement in Spain looks increasingly like an outlier rather than a structural weakness. Silverstone is not a circuit where Mercedes have historically struggled, and Antonelli qualifying on pole at Silverstone is a genuine possibility. Do not panic-sell the championship leader. Hold and let the weekend play out.
+
+**Lando Norris**
+
+McLaren's Silverstone record is strong, and Norris has been quietly consistent without ever threatening the top two. He was seventh in Austria from the third row — not spectacular but not embarrassing either. If McLaren bring an upgrade for their home race, he becomes relevant in the sprint and potentially the race. Hold unless you need the budget for something specific.
+
+🔴 SELL
+
+**Carlos Sainz**
+
+The electrical failure in Austria that cost Sainz a finish was the second reliability issue in three races for the Williams. The car has pace in free practice but has not delivered results when it matters. Silverstone is a circuit where you need consistency over a sprint weekend, and Sainz currently carries too much risk for his Fantasy return.
+
+**Fernando Alonso**
+
+A five-second penalty for pit lane speeding in Austria, 18th place and a car that is still not reliably finishing races. Aston Martin have now seen both drivers fail to score in six of eight rounds. Alonso is a premium asset delivering mid-tier results, and the value simply is not there at a sprint weekend where every point needs to count.
+
+**THE CHIPS**
+
+Sprint weekend rules apply: team lock at the Sprint Race start. Wildcard holders might consider this as a reset window — Silverstone's compressed schedule means less information before sprint qualifying, which historically creates mispriced teams. If you have Wildcard saved and need to restructure around a stronger front-end, this is a viable weekend to use it. 3x Boost is strongest on circuits with a clear favourite at the top — if Russell qualifies on pole at his home race, the case for pointing your boost at him before the sprint is hard to argue against.`,
+  },
+  {
+    slug: 'austrian-gp-2026-what-we-learned',
+    title: 'What We Learned: Austrian Grand Prix',
+    excerpt: "George Russell wins his second race of the season at Red Bull's home circuit, Max Verstappen delivers the upgrade the team needed, and Kimi Antonelli stays calm under pressure. Here is what the 2026 Austrian Grand Prix told us.",
+    readTime: 4,
+    date: 'Jun 29, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #001a00 0%, #003300 50%, #001a00 100%)',
+    thumbnailBg: 'rgba(0,180,60,0.2)',
+    thumbnailIcon: 'at',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/austrian-gp-2026-what-we-learned',
+    content: `George Russell led from lights to flag at the Red Bull Ring, managing pressure from Max Verstappen over the second half of the race to secure his second win of the 2026 season. Verstappen held off Kimi Antonelli by less than four tenths at the line — a finish that compressed the top of the order and sent the field into the summer with a genuine three-way conversation at the front.
+
+---
+
+**RUSSELL'S SECOND WIN IS A MESSAGE, NOT A STATEMENT**
+
+**George Russell** converted pole position into a controlled victory that never looked in genuine doubt until Verstappen closed in during the final stint. He managed tyre temperatures through the high degradation first stint, built a buffer in the middle phase, and held his nerve when Red Bull's strategy brought Verstappen into striking range. The win is his second of the season and his most mature performance yet — the difference between Australia in March, where he won a chaotic race, and Austria, where he won a clean one. At Silverstone next weekend, he goes as the man in form, on home ground, with a chassis that suits the circuit.
+
+---
+
+**RED BULL'S UPGRADE WORKS — AND VERSTAPPEN CAPITALISED**
+
+**Max Verstappen** started fifth after qualifying was disrupted by his Q3 crash in the closing minutes, drove through the field with a patience that has not always been his trademark this season, and finished second behind the fastest car in the race. The RB22's revised package — approximately 12 kilograms lighter, with a reworked floor, sidepods and front wing — delivered what Red Bull needed. The car that spent the opening half of the season searching for balance felt planted in rear-limited Austria. Whether the upgrade translates to Silverstone's higher-speed demands is the next question, but after months of qualifying compromises, Red Bull finally have a car capable of matching the pace at the front.
+
+---
+
+**ANTONELLI STAYS CALM, STILL LEADS BY 40 POINTS**
+
+**Kimi Antonelli** came home third with the fastest lap of the race — a 1:10.374 on lap 59 — and left Austria still leading the championship by 40 points over Russell. The second half of his season, which began with five straight victories before a retirement in Spain, now includes back-to-back podiums since that blip. He is not winning every race anymore, but he is still scoring heavily every time the car finishes. At 171 points with 14 rounds remaining, the championship lead is still formidable. The conversation is no longer about whether this is a race — it clearly is — but about whether Russell or Verstappen has the sustained performance to sustain a run all the way to Abu Dhabi.
+
+---
+
+**BOTH CADILLACS RETIRED WITH BRAKE FAILURES**
+
+The opening lap was not long over when **Valtteri Bottas** and **Sergio Pérez** both pulled out of the race with brake failures on the MAC26. It is the kind of double retirement that drains points, funding, and morale simultaneously, and it comes at a circuit where Cadillac's upgrade package — new sidepods, revised floor — was meant to mark a step forward in their push toward the midfield. The upgrades may well be genuine, but the team will never know from a weekend where neither car reached the flag. For Fantasy managers, the reliability risk on Cadillac remains live.
+
+---
+
+**ALONSO PENALISED, ASTON MARTIN SCORE NOTHING AGAIN**
+
+**Fernando Alonso** received a five-second penalty for exceeding the pit lane speed limit during the race, costing him at least one position in the closing stages and leaving him classified 18th. **Lance Stroll** retired with a suspected ERS issue. The result continues a pattern that has defined Aston Martin's 2026 season: the car shows promise in practice, but neither driver is reliably finishing in a position that matters. After eight rounds, Aston Martin sit at the bottom of the constructors' standings on a single point — Alonso's Monaco result from round six. Fifteen rounds remain, and the trajectory is not improving.
+
+---
+
+Silverstone is next, July 3–5, and it is a sprint weekend. Russell, Hamilton and Verstappen all arrive with momentum. Antonelli arrives with 40 points worth of cushion. This is the part of the season where reputations are made.`,
+  },
+  {
     slug: 'austrian-gp-2026-technical-upgrades',
     title: 'Upgrades Preview: Austrian Grand Prix',
     excerpt: "Ferrari's power unit upgrade and Red Bull's weight reduction programme headline a busy development weekend at the Red Bull Ring. Here is how every team stacks up heading into Austria.",

@@ -276,7 +276,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       dnfHistory: { y2023: 0, y2024: 0, y2025: 3, avg: 1.00 },
     },
     8: { // Austria — Red Bull Ring
-      lastWinner: 'L. Norris',
+      lastWinner: 'G. Russell',
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 9,
       mostPolesDriver: 'M. Verstappen', mostPolesDriverCount: 5,
