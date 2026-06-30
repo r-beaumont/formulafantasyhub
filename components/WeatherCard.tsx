@@ -2,7 +2,8 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { SEASON_CALENDAR, CURRENT_RACE } from '@/lib/races'
+import { SEASON_CALENDAR } from '@/lib/races'
+import { useCurrentRace } from '@/lib/useCurrentRace'
 
 // Identical icon/label logic to the Race Hub weather tab
 function wmoIcon(code: number): string {
@@ -29,11 +30,12 @@ interface DayForecast {
 }
 
 export default function WeatherCard() {
+  const race = useCurrentRace()
   const [days, setDays] = useState<DayForecast[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const calRace = SEASON_CALENDAR.find(r => r.round === CURRENT_RACE.round)
+    const calRace = SEASON_CALENDAR.find(r => r.round === race.round)
     if (!calRace?.lat || !calRace?.lon || !calRace?.weekendStartISO) {
       setLoading(false)
       return
@@ -63,7 +65,7 @@ export default function WeatherCard() {
       })
       .catch(() => {})
       .finally(() => setLoading(false))
-  }, [])
+  }, [race.round])
 
   const dayLabels = ['Fri', 'Sat', 'Sun']
 
@@ -73,7 +75,7 @@ export default function WeatherCard() {
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg,#00BFFF,rgba(0,191,255,0.2))' }} />
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', minHeight: '52px', boxSizing: 'border-box' as const, borderBottom: '1px solid var(--border)' }}>
         <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'var(--muted)' }}>🌤️ Weather</span>
-        <span className={`fi fi-${CURRENT_RACE.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
+        <span className={`fi fi-${race.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span>
       </div>
 
       <div style={{ padding: '10px 16px 0', flex: 1 }}>

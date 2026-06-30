@@ -2,14 +2,15 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { CURRENT_RACE } from '@/lib/races'
+import { useCurrentRace } from '@/lib/useCurrentRace'
+import type { Race } from '@/lib/races'
 
-function getDeadline(): Date | null {
-  if (CURRENT_RACE.isSprint) {
-    const sprint = CURRENT_RACE.sessions.find(s => s.name === 'Sprint')
+function getDeadline(race: Race): Date | null {
+  if (race.isSprint) {
+    const sprint = race.sessions.find(s => s.name === 'Sprint')
     return sprint?.dateISO ? new Date(sprint.dateISO) : null
   } else {
-    const qual = CURRENT_RACE.sessions.find(s => s.name === 'Qualifying')
+    const qual = race.sessions.find(s => s.name === 'Qualifying')
     return qual?.dateISO ? new Date(qual.dateISO) : null
   }
 }
@@ -28,17 +29,17 @@ function calcTimeLeft(deadline: Date) {
 function pad(n: number) { return String(n).padStart(2, '0') }
 
 export default function FantasyDeadlineCard() {
-  const deadline = getDeadline()
+  const race = useCurrentRace()
+  const deadline = getDeadline(race)
   const [timeLeft, setTimeLeft] = useState(() => deadline ? calcTimeLeft(deadline) : null)
 
   useEffect(() => {
     if (!deadline) return
     const id = setInterval(() => setTimeLeft(calcTimeLeft(deadline)), 1000)
     return () => clearInterval(id)
-  }, [deadline])
+  }, [deadline?.getTime()])
 
-  // Reads directly from race data — automatically correct for every weekend
-  const lockLabel = CURRENT_RACE.isSprint ? 'Lineups Lock at Sprint Race' : 'Lineups Lock at Qualifying'
+  const lockLabel = race.isSprint ? 'Lineups Lock at Sprint Race' : 'Lineups Lock at Qualifying'
 
   return (
     <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>

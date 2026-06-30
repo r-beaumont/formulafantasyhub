@@ -572,3 +572,108 @@ export const SEASON_CALENDAR: {
     ],
   },
 ]
+
+// ─── Dynamic current-race computation ────────────────────────────────────────
+
+const GP_FULL_NAMES: Record<string, string> = {
+  'Australia':           'Australian Grand Prix',
+  'China':               'Chinese Grand Prix',
+  'Japan':               'Japanese Grand Prix',
+  'Miami':               'Miami Grand Prix',
+  'Canada':              'Canadian Grand Prix',
+  'Monaco':              'Monaco Grand Prix',
+  'Barcelona-Catalunya': 'Spanish Grand Prix',
+  'Austria':             'Austrian Grand Prix',
+  'Britain':             'British Grand Prix',
+  'Belgium':             'Belgian Grand Prix',
+  'Hungary':             'Hungarian Grand Prix',
+  'Netherlands':         'Dutch Grand Prix',
+  'Italy':               'Italian Grand Prix',
+  'Madrid':              'Madrid Grand Prix',
+  'Azerbaijan':          'Azerbaijan Grand Prix',
+  'Singapore':           'Singapore Grand Prix',
+  'United States':       'United States Grand Prix',
+  'Mexico':              'Mexico City Grand Prix',
+  'Brazil':              'São Paulo Grand Prix',
+  'Las Vegas':           'Las Vegas Grand Prix',
+  'Qatar':               'Qatar Grand Prix',
+  'Abu Dhabi':           'Abu Dhabi Grand Prix',
+}
+
+const SESSION_SHORT: Record<string, string> = {
+  'Practice 1':        'FP1',
+  'Practice 2':        'FP2',
+  'Practice 3':        'FP3',
+  'Sprint Qualifying': 'SQ',
+  'Sprint':            'SPR',
+  'Qualifying':        'QUAL',
+  'Race':              'RACE',
+}
+
+function buildRaceFromCalendar(cal: typeof SEASON_CALENDAR[0], now: Date): Race {
+  const sessions: Session[] = (cal.sessions ?? []).map(s => {
+    const d = new Date(s.date)
+    const sessionEndMs = d.getTime() + s.duration * 60_000
+
+    const utcH = d.getUTCHours().toString().padStart(2, '0')
+    const utcM = d.getUTCMinutes().toString().padStart(2, '0')
+
+    const localFmt = new Intl.DateTimeFormat('en-GB', {
+      hour: '2-digit', minute: '2-digit', timeZone: cal.timezone, hour12: false,
+    })
+    const localParts = localFmt.formatToParts(d)
+    const lH = localParts.find(p => p.type === 'hour')?.value ?? '00'
+    const lM = localParts.find(p => p.type === 'minute')?.value ?? '00'
+
+    const tzAbbr = new Intl.DateTimeFormat('en-US', {
+      timeZone: cal.timezone, timeZoneName: 'short',
+    }).formatToParts(d).find(p => p.type === 'timeZoneName')?.value ?? ''
+
+    const dateParts = new Intl.DateTimeFormat('en-GB', {
+      weekday: 'short', day: 'numeric', month: 'short', timeZone: cal.timezone,
+    }).formatToParts(d)
+    const weekday = dateParts.find(p => p.type === 'weekday')?.value ?? ''
+    const day     = dateParts.find(p => p.type === 'day')?.value ?? ''
+    const month   = dateParts.find(p => p.type === 'month')?.value ?? ''
+
+    return {
+      name:      s.name,
+      short:     SESSION_SHORT[s.name] ?? s.name.slice(0, 4).toUpperCase(),
+      date:      `${weekday} ${day} ${month}`,
+      dateISO:   s.date,
+      timeUTC:   `${utcH}:${utcM} UTC`,
+      timeLocal: `${lH}:${lM} ${tzAbbr}`,
+      completed: now.getTime() > sessionEndMs,
+      duration:  s.duration,
+    }
+  })
+
+  return {
+    round:     cal.round,
+    name:      GP_FULL_NAMES[cal.name] ?? `${cal.name} Grand Prix`,
+    shortName: cal.name,
+    circuit:   cal.circuit,
+    country:   cal.country,
+    flag:      cal.flag,
+    isSprint:  cal.sprint,
+    timezone:  cal.timezone,
+    sessions,
+  }
+}
+
+/**
+ * Returns whichever race should currently be shown.
+ * Advances to the next round 12 hours after the Race session ends.
+ * Falls back to the last race in the calendar.
+ */
+export function computeCurrentRace(now: Date = new Date()): Race {
+  const TWELVE_H_MS = 12 * 60 * 60 * 1_000
+  for (const cal of SEASON_CALENDAR) {
+    if (cal.calledOff || !cal.sessions?.length) continue
+    const raceSesh = cal.sessions.find(s => s.name === 'Race')
+    if (!raceSesh) continue
+    const raceEndMs = new Date(raceSesh.date).getTime() + raceSesh.duration * 60_000
+    if (now.getTime() <= raceEndMs + TWELVE_H_MS) return buildRaceFromCalendar(cal, now)
+  }
+  return CURRENT_RACE
+}

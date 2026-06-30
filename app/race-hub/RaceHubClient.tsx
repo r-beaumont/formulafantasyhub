@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { SEASON_CALENDAR, CURRENT_RACE } from '@/lib/races'
+import { SEASON_CALENDAR, computeCurrentRace, type Race } from '@/lib/races'
+import { useCurrentRace } from '@/lib/useCurrentRace'
 
 const card = { background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden' as const }
 const cardHeader = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid var(--border)' }
@@ -60,8 +61,9 @@ function formatDelta(seconds: number | null | undefined): string {
 }
 
 export default function RaceHubClient() {
+  const currentRace = useCurrentRace()
   const [activeTab, setActiveTab] = useState<'overview' | 'race-info' | 'weather' | 'pitwall'>('overview')
-  const [selectedRound, setSelectedRound] = useState(CURRENT_RACE.round)
+  const [selectedRound, setSelectedRound] = useState(() => computeCurrentRace(new Date()).round)
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   // Read URL params on mount (?round=N&tab=results deep-link from standings)
@@ -105,7 +107,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
           const weekendStarted = selectedRace.weekendStartISO
             ? new Date(selectedRace.weekendStartISO + 'T00:00:00Z').getTime() <= Date.now()
             : false
-          const meetingParam = (selectedRound === CURRENT_RACE.round && weekendStarted)
+          const meetingParam = (selectedRound === currentRace.round && weekendStarted)
             ? 'latest'
             : selectedRace.meeting_key
           const sessRes = await fetch(`/api/f1/sessions?meeting_key=${meetingParam}`)
@@ -812,9 +814,9 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
         type USession = { name: string; short: string; isoDate: string; isCompleted: boolean }
         let displaySessions: USession[] = []
 
-        if (selectedRound === CURRENT_RACE.round) {
-          // Current race — use CURRENT_RACE which has per-session completed flags
-          displaySessions = CURRENT_RACE.sessions.map(s => ({
+        if (selectedRound === currentRace.round) {
+          // Current race — use hook's race which has per-session completed flags
+          displaySessions = currentRace.sessions.map(s => ({
             name: s.name,
             short: s.short ?? shortMap[s.name] ?? s.name,
             isoDate: s.dateISO ?? '',

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { CURRENT_RACE } from '@/lib/races'
+import { useCurrentRace } from '@/lib/useCurrentRace'
 
 const links = [
   { href: '/',           label: 'Home' },
@@ -18,6 +18,7 @@ const links = [
 
 export default function Navbar() {
   const pathname = usePathname()
+  const race = useCurrentRace()
   const [menuOpen, setMenuOpen] = useState(false)
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
 
@@ -118,7 +119,7 @@ export default function Navbar() {
           {/* Race badge — hidden on mobile */}
           <div className="nav-race-badge" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(232,0,45,0.08)', border: '1px solid rgba(232,0,45,0.2)', borderRadius: '20px', padding: '6px 14px', fontSize: '12px', fontWeight: 500, color: 'var(--text)' }}>
             <div style={{ width: '7px', height: '7px', background: '#E8002D', borderRadius: '50%', animation: 'pulse 2s infinite', flexShrink: 0 }} />
-            <span className={`fi fi-${CURRENT_RACE.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span> {CURRENT_RACE.shortName} · R{CURRENT_RACE.round}
+            <span className={`fi fi-${race.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span> {race.shortName} · R{race.round}
           </div>
           {/* Hamburger — only visible on mobile via CSS */}
           <button

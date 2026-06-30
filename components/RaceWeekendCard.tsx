@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { CURRENT_RACE } from '@/lib/races'
+import { useCurrentRace } from '@/lib/useCurrentRace'
 
 /** Returns the formatted time string AND the day of week for the given dateISO. */
 function formatTrackTime(
@@ -37,8 +37,9 @@ function isCompleted(s: { completed: boolean; dateISO?: string; duration?: numbe
 }
 
 export default function RaceWeekendCard() {
+  const race = useCurrentRace()
   const [useLocalTime, setUseLocalTime] = useState(false)
-  const nextSession = CURRENT_RACE.sessions.find(s => !isCompleted(s))
+  const nextSession = race.sessions.find(s => !isCompleted(s))
 
   return (
     <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
@@ -47,7 +48,7 @@ export default function RaceWeekendCard() {
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', minHeight: '52px', boxSizing: 'border-box' as const, borderBottom: '1px solid var(--border)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span className={`fi fi-${CURRENT_RACE.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }} />
+          <span className={`fi fi-${race.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }} />
           <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'var(--muted)' }}>Current Race Weekend</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -84,13 +85,13 @@ export default function RaceWeekendCard() {
       {/* Body */}
       <div style={{ padding: '20px 20px 0', flex: 1 }}>
         <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', lineHeight: 1, marginBottom: '14px' }}>
-          {CURRENT_RACE.name}
+          {race.name}
         </div>
-        <div className="sessions-grid" style={{ display: 'grid', gridTemplateColumns: `repeat(${CURRENT_RACE.sessions.length},1fr)`, gap: '8px' }}>
-          {CURRENT_RACE.sessions.map(s => {
+        <div className="sessions-grid" style={{ display: 'grid', gridTemplateColumns: `repeat(${race.sessions.length},1fr)`, gap: '8px' }}>
+          {race.sessions.map(s => {
             const done   = isCompleted(s)
             const isNext = s === nextSession
-            const { time: displayTime, day: displayDay } = formatTrackTime(s.dateISO, CURRENT_RACE.timezone, useLocalTime)
+            const { time: displayTime, day: displayDay } = formatTrackTime(s.dateISO, race.timezone, useLocalTime)
             return (
               <div
                 key={s.name}
