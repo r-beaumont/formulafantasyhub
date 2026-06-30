@@ -56,21 +56,21 @@ Early July at Silverstone is always a gamble. The forecast currently points to m
 
 **Isack Hadjar**
 
-Four top-six finishes in a row — and he is not done yet. Hadjar has quietly assembled one of the most consistent recent runs on the grid, combining Red Bull's upgraded package with a level of racecraft that suggests this is not a blip. The RB22 delivered at Austria's rear-limited layout, and while Silverstone's high-speed demands are a different test, Hadjar has shown he can score in any conditions. He is approaching a price rise, which means the window to get him in cheaply is closing. Get in now.
+Four top-six finishes in a row — and he is not done yet. Hadjar has quietly assembled one of the most consistent recent runs on the grid, combining Red Bull's upgraded package with a level of racecraft that suggests this is not a blip. The RB22 delivered at Austria's rear-limited layout, and while Silverstone's high-speed demands are a different test, Hadjar has shown he can score in any conditions. He is approaching another price rise, which means the window to get him in cheaply is closing. Get in now.
 
 **Max Verstappen**
 
-Austria proved the Red Bull upgrade is real. Verstappen started fifth after a messy qualifying and finished second with a drive that looked effortless from the halfway point. Silverstone is a circuit that rewards raw aero efficiency and tyre management — exactly what Red Bull's revised package is built around. He is not a favourite to win, but a top-three is realistic, and at his current trajectory he is close to forcing another price rise.
+Austria proved the Red Bull upgrade is real. Verstappen started fifth after a messy qualifying and finished second with a drive that looked effortless from the halfway point. Silverstone is a circuit that rewards raw aero efficiency and tyre management — exactly what Red Bull's revised package is built around. He is not a favourite to win, but a top-three is realistic, and at his current trajectory he is close to forcing another price rise. If your budget stretches to a triple Red Bull setup, he is worth the transfer in.
 
 🟡 HOLD
 
 **Kimi Antonelli**
 
-Three points on the podium in Austria — including the fastest lap — and he still leads the championship by 40 points. The retirement in Spain looks increasingly like an outlier rather than a structural weakness. Silverstone is not a circuit where Mercedes have historically struggled, and Antonelli qualifying on pole at Silverstone is a genuine possibility. Do not panic-sell the championship leader. Hold and let the weekend play out.
+Another appearance on the podium in Austria — including the fastest lap — and he still leads the championship by 40 points. The retirement in Spain looks increasingly like an outlier rather than a structural weakness. Silverstone is not a circuit where Mercedes have historically struggled, and Antonelli qualifying on pole at Silverstone is a genuine possibility. Do not panic-sell the championship leader. Hold and let the weekend play out.
 
 **Liam Lawson**
 
-Ninth in Austria, and quietly building a case as one of the more reliable point-scorers in the midfield. Lawson has looked composed in recent rounds at a circuit — the Red Bull Ring — that can ruthlessly expose setup weaknesses. Silverstone's high-speed nature should play to Racing Bulls' strengths, and his consistency means he is not a sell unless you genuinely need the budget for a front-end upgrade.
+Ninth in Austria, and quietly building a case as one of the more reliable point-scorers in the midfield. Lawson has looked composed in recent rounds at a circuit that can ruthlessly expose setup weaknesses. Silverstone's high-speed nature should play to Racing Bulls' strengths, and his consistency means he is not a sell unless you genuinely need the budget for a front-end upgrade.
 
 🔴 SELL
 
