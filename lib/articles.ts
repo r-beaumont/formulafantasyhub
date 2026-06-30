@@ -20,7 +20,7 @@ export const articles: Article[] = [
   {
     slug: 'race-week-preview-british-gp-2026',
     title: 'Race Week Preview: British Grand Prix',
-    excerpt: "George Russell heads to his home race off the back of his second win of the season, with Kimi Antonelli still 40 points clear at the top. Here is your F1 Fantasy watchlist for Silverstone.",
+    excerpt: "Isack Hadjar has four top-six finishes in a row, Red Bull's upgrade is working, and Kimi Antonelli still leads by 40 points. Here is your F1 Fantasy watchlist for Silverstone.",
     readTime: 4,
     date: 'Jun 30, 2026',
     tag: 'Race Preview',
@@ -54,9 +54,9 @@ Early July at Silverstone is always a gamble. The forecast currently points to m
 
 🟢 BUY
 
-**George Russell**
+**Isack Hadjar**
 
-Every metric points to this. He won his home race last year and arrives this year having just won Austria from pole, now with four poles and a rising points total that is starting to make the championship look like a three-way fight. Silverstone suits the Mercedes W17 — high-speed corners, rear-limited traction zones — and Russell on home soil has a track record of delivering. The double-digit points floor here is as high as it has been all season.
+Four top-six finishes in a row — and he is not done yet. Hadjar has quietly assembled one of the most consistent recent runs on the grid, combining Red Bull's upgraded package with a level of racecraft that suggests this is not a blip. The RB22 delivered at Austria's rear-limited layout, and while Silverstone's high-speed demands are a different test, Hadjar has shown he can score in any conditions. He is approaching a price rise, which means the window to get him in cheaply is closing. Get in now.
 
 **Max Verstappen**
 
@@ -68,9 +68,9 @@ Austria proved the Red Bull upgrade is real. Verstappen started fifth after a me
 
 Three points on the podium in Austria — including the fastest lap — and he still leads the championship by 40 points. The retirement in Spain looks increasingly like an outlier rather than a structural weakness. Silverstone is not a circuit where Mercedes have historically struggled, and Antonelli qualifying on pole at Silverstone is a genuine possibility. Do not panic-sell the championship leader. Hold and let the weekend play out.
 
-**Lando Norris**
+**Liam Lawson**
 
-McLaren's Silverstone record is strong, and Norris has been quietly consistent without ever threatening the top two. He was seventh in Austria from the third row — not spectacular but not embarrassing either. If McLaren bring an upgrade for their home race, he becomes relevant in the sprint and potentially the race. Hold unless you need the budget for something specific.
+Ninth in Austria, and quietly building a case as one of the more reliable point-scorers in the midfield. Lawson has looked composed in recent rounds at a circuit — the Red Bull Ring — that can ruthlessly expose setup weaknesses. Silverstone's high-speed nature should play to Racing Bulls' strengths, and his consistency means he is not a sell unless you genuinely need the budget for a front-end upgrade.
 
 🔴 SELL
 
