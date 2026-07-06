@@ -18,6 +18,7 @@ export interface Race {
   flag: string
   isSprint: boolean
   timezone: string
+  dateRange: string
   sessions: Session[]
 }
 
@@ -30,6 +31,7 @@ export const CURRENT_RACE: Race = {
   flag: 'be',
   isSprint: false,
   timezone: 'Europe/Brussels',
+  dateRange: '17–19 Jul',
   sessions: [
     { name: 'Practice 1', short: 'FP1',  date: 'Fri 17 Jul', dateISO: '2026-07-17T11:30:00Z', timeUTC: '11:30 UTC', timeLocal: '13:30 CEST', completed: false, duration: 60  },
     { name: 'Practice 2', short: 'FP2',  date: 'Fri 17 Jul', dateISO: '2026-07-17T15:00:00Z', timeUTC: '15:00 UTC', timeLocal: '17:00 CEST', completed: false, duration: 60  },
@@ -657,6 +659,7 @@ function buildRaceFromCalendar(cal: typeof SEASON_CALENDAR[0], now: Date): Race 
     flag:      cal.flag,
     isSprint:  cal.sprint,
     timezone:  cal.timezone,
+    dateRange: cal.dateRange,
     sessions,
   }
 }

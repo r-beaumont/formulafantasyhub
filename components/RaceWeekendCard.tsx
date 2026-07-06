@@ -84,8 +84,11 @@ export default function RaceWeekendCard() {
 
       {/* Body */}
       <div style={{ padding: '20px 20px 0', flex: 1 }}>
-        <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', lineHeight: 1, marginBottom: '14px' }}>
+        <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', lineHeight: 1, marginBottom: '4px' }}>
           {race.name}
+        </div>
+        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: 'var(--muted)', marginBottom: '14px', letterSpacing: '0.5px' }}>
+          {race.dateRange}
         </div>
         <div className="sessions-grid" style={{ display: 'grid', gridTemplateColumns: `repeat(${race.sessions.length},1fr)`, gap: '8px' }}>
           {race.sessions.map(s => {
