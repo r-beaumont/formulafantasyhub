@@ -18,6 +18,53 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'british-gp-2026-what-we-learned',
+    title: 'What We Learned: British Grand Prix',
+    excerpt: "Charles Leclerc takes a dramatic victory as Antonelli hits trouble late on, Racing Bulls continue to lead the midfield fight, and Hadjar delivers another statement result. Here is what Silverstone told us.",
+    readTime: 5,
+    date: 'Jul 6, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #00001a 0%, #00003d 50%, #00001a 100%)',
+    thumbnailBg: 'rgba(0,100,200,0.25)',
+    thumbnailIcon: 'gb',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/british-gp-2026-what-we-learned',
+    content: `Charles Leclerc converted a clean first-stint advantage into a Silverstone victory that was already in the bag before the late safety car period compressed the field — and Kimi Antonelli's race unravelled just as the finish line was in sight. A five-second penalty for exceeding track limits dropped the championship leader from a potential podium to fifteenth. Ferrari took maximum points, Racing Bulls brought home two more top-seven finishes, and Isack Hadjar reminded everyone exactly why he belongs in that Red Bull seat.
+
+---
+
+**ANTONELLI IS STILL RAPID — THE ISSUES DON'T CHANGE THAT**
+
+There were two parts to **Kimi Antonelli's** British Grand Prix. The first part: he qualified on pole, won the sprint, and set the fastest race pace in the middle sector for large portions of the grand prix. The second part: a five-second track limits penalty cost him twelve places in the classified result and left him fifteenth. That result will sting, and the championship lead — still 40 points-plus over the field — has been trimmed further. But the underlying pace at Silverstone was exceptional. He topped sprint qualifying, beat a circuit full of fast drivers to sprint victory, and showed again that when the Mercedes is working, it is the fastest car on the grid. The issue at Silverstone was not ability. It was a marginal track limits call that compounded into a painful afternoon. Over a full season, the pace matters more than any single incident. Antonelli remains the driver to beat.
+
+---
+
+**RACING BULLS ARE THE SUPERIOR MIDFIELD OUTFIT — AND THE GAP IS GROWING**
+
+**Liam Lawson** sixth. **Arvid Lindblad** seventh. Racing Bulls scored 14 points at Silverstone — more than McLaren managed after Piastri's difficult afternoon, and significantly more than anyone else in the midfield. Across the last four rounds, Racing Bulls have consistently been the best-scoring team outside the top three constructors, and the margin is no longer close. Their car handles the high-speed demands of Silverstone as well as it handled Monaco's technical precision, Austria's rear-limited layout, and Spain's mixed demands. That kind of consistency across different circuit characteristics is a sign of a genuine package strength rather than a circuit-specific sweet spot. As the calendar heads into Spa — a circuit that rewards top-end speed and energy recovery — Racing Bulls will again be the team to beat in the midfield fight.
+
+---
+
+**FERRARI ARE MORE COMPETITIVE THAN WE GAVE THEM CREDIT FOR**
+
+Before Silverstone, Ferrari's 2026 season looked like a story of inconsistency: strong in Melbourne, competitive in China, but struggling to challenge consistently when it mattered. Silverstone resets that narrative. **Charles Leclerc** took pole at Sprint Qualifying in the wrong order, led the grand prix from start to finish before the safety car, and still came away with a clean win when the field compressed at the end. **Lewis Hamilton** qualified third on home soil and finished third in the race. Ferrari scored 40 points from the weekend across qualifying, sprint and race, and brought both cars home in the top three. The question heading to Belgium is whether the Ferrari package can maintain that level at Spa's long straights, where power unit output and energy management over a 7km lap will expose every car's weaknesses. Ferrari's recent performances have come on circuits with mixed high and medium-speed demands. Spa's long-haul layout is a different question. The answer will define whether this is a genuine Ferrari resurgence or a circuit-specific peak.
+
+---
+
+**BATTERY MANAGEMENT WAS EXPOSED AT SILVERSTONE — AND SPA IS NEXT**
+
+The new 2026 hybrid regulations were a constant talking point at Silverstone, with several drivers and engineers noting that the high-speed continuous load of Maggotts-Becketts-Chapel and the Hangar Straight depletes the battery faster than almost any other circuit configuration on the calendar. Drivers could be seen managing the power unit deployment through the middle sector to preserve enough charge for the straight-line sections. Some of the unexpected pace drops in the mid-race phase were attributable to energy conservation rather than tyre degradation. Now the calendar goes straight to Spa-Francorchamps — a circuit with the longest sustained full-throttle sections of the season and over 100 metres of elevation change that demands constant power. The Kemmel Straight and the run from Raidillon to Les Combes is a 1.3km wide-open section at close to 300 km/h. If teams were managing batteries at Silverstone, Spa will expose those management limits even more. The teams that have solved energy deployment — Mercedes, Ferrari at their best — will have an advantage. The ones that have not will find Spa very long indeed.
+
+---
+
+**HADJAR IS PROVING WHY HE EARNED THAT SECOND RED BULL SEAT**
+
+**Isack Hadjar** started fifth on the grid, having outqualified Max Verstappen for the third time this season — a statistic that tells its own story — and finished fifth in the race. That is five top-six finishes from the last five rounds. His qualifying performances against Verstappen now read: P5 to P7 (Silverstone sprint qualifying); P5 to P7 (Silverstone main qualifying). Combined with Monaco, Barcelona and Austria, Hadjar has beaten Verstappen in qualifying three times in 2026. The Red Bull seat that sceptics questioned at the start of the season looks, at this point in the campaign, entirely deserved. He has the racecraft to manage pressure from faster cars, the qualifying pace to challenge deep into Q3, and the consistency to score heavy points when Red Bull are not fighting at the front. Belgium will tell us whether the upgrade package that brought Verstappen back to form in Austria — and appeared to be working at Silverstone until his DNF — can give Hadjar his first genuine race win opportunity.`,
+  },
+  {
     slug: 'race-week-preview-british-gp-2026',
     title: 'Race Week Preview: British Grand Prix',
     excerpt: "Isack Hadjar has four top-six finishes in a row, Red Bull's upgrade is working, and Kimi Antonelli still leads by 40 points. Here is your F1 Fantasy watchlist for Silverstone.",

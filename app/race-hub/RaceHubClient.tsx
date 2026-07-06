@@ -290,7 +290,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       dnfHistory: { y2023: 1, y2024: 0, y2025: 4, avg: 1.67 },
     },
     9: { // Britain — Silverstone
-      lastWinner: 'G. Russell',
+      lastWinner: 'C. Leclerc',
       mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 9,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 19,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 7,

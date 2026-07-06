@@ -16,17 +16,17 @@ export interface CircuitInfo {
 
 // ✏️ Update each race week
 export const CURRENT_CIRCUIT: CircuitInfo = {
-  name: 'Miami International Autodrome',
-  location: 'Miami Gardens, Florida',
-  country: 'United States',
-  flag: 'us',
-  laps: 57,
-  distance: '5.412 km',
-  lapRecord: '1:29.708',
+  name: 'Circuit de Spa-Francorchamps',
+  location: 'Spa-Francorchamps, Belgium',
+  country: 'Belgium',
+  flag: 'be',
+  laps: 44,
+  distance: '7.004 km',
+  lapRecord: '1:46.286',
   lapRecordHolder: 'M. Verstappen',
   lapRecordYear: 2023,
-  firstGP: 2022,
-  description: 'A purpose-built street-style circuit around the Hard Rock Stadium complex. Long straights, heavy braking zones and a mix of slow and medium-speed corners. Safety cars are common and pit stop strategy is critical. High kerb usage and track limits are a recurring factor.',
-  drsZones: 3,
+  firstGP: 1950,
+  description: 'One of the greatest circuits on the calendar. The Ardennes layout features extreme elevation change, the iconic Raidillon climb, and long full-throttle sections that expose energy management and power unit capability. Weather can change lap to lap. Two DRS zones on Kemmel Straight and the run to Bus Stop chicane.',
+  drsZones: 2,
   turns: 19,
 }
