@@ -64,7 +64,7 @@ Don't panic-sell the championship leader. The Mercedes is still the quickest car
 
 **Isack Hadjar**
 
-He starts from the back, likely P22, after Red Bull stacked up power unit changes for this weekend. Normally that's a sell, but Hadjar has been one of the form drivers of the season and Spa is the best circuit on the calendar to recover from a penalty. He'll be picking cars off down the Kemmel all afternoon. Hold, collect the overtake points, and thank yourself later.
+He starts from the back, likely P22, after Red Bull stacked up power unit changes for this weekend. Hadjar has been one of the form drivers of the season and Spa is the best circuit on the calendar to recover from a penalty. He'll be picking cars off down the Kemmel all afternoon. Hold, collect the overtake points, and thank yourself later.
 
 🔴 SELL
 
@@ -74,7 +74,7 @@ The wrong Alpine. Gasly's price has crept up while his teammate outscores him, a
 
 **Valtteri Bottas**
 
-The Cadillac is barely scoring and Spa is brutal on cars that are down on power and thirsty on energy. There's no price upside left and no realistic points coming. He's dead weight in a week where budget flexibility wins. Cut him.
+Unreliability continues to be a problem, with better budget-enabling options such as Hulkenberg and Lindblad lying in wait. Cut him.
 
 **THE CHIPS**
 
