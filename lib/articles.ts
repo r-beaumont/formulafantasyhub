@@ -18,6 +18,69 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-belgian-gp-2026',
+    title: 'Race Week Preview: Belgian Grand Prix',
+    excerpt: "Antonelli's lead is down to 25 points, and Spa is the worst circuit on the calendar for him. Here is your F1 Fantasy watchlist for Belgium.",
+    readTime: 4,
+    date: 'Jul 15, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a1500 0%, #3d3300 50%, #1a1500 100%)',
+    thumbnailBg: 'rgba(255,204,0,0.25)',
+    thumbnailIcon: 'be',
+    thumbnailImage: '/thumbnail-race-preview.png',
+    ogImage: 'https://formulahub.live/og/race-week-preview-belgian-gp-2026',
+    content: `**THE SETUP**
+
+Nine rounds in and the title fight just got interesting. Charles Leclerc won a chaotic Silverstone, Russell and Hamilton joined him on the podium, and pole-sitter Kimi Antonelli scored nothing after a wheel shield failure. His championship lead is down to 25 points. Mercedes still control the constructors' table, 333 points to Ferrari's 255, but Ferrari have the momentum. This is also the first leg of the final doubleheader before the summer break, so every call counts double.
+
+**THE CIRCUIT**
+
+Spa-Francorchamps is 7km of overtaking. The Kemmel Straight turns a bad Saturday into a recoverable Sunday, which is exactly why two teams have chosen this weekend to take engine penalties. Build for race pace and position gains, not qualifying heroes. Safety car probability is high too — last year's start was delayed 80 minutes and lap one ran behind the safety car. Budget for chaos across 44 laps, because Spa usually delivers it.
+
+**THE WEATHER**
+
+The Ardennes is doing its usual thing. Friday brings a 40% chance of showers with thunderstorms mixed in, Saturday looks the calmest day of the three, and the storm threat still hasn't fully left Sunday's forecast. Race day sits around a 28% chance of localised showers, down from over 50% earlier in the week, with a cool high of 19°C. If those storms drift back over the race, expect safety cars and carnage. Keep one eye on the radar right up to the deadline.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Lando Norris**
+
+Yes, really. He takes a 10-place grid penalty this weekend after moving to his fourth power electronics unit of the season, and McLaren picked Spa deliberately because you can actually overtake here, unlike Hungary and Zandvoort next up. That means a stacked haul of overtake points is on the table for a driver with 40 straight Q3 appearances and genuine podium pace. The market will run scared of the penalty. You shouldn't.
+
+**Franco Colapinto**
+
+The easiest money in the game this week. Colapinto needs a single Fantasy point to trigger the maximum price rise, and he's coming off a career-high 27 at Silverstone with top-10 finishes in two of his last three. Even a quiet weekend builds your team value. Buy him before Saturday and let the game do the rest.
+
+🟡 HOLD
+
+**Kimi Antonelli**
+
+Don't panic-sell the championship leader. The Mercedes is still the quickest car on the grid and he took pole at Silverstone before the failure. But his 2025 Spa was a horror show — out in SQ1, out in Q1, P16 in the race. That history, plus a DNF fresh in the memory, means this isn't the week to buy in either. If you own him, sit tight and let Spa pass.
+
+**Isack Hadjar**
+
+He starts from the back, likely P22, after Red Bull stacked up power unit changes for this weekend. Normally that's a sell, but Hadjar has been one of the form drivers of the season and Spa is the best circuit on the calendar to recover from a penalty. He'll be picking cars off down the Kemmel all afternoon. Hold, collect the overtake points, and thank yourself later.
+
+🔴 SELL
+
+**Pierre Gasly**
+
+The wrong Alpine. Gasly's price has crept up while his teammate outscores him, and Colapinto is doing it for millions less in the same car. When the cheaper driver in the same machinery is faster and about to rise in value, the trade writes itself. Move the money.
+
+**Valtteri Bottas**
+
+The Cadillac is barely scoring and Spa is brutal on cars that are down on power and thirsty on energy. There's no price upside left and no realistic points coming. He's dead weight in a week where budget flexibility wins. Cut him.
+
+**THE CHIPS**
+
+If you're running Antonelli and Hadjar, this is an Autopilot week, no question. Let the game hand your 2x Boost to your top scorer after the race instead of guessing which of your risky starters comes good. The spicier play is 3x Boost on Norris or Hadjar, banking on a monster overtake haul from the penalties. It's hugely risky and hugely differential, but be honest with yourself — there will be better 3x Boost windows on Ferrari and Mercedes drivers later in the year. Autopilot is the smart money.`,
+  },
+  {
     slug: 'british-gp-2026-what-we-learned',
     title: 'What We Learned: British Grand Prix',
     excerpt: "Charles Leclerc takes a dramatic victory as Antonelli hits trouble late on, Racing Bulls continue to lead the midfield fight, and Hadjar delivers another statement result. Here is what Silverstone told us.",
