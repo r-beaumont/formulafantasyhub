@@ -18,6 +18,53 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'belgian-gp-2026-what-we-learned',
+    title: 'What We Learned: Belgian Grand Prix',
+    excerpt: "Charles Leclerc wins after Ferrari finally get the strategy right, George Russell's pole turns into a retirement inside two laps, and Isack Hadjar recovers from P21 to finish ahead of Lando Norris. Here is what Spa told us.",
+    readTime: 5,
+    date: 'Jul 20, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #001a0d 0%, #003d1f 50%, #001a0d 100%)',
+    thumbnailBg: 'rgba(0,150,80,0.22)',
+    thumbnailIcon: 'be',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/belgian-gp-2026-what-we-learned',
+    content: `Charles Leclerc converted a strategy masterclass into Ferrari's second win of the season at Spa-Francorchamps, leading for the majority of the Belgian Grand Prix after a pit call that finally got the sequencing right. George Russell's afternoon fell apart almost as soon as it began — pole position lasted barely a lap before he was picked off down the Kemmel Straight, and a coming-together with Lewis Hamilton ended his race outright. Isack Hadjar produced the standout drive of the weekend, recovering from a back-of-the-grid penalty to finish inside the points ahead of Lando Norris, and battery management dominated the paddock conversation for a second straight weekend. Kimi Antonelli's championship lead is down to 38 points over Hamilton with one round to go before the summer break.
+
+---
+
+**FERRARI FINALLY GOT THE STRATEGY RIGHT**
+
+For a team that has spent most of 2026 explaining away strategy calls that cost them results, Spa was the answer. **Charles Leclerc** ran a longer opening stint than the cars around him, gave up nothing to Russell's early pace, and emerged from the pit cycle with track position that never looked in danger. He led for the best part of 30 laps, weathered a late Safety Car restart, and crossed the line comfortably clear at the front. It was Ferrari's second win of the season and, more importantly, proof that the pit wall can get a Sunday right when it matters. Whether that is a turning point or a one-off will become clearer at a very different circuit in Hungary, where strategy is a far smaller variable than at a 7km power track like Spa.
+
+---
+
+**RUSSELL'S SPA NIGHTMARE CONTINUES**
+
+**George Russell** took pole position by over a tenth from his own teammate, and it counted for almost nothing. He was picked off down the Kemmel Straight inside the opening lap, losing the net lead before the field had even settled, and never recovered the position. The race unravelled further when he made contact with **Lewis Hamilton** and was forced into retirement — Hamilton picked up a five-second penalty for the incident but still salvaged fourth. It is the second time in three seasons Spa has turned into a horror show for Russell, and with Antonelli extending Mercedes' points lead in the very same race, this was as costly a zero as the team has taken all year.
+
+---
+
+**HADJAR'S DRIVE FROM THE BACK OF THE GRID WAS THE STORY OF THE RACE**
+
+**Isack Hadjar** qualified eighth, was handed a grid penalty for a power unit element change, and lined up 21st on Sunday. He finished sixth — ahead of **Lando Norris**, who started inside the top ten. It is the single best recovery drive of Hadjar's season, built on exactly the kind of overtaking Spa's long straights are designed to reward, and it continues a run of results that has made the case for his Red Bull seat all but unarguable. Red Bull will take useful information from the penalty too: on a track built for passing, being demoted 13 places cost Hadjar almost nothing in the final classification.
+
+---
+
+**BATTERY MANAGEMENT IS STILL UNSOLVED**
+
+For the second race weekend in a row, energy deployment was the talking point in the paddock. Several drivers — Norris and Piastri among the most vocal — described having to back off through sequences of Spa's long full-throttle sections to preserve enough charge for the straight that followed, a compromise that shows up directly in lap time on a circuit with as much sustained high-speed running as this one. The 2026 hybrid regulations were meant to settle down as teams learned their power units through the season; instead, the conversation from Silverstone has followed the field straight to the Ardennes. Whichever teams solve deployment first will have an advantage that compounds everywhere, not just at power circuits — and right now, nobody has fully solved it.
+
+---
+
+**ONE MORE ROUND BEFORE THE SUMMER BREAK**
+
+The calendar allows no time to dwell on Spa. Hungary is next, the last round before a four-week summer break, and every team on the grid will be treating it as the last chance to bank a result before the shutdown. Aston Martin are expected to bring an upgrade package to the Hungaroring, their first significant development step in weeks for a team still searching for a result of real substance this season. Everyone else arrives simply looking to finish the first half of the year on the front foot rather than carry a bad result into August. Antonelli's championship lead is down to 38 points over Hamilton, 43 over Russell and 64 over Leclerc — tight enough that Hungary's low-overtaking, qualifying-dependent layout could reshape the picture again before anyone gets a summer off.`,
+  },
+  {
     slug: 'race-week-preview-belgian-gp-2026',
     title: 'Race Week Preview: Belgian Grand Prix',
     excerpt: "Antonelli's lead is down to 25 points, and Spa is the worst circuit on the calendar for him. Here is your F1 Fantasy watchlist for Belgium.",
