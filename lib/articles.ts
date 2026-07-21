@@ -18,6 +18,59 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'belgian-gp-2026-what-we-learned',
+    title: 'What We Learned: Belgian Grand Prix',
+    excerpt: "Kimi Antonelli ends his win drought at the perfect moment, the Mercedes title fight comes apart in the Turn 6 gravel, and the recovery drives reshape the Fantasy market before Hungary. Here is what the 2026 Belgian Grand Prix told us.",
+    readTime: 4,
+    date: 'Jul 19, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #001a0d 0%, #003d1f 50%, #001a0d 100%)',
+    thumbnailBg: 'rgba(0,150,80,0.22)',
+    thumbnailIcon: 'be',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/belgian-gp-2026-what-we-learned',
+    content: `Spa-Francorchamps delivered a Belgian Grand Prix that swung on a single lap: a first-corner scrap for the lead, a Safety Car before the field had settled, and a Mercedes civil war that left one silver car in the gravel. When the dust cleared, Kimi Antonelli had beaten Charles Leclerc by 1.9 seconds for his sixth win of the season, and the championship picture had been redrawn.
+
+---
+
+**KIMI ANTONELLI ANSWERED THE BIGGEST QUESTION OF HIS SEASON**
+
+Five races without a win had given rivals reason to believe the champagne run of spring was over, and **Kimi Antonelli** spent Sunday dismantling that theory. He lost the lead to **Max Verstappen** into Eau Rouge on the opening lap and took it straight back down the Kemmel Straight, then survived an early Safety Car restart with the pack breathing down his neck. When Ferrari's pit work briefly put Leclerc ahead, Antonelli refused to panic, closed back in, and made the decisive move stick on the Kemmel Straight. This was his first victory since Monaco and his most complete performance since then, built on racecraft rather than raw car advantage. He goes into the summer break as the clear title favourite, and he earned it.
+
+---
+
+**GEORGE RUSSELL'S TITLE CHALLENGE IS IN SERIOUS TROUBLE**
+
+**George Russell** arrived at Spa 25 points behind his teammate and left 50 adrift, and the manner of it stings far more than the number. Swallowed by both Ferraris off the line, Russell darted back at **Lewis Hamilton** into Turn 6, made contact, and beached his Mercedes in the gravel before the first lap was complete. The stewards blamed Hamilton, who admitted he was "right behind another car so had no front end," and handed him a five-second penalty. None of that returns a single point to Russell. Zero scores against a teammate winning races are close to fatal, and with Hamilton now second in the standings, Russell is once again not even the lead challenger to Antonelli's title charge.
+
+---
+
+**FERRARI IS NOW THE STRONGEST FULL-TEAM THREAT TO MERCEDES**
+
+**Charles Leclerc** pushed Antonelli all the way to the flag and crossed the line 1.9 seconds short, backing up his win last time out with the sustained front-running pace Ferrari has been promising all year. Behind him, **Lewis Hamilton** recovered from his lap one penalty to finish fourth, ahead of **Oscar Piastri**, and now sits 45 points behind Antonelli as the closest man in the championship. The bigger picture is what should worry Mercedes: both red cars finished in the top four while only one silver car scored, and Leclerc is just 28 points behind Russell. Ferrari's operational execution, especially the stop that vaulted Leclerc into the lead, was the sharpest on the pit lane. The second half of this season is shaping up as Antonelli against two Ferraris.
+
+---
+
+**THE RECOVERY DRIVES WERE THE REAL MEASURE OF PACE AT SPA**
+
+**Isack Hadjar** charged from the back row to sixth, a recovery that confirmed the pace he showed all weekend was no illusion. **Lando Norris** finished seventh, a top-six target one spot short but with a fresh engine that pays off across the second half of the year. Behind them, **Gabriel Bortoleto** banked another points finish for Audi in eighth, while **Arvid Lindblad** and **Franco Colapinto** completed the top ten after Racing Bulls and Alpine ran strongly all afternoon. Spa rewards true car pace like nowhere else, and the midfield order it produced is the most honest reading of the pecking order in months.
+
+---
+
+**THE FANTASY MARKET IS ABOUT TO REWARD THE SUNDAY CHARGERS**
+
+The price movers before the Hungary deadline picked themselves at Spa. **Franco Colapinto** needed a single point for his maximum $0.6m rise and delivered exactly that in tenth, while **Gabriel Bortoleto** needed three and banked eighth, so both budget enablers get more expensive this week. **Isack Hadjar** has climbed $1.8m across the last three rounds, and a drive from the back row to sixth keeps that surge going. The obvious faller is **George Russell**, who recorded -11 points across the weekend with huge ownership. With Hungary closing out the double-header before the summer break, lock in the risers early, and if you are still holding a Wildcard or Final Fix, remember that a track rewarding Qualifying over race pace is a very different puzzle from the one Spa just set.
+
+---
+
+**ONE MORE ROUND BEFORE THE SUMMER BREAK**
+
+The first half of the season wraps up at the Hungaroring next weekend, the tight, twisty circuit drivers call Monaco without walls, where Qualifying counts double and overtaking is a rumour. It is one last chance for Russell to stop the bleeding, for Ferrari to cut into the gap, and for Antonelli to make his lead look unassailable before the paddock goes quiet.`,
+  },
+  {
     slug: 'race-week-preview-belgian-gp-2026',
     title: 'Race Week Preview: Belgian Grand Prix',
     excerpt: "Antonelli's lead is down to 25 points, and Spa is the worst circuit on the calendar for him. Here is your F1 Fantasy watchlist for Belgium.",

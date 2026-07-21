@@ -125,8 +125,8 @@ if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'test') {
   console.log('\n── seasonStats verification ──────────────────────────────')
   const check = [
     { name: 'George Russell',  expPts: 154, expWins: 2, expPodiums: 5, expPoles: 5 },
-    { name: 'Kimi Antonelli',  expPts: 197, expWins: 5, expPodiums: 8, expPoles: 5 },
-    { name: 'Charles Leclerc', expPts: 133, expWins: 2, expPodiums: 4, expPoles: 0 },
+    { name: 'Kimi Antonelli',  expPts: 204, expWins: 6, expPodiums: 8, expPoles: 5 },
+    { name: 'Charles Leclerc', expPts: 126, expWins: 1, expPodiums: 4, expPoles: 0 },
     { name: 'Lewis Hamilton',  expPts: 159, expWins: 1, expPodiums: 5, expPoles: 0 },
   ]
   for (const { name, expPts, expWins, expPodiums, expPoles } of check) {

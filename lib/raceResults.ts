@@ -936,21 +936,21 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
       { position: 22, name: 'Nico Hülkenberg',   team: 'Audi',            team_colour: '#52E252', q1: '1:44.312', q2: null, q3: null,              time: '1:44.312' },
     ],
     race: [
-      // Russell lost the lead almost immediately down the Kemmel Straight on lap 1, then retired mid-race after contact with Hamilton.
-      // Hamilton handed a 5s time penalty for the incident, still classified P4. Leclerc led a long stint after Ferrari's strategy call and converted it into the win.
-      { position: 1,  name: 'Charles Leclerc',   team: 'Ferrari',         team_colour: '#E8002D', time: '1:24:07.418', gap: '—'        },
-      { position: 2,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', time: '—',           gap: '+3.214s'  },
+      // Russell lost the lead almost immediately at Turn 6 on lap 1 after contact with Hamilton, then retired.
+      // Hamilton handed a 5s time penalty for the incident, still recovered to classify P4. Antonelli fended off a late Leclerc charge to win.
+      { position: 1,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', time: '1:24:05.518', gap: '—'        },
+      { position: 2,  name: 'Charles Leclerc',   team: 'Ferrari',         team_colour: '#E8002D', time: '—',           gap: '+1.900s'  },
       { position: 3,  name: 'Max Verstappen',    team: 'Red Bull Racing', team_colour: '#3671C6', time: '—',           gap: '+9.887s'  },
       { position: 4,  name: 'Lewis Hamilton',    team: 'Ferrari',         team_colour: '#E8002D', time: '—',           gap: '+14.552s' },
       { position: 5,  name: 'Oscar Piastri',     team: 'McLaren',         team_colour: '#FF8000', time: '—',           gap: '+22.098s' },
       { position: 6,  name: 'Isack Hadjar',      team: 'Red Bull Racing', team_colour: '#3671C6', time: '—',           gap: '+28.671s' },
       { position: 7,  name: 'Lando Norris',      team: 'McLaren',         team_colour: '#FF8000', time: '—',           gap: '+31.045s' },
-      { position: 8,  name: 'Liam Lawson',       team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+38.212s' },
-      { position: 9,  name: 'Pierre Gasly',      team: 'Alpine',          team_colour: '#FF87BC', time: '—',           gap: '+42.556s' },
-      { position: 10, name: 'Arvid Lindblad',    team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+47.309s' },
-      { position: 11, name: 'Oliver Bearman',    team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: '+1 LAP'   },
-      { position: 12, name: 'Franco Colapinto',  team: 'Alpine',          team_colour: '#FF87BC', time: '—',           gap: '+1 LAP'   },
-      { position: 13, name: 'Gabriel Bortoleto', team: 'Audi',            team_colour: '#52E252', time: '—',           gap: '+1 LAP'   },
+      { position: 8,  name: 'Gabriel Bortoleto', team: 'Audi',            team_colour: '#52E252', time: '—',           gap: '+38.212s' },
+      { position: 9,  name: 'Arvid Lindblad',    team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+42.556s' },
+      { position: 10, name: 'Franco Colapinto',  team: 'Alpine',          team_colour: '#FF87BC', time: '—',           gap: '+47.309s' },
+      { position: 11, name: 'Liam Lawson',       team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+1 LAP'   },
+      { position: 12, name: 'Pierre Gasly',      team: 'Alpine',          team_colour: '#FF87BC', time: '—',           gap: '+1 LAP'   },
+      { position: 13, name: 'Oliver Bearman',    team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: '+1 LAP'   },
       { position: 14, name: 'Carlos Sainz',      team: 'Williams',        team_colour: '#64C4FF', time: '—',           gap: '+1 LAP'   },
       { position: 15, name: 'Alex Albon',        team: 'Williams',        team_colour: '#64C4FF', time: '—',           gap: '+1 LAP'   },
       { position: 16, name: 'Esteban Ocon',      team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: '+1 LAP'   },
