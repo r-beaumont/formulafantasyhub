@@ -18,6 +18,69 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-hungarian-gp-2026',
+    title: 'Race Week Preview: Hungarian Grand Prix',
+    excerpt: "Antonelli doubled his lead at Spa. Hungary is where Ferrari get one last swing before the break. Here is your F1 Fantasy watchlist for the Hungaroring.",
+    readTime: 3,
+    date: 'Jul 25, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0006 0%, #3d0014 50%, #1a0006 100%)',
+    thumbnailBg: 'rgba(232,0,45,0.22)',
+    thumbnailIcon: 'hu',
+    thumbnailImage: '/thumbnail-race-preview.png',
+    ogImage: 'https://formulahub.live/og/race-week-preview-hungarian-gp-2026',
+    content: `**THE SETUP**
+
+Kimi Antonelli won Spa and doubled his championship lead in one afternoon. George Russell's title challenge went into the gravel at Turn 1, courtesy of contact with Hamilton, and Mercedes have admitted his car still has problems. Ferrari have quietly won two of the last three, and they topped both Friday sessions here. This is the last race before four weeks of summer break. Score now or stew on it until September.
+
+**THE CIRCUIT**
+
+The Hungaroring is Monaco without the walls. 70 laps of 4.4km where qualifying decides almost everything — overtaking is Turn 1 or nowhere. That kills the upside for positions-gained merchants, so drop the recovery-drive picks. The frontrunners deliver here, and cheap punts need a miracle qualifying to pay off.
+
+**THE WEATHER**
+
+Hot and dry, near enough. 29°C for qualifying, 30°C at lights out, with the storm system heading for Budapest arriving hours after the flag. There's a small late shower risk on Sunday worth watching.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Charles Leclerc**
+
+The slow and medium-speed corners here suit the Ferrari perfectly, and the bookmakers agree — he's one of the favourites for the race win. He took Silverstone and chased Antonelli to within 1.9 seconds at Spa. A popular candidate for the 2x Boost this weekend.
+
+**Lewis Hamilton**
+
+The alternative to Leclerc or Antonelli on the 2x Boost. He's already banked a win in Spain this season, and after both Ferraris finished P1 in Friday practice, this is the team most likely to deliver a race win on Sunday.
+
+🟡 HOLD
+
+**Kimi Antonelli**
+
+Six wins and the fantasy points leader. He may not be the favourite for the win this weekend, but he's a solid contender for the podium. You may want him back in Zandvoort, so if you're running 4A in Hungary, consider throwing the 2x on a Ferrari driver and holding Antonelli through the summer break.
+
+**Isack Hadjar**
+
+An easy hold. Q3 in all but one qualifying session this year, and the Hungaroring rewards exactly that. Ride his price rises through the coming weekends until we get to 4A lineups that will become more common in the game come Monza and Madrid — he's still an excellent mid-price anchor producing at an A-Tier level.
+
+🔴 SELL
+
+**Liam Lawson**
+
+For what he costs you, better value exists elsewhere. Lindblad, Bortoleto and Bearman all offer more value and budget gain upside at a circuit where overtaking barely happens.
+
+**Red Bull**
+
+A move back to Ferrari looks likely for a lot of teams this week. Assuming Mercedes bounce back in FP3, the Austrian team is the obvious casualty in the constructor department. Free up the budget and put it where the pace is.
+
+**THE CHIPS**
+
+No chip is necessary this weekend. If you want one, Autopilot is the only defensible play — it covers Driver of the Day potential for a Ferrari and gives you a hedge against the late rain risk. Otherwise save everything and plan properly over the break.`,
+  },
+  {
     slug: 'belgian-gp-2026-what-we-learned',
     title: 'What We Learned: Belgian Grand Prix',
     excerpt: "Kimi Antonelli ends his win drought at the perfect moment, the Mercedes title fight comes apart in the Turn 6 gravel, and the recovery drives reshape the Fantasy market before Hungary. Here is what the 2026 Belgian Grand Prix told us.",
