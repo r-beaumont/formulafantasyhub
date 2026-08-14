@@ -18,6 +18,191 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'f1-fantasy-2026-season-so-far-creator-roundtable',
+    title: 'The F1 Fantasy 2026 Season So Far: Creator Roundtable',
+    excerpt: 'Rob Beaumont brought together Euan, Luke and Quintin over the summer break to unpack a first half defined by retirements, the scramble towards 4A lineups, and where the last big chips should land.',
+    readTime: 7,
+    date: 'Aug 14, 2026',
+    tag: 'Guest Interview',
+    category: 'Guest Interview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0a3d 0%, #3d1b6e 50%, #1a0a3d 100%)',
+    thumbnailBg: 'rgba(155,89,182,0.25)',
+    thumbnailIcon: 'nl',
+    thumbnailImage: '/thumbnail-other-articles.png',
+    ogImage: 'https://formulahub.live/og/f1-fantasy-2026-season-so-far-creator-roundtable',
+    content: `Eleven races into 2026 and the game is about to reshape itself. Between Zandvoort and Singapore, the expectation among three of F1 Fantasy's most recognisable content creators is that the majority of engaged managers will restructure towards 4A: two A tier constructors alongside two A tier drivers. Funding that move means selling the midfield assets that built everyone's budget in the first place, and the timing of it is likely to decide where teams finish.
+
+Rob Beaumont sat down with [Euan](https://x.com/F1FantasyEuan) of F1 Fantasy Pole Position (@F1FantasyEuan), [Luke](https://x.com/LukeFF1Fantasy) of Luke F1 Fantasy Strategy (@LukeFF1Fantasy) and [Quintin](https://x.com/BoxBoxF1Fantasy) of BoxBox F1 Fantasy (@BoxBoxF1Fantasy) to work through what the first half taught them, and what the run home demands.
+
+---
+
+**A First Half Decided By Retirements, Not Pace**
+
+The three arrived at the break in very different places, and almost none of the difference came down to asset selection.
+
+Luke went into the season with full conviction in George Russell, and held it too long. "The mistake has been to just fully back that historical data on George Russell," he said, acknowledging he missed most of Kimi Antonelli's five-win run. A three-race stretch across Canada, Monaco and Barcelona then produced two DNFs and a non-classification for his 2x Boost driver.
+
+The damage was concentrated at the top of his lineup. Everything below it worked. "That team right now is $126m in budget, three million more than any of my other teams that have 20,000 higher spots in the global ranks."
+
+Euan's route has been the opposite, and he is unapologetic about it. One of his squads sits inside the global top 200 on what he cheerfully describes as the least interesting strategy in the game. "I am on every deadline stream being like, can I be more exciting? No." His method is simple and rigid: "I'm not chasing points. I'm not chasing budget. If it doesn't look right to me, I'm not making that move." He has since floated "the most boring manager in F1 Fantasy" as a second-half moniker for himself.
+
+Quintin, meanwhile, has spent the season calibrating the simulation models he publishes at boxboxf1fantasy.com, and admits the early rounds saw him swing between extremes. "I'd go, okay, I'm gonna play very proactively this race week, I'm gonna go risky. Then it'd backfire and then I would go the opposite way, be too risk averse."
+
+---
+
+**Data Or Gut Feel**
+
+Quintin's resolution to that problem produced the sharpest line of the discussion, and one worth committing to memory.
+
+"Eighty percent of the time, the model gives me the twenty percent of the best results," he said. "And the other twenty percent of the time, your gut feeling gives you eighty percent of the best results."
+
+He spent the first three rounds treating his own output as a secondary reference point rather than a decision-maker, only trusting it once he had tracked its accuracy over successive weekends. The conclusion is not that the data wins. It is that stripping instinct out entirely removes both the edge and the point. "That's part of the skill and part of the fun, honestly."
+
+---
+
+**Racing Bulls Have Been The Story Of The Season**
+
+Asked to name the standout asset of 2026, Euan did not hesitate. "Racing Bulls have knocked my socks off this year. They have been phenomenal."
+
+His reasoning was as much about the competition as the team itself. Audi have been rebuilding, Haas are short of budget, Williams have underdelivered and Cadillac have struggled from the outset. Into that vacuum stepped a team with two drivers racing for their futures. "It's bringing the best out of the team, the best out of the car."
+
+Quintin supplied the numbers. "Racing Bulls have scored 344 fantasy points this season," he said. "They've gone up by 6.6 million so far. They've had a meteoric rise."
+
+What both flagged is where those points come from. Luke pointed to a sub two second stop in Hungary worth twenty points on its own, "which don't come very often." Euan's figures had Mercedes leading pit stop scoring at 7.9 points per race with Racing Bulls a fraction behind on 7.8. These are the categories that compound quietly while managers focus on finishing positions.
+
+Euan attached one warning. "Those guys are definitely gonna crash [into each other] at some point in the second half of the year."
+
+---
+
+**The Sacrificial Lambs**
+
+The problem with owning the best midfield team in the game is that it has become expensive, and the money is needed elsewhere.
+
+"A lot of us that are going to 4A are looking to get Lawson and Lindblad out of our teams because they're quite expensive," Euan said. "And we're gonna be looking to bring them back in as soon as possible, because they go up in budget, they score a bunch of points. But to get to 4A, I think they will have to be, for lack of a better term, the sacrificial lambs."
+
+Quintin is approaching it by splitting his exposure. Two of his teams will hold the current structure a weekend longer, deliberately banking a points delta against everyone restructuring at once, while a third moves early. "I want to maximise the points delta to people who are jumping early to 4A."
+
+---
+
+**The Hadjar Dilemma**
+
+If one asset has defined the first half of 2026 for engaged managers, it is Isack Hadjar. Since Monaco he has been delivering at a rate of knots and comprehensively outperforming his price tag, and the panel was unanimous that holding him has been one of the easiest calls in the game.
+
+Luke framed it as the arrival of something the community has been chasing for years. "What we wanted Yuki Tsunoda to be last year in the Red Bull," he said. "Can we get that B tier driver in the A tier car? We finally have someone that is consistent in that second Red Bull seat. He's delivering Saturday points, delivering Sunday points."
+
+The knock-on effect has been to slow the entire game down. Luke's argument was that without a viable mid-price asset producing at this level, the field would have moved to 4A weeks earlier. "There wasn't a viable option to compete against it, but we have a viable option to compete, which sort of tries to delay things a little bit longer."
+
+Rob's assessment was blunter about the value on offer. "He's performing at an A tier level. That's the reason why we've held him on for so long, because he's delivering production no different to a Leclerc," he said. "When you average it out over five or six races, it's not that different to a Leclerc, or maybe a touch below Hamilton or a George Russell or even an Oscar Piastri. So when you can notch an extra $0.3m in budget and get similar production, it's a no brainer to hold a bit longer."
+
+The turn is coming, though, and it is structural rather than performance-related. As the field restructures towards 4A, Hadjar becomes the obvious asset to make way, and Quintin expects that to begin at the Netherlands sprint. "Those who can afford to go to a 4A lineup, we're gonna see a lot of people dumping Hadjar."
+
+Euan's read was that the price has now climbed far enough that the same output no longer clears the bar. "He is getting expensive now, where those fifteen points may not do the job for us after Zandvoort," he said. "So you can hold on to him for Zandvoort, but for Monza, it might be a different story."
+
+Quintin, whose lower-budget teams cannot yet make the jump, sees an opportunity in that exodus. Holding a weekend longer while others sell banks a points delta against the field, particularly with a sprint on the cards.
+
+---
+
+**Aston Martin And The Three Million Dollar Question**
+
+Luke opened the case for Lance Stroll, and admitted how recently he would have dismissed it. "I was probably saying I would never touch an Aston Martin four or five weeks ago. Now I'm moving off that to being let's take a look."
+
+The logic is structural rather than sentimental. At the price floor, Stroll is the cheapest available route to funding a premium constructor pairing, and his fantasy profile has historically been a Sunday mover rather than a Saturday performer. Rob noted an average qualifying position around twenty first alongside double-digit fantasy returns in three of the four races Stroll has finished, with position gains and overtakes doing the work.
+
+Quintin agreed, though not happily. "As much as it pains me, Stroll is someone we need to consider seriously." He also declined to write off Fernando Alonso as an alternative enabler for teams caught in awkward budget positions.
+
+Euan, watching the conversation unfold, summed up the discomfort of the room. "I'm bringing out Isack Hadjar, that's finished top six in five straight races, for Lance Stroll. That's giving me a migraine. I sound like a crazy person."
+
+Reliability remains the entire risk. The upgrade package has moved the car, but the Honda engine has yet to prove it can see out a race distance consistently.
+
+---
+
+**Chip Timing: Zandvoort Or Singapore**
+
+Two sprints remain, and this is where the panel spent longest.
+
+Quintin's modelling makes the format case plainly. "On a sprint weekend, drivers score approximately seventy percent more fantasy points than a normal weekend." The complication is that waiting for Singapore means deploying into a field where almost everyone has already reached 4A, compressing the available delta. He is leaning towards Zandvoort, having been burned once already: "I played Limitless at Monaco and that bit me in the behind."
+
+Rob's objection to waiting was weather. "My biggest concern with only two sprint races left is if you leave it until Singapore and it's a deluge of rain. You've backed yourself into a corner to use one of the most powerful chips in a super risky weekend."
+
+Luke offered the most interesting counterpoint of the discussion, reframing how Limitless actually generates its advantage. Looking back at previous deployments, he argued the gains rarely come from the uncapped team outperforming. "The meta team underperformed, as opposed to the Limitless team overperforming."
+
+That inverts the trigger. "Does your risk tolerance get a little bit higher, and you go, right, I'm actually just gonna play it on a week where I can see there's a clear meta of B tiers," he said. "And I'm hoping that everyone else picks that and they'll suffer a couple of DNFs, and that's all of a sudden forty points to your delta."
+
+Euan, characteristically, holds one position privately and another publicly. He would prefer Singapore. He expects to advise Zandvoort.
+
+---
+
+**Reading Ahead**
+
+The panel's shared edge is planning two or three weekends out rather than one.
+
+Euan made the case directly, pointing to Williams' announced Baku upgrade, Alex Albon's suggestion that Aston Martin's package is the stronger of the two, and the engine penalties both Mercedes drivers are due on their next power unit change. "It's that kind of thinking where maybe you can look ahead. You hear something in a podcast like this one and it's like, I've got to remember that."
+
+Then there is Sepang, returning for the first time since 2017. Only a fraction of the current grid has raced there. Quintin expects the simulations to be genuinely uncertain, and treats both Malaysia and the Madrid debut as the two most interesting unknowns of the closing stretch.
+
+---
+
+**Is Norris Flying Under The Radar?**
+
+Quintin thinks so. "These last few weekends he has been very impressive, and I think people are sleeping on him just a little bit," he said. "The first few races were atrocious, but over the last five races I think his average was 29.8 points. He might be a big differentiator this last half of the season."
+
+Rob played devil's advocate, noting the recent haul came with a sprint, a grid penalty recovery and a race win attached, none of which repeat weekly. But with a sprint at Zandvoort and a previous win at the circuit, the omens support the case.
+
+Oscar Piastri came up as the cut-price alternative, currently the second cheapest A tier driver, with two forty point weekends already on his 2026 record.
+
+---
+
+**Bold Predictions For F1 And F1 Fantasy**
+
+**Euan**
+
+_F1: "Lando Norris is gonna win the 2026 World Drivers' Championship." He also expects George Russell to finish off the podium in the standings._
+
+_F1 Fantasy: Lance Stroll, currently at the price floor after starting the season at $8m, finishes the year priced above where he began._
+
+**Luke**
+
+_F1: "Isack Hadjar is going to get on the podium before the end of the season." He added a second, that Russell does not win another Grand Prix in 2026._
+
+_F1 Fantasy: Aston Martin outscore Racing Bulls on fantasy points from Zandvoort onwards, with an asterisk requested on reliability._
+
+**Quintin**
+
+_F1: Fernando Alonso "is gonna drag that Aston Martin where it doesn't belong" to a fifth place finish. He also expects Norris to win at least two more Grands Prix and finish third in the championship._
+
+_F1 Fantasy: "Oliver Bearman doesn't score higher than six points for the rest of the season," with Alex Albon reaching the price floor._
+
+**Rob**
+
+_F1: "George Russell will not be at Mercedes next year."_
+
+_F1 Fantasy: A new world record pit stop from Racing Bulls before the season is out._
+
+---
+
+**Key Takeaways For F1 Fantasy Players**
+
+- **The 4A window is open now.** Getting there before the field is worth more than getting there perfectly.
+
+- **Your midfield anchors are the currency.** Lawson, Lindblad and Hadjar built the budget. At least one has to go to fund the restructure, with a view to buying back afterwards.
+
+- **Price floor assets are structural, not filler.** Stroll's value is the room he creates elsewhere. Reliability is the only question that matters.
+
+- **Sprint weekends carry the big chips.** More sessions, higher ceilings. But all three warned against holding Limitless or 3x Boost until Singapore purely on principle.
+
+- **Retirements are shaping this season more than pace.** By Quintin's count, 48 DNFs, disqualifications and non-starts across eleven rounds, averaging 4.36 per race.
+
+- **Information compounds.** Announced upgrades, engine penalty schedules and circuit debuts are all knowable in advance.
+
+---
+
+You can find Euan at [F1 Fantasy Pole Position](https://www.youtube.com/@f1fantasypoleposition) on YouTube, [@F1FantasyEuan](https://x.com/F1FantasyEuan) on X and [@f1fantasyeuan](https://www.tiktok.com/@f1fantasyeuan) on TikTok. Luke is at [LF1 Fantasy Strategy](https://www.youtube.com/@LF1FantasyStrategy) on YouTube and [@LukeFF1Fantasy](https://x.com/LukeFF1Fantasy) on X. Quintin is at [BoxBox F1 Fantasy](https://www.youtube.com/@BoxBoxF1Fantasy) on YouTube, [@BoxBoxF1Fantasy](https://x.com/BoxBoxF1Fantasy) on X, with his simulation models at [boxboxf1fantasy.com](https://boxboxf1fantasy.com/).
+
+The full roundtable can be found [here](https://www.youtube.com/watch?v=Kg-JA880v5k).`,
+  },
+  {
     slug: 'race-week-preview-dutch-gp-2026',
     title: 'Race Week Preview: Dutch GP',
     excerpt: "McLaren found something in Hungary and the break has only sharpened it. Zandvoort's first and last Sprint is where 4A lineups start taking shape. Here is your F1 Fantasy watchlist.",
