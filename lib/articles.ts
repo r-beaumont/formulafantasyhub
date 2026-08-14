@@ -18,6 +18,122 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-dutch-gp-2026',
+    title: 'Race Week Preview: Dutch GP',
+    excerpt: "McLaren found something in Hungary and the break has only sharpened it. Zandvoort's first and last Sprint is where 4A lineups start taking shape. Here is your F1 Fantasy watchlist.",
+    readTime: 4,
+    date: 'Aug 20, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0a00 0%, #3d1800 50%, #1a0a00 100%)',
+    thumbnailBg: 'rgba(255,160,0,0.25)',
+    thumbnailIcon: 'nl',
+    thumbnailImage: '/thumbnail-race-preview.png',
+    ogImage: 'https://formulahub.live/og/race-week-preview-dutch-gp-2026',
+    content: `**THE SETUP**
+
+Four weeks off and everyone comes back with new parts. Lando Norris took McLaren's first win of the season in Hungary and ended a ten-race Mercedes pole streak doing it, with more upgrades due. Kimi Antonelli still leads, but the gap at the front is the narrowest it has been all year. Add a Sprint to Zandvoort's farewell and you get an extra scoring session, an earlier deadline, and only one practice hour to work out who has actually improved.
+
+**THE CIRCUIT**
+
+72 laps of a 4.259km rollercoaster where the banking does the overtaking because nothing else will. Grid position is close to everything here, so recovery-drive picks are dead money. Target one-lap pace. The onshore wind off the North Sea shifts through the weekend and turns a balanced car into a handful, and with no FP2 or FP3 there is no time to fix it. Team lock is the Sprint Race at 1200 local on Saturday, not Qualifying.
+
+**THE WEATHER**
+
+[ROB: forecast does not reach this far out yet. Insert actual conditions before publishing. Note the coastal pattern has been unsettled through mid-August with rain risk climbing across the week.]
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Lance Stroll**
+
+Both Aston Martins returned double-digit Fantasy scores in Hungary, the first time that has happened simultaneously on a non-sprint weekend, and more upgrades are expected. Stroll is the cheapest way in. For anyone building towards a 4A lineup he is exactly the kind of enabler that makes the structure affordable, and the Sprint gives him a second bite.
+
+**Lando Norris**
+
+First win of the season, and pole at a circuit Mercedes had owned all year. Zandvoort rewards Saturday more than almost anywhere, which is precisely where McLaren just made their gains. High budget teams can pair him with Antonelli and a Ferrari or McLaren constructor without gutting the rest of the lineup.
+
+🟡 HOLD
+
+**Kimi Antonelli**
+
+Still the championship leader, still the most consistent scorer in the game, and still a live 2x Boost option rather than a passenger. Mercedes lost the pole streak but not the race pace, and at a track where anyone starting out of position stays there, the multiplier belongs on a driver who reliably qualifies at the front. Two scoring sessions only widen his ceiling. Nothing about Hungary changes the case for holding.
+
+**Isack Hadjar**
+
+Only in play for high budget teams seriously committed to 4A, where he is the obvious asset to make way. For everyone else he needs just -1 for a maximum rise and stays a reliable budget builder for another round or two. Squeeze the last of the juice out of this orange first.
+
+🔴 SELL
+
+**Arvid Lindblad**
+
+A sixth consecutive points finish that was only worth four points, and he needs 13 for a minimum rise. Gabriel Bortoleto sits at a similar price and has outscored him across the last two weekends. If 4A is on your horizon, Lindblad is the sacrifice.
+
+**Liam Lawson**
+
+P8 in Hungary was fine. The price is not. Lawson is now the single largest block of capital most teams have parked in the midfield, and freeing it up is what makes a 4A lineup possible at all. Audi and Aston Martin will replace most of his output for a fraction of it.
+
+**THE CHIPS**
+
+Sprint weekends are where 3x Boost earns its keep, and Zandvoort adds a second reason: at a circuit this dependent on grid position, two reliable front-row qualifiers is about as close to a safe multiplier as the game gets. Limitless works on the same logic, letting you stack strong qualifiers across an extra session, though remember your pre-Limitless team still absorbs this weekend's price changes. If the forecast turns wet, drop both. No Negative becomes the better play once retirements enter the picture.`,
+  },
+  {
+    slug: 'hungarian-gp-2026-what-we-learned',
+    title: 'What We Learned: Hungarian Grand Prix',
+    excerpt: 'Lando Norris ends McLaren\'s wait in a race they led from both cars, Lewis Hamilton is punished again, and Aston Martin finally show their Fantasy hand. Here is what the 2026 Hungarian Grand Prix told us.',
+    readTime: 4,
+    date: 'Jul 27, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #001a0d 0%, #003d1f 50%, #001a0d 100%)',
+    thumbnailBg: 'rgba(0,150,80,0.22)',
+    thumbnailIcon: 'hu',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/hungarian-gp-2026-what-we-learned',
+    content: `The Hungaroring produced a race that turned on a gearbox. Two McLarens traded the lead for over half the distance, a Ferrari pit lane penalty reshuffled the podium chase, and both Cadillacs found new ways to break. When it settled, Lando Norris had his first win of 2026 and the second half of the season had a genuine third contender.
+
+---
+
+**MCLAREN ARE A FORCE TO BE RECKONED WITH AGAIN**
+
+**Lando Norris** converted pole into victory, but the result undersells the weekend. **Oscar Piastri** jumped him at Turn 2 on the opening lap and led until traffic and contact with **Carlos Sainz** in the first sector undid him, and McLaren held the front of the race with one car or the other for the bulk of the afternoon. Piastri's gearbox failure at three-quarter distance cost the team a likely one-two, and that is the point: this was the first weekend in 2026 where McLaren had the pace to take a Grand Prix rather than inherit one. Further upgrades are on the way. On this evidence they will be arriving at a team that has already found something.
+
+---
+
+**LEWIS HAMILTON CANNOT ESCAPE THE PENALTIES**
+
+**Lewis Hamilton** crossed the line fourth and left Hungary fifth. A five-second penalty for pit lane speeding handed the place to **Charles Leclerc**, and it landed in the same weekend Hamilton had already served a three-place grid drop from Saturday. He qualified second and started fifth. He finished fourth and was classified fifth. The raw pace has been there all season and the Ferrari has been the second-best car for months, yet the points keep leaking out through the same hole. Second in the standings papers over how much has been left on the table.
+
+---
+
+**CADILLAC ARE STILL AN AVOID AT ANY PRICE**
+
+**Valtteri Bottas** lasted 13 laps. **Sergio Pérez** managed 48. Neither Cadillac has scored a championship point this season and the team remains the only one on zero. That matters more than usual right now, because as teams start stretching towards four premium driver structures, the temptation is to reach for the cheapest bodies on the grid to fund it. Cadillac are not that. A retirement is a 20-point swing against you in the Grand Prix, and this team has been generating them at a rate nobody else comes close to.
+
+---
+
+**ASTON MARTIN HAVE FINALLY SHOWN THEIR FANTASY HAND**
+
+**Lance Stroll** and **Fernando Alonso** both posted double-digit Fantasy scores in Hungary, the first time the pair have managed it simultaneously on a non-sprint weekend. Neither troubled the points, but P13 and P14 with that kind of Fantasy return tells you the upgrade package has moved the car into a window where both drivers can produce. More improvements are expected. For a team that has spent the season as a hard avoid, that is a meaningful shift, and the ownership numbers have not caught up yet.
+
+---
+
+**MERCEDES NO LONGER OWN SATURDAY**
+
+Norris's pole ended a run of ten consecutive Mercedes pole positions stretching back to the season opener in Australia. **Kimi Antonelli** still leads the Drivers' Championship, took another podium, and Mercedes still hold a comfortable Teams' lead. But the automatic front row that shaped the first two thirds of this season is gone, and it went at a circuit where qualifying is worth more than almost anywhere else on the calendar. If McLaren have genuinely closed the one-lap gap, the second half looks very different.
+
+---
+
+**THE BREAK, THEN A SPRINT AT ZANDVOORT**
+
+Formula 1 goes quiet for four weeks before returning to the Netherlands for the final Dutch Grand Prix, and Zandvoort has a Sprint attached for the first time. Team lock moves to Saturday morning, there is one practice session before Sprint Qualifying, and everyone comes back with whatever they built over the shutdown. Norris arrives with momentum for the first time this year. Antonelli arrives with a lead that no longer looks untouchable.`,
+  },
+  {
     slug: 'race-week-preview-hungarian-gp-2026',
     title: 'Race Week Preview: Hungarian Grand Prix',
     excerpt: "Antonelli doubled his lead at Spa. Hungary is where Ferrari get one last swing before the break. Here is your F1 Fantasy watchlist for the Hungaroring.",

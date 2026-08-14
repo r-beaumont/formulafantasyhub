@@ -23,21 +23,21 @@ export interface Race {
 }
 
 export const CURRENT_RACE: Race = {
-  round: 11,
-  name: 'Hungarian Grand Prix',
-  shortName: 'Hungary',
-  circuit: 'Hungaroring',
-  country: 'Hungary',
-  flag: 'hu',
-  isSprint: false,
-  timezone: 'Europe/Budapest',
-  dateRange: '24–26 Jul',
+  round: 12,
+  name: 'Dutch Grand Prix',
+  shortName: 'Netherlands',
+  circuit: 'Circuit Zandvoort',
+  country: 'Netherlands',
+  flag: 'nl',
+  isSprint: true,
+  timezone: 'Europe/Amsterdam',
+  dateRange: '21–23 Aug',
   sessions: [
-    { name: 'Practice 1', short: 'FP1',  date: 'Fri 24 Jul', dateISO: '2026-07-24T11:30:00Z', timeUTC: '11:30 UTC', timeLocal: '13:30 CEST', completed: false, duration: 60  },
-    { name: 'Practice 2', short: 'FP2',  date: 'Fri 24 Jul', dateISO: '2026-07-24T15:00:00Z', timeUTC: '15:00 UTC', timeLocal: '17:00 CEST', completed: false, duration: 60  },
-    { name: 'Practice 3', short: 'FP3',  date: 'Sat 25 Jul', dateISO: '2026-07-25T10:30:00Z', timeUTC: '10:30 UTC', timeLocal: '12:30 CEST', completed: false, duration: 60  },
-    { name: 'Qualifying', short: 'QUAL', date: 'Sat 25 Jul', dateISO: '2026-07-25T14:00:00Z', timeUTC: '14:00 UTC', timeLocal: '16:00 CEST', completed: false, duration: 60  },
-    { name: 'Race',       short: 'RACE', date: 'Sun 26 Jul', dateISO: '2026-07-26T13:00:00Z', timeUTC: '13:00 UTC', timeLocal: '15:00 CEST', completed: false, duration: 120 },
+    { name: 'Practice 1',        short: 'FP1',  date: 'Fri 21 Aug', dateISO: '2026-08-21T10:30:00Z', timeUTC: '10:30 UTC', timeLocal: '12:30 CEST', completed: false, duration: 60  },
+    { name: 'Sprint Qualifying', short: 'SQ',   date: 'Fri 21 Aug', dateISO: '2026-08-21T14:30:00Z', timeUTC: '14:30 UTC', timeLocal: '16:30 CEST', completed: false, duration: 44  },
+    { name: 'Sprint',            short: 'SPR',  date: 'Sat 22 Aug', dateISO: '2026-08-22T10:00:00Z', timeUTC: '10:00 UTC', timeLocal: '12:00 CEST', completed: false, duration: 60  },
+    { name: 'Qualifying',        short: 'QUAL', date: 'Sat 22 Aug', dateISO: '2026-08-22T14:00:00Z', timeUTC: '14:00 UTC', timeLocal: '16:00 CEST', completed: false, duration: 60  },
+    { name: 'Race',              short: 'RACE', date: 'Sun 23 Aug', dateISO: '2026-08-23T13:00:00Z', timeUTC: '13:00 UTC', timeLocal: '15:00 CEST', completed: false, duration: 120 },
   ],
 }
 
@@ -294,7 +294,7 @@ export const SEASON_CALENDAR: {
     date: '26 Jul',
     dateRange: '24–26 Jul',
     sprint: false,
-    completed: false,
+    completed: true,
     calledOff: false,
     meeting_key: 1291,
     lat: 47.5830,
@@ -672,7 +672,7 @@ function buildRaceFromCalendar(cal: typeof SEASON_CALENDAR[0], now: Date): Race 
 export function computeCurrentRace(now: Date = new Date()): Race {
   const TWELVE_H_MS = 12 * 60 * 60 * 1_000
   for (const cal of SEASON_CALENDAR) {
-    if (cal.calledOff || !cal.sessions?.length) continue
+    if (cal.calledOff || cal.completed || !cal.sessions?.length) continue
     const raceSesh = cal.sessions.find(s => s.name === 'Race')
     if (!raceSesh) continue
     const raceEndMs = new Date(raceSesh.date).getTime() + raceSesh.duration * 60_000

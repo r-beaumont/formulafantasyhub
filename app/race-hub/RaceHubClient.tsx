@@ -302,7 +302,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       dnfHistory: { y2023: 2, y2024: 2, y2025: 5, avg: 3.00 },
     },
     10: { // Belgium — Spa-Francorchamps
-      lastWinner: 'O. Piastri',
+      lastWinner: 'C. Leclerc',
       mostWinsDriver: 'M. Schumacher', mostWinsDriverCount: 6,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 18,
       mostPolesDriver: 'L. Hamilton', mostPolesDriverCount: 6,
