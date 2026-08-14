@@ -42,7 +42,7 @@ Four weeks off and everyone comes back with new parts. Lando Norris took McLaren
 
 **THE WEATHER**
 
-[ROB: forecast does not reach this far out yet. Insert actual conditions before publishing. Note the coastal pattern has been unsettled through mid-August with rain risk climbing across the week.]
+Scattered showers are in the forecast for Saturday, landing right on top of the Sprint Race deadline. The rest of the weekend looks settled at the time of writing. Track it closer to Friday, because if those showers hold then No Negative and Autopilot both come into play.
 
 **THE WEEKLY WATCHLIST**
 
