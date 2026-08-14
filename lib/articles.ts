@@ -64,7 +64,7 @@ Still the championship leader, still the most consistent scorer in the game, and
 
 **Isack Hadjar**
 
-Only in play for high budget teams seriously committed to 4A, where he is the obvious asset to make way. For everyone else he needs just -1 for a maximum rise and stays a reliable budget builder for another round or two. Squeeze the last of the juice out of this orange first.
+This is a hold for anyone whose budget is not yet ready to make the jump to 4A, or who wants one or two more $0.6m rises out of the French driver before it is. He needs just -1 for a maximum rise this weekend, so the next one is close to banked. Be aware that his 38 from Belgium comes off the rolling average soon, and once it does the threshold climbs and the case for holding gets a lot harder. Worth a proper reassessment after Zandvoort.
 
 🔴 SELL
 
