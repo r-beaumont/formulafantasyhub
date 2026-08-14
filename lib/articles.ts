@@ -22,7 +22,7 @@ export const articles: Article[] = [
     title: 'Race Week Preview: Dutch GP',
     excerpt: "McLaren found something in Hungary and the break has only sharpened it. Zandvoort's first and last Sprint is where 4A lineups start taking shape. Here is your F1 Fantasy watchlist.",
     readTime: 4,
-    date: 'Aug 20, 2026',
+    date: 'Aug 14, 2026',
     tag: 'Race Preview',
     category: 'Race Preview',
     articleType: 'F1 Fantasy',
