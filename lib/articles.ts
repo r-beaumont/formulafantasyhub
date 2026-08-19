@@ -18,6 +18,55 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'hadjar-injury-dutch-gp-2026',
+    title: 'Isack Hadjar Set to Miss Zandvoort',
+    excerpt: "Isack Hadjar is expected to miss the Dutch Grand Prix with a wrist injury, promoting Liam Lawson to Red Bull and bringing Yuki Tsunoda back to the grid. Here is what the reshuffle means for your F1 Fantasy team.",
+    readTime: 4,
+    date: 'Aug 19, 2026',
+    tag: 'News',
+    category: 'News',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0008 0%, #3d0014 50%, #1a0008 100%)',
+    thumbnailBg: 'rgba(220,20,60,0.2)',
+    thumbnailIcon: 'nl',
+    thumbnailImage: '/thumbnail-upgrades-preview.png',
+    ogImage: 'https://formulahub.live/og/hadjar-injury-dutch-gp-2026',
+    content: `Formula 1 returns from its summer break this weekend, and the grid at Zandvoort is set to look a little different to the one that left it. Isack Hadjar is expected to miss the Dutch Grand Prix after picking up a wrist injury, triggering a Red Bull driver reshuffle that runs the length of the family tree. Liam Lawson is in line to step up from Racing Bulls to partner Max Verstappen, with Yuki Tsunoda returning to the grid to fill the vacant Racing Bulls seat.
+
+Red Bull are yet to formally confirm the change, with a final medical check understood to be the last remaining hurdle, but the reporting points firmly in one direction.
+
+---
+
+**How It Unfolded**
+
+According to Dutch outlets De Telegraaf and De Limburger, Hadjar sustained the injury during a gym session over the break. It is a cruel blow for the 21-year-old, who has enjoyed a standout first season with the senior team and had been widely tipped to retain his seat for 2027. Zandvoort carries real meaning for him too. It was the scene of his maiden F1 podium last year, a third place that helped earn him the Red Bull promotion in the first place.
+
+There is a familiar ring to all of this. Lawson's own F1 career began at this circuit in 2023, when he was drafted in at the last minute after Daniel Ricciardo broke his hand in a practice crash. Three years on, Zandvoort hands him another opening, this time a return to the senior team he raced for across the opening two rounds of 2025 before his demotion. Tsunoda, who stepped in for Lawson back then and later made way for Hadjar at the close of last season, comes back from his reserve role having not raced all year.
+
+The timing adds another layer, with this weekend marking Zandvoort's farewell to the calendar. Should he sit out, Hadjar will at least have two weeks to recover before the Italian Grand Prix at Monza on 6 September.
+
+---
+
+**What It Means For F1 Fantasy**
+
+This is a Sprint weekend, which raises the stakes on getting your team right. One note before the detail: the game has not made any of these changes yet, and the guidance below is based on how F1 Fantasy has handled driver swaps in previous seasons. Treat it as the likely outcome rather than a certainty.
+
+**Prices.** Red Bull's Hadjar asset and Racing Bulls' Lawson asset should become inactive until each driver returns to his original team, and inactive assets are frozen, so their prices would not move this weekend. In their place, the game will most likely add two new assets: a Red Bull Lawson at Hadjar's current price, and a Racing Bulls Tsunoda at Lawson's current price. If that plays out, you would buy the new asset to get the driver rather than the one you may already hold.
+
+**Scoring.** The inactive Hadjar and Lawson assets would be expected to pick up not classified (NC) penalties across the weekend's scoring sessions. On a Sprint weekend that stacks up fast: minus 5 for qualifying, minus 10 for the Sprint and minus 20 for the Grand Prix, a minus 35 hit before anything else is counted. Either way, leaving an inactive driver in your team is the fastest way to wreck your score. The active Red Bull Lawson and Racing Bulls Tsunoda assets, by contrast, would score as normal for their new teams.
+
+**Transfers.** If it follows previous swaps, you would need to spend your own transfers to move the inactive assets out, with no free transfers to compensate. Should you own both Hadjar and Racing Bulls Lawson, it is worth weighing a points hit for two extra transfers to clear them both. A one-off cost now would work out far cheaper than repeated NC penalties across a Sprint weekend. If you are looking to fully overhaul your team anyway, taking a 10 or 20 point transfer penalty to move these drivers out can be worth it.
+
+**Constructors.** Better news here: the Red Bull and Racing Bulls teams should be unaffected. Constructors only score from their active drivers, so Red Bull would bank points from Verstappen and Lawson, plus fastest lap, qualifying teamwork and pit stop bonuses as usual, with the inactive driver having no bearing on the constructor's price or score. For clean exposure to the Red Bull line-up without the transfer headache, the constructor looks the tidiest route.
+
+---
+
+**The Bottom Line**
+
+If you hold Hadjar or Lawson as drivers, plan to move them on before the Sprint deadline. Lawson steps into far quicker machinery and carries genuine upside, though learning the RB26 in a matter of days is no small ask. Tsunoda faces the harder task of returning cold after a season on the sidelines. At a qualifying-dependent circuit like Zandvoort, where overtaking is scarce and track position carries real weight, Friday practice and Sprint qualifying will tell you plenty about whether either substitute earns a place in your team.`,
+  },
+  {
     slug: 'f1-fantasy-2026-season-so-far-creator-roundtable',
     title: 'The F1 Fantasy 2026 Season So Far: Creator Roundtable',
     excerpt: 'Rob Beaumont brought together Euan, Luke and Quintin over the summer break to unpack a first half defined by retirements, the scramble towards 4A lineups, and where the last big chips should land.',
