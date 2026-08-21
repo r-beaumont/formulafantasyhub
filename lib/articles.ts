@@ -18,6 +18,117 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'dutch-gp-2026-technical-upgrades',
+    title: 'Upgrades Preview: Dutch Grand Prix',
+    excerpt: "Alpine bring an eight-part package to headline the FIA submission at Zandvoort, with Ferrari and Aston Martin close behind on five apiece. Here's how every team's development stacks up for the Sprint weekend.",
+    readTime: 6,
+    date: 'Aug 21, 2026',
+    tag: 'Technical',
+    category: 'Technical',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0a00 0%, #3d1800 50%, #1a0a00 100%)',
+    thumbnailBg: 'rgba(255,140,0,0.25)',
+    thumbnailIcon: 'nl',
+    thumbnailImage: '/thumbnail-upgrades-preview.png',
+    ogImage: 'https://formulahub.live/og/dutch-gp-2026-technical-upgrades',
+    content: `Zandvoort marks the return from the summer break and, as a Sprint weekend, a critical checkpoint for several teams. The FIA Car Presentation documents reveal a busy weekend of development, with Alpine topping the list on eight upgrades and both Ferrari and Aston Martin bringing five apiece. A tight, unforgiving circuit where setup precision matters enormously, Zandvoort is exactly the kind of venue where a well-timed package can reshape the midfield order for the remainder of the season.
+
+---
+
+**McLaren**
+
+McLaren continue their development push on the back of Lando Norris's Hungarian Grand Prix victory, bringing three upgrades to Zandvoort focused on the rear of the MCL40 to complete the package introduced in Hungary. The headline change is a new rear wing, with the team set to race their own version of the increasingly prominent flip-wing concept for the first time, alongside new rear brake ducts and changes to the engine cover and rear corner. The aim, in the team's words, is to validate the new parts quickly and understand their contribution across the weekend, with reliability remaining a clear priority as the competition closes in.
+
+_Headline Upgrades: New rear wing incorporating flip-wing concept. New rear brake ducts. Engine cover and rear corner changes. Completes the package introduced in Hungary._
+
+---
+
+**Mercedes**
+
+Championship leaders Mercedes have taken a restrained approach to Zandvoort, introducing a single upgrade on the FIA submission: a front corner change aimed at improving flow conditioning. It is a targeted rather than wholesale development step, with the team's wider focus remaining on managing the reliability of the W17 through the second half of the season.
+
+_Headline Upgrades: Front corner change for improved flow conditioning. Single listed upgrade._
+
+---
+
+**Red Bull**
+
+Red Bull have introduced a single upgrade for Zandvoort — a front corner change aimed at improving reliability rather than outright performance. On the aerodynamic side, the team retain the rear wing concept that generated significant paddock discussion through the summer, the fixed rear wing with winglet additions in the actuator zone, having been encouraged by what they saw in Hungary. Zandvoort should suit the RB22 better than several recent venues.
+
+_Headline Upgrades: Front corner change for improved reliability. Retained rear wing winglet concept from Hungary. Single listed upgrade._
+
+---
+
+**Ferrari**
+
+Ferrari bring five performance upgrades to Zandvoort, the joint-most on the grid alongside Aston Martin. Three relate to the floor — the floor body, floor board and floor edge — with an updated board brace layout and pick-ups, a revised front floor and vanes arrangement, a reshaped floor edge curl and revised board foot geometry. These are accompanied by a reprofiled diffuser, featuring an alternative diffuser stays layout and revised expansion profile, and a minor beam wing revision working in interaction with the new diffuser. Ferrari state the floor development targets a global increase in aerodynamic load across the entire operating range, combined with improved robustness of the underlying flow mechanisms, enhanced flow topology and greater flow energy delivered to the rear diffuser. On setup, the team have removed the triple vertical rear wing element used in recent races, having concluded it generated too much drag relative to the downforce benefit at a circuit that does not demand maximum downforce.
+
+_Headline Upgrades: Three floor upgrades — updated board brace layout, revised front floor and vanes, reshaped floor edge. Reprofiled diffuser with revised expansion profile. Minor beam wing revision. Triple vertical rear wing element removed on setup grounds._
+
+---
+
+**Williams**
+
+Williams do not appear on the FIA upgrade submission as bringing performance upgrades to Zandvoort, with any changes limited to setup and circuit-specific parts.
+
+_Headline Upgrades: No performance upgrades listed on the FIA submission._
+
+---
+
+**Racing Bulls**
+
+Racing Bulls do not appear on the FIA upgrade submission as bringing performance upgrades to Zandvoort. The bigger story for the team this weekend is in the cockpit, with Yuki Tsunoda returning to the seat as Liam Lawson moves across to Red Bull.
+
+_Headline Upgrades: No performance upgrades listed on the FIA submission. Tsunoda returns to the Racing Bulls seat this weekend._
+
+---
+
+**Aston Martin**
+
+Aston Martin continue their mid-season turnaround with five performance upgrades at Zandvoort, building on the B-spec AMR26 introduced at the Hungarian Grand Prix. Three changes relate to the front wing — a reduced chord on the final element outboard, a modification to the inboard foot of the endplate, and an optional new front wing flap that extends the range of balance available for setup optimisation. These are complemented by a new floor fence in the diffuser and a modification to the lower edge of the diffuser winglet, with the rear-of-car changes working in combination to increase rear load. Separately, reports indicate Honda have brought a meaningful power unit step for the weekend, understood to deliver around 15 horsepower initially with further potential to follow once reliability is confirmed.
+
+_Headline Upgrades: Three front wing changes — reduced final element chord, revised endplate inboard foot, optional new flap. New floor fence in the diffuser. Revised diffuser winglet lower edge. Reported Honda power unit step of around 15 horsepower._
+
+---
+
+**Haas**
+
+Haas do not appear on the FIA upgrade submission as bringing performance upgrades to Zandvoort, with any changes limited to setup and circuit-specific parts.
+
+_Headline Upgrades: No performance upgrades listed on the FIA submission._
+
+---
+
+**Audi**
+
+Audi do not appear on the FIA upgrade submission as bringing performance upgrades to Zandvoort, with any changes limited to setup and circuit-specific parts.
+
+_Headline Upgrades: No performance upgrades listed on the FIA submission._
+
+---
+
+**Alpine**
+
+Alpine top the entire upgrade list this weekend with an impressive eight upgrades to the A526. Three relate to the floor — a new floor body design for increased local aerodynamic loading, reprofiled floor board elements to improve flow quality delivered to the rear, and optimised floor edges — alongside a reprofiled diffuser, a new sidepod and coke bodywork design, revised rear corner elements, an updated rear impact structure geometry and a redesigned rear wing flap geometry. The new bodywork has been designed to work efficiently alongside the new floor while maintaining sufficient cooling capacity. It is the substantial package that has been discussed and delayed for several rounds. Crucially, only Pierre Gasly will run the new parts at Zandvoort, with Franco Colapinto set to receive identical components from Monza onwards.
+
+_Headline Upgrades: Eight-upgrade package — the largest on the grid this weekend. Three floor changes including new floor body and reprofiled floor board. Reprofiled diffuser. New sidepod and coke bodywork. Revised rear corner, rear impact structure and rear wing flap. Gasly only this weekend, Colapinto to follow at Monza._
+
+---
+
+**Cadillac**
+
+Cadillac do not appear on the FIA upgrade submission as bringing performance upgrades to Zandvoort, with any changes limited to setup and circuit-specific parts.
+
+_Headline Upgrades: No performance upgrades listed on the FIA submission._
+
+---
+
+**Final Thought**
+
+Zandvoort's FIA upgrade submission tells the story of a grid returning from the break with clear intent. Alpine's eight-part package is the standout in volume, a long-awaited overhaul that finally arrives, while Ferrari and Aston Martin share the front-runner spotlight on five apiece. McLaren's rear-end refinements build on a winning platform, and even the single-item packages from Mercedes and Red Bull point to teams managing reliability as much as chasing outright pace. With a Sprint format compressing the weekend, the teams that validate their new parts fastest will hold the advantage.`,
+  },
+  {
     slug: 'hadjar-injury-dutch-gp-2026',
     title: 'Isack Hadjar Set to Miss Zandvoort',
     excerpt: "Isack Hadjar is expected to miss the Dutch Grand Prix with a wrist injury, promoting Liam Lawson to Red Bull and bringing Yuki Tsunoda back to the grid. Here is what the reshuffle means for your F1 Fantasy team.",
