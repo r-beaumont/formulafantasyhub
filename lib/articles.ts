@@ -84,7 +84,7 @@ The number that lingers is 59. That is how far Russell now trails his teammate, 
 
 **ANTONELLI HEADS TO MONZA WITH A GRID PENALTY WAITING**
 
-Antonelli will take a grid penalty at Monza for an engine change, which turns a two-week gap into a genuine opportunity for everyone behind him. He still leads by 59 from Russell and 83 from Norris, and Mercedes still lead Ferrari by 87 in the Teams' standings.
+Antonelli will take a grid penalty at Monza for an engine change, which turns a two-week gap into a genuine opportunity for everyone behind him. He still leads by 59 from Russell and 83 from Norris, and Mercedes still lead Ferrari by 87 in the Teams' standings. It also makes him the most essential driver of the weekend for F1 Fantasy squads, with a significant points swing on the table for a recovery drive from the back of the grid into the points, carrying a heavy haul of overtakes and Fantasy bonuses along the way.
 
 But a championship leader starting out of position, at a circuit where McLaren have just found a step and Ferrari race at home, is the most interesting Monza setup in years.`,
   },
