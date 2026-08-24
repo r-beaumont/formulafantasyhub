@@ -406,7 +406,28 @@ export const SEASON_CALENDAR: {
     ],
   },
   {
+    // Reinstated after the April cancellation; relocated to Sepang. First
+    // F1 race at Sepang since the 2017 Malaysian Grand Prix. Retains the
+    // Bahrain Grand Prix name, with Bahrain funding the event. Officially
+    // the Formula 1 Gulf Air Bahrain Grand Prix in Malaysia. Forms a
+    // triple-header with Azerbaijan and Singapore.
+    // Circuit length, lap count, corner count and session start times are
+    // not yet verified — left out rather than invented.
     round: 16,
+    name: 'Bahrain',
+    flag: 'my',
+    country: 'Malaysia',
+    circuit: 'Sepang International Circuit',
+    date: '4 Oct',
+    dateRange: '2–4 Oct',
+    sprint: false,
+    completed: false,
+    calledOff: false,
+    weekendStartISO: '2026-10-02',
+    timezone: 'Asia/Kuala_Lumpur',
+  },
+  {
+    round: 17,
     name: 'Singapore',
     flag: 'sg',
     country: 'Singapore',
@@ -430,7 +451,7 @@ export const SEASON_CALENDAR: {
     ],
   },
   {
-    round: 17,
+    round: 18,
     name: 'United States',
     flag: 'us',
     country: 'United States',
@@ -454,7 +475,7 @@ export const SEASON_CALENDAR: {
     ],
   },
   {
-    round: 18,
+    round: 19,
     name: 'Mexico',
     flag: 'mx',
     country: 'Mexico',
@@ -478,7 +499,7 @@ export const SEASON_CALENDAR: {
     ],
   },
   {
-    round: 19,
+    round: 20,
     name: 'Brazil',
     flag: 'br',
     country: 'Brazil',
@@ -502,7 +523,7 @@ export const SEASON_CALENDAR: {
     ],
   },
   {
-    round: 20,
+    round: 21,
     name: 'Las Vegas',
     flag: 'us',
     country: 'United States',
@@ -526,7 +547,7 @@ export const SEASON_CALENDAR: {
     ],
   },
   {
-    round: 21,
+    round: 22,
     name: 'Qatar',
     flag: 'qa',
     country: 'Qatar',
@@ -550,7 +571,7 @@ export const SEASON_CALENDAR: {
     ],
   },
   {
-    round: 22,
+    round: 23,
     name: 'Abu Dhabi',
     flag: 'ae',
     country: 'United Arab Emirates',

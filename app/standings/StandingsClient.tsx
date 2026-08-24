@@ -312,7 +312,7 @@ export default function StandingsClient() {
         const uniqueWinners = Array.from(new Set(raceWinners))
         const winnersLabel = uniqueWinners.map(n => n.split(' ').slice(-1)[0]).join(' · ')
         const summaryCards = [
-          { label: 'Races Completed', value: String(RACES), sub: 'of 22', color: '#E8002D', bar: 'linear-gradient(90deg,#E8002D,rgba(232,0,45,0.2))' },
+          { label: 'Races Completed', value: String(RACES), sub: 'of 23', color: '#E8002D', bar: 'linear-gradient(90deg,#E8002D,rgba(232,0,45,0.2))' },
           { label: 'Different Winners', value: String(uniqueWinners.length), sub: winnersLabel, color: '#FFD700', bar: 'linear-gradient(90deg,#FFD700,rgba(255,215,0,0.2))' },
         ]
         return (
@@ -431,7 +431,7 @@ export default function StandingsClient() {
       <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden', marginBottom: '24px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px 12px', borderBottom: '1px solid var(--border)' }}>
           <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'var(--muted)' }}>2026 Race Calendar</span>
-          <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', background: 'rgba(0,168,255,0.12)', color: '#00A8FF' }}>22 Rounds</span>
+          <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', background: 'rgba(0,168,255,0.12)', color: '#00A8FF' }}>23 Rounds</span>
         </div>
         <div style={{ padding: '16px 20px' }}>
           <div className="mob-3col" style={{ display: 'grid', gridTemplateColumns: 'repeat(11, 1fr)', gap: '8px' }}>

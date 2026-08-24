@@ -94,7 +94,7 @@ Price floor: $3.0m. Price ceiling: $34.0m. Prices are dynamic — always verify 
 
 ## 2026 CALENDAR
 
-22 active rounds. Bahrain (R4) and Saudi Arabia (R5) are CANCELLED — never show as active.
+23 active rounds total. Saudi Arabia is cancelled — do not show as an active round. Bahrain was cancelled in April and reinstated as Round 16, relocated to Sepang International Circuit, Malaysia, 2-4 October 2026. Officially the Formula 1 Gulf Air Bahrain Grand Prix in Malaysia. Standard weekend, not a sprint. Flag code 'my'.
 
 **Sprint weekends:** China, Miami, Canada, Britain, Netherlands, Singapore
 

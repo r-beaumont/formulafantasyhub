@@ -507,7 +507,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
             <span>{selectedRace.name} Grand Prix</span>
           </h1>
           <div style={{ color: 'var(--muted)', fontSize: '13px' }}>
-            {selectedRace.circuit} · Round {selectedRace.round} of 22 · {selectedRace.sprint ? '⚡ Sprint Weekend' : 'Standard Weekend'}
+            {selectedRace.circuit} · Round {selectedRace.round} of 23 · {selectedRace.sprint ? '⚡ Sprint Weekend' : 'Standard Weekend'}
           </div>
         </div>
 
@@ -809,7 +809,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
           'Qualifying': 'QUAL', 'Race': 'RACE',
         }
 
-        // Build a unified session list for all 22 rounds using a single data structure.
+        // Build a unified session list for all 23 rounds using a single data structure.
         // Priority: CURRENT_RACE static data (current round) → SEASON_CALENDAR sessions → OpenF1 fallback (R1/R2).
         type USession = { name: string; short: string; isoDate: string; isCompleted: boolean }
         let displaySessions: USession[] = []
@@ -825,7 +825,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
         } else {
           const calSessions = SEASON_CALENDAR.find(r => r.round === selectedRound)?.sessions
           if (calSessions?.length) {
-            // All other rounds with calendar data (R3–R22 except current)
+            // All other rounds with calendar data (R3–R23 except current)
             displaySessions = calSessions.map(s => ({
               name: s.name,
               short: shortMap[s.name] ?? s.name,

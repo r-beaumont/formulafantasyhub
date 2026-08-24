@@ -38,7 +38,7 @@ export default function CalendarClient() {
           2026 Racing Calendar
         </span>
         <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' as const, background: 'rgba(0,168,255,0.12)', color: '#00A8FF' }}>
-          22 Rounds
+          23 Rounds
         </span>
       </div>
 
@@ -180,7 +180,7 @@ export default function CalendarClient() {
                     {[
                       { label: 'Circuit', value: race.circuit },
                       { label: 'Date',    value: race.dateRange || race.date },
-                      { label: 'Round',   value: `${race.round} of 22` },
+                      { label: 'Round',   value: `${race.round} of 23` },
                     ].map(item => (
                       <div key={item.label} style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '8px', padding: '9px 12px' }}>
                         <div style={{ fontSize: '10px', color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.4px', marginBottom: '3px' }}>

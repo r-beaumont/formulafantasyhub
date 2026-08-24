@@ -5,11 +5,11 @@ import CalendarClient from './CalendarClient'
 
 export const metadata: Metadata = {
   title: '2026 F1 Racing Calendar — Session Times & Schedule',
-  description: 'Full 2026 Formula 1 race calendar with session times, sprint weekends, and circuit information. All 22 rounds of the 2026 F1 season.',
+  description: 'Full 2026 Formula 1 race calendar with session times, sprint weekends, and circuit information. All 23 rounds of the 2026 F1 season.',
   alternates: { canonical: 'https://formulahub.live/calendar' },
   openGraph: {
     title: '2026 F1 Racing Calendar — Session Times & Schedule',
-    description: 'Full 2026 Formula 1 race calendar with session times, sprint weekends, and circuit information. All 22 rounds of the 2026 F1 season.',
+    description: 'Full 2026 Formula 1 race calendar with session times, sprint weekends, and circuit information. All 23 rounds of the 2026 F1 season.',
     url: 'https://formulahub.live/calendar',
     siteName: 'Formula Hub',
     type: 'website',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@F_FantasyHub',
     creator: '@F_FantasyHub',
-    description: 'Full 2026 Formula 1 race calendar with session times, sprint weekends, and circuit information. All 22 rounds of the 2026 F1 season.',
+    description: 'Full 2026 Formula 1 race calendar with session times, sprint weekends, and circuit information. All 23 rounds of the 2026 F1 season.',
   },
 }
 
@@ -34,7 +34,7 @@ export default function CalendarPage() {
           </div>
           <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(2.5rem,5vw,3.5rem)', lineHeight: 1, marginBottom: '8px' }}>Race Calendar</div>
           <p style={{ color: 'var(--muted)', fontSize: '14px', maxWidth: '600px', lineHeight: 1.6, margin: 0 }}>
-            All 22 rounds of the 2026 Formula 1 season — session times, sprint weekends, and circuit details in one place.
+            All 23 rounds of the 2026 Formula 1 season — session times, sprint weekends, and circuit details in one place.
           </p>
         </div>
         <CalendarClient />
