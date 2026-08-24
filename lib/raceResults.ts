@@ -29,11 +29,23 @@ export interface QualifyingSessionKeys {
   q3?: string
 }
 
+// Grand Prix pole position (Pirelli Pole Position Award) — Sprint Qualifying
+// poles are NOT pole positions and must never populate this field. Kept
+// independent of the `qualifying` session array below so that the season
+// stats poles count does not depend on a full Q1–Q22 grid being entered.
+export interface PoleResult {
+  name: string
+  team: string
+  team_colour: string
+  time: string
+}
+
 export interface RaceWeekend {
   round: number
   name: string
   flag: string
   isSprint: boolean
+  pole?: PoleResult
   fp1?: DriverResult[]
   fp2?: DriverResult[]
   fp3?: DriverResult[]
@@ -52,6 +64,7 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     name: 'Australia',
     flag: 'au',
     isSprint: false,
+    pole: { name: 'George Russell', team: 'Mercedes', team_colour: '#27F4D2', time: '1:18.518' },
     fp1: [
       { position: 1,  name: 'Charles Leclerc',   team: 'Ferrari',         team_colour: '#E8002D', time: '1:20.267', gap: '—'         },
       { position: 2,  name: 'Lewis Hamilton',    team: 'Ferrari',         team_colour: '#E8002D', time: '1:20.736', gap: '+0.469s'   },
@@ -182,6 +195,7 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     name: 'China',
     flag: 'cn',
     isSprint: true,
+    pole: { name: 'Kimi Antonelli', team: 'Mercedes', team_colour: '#27F4D2', time: '1:32.064' },
     fp1: [
       { position: 1,  name: 'George Russell',    team: 'Mercedes',        team_colour: '#27F4D2', time: '1:32.741', gap: '—'         },
       { position: 2,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', time: '1:32.861', gap: '+0.120s'   },
@@ -315,6 +329,7 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     name: 'Japan',
     flag: 'jp',
     isSprint: false,
+    pole: { name: 'Kimi Antonelli', team: 'Mercedes', team_colour: '#27F4D2', time: '1:28.778' },
     fp1: [
       { position: 1,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', time: '1:27.812', gap: '—'        },
       { position: 2,  name: 'George Russell',    team: 'Mercedes',        team_colour: '#27F4D2', time: '1:27.965', gap: '+0.153s'  },
@@ -389,7 +404,7 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     ],
     qualifying: [
       // --- Q3 (P1–10) ---
-      { position: 1,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', q1: '1:27.341', q2: '1:27.102', q3: '1:26.983', time: '1:26.983' },
+      { position: 1,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', q1: '1:27.341', q2: '1:27.102', q3: '1:28.778', time: '1:28.778' },
       { position: 2,  name: 'Oscar Piastri',     team: 'McLaren',         team_colour: '#FF8000', q1: '1:27.512', q2: '1:27.198', q3: '1:27.041', time: '1:27.041' },
       { position: 3,  name: 'George Russell',    team: 'Mercedes',        team_colour: '#27F4D2', q1: '1:27.623', q2: '1:27.310', q3: '1:27.156', time: '1:27.156' },
       { position: 4,  name: 'Lando Norris',      team: 'McLaren',         team_colour: '#FF8000', q1: '1:27.698', q2: '1:27.385', q3: '1:27.204', time: '1:27.204' },
@@ -445,9 +460,10 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     name: 'Miami',
     flag: 'us',
     isSprint: true,
+    pole: { name: 'Kimi Antonelli', team: 'Mercedes', team_colour: '#27F4D2', time: '1:27.798' },
     qualifying: [
       // P1 verified — Kimi Antonelli on pole
-      { position: 1, name: 'Kimi Antonelli', team: 'Mercedes', team_colour: '#27F4D2', q1: null, q2: null, q3: null, time: '—' },
+      { position: 1, name: 'Kimi Antonelli', team: 'Mercedes', team_colour: '#27F4D2', q1: null, q2: null, q3: '1:27.798', time: '1:27.798' },
       // TODO: P2–P22 pending FIA classification verification
     ],
     sprintRace: [
@@ -479,6 +495,7 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     name: 'Canada',
     flag: 'ca',
     isSprint: true,
+    pole: { name: 'George Russell', team: 'Mercedes', team_colour: '#27F4D2', time: '1:12.578' },
     // No FP1 data available
     sprintQualifying: [
       // SQ3 times derived from verified gaps (Russell P1 1:12.965 confirmed, gaps confirmed); SQ1/SQ2 times approximate
@@ -590,10 +607,11 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     name: 'Monaco',
     flag: 'mc',
     isSprint: false,
+    pole: { name: 'Kimi Antonelli', team: 'Mercedes', team_colour: '#27F4D2', time: '1:12.051' },
     qualifying: [
       // Pole: Kimi Antonelli (verified). All times are approximate placeholders — pending FIA classification.
       // --- Q3 (P1–10) ---
-      { position: 1,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', q1: '1:11.842', q2: '1:11.206', q3: '1:10.270', time: '1:10.270' },
+      { position: 1,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', q1: '1:11.842', q2: '1:11.206', q3: '1:12.051', time: '1:12.051' },
       { position: 2,  name: 'Lewis Hamilton',    team: 'Ferrari',         team_colour: '#E8002D', q1: '1:11.934', q2: '1:11.312', q3: '1:10.389', time: '1:10.389' },
       { position: 3,  name: 'Isack Hadjar',      team: 'Red Bull Racing', team_colour: '#3671C6', q1: '1:12.012', q2: '1:11.445', q3: '1:10.521', time: '1:10.521' },
       { position: 4,  name: 'Oscar Piastri',     team: 'McLaren',         team_colour: '#FF8000', q1: '1:12.134', q2: '1:11.534', q3: '1:10.654', time: '1:10.654' },
@@ -621,11 +639,11 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     race: [
       { position: 1,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', time: '—',           gap: '—'         },
       { position: 2,  name: 'Lewis Hamilton',    team: 'Ferrari',         team_colour: '#E8002D', time: '—',           gap: '+6.271s'   },
-      { position: 3,  name: 'Isack Hadjar',      team: 'Red Bull Racing', team_colour: '#3671C6', time: '—',           gap: '+23.394s'  },
+      { position: 3,  name: 'Pierre Gasly',      team: 'Alpine',          team_colour: '#FF69B4', time: '—',           gap: '+23.394s'  },
       { position: 4,  name: 'Oscar Piastri',     team: 'McLaren',         team_colour: '#FF8000', time: '—',           gap: '+24.261s'  },
       { position: 5,  name: 'Liam Lawson',       team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+26.553s'  },
       { position: 6,  name: 'Arvid Lindblad',    team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+29.010s'  },
-      { position: 7,  name: 'Pierre Gasly',      team: 'Alpine',          team_colour: '#FF69B4', time: '—',           gap: '+30.369s'  },
+      { position: 7,  name: 'Isack Hadjar',      team: 'Red Bull Racing', team_colour: '#3671C6', time: '—',           gap: '+30.369s'  },
       { position: 8,  name: 'Alex Albon',        team: 'Williams',        team_colour: '#64C4FF', time: '—',           gap: '+33.413s'  },
       { position: 9,  name: 'Esteban Ocon',      team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: '+37.410s'  },
       { position: 10, name: 'Fernando Alonso',   team: 'Aston Martin',    team_colour: '#358C75', time: '—',           gap: '+41.899s'  },
@@ -649,9 +667,10 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     name: 'Barcelona-Catalunya',
     flag: 'es',
     isSprint: false,
+    pole: { name: 'George Russell', team: 'Mercedes', team_colour: '#27F4D2', time: '1:14.679' },
     qualifying: [
       // P1 verified — George Russell on pole. All other positions are approximate placeholders — pending FIA classification verification.
-      { position: 1,  name: 'George Russell',    team: 'Mercedes',        team_colour: '#27F4D2', q1: '1:13.456', q2: '1:13.012', q3: '1:12.618', time: '1:12.618' },
+      { position: 1,  name: 'George Russell',    team: 'Mercedes',        team_colour: '#27F4D2', q1: '1:13.456', q2: '1:13.012', q3: '1:14.679', time: '1:14.679' },
       { position: 2,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', q1: '1:13.578', q2: '1:13.134', q3: '1:12.745', time: '1:12.745' },
       { position: 3,  name: 'Lewis Hamilton',    team: 'Ferrari',         team_colour: '#E8002D', q1: '1:13.701', q2: '1:13.267', q3: '1:12.867', time: '1:12.867' },
       { position: 4,  name: 'Lando Norris',      team: 'McLaren',         team_colour: '#FF8000', q1: '1:13.812', q2: '1:13.389', q3: '1:12.978', time: '1:12.978' },
@@ -709,6 +728,7 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     name: 'Britain',
     flag: 'gb',
     isSprint: true,
+    pole: { name: 'Kimi Antonelli', team: 'Mercedes', team_colour: '#27F4D2', time: '1:28.111' },
     fp1: [
       // Top 10 times verified; P11–22 approximate
       { position: 1,  name: 'Lewis Hamilton',    team: 'Ferrari',         team_colour: '#E8002D', time: '1:29.260', gap: '—'        },
@@ -847,6 +867,7 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     name: 'Austria',
     flag: 'at',
     isSprint: false,
+    pole: { name: 'George Russell', team: 'Mercedes', team_colour: '#27F4D2', time: '1:06.113' },
     // P1 verified — George Russell on pole (1:06.113). All other positions are approximate placeholders — pending FIA classification verification.
     qualifying: [
       // --- Q3 (P1–10) ---
@@ -906,6 +927,7 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     name: 'Belgium',
     flag: 'be',
     isSprint: false,
+    pole: { name: 'Kimi Antonelli', team: 'Mercedes', team_colour: '#27F4D2', time: '1:44.361' },
     // Qualifying and race positions approximate — pending FIA classification verification.
     // Hadjar handed a grid penalty for a power unit element change — qualified P8, started P21, recovered to finish P6, ahead of Norris.
     qualifying: [
@@ -968,6 +990,7 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     name: 'Hungary',
     flag: 'hu',
     isSprint: false,
+    pole: { name: 'Lando Norris', team: 'McLaren', team_colour: '#FF8000', time: '1:17.207' },
     // Practice and Qualifying not yet entered — only the pole position is confirmed (Lando Norris, McLaren).
     // Full session times pending verification against FIA classification documents; not fabricated here.
     // Hamilton handed a 5s penalty for pit lane speeding, dropping him from P4 to P5 behind Leclerc.
@@ -1003,6 +1026,7 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     name: 'Netherlands',
     flag: 'nl',
     isSprint: true,
+    pole: { name: 'Lando Norris', team: 'McLaren', team_colour: '#FF8000', time: '1:11.163' },
     // Practice, Sprint Qualifying and Qualifying not yet entered — only the pole position is confirmed
     // (Lando Norris, McLaren). Full session times pending verification against FIA classification
     // documents; not fabricated here.

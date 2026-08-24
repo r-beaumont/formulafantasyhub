@@ -83,11 +83,12 @@ export function calculateSeasonStats(): SeasonStats {
       if (r.position <= 3) dMap[r.name].sprintPodiums++
     }
 
-    // ── Qualifying pole — explicitly find position 1, never rely on array order ──
-    const pole = w.qualifying?.find(r => r.position === 1)
-    if (pole) {
-      ensureDriver(pole.name, pole.team, pole.team_colour)
-      dMap[pole.name].poles++
+    // ── Grand Prix pole — read from the dedicated pole field, never the
+    // qualifying session array (which may be incomplete/placeholder, and
+    // must never source Sprint Qualifying poles) ──
+    if (w.pole) {
+      ensureDriver(w.pole.name, w.pole.team, w.pole.team_colour)
+      dMap[w.pole.name].poles++
     }
   }
 
@@ -124,10 +125,11 @@ export const CON_STATS_MAP: Record<string, ConstructorStats> = Object.fromEntrie
 if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'test') {
   console.log('\n── seasonStats verification ──────────────────────────────')
   const check = [
-    { name: 'George Russell',  expPts: 183, expWins: 2, expPodiums: 6,  expPoles: 5 },
-    { name: 'Kimi Antonelli',  expPts: 242, expWins: 6, expPodiums: 10, expPoles: 5 },
+    { name: 'George Russell',  expPts: 183, expWins: 2, expPodiums: 6,  expPoles: 4 },
+    { name: 'Kimi Antonelli',  expPts: 242, expWins: 6, expPodiums: 10, expPoles: 6 },
     { name: 'Charles Leclerc', expPts: 148, expWins: 1, expPodiums: 4,  expPoles: 0 },
     { name: 'Lewis Hamilton',  expPts: 183, expWins: 1, expPodiums: 5,  expPoles: 0 },
+    { name: 'Lando Norris',    expPts: 159, expWins: 2, expPodiums: 4,  expPoles: 2 },
   ]
   for (const { name, expPts, expWins, expPodiums, expPoles } of check) {
     const d = DRIVER_STATS_MAP[name]
