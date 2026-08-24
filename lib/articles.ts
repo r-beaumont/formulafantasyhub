@@ -18,6 +18,79 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'dutch-gp-2026-what-we-learned',
+    title: 'What We Learned: Dutch Grand Prix',
+    excerpt: 'Lando Norris takes a second straight win and Mercedes admit McLaren have made a huge step. Max Verstappen\'s home farewell lasts one lap and George Russell is asked to move aside. Here is what the 2026 Dutch Grand Prix told us.',
+    readTime: 4,
+    date: 'Aug 24, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #001a0d 0%, #003d1f 50%, #001a0d 100%)',
+    thumbnailBg: 'rgba(0,150,80,0.22)',
+    thumbnailIcon: 'nl',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/dutch-gp-2026-what-we-learned',
+    content: `Zandvoort signed off with a race that never settled. A red flag before the first lap was complete, two Virtual Safety Cars that reshuffled the strategic order, and a team order at Mercedes on lap 65 that neither driver enjoyed. Lando Norris won it for the second time in two races, and the team leading both championships spent the afternoon in damage limitation.
+
+---
+
+**MCLAREN HAVE MADE A HUGE STEP AND MERCEDES KNOW IT**
+
+**Lando Norris** started from pole and did not have it his own way. He lost the lead, made his own afternoon considerably harder than it needed to be, and then hunted down **Kimi Antonelli** and **Lewis Hamilton** in the closing stint to take the win back. Two victories in two races, at two circuits with almost nothing in common, off the back of an upgrade that is clearly working.
+
+The most telling verdict came from the championship leader. Antonelli conceded afterwards that Mercedes are no longer the best team on the grid and that McLaren have found a significant step. **Toto Wolff** was blunter still, describing second and third as damage limitation after the Mercedes pace evaporated for reasons the team could not explain.
+
+Norris himself is not getting carried away, calling his title form a mirage. He has a point. Fourth on 159 points and 83 behind Antonelli with eleven rounds left is not a championship position. But he is the fastest man on the grid right now and Monza is next.
+
+---
+
+**MAX VERSTAPPEN'S ZANDVOORT FAREWELL ENDED IN THE BARRIERS**
+
+**Max Verstappen** took sixth in Saturday's Sprint and looked a live threat for Sunday. He never completed a racing lap. A heavy shunt at the end of the opening tour brought out the red flag and ended his final Dutch Grand Prix in front of the grandstands built around him.
+
+Zandvoort leaves the calendar with Verstappen having won three of its six modern editions, all consecutive between 2021 and 2023. He remains winless in 2026, sixth on 112 points, in a car that has not once looked like the class of the field.
+
+---
+
+**FERNANDO ALONSO IS CARRYING ASTON MARTIN ON HIS OWN**
+
+**Fernando Alonso** brought home ninth and described the car as lovely afterwards, which for Aston Martin in 2026 counts as a landmark. It is their best result of the season and Alonso has now personally scored all three of the team's championship points.
+
+**Lance Stroll** retired on lap 45. That is the problem stated plainly. The Hungary upgrade has moved the car and the reliability has not followed, and a team sitting tenth on three points cannot keep converting one car's progress into one car's finish. Anyone eyeing Aston Martin as the cheap route into a four premium driver build still has the Honda engine to worry about.
+
+---
+
+**LIAM LAWSON DELIVERED ON A WEEKEND'S NOTICE**
+
+**Isack Hadjar** was ruled out with a wrist fracture picked up boxing during the summer shutdown. **Liam Lawson** was called up to partner Verstappen at short notice and brought home seventh and six points, on a sprint weekend with a single hour of practice, in the seat Red Bull removed him from after two races in 2025.
+
+**Yuki Tsunoda** filled the resulting vacancy at Racing Bulls and finished eleventh, having already apologised for contact with teammate **Arvid Lindblad** in the Sprint. Neither Racing Bulls car scored all weekend, and the team's constructor total is unchanged since Hungary.
+
+Hadjar is targeting a Monza return, though reports suggest Red Bull are wary that a premature comeback could cost him the rest of the season. He keeps his 68 points and eighth place either way.
+
+---
+
+**MERCEDES PUT THE TITLE AHEAD OF GEORGE RUSSELL**
+
+**George Russell** won Saturday's Sprint outright and was the quicker Mercedes across much of the weekend. Sunday was a different afternoon entirely. He lost second to **Kimi Antonelli** on the opening lap, dropped behind **Oscar Piastri** at the restart, spent a stint scrapping with both Ferraris over fourth, and then found himself back in second when Antonelli pitted under the late Virtual Safety Car.
+
+On lap 65 Mercedes told him to give it back. Russell's immediate response on the radio was not enthusiastic, and he warned the pit wall they risked losing a double podium with **Lewis Hamilton** and **Charles Leclerc** closing on fresh rubber. He then held both of them off on old tyres to keep third, which was the drive of his afternoon.
+
+Afterwards he called it the right decision and said Antonelli deserved to finish ahead, having been in front before the stops and carrying newer tyres. **Toto Wolff** framed it as the safest route to points rather than a hierarchy call. Both drivers left with 23 points from the weekend, so the swap cost Russell nothing in the standings, and he moved ahead of Hamilton into second on countback.
+
+The number that lingers is 59. That is how far Russell now trails his teammate, and Zandvoort was the afternoon Mercedes made clear which car the strategy is built around when it matters.
+
+---
+
+**ANTONELLI HEADS TO MONZA WITH A GRID PENALTY WAITING**
+
+Antonelli will take a grid penalty at Monza for an engine change, which turns a two-week gap into a genuine opportunity for everyone behind him. He still leads by 59 from Russell and 83 from Norris, and Mercedes still lead Ferrari by 87 in the Teams' standings.
+
+But a championship leader starting out of position, at a circuit where McLaren have just found a step and Ferrari race at home, is the most interesting Monza setup in years.`,
+  },
+  {
     slug: 'dutch-gp-2026-technical-upgrades',
     title: 'Upgrades Preview: Dutch Grand Prix',
     excerpt: "Alpine bring an eight-part package to headline the FIA submission at Zandvoort, with Ferrari and Aston Martin close behind on five apiece. Here's how every team's development stacks up for the Sprint weekend.",

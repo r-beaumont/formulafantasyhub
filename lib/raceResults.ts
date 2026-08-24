@@ -998,6 +998,57 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     ],
   },
 
+  12: {
+    round: 12,
+    name: 'Netherlands',
+    flag: 'nl',
+    isSprint: true,
+    // Practice, Sprint Qualifying and Qualifying not yet entered — only the pole position is confirmed
+    // (Lando Norris, McLaren). Full session times pending verification against FIA classification
+    // documents; not fabricated here.
+    // Sprint result only partially confirmed: P1, P3, P4, P6 and P7 verified from published reports.
+    // P2, P5 and P8 are not yet confirmed and are deliberately omitted rather than inferred.
+    // Driver substitutions this round only: Liam Lawson raced for Red Bull Racing (Isack Hadjar injured),
+    // Yuki Tsunoda filled the resulting Racing Bulls vacancy. Hadjar did not participate.
+    // Verstappen crashed heavily at the end of the opening lap, completing zero classified laps and
+    // bringing out the red flag, in Zandvoort's final F1 race. Two Virtual Safety Car periods shaped
+    // strategy, the second triggered by Ocon's retirement. Mercedes swapped Antonelli and Russell on
+    // lap 65 to restore Antonelli to P2 after a VSC pit stop had dropped him behind. Colapinto and
+    // Lawson each received 10-second penalties for failing to slow for yellow flags. Sainz received a
+    // 10-second penalty for causing a collision.
+    sprintRace: [
+      { position: 1, name: 'George Russell',    team: 'Mercedes',        team_colour: '#27F4D2', time: '', gap: '' },
+      { position: 3, name: 'Lando Norris',      team: 'McLaren',         team_colour: '#FF8000', time: '', gap: '' },
+      { position: 4, name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', time: '', gap: '' },
+      { position: 6, name: 'Max Verstappen',    team: 'Red Bull Racing', team_colour: '#3671C6', time: '', gap: '' },
+      { position: 7, name: 'Lewis Hamilton',    team: 'Ferrari',         team_colour: '#E8002D', time: '', gap: '' },
+    ],
+    race: [
+      { position: 1,  name: 'Lando Norris',      team: 'McLaren',         team_colour: '#FF8000', time: '2:04:44.859', gap: '—'        },
+      { position: 2,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', time: '—',           gap: '+11.536s' },
+      { position: 3,  name: 'George Russell',    team: 'Mercedes',        team_colour: '#27F4D2', time: '—',           gap: '+15.906s' },
+      { position: 4,  name: 'Lewis Hamilton',    team: 'Ferrari',         team_colour: '#E8002D', time: '—',           gap: '+16.755s' },
+      { position: 5,  name: 'Charles Leclerc',   team: 'Ferrari',         team_colour: '#E8002D', time: '—',           gap: '+17.258s' },
+      { position: 6,  name: 'Oscar Piastri',     team: 'McLaren',         team_colour: '#FF8000', time: '—',           gap: '+32.332s' },
+      { position: 7,  name: 'Liam Lawson',       team: 'Red Bull Racing', team_colour: '#3671C6', time: '—',           gap: '+79.915s' },
+      { position: 8,  name: 'Nico Hülkenberg',   team: 'Audi',            team_colour: '#52E252', time: '—',           gap: '+1 LAP'   },
+      { position: 9,  name: 'Fernando Alonso',   team: 'Aston Martin',    team_colour: '#229971', time: '—',           gap: '+1 LAP'   },
+      { position: 10, name: 'Pierre Gasly',      team: 'Alpine',          team_colour: '#FF87BC', time: '—',           gap: '+1 LAP'   },
+      { position: 11, name: 'Yuki Tsunoda',      team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+1 LAP'   },
+      { position: 12, name: 'Arvid Lindblad',    team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+1 LAP'   },
+      { position: 13, name: 'Gabriel Bortoleto', team: 'Audi',            team_colour: '#52E252', time: '—',           gap: '+1 LAP'   },
+      { position: 14, name: 'Franco Colapinto',  team: 'Alpine',          team_colour: '#FF87BC', time: '—',           gap: '+2 LAPS'  },
+      { position: 15, name: 'Sergio Pérez',      team: 'Cadillac',        team_colour: '#C41E3A', time: '—',           gap: '+2 LAPS'  },
+      { position: 16, name: 'Carlos Sainz',      team: 'Williams',        team_colour: '#64C4FF', time: '—',           gap: '+2 LAPS'  },
+      { position: 17, name: 'Alex Albon',        team: 'Williams',        team_colour: '#64C4FF', time: '—',           gap: 'DNF'      },
+      { position: 18, name: 'Valtteri Bottas',   team: 'Cadillac',        team_colour: '#C41E3A', time: '—',           gap: 'DNF'      },
+      { position: 19, name: 'Esteban Ocon',      team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: 'DNF'      },
+      { position: 20, name: 'Lance Stroll',      team: 'Aston Martin',    team_colour: '#229971', time: '—',           gap: 'DNF'      },
+      { position: 21, name: 'Oliver Bearman',    team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: 'DNF'      },
+      { position: 22, name: 'Max Verstappen',    team: 'Red Bull Racing', team_colour: '#3671C6', time: '—',           gap: 'DNF'      },
+    ],
+  },
+
 }
 
 // ─── 2026 Team & Driver Lineup ───────────────────────────────────────────────

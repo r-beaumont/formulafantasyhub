@@ -36,16 +36,19 @@ const _driverMeta: Omit<DriverStanding, 'pos' | 'points' | 'wins'>[] = [
   { id: 'lindblad',   name: 'Arvid Lindblad',    shortName: 'LIN', team: 'Racing Bulls',    teamColor: '#6692FF', flag: 'gb' },
   { id: 'hadjar',     name: 'Isack Hadjar',      shortName: 'HAD', team: 'Red Bull Racing', teamColor: '#3671C6', flag: 'fr' },
   { id: 'piastri',    name: 'Oscar Piastri',     shortName: 'PIA', team: 'McLaren',         teamColor: '#FF8000', flag: 'au' },
-  { id: 'sainz',      name: 'Carlos Sainz',      shortName: 'SAI', team: 'Williams',        teamColor: '#64C4FF', flag: 'es' },
   { id: 'bortoleto',  name: 'Gabriel Bortoleto', shortName: 'BOR', team: 'Audi',            teamColor: '#C0C0C0', flag: 'br' },
   { id: 'colapinto',  name: 'Franco Colapinto',  shortName: 'COL', team: 'Alpine',          teamColor: '#FF69B4', flag: 'ar' },
   { id: 'ocon',       name: 'Esteban Ocon',      shortName: 'OCO', team: 'Haas',            teamColor: '#B6BABD', flag: 'fr' },
+  // Hulkenberg ahead of Sainz on equal points — countback favors Hulkenberg; array order is the tiebreak since neither has a win.
   { id: 'hulkenberg', name: 'Nico Hülkenberg',   shortName: 'HUL', team: 'Audi',            teamColor: '#C0C0C0', flag: 'de' },
+  { id: 'sainz',      name: 'Carlos Sainz',      shortName: 'SAI', team: 'Williams',        teamColor: '#64C4FF', flag: 'es' },
   { id: 'albon',      name: 'Alex Albon',        shortName: 'ALB', team: 'Williams',        teamColor: '#64C4FF', flag: 'th' },
   { id: 'bottas',     name: 'Valtteri Bottas',   shortName: 'BOT', team: 'Cadillac',        teamColor: '#CC0000', flag: 'fi' },
   { id: 'perez',      name: 'Sergio Pérez',      shortName: 'PER', team: 'Cadillac',        teamColor: '#CC0000', flag: 'mx' },
   { id: 'alonso',     name: 'Fernando Alonso',   shortName: 'ALO', team: 'Aston Martin',    teamColor: '#358C75', flag: 'es' },
   { id: 'stroll',     name: 'Lance Stroll',      shortName: 'STR', team: 'Aston Martin',    teamColor: '#358C75', flag: 'ca' },
+  // Round 12 (Netherlands) one-off substitute — filled the Racing Bulls seat vacated by Lawson's move to Red Bull.
+  { id: 'tsunoda',    name: 'Yuki Tsunoda',      shortName: 'TSU', team: 'Racing Bulls',    teamColor: '#6692FF', flag: 'jp' },
 ]
 
 export const DRIVER_STANDINGS: DriverStanding[] = _driverMeta
@@ -55,7 +58,8 @@ export const DRIVER_STANDINGS: DriverStanding[] = _driverMeta
     wins:   DRIVER_STATS_MAP[d.name]?.wins   ?? 0,
     pos:    0,
   }))
-  .sort((a, b) => b.points - a.points)
+  // Countback on a points tie goes to most race wins, not array/alphabetical order.
+  .sort((a, b) => b.points - a.points || b.wins - a.wins)
   .map((d, i) => ({ ...d, pos: i + 1 }))
 
 const _conMeta: Omit<ConstructorStanding, 'pos' | 'points' | 'wins'>[] = [
