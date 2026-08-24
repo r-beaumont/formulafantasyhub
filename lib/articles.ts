@@ -68,8 +68,6 @@ Zandvoort leaves the calendar with Verstappen having won three of its six modern
 
 **Yuki Tsunoda** filled the resulting vacancy at Racing Bulls and finished eleventh, having already apologised for contact with teammate **Arvid Lindblad** in the Sprint. Neither Racing Bulls car scored all weekend, and the team's constructor total is unchanged since Hungary.
 
-Hadjar is targeting a Monza return, though reports suggest Red Bull are wary that a premature comeback could cost him the rest of the season. He keeps his 68 points and eighth place either way.
-
 ---
 
 **MERCEDES PUT THE TITLE AHEAD OF GEORGE RUSSELL**
