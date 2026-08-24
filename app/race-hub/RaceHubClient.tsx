@@ -371,7 +371,19 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 9, firstGP: 2017, circuitLength: '6.003 km',
       dnfHistory: { y2023: 2, y2024: 1, y2025: 1, avg: 1.33 },
     },
-    16: { // Singapore — Marina Bay Street Circuit
+    16: { // Bahrain (relocated) — Sepang International Circuit, Malaysia
+      lastWinner: null,
+      mostWinsDriver: 'S. Vettel', mostWinsDriverCount: 4,
+      mostWinsConstructor: '—', mostWinsConstructorCount: undefined,
+      mostPolesDriver: '—', mostPolesDriverCount: undefined,
+      mostPolesConstructor: '—', mostPolesConstructorCount: undefined,
+      avgOvertakes: null, overtakeSeasonsLabel: null,
+      overtakes2023: null, overtakes2024: null, overtakes2025: null,
+      gridImportance: 'TBC',
+      totalGPs: 19, firstGP: 1999, circuitLength: '5.543 km',
+      dnfHistory: { y2023: null, y2024: null, y2025: null, avg: '—' },
+    },
+    17: { // Singapore — Marina Bay Street Circuit
       lastWinner: 'G. Russell',
       mostWinsDriver: 'S. Vettel', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 5,
@@ -383,7 +395,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 17, firstGP: 2008, circuitLength: '4.940 km',
       dnfHistory: { y2023: 3, y2024: 1, y2025: 0, avg: 1.33 },
     },
-    17: { // United States — Circuit of the Americas
+    18: { // United States — Circuit of the Americas
       lastWinner: 'M. Verstappen',
       mostWinsDriver: 'L. Hamilton', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Mercedes', mostWinsConstructorCount: 7,
@@ -395,7 +407,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 13, firstGP: 2012, circuitLength: '5.513 km',
       dnfHistory: { y2023: 5, y2024: 1, y2025: 1, avg: 2.33 },
     },
-    18: { // Mexico — Autodromo Hermanos Rodriguez
+    19: { // Mexico — Autodromo Hermanos Rodriguez
       lastWinner: 'L. Norris',
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 6,
@@ -407,7 +419,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 23, firstGP: 1963, circuitLength: '4.304 km',
       dnfHistory: { y2023: 3, y2024: 3, y2025: 3, avg: 3.00 },
     },
-    19: { // Brazil — Autodromo Jose Carlos Pace
+    20: { // Brazil — Autodromo Jose Carlos Pace
       lastWinner: 'L. Norris',
       mostWinsDriver: 'M. Schumacher', mostWinsDriverCount: 4,
       mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 9,
@@ -419,7 +431,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 42, firstGP: 1973, circuitLength: '4.309 km',
       dnfHistory: { y2023: 6, y2024: 5, y2025: 3, avg: 4.67 },
     },
-    20: { // Las Vegas — Las Vegas Strip Circuit
+    21: { // Las Vegas — Las Vegas Strip Circuit
       lastWinner: 'M. Verstappen',
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 2,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 2,
@@ -432,7 +444,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 3, firstGP: 2023, circuitLength: '6.201 km',
       dnfHistory: { y2023: 1, y2024: 2, y2025: 5, avg: 2.67 },
     },
-    21: { // Qatar — Lusail International Circuit
+    22: { // Qatar — Lusail International Circuit
       lastWinner: 'M. Verstappen',
       mostWinsDriver: 'M. Verstappen', mostWinsDriverCount: 3,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 3,
@@ -445,7 +457,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
       totalGPs: 4, firstGP: 2021, circuitLength: '5.380 km',
       dnfHistory: { y2023: 3, y2024: 5, y2025: 2, avg: 3.33 },
     },
-    22: { // Abu Dhabi — Yas Marina Circuit
+    23: { // Abu Dhabi — Yas Marina Circuit
       lastWinner: 'M. Verstappen',
       mostWinsDriver: 'L. Hamilton / M. Verstappen', mostWinsDriverCount: 5,
       mostWinsConstructor: 'Red Bull', mostWinsConstructorCount: 8,
@@ -463,8 +475,8 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
     1: 'High', 2: 'High', 3: 'Very High', 4: 'High', 5: 'High',
     6: 'Medium', 7: 'Medium-High', 8: 'High', 9: 'Very High', 10: 'Very High',
     11: 'Medium', 12: 'Medium-High', 13: 'Very High', 14: 'Medium-High', 15: 'Very High',
-    16: 'Medium', 17: 'High', 18: 'High', 19: 'Medium-High', 20: 'Very High',
-    21: 'High', 22: 'Medium-High',
+    16: 'Very High', 17: 'Medium', 18: 'High', 19: 'High', 20: 'Medium-High',
+    21: 'Very High', 22: 'High', 23: 'Medium-High',
   }
 
   const CIRCUIT_DESCRIPTIONS: Record<number, string> = {
@@ -483,13 +495,14 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
     13: `The Autodromo Nazionale di Monza — the Temple of Speed — is Formula 1's fastest circuit, where cars exceed 340 km/h on the long straights and aerodynamic efficiency matters above almost everything else. The passionate Tifosi fill the grandstands with a wall of red and noise that makes a win here feel like nothing else in the sport.`,
     14: `The Madring brings Formula 1 to the heart of Spain's capital city for the first time, weaving through wide boulevards and alongside landmark architecture in a 5.47-kilometre layout that combines street circuit characteristics with ambitious design. As a debut venue, every session will provide new data that teams and drivers must process quickly.`,
     15: `The Baku City Circuit is a circuit of extreme contrasts — the claustrophobic passage through the UNESCO World Heritage Old City gives way to one of Formula 1's longest straights along the Caspian Sea waterfront where cars exceed 350 km/h. Safety cars are a near-certainty, making race strategy and reliability as important as outright pace.`,
-    16: `The Marina Bay Street Circuit was Formula 1's first purpose-designed night race, with over 1,600 flood projectors turning the Singapore skyline into a uniquely spectacular backdrop. The 23-corner layout demands total concentration across one of the most physically gruelling race distances on the calendar.`,
-    17: `The Circuit of the Americas was designed from the ground up to incorporate challenges inspired by legendary circuits, including an uphill run to Turn 1 that provides spectacular first-lap incidents and one of the sport's best viewing platforms for fans. The wide, flowing layout encourages multiple racing lines and consistent overtaking.`,
-    18: `The Autódromo Hermanos Rodríguez sits at 2,285 metres above sea level — the highest venue on the Formula 1 calendar — where thin air reduces aerodynamic downforce and engine power in ways that demand entirely different car setups to every other round. The stadium section through the Foro Sol baseball arena creates a unique amphitheatre atmosphere where over 15,000 fans watch racing from just metres away.`,
-    19: `Interlagos is built into the undulating landscape of São Paulo, with an anti-clockwise layout that rises and falls more than 40 metres across its compact 4.3-kilometre lap. São Paulo's tropical climate is capable of producing sudden downpours that transform race strategy entirely, and some of Formula 1's most dramatic moments have been decided here in the final laps.`,
-    20: `The Las Vegas Strip Street Circuit runs down one of the world's most famous streets, with a 1.9-kilometre main straight along Las Vegas Boulevard that is the longest in Formula 1. The night racing format, cold track temperatures in the Nevada desert, and the neon backdrop of the Strip casinos create a race weekend unlike anything else on the calendar.`,
-    21: `The Losail International Circuit was originally built for MotoGP and has evolved into a Formula 1 venue that rewards aerodynamic efficiency and tyre management across 16 flowing corners under floodlights. Qatar's extreme heat and tyre degradation consistently produce some of the most physically demanding race conditions of the season.`,
-    22: `Yas Marina is Formula 1's traditional season finale, a purpose-built circuit on Yas Island where the iconic Yas Viceroy hotel straddles the track and the twilight race format transitions from late-afternoon sunshine to full floodlight illumination. Significant modifications in 2021 opened up the layout and improved overtaking opportunities for what has become a fitting stage for a championship conclusion.`,
+    16: `Sepang International Circuit hosted the Malaysian Grand Prix from 1999 to 2017 and returns in 2026 as the venue for the Bahrain Grand Prix. Designed by Hermann Tilke, the 5.543km layout is known for its long straights, sweeping high-speed corners and the tropical heat and sudden downpours that make race day unpredictable.`,
+    17: `The Marina Bay Street Circuit was Formula 1's first purpose-designed night race, with over 1,600 flood projectors turning the Singapore skyline into a uniquely spectacular backdrop. The 23-corner layout demands total concentration across one of the most physically gruelling race distances on the calendar.`,
+    18: `The Circuit of the Americas was designed from the ground up to incorporate challenges inspired by legendary circuits, including an uphill run to Turn 1 that provides spectacular first-lap incidents and one of the sport's best viewing platforms for fans. The wide, flowing layout encourages multiple racing lines and consistent overtaking.`,
+    19: `The Autódromo Hermanos Rodríguez sits at 2,285 metres above sea level — the highest venue on the Formula 1 calendar — where thin air reduces aerodynamic downforce and engine power in ways that demand entirely different car setups to every other round. The stadium section through the Foro Sol baseball arena creates a unique amphitheatre atmosphere where over 15,000 fans watch racing from just metres away.`,
+    20: `Interlagos is built into the undulating landscape of São Paulo, with an anti-clockwise layout that rises and falls more than 40 metres across its compact 4.3-kilometre lap. São Paulo's tropical climate is capable of producing sudden downpours that transform race strategy entirely, and some of Formula 1's most dramatic moments have been decided here in the final laps.`,
+    21: `The Las Vegas Strip Street Circuit runs down one of the world's most famous streets, with a 1.9-kilometre main straight along Las Vegas Boulevard that is the longest in Formula 1. The night racing format, cold track temperatures in the Nevada desert, and the neon backdrop of the Strip casinos create a race weekend unlike anything else on the calendar.`,
+    22: `The Losail International Circuit was originally built for MotoGP and has evolved into a Formula 1 venue that rewards aerodynamic efficiency and tyre management across 16 flowing corners under floodlights. Qatar's extreme heat and tyre degradation consistently produce some of the most physically demanding race conditions of the season.`,
+    23: `Yas Marina is Formula 1's traditional season finale, a purpose-built circuit on Yas Island where the iconic Yas Viceroy hotel straddles the track and the twilight race format transitions from late-afternoon sunshine to full floodlight illumination. Significant modifications in 2021 opened up the layout and improved overtaking opportunities for what has become a fitting stage for a championship conclusion.`,
   }
 
   return (
@@ -684,7 +697,9 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
                           <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '13px', fontWeight: 400, color: '#8A9BB0', lineHeight: 1.4 }}>{row.label}</div>
                           <div style={{ textAlign: 'right' as const, flexShrink: 0 }}>
                             <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '14px', fontWeight: 600, color: 'var(--text)' }}>{row.value}</div>
-                            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#E8002D', marginTop: '2px' }}>{row.count}×</div>
+                            {row.count != null && (
+                              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#E8002D', marginTop: '2px' }}>{row.count}×</div>
+                            )}
                           </div>
                         </div>
                       ))}
@@ -1277,7 +1292,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
               { name: '1-Stop Hard → Medium',      stops: 1, laps: ['Lap 1–28: Hard',   'Pit ~Lap 28', 'Lap 29–51: Medium'], note: 'Conservative opening on a hard tyre with a faster Medium for the second half. Relies on safety car timing.' },
             ],
           },
-          16: { // Singapore — Marina Bay Street Circuit
+          17: { // Singapore — Marina Bay Street Circuit
             downforce: 'High',
             downforceLevel: 5,
             downforceNote: 'Marina Bay is the slowest and most physically demanding street circuit on the calendar. The constant acceleration and braking through over 23 corners requires high downforce for mechanical stability. Tyre temperatures are hard to manage in Singapore\'s extreme heat and humidity.',
@@ -1292,7 +1307,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
               { name: '1-Stop Soft → Medium',     stops: 1, laps: ['Lap 1–20: Soft',   'Pit ~Lap 20', 'Lap 21–61: Medium'], note: 'Aggressive 1-stop. A long Medium stint of 41 laps in Singapore heat is very demanding — requires exemplary tyre management.' },
             ],
           },
-          17: { // United States — Circuit of the Americas
+          18: { // United States — Circuit of the Americas
             downforce: 'Medium / High',
             downforceLevel: 4,
             downforceNote: 'COTA features an iconic sequence of high-speed corners (Turn 1, Turns 3–5, the back straight complex) that demand strong downforce. The bumpy surface adds to mechanical grip requirements. Teams run medium-high wing levels similar to Silverstone.',
@@ -1307,7 +1322,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
               { name: '2-Stop Med → Hard → Med',  stops: 2, laps: ['Lap 1–22: Medium', 'Pit ~Lap 22', 'Lap 23–46: Hard',   'Pit ~Lap 46', 'Lap 47–56: Medium'], note: 'Undercut variant. Used to react to rival strategy — the final Medium stint allows an attacking pace burst in the closing laps.' },
             ],
           },
-          18: { // Mexico — Autodromo Hermanos Rodriguez
+          19: { // Mexico — Autodromo Hermanos Rodriguez
             downforce: 'Medium / Low',
             downforceLevel: 2,
             downforceNote: 'Mexico City sits at 2,285m altitude, reducing air density by around 20%. Teams compensate for the reduced aerodynamic efficiency by running higher downforce angles than the data suggests — the actual wing angles look medium-high at sea level equivalence. The thin air also impacts engine cooling and brake performance.',
@@ -1322,7 +1337,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
               { name: '2-Stop Med → Hard → Med',  stops: 2, laps: ['Lap 1–24: Medium', 'Pit ~Lap 24', 'Lap 25–50: Hard',   'Pit ~Lap 50', 'Lap 51–71: Medium'], note: 'Reactive undercut option. Teams needing to attack a rival in the final stages can gain with a fresh Medium for the last 21 laps.' },
             ],
           },
-          19: { // Brazil — Autodromo Jose Carlos Pace
+          20: { // Brazil — Autodromo Jose Carlos Pace
             downforce: 'Medium / High',
             downforceLevel: 4,
             downforceNote: 'Interlagos is a short, anti-clockwise circuit with a compact layout and multiple high-speed sections. Teams run medium-high downforce — the Senna S and the final Juncao complex demand strong mechanical grip. Unpredictable weather and the Sprint weekend format add strategic complexity.',
@@ -1337,7 +1352,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
               { name: '1-Stop Medium → Hard',     stops: 1, laps: ['Lap 1–28: Medium', 'Pit ~Lap 28', 'Lap 29–71: Hard'],                                               note: 'Rare but attempted in clean air from the front. Highly sensitive to any safety car — risks being undercut by cars on 2-stop strategies.' },
             ],
           },
-          20: { // Las Vegas — Las Vegas Strip Circuit
+          21: { // Las Vegas — Las Vegas Strip Circuit
             downforce: 'Low',
             downforceLevel: 1,
             downforceNote: 'The Las Vegas Strip Circuit features three long straights — including a 1.9km blast down Las Vegas Boulevard. Teams run minimum downforce configurations similar to Monza and Baku. Cold overnight temperatures (often 10–15°C at race time) present unique tyre warming challenges and require careful compound selection.',
@@ -1352,7 +1367,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
               { name: '1-Stop Hard → Medium',      stops: 1, laps: ['Lap 1–26: Hard',   'Pit ~Lap 26', 'Lap 27–50: Medium'], note: 'Conservative cold-weather variant. Opening on the Hard builds heat gradually before switching to Medium for a pace push in the second half.' },
             ],
           },
-          21: { // Qatar — Lusail International Circuit
+          22: { // Qatar — Lusail International Circuit
             downforce: 'Medium / High',
             downforceLevel: 4,
             downforceNote: 'Lusail is a high-speed, flowing circuit with sweeping corners that generate intense lateral loads. Teams run medium-high downforce for the sustained high-speed sections. The combination of extreme heat, abrasive asphalt and high energy demands makes Qatar one of the most tyre-destructive rounds of the year.',
@@ -1367,7 +1382,7 @@ const [standings, setStandings] = useState<{ drivers: any[]; constructors: any[]
               { name: '3-Stop Soft → Med → Med → Hard', stops: 3, laps: ['Lap 1–12: Soft', 'Pit ~Lap 12', 'Lap 13–28: Medium', 'Pit ~Lap 28', 'Lap 29–44: Medium', 'Pit ~Lap 44', 'Lap 45–57: Hard'], note: 'Reactive 3-stop if degradation is catastrophic. Seen in 2023 — Qatar can spring surprises on tyre wear.' },
             ],
           },
-          22: { // Abu Dhabi — Yas Marina Circuit
+          23: { // Abu Dhabi — Yas Marina Circuit
             downforce: 'Medium / Low',
             downforceLevel: 2,
             downforceNote: 'Yas Marina combines long straights with a flowing final sector. Teams run medium-low downforce to balance top speed on the straights with enough grip for the technical sectors. The season finale atmosphere and cooler evening temperatures make this a unique setup challenge.',
