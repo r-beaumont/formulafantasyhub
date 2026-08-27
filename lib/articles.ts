@@ -18,7 +18,7 @@ export interface Article {
 
 export const articles: Article[] = [
   {
-    slug: 'george-russell-engine-penalty-2026',
+    slug: 'kimi-antonelli-has-a-full-engine-penalty-lined-up-for-monza-but-mercedes-are-still-undecided-on-george-russell',
     title: "George Russell's grid penalty dilemma: where do Mercedes take the inevitable hit?",
     excerpt: "Where do Mercedes take Russell's engine penalty?",
     readTime: 7,
@@ -30,8 +30,8 @@ export const articles: Article[] = [
     thumbnail: 'linear-gradient(135deg, #1a0008 0%, #3d0014 50%, #1a0008 100%)',
     thumbnailBg: 'rgba(220,20,60,0.2)',
     thumbnailIcon: 'it',
-    thumbnailImage: '/thumbnail-other-articles.png',
-    ogImage: 'https://formulahub.live/og/george-russell-engine-penalty-2026',
+    thumbnailImage: '/thumbnail-upgrades-preview.png',
+    ogImage: 'https://formulahub.live/og/kimi-antonelli-has-a-full-engine-penalty-lined-up-for-monza-but-mercedes-are-still-undecided-on-george-russell',
     content: `Toto Wolff has confirmed Kimi Antonelli will take a full power unit change at Monza, starting the Italian Grand Prix from the back of the grid. What Wolff has not confirmed is what happens next for George Russell.
 
 "With George, the discussions are ongoing about where to take it," Wolff told reporters at Zandvoort. The signal was clear. It is a matter of when, not if.
@@ -50,7 +50,7 @@ Monza's appeal is straightforward. Long straights and heavy braking zones produc
 
 Monza is also the paddock's most common strategic penalty venue. The 2022 Italian Grand Prix saw grid drops for Verstappen, Hamilton, Perez, Sainz, Bottas, Tsunoda, Ocon, Magnussen and Schumacher in one weekend. The 2025 edition again saw multiple drivers at or beyond their allocation limits before the race.
 
-The case for doubling up on Russell is the same. The case against is that Mercedes lose their two strongest cars to grid penalties at a track where Ferrari have introduced a reported 15 bhp engine upgrade and are targeting a home win. The constructors' fight matters. Mercedes' current lead is comfortable but not untouchable.
+The case for doubling up on Russell is the same. The case against is that Mercedes lose their two strongest cars to grid penalties at a track where Ferrari have introduced a reported 15 bhp engine upgrade and are targeting a home win.
 
 **Baku, Round 15: 9/10**
 
@@ -62,15 +62,15 @@ Baku's overtaking numbers back the strategy up. The long run down to Turn 1 rewa
 
 The only argument against Baku is that a wall-lined street circuit adds its own risk of race-ending contact. In a season where Mercedes have already lost engines to reliability, throwing another one into a high-risk environment on debut is a fair concern.
 
-**COTA, Round 19: 5/10**
+**COTA, Round 18: 5/10**
 
 Circuit of the Americas has a reasonable historical pedigree as a strategic engine venue. Vettel took a fresh Mercedes-supplied unit here in 2021 with Aston Martin. The 2022 US Grand Prix then produced grid drops for Leclerc, Alonso, Perez, Zhou and Ocon, with Ocon starting from the pit lane after a full complement of new components. The long back straight and the overtaking zone into Turn 12 create genuine chances to move forward, and dry conditions are almost guaranteed in October.
 
 The catch is the dry conditions cut both ways. COTA rewards drivers who can attack the kerbs hard through Sector One, and the surface is notoriously abrasive on tyres. A driver starting near the back has to burn through his tyres to make ground, which then compromises the second stint. Recovery drives here are workable but not clean.
 
-The bigger issue with COTA is timing. Round 19 sits deep into the final third of the season. If Antonelli's championship lead has been protected through Monza, Baku and Singapore, the Drivers' title picture may already be firming up by the time Russell arrives in Austin. Once the title fight is effectively over, there's less for a fresh engine to protect.
+The bigger issue with COTA is timing. Round 18 sits deep into the final third of the season. If Antonelli's championship lead has been protected through Monza, Baku and Singapore, the Drivers' title picture may already be firming up by the time Russell arrives in Austin. Once the title fight is effectively over, there's less for a fresh engine to protect.
 
-**Mexico, Round 20: 3/10**
+**Mexico, Round 19: 3/10**
 
 Mexico is the outlier. Overtakes are plentiful and the run to Turn 1 is the longest of the season, which reads on paper like a recovery-friendly circuit. In practice it is anything but a fresh-engine venue.
 
@@ -78,9 +78,9 @@ The Autódromo Hermanos Rodríguez sits 2,200 metres above sea level. The thin a
 
 Introducing a fresh power unit at Mexico and then hammering it on debut is the opposite of what a strategic penalty is supposed to achieve. The point is to protect the unit for the final rounds, not to cook it on introduction. Historically, teams choose Mexico for grid penalties only when reliability leaves no other option, as Red Bull did with Ricciardo in 2018.
 
-Layer in the same timing question that applies to COTA and Mexico's case weakens further. Round 20 is late enough that the strategic protection a fresh unit provides may already be worth less than the recovery hit it costs.
+Layer in the same timing question that applies to COTA and Mexico's case weakens further. Round 19 is late enough that the strategic protection a fresh unit provides may already be worth less than the recovery hit it costs.
 
-**Interlagos, Round 21: 6/10**
+**Interlagos, Round 20: 6/10**
 
 Mercedes have a specific history of taking strategic engine penalties at Interlagos. Hamilton took a fresh ICE at São Paulo in 2021 for a five-place drop, and Wolff explained the rationale at the time in terms that apply directly to Russell's 2026 situation: "We feel we can score more points. We have degradation on the engine until the end of the season. It's just going to decrease in power."
 
@@ -88,13 +88,15 @@ The precedent isn't isolated. Verstappen took his sixth ICE of the season at Int
 
 Interlagos delivered 96 overtakes in the 2025 Grand Prix, one of the highest counts of the season, and rain is a genuine possibility in November, which historically favours drivers coming through the field.
 
-The counter-argument is timing. Round 21 leaves only three races after Brazil. A home crowd, championship pressure and changeable weather is not the weekend to gamble on a recovery drive that could have happened cleanly at Baku on flat asphalt six rounds earlier. If the Drivers' title is done by then, the strategic upside is largely gone.
+The counter-argument is timing. Round 20 leaves only three races after Brazil. A home crowd, championship pressure and changeable weather is not the weekend to gamble on a recovery drive that could have happened cleanly at Baku on flat asphalt six rounds earlier. If the Drivers' title is done by then, the strategic upside is largely gone.
 
 **The verdict**
 
-Baku is the strategic answer. Wolff has already named it, the precedent is exactly the one Mercedes want, and it lands early enough in the run-in that a fresh unit still has real championship value to protect. Monza is the pressure release valve if Antonelli's fresh unit shows any early warning signs and Mercedes decide to double up. Interlagos becomes the fallback if the Hungary-damaged unit can be repaired and Mercedes can push the decision back into the final phase of the season.
+Baku is the strategic answer. Wolff has already named it, the precedent is exactly the one Mercedes want, and it lands early enough in the run-in that a fresh unit still has real championship value to protect. Hamilton's 2024 pit lane recovery to P9 in Baku is the closest apples-to-apples template Mercedes have for what Russell could realistically achieve from the back.
 
-Mexico stays where it is. A high-altitude race is not the place to hand a fresh engine its first test.`,
+Monza is the credible alternative. Doubling up with Antonelli hurts on Sunday but simplifies the second half of the season. Russell qualifies competitively, takes the penalty, recovers on a track built for recovery drives, and Mercedes then arrive at Baku with both cars free to fight for pole. If Antonelli's fresh unit shows any early warning signs in Friday practice, the case for Russell joining him at Monza strengthens further. The counter-argument is Ferrari's home advantage and their reported 15 bhp engine upgrade for Monza: Mercedes cannot afford to hand the Scuderia a free run at a race weekend where the constructors' battle is genuinely live.
+
+Everything else is a fallback. Baku first, Monza second, and Mercedes' strategy team will already be running both simulations before the trucks reach the Italian Grand Prix.`,
   },
   {
     slug: 'dutch-gp-2026-what-we-learned',
