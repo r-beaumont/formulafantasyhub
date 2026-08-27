@@ -19,8 +19,8 @@ export interface Article {
 export const articles: Article[] = [
   {
     slug: 'kimi-antonelli-has-a-full-engine-penalty-lined-up-for-monza-but-mercedes-are-still-undecided-on-george-russell',
-    title: "George Russell's grid penalty dilemma: where do Mercedes take the inevitable hit?",
-    excerpt: "Where do Mercedes take Russell's engine penalty?",
+    title: "Where do Mercedes take Russell's engine penalty?",
+    excerpt: "Antonelli's Monza penalty is locked in. The strategic question now is when Russell takes his.",
     readTime: 7,
     date: 'Aug 27, 2026',
     tag: 'Technical',
