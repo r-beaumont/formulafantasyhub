@@ -18,6 +18,103 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'strategist-spotlight-mike-f',
+    title: 'Strategist Spotlight: Mike F',
+    excerpt: "In the first of Formula Hub's new Strategist Spotlight series, we sit down with community regular Mike F (@yankthemike) to talk chip discipline, gut feel, and the team he renamed after an F1 Fantasy bloodbath in Monaco.",
+    readTime: 9,
+    date: 'Aug 29, 2026',
+    tag: 'F1 Fantasy',
+    category: 'Guest Interview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0a3d 0%, #3d1b6e 50%, #1a0a3d 100%)',
+    thumbnailBg: 'rgba(155,89,182,0.25)',
+    thumbnailIcon: 'it',
+    thumbnailImage: '/thumbnail-other-articles.png',
+    ogImage: 'https://formulahub.live/og/strategist-spotlight-mike-f',
+    content: `Strategist Spotlight is a new Formula Hub series profiling the F1 Fantasy community's most engaged managers: how they think, how they build, and what has gone right (and wrong) across the season. First to sit down with us is Mike F (@yankthemike), a five-season veteran from the USA whose 2026 campaign spans a global top 2,000 result on one team and an infamous Monaco disaster on another.
+
+**About You**
+
+Michael, better known across the community as **@yankthemike**, plays out of the USA and is now well into his fifth season of F1 Fantasy. He first picked up the game in 2022, and the pull has come as much from the people around it as the sport itself.
+
+_"I started in 2022. Hard to believe this is my fifth season. Still loving it as much as ever, and to a large extent because of the community. When I played fantasy baseball for years, there was no community around it on Twitter (everyone played it on Yahoo and there was really no communication)."_
+
+Mike had a career-best rank last season, finishing 147th in the world. That was even more remarkable given how the campaign began.
+
+_"147 last year, which still amazes me after starting with 52 points in Australia. But all my chips were played to their maximum and I obviously had a lot of luck, as well as some bad luck. I think I could have been in the top 10 had it not been for the first weekend, but I also think that made me even more determined to get ahead."_
+
+**Your 2026 Season**
+
+Mike runs three teams in 2026, and their fortunes could not be more different. **T3 leads the way at $126.4m and sits inside the global top 2,000 at 1,867th.** T1 carries a similar budget of $125.1m but has slipped to 12,632nd after what he calls "a tale of DNFs". T2, the smallest at $119.6m, has a nickname to match its position of 17,064th.
+
+_"My best team is T3 at 1,867 globally. T1 is at 12,632, a tale of DNFs. T2 is at 17,064, dead because of Limitless in Monaco."_
+
+Ask him for his highlight of the year so far and the answer comes quickly, on a weekend where only one of his three teams got to enjoy the ride.
+
+_"T3 in Japan because of Limitless, both for rank and points. I think most people would agree that was the best Limitless weekend, and I only used it on one team."_
+
+The chip audit tells the fuller story, and not all of it is kind. Final Fix in Monaco is the one that still stings.
+
+_"My infamous Final Fix in Monaco: Bortoleto to Colapinto for zero points, and of course Bortoleto to Stroll got me a nice -20 handed to me. Not happy about Limitless in China either, as the delta was so poor, and this was the undoing of T1: it took me until Canada to switch to Kimi, whereas I had Kimi from the beginning on T3 with the exception of Miami, where I had Leclerc. I think I wasted No Negative in Miami on T1 and T2, but I can't recall the details. It was neither great nor tragic."_
+
+What's left in the locker is where the season could still swing, particularly on T3, where the differential value of his remaining chips is significant.
+
+_"I have saved Autopilot on all teams and have planned them for later, when the weather looks threatening and you have two A-tier drivers. I have saved No Negative on T3 and hope that comes in handy, as 60% of the global top 500 have used it already. My 3x Boost on T3 is what is going to make or break my season, as 82% of the subscriber top 500 and even more of the global top 500 have used it. So yeah, I'm counting on 3x Boost and No Negative to push me ahead on T3, and hoping to have a great Autopilot as well, but that's such a throw of the dice."_
+
+**Strategy**
+
+Mike's approach shifts as the season matures. The early rounds are governed by the rolling average and the discipline of building budget. Beyond that, gut feel takes a bigger seat at the table.
+
+_"My weekend decisions are, to a large extent, enslaved by the rolling average, just like everyone else when we have to build our budgets. We are now approaching the part of the season where, even though we have to keep building, I will start taking more chances on drivers that I think will score more points and not let budget constraints rule me. I watch all the practice sessions and pay a lot of attention to what the drivers say afterwards, as well as their body language. I learned that from Tom (@potpanmanf1) a long time ago and it serves me pretty well. Of course I pay a lot of attention to the sims, but I won't let them overrule what my gut says, rightly or wrongly."_
+
+On chips, he sees planning as a trap. Flexibility, in his view, is the only real edge.
+
+_"I don't plan out my chips at all, because flexibility is the most important thing. However, last year I absolutely was going to wait for 3x Boost in Qatar and that worked a treat. I use Limitless early like everyone else. I don't trust any data on the F1 website regarding quali or race pace, and I completely ignore it."_
+
+He is also a heavy consumer of community content, but a selective contributor to it.
+
+_"I love the streams and like to get the vibe of how not only the content creators think, but also some of the key audience members. If I have something that I think is worth keeping to myself on a stream, I don't reveal it. I try to catch everyone's final thoughts for the weekend to help me make a final decision."_
+
+**Pole, Puncture & Prospect**
+
+**Pole: a decision that fully delivered.** In a weekend where plenty of managers played it safe, Mike went the other way.
+
+_"Going with Kimi in Monaco comes to mind for sure."_
+
+**Puncture: a strategy that stopped your season in its tracks.** Every strategist has one that gets away. For Mike, it was severe enough to earn its own maritime nickname.
+
+_"Limitless in Monaco on T2, as I mentioned earlier, was a death blow. That is when I changed its name to RMS Dog's Breakfast. But I haven't given up on that team either: it is slowly making progress with its tiny budget."_
+
+**Prospect: a driver or constructor most players are ignoring.** Mike was early to Liam Lawson this season, and it certainly paid dividends getting on his fantasy production early on.
+
+_"For now? Who knows. I will say that early on I had Lawson on all of my teams, when he might have been ignored by a lot of players before they caught on to him. I think most people would find this question hard to answer."_
+
+**The Cool Down Lap**
+
+Engines off, and a few lighter ones to close out.
+
+**Favourite circuit on the calendar.** A left-field choice that avoids the usual suspects.
+
+_"I know everyone will say Brazil or Silverstone and Spa, and I do love them, but for me Austria is my favourite to watch."_
+
+**Favourite F1 driver, past or present.** From the past, a hero Mike came to via cinema before ever watching a race.
+
+_"From the past I have to say Niki Lauda. I wish I had been watching F1 then, but I probably had never even heard of it as a kid. Seeing the movie Rush before I had even started watching F1 made me see what a hero he was, and his determination and self-belief are truly inspiring. I have tried to watch as much of his racing as possible and read up on him as much as I can."_
+
+His present-day pick took a longer road: a Yankees fan by upbringing, a Ferrari fan by association, and eventually a Verstappen believer by conversion.
+
+_"As far as present drivers, my opinion was first formed by Drive to Survive (no shame in admitting it). As a Yankees fan, it seemed obvious to me to pick Ferrari, right? Charles looked like a golden boy and I gravitated immediately to him. That being said, when I started watching every race in 2021, I quickly learned that Charles had no chance of winning the championship. I recall that hitting me as I'm watching the race in Imola (round 2, I think) and I thought, well, this is a strange sport. So even though Drive to Survive had painted Max as a villain, I was so invested in him winning in 2021 that I have come to love him more and more every season. So yeah, I'll say Max, without hesitation, as he seems to have a lot of the characteristics of Lauda to me."_
+
+**Bold prediction for 2027.** Never one for the safe answer, Mike signed off with a title-race twist that would send shockwaves through the paddock.
+
+_"How about this: Max announces he's moving to Mercedes in next year's summer break (despite his recent multi-year extension being announced), as we see Russell slowly crumble in the first half of the season and can't handle becoming Bottas 2.0."_
+
+---
+
+_Thanks to Mike for taking the time to share his season with us. Stay tuned for more Strategist Spotlight articles in the coming weeks, as we hear from more of the F1 Fantasy community about their teams, their strategies, and the calls that have shaped their 2026._`,
+  },
+  {
     slug: 'kimi-antonelli-has-a-full-engine-penalty-lined-up-for-monza-but-mercedes-are-still-undecided-on-george-russell',
     title: "Where do Mercedes take Russell's engine penalty?",
     excerpt: "Antonelli's Monza penalty is locked in. The strategic question now is when Russell takes his.",
