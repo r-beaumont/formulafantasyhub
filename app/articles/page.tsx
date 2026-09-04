@@ -63,7 +63,6 @@ export default function ArticlesPage() {
           }}>
             {/* Left — big thumbnail */}
             <div className="mob-featured-thumb" style={{ height: '340px', background: featured.thumbnail, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <div style={{ position: 'absolute', inset: 0, background: featured.thumbnailBg }} />
               <span style={{ fontSize: '100px', position: 'relative', zIndex: 1, filter: 'drop-shadow(0 4px 24px rgba(0,0,0,0.5))' }}>{featured.thumbnailIcon}</span>
               <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '100px', background: 'linear-gradient(transparent,rgba(14,19,24,0.95))', zIndex: 2 }} />
               {/* Latest badge */}
@@ -145,7 +144,6 @@ function ArticleCard({ article }: { article: any }) {
       }}>
         {/* Thumbnail */}
         <div style={{ height: '160px', background: article.thumbnail, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-          <div style={{ position: 'absolute', inset: 0, background: article.thumbnailBg, opacity: 0.7 }} />
           <span style={{ fontSize: '56px', position: 'relative', zIndex: 1, filter: 'drop-shadow(0 2px 12px rgba(0,0,0,0.5))' }}>{article.thumbnailIcon}</span>
           {article.premium && (
             <div style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 2 }}>
