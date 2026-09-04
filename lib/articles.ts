@@ -18,6 +18,117 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'italian-gp-2026-technical-upgrades',
+    title: 'Upgrades Preview: Italian Grand Prix',
+    excerpt: "Monza is all about aerodynamic efficiency, and the FIA submission reflects it. Ferrari and Red Bull lead the way on four parts each, while Ferrari's second power unit token headlines a drag-focused weekend at the Temple of Speed.",
+    readTime: 6,
+    date: 'September 4, 2026',
+    tag: 'Technical',
+    category: 'Technical',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0000, #3d0010)',
+    thumbnailBg: 'rgba(225,15,45,0.2)',
+    thumbnailIcon: 'it',
+    thumbnailImage: '/thumbnail-upgrades-preview.png',
+    ogImage: 'https://formulahub.live/og/italian-gp-2026-technical-upgrades',
+    content: `Monza is unlike anywhere else on the calendar, and the upgrade picture reflects it. With the longest straights of the season and the 2026 power units placing a premium on energy management, the defining objective for every team this weekend is aerodynamic efficiency — shedding drag while preserving as much downforce as possible. The FIA submission is lighter on wholesale packages than recent rounds, but there are still meaningful developments to unpack, headlined by Ferrari's second power unit upgrade of the season arriving on home soil.
+
+---
+
+**McLaren**
+
+McLaren focus on performance at Monza with their H-wing, the team's own interpretation of the increasingly prominent flip-wing rear concept seen elsewhere on the grid. This is accompanied by a small modification to the floor furniture, which the team say results in better flow conditioning and an improvement in the aerodynamic performance of the floor, along with drag reduction. It is a targeted package suited to the low-downforce demands of the Temple of Speed.
+
+_Headline Upgrades: New H-wing rear wing concept. Small floor furniture modification for improved flow conditioning and drag reduction._
+
+---
+
+**Mercedes**
+
+Mercedes have removed the rear wing winglets introduced at recent rounds to shed downforce for the low-downforce Monza configuration, with the mirror stay also trimmed down to reduce drag. It is a circuit-specific efficiency package rather than a performance step, in keeping with a track that rewards straight-line speed above all else.
+
+_Headline Upgrades: Rear wing winglets removed to shed downforce. Mirror stay trimmed for reduced drag._
+
+---
+
+**Red Bull**
+
+Red Bull match Ferrari for the most new parts of any team this weekend, bringing four changes to the RB22 aimed at the specific efficiency demands of Monza. The team continue to develop the car through the second half of the season, with the Monza package focused on minimising drag while retaining as much downforce as the circuit allows.
+
+_Headline Upgrades: Four new parts — the joint-most on the grid this weekend. Circuit-specific efficiency focus for Monza's long straights._
+
+---
+
+**Ferrari**
+
+Ferrari have continued their aggressive development programme on home soil, revealing four new parts for the SF-26, a tally matched only by Red Bull. The team have revised the floor board, removed the rear brake duct winglet, shortened the mirror vertical stay and its connection to the sidepod, and trimmed the side winglets on the slotted central winglet element. The FIA submission describes the changes as a package designed to adapt to Monza's peculiar characteristics and the car's aerodynamic efficiency requirements, with every step targeting drag saving — and an accompanying downforce reduction as a natural consequence, but in a ratio favourable for this track. Crucially, Ferrari also introduce their second power unit upgrade of the season under the ADUO scheme, fitted to both cars, having been deemed more than four per cent behind benchmark manufacturer Red Bull earlier in the year. It is described by the team as a step in the right direction in a season defined by marginal gains.
+
+_Headline Upgrades: Second ADUO power unit upgrade of the season, fitted to both cars. Revised floor board. Rear brake duct winglet removed. Shortened mirror vertical stay and sidepod connection. Trimmed side winglets on central winglet element. Drag-focused package for Monza._
+
+---
+
+**Williams**
+
+Williams do not appear on the FIA upgrade submission as bringing performance upgrades to Monza, with any changes limited to setup and circuit-specific efficiency parts.
+
+_Headline Upgrades: No performance upgrades listed on the FIA submission._
+
+---
+
+**Racing Bulls**
+
+Racing Bulls bring two developments to Monza, headlined by a new rear wing — their own take on the flip-wing concept — alongside a new exhaust tailpipe. The rear wing is a notable evolution for a team that has historically slowed its development pace in the second half of the season, and it will be worth watching how the package performs as the fight for fifth in the Constructors' Championship continues.
+
+_Headline Upgrades: New rear wing incorporating flip-wing concept. New exhaust tailpipe._
+
+---
+
+**Aston Martin**
+
+Aston Martin bring only slight weight modifications to Monza, with the team confirming there will be no further aerodynamic upgrades to the AMR26 this season. Development focus has shifted to the 2027 car, which is expected to be an entirely new design. The weight-saving programme is targeted for completion around Baku, bringing the car close to the minimum weight limit, while Honda still have hardware and software power unit steps in the pipeline. A low-downforce circuit like Monza is a difficult venue for the car in its current form.
+
+_Headline Upgrades: Minor weight modifications only. No further aerodynamic upgrades planned this season. Weight-saving programme targeted for completion around Baku. Honda power unit steps still to come._
+
+---
+
+**Haas**
+
+Haas have revised the front floor of the VF-26 with new side geometry, paired with a diffuser update. The team regard this as a meaningful development, with the rear corner of the floor a key area of focus as they work to dictate flow around the rear tyre and into the diffuser. Given the car's slightly reduced rear corner volume due to its sidepod concept, the team are hopeful the package unlocks a worthwhile step in performance.
+
+_Headline Upgrades: Revised front floor with new side geometry. Diffuser update. Rear corner flow management focus._
+
+---
+
+**Audi**
+
+Audi do not appear on the FIA upgrade submission as bringing aerodynamic performance upgrades to Monza. The team have taken their one permitted opportunity to change gear ratios during the 2026 season this weekend, but no listed aero developments accompany it.
+
+_Headline Upgrades: No aerodynamic performance upgrades listed on the FIA submission. Permitted gear ratio change taken this weekend._
+
+---
+
+**Alpine**
+
+Alpine bring a new front wing endplate and a new rear wing to Monza, continuing the development push that began with their major Zandvoort package. The changes are targeted at the efficiency demands of the circuit and come as the Enstone team battle Racing Bulls for fifth in the Constructors' Championship.
+
+_Headline Upgrades: New front wing endplate. New rear wing. Continued development following the Zandvoort package._
+
+---
+
+**Cadillac**
+
+Cadillac do not appear on the FIA aerodynamic upgrade submission, but bring meaningful improvements to the braking system — an area that has caused the team significant trouble this season, with brake ducts underperforming and occasionally causing knock-on issues into the suspension. The new brake system should improve reliability and allow the drivers to run a full weekend without lifting in unwanted areas. Cadillac are also expected to receive the Ferrari power unit upgrade on both cars.
+
+_Headline Upgrades: New braking system to resolve reliability issues. Ferrari power unit upgrade expected on both cars. No listed aerodynamic upgrades._
+
+---
+
+**Final Thought**
+
+Monza is a weekend where efficiency trumps everything, and the upgrade picture reflects a grid stripping drag from their cars rather than piling on downforce. Ferrari's second power unit token, arriving on home soil with the Tifosi watching, is the standout development, matched in ambition by a four-part aero package designed purely for the Temple of Speed. Red Bull match Ferrari for parts, while the midfield battle between Racing Bulls and Alpine adds intrigue further down the order. With four straight-mode zones and energy management set to define the weekend, the teams that best balance efficiency and downforce will hold the advantage.`,
+  },
+  {
     slug: 'race-week-preview-italian-gp-2026',
     title: 'Race Week Preview: Italian GP',
     excerpt: "Antonelli starts from the back at the easiest overtaking circuit in F1, and Ferrari bring more power to the one track where it matters most. Here is your F1 Fantasy watchlist.",
