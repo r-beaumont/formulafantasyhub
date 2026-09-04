@@ -18,6 +18,69 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-italian-gp-2026',
+    title: 'Race Week Preview: Italian GP',
+    excerpt: "Antonelli starts from the back at the easiest overtaking circuit in F1, and Ferrari bring more power to the one track where it matters most. Here is your F1 Fantasy watchlist.",
+    readTime: 4,
+    date: 'Sep 2, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0000 0%, #3d0010 50%, #1a0000 100%)',
+    thumbnailBg: 'rgba(230,20,40,0.22)',
+    thumbnailIcon: 'it',
+    thumbnailImage: '/thumbnail-race-preview.png',
+    ogImage: 'https://formulahub.live/og/race-week-preview-italian-gp-2026',
+    content: `**THE SETUP**
+
+Lando Norris has won two on the bounce and Mercedes have admitted McLaren made a real step over the break. Kimi Antonelli still leads by 59 points from George Russell, but he has one win in his last seven, and Toto Wolff has confirmed a full power unit change at Monza. The championship leader starts Sunday from the back. That is not a problem for your Fantasy team — that is the opportunity of the season, and Madrid follows seven days later, so what you build this week carries straight into the next deadline.
+
+**THE CIRCUIT**
+
+53 laps of the Temple of Speed, where the slipstream does the overtaking and nobody needs an invitation. Qualifying position matters less here than almost anywhere on the calendar, which is exactly why Mercedes picked it for the penalty. Tyre deg is low, one-stops are standard, and DNF rates are historically among the lowest of the year. Positions gained is the category to build your whole week around. Team lock is Qualifying, 1600 local on Saturday.
+
+**THE WEATHER**
+
+Dry, sunny and hot all three days — 33°C Friday, 34°C Saturday, rain chance around 2%. No chaos, no safety car lottery, no No Negative value. Mercedes prefer cooler conditions, so watch Antonelli's long-run pace on Friday before you commit the boost.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Kimi Antonelli**
+
+Back of the grid in the fastest car at the circuit built for recovery drives. Every position gained and every overtake pays, and drivers who carve through the field tend to collect Driver of the Day on top. He is your 2x Boost this week. Obvious? Yes. Wrong? No.
+
+**Charles Leclerc**
+
+Two Monza wins, including that 2024 masterclass, and P4 or better on every visit since. Now Ferrari arrive at their home race with a reported 15 bhp engine upgrade at the one track where horsepower is everything. This is the easiest buy of the season.
+
+🟡 HOLD
+
+**Alex Albon**
+
+Albon is the enabler that makes premium lineups work for anyone who cannot squeeze Alonso's price in, and selling him now just locks in a bad week. Hold through Monza, cash the recovery at Madrid.
+
+**Lance Stroll**
+
+Stroll is $3m and the game will not price him any lower. The Aston Martin underneath him has come alive since the summer upgrades — both cars scored in Fantasy at Zandvoort — so the floor price now comes with real scoring upside attached. There is no cheaper way to hold a competitive seat. Leave him alone.
+
+🔴 SELL
+
+**Lando Norris**
+
+Heresy after two straight wins? Maybe. But McLaren's gains came at Hungary and Zandvoort — high-downforce tracks that reward exactly what Monza ignores. If their straight-line speed does not marry up to Mercedes and Ferrari on Sunday, you have parked the biggest price tag in the game in P5. Take the profit and redeploy it into the Antonelli–Leclerc axis.
+
+**Gabriel Bortoleto**
+
+He needs 7 points just for a minimum rise, and that threshold only climbs as his price does. The maths gets harder every weekend from here. Sell into strength before the treadmill catches him.
+
+**THE CHIPS**
+
+This is a 3x Boost weekend. Antonelli from the back at the easiest overtaking circuit on the calendar, in the fastest car, at a track where DNFs are rare — the recovery-drive ceiling is enormous and the downside is thin. If you'd rather not commit before seeing Friday running, Autopilot is the alternative: it hands the boost decision to the game after the sessions play out, which covers you if Antonelli's fresh engine shows any early warning signs. No Negative is dead in a dry, low-attrition Monza. Pick one of the two and save the rest — Baku's chaos is where your remaining chips earn more.`,
+  },
+  {
     slug: 'strategist-spotlight-mike-f',
     title: 'Strategist Spotlight: Mike F',
     excerpt: "In the first of Formula Hub's new Strategist Spotlight series, we sit down with community regular Mike F (@yankthemike) to talk chip discipline, gut feel, and the team he renamed after an F1 Fantasy bloodbath in Monaco.",
