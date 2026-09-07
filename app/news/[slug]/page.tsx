@@ -57,7 +57,9 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
   if (!article) notFound()
 
   const cat = categoryColors[article.category] || { color: 'var(--muted)', bg: 'rgba(255,255,255,0.08)' }
-  const otherArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3)
+  const otherArticles = article.relatedSlugs
+    ? article.relatedSlugs.map(s => articles.find(a => a.slug === s)).filter((a): a is typeof articles[number] => !!a)
+    : articles.filter(a => a.slug !== article.slug).slice(0, 3)
 
   const renderInline = (text: string): React.ReactNode => {
     const inlineRegex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g

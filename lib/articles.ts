@@ -14,9 +14,58 @@ export interface Article {
   thumbnailImage?: string
   readTime: number
   ogImage?: string
+  relatedSlugs?: string[]
 }
 
 export const articles: Article[] = [
+  {
+    slug: 'italian-gp-2026-what-we-learned',
+    title: 'What We Learned: Italian Grand Prix',
+    excerpt: 'Kimi Antonelli wins from 19th and rewrites the record book on home soil, Ferrari turn their own grand prix into a wreck, and Alpine\'s Mercedes engine delivers a pole nobody saw coming. Here is what the 2026 Italian Grand Prix told us.',
+    readTime: 4,
+    date: 'Sep 7, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #001a0d 0%, #003d1f 50%, #001a0d 100%)',
+    thumbnailBg: 'rgba(0,150,80,0.22)',
+    thumbnailIcon: 'it',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/italian-gp-2026-what-we-learned',
+    relatedSlugs: ['italian-gp-2026-technical-upgrades', 'race-week-preview-italian-gp-2026', 'dutch-gp-2026-what-we-learned'],
+    content: `Monza got the home winner it had waited sixty years for, and it was wearing silver. Kimi Antonelli started 19th, watched Charles Leclerc put a Ferrari into the Parabolica barrier on lap two, and spent the next fifty laps dismantling the field, his own team-mate included. It was the drive of the season and it was not close.
+
+---
+
+**KIMI ANTONELLI PRODUCED AN ABSOLUTE MASTERCLASS**
+
+**Kimi Antonelli** started 19th on the grid, 12th on the restart, and won by 3.9 seconds. That is the joint second-lowest grid position anyone has ever won a Formula 1 grand prix from, ahead of Verstappen at Interlagos in 2024, ahead of Hamilton's 14th at Hockenheim, ahead of Schumacher's 16th at Spa. He was leading inside the first third of the race distance. When **George Russell** re-passed him, he took a second set of tyres under the Virtual Safety Car and hunted his team-mate down on the harder compound. He even threw it into the first chicane gravel with four laps left and still made the move stick a lap later. Six wins this season, five from pole, and now one that belongs in a different category entirely. There is no sensible argument left against calling this a generational talent.
+
+---
+
+**FERRARI'S HOME RACE FELL APART BEFORE IT STARTED**
+
+The Tifosi got two laps. **Charles Leclerc** and **Lewis Hamilton** went at each other through the first chicane on lap one in a scrap Leclerc later admitted "went too far", and a lap later Leclerc ran across a drainage grille at Parabolica, spun, and hit the barrier hard enough to stop the race for half an hour. That was the visible disaster. The invisible one was the car. Ferrari's ADUO 2 power unit upgrade, the one that topped the timesheets on Friday and had Monza believing, still left both cars 10 to 20km/h down through every speed trap in qualifying. Hamilton finished sixth, out of position from the opening-lap fight and on the wrong side of the VSC, then told the media there are "no rules" at Ferrari. A home weekend that promised an engine step delivered a DNF, a public row and a team principal under real pressure.
+
+---
+
+**ALPINE WERE THE STORY OF THE WEEKEND**
+
+**Pierre Gasly** took pole position at Monza in a dry qualifying session, in a car sixth in the Constructors' standings, by six hundredths. You have to go back to Fisichella at Spa in 2009 for a genuine equivalent. It happened because Alpine got every controllable right — a low-drag A526 that was already short on downforce and turned that into top speed, the Zandvoort upgrade balancing the car, and the nerve to drop **Franco Colapinto** and Gasly to the back of the Q3 queue for the biggest tow on the grid. Underpinning all of it is the Mercedes power unit, still the benchmark of this regulation set. Both Alpines ran inside the top three in the opening stint after the restart. Gasly faded to seventh and Colapinto took ninth, but Alpine out-executed all four big teams on Saturday and left with points from both cars.
+
+---
+
+**ASTON MARTIN HAVE NO POWER AND NOWHERE TO HIDE**
+
+Two cars, two retirements, and no realistic prospect of anything better. **Fernando Alonso** started from the pit lane after a power unit change forced by a battery issue in Q1 that he described as understood but not solved, ran into damage at Lesmo 2, and parked it on lap 25. **Lance Stroll** lasted three laps longer before a hydraulics failure ended his afternoon and triggered the Virtual Safety Car that handed Antonelli the race. The uncomfortable truth for Aston Martin is that Monza exposed exactly what Zandvoort hid: even after Honda's engine upgrade, this car is nowhere on a power circuit. Three points for the season, tenth in the Constructors', and all three of those points scored by a 45-year-old. Anyone still eyeing Aston as the budget route into a premium-heavy Fantasy build has their answer.
+
+---
+
+**MADRID IS NEXT AND NOBODY HAS DRIVEN IT**
+
+Formula 1 goes straight to the Madring on September 11-13 for the first Spanish Grand Prix in Madrid, a circuit no driver on this grid has raced. Antonelli leads Russell by 66 and everyone else by 76 or more, which makes the title question a matter of arithmetic rather than argument. The real intrigue is behind him: a Ferrari team publicly at war with itself, an Alpine that has just proved it can beat anyone on the right weekend, and twenty-two drivers arriving somewhere none of them understand. Unknown circuits reward the driver who adapts fastest. Monza just showed you who that is.`,
+  },
   {
     slug: 'italian-gp-2026-technical-upgrades',
     title: 'Upgrades Preview: Italian Grand Prix',
