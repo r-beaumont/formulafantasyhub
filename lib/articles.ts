@@ -19,6 +19,73 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'strategist-spotlight-steve',
+    title: 'Strategist Spotlight: Steve',
+    excerpt: 'In the second edition of Formula Hub\'s Strategist Spotlight series, we sit down with Steve to talk data-led picks, a Miami McLaren gamble that paid off, and the Nico Hulkenberg curse that has followed him all season.',
+    readTime: 7,
+    date: 'Sep 8, 2026',
+    tag: 'F1 Fantasy',
+    category: 'Guest Interview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0a3d 0%, #3d1b6e 50%, #1a0a3d 100%)',
+    thumbnailBg: 'rgba(155,89,182,0.25)',
+    thumbnailIcon: 'es',
+    thumbnailImage: '/thumbnail-other-articles.png',
+    ogImage: 'https://formulahub.live/og/strategist-spotlight-steve',
+    content: `Strategist Spotlight is Formula Hub's series profiling the F1 Fantasy community's most engaged managers: how they think, how they build, and what has gone right (and wrong) across the season. Next up is Steve, known across the Discord community as **AFN**, a US-based manager in his second season of F1 Fantasy and someone whose 2026 campaign has been shaped by bold chip calls and one recurring driver headache.
+
+**About You**
+
+Steve plays out of the United States and is in the middle of his second F1 Fantasy campaign. Having only picked up the game last year, he is still relatively new to the format, but a career-best finish of 3,707 in 2025 gave him a strong foundation to build from heading into 2026. That result, from a global player base of around 2.1 million teams, put him inside the top 0.2% of managers worldwide in his debut season, and set the bar for what he is now chasing this year.
+
+**Your 2026 Season**
+
+Steve currently sits at around **62,000th globally** on a team budget of **$116.6m**. It has been a season shaped by a handful of aggressive chip plays, and one weekend in particular stands out as the highlight: Miami, where a punt on Lando Norris and the McLaren constructor paid off handsomely as the race unfolded in their favour.
+
+The chip audit tells the fuller story, and not all of it is kind. Final Fix in China delivered as intended, No Negative in Miami was a well-timed weather hedge, but Limitless in Monaco proved to be the disaster of the season, with the Principality throwing up an outcome nobody had priced in.
+
+_"Final Fix in China: Bortoleto DNS to Lawson, 41 point upside. No Negative in Miami: gambled on rain arriving. Limitless in Monaco: was the most obvious and 'safest' circuit, we all know how that played out."_
+
+Three chips remain in the locker, and Steve has a clear plan for each. The Wildcard is being saved for the pivot to a 4A structure, 3x Boost is earmarked for Singapore rather than Monza, and Autopilot sits in reserve for the tightest 4A weekends.
+
+_"Wildcard: I plan to use this on a transition to 4A, likely with Antonelli and Leclerc. 3x Boost: I plan to use this in Singapore instead of Monza. I'm in that realm where a 4A is a very bad option right now and I'd have to take a -20 and hope Hadjar comes back for Monza, but if he does I'll definitely use it. Autopilot: whenever it's really close between 2 top drivers at 4A."_
+
+**Strategy**
+
+Steve's approach leans heavily on data and historical patterns rather than gut feel or in-session vibes. Every decision starts with the numbers, then works down to the balance between points and budget.
+
+_"I like to approach them through team and driver historical and recent performances, as well as an in-depth dive into strengths and weaknesses for every car. Wherever gives a solid balance between points and budget."_
+
+On chip planning, he takes the opposite view to many of the more forward-planning managers in the community. For Steve, the future is too unpredictable to lock in early.
+
+_"I decide race by race. I have no clue what's going to happen in the future."_
+
+**Pole, Puncture & Prospect**
+
+**Pole: a decision that fully delivered.** The Miami gamble is the one Steve keeps coming back to, and with good reason. Backing Lando Norris on a weekend where the McLaren pace clicked into place delivered the kind of return that shapes a season, and set the tone for how he has approached chip calls ever since.
+
+**Puncture: a strategy that stopped your season in its tracks.** For every strategist there is one driver who never quite clicks, and for Steve it has been Nico Hulkenberg. The German has appeared in Steve's lineup at various points throughout the season, and the returns have consistently failed to justify the pick, leaving a trail of missed points that has held the team back from climbing further.
+
+**Prospect: a driver or constructor most players are ignoring.** When asked on this, Steve thinks right now it could still be McLaren as 4A with Mercedes and Ferrari dominate lineup conversations each week. He says **"People still prefer Mercedes, but I like McLaren more in the long run"**, with recent victories in Hungary and the Netherlands heightening the appeal as the development race to close out the season comes to a crescendo. McLaren remain the outlier pick in a market that has firmly settled on Mercedes as the go-to premium constructor. Steve is happy to be early on a call the wider community has yet to make.
+
+**The Cool Down Lap**
+
+Engines off, and a few lighter ones to close out.
+
+**Favourite circuit on the calendar.** A classic American answer from a US-based manager, and one of the most driver-approved venues on the schedule. COTA's fast, flowing character and its Turn 1 uphill braking zone make it a firm favourite for fans and drivers alike, and Steve is squarely in that camp.
+
+**Favourite F1 driver, past or present.** A nod to one of the sport's most cerebral champions. Alain Prost's four world titles and legendary tactical mind still resonate with fans who value racecraft over raw pace, and Steve counts himself among them.
+
+**Bold prediction for 2027.** Consistent with his contrarian McLaren view above, Steve sees a shift coming at the top of the grid.
+
+_"McLaren dethrone Mercedes as the top team in F1."_
+
+---
+
+_Thanks to Steve for taking the time to share his season with us. Stay tuned for more Strategist Spotlight articles in the coming weeks, as we hear from more of the F1 Fantasy community about their teams, their strategies, and the calls that have shaped their 2026._`,
+  },
+  {
     slug: 'italian-gp-2026-what-we-learned',
     title: 'What We Learned: Italian Grand Prix',
     excerpt: 'Kimi Antonelli wins from 19th and rewrites the record book on home soil, Ferrari turn their own grand prix into a wreck, and Alpine\'s Mercedes engine delivers a pole nobody saw coming. Here is what the 2026 Italian Grand Prix told us.',
