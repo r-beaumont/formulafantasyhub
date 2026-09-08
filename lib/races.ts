@@ -23,21 +23,21 @@ export interface Race {
 }
 
 export const CURRENT_RACE: Race = {
-  round: 13,
-  name: 'Italian Grand Prix',
-  shortName: 'Italy',
-  circuit: 'Autodromo Nazionale Monza',
-  country: 'Italy',
-  flag: 'it',
+  round: 14,
+  name: 'Madrid Grand Prix',
+  shortName: 'Madrid',
+  circuit: 'Madring Street Circuit',
+  country: 'Spain',
+  flag: 'es',
   isSprint: false,
-  timezone: 'Europe/Rome',
-  dateRange: '4–6 Sep',
+  timezone: 'Europe/Madrid',
+  dateRange: '11–13 Sep',
   sessions: [
-    { name: 'Practice 1', short: 'FP1',  date: 'Fri 4 Sep', dateISO: '2026-09-04T10:30:00Z', timeUTC: '10:30 UTC', timeLocal: '12:30 CEST', completed: false, duration: 60  },
-    { name: 'Practice 2', short: 'FP2',  date: 'Fri 4 Sep', dateISO: '2026-09-04T14:00:00Z', timeUTC: '14:00 UTC', timeLocal: '16:00 CEST', completed: false, duration: 60  },
-    { name: 'Practice 3', short: 'FP3',  date: 'Sat 5 Sep', dateISO: '2026-09-05T10:30:00Z', timeUTC: '10:30 UTC', timeLocal: '12:30 CEST', completed: false, duration: 60  },
-    { name: 'Qualifying', short: 'QUAL', date: 'Sat 5 Sep', dateISO: '2026-09-05T14:00:00Z', timeUTC: '14:00 UTC', timeLocal: '16:00 CEST', completed: false, duration: 60  },
-    { name: 'Race',       short: 'RACE', date: 'Sun 6 Sep', dateISO: '2026-09-06T13:00:00Z', timeUTC: '13:00 UTC', timeLocal: '15:00 CEST', completed: false, duration: 120 },
+    { name: 'Practice 1', short: 'FP1',  date: 'Fri 11 Sep', dateISO: '2026-09-11T11:30:00Z', timeUTC: '11:30 UTC', timeLocal: '13:30 CEST', completed: false, duration: 60  },
+    { name: 'Practice 2', short: 'FP2',  date: 'Fri 11 Sep', dateISO: '2026-09-11T15:00:00Z', timeUTC: '15:00 UTC', timeLocal: '17:00 CEST', completed: false, duration: 60  },
+    { name: 'Practice 3', short: 'FP3',  date: 'Sat 12 Sep', dateISO: '2026-09-12T10:30:00Z', timeUTC: '10:30 UTC', timeLocal: '12:30 CEST', completed: false, duration: 60  },
+    { name: 'Qualifying', short: 'QUAL', date: 'Sat 12 Sep', dateISO: '2026-09-12T14:00:00Z', timeUTC: '14:00 UTC', timeLocal: '16:00 CEST', completed: false, duration: 60  },
+    { name: 'Race',       short: 'RACE', date: 'Sun 13 Sep', dateISO: '2026-09-13T13:00:00Z', timeUTC: '13:00 UTC', timeLocal: '15:00 CEST', completed: false, duration: 120 },
   ],
 }
 
@@ -342,7 +342,7 @@ export const SEASON_CALENDAR: {
     date: '6 Sep',
     dateRange: '4–6 Sep',
     sprint: false,
-    completed: false,
+    completed: true,
     calledOff: false,
     meeting_key: 1293,
     lat: 45.6156,
