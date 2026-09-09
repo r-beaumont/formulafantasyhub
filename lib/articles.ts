@@ -19,6 +19,71 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-madrid-gp-2026',
+    title: 'Race Week Preview: Spanish GP',
+    excerpt: "Formula 1 arrives at a circuit nobody has ever raced, Antonelli's lead swells past 66 points, and Ferrari's home weekend fell apart. Here is your F1 Fantasy watchlist for the Madring.",
+    readTime: 4,
+    date: 'Sep 9, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0000 0%, #3d0010 50%, #1a0000 100%)',
+    thumbnailBg: 'rgba(230,20,40,0.22)',
+    thumbnailIcon: 'es',
+    thumbnailImage: '/thumbnail-race-preview.png',
+    ogImage: 'https://formulahub.live/og/race-week-preview-madrid-gp-2026',
+    content: `**THE SETUP**
+
+Kimi Antonelli's Monza recovery drive from 19th did more than win him the race. It stretched his championship lead to 66 points over team-mate George Russell, with Lewis Hamilton a further ten adrift on 191 after a sixth-place finish that flattered a poor Ferrari weekend. Charles Leclerc's home-race crash, which brought out the red flag, means he now sits fifth on 155, having lost ground to a McLaren pairing finding real form of its own. Lando Norris is fourth on 171 and arrives off the back of back-to-back wins in Hungary and the Netherlands, both coming after a summer-break upgrade that Mercedes themselves have admitted closed the gap.
+
+Ferrari now trail Mercedes by 122 points in the constructors' standings, and a lot of that damage came in a single afternoon at their home race. Madrid offers a reset for everyone. Nobody, including the teams, has raced here before.
+
+**THE CIRCUIT**
+
+The Madring is Formula 1's newest venue, a 20-corner, 5.474km hybrid of street and purpose-built sections around Madrid's IFEMA complex, run clockwise over 57 laps. There's a banked corner steep enough that drivers have been talking about it all week, and Lewis Hamilton has already flagged that overtaking looks difficult around the tighter sections. With zero prior data to lean on, qualifying position is expected to matter more here than at almost any other circuit this season. FIA F3 testing in August produced 19 red flags in a single session, a small sample but a real signal that this is a track that punishes mistakes. Team lock is Qualifying, 1600 local on Saturday, September 12 (1400 UTC).
+
+**THE WEATHER**
+
+Dry and hot across the weekend, with temperatures around 32°C on all three days and minimal rain risk. No weather chaos expected, so any unpredictability this weekend is coming from the circuit itself rather than the skies.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Alex Albon**
+
+Albon's Monza weekend looked worse than it was. A grid penalty sent him to the back before a wheel had turned, but he still ground out a useful haul through positions gained and overtakes on the way to P17. He needs just 2 points for a maximum price rise this weekend, one of the lowest thresholds on the grid, which makes him a low-risk way to build budget ahead of the run through Baku and Singapore.
+
+**Lando Norris**
+
+Two wins on the bounce, both arriving after a genuine step forward from McLaren over the summer break, and 30 or more F1 Fantasy points in each of his last five race weekends. A circuit with no history and a premium on one-lap pace suits a driver in this kind of form. A strong case for the 2x Boost this weekend.
+
+🟡 HOLD
+
+**Lance Stroll**
+
+Stroll sits at the price floor, so there's no value to lose by holding through a weekend that looks more like a track-position lottery than a form guide. With a fresh circuit likely to scramble the midfield anyway, there are probably more useful places to spend your transfers this week than moving him on.
+
+**Mercedes**
+
+Still the standout constructor asset in the game, but George Russell's looming grid penalty complicates the picture. Baku is the most heavily tipped venue for it given the track's similarities to Monza, though Mercedes haven't confirmed it. With several power circuits still to come, shuffling Mercedes in and out now isn't the best use of transfers.
+
+🔴 SELL
+
+**Fernando Alonso**
+
+Alonso's Monza weekend ended almost before it started, climbing out of the car with a suspected technical issue before Qualifying had finished and then adding a race-day DNF for good measure. With reliability question marks building, he's a tricky watch heading into a circuit nobody has any data on.
+
+**Charles Leclerc**
+
+A heavy crash that brought out the Monza red flag is the latest entry in an inconsistent season that hasn't matched the promise Ferrari showed early on. With McLaren finding form and Ferrari 122 points back in the constructors' standings, higher-budget teams have better places to put that money.
+
+**THE CHIPS**
+
+Standard weekend, no sprint. With zero historical data and a circuit that produced 19 red flags in a single F3 test session, No Negative is the chip worth thinking about if you're carrying a premium lineup into the unknown — it neutralises exactly the kind of chaos this track could produce. Otherwise, treat this as a wait-and-see weekend. Save your chips for circuits you actually understand.`,
+  },
+  {
     slug: 'strategist-spotlight-steve',
     title: 'Strategist Spotlight: Steve',
     excerpt: 'In the second edition of Formula Hub\'s Strategist Spotlight series, we sit down with Steve to talk data-led picks, a Miami McLaren gamble that paid off, and the Nico Hulkenberg curse that has followed him all season.',
