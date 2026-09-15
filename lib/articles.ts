@@ -19,6 +19,109 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'strategist-spotlight-jukkapekka',
+    title: 'Strategist Spotlight: Jukkapekka Lalu',
+    excerpt: "In the third edition of Formula Hub's Strategist Spotlight series, we sit down with Finnish manager Jukkapekka Lalu (@IcebergLalu) to talk methodical decision-making, gut calls that reshape a season, and the ignored Liam Lawson pick that got away.",
+    readTime: 9,
+    date: 'Sep 15, 2026',
+    tag: 'F1 Fantasy',
+    category: 'Guest Interview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0a3d 0%, #3d1b6e 50%, #1a0a3d 100%)',
+    thumbnailBg: 'rgba(155,89,182,0.25)',
+    thumbnailIcon: 'fi',
+    thumbnailImage: '/thumbnail-other-articles.png',
+    ogImage: 'https://formulahub.live/og/strategist-spotlight-jukkapekka',
+    content: `Strategist Spotlight is Formula Hub's series profiling the F1 Fantasy community's most engaged managers: how they think, how they build, and what has gone right (and wrong) across the season. Third to sit down with us is Jukkapekka Lalu, known across the community as **@IcebergLalu**, a Finnish manager whose methodical, data-first approach helped him finish 93rd in the world in 2024 and currently has him sitting inside the global top 400 in 2026.
+
+**About You**
+
+Jukkapekka plays out of Finland and has one of the more considered origin stories in the F1 Fantasy community. He first picked up the game at launch in 2018, but only started taking it seriously five years later.
+
+_"Seriously, I have played since 2023, but casually I have played since the launch of the game back in 2018. During those 2018-2022 years, I always made the team at the beginning, but at some point in the season my interest dropped."_
+
+That shift in approach paid off almost immediately. In 2024, his second full campaign of serious play, Jukkapekka finished 93rd in the world, a result he is looking to build on again in 2026.
+
+**Your 2026 Season**
+
+Jukkapekka currently sits at **386th globally** on a team budget of **$129.3m**. His campaign has been defined by patient budget building, disciplined chip deployment, and near-perfect execution on the standout weekends.
+
+The highlight came at the Dutch Grand Prix, where the lineup he ran on his own team came remarkably close to a perfect score.
+
+_"Either the Chinese or Dutch GP, because at both of those fantasy weekends I managed to play almost perfectly for my own team without using any chips. At the Chinese GP, I was 17 points off the perfect play due to going with Colapinto instead of Lawson, and at the Dutch GP, I was 18 points off the perfect play due to going with Stroll instead of Perez. If I had to choose one, I think I would pick the Dutch GP since Perez was never really an option for me — he was always going to lose budget — while Stroll and Bottas (my other options) were already at the price floor. In a way, it can be said I played that fantasy weekend perfectly."_
+
+The chips already spent tell a story of disciplined deployment, each one anchored to a specific race characteristic or opportunity.
+
+**Autopilot at the Australian GP.** The first race of the new regulations, with two A-tier drivers in Antonelli and Leclerc, and a heavy FP3 crash for Antonelli that raised questions about his fantasy production heading into Sunday.
+
+**Limitless at the Japanese GP.** A track with strong historical returns for the chip, deployed on the back of a Chinese GP result that left his budget particularly well-positioned to build a maxed-out lineup.
+
+**No Negative at the Canadian GP.** Montreal has been unusually cruel to front-runners in recent seasons, and Jukkapekka leaned into that pattern with a gut-feel play.
+
+_"It is a track that punishes mistakes. Over the last couple of years, something has happened to someone at the front. A couple of examples: the 2025 McLaren collision, the 2024 Ferrari disaster weekend, and the 2023 Russell mistake and eventual DNF. That being said, mostly I just had a gut feeling that something similar could happen."_
+
+**3x Boost at the Italian GP.** Antonelli's grid penalty created what Jukkapekka viewed as a rare structural opportunity to back a top-line car charging through the field.
+
+_"Antonelli's back-of-the-grid penalty created this opportunity. I expected Mercedes to be the best car, and Antonelli to come through the field for a big fantasy score."_
+
+Two chips remain in the locker. His thinking on Final Fix is particularly considered, with a specific scenario already mapped out.
+
+_"The Final Fix is the most difficult chip to plan. Potential grid penalties due to extra engine components could bring some interesting Final Fix opportunities. If we get a similar situation to Antonelli at Monza, where one of the top drivers has to start from the back due to grid penalties, then most likely they won't do a proper qualifying lap in Q3, meaning they won't get you many points from qualifying — but you could still want them for the race, which is a decent Final Fix play. Of course, the common situation is to save it until something like the McLaren situation from the Chinese GP comes around, where the driver won't start the race."_
+
+Wildcard remains open, with no fixed race in mind. For Jukkapekka, its value is as much about the flexibility it enables elsewhere as any single deployment.
+
+_"No exact plan at this moment. Whenever I need to make some extra transfers, I will use it. If nothing else, still having the Wildcard gives me the opportunity to play more aggressively with my transfers, since I can always avoid transfer penalties with this chip to fix my team if needed."_
+
+**Strategy**
+
+Jukkapekka's process is a defined sequence he works through every weekend, only trusting his gut once the data has done its job.
+
+_"My pattern for approaching weekend decisions is usually the following: F1 Fantasy Tools budget builder, then free practice, then data, then gut feeling. Budget building is such an important part of the first 75% of the season that I simply can't ignore it. Basically, even before the weekend has begun, I have already used a budget builder and worked out which assets are viable options for me. I try to watch all the free practice sessions to get an eye test for that particular weekend. Before the fantasy deadline, I look for data analysis on the free practice sessions, just in case they have picked up on something I didn't see myself while watching. When it's time to lock my team, I trust my gut feeling if I have a strong one about something."_
+
+Two examples from the last two years bring the process to life, and both are among the biggest gut calls of his fantasy career.
+
+_"2025 Las Vegas GP. Before the fantasy deadline, I had this feeling to avoid McLaren, so I went full anti-McLaren lineup, taking a -10 in the process. Obviously, with the McLaren DSQs, this became an awesome decision, but even before those I was marginally up on my original team, which had included McLaren assets. 2024 Canadian GP. For all the races before this one, Ferrari assets were meta, but from the free practice sessions I got this feeling that Ferrari could generally struggle. Based on this feeling, I decided to go full anti-Ferrari lineup and, similar to the 2025 example, I was hugely rewarded when Ferrari ended up getting a double DNF at this particular race."_
+
+On chip planning, he takes a race-by-race approach, but layers in general principles for the bigger plays.
+
+_"Mostly I'm deciding race by race. Of course, chips like 3x Boost and Limitless have general principles which I follow as well. For 3x Boost, you usually need two A-tier drivers without sacrificing your constructors, and this can usually be achieved in the second half of the season. 3x Boost is also usually best played at sprint weekends. Limitless is all about the delta to non-Limitless teams and, due to budget building, is usually best played during the first quarter of the season."_
+
+**Pole, Puncture & Prospect**
+
+**Pole: a decision that fully delivered.** Backing Kimi Antonelli as the 2x Boost driver on three separate weekends took conviction, and each one paid off.
+
+_"Antonelli 2x Boost at the Chinese, Canadian and Monaco GPs. Across those weekends there was potential for different 2x Boost choices, but I trusted Antonelli on all of them and he fully delivered on each one."_
+
+**Puncture: a strategy that stopped your season in its tracks.** The one that got away for Jukkapekka is one many managers will recognise from their own team histories.
+
+_"I think I have to say my ignorance towards Lawson. Before the summer break, he had been an amazing fantasy asset from the start, but I only owned him at the Belgian and Hungarian GPs."_
+
+**Prospect: a driver or constructor most players are ignoring.** Two names for the run-in, both with specific circumstantial reasons behind them.
+
+_"When considering the rest of the season, I would say Stroll and Albon are good candidates for this one. Both Alonso and Stroll already showed some decent potential at the Hungarian GP, and Alonso continued that at the Dutch GP. Stroll being cheaper, and normally a worse qualifier, means he could score some nice fantasy points as long as he can finish the races. Williams should get upgrades for the Baku GP which will hopefully make them a bit more competitive, and Albon being a cheaper asset than Sainz means he could become a very interesting option."_
+
+**The Cool Down Lap**
+
+Engines off, and a few lighter ones to close out.
+
+**Favourite circuit on the calendar.** The home of British motorsport, and a classic pick from a manager who values history and racecraft.
+
+_"Silverstone."_
+
+**Favourite F1 driver, past or present.** A patriotic answer, and one of the most respected characters on the modern grid.
+
+_"Valtteri Bottas."_
+
+**Bold prediction for 2027.** An eye-catching call, and one that would give the Silverstone-based Aston Martin team something to celebrate.
+
+_"Aston Martin gets a podium during 2027."_
+
+---
+
+_Thanks to Jukkapekka for taking the time to share his season with us. Stay tuned for more Strategist Spotlight articles in the coming weeks, as we hear from more of the F1 Fantasy community about their teams, their strategies, and the calls that have shaped their 2026._`,
+  },
+  {
     slug: 'race-week-preview-madrid-gp-2026',
     title: 'Race Week Preview: Spanish GP',
     excerpt: "Formula 1 arrives at a circuit nobody has ever raced, Antonelli's lead swells past 66 points, and Ferrari's home weekend fell apart. Here is your F1 Fantasy watchlist for the Madring.",
