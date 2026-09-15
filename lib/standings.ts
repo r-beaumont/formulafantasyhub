@@ -43,11 +43,12 @@ const _driverMeta: Omit<DriverStanding, 'pos' | 'points' | 'wins'>[] = [
   { id: 'hulkenberg', name: 'Nico Hülkenberg',   shortName: 'HUL', team: 'Audi',            teamColor: '#C0C0C0', flag: 'de' },
   { id: 'sainz',      name: 'Carlos Sainz',      shortName: 'SAI', team: 'Williams',        teamColor: '#64C4FF', flag: 'es' },
   { id: 'albon',      name: 'Alex Albon',        shortName: 'ALB', team: 'Williams',        teamColor: '#64C4FF', flag: 'th' },
+  { id: 'alonso',     name: 'Fernando Alonso',   shortName: 'ALO', team: 'Aston Martin',    teamColor: '#358C75', flag: 'es' },
+  // Zero-points countback (verified external sources): Stroll ahead of Bottas ahead of Perez.
+  { id: 'stroll',     name: 'Lance Stroll',      shortName: 'STR', team: 'Aston Martin',    teamColor: '#358C75', flag: 'ca' },
   { id: 'bottas',     name: 'Valtteri Bottas',   shortName: 'BOT', team: 'Cadillac',        teamColor: '#CC0000', flag: 'fi' },
   { id: 'perez',      name: 'Sergio Pérez',      shortName: 'PER', team: 'Cadillac',        teamColor: '#CC0000', flag: 'mx' },
-  { id: 'alonso',     name: 'Fernando Alonso',   shortName: 'ALO', team: 'Aston Martin',    teamColor: '#358C75', flag: 'es' },
-  { id: 'stroll',     name: 'Lance Stroll',      shortName: 'STR', team: 'Aston Martin',    teamColor: '#358C75', flag: 'ca' },
-  // Round 12 (Netherlands) one-off substitute — filled the Racing Bulls seat vacated by Lawson's move to Red Bull.
+  // One-off substitute for Rounds 12 (Netherlands) and 14 (Spain) — filled the Racing Bulls seat vacated by Lawson's move to Red Bull.
   { id: 'tsunoda',    name: 'Yuki Tsunoda',      shortName: 'TSU', team: 'Racing Bulls',    teamColor: '#6692FF', flag: 'jp' },
 ]
 
