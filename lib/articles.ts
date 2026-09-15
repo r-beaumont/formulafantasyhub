@@ -30,7 +30,7 @@ export const articles: Article[] = [
     premium: false,
     thumbnail: 'linear-gradient(135deg, #1a0a3d 0%, #3d1b6e 50%, #1a0a3d 100%)',
     thumbnailBg: 'rgba(155,89,182,0.25)',
-    thumbnailIcon: 'fi',
+    thumbnailIcon: 'az',
     thumbnailImage: '/thumbnail-other-articles.png',
     ogImage: 'https://formulahub.live/og/strategist-spotlight-jukkapekka',
     content: `Strategist Spotlight is Formula Hub's series profiling the F1 Fantasy community's most engaged managers: how they think, how they build, and what has gone right (and wrong) across the season. Third to sit down with us is Jukkapekka Lalu, known across the community as **@IcebergLalu**, a Finnish manager whose methodical, data-first approach helped him finish 93rd in the world in 2024 and currently has him sitting inside the global top 400 in 2026.
