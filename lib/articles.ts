@@ -105,13 +105,13 @@ _"When considering the rest of the season, I would say Stroll and Albon are good
 
 Engines off, and a few lighter ones to close out.
 
-**Favourite circuit on the calendar.** The home of British motorsport, and a classic pick from a manager who values history and racecraft.
+**Favourite circuit on the calendar.** A pick shaped as much by his time in sim racing as by his love of the on-track spectacle.
 
-_"Silverstone."_
+_"Silverstone. I do quite a bit of sim racing as a hobby in my free time and I absolutely love driving Silverstone in sim. Also, Silverstone is one of the best tracks for me, so that helps as well. In the real world, I also think Silverstone offers banger races rather regularly due to tyre wear being crucial there, and rain being a real possibility quite often."_
 
-**Favourite F1 driver, past or present.** A patriotic answer, and one of the most respected characters on the modern grid.
+**Favourite F1 driver, past or present.** For a Finn, the obvious answers would be Mika Häkkinen or Kimi Räikkönen, but Jukkapekka's connection to Bottas runs deeper because of when he first came across him.
 
-_"Valtteri Bottas."_
+_"Bottas. From a Finn's point of view, the easy answer to this would be Mika Häkkinen or Kimi Räikkönen. Häkkinen was before I started following F1, and Räikkönen's best years were when I was very young. Valtteri Bottas, on the other hand, is someone I followed already when he was in GP3 (Formula 3 nowadays) and I just feel more connected to him because I knew about him before he even made it to F1."_
 
 **Bold prediction for 2027.** An eye-catching call, and one that would give the Silverstone-based Aston Martin team something to celebrate.
 
