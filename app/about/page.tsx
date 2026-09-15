@@ -133,13 +133,13 @@ export default function AboutPage() {
               style={{ borderRadius: '10px' }}
             />
             <p style={para}>
-              Rob Beaumont grew up in Sydney, Australia, where he played and followed a wide range of sports from a young age. In late 2021, Rob moved overseas, and his career has since led him into Formula 1.
+              Rob Beaumont grew up in Sydney, Australia, where he played and followed a wide range of sports from a young age. In late 2021, he moved overseas, and his career has since led him into Formula 1.
             </p>
             <p style={para}>
-              Rob started watching F1 in 2016. He soon began studying lap times and tyre strategies after each race and following how every result affected the championship. Rob began playing F1 Fantasy as soon as he discovered it.
+              He started watching F1 in 2016. He soon began studying lap times and tyre strategies after each race and following how every result affected the championship. He began playing F1 Fantasy as soon as he discovered it.
             </p>
             <p style={{ ...para, marginBottom: 0 }}>
-              Rob had played fantasy sport for many years before that. His first game was NRL Fantasy in 2008, which taught him how to identify value and track form.
+              He had played fantasy sport for many years before that. His first game was NRL Fantasy in 2008, which taught him how to identify value and track form.
             </p>
             <div style={{ clear: 'both' }} />
           </div>
@@ -167,10 +167,10 @@ export default function AboutPage() {
               style={{ borderRadius: '10px' }}
             />
             <p style={para}>
-              Rob founded Formula Fantasy Hub in 2022, when very little content focused solely on F1 Fantasy. Few creators were covering the game in any depth, so Rob decided to start producing that content himself, with a focus on data-led team selection and strategy.
+              Rob founded Formula Fantasy Hub in 2022, when very little content focused solely on F1 Fantasy. Few creators were covering the game in any depth, so he decided to start producing that content himself, with a focus on data-led team selection and strategy.
             </p>
             <p style={para}>
-              Formula Fantasy Hub is now the most followed dedicated F1 Fantasy community on YouTube and X, and Rob has published content every race week since its launch.
+              Formula Fantasy Hub is now the most followed dedicated F1 Fantasy community on YouTube and X, and he has published content every race week since its launch.
             </p>
             <p style={para}>
               The community plays a large part in this. Members regularly share tips, discuss their teams and compare chip strategies throughout the season. New players receive plenty of support, and experienced players are just as willing to learn from others.
@@ -188,10 +188,10 @@ export default function AboutPage() {
               Rob has written about sport since childhood. He recorded scores and match reports in notebooks, read the statistics in the newspaper's sports section, and commentated games at home.
             </p>
             <p style={para}>
-              Rob enjoys analysing data and presenting it clearly, particularly for fans making decisions about their F1 Fantasy teams. His approach centres on turning statistics such as recent form, price changes and ownership levels into practical advice that players can use each race week.
+              He enjoys analysing data and presenting it clearly, particularly for fans making decisions about their F1 Fantasy teams. His approach centres on turning statistics such as recent form, price changes and ownership levels into practical advice that players can use each race week.
             </p>
             <p style={{ ...para, marginBottom: 0 }}>
-              Rob is the lead F1 Fantasy columnist for formula1.com, where he writes the weekly Strategist Selection column on who to pick, who to sell and when to use chips. His work has also appeared in Motorsport.com, Motorsport Magazine and other publications, and he has interviewed Laura Winter, Lawrence Barretto, Alex Brundle and Nate Saunders.
+              He is now the lead F1 Fantasy columnist for formula1.com, where he writes the weekly Strategist Selection column on who to pick, who to sell and when to use chips. His work has also appeared in Motorsport.com, Motorsport Magazine and other publications, and he has interviewed Laura Winter, Lawrence Barretto, Alex Brundle and Nate Saunders.
             </p>
           </div>
 
