@@ -57,7 +57,7 @@ Dry and sunny throughout, with temperatures around 26°C easing to 24°C for Sat
 
 **Max Verstappen**
 
-Two wins from his last five Baku starts, including a lights-to-flag victory in 2025 where he led every lap. He was runner-up last time out in Madrid and arrives at a circuit that plays to Red Bull's strengths on power and traction out of the slow corners.
+Two wins from his last five Baku starts, including a lights-to-flag victory in 2025 where he led every lap and secured a grand chelem. He was runner-up last time out in Madrid and arrives at a circuit that plays to Red Bull's strengths on power and traction out of the slow corners.
 
 **Arvid Lindblad**
 
@@ -71,7 +71,7 @@ Ferrari is expected to fit Leclerc with a new power unit this weekend, sending h
 
 **Alex Albon**
 
-Albon's season has had its share of DNFs, but he's put together two clean races since his last retirement at Zandvoort, including a solid P15 in Madrid. Worth watching before moving on.
+Albon's season has had its share of DNFs, but he's put together five consecutive races without a retirement, including a solid P15 in Madrid. Worth watching how he performs in Baku before moving on.
 
 🔴 SELL
 
@@ -85,7 +85,7 @@ Cadillac's reliability record this season: suspension failures, brake fires, a d
 
 **THE CHIPS**
 
-Standard weekend, no sprint. Antonelli is the obvious 2x Boost pick on current form and points, but Baku's walls have a habit of punishing even the drivers running away with the championship — see last year's six red flags in qualifying alone. Autopilot is the play: put the multiplier on Antonelli as your primary, and if he has a bad weekend, it reassigns to whoever scores highest in your team. With Leclerc a live grid-penalty recovery drive this weekend, that's real insurance either way. Save No Negative for a proper rain race or the Singapore sprint weekend, where the extra session multiplies the value of neutralising a bad result.`,
+Standard weekend, no sprint. Antonelli is the obvious 2x Boost pick on current form and points, but Baku's walls have a habit of punishing even the drivers running away with the championship — see last year's six red flags in qualifying alone. If you are running Leclerc with a grid penalty, consider Autopilot.`,
   },
   {
     slug: 'madrid-gp-2026-what-we-learned',
