@@ -21,7 +21,7 @@ export const articles: Article[] = [
   {
     slug: 'madrid-gp-2026-what-we-learned',
     title: 'What We Learned: Madrid Grand Prix',
-    excerpt: 'Kimi Antonelli wins a race he did not lead until seven laps from home, Lando Norris loses one he controlled from pole, and the Madring\'s first grand prix tells us more about the circuit than it does about the drivers. Here is what the 2026 Madrid Grand Prix told us.',
+    excerpt: 'Lando Norris loses the lead to a Virtual Safety Car he had no way of beating, Kimi Antonelli turns second best into an eighth win of the season, and the Madring\'s first grand prix tells us more about the circuit than it does about the drivers. Here is what the 2026 Madrid Grand Prix told us.',
     readTime: 4,
     date: 'Sep 20, 2026',
     tag: 'Race Recap',
@@ -33,13 +33,13 @@ export const articles: Article[] = [
     thumbnailIcon: 'es',
     thumbnailImage: '/thumbnail-what-we-learned.png',
     ogImage: 'https://formulahub.live/og/madrid-gp-2026-what-we-learned',
-    content: `Madrid got its first Formula 1 race and spent most of it waiting for something to happen. Four cars retired, one Virtual Safety Car decided the result, and the rest of the field spent 57 laps in a queue it could not break. Kimi Antonelli was second best all afternoon and won anyway, which is becoming the defining sentence of this championship.
+    content: `Madrid got its first Formula 1 race and spent most of it waiting for something to happen. Lando Norris led comfortably until a Virtual Safety Car on lap 15 caught him a few metres past the pit entry and handed the race to everyone behind him. Four cars retired, the rest of the field spent 57 laps in a queue it could not break, and Kimi Antonelli was second best all afternoon and won anyway.
 
 ---
 
 **Antonelli's title is now a countdown rather than a contest**
 
-**Kimi Antonelli** did not have the fastest car at the Madring and it did not matter. He ran second for most of the afternoon, pitted at the exact moment a Virtual Safety Car turned a four second deficit into track position, then held Max Verstappen at arm's length through the final stint to win by 4.3 seconds. That is eight wins from fourteen rounds, 292 points, and an 81 point lead over George Russell, the only driver still mathematically relevant. Monza was the drive of the season. Madrid was the one that finishes championships, because it came on a weekend where he was beaten on raw pace and still walked away with maximum points at a circuit nobody on the grid had ever raced before.
+**Kimi Antonelli** did not have the fastest car at the Madring and it did not matter. He pitted at the exact moment the lap 15 Virtual Safety Car turned a four second deficit to Lando Norris into track position ahead of him, shadowed Charles Leclerc's long first stint until the Ferrari finally stopped with seven laps to go, then held Max Verstappen at arm's length to win by 4.3 seconds. That is eight wins from fourteen rounds, 292 points, and an 81 point lead over George Russell, the only driver still mathematically relevant. Monza was the drive of the season. Madrid was the one that finishes championships, because it came on a weekend where he was beaten on raw pace and still walked away with maximum points at a circuit nobody on the grid had ever raced before.
 
 ---
 
