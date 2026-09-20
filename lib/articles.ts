@@ -19,6 +19,57 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'madrid-gp-2026-what-we-learned',
+    title: 'What We Learned: Madrid Grand Prix',
+    excerpt: 'Kimi Antonelli wins a race he did not lead until seven laps from home, Lando Norris loses one he controlled from pole, and the Madring\'s first grand prix tells us more about the circuit than it does about the drivers. Here is what the 2026 Madrid Grand Prix told us.',
+    readTime: 4,
+    date: 'Sep 20, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0d00 0%, #3d2400 50%, #1a0d00 100%)',
+    thumbnailBg: 'rgba(232,0,45,0.2)',
+    thumbnailIcon: 'es',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/madrid-gp-2026-what-we-learned',
+    content: `Madrid got its first Formula 1 race and spent most of it waiting for something to happen. Four cars retired, one Virtual Safety Car decided the result, and the rest of the field spent 57 laps in a queue it could not break. Kimi Antonelli was second best all afternoon and won anyway, which is becoming the defining sentence of this championship.
+
+---
+
+**Antonelli's title is now a countdown rather than a contest**
+
+**Kimi Antonelli** did not have the fastest car at the Madring and it did not matter. He ran second for most of the afternoon, pitted at the exact moment a Virtual Safety Car turned a four second deficit into track position, then held Max Verstappen at arm's length through the final stint to win by 4.3 seconds. That is eight wins from fourteen rounds, 292 points, and an 81 point lead over George Russell, the only driver still mathematically relevant. Monza was the drive of the season. Madrid was the one that finishes championships, because it came on a weekend where he was beaten on raw pace and still walked away with maximum points at a circuit nobody on the grid had ever raced before.
+
+---
+
+**Lando Norris lost the Madring in the pit lane**
+
+**Lando Norris** took pole, led every lap of the opening stint and finished third without making a single mistake. The Virtual Safety Car for Lance Stroll's stricken Aston Martin appeared fractionally after he had passed the pit entry, and by the time he came round again the caution had been lifted, the cheap stop was gone and a slow front right change took whatever was left. He rejoined behind George Russell and had to fight his way back to the podium. This is the second race running that a Stroll retirement has swung a result Antonelli's way, which is either extraordinary luck or a sign that McLaren keep calling the coin wrong. The reigning champion sits fourth in the standings, 106 points adrift, and none of that is the car's fault.
+
+---
+
+**The Madring rewards Saturday and punishes everybody else**
+
+A brand new street circuit and a track temperature of 53 degrees promised degradation and chaos. The grand prix delivered a one stop queue. **Charles Leclerc** ran a set of hard tyres all the way to lap 50 and still emerged fourth, ahead of Russell, because nobody behind him could find a way past. When Oscar Piastri finally took fresh mediums with fourteen laps left, he cleared Arvid Lindblad and then sat behind Franco Colapinto for the rest of the afternoon. Fifteen of the eighteen finishers stopped once. Grid position held almost perfectly to the flag, and the only meaningful moves all day came from retirements and one accident of timing in the pit lane. Remember that next September, because Madrid is a qualifying circuit.
+
+---
+
+**Lewis Hamilton's perfect record is gone and Ferrari are drifting**
+
+**Lewis Hamilton** had scored points in every race weekend of 2026. Six laps into the Madring that run was over, his brake pedal long and his car abandoned in the pit lane, and it followed a first lap flashpoint with Max Verstappen that left the Red Bull driver swearing at his own pit wall about a position he had been ordered to hand back. Charles Leclerc's fourth place salvaged the afternoon, but salvage is the right word. Lando Norris has now closed to within five points of Hamilton in the standings, and an engine upgrade that was supposed to reset Ferrari's season has produced one retirement and one defensive drive across two weekends. The questions that followed Monza travelled to Madrid and went home unanswered.
+
+---
+
+**The Fantasy market has one clear buy and one clearer sell**
+
+Mercedes leave Madrid with a win, a fifth place and the fastest lap, the biggest constructor haul of the weekend and another price rise on a team that has climbed all season. **Liam Lawson** is the buy. Three races into his Red Bull stint he has turned eighth on the grid into sixth at the flag, and he is still priced as a stand in rather than a scorer. Franco Colapinto did the same job further down the order, converting ninth into seventh as the highest finishing midfield driver, and Alpine now cost more than they did a month ago. The sell is Carlos Sainz, whose home debut brought a grid penalty, a five second penalty for tangling with Fernando Alonso and a retirement on lap 43. Aston Martin, with a no time qualifying and a brake failure, are falling just as fast.
+
+---
+
+Baku is next on 24 to 26 September, with the Grand Prix itself moved to Saturday this year, and it is the opposite of everything Madrid just showed us. Walls instead of run off, a kilometre long straight, and a safety car record that borders on inevitable. Verstappen has never been off the podium there in a car capable of it. After a weekend where nobody could overtake, the Azerbaijan Grand Prix is about to start handing out positions by the handful.`,
+  },
+  {
     slug: 'strategist-spotlight-jukkapekka',
     title: 'Strategist Spotlight: Jukkapekka Lalu',
     excerpt: "In the third edition of Formula Hub's Strategist Spotlight series, we sit down with Finnish manager Jukkapekka Lalu (@IcebergLalu) to talk methodical decision-making, gut calls that reshape a season, and the ignored Liam Lawson pick that got away.",
