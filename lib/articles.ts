@@ -19,6 +19,75 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-azerbaijan-gp-2026',
+    title: 'Race Week Preview: Azerbaijan GP',
+    excerpt: "Kimi Antonelli's Mercedes lead grows to 81 points after wins in Monza and Madrid, Charles Leclerc is set to start from the back for the first time all season, and Baku's walls are waiting for anyone who gets greedy. Here is your F1 Fantasy watchlist for the Azerbaijan Grand Prix.",
+    readTime: 4,
+    date: 'Sep 20, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0000 0%, #3d0010 50%, #1a0000 100%)',
+    thumbnailBg: 'rgba(230,20,40,0.22)',
+    thumbnailIcon: 'az',
+    thumbnailImage: '/thumbnail-race-preview.png',
+    ogImage: 'https://formulahub.live/og/race-week-preview-azerbaijan-gp-2026',
+    content: `Kimi Antonelli's Mercedes lead grows to 81 points after wins in Monza and Madrid, Charles Leclerc is set to start from the back for the first time all season, and Baku's walls are waiting for anyone who gets greedy. Here is your F1 Fantasy watchlist for the Azerbaijan Grand Prix.
+
+**THE SETUP**
+
+Kimi Antonelli's win at the Madring stretched his championship lead to 81 points over team-mate George Russell, with Lewis Hamilton dropping further back after a brake failure ended his race early. Max Verstappen was the form driver of the weekend, finishing second, while Charles Leclerc brought his Ferrari home fourth on an older-specification engine that Ferrari had deliberately held back after his Monza crash. That changes in Baku: Ferrari is expected to fit Leclerc with a fresh power unit, sending him to the back of the grid for the first time in 2026.
+
+Eight rounds remain after this weekend, and the flyaway triple-header through Baku, Malaysia and Singapore is where a lot of teams will make or break their season.
+
+**THE CIRCUIT**
+
+The Baku City Circuit is 6.003km of contradictions: a medieval old-town section so tight that Leclerc once crashed there in qualifying, feeding into one of the longest full-throttle straights on the calendar. That combination makes it one of the best overtaking circuits in F1. It's also one of the most chaotic weekends of the year — qualifying in 2025 produced a record six red flags, and the walls have ended more championship weekends than almost any other circuit.
+
+One scheduling note: Sunday, September 27 is Azerbaijan's Remembrance Day, so the whole weekend shifts forward a day. Practice is Thursday, Qualifying is Friday, race is Saturday. Team lock deadline lands a full day earlier than usual — Qualifying, 1300 local on Friday, September 25 (0900 UTC). Don't set your team for a Saturday deadline this week.
+
+**THE WEATHER**
+
+Dry and sunny throughout, with temperatures around 26°C easing to 24°C for Saturday's race. No rain risk, so anything unpredictable this weekend comes from the circuit and the walls, not the sky.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Max Verstappen**
+
+Two wins from his last five Baku starts, including a lights-to-flag victory in 2025 where he led every lap. He was runner-up last time out in Madrid and arrives at a circuit that plays to Red Bull's strengths on power and traction out of the slow corners.
+
+**Arvid Lindblad**
+
+Aside from a gearbox failure that ended his Canadian GP before it properly started, the rookie has finished every other race this season, including a point-scoring P9 in Madrid. Thirteen clean weekends out of fourteen is a strong record for a debut season, and Baku's long straight and heavy braking zones favour a driver who's shown he can hold position and gain places without incident. At his price, that combination is worth adding.
+
+🟡 HOLD
+
+**Charles Leclerc**
+
+Ferrari is expected to fit Leclerc with a new power unit this weekend, sending him to the back of the grid for the first time all season, but the penalty and his exact starting position aren't confirmed yet. No need to spend a transfer chasing this one — see The Chips below for the smarter way to get him in once the picture's clear.
+
+**Alex Albon**
+
+Albon's season has had its share of DNFs, but he's put together two clean races since his last retirement at Zandvoort, including a solid P15 in Madrid. Worth watching before moving on.
+
+🔴 SELL
+
+**Lance Stroll**
+
+Three DNFs in a row now — Zandvoort, Monza and Madrid — with no price rise in sight and points bleeding away every week he doesn't finish. The Monza retirement came alongside a well-documented power deficit for Aston Martin's Honda unit, with Alonso pointing to a 40-50 km/h shortfall in top speed compared to their pace at Barcelona and Budapest. Baku's mile-long straight is an even bigger power test than Monza, and this is a team that suffered a double DNF the last time it faced one.
+
+**Sergio Perez**
+
+Cadillac's reliability record this season: suspension failures, brake fires, a double DNF in Hungary, and now a retirement in Madrid too. If you have the budget to move him on for an upgrade elsewhere in a 4A lineup, this is the week to do it.
+
+**THE CHIPS**
+
+Standard weekend, no sprint. Antonelli is the obvious 2x Boost pick on current form and points, but Baku's walls have a habit of punishing even the drivers running away with the championship — see last year's six red flags in qualifying alone. Autopilot is the play: put the multiplier on Antonelli as your primary, and if he has a bad weekend, it reassigns to whoever scores highest in your team. With Leclerc a live grid-penalty recovery drive this weekend, that's real insurance either way. Save No Negative for a proper rain race or the Singapore sprint weekend, where the extra session multiplies the value of neutralising a bad result.`,
+  },
+  {
     slug: 'madrid-gp-2026-what-we-learned',
     title: 'What We Learned: Madrid Grand Prix',
     excerpt: 'Lando Norris loses the lead to a Virtual Safety Car he had no way of beating, Kimi Antonelli turns second best into an eighth win of the season, and the Madring\'s first grand prix tells us more about the circuit than it does about the drivers. Here is what the 2026 Madrid Grand Prix told us.',
