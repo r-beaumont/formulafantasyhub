@@ -1,9 +1,12 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ShareBar from '@/components/ShareBar'
+import Flag from '@/components/ui/Flag'
+import { categoryTagStyle, typeTagStyle, FALLBACK_THUMBNAIL } from '@/components/news/shared'
 import { articles, getArticleBySlug } from '@/lib/articles'
 
 export function generateStaticParams() {
@@ -41,26 +44,21 @@ export async function generateMetadata(
   }
 }
 
-const categoryColors: Record<string, { color: string; bg: string }> = {
-  'Race Preview':    { color: '#E8002D', bg: 'rgba(232,0,45,0.12)' },
-  'Race Review':     { color: '#FFB800', bg: 'rgba(255,184,0,0.12)' },
-  'Strategy':        { color: '#00A8FF', bg: 'rgba(0,168,255,0.12)' },
-  'Price Changes':   { color: '#00D47E', bg: 'rgba(0,212,126,0.12)' },
-  'Data Analysis':   { color: '#FF69B4', bg: 'rgba(255,105,180,0.12)' },
-  'News':            { color: '#C0C0C0', bg: 'rgba(192,192,192,0.12)' },
-  'Technical':       { color: '#38BDF8', bg: 'rgba(56,189,248,0.12)' },
-  'Guest Interview': { color: '#9B59B6', bg: 'rgba(155,89,182,0.12)' },
+function fmtDate(d: string) {
+  const x = new Date(d)
+  return isNaN(x.getTime()) ? d : x.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
 export default function NewsArticlePage({ params }: { params: { slug: string } }) {
   const article = getArticleBySlug(params.slug)
   if (!article) notFound()
 
-  const cat = categoryColors[article.category] || { color: 'var(--muted)', bg: 'rgba(255,255,255,0.08)' }
   const otherArticles = article.relatedSlugs
     ? article.relatedSlugs.map(s => articles.find(a => a.slug === s)).filter((a): a is typeof articles[number] => !!a)
     : articles.filter(a => a.slug !== article.slug).slice(0, 3)
 
+  // Content parsing logic is unchanged from before this restyle — only the
+  // JSX style props below differ.
   const renderInline = (text: string): React.ReactNode => {
     const inlineRegex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g
     if (!inlineRegex.test(text)) return text
@@ -94,7 +92,7 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
     return content.split('\n\n').map((block, i) => {
       if (block.startsWith('**') && block.endsWith('**')) {
         return (
-          <h2 key={i} style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '28px', letterSpacing: '0.5px', color: 'var(--text)', marginTop: '40px', marginBottom: '16px', paddingBottom: '10px', borderBottom: '1px solid var(--border)' }}>
+          <h2 key={i} style={{ fontFamily: "'Bebas Neue', sans-serif", fontWeight: 400, fontSize: '26px', letterSpacing: '1px', color: '#E8002D', marginTop: '30px', marginBottom: '10px' }}>
             {block.replace(/\*\*/g, '')}
           </h2>
         )
@@ -111,53 +109,55 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
       }
       if (block.trim() === '') return null
       return (
-        <p key={i} style={{ fontSize: '16px', color: '#8A9AB0', lineHeight: 1.85, marginBottom: '20px' }}>
+        <p key={i} style={{ fontSize: '16px', color: 'var(--text)', lineHeight: 1.8, marginBottom: '18px' }}>
           {renderInline(block)}
         </p>
       )
     })
   }
 
+  const isHeroFlag = /^[a-z]{2}$/.test(article.thumbnailIcon)
+
   return (
     <>
       <Navbar />
       <main style={{ position: 'relative', zIndex: 1 }}>
+        <div className="mob-pad-article" style={{ maxWidth: '760px', margin: '0 auto', padding: '40px 32px 80px' }}>
 
-        {/* Hero thumbnail */}
-        <div style={{ height: '320px', backgroundImage: article.thumbnailImage ? `url('${article.thumbnailImage}')` : article.thumbnail, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          {/^[a-z]{2}$/.test(article.thumbnailIcon)
-            ? <span className={`fi fi-${article.thumbnailIcon}`} style={{ width: '180px', height: '120px', display: 'inline-block', borderRadius: '8px', position: 'relative', zIndex: 1, boxShadow: '0 8px 32px rgba(0,0,0,0.6)', overflow: 'hidden' }} />
-            : <span style={{ fontSize: '120px', position: 'relative', zIndex: 1, filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.6))' }}>{article.thumbnailIcon}</span>
-          }
-          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '160px', background: 'linear-gradient(transparent, #080C10)', zIndex: 2 }} />
-        </div>
-
-        {/* Article content */}
-        <div className="mob-pad-article" style={{ maxWidth: '760px', margin: '0 auto', padding: '0 32px 80px', position: 'relative', zIndex: 3, marginTop: '-40px' }}>
+          <Link href="/news" style={{ fontSize: '12px', color: '#E8002D', fontWeight: 500, textDecoration: 'none' }}>← Latest News</Link>
 
           {/* Tags */}
-          <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap' }}>
-            <span style={{ fontSize: '10px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: article.articleType === 'F1 Fantasy' ? 'rgba(232,0,45,0.15)' : 'rgba(0,168,255,0.15)', color: article.articleType === 'F1 Fantasy' ? '#E8002D' : '#00A8FF', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{article.articleType}</span>
-            <span style={{ fontSize: '10px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: cat.bg, color: cat.color, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{article.tag}</span>
-            <span style={{ fontSize: '11px', color: 'var(--muted2)', marginLeft: 'auto', fontFamily: 'JetBrains Mono, monospace' }}>⏱ {article.readTime} min read</span>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '18px', marginBottom: '14px', flexWrap: 'wrap' }}>
+            <span style={typeTagStyle(article.articleType)}>{article.articleType}</span>
+            <span style={categoryTagStyle(article.category)}>{article.tag}</span>
+            <span style={{ fontSize: '11px', color: 'var(--muted)' }}>{fmtDate(article.date)}</span>
+            <span style={{ fontSize: '11px', color: 'var(--muted)' }}>· {article.readTime} min read</span>
           </div>
 
           {/* Title */}
-          <h1 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(2rem,5vw,3.2rem)', lineHeight: 1.05, letterSpacing: '0.5px', marginBottom: '24px', color: 'var(--text)' }}>
+          <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontWeight: 400, fontSize: 'clamp(44px,6vw,72px)', lineHeight: 0.95, margin: '14px 0', color: 'var(--text)' }}>
             {article.title}
           </h1>
 
           {/* Byline */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px 0', marginBottom: '32px', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
-            <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg,#E8002D,#FF6B6B)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: 700, color: 'var(--text)', flexShrink: 0 }}>R</div>
-            <div>
-              <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text)' }}>Rob Beaumont</div>
-              <div style={{ fontSize: '12px', color: 'var(--muted)' }}>{article.date}</div>
-            </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
+            <Image src="/logo.png" alt="" width={28} height={28} style={{ borderRadius: '50%' }} />
+            <b style={{ color: 'var(--text)', fontSize: '13px' }}>Rob Beaumont</b>
+            <span style={{ fontSize: '12px', color: 'var(--muted)' }}>F1 Fantasy columnist, formula1.com</span>
           </div>
 
-          {/* Share bar — Location A */}
+          {/* Share bar — top */}
           <ShareBar title={article.title} slug={article.slug} showLabel={true} />
+
+          {/* Hero image */}
+          <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '14px', overflow: 'hidden', marginBottom: '24px' }}>
+            <Image src={article.thumbnailImage ?? FALLBACK_THUMBNAIL} alt="" fill style={{ objectFit: 'cover' }} priority />
+            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', zIndex: 1 }}>
+              {isHeroFlag
+                ? <Flag code={article.thumbnailIcon} size={64} />
+                : <span style={{ fontSize: '64px', filter: 'drop-shadow(0 6px 20px rgba(0,0,0,.55))' }}>{article.thumbnailIcon}</span>}
+            </div>
+          </div>
 
           {/* Excerpt callout */}
           <div style={{ background: 'rgba(232,0,45,0.06)', border: '1px solid rgba(232,0,45,0.2)', borderLeft: '3px solid #E8002D', borderRadius: '8px', padding: '16px 20px', marginBottom: '32px' }}>
@@ -165,33 +165,35 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
           </div>
 
           {/* Content */}
-          <div>{renderContent(article.content)}</div>
+          <div className="body">{renderContent(article.content)}</div>
 
-          {/* Share bar — Location B */}
+          {/* Share bar — bottom */}
           <ShareBar title={article.title} slug={article.slug} />
 
           {/* Related articles */}
           {otherArticles.length > 0 && (
             <div style={{ marginTop: '48px' }}>
-              <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '28px', letterSpacing: '1px', marginBottom: '16px' }}>More News</div>
+              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontWeight: 400, fontSize: '28px', letterSpacing: '1px', marginBottom: '16px' }}>More News</div>
               <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '12px' }}>
                 {otherArticles.map(a => {
-                  const c = categoryColors[a.category] || { color: 'var(--muted)', bg: 'rgba(255,255,255,0.08)' }
+                  const isFlag = /^[a-z]{2}$/.test(a.thumbnailIcon)
                   return (
                     <Link key={a.slug} href={`/news/${a.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                       <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '12px', overflow: 'hidden' }}>
-                        <div style={{ height: '80px', backgroundImage: a.thumbnailImage ? `url('${a.thumbnailImage}')` : a.thumbnail, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-                          {/^[a-z]{2}$/.test(a.thumbnailIcon)
-                            ? <span className={`fi fi-${a.thumbnailIcon}`} style={{ width: '48px', height: '32px', display: 'inline-block', borderRadius: '4px', position: 'relative', zIndex: 1, overflow: 'hidden' }} />
-                            : <span style={{ fontSize: '32px', position: 'relative', zIndex: 1 }}>{a.thumbnailIcon}</span>
-                          }
+                        <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+                          <Image src={a.thumbnailImage ?? FALLBACK_THUMBNAIL} alt="" fill loading="lazy" style={{ objectFit: 'cover' }} />
+                          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', zIndex: 1 }}>
+                            {isFlag
+                              ? <Flag code={a.thumbnailIcon} size={22} />
+                              : <span style={{ fontSize: '22px' }}>{a.thumbnailIcon}</span>}
+                          </div>
                         </div>
                         <div style={{ padding: '12px' }}>
                           <div style={{ display: 'flex', gap: '4px', marginBottom: '6px', flexWrap: 'wrap' }}>
-                            <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', background: a.articleType === 'F1 Fantasy' ? 'rgba(232,0,45,0.15)' : 'rgba(0,168,255,0.15)', color: a.articleType === 'F1 Fantasy' ? '#E8002D' : '#00A8FF', textTransform: 'uppercase' }}>{a.articleType}</span>
-                            <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', background: c.bg, color: c.color, textTransform: 'uppercase' }}>{a.tag}</span>
+                            <span style={typeTagStyle(a.articleType)}>{a.articleType}</span>
+                            <span style={categoryTagStyle(a.category)}>{a.tag}</span>
                           </div>
-                          <p style={{ fontSize: '12px', fontWeight: 600, lineHeight: 1.4, marginTop: '4px', color: 'var(--text)' }}>{a.title.slice(0, 60)}...</p>
+                          <p style={{ fontSize: '12px', fontWeight: 600, lineHeight: 1.4, marginTop: '4px', color: 'var(--text)' }}>{a.title}</p>
                         </div>
                       </div>
                     </Link>
