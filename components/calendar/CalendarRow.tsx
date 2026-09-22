@@ -79,7 +79,9 @@ export default function CalendarRow({ row, isCurrent, isOpen, onToggle, isFirst 
     statusNode = (
       <span style={statusPillStyle('var(--text)', `color-mix(in srgb, ${winner.teamColor} 16%, transparent)`)}>
         <i className="cal-tl" style={{ width: '3px', height: '14px', borderRadius: '2px', background: winner.teamColor, flexShrink: 0 }} />
-        <Flag code={winner.flag} /> {winner.name.split(' ').slice(-1)[0]} <span style={{ color: '#00D47E' }}>WIN</span>
+        <Flag code={winner.flag} size="18px" />
+        <b style={{ fontSize: '13px', fontWeight: 600 }}>{winner.name.split(' ').slice(-1)[0]}</b>
+        <span style={{ color: '#00D47E' }}>WIN</span>
       </span>
     )
   } else if (isCurrent) {
