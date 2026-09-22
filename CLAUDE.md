@@ -1,3 +1,11 @@
+## TEMPORARY REDESIGN RULES (override everything below until removed)
+- All redesign work happens on the `redesign` branch only.
+- NEVER push to master or main. NEVER run `git push origin master:main --force`.
+- The only allowed push command is: git push origin redesign
+- End every task with: npx tsc --noEmit → npm run build → git add -A → git commit → git push origin redesign
+- The visual reference for every redesign task is design/formula-hub-wireframes-v3.html. Match its layout, colours, spacing, hover effects and animations. Its data is sample data only — all real data must still come from the existing lib/ files.
+- Inline styles only, no Tailwind (existing rule still applies). <style> tags are allowed only for :hover states and @keyframes.
+
 # FORMULAHUB.LIVE — CLAUDE CODE STANDING INSTRUCTIONS
 
 This file is read automatically by Claude Code at the start of every session.
