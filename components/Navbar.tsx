@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useCurrentRace } from '@/lib/useCurrentRace'
-import RaceTicker from './RaceTicker'
+import RaceTicker, { useTickerData } from './RaceTicker'
 
 const links = [
   { href: '/',           label: 'Home' },
@@ -23,6 +23,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   const [hoveredLink, setHoveredLink] = useState<string | null>(null)
+  const tickerData = useTickerData()
 
   useEffect(() => {
     if (document.documentElement.getAttribute('data-theme') === 'light') setTheme('light')
@@ -60,8 +61,8 @@ export default function Navbar() {
       }}>
         {/* Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', flexShrink: 0 }}>
-          <Image src="/logo.png" alt="Formula Hub" width={36} height={36} style={{ borderRadius: '50%' }} />
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 800, fontSize: '22px', letterSpacing: '1px', color: 'var(--text)' }}>
+          <Image src="/logo.png" alt="Formula Hub" width={30} height={30} style={{ borderRadius: '50%' }} />
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 800, fontSize: '19px', letterSpacing: '1px', color: 'var(--text)' }}>
             FORMULA <span style={{ color: '#E8002D' }}>HUB</span>
           </span>
         </Link>
@@ -153,7 +154,7 @@ export default function Navbar() {
           </button>
         </div>
       </nav>
-      <RaceTicker />
+      <RaceTicker data={tickerData} theme={theme} />
     </>
   )
 }
