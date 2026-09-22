@@ -2,6 +2,7 @@
 // Kept tiny and dependency-free so importing it never pulls heavy data
 // (articles/raceResults/standings/circuitOverview) into client bundles.
 import type { CSSProperties } from 'react'
+import { cardHeaderContainerStyle, cardHeaderTitleStyle } from '@/components/ui/CardHeader'
 
 export const cardStyle: CSSProperties = {
   background: 'var(--surface)',
@@ -10,22 +11,12 @@ export const cardStyle: CSSProperties = {
   overflow: 'hidden',
 }
 
-export const cardHeaderStyle: CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  padding: '16px 20px 12px',
-  borderBottom: '1px solid var(--border)',
-  gap: '12px',
-}
+// Sourced from the shared CardHeader component so every card on Home (and,
+// transitively, Race Hub — see components/racehub/shared.tsx) renders the
+// same title treatment without each consumer switching to <CardHeader>.
+export const cardHeaderStyle: CSSProperties = cardHeaderContainerStyle
 
-export const cardTitleStyle: CSSProperties = {
-  fontSize: '12px',
-  fontWeight: 600,
-  textTransform: 'uppercase',
-  letterSpacing: '1.5px',
-  color: 'var(--muted)',
-}
+export const cardTitleStyle: CSSProperties = cardHeaderTitleStyle
 
 export const cardLinkStyle: CSSProperties = {
   fontSize: '12px',

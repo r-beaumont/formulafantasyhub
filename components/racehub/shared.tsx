@@ -4,27 +4,17 @@
 // redefining them — only the sliding pill toggle is duplicated here since the
 // Home page's version is a local, unexported function.
 import { useLayoutEffect, useRef, useState } from 'react'
+import { cardHeaderTitleStyle } from '@/components/ui/CardHeader'
 
 export interface PillOption {
   id: string
   label: string
 }
 
-// The wireframe's actual card-title treatment is a 22px Bebas Neue heading
-// (not the small uppercase-mono label components/home/shared.tsx uses) —
-// verified against design/formula-hub-wireframes-v3.html directly, since
-// Race Hub can't reuse Home's cardTitleStyle without diverging from it.
-export const rhCardTitleStyle = {
-  fontFamily: "'Bebas Neue', sans-serif",
-  fontWeight: 400,
-  fontSize: '22px',
-  lineHeight: 1,
-  letterSpacing: '0.6px',
-  color: 'var(--text)',
-  display: 'flex',
-  alignItems: 'center',
-  gap: '8px',
-} as const
+// Re-exported under its old name for the tab components that already import
+// it (OverviewTab, PitwallTab, RaceInfoTab, WeatherTab) — now backed by the
+// single shared CardHeader definition instead of a hand-copied duplicate.
+export const rhCardTitleStyle = cardHeaderTitleStyle
 
 export function PillToggle({ options, value, onChange }: { options: PillOption[]; value: string; onChange: (v: string) => void }) {
   const btnRefs = useRef<Record<string, HTMLButtonElement | null>>({})

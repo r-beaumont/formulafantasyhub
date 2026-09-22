@@ -29,13 +29,18 @@ export default function RaceHubClient() {
   const [activeTab, setActiveTab] = useState('overview')
   const [selectedRound, setSelectedRound] = useState(() => computeCurrentRace(new Date()).round)
 
-  // Read ?round=N on mount — the Home page season tiles link to /race-hub?round=N
+  // Read ?round=N and ?tab=N on mount — the Home page season tiles link to
+  // /race-hub?round=N, and the Calendar page links to /race-hub?round=N&tab=race-info
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     const roundParam = params.get('round')
     if (roundParam) {
       const n = parseInt(roundParam, 10)
       if (!isNaN(n)) setSelectedRound(n)
+    }
+    const tabParam = params.get('tab')
+    if (tabParam && tabOptions.some(t => t.id === tabParam)) {
+      setActiveTab(tabParam)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
