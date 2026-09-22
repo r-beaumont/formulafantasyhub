@@ -134,20 +134,20 @@ export default function DriverHistoryPanel() {
           <div style={{ fontSize: '13px', color: 'var(--muted)', maxWidth: '380px', margin: '0 auto', lineHeight: 1.65 }}>{noAppNote ?? 'No prior appearances at this circuit'}</div>
         </div>
       ) : (
-        <div
-          className="ff-team-row"
-          style={{ '--tc': dTeam?.teamColor ?? '#E8002D', background: 'var(--surface)', border: '0.5px solid var(--border)', borderRadius: '12px', overflow: 'hidden' } as React.CSSProperties}
-        >
-          {/* Header */}
-          <div style={{ padding: '20px 24px 16px', borderBottom: '0.5px solid var(--border)' }}>
+        <div style={{ background: 'var(--surface)', border: '0.5px solid var(--border)', borderRadius: '12px', overflow: 'hidden' }}>
+          {/* Header — team-colour gradient at rest, using the selected driver's current team */}
+          <div style={{
+            padding: '20px 24px 16px', borderBottom: '0.5px solid var(--border)',
+            background: `linear-gradient(90deg, color-mix(in srgb, ${dTeam?.teamColor ?? '#E8002D'} 18%, transparent), transparent 60%)`,
+          }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px' }}>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  {dFlag && <Flag code={dFlag} size="1.6em" />}
+                  {dFlag && <Flag code={dFlag} size={26} />}
                   <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '36px', color: 'var(--text)', lineHeight: 1, letterSpacing: '0.5px' }}>{driver}</div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '6px' }}>
-                  {circuitFlag && <Flag code={circuitFlag} />}
+                  {circuitFlag && <Flag code={circuitFlag} size={14} />}
                   <span style={{ fontSize: '12px', color: 'var(--muted)' }}>{circuitDisplayName}</span>
                   {dTeam && (
                     <>

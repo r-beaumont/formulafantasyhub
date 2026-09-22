@@ -79,7 +79,7 @@ export default function CalendarRow({ row, isCurrent, isOpen, onToggle, isFirst 
     statusNode = (
       <span style={statusPillStyle('var(--text)', `color-mix(in srgb, ${winner.teamColor} 16%, transparent)`)}>
         <i className="cal-tl" style={{ width: '3px', height: '14px', borderRadius: '2px', background: winner.teamColor, flexShrink: 0 }} />
-        <Flag code={winner.flag} size="18px" />
+        <Flag code={winner.flag} size={16} />
         <b style={{ fontSize: '13px', fontWeight: 600 }}>{winner.name.split(' ').slice(-1)[0]}</b>
         <span style={{ color: '#00D47E' }}>WIN</span>
       </span>
@@ -118,7 +118,7 @@ export default function CalendarRow({ row, isCurrent, isOpen, onToggle, isFirst 
             R{row.round}
           </span>
           <span className="cal-flag" style={{ transition: 'transform .2s' }}>
-            <Flag code={row.flag} size={isMobile ? '1.5em' : '1.7em'} />
+            <Flag code={row.flag} size={26} />
           </span>
           <div style={{ minWidth: 0 }}>
             <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontWeight: 400, fontSize: isMobile ? '17px' : '22px', lineHeight: 1, display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' as const, color: 'var(--text)' }}>
@@ -166,7 +166,7 @@ export default function CalendarRow({ row, isCurrent, isOpen, onToggle, isFirst 
                     <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: 'var(--muted)' }}>Winner</span>
                   </span>
                   <span style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
-                    <Flag code={winner.flag} />
+                    <Flag code={winner.flag} size={14} />
                     <b style={{ color: 'var(--text)' }}>{winner.name}</b>
                     <span style={{ color: '#8A9AB0', fontSize: '13px' }}>{winner.team}</span>
                   </span>

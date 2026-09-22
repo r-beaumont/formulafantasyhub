@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { cardStyle, cardHeaderStyle, cardTitleStyle, cardLinkStyle, monoFont } from './shared'
+import { cardStyle, cardHeaderStyle, cardTitleStyle, cardLinkStyle, monoFont, Flag } from './shared'
 
 export interface StandingRow {
   pos: number
@@ -47,7 +47,7 @@ export default function ChampionshipCard({ title, rows }: { title: string; rows:
           >
             <span style={{ fontFamily: monoFont, fontWeight: 600, fontSize: '12px', color: posColor(r.pos), textAlign: 'center' }}>{r.pos}</span>
             <i className="champ-tl" style={{ width: '3px', height: '22px', borderRadius: '2px', flexShrink: 0, background: r.teamColor, transition: 'box-shadow .25s' }} />
-            <span className={`fi fi-${r.flag} champ-flag`} style={{ width: '1.3em', height: '1em', borderRadius: '3px', display: 'inline-block', transition: 'transform .2s' }} />
+            <span className="champ-flag" style={{ display: 'inline-flex' }}><Flag code={r.flag} size={14} /></span>
             <span style={{ fontWeight: 600, fontSize: '13px', lineHeight: 1.2 }}>
               {r.name}
               <small style={{ display: 'block', fontWeight: 400, fontSize: '11px', color: 'var(--muted)' }}>{r.sub}</small>

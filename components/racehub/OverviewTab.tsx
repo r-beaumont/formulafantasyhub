@@ -30,12 +30,10 @@ const gridImportanceDesc: Record<RiskLevel, string> = {
 function IndicatorRow({ level, kicker, desc }: { level: RiskLevel; kicker: string; desc: string }) {
   const c = riskColors(level)
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: c.bg, borderRadius: '10px', padding: '12px 14px' }}>
-      <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: c.color, flexShrink: 0 }} />
-      <div>
-        <div style={{ fontFamily: monoFont, fontSize: '12px', fontWeight: 700, color: c.color }}>{kicker}: {level}</div>
-        <div style={{ fontSize: '11px', color: '#8A9AB0', marginTop: '2px', lineHeight: 1.4 }}>{desc}</div>
-      </div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 14px', borderRadius: '10px', background: c.bg, width: '100%' }}>
+      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--muted)', flexShrink: 0 }}>{kicker}</span>
+      <span style={{ fontFamily: monoFont, fontSize: '13px', fontWeight: 700, letterSpacing: '1px', color: c.color, flexShrink: 0 }}>{level}</span>
+      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '12px', color: '#8A9AB0' }}>{desc}</span>
     </div>
   )
 }
@@ -111,7 +109,7 @@ export default function OverviewTab({ round }: { round: number }) {
             <div className="rh-team-row" style={{ '--tc': '#E8002D', background: 'var(--surface2)', borderRadius: '10px', padding: '12px 16px', marginBottom: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' } as React.CSSProperties}>
               <span style={{ fontSize: '11px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--muted)' }}>2025 Winner</span>
               <span style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: 600, color: 'var(--text)' }}>
-                {flag && <Flag code={flag} />}
+                {flag && <Flag code={flag} size={14} />}
                 {winnerDisplay}
               </span>
             </div>

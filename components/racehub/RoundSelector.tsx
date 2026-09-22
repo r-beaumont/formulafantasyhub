@@ -52,7 +52,7 @@ export default function RoundSelector({
               opacity: r.calledOff ? 0.5 : 1,
             }}
           >
-            <Flag code={r.flag} size="1.1em" />
+            <Flag code={r.flag} size={14} />
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', fontWeight: 700, color: isSelected ? '#E8002D' : r.completed ? '#00D47E' : 'var(--muted)' }}>R{r.round}</span>
             <span>{r.name}</span>
           </button>

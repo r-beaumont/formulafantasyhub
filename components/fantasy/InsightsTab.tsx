@@ -227,7 +227,7 @@ export default function InsightsTab() {
                     <tr key={row.circuit} style={{ borderBottom: idx < sorted.length - 1 ? '0.5px solid var(--border)' : 'none' }}>
                       <td style={{ padding: '10px 12px', paddingLeft: '20px', whiteSpace: 'nowrap' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                          <Flag code={row.flag} />
+                          <Flag code={row.flag} size={14} />
                           <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--text)' }}>{row.circuit}</span>
                         </div>
                       </td>

@@ -34,11 +34,15 @@ export default function QuickLinkCards() {
   return (
     <div className="mob-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '12px' }}>
       <style dangerouslySetInnerHTML={{ __html: `
-        .qlink-card { border-top: 1px solid var(--border); transition: transform .25s, border-color .25s, background .35s, box-shadow .35s; }
+        /* Base styles for the card/icon live here (not inline) so the :hover
+           rules below — which target the same background/border/color
+           properties — aren't silently overridden by higher-precedence
+           inline declarations. */
+        .qlink-card { background: var(--surface); border: 1px solid var(--border); transition: transform .25s, border-color .25s, background .35s, box-shadow .35s; }
         .qlink-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--acc) 55%, transparent); background: radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--acc) 20%, var(--surface)) 0%, var(--surface) 65%); box-shadow: 0 12px 32px -12px color-mix(in srgb, var(--acc) 55%, transparent); }
         .qlink-card:hover .qlink-title { color: var(--acc); }
-        .qlink-ico { transition: transform .3s, background .3s; }
-        .qlink-card:hover .qlink-ico { transform: rotate(-6deg) scale(1.08); background: var(--acc); color: #fff; }
+        .qlink-ico { background: color-mix(in srgb, var(--acc) 15%, transparent); color: var(--acc); transition: transform .3s, background .3s, color .3s; }
+        .qlink-card:hover .qlink-ico { transform: rotate(-6deg) scale(1.08); background: var(--acc); color: color-mix(in srgb, var(--acc) 25%, #0E1318); }
       ` }} />
       {items.map(item => (
         <Link
@@ -47,14 +51,12 @@ export default function QuickLinkCards() {
           className="qlink-card"
           style={{
             '--acc': item.acc,
-            textDecoration: 'none', color: 'inherit',
-            background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '14px',
+            textDecoration: 'none', color: 'inherit', borderRadius: '14px',
             padding: '22px', display: 'flex', flexDirection: 'column', gap: '10px',
           } as React.CSSProperties}
         >
           <span className="qlink-ico" style={{
             width: '42px', height: '42px', borderRadius: '12px', display: 'grid', placeItems: 'center',
-            background: `color-mix(in srgb, ${item.acc} 15%, transparent)`, color: item.acc,
           }}>
             {ICONS[item.icon]}
           </span>

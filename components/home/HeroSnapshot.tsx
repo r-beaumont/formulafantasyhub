@@ -67,7 +67,7 @@ export default function HeroSnapshot({ previewSlug, circuitFacts }: { previewSlu
     <section style={{ display: 'grid', gridTemplateColumns: stacked ? '1fr' : '1.35fr 1fr', gap: '24px', alignItems: 'stretch', padding: '34px 0 24px' }}>
       <div>
         <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center', color: 'var(--muted)', fontSize: '14px' }}>
-          <Flag code={race.flag} size="1.4em" />
+          <Flag code={race.flag} size={22} />
           <span>Round {race.round} of 23</span>
           <span>{race.circuit}</span>
           <span>{race.dateRange}</span>

@@ -66,7 +66,7 @@ export default function PitwallTab({ round, raceName, flag, completed }: { round
       {/* Tyre Compounds */}
       <div style={cardStyle}>
         <div style={cardHeaderStyle}>
-          <span style={{ ...rhCardTitleStyle, display: 'flex', alignItems: 'center', gap: '8px' }}>Tyre Compounds — <Flag code={flag} /> {raceName} GP</span>
+          <span style={{ ...rhCardTitleStyle, display: 'flex', alignItems: 'center', gap: '8px' }}>Tyre Compounds — <Flag code={flag} size={14} /> {raceName} GP</span>
         </div>
         <div className="mob-1col" style={{ padding: '16px 24px 20px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px' }}>
           {data.compounds.map(c => (

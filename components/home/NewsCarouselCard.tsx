@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import type { Article } from '@/lib/articles'
-import { cardStyle, cardHeaderStyle, cardTitleStyle, cardLinkStyle } from './shared'
+import { cardStyle, cardHeaderStyle, cardTitleStyle, cardLinkStyle, Flag } from './shared'
 
 const CATC: Record<string, [string, string]> = {
   'Race Preview':    ['#E8002D', 'rgba(232,0,45,.14)'],
@@ -38,7 +38,9 @@ export default function NewsCarouselCard({ articles }: { articles: Article[] }) 
           <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', maxHeight: '230px', borderRadius: '12px', overflow: 'hidden', background: a.thumbnailImage ? 'var(--bg)' : a.thumbnail }}>
             {a.thumbnailImage && <img src={a.thumbnailImage} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />}
             <div style={{ position: 'absolute', inset: 0, background: a.thumbnailBg }} />
-            <span className={`fi fi-${a.thumbnailIcon}`} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '1.34em', height: '44px', borderRadius: '3px', boxShadow: '0 4px 20px rgba(0,0,0,0.4)' }} />
+            <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }}>
+              <Flag code={a.thumbnailIcon} size={52} />
+            </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', fontSize: '11px', color: 'var(--muted)' }}>
             {a.articleType === 'F1 Fantasy'

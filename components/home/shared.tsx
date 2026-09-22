@@ -3,6 +3,7 @@
 // (articles/raceResults/standings/circuitOverview) into client bundles.
 import type { CSSProperties } from 'react'
 import { cardHeaderContainerStyle, cardHeaderTitleStyle } from '@/components/ui/CardHeader'
+import UiFlag from '@/components/ui/Flag'
 
 export const cardStyle: CSSProperties = {
   background: 'var(--surface)',
@@ -28,7 +29,15 @@ export const cardLinkStyle: CSSProperties = {
 
 export const monoFont = "'JetBrains Mono', monospace"
 
-export function Flag({ code, size = '1.3em' }: { code: string; size?: string }) {
+// Re-exports the shared components/ui/Flag for numeric (pixel-height) sizes —
+// the new standard used across Home, Race Hub, F1 Fantasy and Calendar. The
+// legacy string-size form (e.g. '1.3em', 'clamp(...)') is preserved only for
+// app/race-hub/RaceHubClient.tsx's page-title flag, which this task's file
+// scope doesn't cover.
+export function Flag({ code, size }: { code: string; size?: number | string }) {
+  if (typeof size === 'number' || size === undefined) {
+    return <UiFlag code={code} size={size} />
+  }
   return (
     <span
       className={`fi fi-${code}`}

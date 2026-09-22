@@ -146,7 +146,7 @@ export default function LockCard({ race, facts }: { race: Race; facts: CircuitFa
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px', background: 'var(--surface2)', borderRadius: '12px', padding: '12px 14px', marginBottom: '10px', fontSize: '13px' }}>
           <span style={{ fontSize: '12px', color: 'var(--muted)' }}>2025 winner</span>
           <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            {facts.lastWinnerFlag && <Flag code={facts.lastWinnerFlag} />}
+            {facts.lastWinnerFlag && <Flag code={facts.lastWinnerFlag} size={14} />}
             <b>{facts.lastWinnerName}</b>
           </span>
         </div>
