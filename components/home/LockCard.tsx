@@ -119,17 +119,17 @@ export default function LockCard({ race, facts }: { race: Race; facts: CircuitFa
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '8px', margin: '12px 0 16px' }}>
-        <div style={{ background: 'var(--surface2)', borderRadius: '12px', padding: '12px' }}>
+        <div style={{ background: 'var(--surface2)', borderRadius: '12px', padding: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
           <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Avg overtakes</span>
           <b style={{ display: 'block', fontFamily: monoFont, fontWeight: 700, fontSize: '20px', margin: '3px 0 6px' }}>{facts.avgOvertakes ?? '—'}</b>
           <RiskBadge level={facts.gridImportance} />
         </div>
-        <div style={{ background: 'var(--surface2)', borderRadius: '12px', padding: '12px' }}>
+        <div style={{ background: 'var(--surface2)', borderRadius: '12px', padding: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
           <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Avg DNFs</span>
           <b style={{ display: 'block', fontFamily: monoFont, fontWeight: 700, fontSize: '20px', margin: '3px 0 6px' }}>{facts.dnfAvg != null ? facts.dnfAvg.toFixed(2) : '—'}</b>
           <RiskBadge level={risk} />
         </div>
-        <div style={{ background: 'var(--surface2)', borderRadius: '12px', padding: '12px' }}>
+        <div style={{ background: 'var(--surface2)', borderRadius: '12px', padding: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
           <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Race day</span>
           {weather ? (
             <>

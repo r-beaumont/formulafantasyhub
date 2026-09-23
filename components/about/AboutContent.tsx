@@ -2,7 +2,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import QuickLinkCards from '@/components/home/QuickLinkCards'
-import SubscribeBox from '@/components/ui/SubscribeBox'
 
 const TrophyIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ flexShrink: 0 }}>
@@ -38,7 +37,7 @@ const STATS = [
 
 const TIMELINE = [
   { year: '2008', text: 'Starts playing NRL Fantasy, learning to identify value and track form' },
-  { year: '2016', text: 'Starts watching F1, studying lap times and tyre strategies after each race' },
+  { year: '2016', text: 'Becomes a fan of Daniel Ricciardo' },
   { year: '2021', text: 'Moves overseas from Sydney' },
   { year: '2022', text: 'Founds Formula Fantasy Hub' },
   { year: 'Now', text: 'Lead F1 Fantasy columnist for formula1.com' },
@@ -245,8 +244,6 @@ export default function AboutContent() {
             ))}
           </div>
         </div>
-
-        <SubscribeBox />
 
       </div>
     </>

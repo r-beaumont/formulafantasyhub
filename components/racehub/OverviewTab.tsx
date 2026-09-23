@@ -166,27 +166,27 @@ export default function OverviewTab({ round }: { round: number }) {
       <div style={cardStyle}>
         <div style={cardHeaderStyle}><span style={rhCardTitleStyle}>Racing Profile</span></div>
         <div style={{ padding: '20px' }}>
-          <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '14px' }}>Overtaking</div>
+          <div style={{ fontSize: '13px', fontWeight: 700, letterSpacing: '1.2px', textTransform: 'uppercase', color: 'var(--muted)', textAlign: 'center', marginBottom: '14px' }}>Overtaking</div>
           {!hasOvertakeData ? (
             <div style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '13px', padding: '8px 0 16px' }}>No historical data — debut circuit</div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '14px', marginBottom: '20px' }}>
               <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '76px', lineHeight: 0.85, color: giColor }}>{overview.avgOvertakes ?? '—'}</div>
               <YearBars values={overtakes} accent={giColor} />
-              <span style={{ fontSize: '13px', color: '#8A9AB0' }}>Average overtakes per race ({overview.overtakeSeasonsLabel ?? '2023–2025'})</span>
+              <span style={{ fontSize: '14px', color: '#8A9AB0' }}>Average overtakes per race ({overview.overtakeSeasonsLabel ?? '2023–2025'})</span>
               <IndicatorRow level={gridImportance} kicker="Grid Importance" desc={gridImportanceDesc[gridImportance]} />
             </div>
           )}
 
           <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '24px' }}>
-            <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '14px' }}>DNF History (Incl. DSQs)</div>
+            <div style={{ fontSize: '13px', fontWeight: 700, letterSpacing: '1.2px', textTransform: 'uppercase', color: 'var(--muted)', textAlign: 'center', marginBottom: '14px' }}>DNF History (Incl. DSQs)</div>
             {!hasDnfData ? (
               <div style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '13px', padding: '8px 0' }}>No historical data — debut circuit</div>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '14px' }}>
                 <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '76px', lineHeight: 0.85, color: dnfColor }}>{dnfAvg !== null ? dnfAvg.toFixed(2) : '—'}</div>
                 <YearBars values={dnfs} accent={dnfColor} />
-                <span style={{ fontSize: '13px', color: '#8A9BB0' }}>Average DNFs per race (2023–2025)</span>
+                <span style={{ fontSize: '14px', color: '#8A9BB0' }}>Average DNFs per race (2023–2025)</span>
                 {dnfRisk ? (
                   <IndicatorRow level={dnfRisk} kicker="DNF Risk" desc={dnfRiskDesc[dnfRisk]} />
                 ) : (

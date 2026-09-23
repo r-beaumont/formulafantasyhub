@@ -184,9 +184,9 @@
     16: { // Bahrain (relocated) — Sepang International Circuit, Malaysia
       lastWinner: null,
       mostWinsDriver: 'S. Vettel', mostWinsDriverCount: 4,
-      mostWinsConstructor: '—', mostWinsConstructorCount: undefined,
-      mostPolesDriver: '—', mostPolesDriverCount: undefined,
-      mostPolesConstructor: '—', mostPolesConstructorCount: undefined,
+      mostWinsConstructor: 'Ferrari', mostWinsConstructorCount: 7,
+      mostPolesDriver: 'M. Schumacher / L. Hamilton', mostPolesDriverCount: 5,
+      mostPolesConstructor: 'Ferrari', mostPolesConstructorCount: 7,
       avgOvertakes: null, overtakeSeasonsLabel: null,
       overtakes2023: null, overtakes2024: null, overtakes2025: null,
       gridImportance: 'TBC',

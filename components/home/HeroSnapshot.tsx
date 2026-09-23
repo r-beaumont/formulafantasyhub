@@ -100,7 +100,7 @@ export default function HeroSnapshot({ previewSlug, circuitFacts }: { previewSlu
           <PillToggle value={mode} onChange={setMode} />
         </div>
 
-        <div style={{ overflowX: 'auto' }}>
+        <div style={{ overflowX: 'auto', marginBottom: '20px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden', background: 'var(--surface)', minWidth: '560px' }}>
             {race.sessions.map((s, i) => {
               const isNext = i === nextIndex
@@ -136,7 +136,7 @@ export default function HeroSnapshot({ previewSlug, circuitFacts }: { previewSlu
         <div className="hero-btn-row" style={{ marginTop: 'auto' }}>
           <Link href="/race-hub" style={{ ...btnRedStyle, justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>Open Race Hub</Link>
           <Link href="/f1-fantasy" style={{ ...btnOutlineStyle, justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>F1 Fantasy strategy</Link>
-          <Link href={`/news/${previewSlug}`} style={{ ...btnOutlineStyle, justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>Read the {race.shortName} preview</Link>
+          <Link href={`/news/${previewSlug}`} style={{ ...btnOutlineStyle, justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>Latest news</Link>
         </div>
       </div>
 

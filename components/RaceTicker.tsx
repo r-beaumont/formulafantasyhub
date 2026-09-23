@@ -43,7 +43,7 @@ function Flag({ code }: { code: string }) {
 const boldStyle = { color: 'var(--text)', fontWeight: 600 }
 const monoStyle = { fontFamily: "'JetBrains Mono', monospace", color: '#FFB800', fontWeight: 400 }
 
-function buildItems(race: ReturnType<typeof useCurrentRace>, data: TickerStaticData, mutedColor: string, group: string) {
+function buildItems(race: ReturnType<typeof useCurrentRace>, data: TickerStaticData, mutedColor: string, group: string, mounted: boolean) {
   const nextSession = race.sessions.find(s => !s.completed)
   const deadlineSession = race.isSprint
     ? race.sessions.find(s => s.name === 'Sprint')
@@ -65,7 +65,7 @@ function buildItems(race: ReturnType<typeof useCurrentRace>, data: TickerStaticD
   if (nextSession?.dateISO) {
     items.push(
       <span style={itemStyle} key={`${group}-next`}>
-        <span style={boldStyle}>{nextSession.name}</span> in <span style={monoStyle}>{formatCountdown(nextSession.dateISO)}</span>
+        <span style={boldStyle}>{nextSession.name}</span> in <span style={monoStyle}>{mounted ? formatCountdown(nextSession.dateISO) : '--'}</span>
       </span>
     )
   }
@@ -73,7 +73,7 @@ function buildItems(race: ReturnType<typeof useCurrentRace>, data: TickerStaticD
   if (deadlineSession?.dateISO) {
     items.push(
       <span style={itemStyle} key={`${group}-lock`}>
-        F1 Fantasy lock in <span style={monoStyle}>{formatCountdown(deadlineSession.dateISO)}</span>
+        F1 Fantasy lock in <span style={monoStyle}>{mounted ? formatCountdown(deadlineSession.dateISO) : '--'}</span>
       </span>
     )
   }
@@ -117,8 +117,10 @@ export default function RaceTicker({ data, theme = 'dark' }: { data: TickerStati
   const race = useCurrentRace()
   const [, setTick] = useState(0)
   const [paused, setPaused] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     const id = setInterval(() => setTick(t => t + 1), 30_000)
     return () => clearInterval(id)
   }, [])
@@ -162,8 +164,8 @@ export default function RaceTicker({ data, theme = 'dark' }: { data: TickerStati
             animation: 'rt-scroll 60s linear infinite',
             animationPlayState: paused ? 'paused' : 'running',
           }}>
-            {buildItems(race, data, mutedColor, 'a')}
-            {buildItems(race, data, mutedColor, 'b')}
+            {buildItems(race, data, mutedColor, 'a', mounted)}
+            {buildItems(race, data, mutedColor, 'b', mounted)}
           </div>
         </div>
       </div>

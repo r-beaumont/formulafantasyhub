@@ -6,7 +6,6 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ShareBar from '@/components/ShareBar'
 import Flag from '@/components/ui/Flag'
-import SubscribeBox from '@/components/ui/SubscribeBox'
 import { categoryTagStyle, typeTagStyle, FALLBACK_THUMBNAIL } from '@/components/news/shared'
 import { articles, getArticleBySlug } from '@/lib/articles'
 
@@ -202,10 +201,6 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
               </div>
             </div>
           )}
-
-          <div style={{ marginTop: '48px' }}>
-            <SubscribeBox />
-          </div>
 
         </div>
       </main>

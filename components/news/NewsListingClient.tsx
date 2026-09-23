@@ -1,9 +1,10 @@
 'use client'
-import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import FeaturedCard from './FeaturedCard'
 import NewsCard from './NewsCard'
-import SubscribeBox from '@/components/ui/SubscribeBox'
 import type { ArticleSummary } from './shared'
+
+const PAGE_SIZE = 9
 
 type Filter = 'All' | 'F1 Fantasy' | 'F1'
 
@@ -38,6 +39,9 @@ function FilterToggle({ options, value, onChange }: { options: { id: Filter; lab
 
 export default function NewsListingClient({ articles }: { articles: ArticleSummary[] }) {
   const [filter, setFilter] = useState<Filter>('All')
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
+
+  useEffect(() => { setVisibleCount(PAGE_SIZE) }, [filter])
 
   const counts: Record<Filter, number> = {
     All: articles.length,
@@ -48,6 +52,8 @@ export default function NewsListingClient({ articles }: { articles: ArticleSumma
   const filtered = filter === 'All' ? articles : articles.filter(a => a.articleType === filter)
   const featured = filtered[0]
   const rest = filtered.slice(1)
+  const visibleRest = rest.slice(0, visibleCount)
+  const hasMore = visibleCount < rest.length
 
   return (
     <div>
@@ -73,13 +79,24 @@ export default function NewsListingClient({ articles }: { articles: ArticleSumma
 
       {featured && <FeaturedCard article={featured} />}
 
-      <div style={{ marginBottom: '28px' }}>
-        <SubscribeBox />
-      </div>
-
-      {rest.length > 0 && (
+      {visibleRest.length > 0 && (
         <div className="news-grid">
-          {rest.map(a => <NewsCard key={a.slug} article={a} />)}
+          {visibleRest.map(a => <NewsCard key={a.slug} article={a} />)}
+        </div>
+      )}
+
+      {hasMore && (
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '28px' }}>
+          <button
+            onClick={() => setVisibleCount(c => c + PAGE_SIZE)}
+            style={{
+              background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text)',
+              padding: '12px 28px', borderRadius: '999px', fontSize: '13px', fontWeight: 600,
+              cursor: 'pointer', transition: 'border-color .15s',
+            }}
+          >
+            See more
+          </button>
         </div>
       )}
     </div>
