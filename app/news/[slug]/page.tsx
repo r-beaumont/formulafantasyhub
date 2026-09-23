@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ShareBar from '@/components/ShareBar'
 import Flag from '@/components/ui/Flag'
+import SubscribeBox from '@/components/ui/SubscribeBox'
 import { categoryTagStyle, typeTagStyle, FALLBACK_THUMBNAIL } from '@/components/news/shared'
 import { articles, getArticleBySlug } from '@/lib/articles'
 
@@ -143,7 +144,6 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
             <Image src="/logo.png" alt="" width={28} height={28} style={{ borderRadius: '50%' }} />
             <b style={{ color: 'var(--text)', fontSize: '13px' }}>Rob Beaumont</b>
-            <span style={{ fontSize: '12px', color: 'var(--muted)' }}>F1 Fantasy columnist, formula1.com</span>
           </div>
 
           {/* Share bar — top */}
@@ -202,6 +202,10 @@ export default function NewsArticlePage({ params }: { params: { slug: string } }
               </div>
             </div>
           )}
+
+          <div style={{ marginTop: '48px' }}>
+            <SubscribeBox />
+          </div>
 
         </div>
       </main>

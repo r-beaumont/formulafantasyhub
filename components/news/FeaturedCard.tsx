@@ -27,7 +27,7 @@ export default function FeaturedCard({ article }: { article: ArticleSummary }) {
           transition: 'transform .18s, border-color .18s', marginBottom: '28px',
         }}
       >
-        <div className="mob-featured-thumb" style={{ position: 'relative', minHeight: '280px', overflow: 'hidden' }}>
+        <div className="mob-featured-thumb" style={{ position: 'relative', minHeight: '340px', overflow: 'hidden' }}>
           <Image
             src={article.thumbnailImage ?? FALLBACK_THUMBNAIL}
             alt=""
@@ -42,15 +42,15 @@ export default function FeaturedCard({ article }: { article: ArticleSummary }) {
               : <span style={{ fontSize: '64px', filter: 'drop-shadow(0 6px 20px rgba(0,0,0,.55))' }}>{article.thumbnailIcon}</span>}
           </div>
         </div>
-        <div style={{ padding: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '12px' }}>
+        <div style={{ padding: '36px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '12px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', fontSize: '11px', color: 'var(--muted)' }}>
             <span style={typeTagStyle(article.articleType)}>{article.articleType}</span>
             <span style={categoryTagStyle(article.category)}>{article.tag}</span>
             <span>{fmtDate(article.date)}</span>
             <span>· {article.readTime} min read</span>
           </div>
-          <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontWeight: 400, fontSize: '44px', lineHeight: 1, color: 'var(--text)' }}>{article.title}</h2>
-          <p style={{ color: '#8A9AB0', fontSize: '14px', lineHeight: 1.7 }}>{article.excerpt}</p>
+          <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontWeight: 400, fontSize: 'clamp(40px,3.4vw,56px)', lineHeight: 0.98, color: 'var(--text)' }}>{article.title}</h2>
+          <p style={{ color: '#8A9AB0', fontSize: '15px', lineHeight: 1.7 }}>{article.excerpt}</p>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '4px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: 'var(--muted)' }}>
               <Image src="/logo.png" alt="" width={22} height={22} style={{ borderRadius: '50%' }} />

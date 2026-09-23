@@ -2,6 +2,7 @@
 import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import FeaturedCard from './FeaturedCard'
 import NewsCard from './NewsCard'
+import SubscribeBox from '@/components/ui/SubscribeBox'
 import type { ArticleSummary } from './shared'
 
 type Filter = 'All' | 'F1 Fantasy' | 'F1'
@@ -71,6 +72,10 @@ export default function NewsListingClient({ articles }: { articles: ArticleSumma
       </div>
 
       {featured && <FeaturedCard article={featured} />}
+
+      <div style={{ marginBottom: '28px' }}>
+        <SubscribeBox />
+      </div>
 
       {rest.length > 0 && (
         <div className="news-grid">
