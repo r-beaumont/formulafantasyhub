@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useCurrentRace } from '@/lib/useCurrentRace'
 import { Flag, monoFont, btnRedStyle, btnOutlineStyle } from './shared'
 import LockCard, { type CircuitFacts } from './LockCard'
+import CircuitMap from '@/components/racehub/CircuitMap'
 
 type Mode = 'track' | 'your' | 'utc'
 const modeOptions: { id: Mode; label: string }[] = [
@@ -51,9 +52,13 @@ export default function HeroSnapshot({ previewSlug, circuitFacts }: { previewSlu
   const race = useCurrentRace()
   const [mode, setMode] = useState<Mode>('track')
   const [stacked, setStacked] = useState(false)
+  const [mapVisible, setMapVisible] = useState(true)
 
   useEffect(() => {
-    const check = () => setStacked(window.innerWidth <= 1000)
+    const check = () => {
+      setStacked(window.innerWidth <= 1000)
+      setMapVisible(window.innerWidth > 900)
+    }
     check()
     window.addEventListener('resize', check)
     return () => window.removeEventListener('resize', check)
@@ -66,19 +71,29 @@ export default function HeroSnapshot({ previewSlug, circuitFacts }: { previewSlu
   return (
     <section style={{ display: 'grid', gridTemplateColumns: stacked ? '1fr' : '1.35fr 1fr', gap: '24px', alignItems: 'stretch', padding: '34px 0 24px' }}>
       <div>
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center', color: 'var(--muted)', fontSize: '14px' }}>
-          <Flag code={race.flag} size={22} />
-          <span>Round {race.round} of 23</span>
-          <span>{race.circuit}</span>
-          <span>{race.dateRange}</span>
-          {race.isSprint && (
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '10px', fontWeight: 700, padding: '3px 9px', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.6px', color: '#00A8FF', background: 'rgba(0,168,255,.12)' }}>Sprint</span>
+        <div style={{ display: 'grid', gridTemplateColumns: mapVisible ? '1fr 300px' : '1fr', gap: '24px', alignItems: 'start', marginBottom: '22px' }}>
+          <div>
+            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center', color: 'var(--muted)', fontSize: '14px' }}>
+              <Flag code={race.flag} size={22} />
+              <span>Round {race.round} of 23</span>
+              <span>{race.circuit}</span>
+              <span>{race.dateRange}</span>
+              {race.isSprint && (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '10px', fontWeight: 700, padding: '3px 9px', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.6px', color: '#00A8FF', background: 'rgba(0,168,255,.12)' }}>Sprint</span>
+              )}
+            </div>
+
+            <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 'clamp(44px,5.2vw,84px)', lineHeight: 0.88, letterSpacing: '0.5px', margin: '14px 0 0', textTransform: 'uppercase' }}>
+              {namePart}<br />Grand Prix
+            </h1>
+          </div>
+
+          {mapVisible && (
+            <Link href={`/race-hub?round=${race.round}`} style={{ display: 'block', width: '100%' }}>
+              <CircuitMap key={race.round} round={race.round} mode="loop" showCaption={false} />
+            </Link>
           )}
         </div>
-
-        <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 'clamp(64px,9.5vw,140px)', lineHeight: 0.86, letterSpacing: '0.5px', margin: '14px 0 22px', textTransform: 'uppercase' }}>
-          {namePart}<br />Grand Prix
-        </h1>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', marginBottom: '10px', flexWrap: 'wrap' }}>
           <span style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--muted)' }}>Session times</span>
@@ -114,10 +129,14 @@ export default function HeroSnapshot({ previewSlug, circuitFacts }: { previewSlu
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: '20px' }}>
-          <Link href="/race-hub" style={btnRedStyle}>Open Race Hub</Link>
-          <Link href="/f1-fantasy" style={btnOutlineStyle}>F1 Fantasy strategy</Link>
-          <Link href={`/news/${previewSlug}`} style={btnOutlineStyle}>Read the {race.shortName} preview</Link>
+        <style dangerouslySetInnerHTML={{ __html: `
+          .hero-btn-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; width: 100%; margin-top: 20px; }
+          @media (max-width: 700px) { .hero-btn-row { grid-template-columns: 1fr; } }
+        ` }} />
+        <div className="hero-btn-row">
+          <Link href="/race-hub" style={{ ...btnRedStyle, justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>Open Race Hub</Link>
+          <Link href="/f1-fantasy" style={{ ...btnOutlineStyle, justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>F1 Fantasy strategy</Link>
+          <Link href={`/news/${previewSlug}`} style={{ ...btnOutlineStyle, justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>Read the {race.shortName} preview</Link>
         </div>
       </div>
 
