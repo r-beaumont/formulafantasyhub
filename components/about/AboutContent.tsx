@@ -37,7 +37,7 @@ const STATS = [
 
 const TIMELINE = [
   { year: '2008', text: 'Starts playing NRL Fantasy, learning to identify value and track form' },
-  { year: '2016', text: 'Becomes a fan of Daniel Ricciardo' },
+  { year: '2016', text: 'Starts watching Formula 1 and becomes a fan of Daniel Ricciardo and his relentless overtaking divebombs' },
   { year: '2021', text: 'Moves overseas from Sydney' },
   { year: '2022', text: 'Founds Formula Fantasy Hub' },
   { year: 'Now', text: 'Lead F1 Fantasy columnist for formula1.com' },
