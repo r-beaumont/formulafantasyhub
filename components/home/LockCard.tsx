@@ -119,26 +119,30 @@ export default function LockCard({ race, facts }: { race: Race; facts: CircuitFa
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '8px', margin: '12px 0 16px' }}>
-        <div style={{ background: 'var(--surface2)', borderRadius: '12px', padding: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-          <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Avg overtakes</span>
-          <b style={{ display: 'block', fontFamily: monoFont, fontWeight: 700, fontSize: '20px', margin: '3px 0 6px' }}>{facts.avgOvertakes ?? '—'}</b>
-          <RiskBadge level={facts.gridImportance} />
+        <div style={{ background: 'var(--surface2)', borderRadius: '12px', padding: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', height: '100%' }}>
+          <span style={{ fontSize: '12px', color: 'var(--muted)', lineHeight: 1.3, minHeight: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>Avg overtakes</span>
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <b style={{ fontFamily: monoFont, fontWeight: 700, fontSize: '20px' }}>{facts.avgOvertakes ?? '—'}</b>
+          </div>
+          <div style={{ flexShrink: 0 }}><RiskBadge level={facts.gridImportance} /></div>
         </div>
-        <div style={{ background: 'var(--surface2)', borderRadius: '12px', padding: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-          <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Avg DNFs</span>
-          <b style={{ display: 'block', fontFamily: monoFont, fontWeight: 700, fontSize: '20px', margin: '3px 0 6px' }}>{facts.dnfAvg != null ? facts.dnfAvg.toFixed(2) : '—'}</b>
-          <RiskBadge level={risk} />
+        <div style={{ background: 'var(--surface2)', borderRadius: '12px', padding: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', height: '100%' }}>
+          <span style={{ fontSize: '12px', color: 'var(--muted)', lineHeight: 1.3, minHeight: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>Avg DNFs</span>
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <b style={{ fontFamily: monoFont, fontWeight: 700, fontSize: '20px' }}>{facts.dnfAvg != null ? facts.dnfAvg.toFixed(2) : '—'}</b>
+          </div>
+          <div style={{ flexShrink: 0 }}><RiskBadge level={risk} /></div>
         </div>
-        <div style={{ background: 'var(--surface2)', borderRadius: '12px', padding: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-          <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Race day</span>
-          {weather ? (
-            <>
-              <b style={{ display: 'block', fontFamily: monoFont, fontWeight: 700, fontSize: '20px', margin: '3px 0 6px' }}>{weather.icon} {weather.temp}°</b>
-              <span style={{ fontFamily: monoFont, fontSize: '12px', color: weather.rain >= 60 ? '#E8002D' : weather.rain >= 30 ? '#FFB800' : 'var(--muted)' }}>💧 {weather.rain}%</span>
-            </>
-          ) : (
-            <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '6px' }}>Loading…</div>
-          )}
+        <div style={{ background: 'var(--surface2)', borderRadius: '12px', padding: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', height: '100%' }}>
+          <span style={{ fontSize: '12px', color: 'var(--muted)', lineHeight: 1.3, minHeight: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>Race day</span>
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <b style={{ fontFamily: monoFont, fontWeight: 700, fontSize: '20px' }}>
+              {weather ? `${weather.icon} ${weather.temp}°` : '—'}
+            </b>
+          </div>
+          <div style={{ flexShrink: 0, fontFamily: monoFont, fontSize: '12px', color: weather && weather.rain >= 60 ? '#E8002D' : weather && weather.rain >= 30 ? '#FFB800' : 'var(--muted)' }}>
+            {weather ? `💧 ${weather.rain}%` : 'Loading…'}
+          </div>
         </div>
       </div>
 

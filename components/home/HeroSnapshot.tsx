@@ -1,7 +1,8 @@
 'use client'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useCurrentRace } from '@/lib/useCurrentRace'
+import type { Session } from '@/lib/races'
 import { Flag, monoFont, btnRedStyle, btnOutlineStyle } from './shared'
 import LockCard, { type CircuitFacts } from './LockCard'
 import CircuitMap from '@/components/racehub/CircuitMap'
@@ -48,6 +49,21 @@ function PillToggle({ value, onChange }: { value: Mode; onChange: (m: Mode) => v
   )
 }
 
+// A session is "live" once its start time has passed — since `completed`
+// (computed upstream from start + duration) is what flips it out of the
+// "next" slot, the only way a non-completed session can be at/past its own
+// start time is if it's currently in progress. `mounted` keeps the very
+// first (SSR) render deterministic so this never causes a hydration mismatch.
+function SessionIndicator({ session, isNext, mounted }: { session: Session; isNext: boolean; mounted: boolean }) {
+  if (session.completed) return <span style={{ color: '#00D47E', flexShrink: 0 }}>✓</span>
+  if (!isNext) return null
+  const isLive = mounted && !!session.dateISO && Date.now() >= new Date(session.dateISO).getTime()
+  if (isLive) {
+    return <span className="live-dot" style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#E8002D', flexShrink: 0 }} />
+  }
+  return <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#E8002D', flexShrink: 0, display: 'inline-block' }} />
+}
+
 const FALLBACK_FACTS: CircuitFacts = {
   avgOvertakes: null, dnfAvg: null, gridImportance: 'TBC',
   lastWinnerName: null, lastWinnerFlag: null, mostWinsDriver: null, mostWinsDriverCount: null,
@@ -57,6 +73,8 @@ export default function HeroSnapshot({ previewSlug, circuitFactsByRound }: { pre
   const race = useCurrentRace()
   const facts = circuitFactsByRound[race.round] ?? FALLBACK_FACTS
   const [mode, setMode] = useState<Mode>('track')
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => { setMounted(true) }, [])
 
   const nextIndex = race.sessions.findIndex(s => !s.completed)
   const [namePart, ...restParts] = race.name.split(' Grand Prix')
@@ -105,6 +123,7 @@ export default function HeroSnapshot({ previewSlug, circuitFactsByRound }: { pre
           <div className="hero-sessions-grid">
             {race.sessions.map((s, i) => {
               const isNext = i === nextIndex
+              const isLive = isNext && mounted && !!s.dateISO && Date.now() >= new Date(s.dateISO).getTime()
               return (
                 <div key={s.name} style={{
                   padding: '14px', borderLeft: i === 0 ? 'none' : '1px solid var(--border)',
@@ -114,9 +133,9 @@ export default function HeroSnapshot({ previewSlug, circuitFactsByRound }: { pre
                   transition: 'background .2s',
                 }}>
                   <div style={{ fontSize: '13px', color: 'var(--muted)', fontWeight: 500, display: 'flex', gap: '6px', alignItems: 'center', minHeight: '22px' }}>
-                    {s.name}
-                    {isNext && <span style={{ fontSize: '10px', fontWeight: 700, padding: '3px 9px', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.6px', color: '#E8002D', background: 'rgba(232,0,45,0.14)' }}>Next</span>}
-                    {s.completed && <span style={{ color: '#00D47E' }}>✓</span>}
+                    <SessionIndicator session={s} isNext={isNext} mounted={mounted} />
+                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{s.name}</span>
+                    {isLive && <span style={{ fontSize: '9px', fontWeight: 700, color: '#E8002D', textTransform: 'uppercase', letterSpacing: '1px', flexShrink: 0 }}>LIVE</span>}
                   </div>
                   <div style={{ fontFamily: monoFont, fontWeight: 700, fontSize: '24px', marginTop: '4px', color: 'var(--text)' }}>
                     {s.dateISO ? formatSessionTime(s.dateISO, mode, race.timezone) : '—'}

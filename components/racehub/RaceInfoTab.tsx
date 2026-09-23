@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { cardStyle, cardHeaderStyle, monoFont } from '@/components/home/shared'
 import { rhCardTitleStyle } from './shared'
 import { PillToggle } from './shared'
@@ -36,6 +36,8 @@ function formatSessionDateTime(isoDate: string, timezone: string, mode: string):
 
 export default function RaceInfoTab({ timezone, sessions, isCurrentRound }: { timezone: string; sessions: RaceInfoSession[]; isCurrentRound: boolean }) {
   const [mode, setMode] = useState('track')
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => { setMounted(true) }, [])
 
   // "Next" only ever applies to the single next session of the CURRENT race
   // weekend — other rounds just show Completed/Upcoming, never a pulsing Next.
@@ -43,9 +45,6 @@ export default function RaceInfoTab({ timezone, sessions, isCurrentRound }: { ti
 
   return (
     <div style={cardStyle}>
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes rh-pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
-      ` }} />
       <div style={{ ...cardHeaderStyle, flexWrap: 'wrap', gap: '10px' }}>
         <span style={rhCardTitleStyle}>Session Schedule</span>
         <PillToggle options={timeOptions} value={mode} onChange={setMode} />
@@ -58,6 +57,7 @@ export default function RaceInfoTab({ timezone, sessions, isCurrentRound }: { ti
             ? formatSessionDateTime(s.isoDate, timezone, mode)
             : { dateLabel: '—', timeLabel: '—' }
           const isNext = i === nextIndex
+          const isLive = isNext && mounted && !!s.isoDate && Date.now() >= new Date(s.isoDate).getTime()
           return (
             <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', borderBottom: i < sessions.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', opacity: s.isCompleted ? 0.45 : 1 }}>
               <div style={{ width: '52px', fontFamily: "'Bebas Neue', sans-serif", fontSize: '12px', letterSpacing: '0.5px', color: s.isCompleted ? 'var(--muted2)' : '#8A9AB0', textAlign: 'center', background: 'rgba(255,255,255,0.04)', padding: '4px 6px', borderRadius: '5px', flexShrink: 0 }}>
@@ -70,10 +70,14 @@ export default function RaceInfoTab({ timezone, sessions, isCurrentRound }: { ti
               {s.isCompleted ? (
                 <span style={{ fontSize: '12px', color: '#00D47E', flexShrink: 0, fontWeight: 600 }}>✓ Completed</span>
               ) : isNext ? (
-                <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#E8002D', flexShrink: 0, fontWeight: 600 }}>
-                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#E8002D', animation: 'rh-pulse-dot 1.4s infinite' }} />
-                  Next
-                </span>
+                isLive ? (
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+                    <span className="live-dot" style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#E8002D' }} />
+                    <span style={{ fontSize: '9px', fontWeight: 700, color: '#E8002D', textTransform: 'uppercase', letterSpacing: '1px' }}>LIVE</span>
+                  </span>
+                ) : (
+                  <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#E8002D', flexShrink: 0, display: 'inline-block' }} />
+                )
               ) : (
                 <span style={{ fontSize: '12px', color: 'var(--muted)', flexShrink: 0 }}>Upcoming</span>
               )}
