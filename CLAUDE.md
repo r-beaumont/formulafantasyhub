@@ -1,11 +1,3 @@
-## TEMPORARY REDESIGN RULES (override everything below until removed)
-- All redesign work happens on the `redesign` branch only.
-- NEVER push to master or main. NEVER run `git push origin master:main --force`.
-- The only allowed push command is: git push origin redesign
-- End every task with: npx tsc --noEmit → npm run build → git add -A → git commit → git push origin redesign
-- The visual reference for every redesign task is design/formula-hub-wireframes-v3.html. Match its layout, colours, spacing, hover effects and animations. Its data is sample data only — all real data must still come from the existing lib/ files.
-- Inline styles only, no Tailwind (existing rule still applies). <style> tags are allowed only for :hover states and @keyframes.
-
 # FORMULAHUB.LIVE — CLAUDE CODE STANDING INSTRUCTIONS
 
 This file is read automatically by Claude Code at the start of every session.
@@ -29,6 +21,7 @@ Rob Beaumont is the official F1 Fantasy columnist for formula1.com and a leading
 - Styling: Inline styles only — no Tailwind classes anywhere
 - Hosting: Vercel (watches main branch)
 - Version control: GitHub
+- Shared components: `components/ui/CardHeader.tsx`, `components/ui/Flag.tsx`, `components/racehub/CircuitMap.tsx` (mode `"draw"` for Race Hub, `"loop"` for Home)
 
 ---
 
@@ -39,6 +32,7 @@ Rob Beaumont is the official F1 Fantasy columnist for formula1.com and a leading
 - Red accent: #E8002D
 - Fonts: Bebas Neue (headings), DM Sans (body), JetBrains Mono (numbers and data)
 - Chip colours: 3x Boost #00C851 | Limitless #00A8FF | No Negative #9B59B6 | Wildcard #E8002D | Autopilot #00E5CC | Final Fix #FFD700
+- Team-colour gradient convention on driver/team rows: `linear-gradient(90deg, color-mix(in srgb, var(--tc) 10%, transparent), transparent 45%)` at rest, `color-mix(in srgb, var(--tc) 26%, transparent), transparent 70%` on hover
 
 ---
 
@@ -48,6 +42,7 @@ Rob Beaumont is the official F1 Fantasy columnist for formula1.com and a leading
 - Every task must end with: `npx tsc --noEmit` → `npm run build` → `git add -A` → `git commit` → `git push origin master && git push origin main`
 - A task is not complete until Vercel shows green and changes are confirmed live
 - Never report a task as done after only editing files — it must be built and deployed
+- Pages that depend on the current race set `export const revalidate = 3600` so Next rebuilds them hourly on the server rather than serving a round frozen at the last deploy
 
 ---
 
@@ -141,6 +136,7 @@ Sprint weekend session order: FP1, Sprint Qualifying, Sprint Race, Qualifying, R
 ## DATA RULES
 
 - All session data must come from `lib/raceResults.ts` as the single source of truth — never hardcode stats in page components
+- Circuit maps live in `lib/circuitMaps.ts` and `public/circuits/`, generated from the MIT-licensed bacinger/f1-circuits dataset — the licence file `public/circuits/LICENSE.txt` must stay
 - All season stats must be calculated dynamically from `calculateSeasonStats()` in `lib/seasonStats.ts`
 - Stats must reconcile across all tabs and pages — standings, F1 Fantasy leaderboard, performance leaderboard and season overview must always show identical values
 - Every practice session must show all 22 drivers — use "NO TIME SET" for any driver without a time, never omit them
@@ -165,7 +161,7 @@ Sprint weekend session order: FP1, Sprint Qualifying, Sprint Race, Qualifying, R
 
 **Other APIs:**
 - Open-Meteo (weather)
-- YouTube Data API (channel: @formulafantasyhub)
+- YouTube Data API (channel: @formulafantasyhub) — the feed route reads the server-side `YOUTUBE_API_KEY`; `NEXT_PUBLIC_GOOGLE_API_KEY` is referrer-restricted and cannot be used server-side
 
 ---
 
