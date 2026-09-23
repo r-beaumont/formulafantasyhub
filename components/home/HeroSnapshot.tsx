@@ -70,7 +70,7 @@ export default function HeroSnapshot({ previewSlug, circuitFacts }: { previewSlu
 
   return (
     <section style={{ display: 'grid', gridTemplateColumns: stacked ? '1fr' : '1.35fr 1fr', gap: '24px', alignItems: 'stretch', padding: '34px 0 24px' }}>
-      <div>
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
         <div style={{ display: 'grid', gridTemplateColumns: mapVisible ? '1fr 300px' : '1fr', gap: '24px', alignItems: 'start', marginBottom: '22px' }}>
           <div>
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center', color: 'var(--muted)', fontSize: '14px' }}>
@@ -133,7 +133,7 @@ export default function HeroSnapshot({ previewSlug, circuitFacts }: { previewSlu
           .hero-btn-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; width: 100%; margin-top: 20px; }
           @media (max-width: 700px) { .hero-btn-row { grid-template-columns: 1fr; } }
         ` }} />
-        <div className="hero-btn-row">
+        <div className="hero-btn-row" style={{ marginTop: 'auto' }}>
           <Link href="/race-hub" style={{ ...btnRedStyle, justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>Open Race Hub</Link>
           <Link href="/f1-fantasy" style={{ ...btnOutlineStyle, justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>F1 Fantasy strategy</Link>
           <Link href={`/news/${previewSlug}`} style={{ ...btnOutlineStyle, justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>Read the {race.shortName} preview</Link>

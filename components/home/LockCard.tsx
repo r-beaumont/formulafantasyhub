@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import type { Race } from '@/lib/races'
 import { SEASON_CALENDAR } from '@/lib/races'
-import { Flag, monoFont, RiskBadge, btnOutlineStyle } from './shared'
+import { monoFont, RiskBadge, btnOutlineStyle } from './shared'
 
 export interface CircuitFacts {
   avgOvertakes: number | null
@@ -142,23 +142,7 @@ export default function LockCard({ race, facts }: { race: Race; facts: CircuitFa
         </div>
       </div>
 
-      {facts.lastWinnerName && (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px', background: 'var(--surface2)', borderRadius: '12px', padding: '12px 14px', marginBottom: '10px', fontSize: '13px' }}>
-          <span style={{ fontSize: '12px', color: 'var(--muted)' }}>2025 winner</span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            {facts.lastWinnerFlag && <Flag code={facts.lastWinnerFlag} size={14} />}
-            <b>{facts.lastWinnerName}</b>
-          </span>
-        </div>
-      )}
-      {facts.mostWinsDriver && (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px', background: 'var(--surface2)', borderRadius: '12px', padding: '12px 14px', marginBottom: '14px', fontSize: '13px' }}>
-          <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Most wins here</span>
-          <span><b>{facts.mostWinsDriver}</b> <span style={{ fontFamily: monoFont, color: '#E8002D' }}>{facts.mostWinsDriverCount}×</span></span>
-        </div>
-      )}
-
-      <Link href="/f1-fantasy" style={{ ...btnOutlineStyle, width: '100%', justifyContent: 'center', marginTop: 'auto' }}>See circuit insights</Link>
+      <Link href="/f1-fantasy" style={{ ...btnOutlineStyle, width: '100%', justifyContent: 'center', minHeight: '44px', marginTop: 'auto' }}>See circuit insights</Link>
     </aside>
   )
 }
