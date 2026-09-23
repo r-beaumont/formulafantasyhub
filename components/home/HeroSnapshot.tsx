@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useCurrentRace } from '@/lib/useCurrentRace'
 import { Flag, monoFont, btnRedStyle, btnOutlineStyle } from './shared'
@@ -57,29 +57,26 @@ export default function HeroSnapshot({ previewSlug, circuitFactsByRound }: { pre
   const race = useCurrentRace()
   const facts = circuitFactsByRound[race.round] ?? FALLBACK_FACTS
   const [mode, setMode] = useState<Mode>('track')
-  const [stacked, setStacked] = useState(false)
-  const [mapVisible, setMapVisible] = useState(true)
-
-  useEffect(() => {
-    const check = () => {
-      setStacked(window.innerWidth <= 1000)
-      setMapVisible(window.innerWidth > 900)
-    }
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
 
   const nextIndex = race.sessions.findIndex(s => !s.completed)
   const [namePart, ...restParts] = race.name.split(' Grand Prix')
   void restParts
 
   return (
-    <section style={{ display: 'grid', gridTemplateColumns: stacked ? '1fr' : '1.35fr 1fr', gap: '24px', alignItems: 'stretch', padding: '34px 0 24px' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: mapVisible ? '1fr 300px' : '1fr', gap: '24px', alignItems: 'start', marginBottom: '22px' }}>
-          <div>
-            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center', color: 'var(--muted)', fontSize: '14px' }}>
+    <section className="hero-outer">
+      {/* Layout below 900px is driven entirely by CSS media queries (see
+          <style> block) rather than a window.innerWidth check in JS. A JS
+          check here previously read window.innerWidth during the same
+          render pass whose own (pre-fix) desktop-width SSR markup had just
+          forced mobile Chrome to widen its layout viewport past the 900px
+          breakpoint — a self-referential bug that permanently stuck the
+          hero in its desktop layout on real phones. CSS media queries are
+          evaluated against the true device viewport and can't be fooled by
+          the page's own content this way. */}
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100%', minWidth: 0 }}>
+        <div className="hero-top">
+          <div className="hero-title-area" style={{ minWidth: 0 }}>
+            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center', color: 'var(--muted)', fontSize: '14px', minWidth: 0 }}>
               <Flag code={race.flag} size={22} />
               <span>Round {race.round} of 23</span>
               <span>{race.circuit}</span>
@@ -89,16 +86,14 @@ export default function HeroSnapshot({ previewSlug, circuitFactsByRound }: { pre
               )}
             </div>
 
-            <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 'clamp(44px,5.2vw,84px)', lineHeight: 0.88, letterSpacing: '0.5px', margin: '14px 0 0', textTransform: 'uppercase' }}>
+            <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 'clamp(38px,5.2vw,84px)', lineHeight: 0.88, letterSpacing: '0.5px', margin: '14px 0 0', textTransform: 'uppercase', overflowWrap: 'break-word' }}>
               {namePart}<br />Grand Prix
             </h1>
           </div>
 
-          {mapVisible && (
-            <Link href={`/race-hub?round=${race.round}`} style={{ display: 'block', width: '100%' }}>
-              <CircuitMap key={race.round} round={race.round} mode="loop" showCaption={false} />
-            </Link>
-          )}
+          <Link href={`/race-hub?round=${race.round}`} className="hero-map-area" style={{ display: 'block', width: '100%', minWidth: 0 }}>
+            <CircuitMap key={race.round} round={race.round} mode="loop" showCaption={false} />
+          </Link>
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', marginBottom: '10px', flexWrap: 'wrap' }}>
@@ -106,8 +101,8 @@ export default function HeroSnapshot({ previewSlug, circuitFactsByRound }: { pre
           <PillToggle value={mode} onChange={setMode} />
         </div>
 
-        <div style={{ overflowX: 'auto', marginBottom: '20px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden', background: 'var(--surface)', minWidth: '560px' }}>
+        <div className="hero-sessions-wrap">
+          <div className="hero-sessions-grid">
             {race.sessions.map((s, i) => {
               const isNext = i === nextIndex
               return (
@@ -136,13 +131,29 @@ export default function HeroSnapshot({ previewSlug, circuitFactsByRound }: { pre
         </div>
 
         <style dangerouslySetInnerHTML={{ __html: `
+          .hero-outer { display: grid; grid-template-columns: 1.35fr 1fr; gap: 24px; align-items: stretch; padding: 34px 0 24px; }
+          .hero-top { display: grid; grid-template-columns: 1fr 300px; grid-template-areas: "title map"; gap: 24px; align-items: start; margin-bottom: 22px; }
+          .hero-title-area { grid-area: title; }
+          .hero-map-area { grid-area: map; }
+          .hero-sessions-wrap {
+            overflow-x: auto; -webkit-overflow-scrolling: touch;
+            border: 1px solid var(--border); border-radius: 14px; background: var(--surface);
+            margin-bottom: 20px;
+          }
+          .hero-sessions-grid { display: grid; grid-template-columns: repeat(5, minmax(120px, 1fr)); }
           .hero-btn-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; width: 100%; margin-top: 20px; }
-          @media (max-width: 700px) { .hero-btn-row { grid-template-columns: 1fr; } }
+
+          @media (max-width: 900px) {
+            .hero-outer { grid-template-columns: 1fr; padding: 24px 0 20px; }
+            .hero-top { grid-template-columns: 1fr; grid-template-areas: "title" "map"; gap: 16px; }
+            .hero-map-area svg { height: 180px !important; max-height: 180px !important; }
+            .hero-btn-row { grid-template-columns: 1fr; }
+          }
         ` }} />
         <div className="hero-btn-row" style={{ marginTop: 'auto' }}>
-          <Link href="/race-hub" style={{ ...btnRedStyle, justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>Open Race Hub</Link>
-          <Link href="/f1-fantasy" style={{ ...btnOutlineStyle, justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>F1 Fantasy strategy</Link>
-          <Link href={`/news/${previewSlug}`} style={{ ...btnOutlineStyle, justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>Latest news</Link>
+          <Link href="/race-hub" style={{ ...btnRedStyle, display: 'flex', width: '100%', justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>Open Race Hub</Link>
+          <Link href="/f1-fantasy" style={{ ...btnOutlineStyle, display: 'flex', width: '100%', justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>F1 Fantasy strategy</Link>
+          <Link href={`/news/${previewSlug}`} style={{ ...btnOutlineStyle, display: 'flex', width: '100%', justifyContent: 'center', textAlign: 'center', minHeight: '44px' }}>Latest news</Link>
         </div>
       </div>
 
