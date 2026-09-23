@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import 'flag-icons/css/flag-icons.min.css'
+import { TickerDataProvider } from '@/components/RaceTicker'
+import { getTickerData } from '@/lib/tickerData'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -91,7 +93,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        {children}
+        <TickerDataProvider data={getTickerData()}>
+          {children}
+        </TickerDataProvider>
       </body>
     </html>
   )

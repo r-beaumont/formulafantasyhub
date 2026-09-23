@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useCurrentRace } from '@/lib/useCurrentRace'
+import RaceTicker, { useTickerData } from './RaceTicker'
 
 const links = [
   { href: '/',           label: 'Home' },
@@ -21,6 +22,8 @@ export default function Navbar() {
   const race = useCurrentRace()
   const [menuOpen, setMenuOpen] = useState(false)
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null)
+  const tickerData = useTickerData()
 
   useEffect(() => {
     if (document.documentElement.getAttribute('data-theme') === 'light') setTheme('light')
@@ -39,44 +42,61 @@ export default function Navbar() {
 
   return (
     <>
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
-        .nav-link:hover { color: var(--text) !important; background: var(--surface2) !important; }
-        [data-theme="light"] .nav-link:hover { color: #0D1117 !important; background: #E8EAED !important; }
         .theme-toggle:hover { background: var(--border) !important; }
         [data-theme="light"] .theme-toggle:hover { background: rgba(0,0,0,0.06) !important; }
-      `}</style>
-      <nav style={{
+        [data-theme="light"] nav.fh-navbar { background: rgba(240,242,245,0.8) !important; border-bottom-color: var(--border) !important; }
+        /* Mobile dropdown must clear both the 54px nav and the 32px ticker beneath it. */
+        .nav-links.mob-open { top: 86px !important; }
+      ` }} />
+      <nav className="fh-navbar" style={{
         position: 'sticky', top: 0, zIndex: 100,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '0 16px', height: '60px',
-        background: 'rgba(8,12,16,0.97)',
-        backdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(232,0,45,0.2)',
-        boxShadow: '0 1px 0 rgba(232,0,45,0.1)',
+        padding: '0 16px', height: '54px',
+        background: 'rgba(8,12,16,0.72)',
+        backdropFilter: 'blur(18px) saturate(160%)',
+        WebkitBackdropFilter: 'blur(18px) saturate(160%)',
+        borderBottom: '1px solid var(--border)',
       }}>
         {/* Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', flexShrink: 0 }}>
-          <Image src="/logo.png" alt="Formula Hub" width={36} height={36} style={{ borderRadius: '50%' }} />
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 800, fontSize: '22px', letterSpacing: '1px', color: 'var(--text)' }}>
+          <Image src="/logo.png" alt="Formula Hub" width={30} height={30} style={{ borderRadius: '50%' }} />
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 800, fontSize: '19px', letterSpacing: '1px', color: 'var(--text)' }}>
             FORMULA <span style={{ color: '#E8002D' }}>HUB</span>
           </span>
         </Link>
 
         {/* Nav links — hidden on mobile, shown via hamburger */}
-        <ul className={`nav-links${menuOpen ? ' mob-open' : ''}`} style={{ display: 'flex', gap: '2px', listStyle: 'none', alignItems: 'center', margin: '0 24px' }}>
+        <ul className={`nav-links${menuOpen ? ' mob-open' : ''}`} style={{ display: 'flex', gap: 0, listStyle: 'none', alignItems: 'center', margin: '0 16px' }}>
           {links.map((link) => {
             const active = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+            const hovered = hoveredLink === link.href
             return (
               <li key={link.href}>
-                <Link href={link.href} className="nav-link" onClick={() => setMenuOpen(false)} style={{
-                  color: active ? '#E8002D' : 'var(--muted)',
-                  textDecoration: 'none', fontSize: '13px', fontWeight: 500,
-                  padding: '8px 14px', borderRadius: '6px', display: 'block',
-                  background: active ? 'rgba(232,0,45,0.1)' : 'transparent',
-                  border: active ? '1px solid rgba(232,0,45,0.2)' : '1px solid transparent',
-                  transition: 'all 0.2s', letterSpacing: '0.3px',
-                }}>{link.label}</Link>
+                <Link
+                  href={link.href}
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                  onMouseEnter={() => setHoveredLink(link.href)}
+                  onMouseLeave={() => setHoveredLink(null)}
+                  style={{
+                    position: 'relative', display: 'block',
+                    color: active ? 'var(--text)' : 'var(--muted)',
+                    textDecoration: 'none', fontSize: '13px', fontWeight: 500,
+                    padding: '17px 13px', letterSpacing: '0.3px',
+                  }}
+                >
+                  {link.label}
+                  <span style={{
+                    position: 'absolute', left: '13px', right: '13px', bottom: 0, height: '2px',
+                    borderRadius: '2px',
+                    background: active ? '#E8002D' : 'var(--muted)',
+                    transform: active ? 'scaleX(1)' : hovered ? 'scaleX(0.5)' : 'scaleX(0)',
+                    transformOrigin: 'center',
+                    transition: 'transform 0.25s, background 0.25s',
+                  }} />
+                </Link>
               </li>
             )
           })}
@@ -117,7 +137,7 @@ export default function Navbar() {
             {theme === 'dark' ? '🌙' : '☀️'}
           </button>
           {/* Race badge — hidden on mobile */}
-          <div className="nav-race-badge" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(232,0,45,0.08)', border: '1px solid rgba(232,0,45,0.2)', borderRadius: '20px', padding: '6px 14px', fontSize: '12px', fontWeight: 500, color: 'var(--text)' }}>
+          <div className="nav-race-badge" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'transparent', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '20px', padding: '6px 14px', fontSize: '12px', fontWeight: 500, color: 'var(--text)' }}>
             <div style={{ width: '7px', height: '7px', background: '#E8002D', borderRadius: '50%', animation: 'pulse 2s infinite', flexShrink: 0 }} />
             <span className={`fi fi-${race.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span> {race.shortName} · R{race.round}
           </div>
@@ -134,6 +154,7 @@ export default function Navbar() {
           </button>
         </div>
       </nav>
+      <RaceTicker data={tickerData} theme={theme} />
     </>
   )
 }
