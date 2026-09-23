@@ -22,12 +22,23 @@ export interface TickerStaticData {
   latestArticleTitle: string | null
 }
 
-export function getTickerData(): TickerStaticData {
+// Derived from session end times rather than each entry's manually-curated
+// `completed` flag, so "Last race" advances the moment a Race session ends —
+// not only once someone next edits SEASON_CALENDAR after the fact.
+function isRaceOver(cal: (typeof SEASON_CALENDAR)[number], now: Date): boolean {
+  if (cal.calledOff || !cal.sessions?.length) return false
+  const raceSesh = cal.sessions.find(s => s.name === 'Race')
+  if (!raceSesh) return false
+  const raceEndMs = new Date(raceSesh.date).getTime() + raceSesh.duration * 60_000
+  return now.getTime() > raceEndMs
+}
+
+export function getTickerData(now: Date = new Date()): TickerStaticData {
   const driverLeader = DRIVER_STANDINGS[0]
   const driverSecond = DRIVER_STANDINGS[1]
   const conLeader = CONSTRUCTOR_STANDINGS[0]
 
-  const completedRounds = SEASON_CALENDAR.filter(c => c.completed && !c.calledOff)
+  const completedRounds = SEASON_CALENDAR.filter(c => isRaceOver(c, now))
   const lastRace = completedRounds[completedRounds.length - 1]
   const lastWinner = lastRace ? RACE_WEEKENDS[lastRace.round]?.race?.[0]?.name ?? null : null
 

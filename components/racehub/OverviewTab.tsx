@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { circuitOverviewData, TRACK_SPEEDS, CIRCUIT_DESCRIPTIONS } from '@/lib/circuitOverview'
 import { cardStyle, cardHeaderStyle, Flag, monoFont, riskColors } from '@/components/home/shared'
 import { rhCardTitleStyle } from './shared'
@@ -41,19 +42,34 @@ function IndicatorRow({ level, kicker, desc }: { level: RiskLevel; kicker: strin
 function YearBars({ values, accent }: { values: (number | null)[]; accent: string }) {
   const max = Math.max(...values.filter((v): v is number => v !== null), 1)
   const years = ['2023', '2024', '2025']
+
+  // Bars ease to their new height via a CSS transition (see .rh-bar-fill
+  // below) rather than a @keyframes animation, so a round change eases the
+  // SAME element from its current height to the new one instead of jumping —
+  // a keyframe-based "animation" only ever plays once per mount and can't
+  // replay on a prop change. The mounted flip below gives the very first
+  // render something to transition FROM (0%), so the initial entrance still
+  // animates too.
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => { setMounted(true) }, [])
+
   return (
     <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-end', height: '150px', width: '100%', maxWidth: '520px', margin: '0 auto' }}>
       {years.map((year, i) => {
         const v = values[i]
+        const targetHeight = v === null ? 0 : Math.max(6, (v / max) * 100)
         return (
           <div key={year} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px', height: '100%' }}>
             <div style={{ flex: 1, width: '100%', maxWidth: '62px', background: 'var(--surface2)', borderRadius: '8px', display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}>
-              <div style={{
-                width: '100%', borderRadius: '8px',
-                background: `linear-gradient(180deg, ${accent}, color-mix(in srgb, ${accent} 55%, transparent))`,
-                transformOrigin: 'bottom', animation: `rh-grow .8s cubic-bezier(.3,.8,.2,1) both`, animationDelay: `${i * 90}ms`,
-                height: v === null ? '0%' : `${Math.max(6, (v / max) * 100)}%`,
-              }} />
+              <div
+                className="rh-bar-fill"
+                style={{
+                  width: '100%', borderRadius: '8px',
+                  background: `linear-gradient(180deg, ${accent}, color-mix(in srgb, ${accent} 55%, transparent))`,
+                  transitionDelay: `${i * 90}ms`,
+                  height: mounted ? `${targetHeight}%` : '0%',
+                }}
+              />
             </div>
             <b style={{ fontFamily: monoFont, fontWeight: 700, fontSize: '14px' }}>{v ?? '—'}</b>
             <span style={{ fontSize: '11px', color: 'var(--muted)' }}>{year}</span>
@@ -96,7 +112,8 @@ export default function OverviewTab({ round }: { round: number }) {
   return (
     <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
       <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes rh-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+        .rh-bar-fill { transition: height .6s cubic-bezier(.3,.8,.2,1); }
+        @media (prefers-reduced-motion: reduce) { .rh-bar-fill { transition: none; } }
         ${teamRowStyleTag}
       ` }} />
 

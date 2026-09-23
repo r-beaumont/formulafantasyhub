@@ -55,7 +55,7 @@ export default function NewsCarouselCard({ articles }: { articles: Article[] }) 
           <span style={{ fontSize: '12px', color: '#E8002D', fontWeight: 600 }}>Read article →</span>
         </Link>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '14px' }}>
-          <button onClick={() => setI((i + 2) % 3)} aria-label="Previous" style={navBtnStyle}>‹</button>
+          <button onClick={() => setI((i + articles.length - 1) % articles.length)} aria-label="Previous" style={navBtnStyle}>‹</button>
           <div style={{ display: 'flex', gap: '6px' }}>
             {articles.map((_, idx) => (
               <button
@@ -66,7 +66,7 @@ export default function NewsCarouselCard({ articles }: { articles: Article[] }) 
               />
             ))}
           </div>
-          <button onClick={() => setI((i + 1) % 3)} aria-label="Next" style={navBtnStyle}>›</button>
+          <button onClick={() => setI((i + 1) % articles.length)} aria-label="Next" style={navBtnStyle}>›</button>
         </div>
       </div>
     </div>

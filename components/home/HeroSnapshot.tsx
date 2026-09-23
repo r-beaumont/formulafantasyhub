@@ -48,8 +48,14 @@ function PillToggle({ value, onChange }: { value: Mode; onChange: (m: Mode) => v
   )
 }
 
-export default function HeroSnapshot({ previewSlug, circuitFacts }: { previewSlug: string; circuitFacts: CircuitFacts }) {
+const FALLBACK_FACTS: CircuitFacts = {
+  avgOvertakes: null, dnfAvg: null, gridImportance: 'TBC',
+  lastWinnerName: null, lastWinnerFlag: null, mostWinsDriver: null, mostWinsDriverCount: null,
+}
+
+export default function HeroSnapshot({ previewSlug, circuitFactsByRound }: { previewSlug: string; circuitFactsByRound: Record<number, CircuitFacts> }) {
   const race = useCurrentRace()
+  const facts = circuitFactsByRound[race.round] ?? FALLBACK_FACTS
   const [mode, setMode] = useState<Mode>('track')
   const [stacked, setStacked] = useState(false)
   const [mapVisible, setMapVisible] = useState(true)
@@ -140,7 +146,7 @@ export default function HeroSnapshot({ previewSlug, circuitFacts }: { previewSlu
         </div>
       </div>
 
-      <LockCard race={race} facts={circuitFacts} />
+      <LockCard race={race} facts={facts} />
     </section>
   )
 }

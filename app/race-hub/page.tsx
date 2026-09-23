@@ -3,6 +3,10 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import RaceHubClient from './RaceHubClient'
 
+// Rebuild hourly for freshness parity with Home/Calendar/News — see
+// lib/useCurrentRace.ts for the matching client-side auto-advance logic.
+export const revalidate = 3600
+
 export const metadata: Metadata = {
   title: 'F1 Race Hub 2026 — Session Times, Results & Circuit Info | Formula Hub',
   description: 'Live F1 session times, race results, qualifying data and circuit information for every round of the 2026 Formula 1 season.',

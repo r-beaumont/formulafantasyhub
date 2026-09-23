@@ -8,10 +8,15 @@ import QuickLinkCards from '@/components/home/QuickLinkCards'
 import NewsCarouselCard from '@/components/home/NewsCarouselCard'
 import LatestVideosCard from '@/components/home/LatestVideosCard'
 import type { CircuitFacts } from '@/components/home/LockCard'
-import { CURRENT_RACE, SEASON_CALENDAR } from '@/lib/races'
+import { SEASON_CALENDAR, computeCurrentRace } from '@/lib/races'
 import { DRIVER_STANDINGS, CONSTRUCTOR_STANDINGS } from '@/lib/standings'
 import { circuitOverviewData } from '@/lib/circuitOverview'
 import { articles } from '@/lib/articles'
+
+// Rebuild hourly so computeCurrentRace() below never serves a round that's
+// gone stale server-side between deploys — see lib/useCurrentRace.ts for the
+// matching client-side auto-advance.
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: 'Formula Hub — F1 Race Data, Standings & Fantasy Strategy 2026',
@@ -43,8 +48,8 @@ function expandWinner(short: string | undefined): { name: string; flag: string }
   return match ? { name: match.name, flag: match.flag } : null
 }
 
-function buildCircuitFacts(): CircuitFacts {
-  const o = circuitOverviewData[CURRENT_RACE.round] ?? {}
+function buildCircuitFacts(round: number): CircuitFacts {
+  const o = circuitOverviewData[round] ?? {}
   const winner = expandWinner(o.lastWinner)
   return {
     avgOvertakes: o.avgOvertakes ?? null,
@@ -55,6 +60,16 @@ function buildCircuitFacts(): CircuitFacts {
     mostWinsDriver: o.mostWinsDriver ?? null,
     mostWinsDriverCount: o.mostWinsDriverCount ?? null,
   }
+}
+
+// Built for every round rather than just "the current one" — HeroSnapshot
+// picks the entry client-side using the same round useCurrentRace() returns,
+// so the facts can never drift out of sync with the rest of the hero (name,
+// flag, sessions, countdown, map) when the race auto-advances mid-session.
+function buildCircuitFactsByRound(): Record<number, CircuitFacts> {
+  const map: Record<number, CircuitFacts> = {}
+  for (const cal of SEASON_CALENDAR) map[cal.round] = buildCircuitFacts(cal.round)
+  return map
 }
 
 function buildDriverRows(): StandingRow[] {
@@ -99,7 +114,8 @@ function buildCalendarTiles(): CalendarTile[] {
 export default function Home() {
   const latestArticles = articles.slice(0, 3)
   const previewSlug = articles[0]?.slug ?? ''
-  const circuitFacts = buildCircuitFacts()
+  const circuitFactsByRound = buildCircuitFactsByRound()
+  const currentRound = computeCurrentRace(new Date()).round
   const driverRows = buildDriverRows()
   const constructorRows = buildConstructorRows()
   const calendarTiles = buildCalendarTiles()
@@ -111,7 +127,7 @@ export default function Home() {
       <main style={{ position: 'relative', zIndex: 1 }}>
         <div className="mob-pad-page" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 32px 60px' }}>
 
-          <HeroSnapshot previewSlug={previewSlug} circuitFacts={circuitFacts} />
+          <HeroSnapshot previewSlug={previewSlug} circuitFactsByRound={circuitFactsByRound} />
 
           <div className="mob-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
             <ChampionshipCard title="Drivers Championship" rows={driverRows} />
@@ -119,7 +135,7 @@ export default function Home() {
           </div>
 
           <div style={{ marginBottom: '20px' }}>
-            <SeasonCalendarStrip tiles={calendarTiles} currentRound={CURRENT_RACE.round} completedCount={completedCount} />
+            <SeasonCalendarStrip tiles={calendarTiles} currentRound={currentRound} completedCount={completedCount} />
           </div>
 
           <div style={{ marginBottom: '20px' }}>

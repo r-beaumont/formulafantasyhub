@@ -4,9 +4,13 @@ import Footer from '@/components/Footer'
 import CalendarClient from './CalendarClient'
 import type { CalendarRowData, CalendarSession } from '@/components/calendar/CalendarRow'
 import type { CalendarTile } from '@/components/home/SeasonCalendarStrip'
-import { SEASON_CALENDAR, CURRENT_RACE } from '@/lib/races'
+import { SEASON_CALENDAR, computeCurrentRace } from '@/lib/races'
 import { RACE_WEEKENDS } from '@/lib/raceResults'
 import { DRIVER_STANDINGS } from '@/lib/standings'
+
+// Rebuild hourly so the "current round" highlight below never goes stale
+// between deploys — see lib/useCurrentRace.ts for the matching client logic.
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: '2026 F1 Racing Calendar — Session Times & Schedule',
@@ -94,7 +98,7 @@ export default function CalendarPage() {
             All 23 rounds of the 2026 Formula 1 season — session times, sprint weekends, and circuit details in one place.
           </p>
         </div>
-        <CalendarClient rows={rows} tiles={tiles} currentRound={CURRENT_RACE.round} completedCount={completedCount} />
+        <CalendarClient rows={rows} tiles={tiles} currentRound={computeCurrentRace(new Date()).round} completedCount={completedCount} />
       </div>
       <Footer />
     </>

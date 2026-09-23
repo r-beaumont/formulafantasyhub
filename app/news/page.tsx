@@ -5,6 +5,9 @@ import NewsListingClient from '@/components/news/NewsListingClient'
 import type { ArticleSummary } from '@/components/news/shared'
 import { articles } from '@/lib/articles'
 
+// Rebuild hourly for freshness parity with Home/Race Hub/Calendar.
+export const revalidate = 3600
+
 export const metadata: Metadata = {
   title: 'Latest News — F1 & F1 Fantasy Analysis | Formula Hub',
   description: 'F1 and F1 Fantasy news, analysis and insights from Rob Beaumont — official F1 Fantasy columnist for formula1.com.',
