@@ -3,9 +3,9 @@ import { NextResponse } from 'next/server'
 const CHANNEL_ID = 'UC8vDGmYVis-6zsmAMoVoPDA'
 
 export async function GET() {
-  const key = process.env.NEXT_PUBLIC_GOOGLE_API_KEY
+  const key = process.env.YOUTUBE_API_KEY || process.env.NEXT_PUBLIC_GOOGLE_API_KEY
   if (!key) {
-    console.error('NEXT_PUBLIC_GOOGLE_API_KEY missing')
+    console.error('No YouTube API key configured')
     return NextResponse.json({ error: 'API key not configured' }, { status: 500 })
   }
 
