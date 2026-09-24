@@ -118,13 +118,25 @@ export async function GET(
           }}
         />
 
-        {/* Subtle grid lines */}
+        {/* Subtle grid lines — two separate layers (not one comma-joined
+            backgroundImage), each with an explicit leading angle. The
+            @vercel/og (Satori) CSS parser mis-tokenizes a colour-stop that
+            is the very first token inside linear-gradient(...) — it drops
+            that token's first character and throws "Missing comma before
+            color stops". A leading angle keyword avoids that code path. */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(180deg, #ffffff04 1px, transparent 1px)',
+            backgroundSize: '80px 80px',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'linear-gradient(90deg, #ffffff04 1px, transparent 1px)',
             backgroundSize: '80px 80px',
           }}
         />

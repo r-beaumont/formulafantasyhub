@@ -19,6 +19,117 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'azerbaijan-gp-2026-technical-upgrades',
+    title: 'Upgrades Preview: Azerbaijan Grand Prix',
+    excerpt: 'Audi lead the Baku upgrade race with a 14-part B-spec overhaul, while McLaren, Williams and Red Bull also bring packages. Five teams, including Mercedes and Ferrari, declare nothing.',
+    readTime: 6,
+    date: 'September 24, 2026',
+    tag: 'Technical',
+    category: 'Technical',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #2D1B69, #1a0a3d)',
+    thumbnailBg: 'rgba(90,50,180,0.2)',
+    thumbnailIcon: 'az',
+    thumbnailImage: '/thumbnail-upgrades-preview.png',
+    ogImage: 'https://formulahub.live/og/azerbaijan-gp-2026-technical-upgrades',
+    content: `Baku kicks off a demanding run of races, and the upgrade picture is sharply divided. The FIA car presentation document lists 38 declared changes across just six teams, with the other five bringing nothing at all. Azerbaijan's 2.2km full-throttle run places a premium on straight-line efficiency, but much of the development work this weekend is aimed at airflow quality and local aerodynamic load rather than simply cutting drag. Audi lead the way with a comprehensive overhaul, while McLaren continue their relentless in-season push.
+
+---
+
+**McLaren**
+
+McLaren continue their aggressive development programme with eight upgrades at Baku, all but one performance-related. The team have revised the sidepod inlet shape, the engine cover, the floor edge, the diffuser, the rear suspension and the rear wing, with the changes working in conjunction to improve the flow conditioning of the MCL40. The sidepods have been reshaped with a very different downward ramp as they travel rearwards, moving closer to the Ferrari and Mercedes designs, along with a more vertical inlet similar to Audi's concept. The revised H-wing also returns this weekend after being removed for Madrid, with a new flap position for straight-line mode designed to deliver a larger reduction in drag.
+
+_Headline Upgrades: Eight upgrades, seven performance plus one c-spec. Reshaped sidepods with revised inlet. New engine cover, floor edge, diffuser and rear suspension. Revised H-wing with new straight-line mode flap position for greater drag reduction._
+
+---
+
+**Mercedes**
+
+Mercedes have declared no new parts on the FIA submission for Baku, with any changes limited to setup and circuit-specific efficiency configuration. The championship leaders continue to focus on execution and reliability as Kimi Antonelli looks to extend his advantage.
+
+_Headline Upgrades: No performance upgrades listed on the FIA submission._
+
+---
+
+**Red Bull**
+
+Red Bull bring five changes to Baku, a mixed package of two performance items, two flow-conditioning changes and one reliability item, built around revised floor and diffuser geometry. It marks a shift from the reliability-focused entries filed at Madrid towards adding performance. The RB22 tends to come alive at circuits with a big straight and slow-to-medium-speed corners, making Azerbaijan a track where the car could be competitive if the setup comes together.
+
+_Headline Upgrades: Five changes — two performance, two flow conditioning, one reliability. Revised floor and diffuser geometry. Shift from Madrid reliability entries towards performance._
+
+---
+
+**Ferrari**
+
+Ferrari have declared no new parts on the FIA submission for Baku, having brought their four-part package and second power unit upgrade to Monza. Baku's long straights make it an attractive venue for an engine change penalty, an option that remained on the radar for Charles Leclerc, though he is reportedly not taking one this weekend.
+
+_Headline Upgrades: No performance upgrades listed on the FIA submission._
+
+---
+
+**Williams**
+
+Williams bring the floor package they have been building towards, five items with four of them tracing back to the new floor, alongside airflow management changes. It is a coordinated development aimed at unlocking local aerodynamic load, and one of the more meaningful steps for the team as they look to consolidate their position in the midfield.
+
+_Headline Upgrades: Five-part package. New floor with four related items. Airflow management changes._
+
+---
+
+**Racing Bulls**
+
+Racing Bulls bring three performance changes to Baku, focused on improving the front-end flow structure of the car. It is a targeted package aimed at sharpening aerodynamic performance at the front end, in keeping with a team that has historically slowed its development pace in the second half of the season but continues to fight in a tight midfield.
+
+_Headline Upgrades: Three performance changes. Front-end flow structure rework._
+
+---
+
+**Aston Martin**
+
+Aston Martin have declared no new parts on the FIA submission for Baku, consistent with the team's confirmation at Monza that there would be no further aerodynamic upgrades to the AMR26 this season. Development focus has shifted to the 2027 car, with the weight-saving programme targeted for completion around this weekend and Honda power unit steps still to come.
+
+_Headline Upgrades: No performance upgrades listed on the FIA submission._
+
+---
+
+**Haas**
+
+Haas have declared no new parts on the FIA submission for Baku, having brought their revised front floor and diffuser update to Monza. Any changes this weekend are limited to setup and circuit-specific configuration.
+
+_Headline Upgrades: No performance upgrades listed on the FIA submission._
+
+---
+
+**Audi**
+
+Audi bring the most extensive package of the weekend by some margin, listing 14 revised components on the FIA submission — a package so comprehensive it effectively makes the R26 a B-spec car. The changes touch almost every aerodynamic surface, including a full new front wing, endplate and nose fairing designed to deliver better flow to the rest of the car while covering the balance of the new package. The front suspension covers have been revised to match, behind which sits an entirely new floor including the floor body, leading-edge devices and diffuser, along with reworked bodywork and a new rear wing assembly. It is Audi's first substantial upgrade since the Austrian Grand Prix, though the team have cautioned that Baku's unusual layout may mask the package's true benefit until later rounds.
+
+_Headline Upgrades: Fourteen-part performance package — the most of any team, effectively a B-spec R26. New front wing, endplate and nose fairing. Revised front suspension covers. All-new floor with new floor body, leading-edge devices and diffuser. Reworked bodywork and rear wing assembly._
+
+---
+
+**Alpine**
+
+Alpine have declared no new parts on the FIA submission for Baku, having brought their front wing endplate and rear wing to Monza and their major package to Zandvoort. Any changes this weekend are limited to setup and circuit-specific configuration as the fight with Racing Bulls for fifth in the Constructors' Championship continues.
+
+_Headline Upgrades: No performance upgrades listed on the FIA submission._
+
+---
+
+**Cadillac**
+
+Cadillac bring three performance changes to Baku, pairing brake cooling work with a diffuser winglet aimed at generating additional load. The brake cooling element is particularly important for a team that has struggled with brake duct reliability this season, with knock-on issues into the suspension that have compromised race weekends.
+
+_Headline Upgrades: Three performance changes. Brake cooling work to address reliability issues. Diffuser winglet for additional load._
+
+---
+
+**Final Thought**
+
+Baku's upgrade picture is a study in contrasts: five teams standing pat while six push hard, headlined by Audi's ambitious 14-part overhaul that reshapes almost the entire car. McLaren's continued development underlines why they remain the benchmark, while Williams and Red Bull bring coordinated packages aimed at airflow quality rather than pure drag reduction. With a 2.2km full-throttle run, heavy braking zones and energy management all in play, Baku will provide an early and revealing test of whether these development choices deliver on track.`,
+  },
+  {
     slug: 'race-week-preview-azerbaijan-gp-2026',
     title: 'Race Week Preview: Azerbaijan GP',
     excerpt: "Kimi Antonelli's Mercedes lead grows to 81 points after wins in Monza and Madrid, Charles Leclerc is set to start from the back for the first time all season, and Baku's walls are waiting for anyone who gets greedy. Here is your F1 Fantasy watchlist for the Azerbaijan Grand Prix.",
