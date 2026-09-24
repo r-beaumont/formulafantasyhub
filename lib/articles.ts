@@ -21,7 +21,7 @@ export const articles: Article[] = [
   {
     slug: 'race-week-preview-azerbaijan-gp-2026',
     title: 'Race Week Preview: Azerbaijan GP',
-    excerpt: "Kimi Antonelli's Mercedes lead grows to 81 points after wins in Monza and Madrid, Charles Leclerc is set to start from the back for the first time all season, and Baku's walls are waiting for anyone who gets greedy. Here is your F1 Fantasy watchlist for the Azerbaijan Grand Prix.",
+    excerpt: "Kimi Antonelli's Mercedes lead grows to 81 points after wins in Monza and Madrid, Charles Leclerc may start from the back for the first time this season, and Baku's walls are waiting for anyone who gets greedy. Here is your F1 Fantasy watchlist for the Azerbaijan Grand Prix.",
     readTime: 4,
     date: 'Sep 20, 2026',
     tag: 'Race Preview',
@@ -67,7 +67,7 @@ Aside from a gearbox failure that ended his Canadian GP before it properly start
 
 **Charles Leclerc**
 
-Ferrari is expected to fit Leclerc with a new power unit this weekend, sending him to the back of the grid for the first time all season, but the penalty and his exact starting position aren't confirmed yet. No need to spend a transfer chasing this one — see The Chips below for the smarter way to get him in once the picture's clear.
+Ferrari is weighing up whether to fit Leclerc with a new power unit this weekend, which would send him to the back of the grid for the first time all season, but the penalty and his exact starting position aren't confirmed yet. No need to spend a transfer chasing this one until more is known about his situation after practice.
 
 **Alex Albon**
 
@@ -85,7 +85,7 @@ Cadillac's reliability record this season: suspension failures, brake fires, a d
 
 **THE CHIPS**
 
-Standard weekend, no sprint. Antonelli is the obvious 2x Boost pick on current form and points, but Baku's walls have a habit of punishing even the drivers running away with the championship — see last year's six red flags in qualifying alone. If you are running Leclerc with a grid penalty, consider Autopilot.`,
+Standard weekend, no sprint. Antonelli is the obvious 2x Boost pick on current form and points, but Baku's walls have a habit of punishing even the drivers running away with the championship — see last year's six red flags in qualifying alone. If you are running Leclerc, assuming he takes a grid penalty, consider Autopilot or even Final Fix.`,
   },
   {
     slug: 'madrid-gp-2026-what-we-learned',
