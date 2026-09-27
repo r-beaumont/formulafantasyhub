@@ -19,6 +19,58 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'azerbaijan-gp-2026-what-we-learned',
+    title: 'What We Learned: Azerbaijan Grand Prix',
+    excerpt: 'George Russell turns pole into a statement, Red Bull stand on two steps of the podium for the first time since 2024, and Franco Colapinto turns a points haul into a pile of carbon. Here is what the 2026 Azerbaijan Grand Prix told us.',
+    readTime: 4,
+    date: 'Sep 27, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #001a0d 0%, #003d1f 50%, #001a0d 100%)',
+    thumbnailBg: 'rgba(0,150,80,0.22)',
+    thumbnailIcon: 'az',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/azerbaijan-gp-2026-what-we-learned',
+    relatedSlugs: ['azerbaijan-gp-2026-technical-upgrades', 'race-week-preview-azerbaijan-gp-2026', 'madrid-gp-2026-what-we-learned'],
+    content: `Baku delivered what Baku always delivers: walls, two Safety Cars and six retirements. George Russell survived all of it and crossed the line 0.196s clear of Max Verstappen, while the championship leader spent his Saturday recovering from 16th on the grid.
+
+---
+
+**GEORGE RUSSELL IS BACK IN THIS FIGHT**
+
+George Russell called this the most dominant weekend of his career, and nothing on the timing screens argues otherwise. Pole on Friday, control of the first half, and two Safety Car restarts managed with Verstappen filling his mirrors. This was not a win gifted by his team-mate's mistake. Russell had the beating of the other Mercedes before Antonelli ever found the Turn 1 wall. Russell has spent the summer rebuilding his driving around this car, and he now says it comes to him intuitively on the brakes. Third win of the season, the gap cut from 81 to 66, and the look of a driver who has worked something out.
+
+---
+
+**RED BULL ARE WINNING CONTENDERS AGAIN**
+
+Max Verstappen started eighth after a power unit problem, finished two tenths behind the winner, and still reckons he would not have passed Russell from the front row. That honesty undersells the step. Red Bull brought its best race pace of the year to a circuit that punishes a power deficit, and Isack Hadjar made it count on his first weekend back from injury. Third place, a clean race, and the team game played to the letter when Verstappen closed in. It is Red Bull's first double podium since April 2024. Verstappen has been on the rostrum in five of the last six races. A first win of 2026 is coming.
+
+---
+
+**KIMI ANTONELLI KNOWS HOW TO LOSE WELL**
+
+Kimi Antonelli clipped the Turn 1 wall in qualifying, started 16th and walked away with fifth and ten points. In this championship, that is the result that matters. On a street circuit where one greedy move ends in a barrier, he picked through the chaos, stayed clear of the restart carnage and let everyone else make the mistakes. Russell took 15 points out of the lead, not 25. With eight wins from 15 races and a 66-point cushion, Antonelli does not need to win every weekend, he needs to avoid the kind of day Oscar Piastri had here last year, and Saturday proved he understands that.
+
+---
+
+**FRANCO COLAPINTO HAS RUN OUT OF CREDIT**
+
+Alpine arrived with what Pierre Gasly called their best race car of the year and left with nothing. Franco Colapinto locked both fronts into Turn 1 and took out his team-mate and Lando Norris in one move. Alpine were holding seven points at the time. Racing Bulls now lead them by 15 in the fight for fifth. Colapinto took full responsibility, Norris wants him banned, and because he could not serve his ten-second penalty it becomes a grid drop at Sepang. After his best weekend yet in Madrid, this was the one mistake he could not afford, and Alpine say they will "consider what course of action should be taken".
+
+---
+
+**THE BARGAIN DRIVERS FINALLY PAID OUT IN BAKU**
+
+Baku was the weekend the budget picks came good. Carlos Sainz recovered from a five-place grid penalty to score P10 and post 15 fantasy points, his best return on a non-Sprint weekend all season. Valtteri Bottas turned in a season-high six points and banked his first $0.6m price rise of the year, finally rewarding the managers who parked him on the price floor to fund a premium core. And Sergio Perez notched his fourth double-digit fantasy haul of the season, a reminder that the cheapest end of the Cadillac garage still has points in it on the right day. On a circuit built to punish, the value plays did the earning while the expensive names crashed and retired around them.
+
+---
+
+The triple header rolls straight to Sepang on 2–4 October for the Bahrain Grand Prix in Malaysia, Formula 1's first visit since 2017 and another circuit with no modern form guide. Colapinto carries a grid penalty, Verstappen carries momentum, and rain is a live threat, which puts Autopilot firmly on the table before the deadline. Russell has taken 15 points back. Sepang tells us whether that was a Baku result or the start of a real title fight.`,
+  },
+  {
     slug: 'azerbaijan-gp-2026-technical-upgrades',
     title: 'Upgrades Preview: Azerbaijan Grand Prix',
     excerpt: 'Audi lead the Baku upgrade race with a 14-part B-spec overhaul, while McLaren, Williams and Red Bull also bring packages. Five teams, including Mercedes and Ferrari, declare nothing.',
