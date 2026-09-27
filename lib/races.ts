@@ -404,7 +404,7 @@ export const SEASON_CALENDAR: {
     date: '26 Sep',
     dateRange: '24–26 Sep',
     sprint: false,
-    completed: false,
+    completed: true,
     calledOff: false,
     meeting_key: 1295,
     lat: 40.3725,
