@@ -19,6 +19,73 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-bahrain-gp-2026',
+    title: 'Race Week Preview: Bahrain GP',
+    excerpt: "George Russell's grand chelem in Baku trims Kimi Antonelli's championship lead to 66 points, Formula 1 returns to Sepang for the first time since 2017, and a forecast full of thunderstorms could shake up the Bahrain Grand Prix in Malaysia. Here is your F1 Fantasy watchlist for the weekend.",
+    readTime: 4,
+    date: 'Sep 28, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0000 0%, #3d0010 50%, #1a0000 100%)',
+    thumbnailBg: 'rgba(230,20,40,0.22)',
+    thumbnailIcon: 'my',
+    thumbnailImage: '/thumbnail-race-preview.png',
+    ogImage: 'https://formulahub.live/og/race-week-preview-bahrain-gp-2026',
+    content: `**THE SETUP**
+
+Russell won in Baku by 0.196 seconds over Max Verstappen, the closest finish since the 1986 Spanish Grand Prix, and that result trimmed Kimi Antonelli's championship lead to 66 points even though the leader recovered from 16th on the grid after a qualifying crash to finish fifth. Red Bull left with a double podium as Isack Hadjar followed Verstappen home, while Lando Norris was caught up in the Franco Colapinto and Pierre Gasly collision at the first safety car restart and McLaren went home without a point. Colapinto starts this weekend with a five-place grid penalty for causing that crash.
+
+Seven rounds remain after this weekend, and Sepang arrives as the middle leg of a triple-header that finishes with the Singapore sprint weekend.
+
+**THE CIRCUIT**
+
+Sepang International Circuit is a 5.543km layout run over 56 laps, combining two long straights and heavy braking zones with fast, sweeping corners, and it returns to the calendar for the first time since Verstappen won the 2017 Malaysian Grand Prix. The race is being held under the Bahrain Grand Prix name after the original April round could not go ahead, and because no team has run the 2026 cars here, the first practice session carries extra weight. The run from the final corner onto the main straight sets up an overtaking opportunity into Turn 1, and a second long straight later in the lap gives drivers another place to attack, so recovery drives are realistic.
+
+This is a standard weekend with no sprint, so the team lock deadline is the start of Qualifying, 1600 local on Saturday, October 3 (0800 UTC).
+
+**THE WEATHER**
+
+Thunderstorms are forecast on all three days, with highs of around 33°C, high humidity and rain chances of roughly 55 to 75 percent depending on the day and the forecast you read. Sepang has a long record of sudden and heavy downpours, and this could produce the first wet Grand Prix of the season, so keep checking the forecast right up to the deadline.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Max Verstappen**
+
+Verstappen turned eighth on the grid into second in Baku, finishing 0.196 seconds behind Russell after an overnight power unit change gave him the straight-line speed to harass the Mercedes through the closing laps, and he collected Driver of the Day for the sixth time this season on the way. His scores of 37 in Monza and 43 in Baku show a Red Bull that is making its power count on the circuits that reward it, and with Isack Hadjar completing a double podium behind him, Sepang's long straights look well suited to the RB22. He is also the last winner at this circuit, having taken the 2017 race.
+
+**George Russell**
+
+Russell claimed his third win of the season with a grand chelem in Baku, converting pole position, the fastest lap and every lap led into a weekend in which he also topped both Thursday practice sessions. The result completes a recovery from a patchy middle of the season that included a late retirement from the lead in Canada, and with Mercedes expected to stay quick on the power circuits still to come, he remains a dependable foundation for any line-up.
+
+🟡 HOLD
+
+**Sergio Perez**
+
+Perez registered his fourth double-digit haul of the season by climbing through the field while six drivers retired around him, a result that owed plenty to the attrition ahead of him. A price rise looks out of reach, since he needs 16 points to bank even a $0.2m increase, and that is a lot to ask of a Cadillac that has been plagued by brake and suspension failures all year. He is worth holding for owners who already have him, as a cheap source of points if the carnage continues in what could be a wet race, though there is little reason to spend a transfer bringing him in.
+
+**Ferrari**
+
+Ferrari left Baku with 20 points from Charles Leclerc's fourth place and Lewis Hamilton's sixth, but neither driver featured in the fight for the podium, and the team has still not rediscovered the form that made it a reliable constructor pick earlier in the season. Sepang may prove another difficult weekend, since its long straights will test a power unit that the FIA measured more than four percent behind the season's benchmark in its first review period. Even so, at $4.5m cheaper than Red Bull the Scuderia still offer solid value for anyone building around premium assets elsewhere, so there is no need to sell just yet, though the case for holding rests on price more than on form.
+
+🔴 SELL
+
+**Lando Norris**
+
+Norris was running inside the top ten when Colapinto locked up at the first safety car restart and set off a chain reaction that ended his race, a retirement that was no fault of his own but which left McLaren without a point in Baku. With the high-speed sections at Sepang expected to favour Red Bull and Mercedes, McLaren look likely to take a step back at this round, which makes it a sensible week to move him on, with the Singapore sprint weekend offering a better chance to bring him back into your team.
+
+**Alex Albon**
+
+Albon overcooked a corner and went straight into the barriers on lap 31, bringing out the first safety car and ending his own race, a costly retirement for owners after Williams brought an upgrade package to Baku that failed to deliver the step forward the team had hoped for. Carlos Sainz's solitary point for tenth place, collected because six drivers retired around him, suggests the FW48 still lacks the pace to score without help, and with Albon's season already littered with retirements he is a sell for now.
+
+**THE CHIPS**
+
+This is a standard weekend with no sprint, and No Negative is the chip to consider for two reasons, the first being that most of the grid has never raced at Sepang, which raises the chance of mistakes, and the second being the heavy rain forecast, since any driver can retire in a wet race and the chip resets every negative score to zero. Autopilot is the alternative, and it suits a weekend where Antonelli, Russell and Verstappen have been hard to split and the front of the grid has been wide open lately, because it moves the 2x Boost to the highest scorer in your team if your pick has a difficult weekend or retires, although it only protects the multiplier, so in the rain it leaves the rest of your team exposed to negative points. Check the forecast again before the Saturday deadline, since a drier weekend would strengthen the case for Autopilot over No Negative.`,
+  },
+  {
     slug: 'weekly-watchlist-azerbaijan-gp-2026',
     title: 'The Weekly Watchlist: Azerbaijan GP',
     excerpt: 'Verstappen and Russell lead the buys after a 0.196 second finish in Baku, Norris and Albon are the sells, and Ferrari and Perez are holds heading to Sepang. Here is your F1 Fantasy Weekly Watchlist after the Azerbaijan Grand Prix.',
