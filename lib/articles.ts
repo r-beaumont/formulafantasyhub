@@ -86,55 +86,6 @@ Albon overcooked a corner and went straight into the barriers on lap 31, bringin
 This is a standard weekend with no sprint, and No Negative is the chip to consider for two reasons, the first being that most of the grid has never raced at Sepang, which raises the chance of mistakes, and the second being the heavy rain forecast, since any driver can retire in a wet race and the chip resets every negative score to zero. Autopilot is the alternative, and it suits a weekend where Antonelli, Russell and Verstappen have been hard to split and the front of the grid has been wide open lately, because it moves the 2x Boost to the highest scorer in your team if your pick has a difficult weekend or retires, although it only protects the multiplier, so in the rain it leaves the rest of your team exposed to negative points. Check the forecast again before the Saturday deadline, since a drier weekend would strengthen the case for Autopilot over No Negative.`,
   },
   {
-    slug: 'weekly-watchlist-azerbaijan-gp-2026',
-    title: 'The Weekly Watchlist: Azerbaijan GP',
-    excerpt: 'Verstappen and Russell lead the buys after a 0.196 second finish in Baku, Norris and Albon are the sells, and Ferrari and Perez are holds heading to Sepang. Here is your F1 Fantasy Weekly Watchlist after the Azerbaijan Grand Prix.',
-    readTime: 3,
-    date: 'Sep 28, 2026',
-    tag: 'Weekly Watchlist',
-    category: 'Strategy',
-    articleType: 'F1 Fantasy',
-    premium: false,
-    thumbnail: 'linear-gradient(135deg, #1a0000 0%, #3d0010 50%, #1a0000 100%)',
-    thumbnailBg: 'rgba(230,20,40,0.22)',
-    thumbnailIcon: 'az',
-    thumbnailImage: '/thumbnail-what-we-learned.png',
-    ogImage: 'https://formulahub.live/og/weekly-watchlist-azerbaijan-gp-2026',
-    content: `Verstappen and Russell lead the buys after a 0.196 second finish in Baku, Norris and Albon are the sells, and Ferrari and Perez are holds heading to Sepang. Here is your F1 Fantasy Weekly Watchlist after the Azerbaijan Grand Prix.
-
-**THE WEEKLY WATCHLIST**
-
-🟢 BUY
-
-**Max Verstappen**
-
-Verstappen turned eighth on the grid into second at the flag, finishing 0.196 seconds behind Russell after an overnight power unit change, made following his Q3 problems, gave him the straight-line speed to harass the Mercedes through the closing laps. He also collected Driver of the Day for the sixth time this season, and his scores of 37 in Monza and 43 in Baku show a car that started the year about a second off the pace now making its power count at the circuits that reward it. With Isack Hadjar completing a Red Bull double podium behind him, the RB22 looks capable of repeating the feat at Sepang, which makes Verstappen a strong pick again.
-
-**George Russell**
-
-Russell claimed his third win of the season with a grand chelem, converting pole position, the fastest lap and every lap led into a weekend in which he also topped both Thursday practice sessions and qualified the best part of a second clear of the field. It completes a recovery from a patchy middle of the season that included a late retirement from the lead in Canada, and it trims his gap to team-mate Kimi Antonelli in the championship to 66 points. With Mercedes expected to stay quick on the power circuits still to come, he is a dependable foundation for any line-up.
-
-🟡 HOLD
-
-**Sergio Perez**
-
-Perez registered his fourth double-digit haul of the season by climbing through the field while six drivers retired around him, a result that owed plenty to the attrition ahead of him. A price rise looks out of reach, since he needs 16 points to bank even a $0.2m increase, and that is a lot to ask of a Cadillac that has been plagued by brake and suspension failures all year. He is worth holding for owners who already have him, as a cheap source of points if the carnage continues at Sepang, though there is little reason to spend a transfer bringing him in.
-
-**Ferrari**
-
-Ferrari left Baku with 20 points from Charles Leclerc's fourth place and Lewis Hamilton's sixth, but neither driver featured in the fight for the podium, and the team has still not rediscovered the form that made it a reliable constructor pick earlier in the season. Sepang may prove another difficult weekend, since its long straights will test a power unit that the FIA measured more than four percent behind the season's benchmark in its first review period. Even so, at $4.5m cheaper than Red Bull the Scuderia still offer solid value for anyone building around premium assets elsewhere, so there is no need to sell just yet, though the case for holding rests on price more than on form.
-
-🔴 SELL
-
-**Lando Norris**
-
-Norris was running inside the top ten when Franco Colapinto locked up at the first safety car restart and set off a chain reaction that ended his race, a retirement that was no fault of his own but which left McLaren without a point in Baku. With the high-speed sections at Sepang expected to favour Red Bull and Mercedes, McLaren look likely to take a step back at the next round, which makes this a sensible week to move him on, with the Singapore sprint weekend offering a better chance to bring him back into your team.
-
-**Alex Albon**
-
-Albon overcooked a corner and went straight into the barriers on lap 31, bringing out the first safety car and ending his own race, a costly retirement for owners after Williams brought an upgrade package to Baku that failed to deliver the step forward the team had hoped for. Carlos Sainz's solitary point for tenth place, collected because six drivers retired around him, suggests the FW48 still lacks the pace to score without help, and with Albon's season already littered with retirements he is a sell for now.`,
-  },
-  {
     slug: 'azerbaijan-gp-2026-what-we-learned',
     title: 'What We Learned: Azerbaijan Grand Prix',
     excerpt: 'George Russell turns pole into a statement, Red Bull stand on two steps of the podium for the first time since 2024, and Franco Colapinto turns a points haul into a pile of carbon. Here is what the 2026 Azerbaijan Grand Prix told us.',
