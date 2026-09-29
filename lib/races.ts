@@ -437,6 +437,8 @@ export const SEASON_CALENDAR: {
     sprint: false,
     completed: false,
     calledOff: false,
+    lat: 2.7608,
+    lon: 101.7379,
     weekendStartISO: '2026-10-02',
     timezone: 'Asia/Kuala_Lumpur',
     sessions: [
