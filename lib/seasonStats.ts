@@ -92,8 +92,26 @@ export function calculateSeasonStats(): SeasonStats {
     }
   }
 
-  const drivers     = Object.values(dMap).sort((a, b) => b.points - a.points)
-  const constructors = Object.values(cMap).sort((a, b) => b.points - a.points)
+  // Ties on points are resolved by countback on Grand Prix finishes — most
+  // wins, then most 2nds, and so on — so every surface that reads this order
+  // shows tied drivers/teams in championship order, not insertion order.
+  const gpFinishes: Record<string, number[]> = {}
+  for (const calR of completedRounds) {
+    for (const r of (RACE_WEEKENDS[calR.round]?.race || [])) {
+      ;(gpFinishes[r.name] ||= []).push(r.position)
+      ;(gpFinishes[r.team] ||= []).push(r.position)
+    }
+  }
+  const countback = (a: string, b: string) => {
+    for (let p = 1; p <= 22; p++) {
+      const diff = (gpFinishes[b] || []).filter(x => x === p).length - (gpFinishes[a] || []).filter(x => x === p).length
+      if (diff) return diff
+    }
+    return 0
+  }
+
+  const drivers     = Object.values(dMap).sort((a, b) => b.points - a.points || countback(a.name, b.name))
+  const constructors = Object.values(cMap).sort((a, b) => b.points - a.points || countback(a.team, b.team))
 
   const maxWins    = Math.max(...drivers.map(d => d.wins),    0)
   const maxPoles   = Math.max(...drivers.map(d => d.poles),   0)
@@ -126,10 +144,10 @@ if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'test') {
   console.log('\n── seasonStats verification ──────────────────────────────')
   const check = [
     { name: 'George Russell',  expPts: 236, expWins: 3, expPodiums: 8,  expPoles: 5 },
-    { name: 'Kimi Antonelli',  expPts: 302, expWins: 8, expPodiums: 12, expPoles: 6 },
-    { name: 'Charles Leclerc', expPts: 179, expWins: 1, expPodiums: 4,  expPoles: 0 },
-    { name: 'Lewis Hamilton',  expPts: 199, expWins: 1, expPodiums: 5,  expPoles: 0 },
-    { name: 'Lando Norris',    expPts: 186, expWins: 2, expPodiums: 5,  expPoles: 3 },
+    { name: 'Kimi Antonelli',  expPts: 320, expWins: 8, expPodiums: 13, expPoles: 6 },
+    { name: 'Charles Leclerc', expPts: 191, expWins: 1, expPodiums: 4,  expPoles: 0 },
+    { name: 'Lewis Hamilton',  expPts: 214, expWins: 1, expPodiums: 6,  expPoles: 0 },
+    { name: 'Lando Norris',    expPts: 188, expWins: 2, expPodiums: 5,  expPoles: 3 },
   ]
   for (const { name, expPts, expWins, expPodiums, expPoles } of check) {
     const d = DRIVER_STATS_MAP[name]
