@@ -19,6 +19,58 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'bahrain-gp-2026-what-we-learned',
+    title: 'What We Learned: Bahrain Grand Prix in Malaysia',
+    excerpt: "Max Verstappen finally wins one, George Russell's engine hands Kimi Antonelli an 84-point lead, and Lewis Hamilton turns a botched Ferrari gamble into a podium. Here is what Sepang told us.",
+    readTime: 4,
+    date: 'Oct 5, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #001a0d 0%, #003d1f 50%, #001a0d 100%)',
+    thumbnailBg: 'rgba(0,150,80,0.22)',
+    thumbnailIcon: 'my',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/bahrain-gp-2026-what-we-learned',
+    relatedSlugs: ['azerbaijan-gp-2026-technical-upgrades', 'race-week-preview-bahrain-gp-2026', 'azerbaijan-gp-2026-what-we-learned'],
+    content: `Formula 1's first visit to Sepang since 2017 started more than 90 minutes late, after torrential rain and a formation lap that collapsed under a power unit software glitch. When it finally got going, Max Verstappen won it, and the title race changed shape in the closing laps.
+
+---
+
+**RED BULL'S OWN ENGINE IS NOW A RACE WINNER**
+
+**Max Verstappen** took pole, lost the lead to both Mercedes at the start, and still won by 2.3 seconds. He passed Russell on lap six, took Antonelli at the first Safety Car restart and was more than ten seconds clear before Albon's stranded Williams bunched the field. He made no mistake on the second restart either. It is his first win since Abu Dhabi last year, Red Bull's first of 2026, and the first for their own power unit in its debut season. Five podiums in six races told you this was coming. Sepang confirmed it.
+
+---
+
+**KIMI ANTONELLI HAS ONE HAND ON THE TITLE**
+
+**George Russell** was running third with five laps left when a suspected power unit failure stopped him on the pit straight under the Safety Car. A week after Baku cut the gap to 66, it is now 84 with seven rounds to go. **Kimi Antonelli** went backwards behind Verstappen, kept Russell behind once he got the place back on lap 21, and banked 18 points on a day built for mistakes. That is how champions close out seasons.
+
+---
+
+**LEWIS HAMILTON IS STILL THE MAN IN MIXED CONDITIONS**
+
+Ferrari sent **Lewis Hamilton** out on slicks from the front row on a track that was nowhere near dry enough. He fell to 18th and more than a minute off the lead. Then he made the call that saved his race, telling the pit wall to stay out and wait for the track to come to him. The lap-nine Safety Car closed the gap, and Hamilton carved through the field before passing **Isack Hadjar** after the late restart for third. It ends Ferrari's five-race podium drought, and **Charles Leclerc** followed him through for fourth.
+
+---
+
+**RACING BULLS ARE PULLING CLEAR IN THE MIDFIELD**
+
+On a day of failed tyre gambles, **Liam Lawson** and **Arvid Lindblad** brought both cars home in the points, seventh and tenth. Alpine left with nothing for the second straight weekend, and the gap in the fight for fifth in the Constructors' has grown to 22 points. **Fernando Alonso** took a season-best eighth for Aston Martin, and **Lando Norris** slid through the Turn 1 gravel under the final restart to drop to ninth. The teams that kept it simple scored. The teams that gambled paid for it.
+
+---
+
+**THE PRICE MOVES WILL PUNISH RUSSELL OWNERS**
+
+Russell's DNF lands at the worst moment for his managers, with a falling price heading into a Sprint weekend. **Valtteri Bottas** spun out on lap nine and gives back the gains from Baku. Verstappen, Hamilton and Lawson are the risers to chase before the deadline, and Alonso's eighth should stop Aston Martin's slide after last week's $0.6m drop. Lindblad keeps building value. With a Sprint in Singapore, this is the weekend the Wildcard was saved for.
+
+---
+
+Singapore comes straight next on 9–11 October for the season's final Sprint weekend, under the lights at Marina Bay, where Russell won last year. He needs that kind of weekend again, and quickly. Verstappen arrives with the fastest car of the moment, Antonelli arrives with the cushion, and Fantasy managers arrive with one more chance to bank double points before the run-in.`,
+  },
+  {
     slug: 'race-week-preview-bahrain-gp-2026',
     title: 'Race Week Preview: Bahrain GP',
     excerpt: "George Russell's grand chelem in Baku trims Kimi Antonelli's championship lead to 66 points, Formula 1 returns to Sepang for the first time since 2017, and a forecast full of thunderstorms could shake up the Bahrain Grand Prix in Malaysia. Here is your F1 Fantasy watchlist for the weekend.",
