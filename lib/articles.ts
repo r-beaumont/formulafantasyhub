@@ -19,6 +19,75 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-singapore-gp-2026',
+    title: 'Race Week Preview: Singapore GP',
+    excerpt: "Max Verstappen takes a rain-hit Bahrain Grand Prix in Malaysia, George Russell is confirmed to start from the back after a late engine failure, and Marina Bay hosts its first Sprint weekend. Here is your F1 Fantasy watchlist for the Singapore Grand Prix.",
+    readTime: 4,
+    date: 'Oct 6, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0000 0%, #3d0010 50%, #1a0000 100%)',
+    thumbnailBg: 'rgba(230,20,40,0.22)',
+    thumbnailIcon: 'sg',
+    thumbnailImage: '/thumbnail-race-preview.png',
+    ogImage: 'https://formulahub.live/og/race-week-preview-singapore-gp-2026',
+    content: `**THE SETUP**
+
+Max Verstappen converted pole position into his first win of 2026 at Sepang, in a race that was delayed twice by torrential rain, with Kimi Antonelli taking second to stretch his championship lead to 84 points after George Russell was forced out while running third, five laps from the end, with a power unit failure. Lewis Hamilton completed the podium ahead of Charles Leclerc and Isack Hadjar, while Arvid Lindblad climbed from the back of the grid to tenth by passing Nico Hulkenberg on the final lap. Mercedes have since confirmed that Russell will fit a new power unit in Singapore, which sends him to the back of the grid and pulls forward a penalty the team had hoped to take later in the year.
+
+Six rounds remain after this weekend, and Singapore closes the first flyaway triple-header with a Sprint weekend for the first time in its history.
+
+**THE CIRCUIT**
+
+The Marina Bay Street Circuit is 4.927km of bumpy street surface and 19 corners, run over 62 laps at night in heat and humidity, and the physical demands are enough for drivers to lose as much as 3kg in body weight over the course of the Grand Prix. Overtaking has averaged roughly 68 passes per race across the last three seasons, falling from 85 in 2023 to 62 in 2024 and 58 in 2025, which places it in the medium category and makes grid position valuable, although a Sprint weekend gives drivers a second race in which to recover.
+
+This is the first Sprint Singapore has hosted and the last of the season, with a single practice session on Friday before Sprint Qualifying, and the 100km Sprint on Saturday. Because it is a Sprint weekend, the team lock deadline is the start of the Sprint rather than Qualifying, at 1700 local time on Saturday, October 10 (0900 UTC), which means Friday's practice session and Sprint Qualifying are the only running you will have to go off before you commit.
+
+**THE WEATHER**
+
+Forecasts disagree on how much rain to expect, with some showing a dry Friday and Saturday before thunderstorms arrive for the Grand Prix on Sunday and others showing thundery showers across the whole weekend, while temperatures should sit between 28°C and 34°C with humidity in the high 70s. Rain at Marina Bay has a history of arriving hard and without much warning, as it did in 2022 when the start of the race was delayed by more than an hour, so with the lock falling at the start of the Sprint, ahead of Qualifying and the Grand Prix, it is worth checking the forecast again right up to the deadline.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Sergio Perez**
+
+Perez was the only Cadillac to see the chequered flag at Sepang, running all 55 laps to finish 19th after a Q1 exit left him near the back of the grid, while Valtteri Bottas spun off in the opening laps on slick tyres and brought out the Safety Car. The result looks modest on paper, but he needs only -9 points for a maximum $0.6m price rise this weekend, which makes him one of the safest sources of budget growth on the grid, and he has already banked four double-digit hauls this season, the latest of them in Baku, where he climbed through the field as six drivers retired around him. With Marina Bay's walls and a possible thunderstorm on Sunday both capable of thinning out the field, a driver who keeps the car on the road and collects positions gained is a compelling budget enabler.
+
+**Arvid Lindblad**
+
+Lindblad lined up 22nd at Sepang after Racing Bulls fitted a fifth power unit, and he still climbed to tenth, passing Hulkenberg on the final lap to complete a double points finish for the team and collect a season-high 28 fantasy points, a haul that followed his seventh place in Baku. He needs only -11 points for a maximum price rise, so even a quiet weekend would be enough, and a driver who has scored in back-to-back races and gained twelve places from the back of the grid is well suited to a Sprint weekend that adds another session in which to score.
+
+🟡 HOLD
+
+**Mercedes**
+
+Mercedes have confirmed that Russell will take a new power unit in Singapore, which sends him to the back of the grid after the failure that ended his Sepang race, and that opens the door to a recovery drive full of positions gained and overtakes, so holding the constructor keeps you exposed to that scoring because it counts both drivers' results. Marina Bay's overtaking average is enough to cap how far Russell can climb, which keeps the team in the hold category, but Mercedes took pole and the win here last year with Russell in the car and Antonelli finishing fifth, and with Antonelli's second place in Malaysia extending his lead to 84 points, there is no reason to move them on.
+
+**Max Verstappen**
+
+Verstappen led all three qualifying segments at Sepang on his way to pole position and his first win of the season, and he arrives off the back of a Baku weekend that produced a double podium for Red Bull, so the car has been quick at the last two circuits. Anyone already running him should keep him, although Marina Bay is the one track where he has never won, with a best result of second, and a narrow, high-downforce street circuit gives his straight-line speed less to work with than Baku and Sepang did. With the Sprint adding an extra scoring session he remains in the box seat among the premium drivers, but there is no urgency to bring him in if your budget is committed elsewhere.
+
+🔴 SELL
+
+**Valtteri Bottas**
+
+Bottas has now gone back-to-back weekends without a clean finish, crashing out late in Baku, where he was still classified 16th, and then spinning at Turn 13 in the opening laps at Sepang after qualifying 21st, a mistake on slick tyres that brought out the Safety Car and cost him the 20 points that a Grand Prix DNF carries. Perez finished that same race on the lead lap, and the season-long picture points the same way, with Perez ahead in race results by six to three at the halfway point with retirements excluded, even as Cadillac have kept bringing upgrades to the car, so there is little reason to keep the slower and less reliable of the two Cadillacs.
+
+**Gabriel Bortoleto**
+
+Bortoleto received a 10-second penalty for the second weekend running, this time for contact with Carlos Sainz at the lap 13 Safety Car restart in Sepang, after he had qualified in Q3 and started tenth. The Audi picked up damage to its front wing and floor, needed an extra stop and finished 18th, with Bortoleto apologising to Sainz afterwards, while team-mate Hulkenberg started 15th and finished 11th, one place away from a point. In Baku the penalty was for overtaking Perez under yellow flags, which dropped him from 13th to 15th, although the stewards accepted that a Safety Car display error contributed significantly to his decision. Hulkenberg finished ahead of him at both races and neither Audi scored, so there is little reason to hold a driver whose recent weekends have been undone by incidents of this kind.
+
+**THE CHIPS**
+
+This is the sixth and final Sprint weekend of the season, with Russell starting the Grand Prix from the back of the grid, the top of the field more open than at any point this year and rain in the Singapore forecast, which makes Autopilot a strong option as wet weather insurance, since it moves your 2x Boost to the highest-scoring driver in your team if your chosen driver picks up a grid penalty, spins or retires. No Negative is also worth considering, because rain is in the forecast across the weekend and the extra Sprint session adds another chance for a DNF, with the Sprint DNF penalty at -10 and the Grand Prix penalty at -20, and the chip resets every negative score to zero.
+
+Anyone who still has both 3x Boost and Limitless available should be brave here, because the extra Sprint session gives each chip more to work with and the Strategist would use them regardless of the weather. 3x Boost puts one driver on 3x and a second on 2x, and with Russell starting at the back, Antonelli and Verstappen look the cleaner pairing, while Limitless removes the cost cap so you can build around the drivers and teams you rate most in a field this open. The deadline falls at the start of the Sprint, so Friday's practice session and Sprint Qualifying are all the evidence you will have, and you will commit without seeing the Grand Prix grid, which is a risk that comes with either chip.`,
+  },
+  {
     slug: 'bahrain-gp-2026-what-we-learned',
     title: 'What We Learned: Bahrain Grand Prix in Malaysia',
     excerpt: "Max Verstappen finally wins one, George Russell's engine hands Kimi Antonelli an 84-point lead, and Lewis Hamilton turns a botched Ferrari gamble into a podium. Here is what Sepang told us.",
