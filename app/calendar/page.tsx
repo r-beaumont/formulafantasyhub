@@ -7,6 +7,7 @@ import type { CalendarTile } from '@/components/home/SeasonCalendarStrip'
 import { SEASON_CALENDAR, computeCurrentRace } from '@/lib/races'
 import { RACE_WEEKENDS } from '@/lib/raceResults'
 import { DRIVER_STANDINGS } from '@/lib/standings'
+import { raceFullName, raceCircuitLabel } from '@/lib/raceNaming'
 
 // Rebuild hourly so the "current round" highlight below never goes stale
 // between deploys — see lib/useCurrentRace.ts for the matching client logic.
@@ -55,9 +56,9 @@ function buildRows(): CalendarRowData[] {
 
     return {
       round: r.round,
-      name: r.name,
+      name: raceFullName(r.round),
       flag: r.flag,
-      circuit: r.circuit,
+      circuit: raceCircuitLabel(r.round),
       dateRange: r.dateRange || r.date,
       sprint: r.sprint,
       completed: r.completed,

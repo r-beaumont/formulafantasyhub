@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useCurrentRace } from '@/lib/useCurrentRace'
 import RaceTicker, { useTickerData } from './RaceTicker'
+import { raceShortName } from '@/lib/raceNaming'
 
 const links = [
   { href: '/',           label: 'Home' },
@@ -139,7 +140,7 @@ export default function Navbar() {
           {/* Race badge — hidden on mobile */}
           <div className="nav-race-badge" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'transparent', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '20px', padding: '6px 14px', fontSize: '12px', fontWeight: 500, color: 'var(--text)' }}>
             <div style={{ width: '7px', height: '7px', background: '#E8002D', borderRadius: '50%', animation: 'pulse 2s infinite', flexShrink: 0 }} />
-            <span className={`fi fi-${race.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span> {race.shortName} · R{race.round}
+            <span className={`fi fi-${race.flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block' }}></span> {raceShortName(race.round)} · R{race.round}
           </div>
           {/* Hamburger — only visible on mobile via CSS */}
           <button

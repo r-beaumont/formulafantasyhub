@@ -60,6 +60,13 @@ Rob Beaumont is the official F1 Fantasy columnist for formula1.com and a leading
 | Paddock Briefing | Insider Briefing |
 | Paddock Access | Exclusive Insights |
 
+### Race naming
+
+- Full race name everywhere in page content: "{Country} Grand Prix" (the official name, e.g. "Bahrain Grand Prix", "Italian Grand Prix"). Never "GP" in body text, headings, cards, tables or page titles.
+- Short form (country only, e.g. "Bahrain") ONLY where space forces it: the ticker, the nav race badge and the Race Hub round chips.
+- Round 16 is the "Bahrain Grand Prix". Malaysia belongs to the venue, not the race name: the circuit displays as "Sepang International Circuit, Malaysia". "Bahrain Grand Prix in Malaysia" must never appear as a race name.
+- `lib/raceNaming.ts` is the only place race names are formatted — use `raceFullName(round)`, `raceShortName(round)` and `raceCircuitLabel(round)`. Never build a race name by hand (no `${name} Grand Prix`, no " GP", no hardcoded names). The underlying official names live in `RACE_FULL_NAMES` in `lib/races.ts`.
+
 ---
 
 ## 2026 DRIVER GRID (22 DRIVERS — 11 TEAMS)
@@ -241,6 +248,7 @@ Desktop and hamburger nav must always be:
 ## ARTICLE & CONTENT RULES
 
 - All content tagged as either "F1 Fantasy" or "F1" — never "Articles"
+- New article titles must use the full "{Country} Grand Prix" form (e.g. "Race Week Preview: Bahrain Grand Prix") — never "GP". Slugs keep their existing `-gp-` form and are never changed after publishing
 - Section page is called "News" not "Articles" everywhere
 - Weekly watchlist format: 2 buys, 2 holds, 2 sells — driver name on its own line as a heading, paragraph of reasoning underneath
 - Chip section in articles: "The Chips" (not "Chip Watch")

@@ -560,7 +560,7 @@ export default function RaceHubLive({ meeting_key, flag, name, isSprint = false 
           {flag && (
             <span className={`fi fi-${flag}`} style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', marginRight: '6px' }} />
           )}
-          {name ? `${name} GP — Session Results` : 'Session Results'}
+          {name ? `${name} — Session Results` : 'Session Results'}
         </span>
         <StatusBadge polling={isPolling} concluded={isConcluded} />
       </div>

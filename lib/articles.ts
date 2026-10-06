@@ -20,7 +20,7 @@ export interface Article {
 export const articles: Article[] = [
   {
     slug: 'race-week-preview-singapore-gp-2026',
-    title: 'Race Week Preview: Singapore GP',
+    title: 'Race Week Preview: Singapore Grand Prix',
     excerpt: "Max Verstappen takes a rain-hit Bahrain Grand Prix in Malaysia, George Russell is confirmed to start from the back after a late engine failure, and Marina Bay hosts its first Sprint weekend. Here is your F1 Fantasy watchlist for the Singapore Grand Prix.",
     readTime: 4,
     date: 'Oct 6, 2026',
@@ -89,7 +89,7 @@ Anyone who still has both 3x Boost and Limitless available should be brave here,
   },
   {
     slug: 'bahrain-gp-2026-what-we-learned',
-    title: 'What We Learned: Bahrain Grand Prix in Malaysia',
+    title: 'What We Learned: Bahrain Grand Prix',
     excerpt: "Max Verstappen finally wins one, George Russell's engine hands Kimi Antonelli an 84-point lead, and Lewis Hamilton turns a botched Ferrari gamble into a podium. Here is what Sepang told us.",
     readTime: 4,
     date: 'Oct 5, 2026',
@@ -141,7 +141,7 @@ Singapore comes straight next on 9–11 October for the season's final Sprint we
   },
   {
     slug: 'race-week-preview-bahrain-gp-2026',
-    title: 'Race Week Preview: Bahrain GP',
+    title: 'Race Week Preview: Bahrain Grand Prix',
     excerpt: "George Russell's grand chelem in Baku trims Kimi Antonelli's championship lead to 66 points, Formula 1 returns to Sepang for the first time since 2017, and a forecast full of thunderstorms could shake up the Bahrain Grand Prix in Malaysia. Here is your F1 Fantasy watchlist for the weekend.",
     readTime: 4,
     date: 'Sep 28, 2026',
@@ -371,7 +371,7 @@ Baku's upgrade picture is a study in contrasts: five teams standing pat while si
   },
   {
     slug: 'race-week-preview-azerbaijan-gp-2026',
-    title: 'Race Week Preview: Azerbaijan GP',
+    title: 'Race Week Preview: Azerbaijan Grand Prix',
     excerpt: "Kimi Antonelli's Mercedes lead grows to 81 points after wins in Monza and Madrid, Charles Leclerc may start from the back for the first time this season, and Baku's walls are waiting for anyone who gets greedy. Here is your F1 Fantasy watchlist for the Azerbaijan Grand Prix.",
     readTime: 4,
     date: 'Sep 20, 2026',
@@ -594,7 +594,7 @@ _Thanks to Jukkapekka for taking the time to share his season with us. Stay tune
   },
   {
     slug: 'race-week-preview-madrid-gp-2026',
-    title: 'Race Week Preview: Spanish GP',
+    title: 'Race Week Preview: Spanish Grand Prix',
     excerpt: "Formula 1 arrives at a circuit nobody has ever raced, Antonelli's lead swells past 66 points, and Ferrari's home weekend fell apart. Here is your F1 Fantasy watchlist for the Madring.",
     readTime: 4,
     date: 'Sep 9, 2026',
@@ -885,7 +885,7 @@ Monza is a weekend where efficiency trumps everything, and the upgrade picture r
   },
   {
     slug: 'race-week-preview-italian-gp-2026',
-    title: 'Race Week Preview: Italian GP',
+    title: 'Race Week Preview: Italian Grand Prix',
     excerpt: "Antonelli starts from the back at the easiest overtaking circuit in F1, and Ferrari bring more power to the one track where it matters most. Here is your F1 Fantasy watchlist.",
     readTime: 4,
     date: 'Sep 2, 2026',
@@ -1542,7 +1542,7 @@ The full roundtable can be found [here](https://www.youtube.com/watch?v=Kg-JA880
   },
   {
     slug: 'race-week-preview-dutch-gp-2026',
-    title: 'Race Week Preview: Dutch GP',
+    title: 'Race Week Preview: Dutch Grand Prix',
     excerpt: "McLaren found something in Hungary and the break has only sharpened it. Zandvoort's first and last Sprint is where 4A lineups start taking shape. Here is your F1 Fantasy watchlist.",
     readTime: 4,
     date: 'Aug 10, 2026',

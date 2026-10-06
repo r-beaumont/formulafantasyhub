@@ -6,6 +6,7 @@ import type { Session } from '@/lib/races'
 import { Flag, monoFont, btnRedStyle, btnOutlineStyle } from './shared'
 import LockCard, { type CircuitFacts } from './LockCard'
 import CircuitMap from '@/components/racehub/CircuitMap'
+import { raceFullName, raceCircuitLabel } from '@/lib/raceNaming'
 
 type Mode = 'track' | 'your' | 'utc'
 const modeOptions: { id: Mode; label: string }[] = [
@@ -77,7 +78,7 @@ export default function HeroSnapshot({ previewSlug, circuitFactsByRound }: { pre
   useEffect(() => { setMounted(true) }, [])
 
   const nextIndex = race.sessions.findIndex(s => !s.completed)
-  const [namePart, ...restParts] = race.name.split(' Grand Prix')
+  const [namePart, ...restParts] = raceFullName(race.round).split(' Grand Prix')
   void restParts
 
   return (
@@ -97,7 +98,7 @@ export default function HeroSnapshot({ previewSlug, circuitFactsByRound }: { pre
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center', color: 'var(--muted)', fontSize: '14px', minWidth: 0 }}>
               <Flag code={race.flag} size={22} />
               <span>Round {race.round} of 23</span>
-              <span>{race.circuit}</span>
+              <span>{raceCircuitLabel(race.round)}</span>
               <span>{race.dateRange}</span>
               {race.isSprint && (
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '10px', fontWeight: 700, padding: '3px 9px', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.6px', color: '#00A8FF', background: 'rgba(0,168,255,.12)' }}>Sprint</span>

@@ -5,6 +5,7 @@ import { RACE_WEEKENDS } from '@/lib/raceResults'
 import { DRIVERS } from '@/lib/drivers'
 import { SEASON_CALENDAR } from '@/lib/races'
 import RaceHubLive from '@/components/RaceHubLive'
+import { raceFullName } from '@/lib/raceNaming'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -719,7 +720,7 @@ export default function ResultsTab({ selectedRound, sessions }: { selectedRound:
         <RaceHubLive
           meeting_key={calRace.meeting_key}
           flag={calRace.flag}
-          name={calRace.name}
+          name={raceFullName(calRace.round)}
           isSprint={calRace.sprint}
         />
       )
@@ -734,7 +735,7 @@ export default function ResultsTab({ selectedRound, sessions }: { selectedRound:
   }
 
   const flag = weekend?.flag ?? (sessions?.[0] ? 'jp' : undefined)
-  const name = weekend?.name ?? ''
+  const name = raceFullName(selectedRound)
 
   return (
     <div style={card}>
@@ -747,7 +748,7 @@ export default function ResultsTab({ selectedRound, sessions }: { selectedRound:
               style={{ width: '1.2em', borderRadius: '2px', display: 'inline-block', marginRight: '6px' }}
             />
           )}
-          {name} GP — Session Results
+          {name} — Session Results
         </span>
         <StatusBadge polling={isPolling} concluded={isConcluded} />
       </div>

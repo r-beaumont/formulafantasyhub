@@ -2,6 +2,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 import { useCurrentRace } from '@/lib/useCurrentRace'
 import type { TickerStaticData } from '@/lib/tickerData'
+import { raceShortName } from '@/lib/raceNaming'
 
 // Context bridges the server-computed static ticker data (leaders, last race,
 // latest article — see lib/tickerData.ts) down to RaceTicker, which is
@@ -58,7 +59,7 @@ function buildItems(race: ReturnType<typeof useCurrentRace>, data: TickerStaticD
 
   items.push(
     <span style={itemStyle} key={`${group}-round`}>
-      <Flag code={race.flag} /> <span style={boldStyle}>R{race.round} {race.name}</span> {race.dateRange}
+      <Flag code={race.flag} /> <span style={boldStyle}>R{race.round} {raceShortName(race.round)}</span> {race.dateRange}
     </span>
   )
 

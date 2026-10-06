@@ -10,6 +10,7 @@ import OverviewTab from '@/components/racehub/OverviewTab'
 import RaceInfoTab, { type RaceInfoSession } from '@/components/racehub/RaceInfoTab'
 import WeatherTab, { type ForecastDay, type LiveWeather, type CurrentConditions } from '@/components/racehub/WeatherTab'
 import PitwallTab from '@/components/racehub/PitwallTab'
+import { raceFullName, raceShortName, raceCircuitLabel } from '@/lib/raceNaming'
 
 const tabOptions = [
   { id: 'overview', label: 'Overview' },
@@ -170,17 +171,17 @@ export default function RaceHubClient() {
       <div style={{ marginBottom: '4px' }}>
         <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 'clamp(2.5rem,5vw,3.5rem)', letterSpacing: '1px', lineHeight: 1, margin: '0 0 6px', display: 'flex', alignItems: 'center', gap: '14px', fontWeight: 400 }}>
           <Flag code={selectedRace.flag} size="clamp(2rem,4vw,2.8rem)" />
-          <span>{selectedRace.name} Grand Prix</span>
+          <span>{raceFullName(selectedRace.round)}</span>
         </h1>
         <div style={{ color: 'var(--muted)', fontSize: '13px' }}>
-          {selectedRace.circuit} · Round {selectedRace.round} of 23 · {selectedRace.sprint ? <span style={{ color: '#00A8FF', fontWeight: 700 }}>Sprint Weekend</span> : 'Standard Weekend'}
+          {raceCircuitLabel(selectedRace.round)} · Round {selectedRace.round} of 23 · {selectedRace.sprint ? <span style={{ color: '#00A8FF', fontWeight: 700 }}>Sprint Weekend</span> : 'Standard Weekend'}
           {(selectedRace as any).calledOff && <span style={{ color: '#E8002D', fontWeight: 700 }}> · Cancelled</span>}
         </div>
       </div>
 
       {/* Round selector */}
       <RoundSelector
-        rounds={SEASON_CALENDAR.map(r => ({ round: r.round, name: r.name, flag: r.flag, completed: r.completed, calledOff: (r as any).calledOff }))}
+        rounds={SEASON_CALENDAR.map(r => ({ round: r.round, name: raceShortName(r.round), flag: r.flag, completed: r.completed, calledOff: (r as any).calledOff }))}
         selectedRound={selectedRound}
         currentRound={currentRace.round}
         onSelect={setSelectedRound}
@@ -209,7 +210,7 @@ export default function RaceHubClient() {
       )}
 
       {activeTab === 'pitwall' && (
-        <PitwallTab round={selectedRound} raceName={selectedRace.name} flag={selectedRace.flag} completed={selectedRace.completed} />
+        <PitwallTab round={selectedRound} raceName={raceFullName(selectedRound)} flag={selectedRace.flag} completed={selectedRace.completed} />
       )}
     </div>
   )

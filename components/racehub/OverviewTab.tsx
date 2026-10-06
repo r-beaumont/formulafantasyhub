@@ -134,8 +134,8 @@ export default function OverviewTab({ round }: { round: number }) {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', marginBottom: '20px' }}>
             {[
-              { label: 'Total GPs', value: overview.totalGPs === 0 ? '—' : String(overview.totalGPs) },
-              { label: 'First GP', value: String(overview.firstGP) },
+              { label: 'Total Grands Prix', value: overview.totalGPs === 0 ? '—' : String(overview.totalGPs) },
+              { label: 'First Grand Prix', value: String(overview.firstGP) },
               { label: 'Circuit Length', value: overview.circuitLength },
               { label: 'Track Speed', value: trackSpeed },
             ].map(stat => (

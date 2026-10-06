@@ -22,9 +22,37 @@ export interface Race {
   sessions: Session[]
 }
 
+// Official race names, keyed by SEASON_CALENDAR name. Data only — display
+// code formats race names through lib/raceNaming.ts, never by hand.
+export const RACE_FULL_NAMES: Record<string, string> = {
+  'Australia':           'Australian Grand Prix',
+  'China':               'Chinese Grand Prix',
+  'Japan':               'Japanese Grand Prix',
+  'Miami':               'Miami Grand Prix',
+  'Canada':              'Canadian Grand Prix',
+  'Monaco':              'Monaco Grand Prix',
+  'Barcelona-Catalunya': 'Spanish Grand Prix',
+  'Austria':             'Austrian Grand Prix',
+  'Britain':             'British Grand Prix',
+  'Belgium':             'Belgian Grand Prix',
+  'Hungary':             'Hungarian Grand Prix',
+  'Netherlands':         'Dutch Grand Prix',
+  'Italy':               'Italian Grand Prix',
+  'Madrid':              'Madrid Grand Prix',
+  'Azerbaijan':          'Azerbaijan Grand Prix',
+  'Bahrain':             'Bahrain Grand Prix',
+  'Singapore':           'Singapore Grand Prix',
+  'United States':       'United States Grand Prix',
+  'Mexico':              'Mexico City Grand Prix',
+  'Brazil':              'São Paulo Grand Prix',
+  'Las Vegas':           'Las Vegas Grand Prix',
+  'Qatar':               'Qatar Grand Prix',
+  'Abu Dhabi':           'Abu Dhabi Grand Prix',
+}
+
 export const CURRENT_RACE: Race = {
   round: 17,
-  name: 'Singapore Grand Prix',
+  name: RACE_FULL_NAMES['Singapore'],
   shortName: 'Singapore',
   circuit: 'Marina Bay Street Circuit',
   country: 'Singapore',
@@ -621,31 +649,6 @@ export const SEASON_CALENDAR: {
 
 // ─── Dynamic current-race computation ────────────────────────────────────────
 
-const GP_FULL_NAMES: Record<string, string> = {
-  'Australia':           'Australian Grand Prix',
-  'China':               'Chinese Grand Prix',
-  'Japan':               'Japanese Grand Prix',
-  'Miami':               'Miami Grand Prix',
-  'Canada':              'Canadian Grand Prix',
-  'Monaco':              'Monaco Grand Prix',
-  'Barcelona-Catalunya': 'Spanish Grand Prix',
-  'Austria':             'Austrian Grand Prix',
-  'Britain':             'British Grand Prix',
-  'Belgium':             'Belgian Grand Prix',
-  'Hungary':             'Hungarian Grand Prix',
-  'Netherlands':         'Dutch Grand Prix',
-  'Italy':               'Italian Grand Prix',
-  'Madrid':              'Madrid Grand Prix',
-  'Azerbaijan':          'Azerbaijan Grand Prix',
-  'Singapore':           'Singapore Grand Prix',
-  'United States':       'United States Grand Prix',
-  'Mexico':              'Mexico City Grand Prix',
-  'Brazil':              'São Paulo Grand Prix',
-  'Las Vegas':           'Las Vegas Grand Prix',
-  'Qatar':               'Qatar Grand Prix',
-  'Abu Dhabi':           'Abu Dhabi Grand Prix',
-}
-
 const SESSION_SHORT: Record<string, string> = {
   'Practice 1':        'FP1',
   'Practice 2':        'FP2',
@@ -696,7 +699,7 @@ function buildRaceFromCalendar(cal: typeof SEASON_CALENDAR[0], now: Date): Race 
 
   return {
     round:     cal.round,
-    name:      GP_FULL_NAMES[cal.name] ?? `${cal.name} Grand Prix`,
+    name:      RACE_FULL_NAMES[cal.name] ?? cal.name,
     shortName: cal.name,
     circuit:   cal.circuit,
     country:   cal.country,

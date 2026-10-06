@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { useCurrentRace } from '@/lib/useCurrentRace'
+import { raceFullName } from '@/lib/raceNaming'
 
 /** Returns the formatted time string AND the day of week for the given dateISO. */
 function formatTrackTime(
@@ -85,7 +86,7 @@ export default function RaceWeekendCard() {
       {/* Body */}
       <div style={{ padding: '20px 20px 0', flex: 1 }}>
         <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '36px', lineHeight: 1, marginBottom: '4px' }}>
-          {race.name}
+          {raceFullName(race.round)}
         </div>
         <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: 'var(--muted)', marginBottom: '14px', letterSpacing: '0.5px' }}>
           {race.dateRange}

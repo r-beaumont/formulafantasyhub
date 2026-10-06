@@ -7,6 +7,7 @@ import { SEASON_CALENDAR } from './races'
 import { RACE_WEEKENDS } from './raceResults'
 import { DRIVER_STANDINGS, CONSTRUCTOR_STANDINGS } from './standings'
 import { articles } from './articles'
+import { raceShortName } from './raceNaming'
 
 export interface TickerStaticData {
   driverLeaderName: string
@@ -52,7 +53,7 @@ export function getTickerData(now: Date = new Date()): TickerStaticData {
     conLeaderName: conLeader?.name ?? '',
     conLeaderFlag: conLeader?.flag ?? '',
     conLeaderPoints: conLeader?.points ?? 0,
-    lastRaceName: lastRace?.name ?? '',
+    lastRaceName: lastRace ? raceShortName(lastRace.round) : '',
     lastRaceFlag: lastRace?.flag ?? '',
     lastRaceWinner: lastWinner,
     latestArticleTitle: latestArticle,
