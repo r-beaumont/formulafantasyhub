@@ -19,6 +19,117 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'singapore-gp-2026-technical-upgrades',
+    title: 'Upgrades Preview: Singapore Grand Prix',
+    excerpt: 'Marina Bay demands maximum downforce, and the development race reflects it. Mercedes chase a misfiring upgrade, Red Bull arrive on a high, and Ferrari eye a circuit that should suit them.',
+    readTime: 5,
+    date: 'October 8, 2026',
+    tag: 'Technical',
+    category: 'Technical',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #2D1B69, #1a0a3d)',
+    thumbnailBg: 'rgba(90,50,180,0.2)',
+    thumbnailIcon: 'sg',
+    thumbnailImage: '/thumbnail-upgrades-preview.png',
+    ogImage: 'https://formulahub.live/og/singapore-gp-2026-technical-upgrades',
+    content: `Marina Bay is the most physically and mechanically demanding circuit of the year: a tight, narrow street layout of 19 mostly slow-speed corners, close walls and almost no run-off. It rewards maximum downforce and exceptional mechanical grip above all else, so every team arrives running their highest-downforce package of the season and hunting for any efficiency they can find. That makes Singapore a revealing weekend for the development race, with two of the front-running teams still trying to unlock packages that have not yet delivered on their promise.
+
+---
+
+**McLaren**
+
+McLaren arrive without a substantial declared package, and like Mercedes they are still working to extract the full potential from their eight-part Baku upgrade. The changes there were drastic, intended to add downforce while making significant efficiency gains, but through Baku and Malaysia the MCL40 looked slower through the corners and the team have not yet unlocked the performance they believe is available. Andrea Stella has indicated more parts are coming, having already been signed off, so there may be circuit-specific changes this weekend. The bigger challenge is landing the car in its working window for both drivers, with Lando Norris also reported to be managing an unspecified engine issue that has left him down on straight-line speed relative to Oscar Piastri.
+
+_Headline Upgrades: No substantial package declared. Possible circuit-specific parts, already signed off. Priority is unlocking the existing Baku package and finding a working setup balance._
+
+---
+
+**Mercedes**
+
+Mercedes come to Singapore with plenty of unknowns after a difficult weekend in Malaysia. The team introduced a major package at Sepang with extensive revisions to the bargeboard area, rear corner, sidepods, engine cover and coke section, diffuser changes and revised rear suspension fairings, all aimed at raising the downforce ceiling while limiting drag. The expected gain was around three tenths, but the upgraded W17 did not show the anticipated step, with both George Russell and Kimi Antonelli struggling with understeer and an unsettled front end through the slow-speed sections. Toto Wolff admitted the car was running several tenths slower than the upgrade projected, and it was also draggy on the straights. For Singapore, Mercedes bring a revised brake cooling configuration front and rear, and may run a back-to-back against the old-specification car to understand where the package is underdelivering. Russell takes an engine from his existing pool after a power unit failure in Malaysia.
+
+_Headline Upgrades: Revised front and rear brake cooling configuration. Possible back-to-back test against old-spec car to diagnose the underperforming Sepang package. No new aero parts declared._
+
+---
+
+**Red Bull**
+
+Red Bull arrive on a high after Max Verstappen's first win of the season in Malaysia, the 72nd of his career and a maiden pole and win for the Red Bull Ford powertrain. The RB22 was the fastest car at Sepang, with the team having made strong progress from the packages introduced at Baku and Sepang — sidepod changes, upper bodywork revisions around the halo and two floor revisions across back-to-back races, worth an estimated three tenths per lap. Unlike McLaren and Mercedes, Red Bull appear to have optimised their package immediately, with the car strong across all corner speeds, the best tyre degradation on the grid and the fastest straight-line speed. The team have confirmed the Baku and Sepang parts are their final major package of the season, so Singapore brings only small tweaks — potentially cooling optimisation or slight rear wing profile changes for more downforce. They may also revert to their standard rear wing for straight-mode consistency.
+
+_Headline Upgrades: No major package — Baku and Sepang parts confirmed as the final major development of the season. Possible cooling tweaks and minor rear wing profile changes. Potential revert to standard rear wing for straight-mode consistency._
+
+---
+
+**Ferrari**
+
+Ferrari are confirmed to have something new coming to Singapore, continuing their pattern of bringing a revision to almost every race this season. The most recent was a revised diffuser specification in Malaysia that appeared to strengthen the car's rear end, and another small upgrade is expected this weekend before a larger package arrives in Austin, which should feature considerable changes to the floor and front wing. On paper, Marina Bay should suit the SF26 well: the car has a strong chassis and good traction, with Lewis Hamilton especially impressive through the low-speed corners at Sepang. The main concern is the circuit's bumpy nature, with the car's stiffer mechanical platform potentially compromising kerb compliance — making the balance between mechanical and aerodynamic setup the team's primary challenge.
+
+_Headline Upgrades: Small upgrade expected, continuing the car's race-by-race development. Follows the revised diffuser introduced in Malaysia. Larger floor and front wing package reserved for Austin._
+
+---
+
+**Williams**
+
+Williams' Singapore package is still to be confirmed against the official FIA submission. More information will be shared when available.
+
+_Headline Upgrades: To be confirmed against the FIA submission._
+
+---
+
+**Racing Bulls**
+
+Racing Bulls could have a couple of parts coming for Singapore. Crucially, the team are running two front wing specifications — a lower-downforce trim that has brought efficiency gains while maintaining good slow-speed rotation, and a higher-downforce version. With Singapore being a notoriously difficult circuit to overtake, qualifying performance is at a premium, so the team may opt for the higher-downforce specification this weekend.
+
+_Headline Upgrades: Possible new parts. Choice between two front wing specifications, with the higher-downforce option likely favoured for Marina Bay._
+
+---
+
+**Aston Martin**
+
+Aston Martin are a team to watch after a strong showing in Malaysia, where Fernando Alonso finished P8 and the AMR26 looked genuinely competitive through the corners, particularly in the low-speed sections. The upgraded car, built on the package introduced at Hungary, had the efficiency to gain speed on the straights for overtakes despite the Honda power unit being down on power. Singapore's abundance of low-speed corners, short straights and energy-rich layout could give Aston Martin a real chance of reaching Q3 and being best of the rest. They may also bring parts to add downforce — small changes to the floorboard, front and rear wings, and circuit-specific brake cooling — to improve load generation and ride stability.
+
+_Headline Upgrades: Possible floorboard, front and rear wing changes to add downforce. Circuit-specific brake cooling configuration. Building on the Hungary package that has transformed the car through the corners._
+
+---
+
+**Haas**
+
+Haas' Singapore package is still to be confirmed against the official FIA submission. More information will be shared when available.
+
+_Headline Upgrades: To be confirmed against the FIA submission._
+
+---
+
+**Audi**
+
+Audi's Singapore package is still to be confirmed against the official FIA submission. More information will be shared when available.
+
+_Headline Upgrades: To be confirmed against the FIA submission._
+
+---
+
+**Alpine**
+
+Alpine's Singapore package is still to be confirmed against the official FIA submission. More information will be shared when available.
+
+_Headline Upgrades: To be confirmed against the FIA submission._
+
+---
+
+**Cadillac**
+
+Cadillac's Singapore package is still to be confirmed against the official FIA submission. More information will be shared when available.
+
+_Headline Upgrades: To be confirmed against the FIA submission._
+
+---
+
+**Final Thought**
+
+Singapore is a weekend defined by maximum downforce and mechanical grip, and the development picture reflects a grid chasing load wherever it can be found. The intrigue at the front lies in two misfiring upgrades: Mercedes and McLaren both brought ambitious packages that have yet to deliver, leaving them hunting for setup answers rather than new parts. Red Bull arrive as the form team having optimised theirs immediately, while Ferrari eye a circuit that should suit the SF26 if they can tame its stiff platform over the bumps. With Aston Martin emerging as a genuine best-of-the-rest threat, Marina Bay could reshape the competitive order as the triple-header closes.`,
+  },
+  {
     slug: 'race-week-preview-singapore-gp-2026',
     title: 'Race Week Preview: Singapore Grand Prix',
     excerpt: "Max Verstappen takes a rain-hit Bahrain Grand Prix in Malaysia, George Russell is confirmed to start from the back after a late engine failure, and Marina Bay hosts its first Sprint weekend. Here is your F1 Fantasy watchlist for the Singapore Grand Prix.",
