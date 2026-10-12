@@ -19,6 +19,58 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'singapore-gp-2026-what-we-learned',
+    title: 'What We Learned: Singapore Grand Prix',
+    excerpt: "Max Verstappen finally conquers Marina Bay, Hamilton's tyre call hands Ferrari a lost podium, and McLaren's grip on third is down to seven points. Here is what the 2026 Singapore Grand Prix told us.",
+    readTime: 4,
+    date: 'Oct 12, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0008 0%, #3d0014 50%, #1a0008 100%)',
+    thumbnailBg: 'rgba(232,0,45,0.22)',
+    thumbnailIcon: 'sg',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/singapore-gp-2026-what-we-learned',
+    relatedSlugs: ['bahrain-gp-2026-what-we-learned', 'race-week-preview-singapore-gp-2026', 'azerbaijan-gp-2026-what-we-learned'],
+    content: `Singapore's first Sprint was chaotic, and the Grand Prix that followed was far calmer. Max Verstappen won both from pole, at a circuit that had beaten him in nine previous attempts, while Kimi Antonelli moved a step closer to the title.
+
+---
+
+**MAX VERSTAPPEN IS HERE TO STAY**
+
+**Max Verstappen** has now won back-to-back Grands Prix for the first time this season, at a circuit where many expected Ferrari and Mercedes to be strongest. He took Sprint pole and the Sprint win on Saturday, then pole and a lights-to-flag victory on Sunday, finishing 7.3 seconds clear of **Charles Leclerc** despite losing radio contact with his team. Leclerc stayed within a second of him for the first 15 laps, but Verstappen managed his tyres and was nine seconds clear by the time the Ferrari stopped on lap 25. It was his first Singapore win at the tenth attempt, his fourth consecutive Driver of the Day award and his eighth of the season, and it lifted him from sixth in the standings on 109 points at the summer break to fourth on 221, only 17 behind second-placed George Russell. Red Bull had never won a Grand Prix with their own power unit before Sepang, and they now have two in a row.
+
+---
+
+**THE SPRINT HAD THE CHAOS, THE GRAND PRIX HAD THE QUIET**
+
+Singapore's first Sprint delivered rain, a delayed start, a full Safety Car and nine retirements, among them **George Russell**, who crashed out of the lead at the end of the opening lap, and **Oscar Piastri**, who was taken out by his team-mate on the final tour. **Oliver Bearman** made the most of it, climbing from 13th on the grid to sixth with passes on Isack Hadjar, Pierre Gasly and Nico Hulkenberg, although he was candid that the retirements helped. The Grand Prix was far calmer, with no full Safety Cars and reliability problems ending the races of Gabriel Bortoleto, Franco Colapinto and Lance Stroll. Russell started 19th after a power unit penalty and climbed to ninth before running out of road behind Hulkenberg, while Hadjar worked his way from the pit lane to the final point. That is worth keeping in mind for Monaco, which hosts its first Sprint on 4 to 6 June 2027, one of 10 Sprint weekends next year, up from six. If passing there is as scarce as it was at Marina Bay on Sunday, the Monaco Sprint is likely to be a dour affair.
+
+---
+
+**HAMILTON'S TYRE CALL COSTS FERRARI A DOUBLE PODIUM**
+
+Ferrari had the pace for one, finishing second and third in both the Sprint and qualifying, and Leclerc held second on Sunday after pitting for fresh softs under the lap 39 Virtual Safety Car. **Lewis Hamilton**, running third, had been the first front-runner to stop, switching from mediums to softs on lap 19, and when Stroll's stricken Aston Martin brought out that same Virtual Safety Car, Ferrari called him in alongside Leclerc but he chose to stay out. His tyres then had to last to the flag, Leclerc passed him on lap 46, and Antonelli, **Lando Norris** and Piastri followed late on, dropping him to sixth. Hamilton took responsibility on the radio, and the car had looked quick enough all weekend to make the call more costly than it needed to be.
+
+---
+
+**MCLAREN'S GRIP ON THIRD IS SLIPPING**
+
+McLaren, the reigning constructors' champions, left Singapore only seven points clear of Red Bull in the fight for third, 339 to 332, after the gap stood at 43 points following Baku. Red Bull took 34 points from the weekend to McLaren's 23, and the Sprint was the costliest part. Norris and Piastri were running fourth and fifth on the final lap when Norris went for a move at Turn 5, the two collided, Piastri retired and Norris recovered only to eighth, leaving the team with a single point. The stewards took no further action, ruling that both drivers had contributed, but Andrea Stella called the clash unacceptable, and Norris accepted responsibility on Sunday after finishing fourth. In the Grand Prix, Norris and Piastri crossed the line 40.5 and 49.6 seconds behind Verstappen, which tells you where the pace sits at the moment.
+
+---
+
+**ANTONELLI CAN BE CROWNED IN AUSTIN**
+
+**Kimi Antonelli** was not the quickest Mercedes early in the weekend, qualifying seventh for the Sprint more than half a second behind Russell, with Mercedes running two car specifications and Antonelli keeping the new Sepang parts. Setup changes lifted him to fourth for the Grand Prix, and on Sunday he collected third as Hamilton and Norris fought each other, despite brake-pedal concerns and repeated track-limits warnings. He said afterwards that the team was starting to see the potential in the upgrades. The result stretches his lead to 102 points, 340 to 238, up from 66 after Baku and his first three-figure advantage of the season, and with six rounds left he can be crowned world champion at the next round.
+
+---
+
+That next round is Austin on 23 to 25 October, the first of another triple header and a standard weekend, since Singapore was the last Sprint of 2026. Verstappen arrives with momentum, Ferrari with a result they felt they let slip, McLaren and Red Bull with seven points between them, and Antonelli with a first chance to finish the job.`,
+  },
+  {
     slug: 'singapore-gp-2026-technical-upgrades',
     title: 'Upgrades Preview: Singapore Grand Prix',
     excerpt: 'Marina Bay demands maximum downforce, and the development race reflects it. Mercedes chase a misfiring upgrade, Red Bull arrive on a high, and Ferrari eye a circuit that should suit them.',
