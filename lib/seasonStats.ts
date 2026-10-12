@@ -143,11 +143,16 @@ export const CON_STATS_MAP: Record<string, ConstructorStats> = Object.fromEntrie
 if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'test') {
   console.log('\n── seasonStats verification ──────────────────────────────')
   const check = [
-    { name: 'George Russell',  expPts: 236, expWins: 3, expPodiums: 8,  expPoles: 5 },
-    { name: 'Kimi Antonelli',  expPts: 320, expWins: 8, expPodiums: 13, expPoles: 6 },
-    { name: 'Charles Leclerc', expPts: 191, expWins: 1, expPodiums: 4,  expPoles: 0 },
-    { name: 'Lewis Hamilton',  expPts: 214, expWins: 1, expPodiums: 6,  expPoles: 0 },
-    { name: 'Lando Norris',    expPts: 188, expWins: 2, expPodiums: 5,  expPoles: 3 },
+    // Expected values after R17 Singapore — verified against the F1.com
+    // official classification and cross-checked across SI, Forbes, GPFans,
+    // RaceFans, Motorsport Week and F1-Fansite.
+    { name: 'Kimi Antonelli',  expPts: 340, expWins: 8, expPodiums: 14, expPoles: 6 },
+    { name: 'George Russell',  expPts: 238, expWins: 3, expPodiums: 8,  expPoles: 5 },
+    { name: 'Lewis Hamilton',  expPts: 229, expWins: 1, expPodiums: 6,  expPoles: 0 },
+    { name: 'Max Verstappen',  expPts: 221, expWins: 2, expPodiums: 9,  expPoles: 2 },
+    { name: 'Charles Leclerc', expPts: 215, expWins: 1, expPodiums: 5,  expPoles: 0 },
+    { name: 'Lando Norris',    expPts: 201, expWins: 2, expPodiums: 5,  expPoles: 3 },
+    { name: 'Nico Hülkenberg', expPts: 13,  expWins: 0, expPodiums: 0,  expPoles: 0 },
   ]
   for (const { name, expPts, expWins, expPodiums, expPoles } of check) {
     const d = DRIVER_STATS_MAP[name]

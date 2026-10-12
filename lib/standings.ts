@@ -1,4 +1,17 @@
-import { DRIVER_STATS_MAP, CON_STATS_MAP } from './seasonStats'
+import { SEASON_STATS, DRIVER_STATS_MAP, CON_STATS_MAP } from './seasonStats'
+
+// Championship order is owned by calculateSeasonStats() in lib/seasonStats.ts,
+// which resolves points ties by countback on Grand Prix finishes (most wins,
+// then most 2nds, and so on). These lookups mirror that order here so the
+// standings table, home mini-standings, ticker and API all show exactly the
+// same positions as the Season Overview — array order is never the tiebreak.
+const DRIVER_ORDER: Record<string, number> = Object.fromEntries(
+  SEASON_STATS.drivers.map((d, i) => [d.name, i])
+)
+const CON_ORDER: Record<string, number> = Object.fromEntries(
+  SEASON_STATS.constructors.map((c, i) => [c.team, i])
+)
+const orderOf = (map: Record<string, number>, key: string) => map[key] ?? Number.MAX_SAFE_INTEGER
 
 export interface DriverStanding {
   pos: number
@@ -22,7 +35,9 @@ export interface ConstructorStanding {
   price?: number
 }
 
-// Identity metadata — no hardcoded points or wins (derived from SEASON_STATS below)
+// Identity metadata only — no hardcoded points, wins or ordering. Points and
+// wins come from SEASON_STATS; championship position comes from DRIVER_ORDER
+// above, so the order drivers appear in this array has no effect on standings.
 const _driverMeta: Omit<DriverStanding, 'pos' | 'points' | 'wins'>[] = [
   { id: 'russell',    name: 'George Russell',    shortName: 'RUS', team: 'Mercedes',        teamColor: '#27F4D2', flag: 'gb' },
   { id: 'antonelli',  name: 'Kimi Antonelli',    shortName: 'ANT', team: 'Mercedes',        teamColor: '#27F4D2', flag: 'it' },
@@ -39,12 +54,10 @@ const _driverMeta: Omit<DriverStanding, 'pos' | 'points' | 'wins'>[] = [
   { id: 'bortoleto',  name: 'Gabriel Bortoleto', shortName: 'BOR', team: 'Audi',            teamColor: '#C0C0C0', flag: 'br' },
   { id: 'colapinto',  name: 'Franco Colapinto',  shortName: 'COL', team: 'Alpine',          teamColor: '#FF69B4', flag: 'ar' },
   { id: 'ocon',       name: 'Esteban Ocon',      shortName: 'OCO', team: 'Haas',            teamColor: '#B6BABD', flag: 'fr' },
-  // Hulkenberg ahead of Sainz on equal points — countback favors Hulkenberg; array order is the tiebreak since neither has a win.
   { id: 'hulkenberg', name: 'Nico Hülkenberg',   shortName: 'HUL', team: 'Audi',            teamColor: '#C0C0C0', flag: 'de' },
   { id: 'sainz',      name: 'Carlos Sainz',      shortName: 'SAI', team: 'Williams',        teamColor: '#64C4FF', flag: 'es' },
   { id: 'albon',      name: 'Alex Albon',        shortName: 'ALB', team: 'Williams',        teamColor: '#64C4FF', flag: 'th' },
   { id: 'alonso',     name: 'Fernando Alonso',   shortName: 'ALO', team: 'Aston Martin',    teamColor: '#358C75', flag: 'es' },
-  // Zero-points countback (verified external sources): Stroll ahead of Bottas ahead of Perez.
   { id: 'stroll',     name: 'Lance Stroll',      shortName: 'STR', team: 'Aston Martin',    teamColor: '#358C75', flag: 'ca' },
   { id: 'bottas',     name: 'Valtteri Bottas',   shortName: 'BOT', team: 'Cadillac',        teamColor: '#CC0000', flag: 'fi' },
   { id: 'perez',      name: 'Sergio Pérez',      shortName: 'PER', team: 'Cadillac',        teamColor: '#CC0000', flag: 'mx' },
@@ -59,8 +72,9 @@ export const DRIVER_STANDINGS: DriverStanding[] = _driverMeta
     wins:   DRIVER_STATS_MAP[d.name]?.wins   ?? 0,
     pos:    0,
   }))
-  // Countback on a points tie goes to most race wins, not array/alphabetical order.
-  .sort((a, b) => b.points - a.points || b.wins - a.wins)
+  // Countback on a points tie goes to Grand Prix finish positions, not
+  // array/alphabetical order — DRIVER_ORDER carries that from SEASON_STATS.
+  .sort((a, b) => b.points - a.points || orderOf(DRIVER_ORDER, a.name) - orderOf(DRIVER_ORDER, b.name))
   .map((d, i) => ({ ...d, pos: i + 1 }))
 
 const _conMeta: Omit<ConstructorStanding, 'pos' | 'points' | 'wins'>[] = [
@@ -84,5 +98,5 @@ export const CONSTRUCTOR_STANDINGS: ConstructorStanding[] = _conMeta
     wins:   CON_STATS_MAP[c.name]?.wins   ?? 0,
     pos:    0,
   }))
-  .sort((a, b) => b.points - a.points)
+  .sort((a, b) => b.points - a.points || orderOf(CON_ORDER, a.name) - orderOf(CON_ORDER, b.name))
   .map((c, i) => ({ ...c, pos: i + 1 }))
