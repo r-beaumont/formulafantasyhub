@@ -19,6 +19,95 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-united-states-gp-2026',
+    title: 'Race Week Preview: United States Grand Prix',
+    excerpt: "Max Verstappen arrives in Austin on a two-race winning streak, and Kimi Antonelli has his first chance to clinch the world title. Here is your F1 Fantasy watchlist for the United States Grand Prix.",
+    readTime: 4,
+    date: 'Oct 18, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0000 0%, #3d0010 50%, #1a0000 100%)',
+    thumbnailBg: 'rgba(230,20,40,0.22)',
+    thumbnailIcon: 'us',
+    thumbnailImage: '/thumbnail-race-preview.png',
+    ogImage: 'https://formulahub.live/og/race-week-preview-united-states-gp-2026',
+    content: `**THE SETUP**
+
+Max Verstappen led every lap of the Singapore Grand Prix from pole position, a day after winning the Sprint. He finished 7.335 seconds clear of Charles Leclerc and took his first victory at Marina Bay at the tenth attempt.
+
+Kimi Antonelli completed the podium to stretch his championship lead to 102 points. George Russell recovered from 19th on the grid to finish ninth, after crashing out of the lead of the Sprint. That puts Antonelli on the brink of becoming the youngest world champion in history. He can clinch the title in Austin if he wins and results elsewhere go his way.
+
+Red Bull are now only seven points behind McLaren in the constructors' standings. Isack Hadjar also fought back from the pit lane in Singapore to claim a point.
+
+Five rounds remain after this weekend, with no Sprints among them. Austin opens the second triple-header of the flyaway season, which continues through Mexico City and Brazil.
+
+**THE CIRCUIT**
+
+The Circuit of the Americas is a 5.513km layout run over 56 laps. It features a steep climb into Turn 1, an undulating surface and a long back straight that sets up overtaking. The circuit has averaged roughly 78 overtakes per race over the last three seasons, with 78 in 2023, 86 in 2024 and 71 in 2025.
+
+Verstappen won here last year from pole position. Tyre degradation is a recurring factor, so strategy and race management often decide the Grand Prix.
+
+This is a standard weekend with three practice sessions, which gives you far more running to go off than Singapore did. The team lock deadline is the start of Qualifying, at 1600 local time on Saturday, October 24 (2100 UTC).
+
+**THE WEATHER**
+
+Forecasts disagree. One shows a dry Friday and Saturday with a 20 percent chance of rain on Sunday, while another gives a 50 percent chance during the race, with showers possible on Friday and Saturday. Temperatures should sit between the high 20s and low 30s all weekend. Texas storms can arrive quickly, so check the forecast again before the lock on Saturday.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Max Verstappen**
+
+Verstappen has won back-to-back Grands Prix, converting pole position into victory at both Sepang and Singapore. He broke his Marina Bay duck with a dominant lights-to-flag drive, after winning the Sprint the day before. He has followed that with back-to-back fantasy scores of 50 or more.
+
+He has also won Driver of the Day at each of the last four races, worth 10 points every time. He has now passed Russell as the most expensive driver in the game, but the price should not deter you. Red Bull have a record of finishing seasons strongly. Last year Verstappen won five of the eight races between Monza and Qatar, and the team's recent form suggests the same surge is under way again.
+
+He won here last year from pole, which makes him a strong 2x Boost candidate.
+
+**Liam Lawson**
+
+Lawson has gone about his business quietly at Racing Bulls, and he has become one of the most reliable midfield assets in the game. He averages 12.1 points per race for the team this season. A seventh place at Sepang was followed by another seventh in Singapore, where he finished ahead of Nico Hulkenberg and Russell. That delivered back-to-back double-digit hauls.
+
+He is $0.1m cheaper than team-mate Arvid Lindblad and needs only one point for a maximum price rise. It is an easy decision.
+
+🟡 HOLD
+
+**Kimi Antonelli**
+
+Antonelli has now gone three races without a win, which ties his longest winless run of 2026. He has still finished on the podium at Sepang and Singapore in a row. He remains a reliable set-and-forget A Tier driver to pair with Verstappen, even if his popularity as a 2x Boost candidate has waned in recent weeks.
+
+He has won eight of 17 races and leads the championship by 102 points. There is no reason to move him on in a weekend where he has a title to play for.
+
+**Nico Hulkenberg**
+
+Hulkenberg is making a mockery of his price tag. He has scored 15 or more fantasy points three weekends running, with a season high of 19 at Sepang followed by 17 in Singapore. In Singapore he finished eighth, one place ahead of Russell.
+
+The German has gone up $0.6m in six consecutive races since bottoming out at the price floor. He has also matched or outscored Audi team-mate Gabriel Bortoleto in fantasy production over that period, so anyone who owns him should keep collecting.
+
+🔴 SELL
+
+**Isack Hadjar**
+
+Hadjar's run as an exceptional budget builder may be over. Singapore was a miserable weekend. A power unit failure ended his Sprint after two laps, and a gearbox problem left him without a qualifying time. He started the Grand Prix from the pit lane and climbed to tenth, taking the final point.
+
+His eight fantasy points were his lowest since the Canada Sprint weekend. A price rise now needs 26 points, which is far from certain, and Red Bull have admitted reliability remains an issue. He is still a fantastic option for teams with a budget under $125m.
+
+**Valtteri Bottas**
+
+Bottas followed a Sepang DNF with a Sprint retirement in Singapore, after running into the back of Alex Albon at the Safety Car restart. He did finish the Grand Prix, but only in 19th and three laps down. Sergio Perez was 17th and two laps down, and came close to lapping him.
+
+The Finn has retired from seven Grands Prix this season and is yet to score a point. He has admitted he cannot explain the gap to his team-mate. His best result, 13th in China, came in a race where seven cars failed to start or finish. His fantasy returns rely on gaining places from other drivers' retirements, which is a poor plan for a driver so prone to retiring himself.
+
+**THE CHIPS**
+
+This is not really a week to use a chip. The one exception is the Wildcard, if your team needs a reshuffle. Austin has three practice sessions, so you will have a full picture of the pecking order before the lock, which makes it a good moment to rebuild after recent price changes and retirements.
+
+If you would rather wait, grid penalties for McLaren in later rounds could shake up the order and make a Wildcard more valuable then. Otherwise, there is no strong case for any other chip this weekend.`,
+  },
+  {
     slug: 'singapore-gp-2026-what-we-learned',
     title: 'What We Learned: Singapore Grand Prix',
     excerpt: "Max Verstappen finally conquers Marina Bay, Hamilton's tyre call hands Ferrari a lost podium, and McLaren's grip on third is down to seven points. Here is what the 2026 Singapore Grand Prix told us.",
