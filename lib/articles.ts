@@ -19,6 +19,95 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'strategist-spotlight-brant',
+    title: 'Strategist Spotlight: Brant',
+    excerpt: 'In the fourth edition of Formula Hub\'s Strategist Spotlight series, we sit down with South Carolina\'s Brant (@bonzounfettered) ahead of his home race at COTA. The self-styled DNF specialist talks mini league merchant mode, a Kimi Antonelli masterclass at Monza, and the Monaco horror show that cost him a season.',
+    readTime: 7,
+    date: 'Oct 22, 2026',
+    tag: 'F1 Fantasy',
+    category: 'Guest Interview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0a3d 0%, #3d1b6e 50%, #1a0a3d 100%)',
+    thumbnailBg: 'rgba(155,89,182,0.25)',
+    thumbnailIcon: 'us',
+    thumbnailImage: '/thumbnail-other-articles.png',
+    ogImage: 'https://formulahub.live/og/strategist-spotlight-brant',
+    content: `Strategist Spotlight is Formula Hub's series profiling the F1 Fantasy community's most engaged managers: how they think, how they build, and what has gone right (and wrong) across the season. Fourth to sit down with us, and the perfect guest ahead of the United States Grand Prix at COTA, is Brant from Charleston, South Carolina, known across the community as **@bonzounfettered**. A self-described DNF specialist whose season has been reshaped around mini league strategy, Brant brings a dry, self-aware wit to a format he openly admits took him a while to learn.
+
+**About You**
+
+Brant plays out of Charleston, South Carolina, and has one of the more candid origin stories in the F1 Fantasy community. He first picked up the game in 2023, well after the season had already started, and spent his first two campaigns figuring it out on the fly.
+
+_"I believe it was in 2023, but well after the season started. I didn't really know what the hell I was doing then, or for much of the 2024 season. It was at some point during 2024 that I discovered the Formula Fantasy Hub YouTube channel and began to gain a better understanding of how to play. Prior to that I didn't know how the price algorithm worked, or the importance of budget building. Plus, I missed numerous deadlines for making lineup changes. The definition of a casual. 2025 and this season I've given it a more honest go on a weekly basis."_
+
+He is less certain about his career-best rank, and refreshingly honest about why.
+
+_"I can't really recall what my best overall rank was. It was definitely last season, but it wasn't great. I was plagued by DNFs and mixed luck with chip usage across my three teams."_
+
+**Your 2026 Season**
+
+Brant runs three teams in 2026, with widely diverging results. **Team 2 currently sits at 10,775 globally with a budget of $139.5m**, carrying his hopes for the remainder of the season. Team 3 ($133.2m) and Team 1 ($129.1m) are both well off that pace.
+
+_"Current global rank is 10,775 with my Team 2. My other 2 teams have abysmal ranks. Let's just leave it at that."_
+
+His standout weekend came in China, where a chip-less lineup produced one of his best scores of the season.
+
+_"My most successful fantasy weekend so far was probably the chip-less 441 that I posted for China with my Team 1. Although it could've been better if I had put the 2x Boost on Kimi instead of Leclerc. Ollie, Liam, and Haas constructor were all smash B-tier plays for that lineup."_
+
+The chips already spent reflect a season of contrasting outcomes across the three teams. On T1, four chips have been deployed, three of them clustered around a Red Bull mini league chase. On T2, the Monza 3x Boost call stands out as a season-defining moment. T3 remains untouched, with Brant deliberately holding fire.
+
+_"I've used all except for Final Fix on T1. Limitless, 3x Boost, and Autopilot were all used during a 3-race span for the Red Bull mini league (Silverstone, Spa, Hungaroring). I decided to use the No Negative for that team recently at Marina Bay. For my T2, I've used Limitless (China, an ideal early sprint weekend with lower budget) and 3x Boost (Monza, aka the Kimi masterclass). Like Mike, I wasted my Final Fix moving Bortoleto out for Hulkenberg at Monaco. Lastly, I've yet to use any chips for T3. I'll explain my reason for that next."_
+
+The chips still in the locker tell the fuller story of Brant's second-half strategy. On T1 and T2, deployment is now largely opportunistic. On T3, there is a specific plan being held back for a Ferrari mini league.
+
+_"I'm sure a good opportunity to use that last remaining Final Fix chip with T1 will present itself during these last handful of races. Brazil seems the logical place to tentatively plan to deploy the No Negative with T2. The Wildcard and Autopilot use for that team will likely be need-based over this final run-in. I've held onto all chips with T3 in the hopes of a Ferrari mini league coming along. Specifically, deploying the big-scoring Limitless and 3x Boost chips on that. If it does happen and is a 3-racer, I'll look to use either the Autopilot or No Negative for one of those three weekends."_
+
+**Strategy**
+
+Brant blends several inputs into his weekend decision-making, with the Formula Fantasy Hub Discord community playing an increasingly central role in sharpening his thinking.
+
+_"I mostly incorporate a combination of data, eye test and commentary from practice sessions I'm able to watch, recent form, and past track results when applicable. Budget and transfer constraints also play an unfortunate part in the decision-making. I'd be remiss not to mention the positive impact the Formula Fantasy Hub Discord has had on developing sound weekly strategy. Having a platform to discuss thoughts and share info really enhances the process. Twitter/X is also a great source for the latest info and lineup construction content."_
+
+On chip planning, Brant has carved out a strategy that plays to his strengths rather than fighting against them. After rough starts in both 2025 and 2026, he has leaned into what he calls mini league merchant mode.
+
+_"On both occasions I've made the pivot to mini league merchant mode and done most of my chip planning to align with those events. The reality is that I'm just not the type of player who will find the consistency required throughout an entire season to ever have a respectable global rank. On the other hand, I'm quite capable of utilising my chips over a short stint to produce a competitive points haul. My 6th place finish recently in the Red Bull mini is the F1 Fantasy accomplishment that I'm most proud of so far."_
+
+**Pole, Puncture & Prospect**
+
+**Pole: a decision that fully delivered.** The Kimi Antonelli 3x Boost at Monza was the clear highlight of Brant's season, and nearly broke a personal scoring barrier.
+
+_"Definitely Kimi 3x Boost at Monza on my T2. I considered mentioning that one earlier in the segment as my most successful fantasy weekend. It might've been my all-time highest-scoring one at 491. However, with how dominant Kimi and Mercedes had been, on top of his grid penalty, it was really a no-brainer decision for those of us who still had the 3x Boost chip and Kimi already in the lineup, or able to transfer him in. Also, the Aston Martin boys contributed a double negative to that lineup and prevented me from cracking the 500-point mark for the first time ever. But I must digress from being too greedy. It nevertheless was a defining weekend for my late-season T2 turnaround."_
+
+**Puncture: a strategy that stopped your season in its tracks.** Not a single pick, but an entire race weekend that cost him across all three teams.
+
+_"I'm going to venture beyond a single pick for this one and give you the race that destroyed my season: Monaco. Easily my most embarrassing scoring weekend to date. Less than 50 points on all three teams. The ultimate disaster class performance. High octane nightmare fuel."_
+
+**Prospect: a driver or constructor most players are ignoring.** With the Discord community monitoring most emerging assets, Brant has had to look a little deeper for a differential.
+
+_"This is a tough one. As you know, our Discord community has eyes on everyone and not much is getting overlooked in terms of sneaky asset potential. Here's a wild notion: Albon could possibly string together a few decent scoring weeks and become a beneficial late-season asset or budget enabler for those brave enough to take a gamble. While I don't foresee any performance improvements coming from Williams, all it takes is a little luck with attrition from other back markers for it to pay off."_
+
+**The Cool Down Lap**
+
+Engines off, and a few lighter ones to close out.
+
+**Favourite circuit on the calendar.** A modern pick with a scenic backdrop, edging out one of F1's great traditional venues.
+
+_"I'd have to say that Zandvoort is probably my favourite circuit on the calendar at the moment. It has a cool layout and I really dig the beach as a backdrop. 'Silverstun', as the Poms say, is a close second."_
+
+**Favourite F1 driver, past or present.** A nod to one of the sport's most unapologetic characters, and the gateway to a lifelong team loyalty.
+
+_"My favourite F1 driver from the past is James 'The Shunt' Hunt. The OG budgy smuggler. The man was a legend on and off the track, and a bit of a maniac. I mostly attribute becoming a McLaren fan to him. I would say I'm more of a fan of the team as a whole presently. I like Lando and Oscar both."_
+
+**Bold prediction for 2027.** A split-championship call that would end one of Ferrari's longest droughts, while leaving the drivers' crown on familiar ground.
+
+_"Ferrari wins the Constructors' Championship, ending a 19-year drought (I think)… but not the Drivers' Championship. Max wins his 5th."_
+
+---
+
+_Thanks to Brant for taking the time to share his season with us. Stay tuned for more Strategist Spotlight articles in the coming weeks, as we hear from more of the F1 Fantasy community about their teams, their strategies, and the calls that have shaped their 2026._`,
+  },
+  {
     slug: 'race-week-preview-united-states-gp-2026',
     title: 'Race Week Preview: United States Grand Prix',
     excerpt: "Max Verstappen arrives in Austin on a two-race winning streak, and Kimi Antonelli has his first chance to clinch the world title. Here is your F1 Fantasy watchlist for the United States Grand Prix.",
