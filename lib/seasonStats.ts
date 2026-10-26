@@ -143,21 +143,47 @@ export const CON_STATS_MAP: Record<string, ConstructorStats> = Object.fromEntrie
 if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'test') {
   console.log('\n── seasonStats verification ──────────────────────────────')
   const check = [
-    // Expected values after R17 Singapore — verified against the F1.com
-    // official classification and cross-checked across SI, Forbes, GPFans,
-    // RaceFans, Motorsport Week and F1-Fansite.
-    { name: 'Kimi Antonelli',  expPts: 340, expWins: 8, expPodiums: 14, expPoles: 6 },
-    { name: 'George Russell',  expPts: 238, expWins: 3, expPodiums: 8,  expPoles: 5 },
-    { name: 'Lewis Hamilton',  expPts: 229, expWins: 1, expPodiums: 6,  expPoles: 0 },
-    { name: 'Max Verstappen',  expPts: 221, expWins: 2, expPodiums: 9,  expPoles: 2 },
-    { name: 'Charles Leclerc', expPts: 215, expWins: 1, expPodiums: 5,  expPoles: 0 },
-    { name: 'Lando Norris',    expPts: 201, expWins: 2, expPodiums: 5,  expPoles: 3 },
+    // Expected values after R18 United States — verified against The Race's
+    // full classification, the F1.com official result, GPFans post-penalty
+    // confirmation, Crash, RacingNews365, SI, Grande Premio and Wikipedia.
+    { name: 'Kimi Antonelli',  expPts: 365, expWins: 9, expPodiums: 15, expPoles: 7 },
+    { name: 'George Russell',  expPts: 242, expWins: 3, expPodiums: 8,  expPoles: 5 },
+    { name: 'Lewis Hamilton',  expPts: 241, expWins: 1, expPodiums: 6,  expPoles: 0 },
+    { name: 'Max Verstappen',  expPts: 236, expWins: 2, expPodiums: 10, expPoles: 2 },
+    { name: 'Charles Leclerc', expPts: 233, expWins: 1, expPodiums: 6,  expPoles: 0 },
+    { name: 'Lando Norris',    expPts: 211, expWins: 2, expPodiums: 5,  expPoles: 3 },
+    { name: 'Oscar Piastri',   expPts: 144, expWins: 0, expPodiums: 2,  expPoles: 0 },
+    { name: 'Isack Hadjar',    expPts: 105, expWins: 0, expPodiums: 2,  expPoles: 0 },
+    { name: 'Liam Lawson',     expPts: 77,  expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Pierre Gasly',    expPts: 42,  expWins: 0, expPodiums: 0,  expPoles: 1 },
     { name: 'Nico Hülkenberg', expPts: 13,  expWins: 0, expPodiums: 0,  expPoles: 0 },
   ]
   for (const { name, expPts, expWins, expPodiums, expPoles } of check) {
     const d = DRIVER_STATS_MAP[name]
     const ok = d && d.points === expPts && d.wins === expWins && d.podiums === expPodiums && d.poles === expPoles
     console.log(`  ${ok ? '✓' : '✗'} ${name}: ${d?.points ?? '?'}pts ${d?.wins ?? '?'}W ${d?.podiums ?? '?'}POD ${d?.poles ?? '?'}POL ${ok ? '' : `— expected ${expPts}pts ${expWins}W ${expPodiums}POD ${expPoles}POL`}`)
+  }
+  // Constructor totals after R18. Red Bull Racing and McLaren are tied on
+  // 355 points, so the printed position also confirms the countback puts
+  // Red Bull P3 ahead of McLaren P4.
+  const conCheck: [string, number, number][] = [
+    ['Mercedes',        607, 12],
+    ['Ferrari',         474, 2],
+    ['Red Bull Racing', 355, 2],
+    ['McLaren',         355, 2],
+    ['Racing Bulls',    102, 0],
+    ['Alpine',          69,  0],
+    ['Haas',            30,  0],
+    ['Audi',            23,  0],
+    ['Williams',        12,  0],
+    ['Aston Martin',    7,   0],
+    ['Cadillac',        0,   0],
+  ]
+  for (const [team, expPts, expWins] of conCheck) {
+    const c = CON_STATS_MAP[team]
+    const pos = SEASON_STATS.constructors.findIndex(x => x.team === team) + 1
+    const ok = c && c.points === expPts && c.wins === expWins
+    console.log(`  ${ok ? '✓' : '✗'} P${pos} ${team}: ${c?.points ?? '?'}pts ${c?.wins ?? '?'}W ${ok ? '' : `— expected ${expPts}pts ${expWins}W`}`)
   }
   console.log('──────────────────────────────────────────────────────────\n')
 }

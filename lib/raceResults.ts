@@ -1411,6 +1411,64 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     ],
   },
 
+  18: {
+    round: 18,
+    name: 'United States',
+    flag: 'us',
+    isSprint: false,
+    // Circuit of the Americas, Austin, Texas, 23–25 October 2026. 56 laps.
+    // Standard weekend — FP1, FP2, FP3, Qualifying, Race. Not a sprint.
+    //
+    // No driver substitutions. Standard 22-driver grid: Hadjar raced for Red
+    // Bull Racing, Lawson for Racing Bulls. Yuki Tsunoda did not participate
+    // (absent since R12) but remains in the season standings via his
+    // existing R12 result.
+    //
+    // Classification verified against The Race's full classification, the
+    // F1.com official result, GPFans post-penalty confirmation (no post-race
+    // penalties and no scrutineering failures), SI/Yahoo and Wikipedia.
+    // Practice and the full qualifying grid are not entered — left out
+    // rather than invented. Only the Grand Prix pole (Antonelli) is stored.
+    // Lap times not given — left as '—'. Fastest lap (Leclerc, 1:37.976 on
+    // lap 42) and Driver of the Day have no field in this data model.
+    //
+    // Race notes: Antonelli converted pole into his ninth win of 2026 (not
+    // his eighth, as some outlets reported). Leclerc made the most of
+    // Ferrari's upgrades to finish P2 ahead of Verstappen. Hamilton was
+    // rapidly closing on Verstappen on fresher tyres before a late VSC for
+    // Bottas's broken Cadillac ended his charge. Russell served a 5-second
+    // time penalty during the race, already reflected in his P8 finish.
+    // Piastri defended P7 from Russell in the closing laps. Nineteen
+    // classified finishers; three retirements — Bottas (broken Cadillac),
+    // Colapinto (38 laps) and Bearman. Antonelli now needs just 2 points
+    // (P9 or better) in Mexico to clinch the drivers' championship.
+    pole: { name: 'Kimi Antonelli', team: 'Mercedes', team_colour: '#27F4D2', time: '—' },
+    race: [
+      { position: 1,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', time: '1:35:16.650', gap: '—'        },
+      { position: 2,  name: 'Charles Leclerc',   team: 'Ferrari',         team_colour: '#E8002D', time: '—',           gap: '+13.078s' },
+      { position: 3,  name: 'Max Verstappen',    team: 'Red Bull Racing', team_colour: '#3671C6', time: '—',           gap: '+17.485s' },
+      { position: 4,  name: 'Lewis Hamilton',    team: 'Ferrari',         team_colour: '#E8002D', time: '—',           gap: '+18.515s' },
+      { position: 5,  name: 'Lando Norris',      team: 'McLaren',         team_colour: '#FF8000', time: '—',           gap: '+30.521s' },
+      { position: 6,  name: 'Isack Hadjar',      team: 'Red Bull Racing', team_colour: '#3671C6', time: '—',           gap: '+34.373s' },
+      { position: 7,  name: 'Oscar Piastri',     team: 'McLaren',         team_colour: '#FF8000', time: '—',           gap: '+52.674s' },
+      { position: 8,  name: 'George Russell',    team: 'Mercedes',        team_colour: '#27F4D2', time: '—',           gap: '+54.303s' },
+      { position: 9,  name: 'Liam Lawson',       team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+79.183s' },
+      { position: 10, name: 'Pierre Gasly',      team: 'Alpine',          team_colour: '#FF69B4', time: '—',           gap: '+87.516s' },
+      { position: 11, name: 'Nico Hülkenberg',   team: 'Audi',            team_colour: '#C0C0C0', time: '—',           gap: '+94.945s' },
+      { position: 12, name: 'Arvid Lindblad',    team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+1 LAP'   },
+      { position: 13, name: 'Gabriel Bortoleto', team: 'Audi',            team_colour: '#C0C0C0', time: '—',           gap: '+1 LAP'   },
+      { position: 14, name: 'Esteban Ocon',      team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: '+1 LAP'   },
+      { position: 15, name: 'Lance Stroll',      team: 'Aston Martin',    team_colour: '#358C75', time: '—',           gap: '+1 LAP'   },
+      { position: 16, name: 'Fernando Alonso',   team: 'Aston Martin',    team_colour: '#358C75', time: '—',           gap: '+1 LAP'   },
+      { position: 17, name: 'Alex Albon',        team: 'Williams',        team_colour: '#64C4FF', time: '—',           gap: '+1 LAP'   },
+      { position: 18, name: 'Carlos Sainz',      team: 'Williams',        team_colour: '#64C4FF', time: '—',           gap: '+1 LAP'   },
+      { position: 19, name: 'Sergio Pérez',      team: 'Cadillac',        team_colour: '#CC0000', time: '—',           gap: '+1 LAP'   },
+      { position: 20, name: 'Valtteri Bottas',   team: 'Cadillac',        team_colour: '#CC0000', time: '—',           gap: 'DNF'      },
+      { position: 21, name: 'Franco Colapinto',  team: 'Alpine',          team_colour: '#FF69B4', time: '—',           gap: 'DNF'      },
+      { position: 22, name: 'Oliver Bearman',    team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: 'DNF'      },
+    ],
+  },
+
 }
 
 // ─── 2026 Team & Driver Lineup ───────────────────────────────────────────────
