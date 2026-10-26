@@ -19,6 +19,107 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'strategist-spotlight-alan',
+    title: 'Strategist Spotlight: Alan',
+    excerpt: 'In the fifth edition of Formula Hub\'s Strategist Spotlight series, we sit down with UK-based Alan to talk early chip conviction, a Lewis Hamilton Silverstone gamble that paid off, and the Singapore DNF horror show that cost him a hard-won spot inside the global top 100.',
+    readTime: 8,
+    date: 'Oct 26, 2026',
+    tag: 'F1 Fantasy',
+    category: 'Guest Interview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0a3d 0%, #3d1b6e 50%, #1a0a3d 100%)',
+    thumbnailBg: 'rgba(155,89,182,0.25)',
+    thumbnailIcon: 'gb',
+    thumbnailImage: '/thumbnail-other-articles.png',
+    ogImage: 'https://formulahub.live/og/strategist-spotlight-alan',
+    content: `Strategist Spotlight is Formula Hub's series profiling the F1 Fantasy community's most engaged managers: how they think, how they build, and what has gone right (and wrong) across the season. Fifth to sit down with us is Alan from the UK, a second-season manager whose early chip conviction helped him climb inside the global top 100 after the Hungarian GP, and whose focus sits firmly with his T1 team as the season approaches its final stretch.
+
+**About You**
+
+Alan plays out of the UK and is in his second full F1 Fantasy campaign. After finishing just inside the global top 10,000 in 2025, he has made a significant jump up the leaderboard this year, with a run that briefly took him inside the global top 100 after the Hungarian GP.
+
+Like several managers we've profiled so far, Alan runs multiple teams, but his strategic thinking sits almost entirely with his T1.
+
+**Your 2026 Season**
+
+Alan runs three teams in 2026, but T1 is where the week-to-week focus goes. **T1 currently sits at 809 globally on a budget of $137.4m**, with T2 ($131.7m, 16,393rd) and T3 ($134.3m, 28,796th) both set with F1 Fantasy Tools and largely left alone through the season.
+
+His standout weekend of the year was a gamble that worked out, even if the maths said otherwise at the time.
+
+_"Gambling on Hamilton during Silverstone this year was a fun payoff, even though it probably wasn't the perfectly rational move at the time."_
+
+The chips already spent on T1 reflect a clear bias towards playing them early, built on the view that Mercedes dominance in the opening rounds offered a window that would not come back.
+
+**3x Boost at the Chinese GP and Limitless at the Japanese GP.** The two biggest chips, deployed back-to-back in the opening fly-aways to lean into the Mercedes advantage before the field closed up.
+
+_"My reasoning for the first two was pretty simple: act while we have data supporting Mercedes would dominate the early races. Since China had the added benefit of giving me a pure budget-gaining team, I figured Limitless in Japan was as good as it was going to get. This paid off in that other Limitless races like Monaco and Silverstone saw top drivers DNF unexpectedly."_
+
+**No Negative at the Canadian GP.** A more reactionary call that paid off handsomely once Russell's DNF and Albon's non-classification came in.
+
+_"No Negative was more reactionary. If I had been a bit more forward-focused, I would have used it later in the season. But at the time of usage, it was to avoid extra penalties. For No Negative specifically, I already took a -10 to get Albon, who was supposed to be a lock for budget but ended up not classifying that race. Thankfully, the No Negative paid off on that front, and on Russell's DNF as well, saving me around 40 points."_
+
+**Autopilot at the Dutch GP.** A hedge against Kimi Antonelli outscoring Lando Norris that ended up redundant.
+
+_"Autopilot was to hedge against Kimi beating Lando in Zandvoort, which didn't end up happening. Since Lando was already my 2x Boost driver, a bit of a waste there, but I feel like it was the right option at the time."_
+
+**Wildcard at the Malaysian GP.** A move triggered by the Albon situation and a desire to rework the lineup around Red Bull.
+
+_"I used the Wildcard in Malaysia because I wanted to get Red Bull and get rid of Albon, but couldn't do that without taking a penalty to go back to 4A-lite with Hadjar. I used the Wildcard to get as many of the penalty drivers as I could, which paid off to some extent. But looking back, I don't know why I didn't go with triple Red Bull instead of hedging my bets with Kimi and Hadjar when Max looked so good in the lead-up."_
+
+Only Final Fix remains in the locker, with a specific scenario in mind for its deployment.
+
+_"With only a few races left, I will likely use Final Fix if I want to use my transfers on assets other than my 2x Boost driver, and then Final Fix into a driver that takes a one-time penalty in one of the upcoming races. I've been stuck in transfer purgatory for a while, and I can't afford to take a penalty to move around my biggest asset."_
+
+**Strategy**
+
+Alan's weekend process blends free practice watching with community intelligence, sim data, and the smaller details that come out in driver interviews.
+
+_"Like others, I usually check out the free practice times and summaries, usually leaning on Discord discussions or the Reddit threads about them to see what people are saying. Occasionally you get information on the more technical aspects like downforce setups, tyre strategy, towing and whatnot that I don't always catch on my watches of the free practice sessions. Additionally, I use the F1 Fantasy Tools website to see the expected points like others do too, but I also look at the graphs Rhter puts out with the sims in the Discord. The one I look at is the expected points breakdown to see if the points are based on race pace or superlatives like Driver of the Day or Fastest Lap. Sometimes those give a boost to total points of top assets that I might not agree with, so I temper my expectations sometimes."_
+
+Driver interviews round out his pre-weekend workflow, with confidence as the key signal he's looking for.
+
+_"Outside of those main ones, I try to listen to the driver interviews to see how confident they feel on the weekend. Obviously there's some sandbagging about how 'our car could use more pace' or 'we don't feel like we're going to be where we thought we'd be' from some, but it's more the positive sentiments I look for. When a driver is confident in the pace they put forward, it's a decent predictor of race performance I feel. Doesn't always pan out, and the plural of 'anecdote' isn't 'data', but it's gotten me in a decent spot so far."_
+
+On chip planning, Alan takes a loose framework approach, with triggers for each chip rather than fixed race dates.
+
+_"My chips are tentatively planned when they're supposed to be used: 3x Boost on two A-tier drivers, Limitless on a low-overtake track with budget risers, and so on. It's only my second season, but it seems like holding onto chips is a better strategy, or at least was for this year with the lack of info on the cars. I stand by the early 3x Boost and Limitless play, but I wish I held out on the others."_
+
+**Pole, Puncture & Prospect**
+
+**Pole: a decision that fully delivered.** For Alan, the Pole wasn't a single pick but a strategic conviction that reshaped the early part of his season.
+
+_"The early chip plays on 3x Boost and Limitless let me focus a bit more on the earlier races without having to take those into account, and gave me the morale boost of being ahead of many other people who didn't opt for playing them that early."_
+
+**Puncture: a strategy that stopped your season in its tracks.** The weekend that cost him his top 500 standing was, with painful irony, the one he actually attended in person.
+
+_"Ironically, my worst weekend was the one I went to in person: Singapore. Maybe it was the hype around Mercedes I felt that weekend, but I held a transfer thinking Russell, Colapinto and Hadjar would at least finish the race. A total of 5 DNFs plus Hadjar's back-start put me so far behind and kicked me out of the top 500."_
+
+**Prospect: a driver or constructor most players are ignoring.** Rather than looking for a hidden gem, Alan is going with high conviction on his two anchors for the run-in.
+
+_"I feel like Max and Lawson are dead locks for me at this point. Everything else will revolve around them."_
+
+**The Cool Down Lap**
+
+Engines off, and a few lighter ones to close out.
+
+**Favourite circuit on the calendar.** A pick with a touch of nostalgia from the gaming era rather than classic racing lore.
+
+_"I really like the layout of the Suzuka circuit. It feels like a lot of the Mario Kart and F-Zero maps I played as a kid."_
+
+**Favourite F1 driver, past or present.** As a relatively recent fan, Alan skips the obvious historical picks and goes with the current world champion, with a note on his evolution as a character.
+
+_"I'm a recent fan, so I won't pretend I know drivers like Senna, Schumacher or Vettel outside of their names and fame, but my current favourite driver is Max. I know early on in his career he was a pretty polarising figure from a fan perspective, but I feel his recent behaviour, especially to the rookies, is admirable. He's a guy that really loves to race, no frills or flourishes, and I can respect that."_
+
+**Bold prediction for 2027.** A call that leans on the money side of the sport, with a new entrant leapfrogging an established midfield team.
+
+_"I think Cadillac will be better than Aston Martin next year. They'll throw enough money at it to get the car in a workable spot, while Aston Martin will still have Honda issues."_
+
+---
+
+_Thanks to Alan for taking the time to share his season with us. Stay tuned for more Strategist Spotlight articles in the coming weeks, as we hear from more of the F1 Fantasy community about their teams, their strategies, and the calls that have shaped their 2026._`,
+  },
+  {
     slug: 'united-states-gp-2026-what-we-learned',
     title: 'What We Learned: United States Grand Prix',
     excerpt: "Kimi Antonelli turns a miracle pole into a ninth win, Charles Leclerc shows Ferrari can fight for podiums, and McLaren and Red Bull finish level in the fight for third. Here is what the 2026 United States Grand Prix told us.",
