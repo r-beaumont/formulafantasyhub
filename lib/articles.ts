@@ -30,7 +30,7 @@ export const articles: Article[] = [
     premium: false,
     thumbnail: 'linear-gradient(135deg, #1a0a3d 0%, #3d1b6e 50%, #1a0a3d 100%)',
     thumbnailBg: 'rgba(155,89,182,0.25)',
-    thumbnailIcon: 'gb',
+    thumbnailIcon: 'mx',
     thumbnailImage: '/thumbnail-other-articles.png',
     ogImage: 'https://formulahub.live/og/strategist-spotlight-alan',
     content: `Strategist Spotlight is Formula Hub's series profiling the F1 Fantasy community's most engaged managers: how they think, how they build, and what has gone right (and wrong) across the season. Fifth to sit down with us is Alan from the UK, a second-season manager whose early chip conviction helped him climb inside the global top 100 after the Hungarian GP, and whose focus sits firmly with his T1 team as the season approaches its final stretch.
