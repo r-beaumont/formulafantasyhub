@@ -19,6 +19,58 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'united-states-gp-2026-what-we-learned',
+    title: 'What We Learned: United States Grand Prix',
+    excerpt: "Kimi Antonelli turns a miracle pole into a ninth win, Charles Leclerc shows Ferrari can fight for podiums, and McLaren and Red Bull finish level in the fight for third. Here is what the 2026 United States Grand Prix told us.",
+    readTime: 4,
+    date: 'Oct 26, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #0a1020 0%, #14274f 50%, #0a1020 100%)',
+    thumbnailBg: 'rgba(60,90,180,0.22)',
+    thumbnailIcon: 'us',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/united-states-gp-2026-what-we-learned',
+    relatedSlugs: ['singapore-gp-2026-what-we-learned', 'race-week-preview-united-states-gp-2026', 'bahrain-gp-2026-what-we-learned'],
+    content: `Kimi Antonelli won in Austin from pole, ahead of Charles Leclerc and Max Verstappen, and the title will now be decided no later than Mexico. Ferrari had the fastest car in practice, McLaren and Red Bull left Texas level on points, and a race decided by strategy made for a calmer afternoon at the front than Austin usually provides.
+
+---
+
+**DON'T SLEEP ON KIMI ANTONELLI**
+
+**Kimi Antonelli** was never the quickest driver in Austin practice, finishing fifth, second and fourth while Ferrari topped all three sessions, and then he took pole on his first Q3 run, 0.179 seconds clear of **Max Verstappen**, on a lap Toto Wolff called a miracle. On Sunday he held the lead off the line, stayed out on his mediums while most of the field stopped twice, and made a one-stop strategy last to the flag, winning by 13.1 seconds even after a late Virtual Safety Car. It was his ninth win of the season and his first since Madrid. It leaves him 123 points clear of George Russell with 125 available, which means a ninth-place finish or better in Mexico would make him world champion, and the youngest in the sport's history.
+
+---
+
+**LECLERC SHOWS FERRARI CAN FIGHT, BUT MEXICO MAY EXPOSE THE STRAIGHTS**
+
+**Charles Leclerc** followed his second place in Singapore with another in Austin, giving Ferrari three straight podiums after a five-race drought that ended at Sepang. Ferrari topped every practice session, slipped to fourth and fifth in qualifying, and Leclerc recovered with a two-stop strategy, passing **Lando Norris** and then Verstappen on consecutive laps, taking the fastest lap and the Driver of the Day vote. **Lewis Hamilton** finished fourth, one second short of third after a late Virtual Safety Car ended his chase. The caveat is the straight, where Hamilton says Red Bull are three to five tenths quicker and where Ferrari's power unit remains its biggest weakness, and Mexico City's long main straight and thin air could hold them back.
+
+---
+
+**NORRIS SALVAGES A DISAPPOINTING WEEKEND FOR MCLAREN**
+
+McLaren looked set for a long weekend after qualifying, with Norris, who had topped Q1, starting eighth and **Oscar Piastri** seventh, yet the MCL40 showed podium-challenging pace on Sunday. Norris climbed from eighth to fifth on a one-stop strategy and was running on the podium until his ageing hard tyres let Verstappen through on lap 47, Leclerc a lap later and Hamilton with five laps to go. Piastri finished seventh, and McLaren left Austin level with Red Bull on 355 points in the fight for third in the constructors' standings. The pace was there, but the grid position made a podium close to impossible.
+
+---
+
+**COTA WAS A QUIETER AFFAIR THAN USUAL**
+
+Austin is normally a circuit for overtaking, with 71 passes completed here last year, but this Grand Prix was largely decided by strategy. Antonelli led from pole and was only headed while the stops played out, no full Safety Car was needed at a track where one has appeared in around 29 per cent of recent races, and only three drivers retired, Franco Colapinto, Oliver Bearman and Valtteri Bottas, whose stopped Cadillac caused the late Virtual Safety Car. The interest sat further back, with Verstappen taking a sixth consecutive podium in a car he called undriveable at times, Red Bull telling **Isack Hadjar** to let him through, and Leclerc, Hamilton and Norris trading places for the last podium positions.
+
+---
+
+**AUTOPILOT WAS THE CHIP TO HAVE IN AUSTIN**
+
+For F1 Fantasy managers, Austin showed what Autopilot is for. The chip moves the 2x Boost to the highest-scoring driver in your team at the end of the weekend, and Charles Leclerc scored 53 points to Max Verstappen's 27, helped by the fastest lap on his final set of tyres and a Driver of the Day vote he edged by 1.7 per cent, each worth 10 points. A manager with the 2x Boost on Verstappen and both drivers in the team would have had 107 points from the pair, against 133 once Autopilot moved the multiplier to Leclerc, a 26-point swing from simply holding the chip. It only reassigns the 2x Boost and does not pick your team, which makes it insurance on a 2x Boost choice rather than a substitute for one.
+
+---
+
+Mexico City follows on 30 October to 1 November, a standard weekend at altitude where a ninth-place finish would hand Antonelli the title, where Ferrari's straight-line deficit will be tested, and where McLaren and Red Bull start level on 355 points.`,
+  },
+  {
     slug: 'strategist-spotlight-brant',
     title: 'Strategist Spotlight: Brant',
     excerpt: 'In the fourth edition of Formula Hub\'s Strategist Spotlight series, we sit down with South Carolina\'s Brant (@bonzounfettered) ahead of his home race at COTA. The self-styled DNF specialist talks mini league merchant mode, a Kimi Antonelli masterclass at Monza, and the Monaco horror show that cost him a season.',
