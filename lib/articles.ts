@@ -23,7 +23,7 @@ export const articles: Article[] = [
     title: 'Points or Value: What the Data Says With Five Races Left',
     excerpt: 'An independent research site has simulated the 2026 season three different ways, and the team that finished richest also finished 2,337 points down. With five rounds to go, here is what their numbers show.',
     readTime: 4,
-    date: 'Oct 26, 2026',
+    date: 'Oct 29, 2026',
     tag: 'F1 Fantasy',
     category: 'Data Analysis',
     articleType: 'F1 Fantasy',
@@ -35,7 +35,7 @@ export const articles: Article[] = [
     ogImage: 'https://formulahub.live/thumbnail-upgrades-preview.png',
     content: `Five rounds remain, the Mexico City deadline closes on Saturday, and the question doing the rounds in mini leagues is the one that surfaces every year at this point in the season. Is there still any sense in building budget, or should every transfer left be chasing points?
 
-F1 Grid IQ, an independent research site that launched this year, has run the numbers and published two studies that put figures against it. Both are worth your time, and both carry a caveat the authors repeat at the top of each page, which is that all of this is hindsight. Every path was worked out after the races with full knowledge of the results and the price changes that followed, so it shows what was available rather than what anybody could have called on a Friday.
+F1 Grid IQ, an independent research site that launched this year, has run the numbers and published two studies that put figures against it. Both are worth your time, and both carry a caveat the authors repeat at the top of each page, which is that all of this is hindsight. Each path was built after the races had run, with every result and price change already on the table.
 
 **THREE SEASONS, ONE SET OF RESULTS**
 
@@ -43,13 +43,13 @@ The first study takes rounds one to 17, through Singapore, and plays the season 
 
 The best legal path they found, meaning one a manager could have followed starting from $100m and making legal transfers, scored 5,933 points and closed on $143.9m. Taking the highest-scoring affordable team every weekend with no thought given to budget returned 5,808 points and $137.3m. Going the other way entirely, holding whatever was about to rise in price and never paying for a transfer, built the fattest cost cap of the three at $164.4m and scored 3,596.
 
-For scale, a manager who could pick the perfect team every weekend with no budget and no transfer limits would have banked 6,803 points, which is a ceiling nobody gets near. The more useful number is the gap between the best path and the manager who chased points each week, and that came to 125 points across 17 rounds, or 2.2 per cent. Planning the whole season rather than the weekend in front of you was worth something, but not a great deal.
+For scale, a manager who could pick the perfect team every weekend with no budget and no transfer limits would have banked 6,803 points, which is a ceiling nobody gets near. The more useful number is the gap between the best path and the manager who chased points each week, and that came to 125 points, or 2.2 per cent. Across 17 rounds that comes out at roughly seven points a weekend, which is what season-long planning bought over simply taking the best team available each time.
 
 **THE BUDGET TRAP COSTS MORE THAN IT PAYS**
 
 The third path is the one to dwell on. It ended more than $20m richer than the best path and scored 2,337 fewer points, and the reason becomes obvious once you see where the money sat.
 
-The budget-chasing team held assets costing roughly $78.1m on average while carrying an average cost cap of $130.5m, which means over $50m was never put on track at all. The best path held teams costing around $119.8m against an available $121.9m, spending almost everything it had. Across the 17 rounds that was 349.0 points per race against 211.5. A cost cap you never convert into a stronger team is not a cash cow, it is a number sitting on your screen, and the study puts a price on it.
+The budget-chasing team held assets costing roughly $78.1m on average while carrying an average cost cap of $130.5m, which means over $50m was never put on track at all. The best path held teams costing around $119.8m against an available $121.9m, spending almost everything it had. Across the 17 rounds that was 349.0 points per race against 211.5. Money only counts once it is spent on a better team, and here it never was, which is where those 2,337 points went.
 
 **WHY AN EXTRA MILLION USUALLY BUYS NOTHING**
 
@@ -57,7 +57,7 @@ The second study is the one that changes how you read the first. It asks what ex
 
 An extra $1m was worth 1.6 points per race on average, and worth exactly nothing in seven of those 16 races. Half a million was worth nothing in 10 of 16. An extra $5m, by contrast, averaged 9.6 points and was never worth zero in any of the 16.
 
-The shape of it is a staircase rather than a slope. Lift your cost cap slightly and the best team you can afford usually does not change, because the next upgrade still costs more than you have gained, and then you cross a price threshold, a better asset comes into range, and the score jumps. At the Austrian Grand Prix, moving from $108.9m to $109.7m, a shift of $0.8m, was worth eight points. At Miami a single million was worth 23, and at Zandvoort 17. Those are the risers, though, and the flat stretches between them are long.
+The shape of it is a staircase rather than a slope. Lift your cost cap slightly and the best team you can afford usually does not change, because the next upgrade still costs more than you have gained, and then you cross a price threshold, a better asset comes into range, and the score jumps. At the Austrian Grand Prix, moving from $108.9m to $109.7m, a shift of $0.8m, was worth eight points. At Miami a single million was worth 23, and at Zandvoort 17. Those steps are scattered across the season and nothing moves in between them, which is why seven of the 16 races returned nothing at all for an extra million.
 
 **WHAT IT MEANS FOR THE RUN-IN**
 
@@ -67,7 +67,7 @@ The transfer maths points the same way. Every extra transfer costs 10 points and
 
 The chips remain the heaviest levers in the data by some distance. Limitless at Miami was worth 220 points over the team held that weekend, the 3x Boost at Monza added 93, and a Wildcard in round two covered five transfers with no penalty at all. If you are still holding any of those going into the final five, they will outweigh whatever price rises you can scrape together before the end of the season.
 
-Mexico City comes first, on 30 October to 1 November, and the research cannot tell you who scores there. What it can tell you is that budget is a means rather than a score, and that the managers who finished with the most of it finished with the least to show for it.
+Mexico City is up this weekend and none of this tells you who will score there, though the teams in the study that finished with the most money in the bank also finished with the fewest points, which is worth remembering before you spend a transfer chasing a price rise.
 
 If you want to read more about the analysis done at F1 Grid IQ, you can check out their [season strategy and budget growth study](https://f1gridiq.com/f1-fantasy-2026-season-optimization) and their work on [when budget is worth points](https://f1gridiq.com/f1-fantasy-budget-value).
 
