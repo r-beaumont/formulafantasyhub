@@ -140,6 +140,8 @@ Mexico City is up this weekend and none of this tells you who will score there, 
 
 If you want to read more about the analysis done at F1 Grid IQ, you can check out their [season strategy and budget growth study](https://f1gridiq.com/f1-fantasy-2026-season-optimization) and their work on [when budget is worth points](https://f1gridiq.com/f1-fantasy-budget-value).
 
+They also publish [race-by-race predictions and a team optimizer](https://f1gridiq.com/f1-fantasy-predictions) ahead of each round.
+
 F1 Grid IQ is independent and is not affiliated with Formula 1 or the official F1 Fantasy game.`,
   },
   {
