@@ -74,6 +74,75 @@ If you want to read more about the analysis done at F1 Grid IQ, you can check ou
 F1 Grid IQ is independent and is not affiliated with Formula 1 or the official F1 Fantasy game.`,
   },
   {
+    slug: 'race-week-preview-mexico-city-gp-2026',
+    title: 'Race Week Preview: Mexico City Grand Prix',
+    excerpt: "Kimi Antonelli arrives in Mexico City needing a ninth-place finish to clinch the world title, and Formula 1 returns to the thin air of the Autódromo Hermanos Rodríguez. Here is your F1 Fantasy watchlist for the Mexico City Grand Prix.",
+    readTime: 4,
+    date: 'Oct 29, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #001a0a 0%, #0a3d1b 50%, #001a0a 100%)',
+    thumbnailBg: 'rgba(0,190,100,0.22)',
+    thumbnailIcon: 'mx',
+    thumbnailImage: '/thumbnail-race-preview.png',
+    ogImage: 'https://formulahub.live/og/race-week-preview-mexico-city-gp-2026',
+    content: `**THE SETUP**
+
+Kimi Antonelli converted pole position into his ninth win of the season at the United States Grand Prix, finishing 13.078 seconds clear of Charles Leclerc on a one-stop strategy. Max Verstappen took third after gambling on two stops, Lewis Hamilton was fourth, and George Russell recovered to eighth after serving a five-second penalty for an opening-lap incident. That leaves Antonelli 123 points clear with only 125 available, so a finish of ninth or higher in Mexico City secures the championship whatever his rivals do, which would make him the youngest world champion in Formula 1 history.
+
+Four rounds remain after this weekend, and Mexico City is the second leg of the Americas triple-header, which finishes in Brazil.
+
+**THE CIRCUIT**
+
+The Autódromo Hermanos Rodríguez is a 4.304km layout run over 71 laps at more than 2,200 metres above sea level, and the thin air cuts downforce and makes cooling a challenge for both engines and brakes. Sectors 1 and 2 reward straight-line speed and a strong engine. The circuit has averaged roughly 102 overtakes per race over the last three seasons, with 121 in 2023, 87 in 2024 and 97 in 2025, which makes it one of the busier circuits on the calendar for passing.
+
+This is a standard weekend with three practice sessions, so you will have plenty of running to go off before the team lock deadline, which is the start of Qualifying at 1500 local time on Saturday, October 31 (2100 UTC).
+
+**THE WEATHER**
+
+The forecast is dry and sunny across the weekend, with temperatures between 24°C and 27°C for Qualifying and the race, and although a brief shower is forecast for Friday afternoon, it is considered unlikely to arrive.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Kimi Antonelli**
+
+Antonelli can clinch the world title in Mexico City with a ninth-place finish, and he arrives off his ninth win of the season, his first since Madrid. He took pole at the United States Grand Prix by 0.179 seconds from Verstappen and won on a one-stop strategy after staying out longer on his first set of mediums. That made it three podiums in a row after second at Sepang and third in Singapore. Mexico City rewards straight-line speed and Mercedes have the engine to deliver it, as Antonelli showed when he won the Italian Grand Prix from 19th on the grid. He also finished sixth here last year as a rookie, so a driver with a title to win in the strongest car on the grid is an easy decision.
+
+**Esteban Ocon**
+
+Ocon leads the grid for overtakes at 6.5 per Grand Prix and averages 1.5 positions gained. That matters because every pass scores fantasy points, and Mexico City has averaged roughly 102 overtakes per race over the last three seasons. Haas have a good record here, with Oliver Bearman finishing fourth last year for a career-best result, and Ocon has added $1.2m in value across his last four race weekends. Owned by only 13% of teams, he is a differential, and he is cheaper than Lindblad, which makes him the natural swap for anyone moving that spot.
+
+🟡 HOLD
+
+**Max Verstappen**
+
+Verstappen has won five of his last eight Mexico City Grands Prix, taking victory in 2017, 2018, 2021, 2022 and 2023. Last year he qualified fifth and fought his way to third on an alternate strategy, reaching the back of Leclerc on the penultimate lap before a late Virtual Safety Car ended his charge. He arrives off wins at Sepang and Singapore and a third place in Austin, where he qualified 0.179 seconds behind Antonelli, and he averages 42.5 fantasy points per weekend between Monza and COTA, so anyone who owns him should keep him.
+
+**Mercedes**
+
+Mercedes arrive at a power circuit that rewards straight-line speed and a strong engine, and both are strengths of the team. Their best fantasy scores since the summer break came at power circuits, with 128 at Monza and 88 in Baku, and Mexico City rewards that same straight-line speed through sectors 1 and 2. The team won the United States Grand Prix with Antonelli, while Russell finished eighth after qualifying third and serving a five-second penalty for an opening-lap incident. Russell also set the fastest lap here last year, and anyone who owns Mercedes should hold them.
+
+🔴 SELL
+
+**Arvid Lindblad**
+
+Lindblad scored 11 fantasy points at the United States Grand Prix, but much of that came from his recovery after a five-place grid penalty for a sixth engine dropped him from ninth to 14th on the grid. He finished 12th, two places outside the points, while team-mate Liam Lawson took ninth, and he had scored only one fantasy point in Singapore, where he finished 15th and a lap down. He has not raced in Formula 1 at the Autódromo Hermanos Rodríguez and needs 17 points for a price rise, while Lawson is $0.1m cheaper, which makes Lawson or either Haas driver an easy swap.
+
+**Fernando Alonso**
+
+Alonso was a popular budget builder at the United States Grand Prix, but he scored only two fantasy points after starting 12th and finishing 16th, a lap down. Mexico City rewards straight-line speed and engine performance, and Aston Martin's Honda engine remains down on power, a weakness Alonso has highlighted along with its driveability. He retired from both the Italian and Azerbaijan Grands Prix, where straight-line speed was also at a premium.
+
+His record at this track is worse, as he has retired from each of the last three Mexico City Grands Prix, in 2023, 2024 and 2025. A suspected brake problem ended his 400th Grand Prix on lap 15 in 2024, and another brake problem stopped him on lap 34 last year. An engine failure also ended his race in 2022, although he was still classified 19th.
+
+**THE CHIPS**
+
+This is a standard weekend with a dry forecast, so there is no strong case for a chip. The Wildcard is the only option worth considering, and it suits anyone whose team needs a rebuild, since three practice sessions will give you the evidence to make that call before the lock.`,
+  },
+  {
     slug: 'strategist-spotlight-alan',
     title: 'Strategist Spotlight: Alan',
     excerpt: 'In the fifth edition of Formula Hub\'s Strategist Spotlight series, we sit down with UK-based Alan to talk early chip conviction, a Lewis Hamilton Silverstone gamble that paid off, and the Singapore DNF horror show that cost him a hard-won spot inside the global top 100.',
