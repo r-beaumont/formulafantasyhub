@@ -19,6 +19,58 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'mexico-city-gp-2026-what-we-learned',
+    title: 'What We Learned: Mexico City Grand Prix',
+    excerpt: "Kimi Antonelli is crowned the youngest world champion in history, Ferrari let another win slip through their fingers, and the end of the season is still in doubt. Here is what the 2026 Mexico City Grand Prix told us.",
+    readTime: 5,
+    date: 'Nov 2, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #00140a 0%, #0b3d1f 50%, #00140a 100%)',
+    thumbnailBg: 'rgba(0,150,70,0.22)',
+    thumbnailIcon: 'mx',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/mexico-city-gp-2026-what-we-learned',
+    relatedSlugs: ['united-states-gp-2026-what-we-learned', 'race-week-preview-mexico-city-gp-2026', 'singapore-gp-2026-what-we-learned'],
+    content: `Kimi Antonelli became world champion in Mexico City by finishing third, while Max Verstappen won a race Ferrari had every chance of taking. Ryo Hirakawa scored on a debut he learned of on Saturday morning, and the last races of the season still have no settled venue.
+
+---
+
+**KIMI ANTONELLI IS WORLD CHAMPION**
+
+**Kimi Antonelli** needed only a ninth-place finish and delivered a podium, converting fourth on the grid into third and securing the 2026 title with four races to spare. At 20 years and 68 days he is the youngest champion in the sport's history, beating Sebastian Vettel's record by three years, and the first Italian champion since Alberto Ascari in 1953. His afternoon was not entirely smooth, as he ran a long opening stint until lap 43 and then pitted shortly before the Safety Car arrived, missing a cheaper stop. He still passed **Charles Leclerc** after the restart to take the final podium place, finishing 4.0 seconds behind the winner. He ends the weekend on 380 points, 119 clear of Verstappen in second, with Mercedes 126 points ahead of Ferrari in the constructors' standings.
+
+---
+
+**FERRARI LET ANOTHER WEEKEND SLIP THROUGH THEIR FINGERS**
+
+Less than a month after Singapore, Ferrari arrived with their best Saturday of the season, as **Lewis Hamilton** took his first pole position for the team and Leclerc, who had topped FP1 and FP2, lined up third. The race then turned on the opening lap, when the two drivers fought through the first three corners, Leclerc went around the outside at Turn 4, both ran off the track and Leclerc rejoined in front, with Verstappen slipping between them. Leclerc received a five-second penalty, which he served at his first stop, and Hamilton, who accused the stewards of handing his team-mate the win, never got the place back. Verstappen took the lead when the pair stopped together on lap 28, and after the red flag Leclerc made a poor getaway at the restart, Hamilton attacked Verstappen into Turn 1 and Leclerc locked up and flat-spotted a front tyre, which let Antonelli through. Hamilton finished 0.8 seconds behind Verstappen and Leclerc fourth, so the pace was clearly there, and Brazil could suit them, with Interlagos offering medium and high-speed corners where the Ferrari has been strong and where Hamilton has won three times.
+
+---
+
+**VERSTAPPEN'S WIN WAS GOOD, BUT THE DAY BELONGED TO KIMI**
+
+**Max Verstappen** won a sixth Mexico City Grand Prix, the most by any driver here, and his third victory in four races, moving up to second in the standings on 261 points, two ahead of Hamilton and 11 clear of George Russell. He qualified fourth, started fifth after a one-place grid penalty for a practice clash with Liam Lawson, and made the most of the Ferrari duel on lap one before taking the lead at the lap 28 stops. When the field restarted behind a late Safety Car, he pulled clear of Hamilton, and Red Bull moved up to third in the constructors' standings on 382 points, 17 clear of McLaren. On almost any other afternoon it would have been the story, but the cameras were on the new champion.
+
+---
+
+**HIRAKAWA SCORES ON A DEBUT HE LEARNED OF ON SATURDAY**
+
+**Ryo Hirakawa** found out on Saturday morning that he would replace **Esteban Ocon** for the rest of the Mexico City weekend, hours before final practice, after Haas gave no reason beyond saying Ocon was not ill. The 32-year-old reserve qualified 19th, crossed the line 13th and was promoted to tenth by post-race penalties for Oscar Piastri, who collided with Arvid Lindblad, and for both Alpine drivers, who lost all their points for yellow-flag infringements, so he scored a point on his debut as F1's oldest debutant since Andre Lotterer in 2014. Ocon was already due to leave Haas at the end of the year, with Rafael Camara taking the seat in 2027, and F1.com's view is that, with most line-ups settled, he will not be on the grid next year unless something dramatic happens, although Motorsport.com understands he is likely to become Aston Martin's reserve. Haas has not said whether he will race again this season.
+
+---
+
+**THE SEASON MAY NOT END WHERE IT WAS MEANT TO**
+
+Four races remain, and only Brazil and Las Vegas on 22 November are certain. Qatar on 29 November and Abu Dhabi on 6 December are still on the calendar, and Stefano Domenicali has said they are confirmed, but the conflict in the Middle East has left the finale in doubt, with earlier promised decision dates in mid-September and mid-October passing without a cancellation. Teams have reportedly been told that 10 November is the last date to approve a replacement race at Imola on 6 December, with GPBlog reporting 9 November, although F1 has not confirmed either date. If the Gulf races are cancelled after that deadline, the season could end in Las Vegas, leaving 21 rounds. The title is settled, but the fight for second, with Verstappen, Hamilton, Russell and Leclerc separated by 16 points, depends on how many races are left.
+
+---
+
+São Paulo follows on 6 to 8 November, a standard weekend, with Antonelli racing as champion, Ferrari looking to turn pace into a result, and four drivers chasing second place.`,
+  },
+  {
     slug: 'race-week-preview-mexico-city-gp-2026',
     title: 'Race Week Preview: Mexico City Grand Prix',
     excerpt: "Kimi Antonelli arrives in Mexico City needing a ninth-place finish to clinch the world title, and Formula 1 returns to the thin air of the Autódromo Hermanos Rodríguez. Here is your F1 Fantasy watchlist for the Mexico City Grand Prix.",
