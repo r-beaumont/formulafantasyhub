@@ -142,48 +142,84 @@ export const CON_STATS_MAP: Record<string, ConstructorStats> = Object.fromEntrie
 // ── Build-time verification log ───────────────────────────────────────────────
 if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'test') {
   console.log('\n── seasonStats verification ──────────────────────────────')
+  // Expected values after R19 Mexico City — the FIA-certified final
+  // classification with all post-race time penalties applied (Piastri +10s,
+  // Colapinto +10s, Gasly +30s), per GPFans' final classification, Crash's
+  // post-penalty report and GrandPrix.com timing data. Standings published
+  // by Yahoo and SI before those penalties were applied do NOT match and are
+  // superseded. Every driver and constructor is asserted, not just the top
+  // of each table, so a name-keying slip cannot pass unnoticed.
   const check = [
-    // Expected values after R18 United States — verified against The Race's
-    // full classification, the F1.com official result, GPFans post-penalty
-    // confirmation, Crash, RacingNews365, SI, Grande Premio and Wikipedia.
-    { name: 'Kimi Antonelli',  expPts: 365, expWins: 9, expPodiums: 15, expPoles: 7 },
-    { name: 'George Russell',  expPts: 242, expWins: 3, expPodiums: 8,  expPoles: 5 },
-    { name: 'Lewis Hamilton',  expPts: 241, expWins: 1, expPodiums: 6,  expPoles: 0 },
-    { name: 'Max Verstappen',  expPts: 236, expWins: 2, expPodiums: 10, expPoles: 2 },
-    { name: 'Charles Leclerc', expPts: 233, expWins: 1, expPodiums: 6,  expPoles: 0 },
-    { name: 'Lando Norris',    expPts: 211, expWins: 2, expPodiums: 5,  expPoles: 3 },
-    { name: 'Oscar Piastri',   expPts: 144, expWins: 0, expPodiums: 2,  expPoles: 0 },
-    { name: 'Isack Hadjar',    expPts: 105, expWins: 0, expPodiums: 2,  expPoles: 0 },
-    { name: 'Liam Lawson',     expPts: 77,  expWins: 0, expPodiums: 0,  expPoles: 0 },
-    { name: 'Pierre Gasly',    expPts: 42,  expWins: 0, expPodiums: 0,  expPoles: 1 },
-    { name: 'Nico Hülkenberg', expPts: 13,  expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Kimi Antonelli',   expPts: 380, expWins: 9, expPodiums: 16, expPoles: 7 },
+    { name: 'Max Verstappen',   expPts: 261, expWins: 3, expPodiums: 11, expPoles: 2 },
+    { name: 'Lewis Hamilton',   expPts: 259, expWins: 1, expPodiums: 7,  expPoles: 1 },
+    { name: 'George Russell',   expPts: 250, expWins: 3, expPodiums: 8,  expPoles: 5 },
+    { name: 'Charles Leclerc',  expPts: 245, expWins: 1, expPodiums: 6,  expPoles: 0 },
+    { name: 'Lando Norris',     expPts: 221, expWins: 2, expPodiums: 5,  expPoles: 3 },
+    { name: 'Oscar Piastri',    expPts: 144, expWins: 0, expPodiums: 2,  expPoles: 0 },
+    { name: 'Isack Hadjar',     expPts: 107, expWins: 0, expPodiums: 2,  expPoles: 0 },
+    { name: 'Liam Lawson',      expPts: 83,  expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Pierre Gasly',     expPts: 42,  expWins: 0, expPodiums: 0,  expPoles: 1 },
+    { name: 'Arvid Lindblad',   expPts: 38,  expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Franco Colapinto', expPts: 27,  expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Oliver Bearman',   expPts: 23,  expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Gabriel Bortoleto',expPts: 14,  expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Nico Hülkenberg',  expPts: 13,  expWins: 0, expPodiums: 0,  expPoles: 0 },
+    // Three-way tie on 7 — Ocon retains his despite not racing at R19.
+    { name: 'Esteban Ocon',     expPts: 7,   expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Fernando Alonso',  expPts: 7,   expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Carlos Sainz',     expPts: 7,   expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Alex Albon',       expPts: 5,   expWins: 0, expPodiums: 0,  expPoles: 0 },
+    // Tied on 1 — Hirakawa from his R19 debut, Tsunoda from R12 (he has not
+    // raced since R14 but keeps his point).
+    { name: 'Ryo Hirakawa',     expPts: 1,   expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Yuki Tsunoda',     expPts: 1,   expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Lance Stroll',     expPts: 0,   expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Valtteri Bottas',  expPts: 0,   expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Sergio Pérez',     expPts: 0,   expWins: 0, expPodiums: 0,  expPoles: 0 },
   ]
   for (const { name, expPts, expWins, expPodiums, expPoles } of check) {
     const d = DRIVER_STATS_MAP[name]
+    const pos = SEASON_STATS.drivers.findIndex(x => x.name === name) + 1
     const ok = d && d.points === expPts && d.wins === expWins && d.podiums === expPodiums && d.poles === expPoles
-    console.log(`  ${ok ? '✓' : '✗'} ${name}: ${d?.points ?? '?'}pts ${d?.wins ?? '?'}W ${d?.podiums ?? '?'}POD ${d?.poles ?? '?'}POL ${ok ? '' : `— expected ${expPts}pts ${expWins}W ${expPodiums}POD ${expPoles}POL`}`)
+    console.log(`  ${ok ? '✓' : '✗'} P${pos} ${name}: ${d?.points ?? '?'}pts ${d?.wins ?? '?'}W ${d?.podiums ?? '?'}POD ${d?.poles ?? '?'}POL ${ok ? '' : `— expected ${expPts}pts ${expWins}W ${expPodiums}POD ${expPoles}POL`}`)
   }
-  // Constructor totals after R18. Red Bull Racing and McLaren are tied on
-  // 355 points, so the printed position also confirms the countback puts
-  // Red Bull P3 ahead of McLaren P4.
-  const conCheck: [string, number, number][] = [
-    ['Mercedes',        607, 12],
-    ['Ferrari',         474, 2],
-    ['Red Bull Racing', 355, 2],
-    ['McLaren',         355, 2],
-    ['Racing Bulls',    102, 0],
-    ['Alpine',          69,  0],
-    ['Haas',            30,  0],
-    ['Audi',            23,  0],
-    ['Williams',        12,  0],
-    ['Aston Martin',    7,   0],
-    ['Cadillac',        0,   0],
+  // 22 regular drivers + Tsunoda (R12) + Hirakawa (R19) = 24 entries.
+  const expDrivers = 24
+  console.log(`  ${SEASON_STATS.drivers.length === expDrivers ? '✓' : '✗'} driver entries: ${SEASON_STATS.drivers.length} (expected ${expDrivers})`)
+
+  // Constructor totals after R19. Red Bull Racing's 27 points at Mexico City
+  // broke the R18 tie with McLaren and moved it clear into P3.
+  const conCheck: [string, number, number, number][] = [
+    ['Mercedes',        630, 12, 24],
+    ['Ferrari',         504, 2,  13],
+    ['Red Bull Racing', 382, 3,  13],
+    ['McLaren',         365, 2,  7],
+    ['Racing Bulls',    108, 0,  0],
+    ['Alpine',          69,  0,  0],
+    ['Haas',            31,  0,  0],
+    ['Audi',            27,  0,  0],
+    ['Williams',        12,  0,  0],
+    ['Aston Martin',    7,   0,  0],
+    ['Cadillac',        0,   0,  0],
   ]
-  for (const [team, expPts, expWins] of conCheck) {
+  for (const [team, expPts, expWins, expPodiums] of conCheck) {
     const c = CON_STATS_MAP[team]
     const pos = SEASON_STATS.constructors.findIndex(x => x.team === team) + 1
-    const ok = c && c.points === expPts && c.wins === expWins
-    console.log(`  ${ok ? '✓' : '✗'} P${pos} ${team}: ${c?.points ?? '?'}pts ${c?.wins ?? '?'}W ${ok ? '' : `— expected ${expPts}pts ${expWins}W`}`)
+    const ok = c && c.points === expPts && c.wins === expWins && c.podiums === expPodiums
+    console.log(`  ${ok ? '✓' : '✗'} P${pos} ${team}: ${c?.points ?? '?'}pts ${c?.wins ?? '?'}W ${c?.podiums ?? '?'}POD ${ok ? '' : `— expected ${expPts}pts ${expWins}W ${expPodiums}POD`}`)
   }
+
+  // Season totals — 19 rounds run, 6 different race winners.
+  const totals: [string, number, number][] = [
+    ['wins',    SEASON_STATS.drivers.reduce((a, d) => a + d.wins, 0),    19],
+    ['poles',   SEASON_STATS.drivers.reduce((a, d) => a + d.poles, 0),   19],
+    ['podiums', SEASON_STATS.drivers.reduce((a, d) => a + d.podiums, 0), 57],
+  ]
+  for (const [label, actual, exp] of totals) {
+    console.log(`  ${actual === exp ? '✓' : '✗'} total ${label}: ${actual} (expected ${exp})`)
+  }
+  const winners = new Set(SEASON_STATS.drivers.filter(d => d.wins > 0).map(d => d.name))
+  console.log(`  ${winners.size === 6 ? '✓' : '✗'} different winners: ${winners.size} (expected 6)`)
   console.log('──────────────────────────────────────────────────────────\n')
 }

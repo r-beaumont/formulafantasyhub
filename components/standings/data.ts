@@ -192,15 +192,26 @@ export function buildStandingsData(): StandingsData {
     }))
     .sort((a, b) => b.total - a.total)
 
+  // Constructor points per round are credited to the team each driver
+  // actually raced for in THAT round. Rolling these up from driverPpr by a
+  // driver's last-seen team mis-attributed mid-season substitutions — it put
+  // Lawson's R12-R14 Red Bull Racing points onto Racing Bulls, leaving this
+  // table 14 points out against the constructor championship. Reading each
+  // round's classification directly keeps the two reconciled.
   const cRound: Record<string, Record<number, number>> = {}
   const cColor: Record<string, string> = {}
-  for (const d of driverPpr) {
-    const team = dMeta[d.name]?.team
-    if (!team) continue
-    cColor[team] = d.teamColor
-    cRound[team] = cRound[team] ?? {}
-    for (const [round, pts] of Object.entries(d.pointsByRound)) {
-      cRound[team][Number(round)] = (cRound[team][Number(round)] ?? 0) + pts
+  for (const c of completed) {
+    const w = RACE_WEEKENDS[c.round]
+    if (!w) continue
+    for (const r of w.race ?? []) {
+      cColor[r.team] = r.team_colour
+      cRound[r.team] = cRound[r.team] ?? {}
+      cRound[r.team][c.round] = (cRound[r.team][c.round] ?? 0) + (RACE_PTS[r.position] ?? 0)
+    }
+    for (const r of w.sprintRace ?? []) {
+      cColor[r.team] = cColor[r.team] ?? r.team_colour
+      cRound[r.team] = cRound[r.team] ?? {}
+      cRound[r.team][c.round] = (cRound[r.team][c.round] ?? 0) + (SPRINT_PTS[r.position] ?? 0)
     }
   }
   const constructorPpr: PprRow[] = Object.entries(cRound)

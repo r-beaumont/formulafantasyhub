@@ -63,6 +63,10 @@ const _driverMeta: Omit<DriverStanding, 'pos' | 'points' | 'wins'>[] = [
   { id: 'perez',      name: 'Sergio Pérez',      shortName: 'PER', team: 'Cadillac',        teamColor: '#CC0000', flag: 'mx' },
   // One-off substitute for Rounds 12 (Netherlands) and 14 (Spain) — filled the Racing Bulls seat vacated by Lawson's move to Red Bull.
   { id: 'tsunoda',    name: 'Yuki Tsunoda',      shortName: 'TSU', team: 'Racing Bulls',    teamColor: '#6692FF', flag: 'jp' },
+  // One-off substitute for Round 19 (Mexico City) — took the Haas seat for
+  // Esteban Ocon, who did not participate. Formula 1 debut; scored a point in
+  // it, so he stays in the standings for the rest of the season.
+  { id: 'hirakawa',   name: 'Ryo Hirakawa',      shortName: 'HIR', team: 'Haas',            teamColor: '#B6BABD', flag: 'jp' },
 ]
 
 export const DRIVER_STANDINGS: DriverStanding[] = _driverMeta

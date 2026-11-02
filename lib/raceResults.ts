@@ -1469,6 +1469,72 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     ],
   },
 
+  19: {
+    round: 19,
+    name: 'Mexico',
+    flag: 'mx',
+    isSprint: false,
+    // Autodromo Hermanos Rodriguez, Mexico City, 30 October – 1 November 2026.
+    // 71 laps. Standard weekend — FP1, FP2, FP3, Qualifying, Race. Not a sprint.
+    //
+    // DRIVER SUBSTITUTION — THIS ROUND ONLY: Ryo Hirakawa raced for Haas in
+    // place of Esteban Ocon, who did not participate. This was Hirakawa's
+    // Formula 1 debut. The substitution must NOT be carried into any other
+    // round; Ocon keeps his existing points from earlier rounds and Hirakawa
+    // remains in the season standings from here on via this result, exactly
+    // as Yuki Tsunoda does via his R12/R14 results. Tsunoda did not
+    // participate (absent since R14) but remains in the standings.
+    //
+    // Classification verified against the GPFans "final classification with
+    // all late penalties applied by the FIA", Crash's post-penalty report and
+    // GrandPrix.com timing data. Post-race time penalties are ALREADY applied
+    // in the order below: Piastri +10s (P7 to P13), Colapinto +10s (P8 to
+    // P15) and Gasly +30s (P10 to P17). That reshuffle promoted Lawson,
+    // Bortoleto, Hadjar and Hirakawa into the points. Some outlets (Yahoo,
+    // SI) published standings BEFORE the FIA penalties and show different
+    // P7–P17 points — those are superseded by this classification.
+    //
+    // Practice and the full qualifying grid are not entered — left out rather
+    // than invented. Only the Grand Prix pole (Hamilton) is stored. Lap times
+    // other than the winner's race time are not given — left as '—'. The data
+    // model has no field for fastest lap or Driver of the Day.
+    //
+    // Race notes: KIMI ANTONELLI CLINCHED THE 2026 WORLD DRIVERS'
+    // CHAMPIONSHIP by finishing P3 — the youngest champion in Formula 1
+    // history at 20 years old, and Italy's first since Alberto Ascari in
+    // 1953. Verstappen took his third win of 2026 from P2 on the grid,
+    // holding off Hamilton by 0.799s. Hamilton started from pole — his first
+    // since 2023 and Ferrari's first of 2026 — but lost the lead after a
+    // dramatic restart on which Leclerc challenged him. Leclerc and Russell
+    // both served in-race penalties. Both Aston Martins retired inside the
+    // first five laps. Five retirements in total.
+    pole: { name: 'Lewis Hamilton', team: 'Ferrari', team_colour: '#E8002D', time: '—' },
+    race: [
+      { position: 1,  name: 'Max Verstappen',    team: 'Red Bull Racing', team_colour: '#3671C6', time: '2:20:28.772', gap: '—'        },
+      { position: 2,  name: 'Lewis Hamilton',    team: 'Ferrari',         team_colour: '#E8002D', time: '—',           gap: '+0.799s'  },
+      { position: 3,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', time: '—',           gap: '+4.006s'  },
+      { position: 4,  name: 'Charles Leclerc',   team: 'Ferrari',         team_colour: '#E8002D', time: '—',           gap: '+10.707s' },
+      { position: 5,  name: 'Lando Norris',      team: 'McLaren',         team_colour: '#FF8000', time: '—',           gap: '+11.778s' },
+      { position: 6,  name: 'George Russell',    team: 'Mercedes',        team_colour: '#27F4D2', time: '—',           gap: '+12.263s' },
+      { position: 7,  name: 'Liam Lawson',       team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+20.899s' },
+      { position: 8,  name: 'Gabriel Bortoleto', team: 'Audi',            team_colour: '#C0C0C0', time: '—',           gap: '+22.041s' },
+      { position: 9,  name: 'Isack Hadjar',      team: 'Red Bull Racing', team_colour: '#3671C6', time: '—',           gap: '+22.503s' },
+      { position: 10, name: 'Ryo Hirakawa',      team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: '+25.373s' },
+      { position: 11, name: 'Alex Albon',        team: 'Williams',        team_colour: '#64C4FF', time: '—',           gap: '+27.562s' },
+      { position: 12, name: 'Carlos Sainz',      team: 'Williams',        team_colour: '#64C4FF', time: '—',           gap: '+28.638s' },
+      { position: 13, name: 'Oscar Piastri',     team: 'McLaren',         team_colour: '#FF8000', time: '—',           gap: '+29.475s' },
+      { position: 14, name: 'Nico Hülkenberg',   team: 'Audi',            team_colour: '#C0C0C0', time: '—',           gap: '+29.977s' },
+      { position: 15, name: 'Franco Colapinto',  team: 'Alpine',          team_colour: '#FF69B4', time: '—',           gap: '+30.204s' },
+      { position: 16, name: 'Sergio Pérez',      team: 'Cadillac',        team_colour: '#CC0000', time: '—',           gap: '+30.695s' },
+      { position: 17, name: 'Pierre Gasly',      team: 'Alpine',          team_colour: '#FF69B4', time: '—',           gap: '+51.483s' },
+      { position: 18, name: 'Arvid Lindblad',    team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: 'DNF'      },
+      { position: 19, name: 'Oliver Bearman',    team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: 'DNF'      },
+      { position: 20, name: 'Valtteri Bottas',   team: 'Cadillac',        team_colour: '#CC0000', time: '—',           gap: 'DNF'      },
+      { position: 21, name: 'Lance Stroll',      team: 'Aston Martin',    team_colour: '#358C75', time: '—',           gap: 'DNF'      },
+      { position: 22, name: 'Fernando Alonso',   team: 'Aston Martin',    team_colour: '#358C75', time: '—',           gap: 'DNF'      },
+    ],
+  },
+
 }
 
 // ─── 2026 Team & Driver Lineup ───────────────────────────────────────────────
