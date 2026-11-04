@@ -19,6 +19,73 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-sao-paulo-gp-2026',
+    title: 'Race Week Preview: São Paulo Grand Prix',
+    excerpt: "Kimi Antonelli arrives in São Paulo as world champion, and Formula 1 heads to a rain-threatened Interlagos for the final leg of the Americas triple-header. Here is your F1 Fantasy watchlist for the São Paulo Grand Prix.",
+    readTime: 4,
+    date: 'Nov 4, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #001a0a 0%, #0b4d1f 50%, #001a0a 100%)',
+    thumbnailBg: 'rgba(0,180,90,0.22)',
+    thumbnailIcon: 'br',
+    thumbnailImage: '/thumbnail-race-preview.png',
+    ogImage: 'https://formulahub.live/og/race-week-preview-sao-paulo-gp-2026',
+    content: `**THE SETUP**
+
+Kimi Antonelli clinched the world title with third place in the Mexico City Grand Prix, finishing on 380 points and becoming the youngest champion in Formula 1 history at 20 years and 68 days. Max Verstappen won the race by 0.799 seconds from Lewis Hamilton, his third victory in four races, which moves him up to second in the standings on 261 points, ahead of Hamilton on 259, George Russell on 250 and Charles Leclerc on 245.
+
+The race produced a first-lap clash between the two Ferraris, a red flag after Valtteri Bottas's crash and a second Safety Car when Oscar Piastri and Arvid Lindblad collided, and five drivers failed to finish. Three rounds remain after this weekend, and São Paulo is the third leg of the Americas triple-header.
+
+**THE CIRCUIT**
+
+Interlagos is a 4.309km anticlockwise layout run over 71 laps, and its short lap keeps the cars close together. The downhill Senna S at Turns 1 and 2 is the main overtaking point, and the back straight offers a second chance into Descida do Lago. The circuit has averaged roughly 78 overtakes per race over the last three seasons, with 69 in 2023, 70 in 2024 and 96 in 2025, so positions gained are worth chasing.
+
+This is a standard weekend with no Sprint, so you will have Friday's practice sessions and Saturday's final practice to go off before the team lock deadline. That deadline is the start of Qualifying at 1500 local time on Saturday, November 7 (1800 UTC).
+
+**THE WEATHER**
+
+Rain is forecast on all three days, although the sources disagree on how much. Sky Sports has thunderstorms for Qualifying and a chance of rain on Sunday, while other forecasts put the chance at between 51 and 60 percent on Friday, 30 and 63 percent on Saturday, and 40 and 57 percent on Sunday. Highs should sit between 16°C and 26°C, and conditions at Interlagos can change within minutes, so check the forecast again before the lock.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Lewis Hamilton**
+
+Hamilton took his first pole position for Ferrari in Mexico City, beating Russell by 0.009 seconds and Leclerc by 0.119 seconds. He did so after losing half of second practice to a power unit problem, while Leclerc topped both Friday sessions. In the race he finished second, 0.799 seconds behind Verstappen and 9.9 seconds clear of Leclerc, who took a five-second penalty for leaving the track and gaining an advantage in their first-lap clash. Leclerc had finished ahead of Hamilton in seven of the ten Grands Prix before Mexico City, so the weekend broke a pattern, and Hamilton now sits two points behind Verstappen in the fight for second.
+
+**Liam Lawson**
+
+Lawson was disqualified from Qualifying in Mexico City after his car failed to meet the minimum MGU-K power requirement, and he started from the pit lane. He crossed the line ninth and was promoted to seventh by post-race penalties for Piastri and both Alpines, and he now has 79 championship points to team-mate Lindblad's 38. The red flag helped his recovery, and it fits a pattern from Singapore, where Russell climbed from 19th to ninth and Hadjar from the pit lane to tenth. Drivers who start from the back of the grid collect positions gained and overtakes on the way through, so check for grid penalties after final practice, before the lock.
+
+🟡 HOLD
+
+**Charles Leclerc**
+
+Leclerc topped both Friday practice sessions in Mexico City and built a lead of almost five seconds over Verstappen. Serving his five-second penalty at the pit stop dropped him behind the Red Bull, and he finished fourth, 10.7 seconds behind the winner. He has now finished in the top four at each of the last five Grands Prix, with second places in Singapore and Austin, and Ferrari have taken a podium at each of the last three races. Penalties in Miami and Mexico City have cost him points, but a driver this consistent is worth holding.
+
+**Max Verstappen**
+
+Verstappen won the Mexico City Grand Prix, his third victory in four races, after starting on mediums when the other frontrunners chose softs and taking the lead at the only stop of the race on lap 28. He then held off Hamilton at a second race start to win by 0.799 seconds. He also won the rain-hit race at Sepang and the wet Singapore Sprint, so the forecast holds no worries for him. He is second in the championship on 261 points, 119 behind Antonelli, and anyone who owns him should keep him.
+
+🔴 SELL
+
+**Arvid Lindblad**
+
+Lindblad qualified eighth in Mexico City and was battling Piastri for seventh when contact through the first corners on lap 59 sent him into the wall. The stewards blamed Piastri and gave him a 10-second penalty, but the retirement was still Lindblad's first of the season, and it brought out the second Safety Car. He has not raced in Formula 1 at Interlagos, and with rain forecast on all three days he faces a wet first visit. Team-mate Lawson finished seventh from the pit lane and has twice as many championship points, which makes him the stronger option at Racing Bulls.
+
+**Oliver Bearman**
+
+Bearman retired from the Mexico City Grand Prix on lap 47 after contact with Nico Hulkenberg at Turn 4, having been closing on the Audi for the final point. Hulkenberg took a 10-second penalty for the collision, so the fault was not Bearman's. It was still his second retirement in a row, after he was caught up in an early collision with Pierre Gasly at the United States Grand Prix. Back-to-back retirements after contact with other cars, and a forecast of rain on all three days at Interlagos, leave little reason to hold him.
+
+**THE CHIPS**
+
+Autopilot is the chip to consider this week. It moves your 2x Boost to the highest-scoring driver in your team at the end of the weekend, which protects you if the driver you pick spins or retires. Mexico City showed how quickly a race can turn, with a red flag, two Safety Cars and five retirements, and rain is forecast on all three days at Interlagos. If the forecast stays wet through to the Saturday deadline, Autopilot is the safest way to cover your 2x Boost.`,
+  },
+  {
     slug: 'mexico-city-gp-2026-what-we-learned',
     title: 'What We Learned: Mexico City Grand Prix',
     excerpt: "Kimi Antonelli is crowned the youngest world champion in history, Ferrari let another win slip through their fingers, and the end of the season is still in doubt. Here is what the 2026 Mexico City Grand Prix told us.",
