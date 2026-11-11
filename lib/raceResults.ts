@@ -1535,6 +1535,76 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     ],
   },
 
+  20: {
+    round: 20,
+    name: 'Brazil',
+    flag: 'br',
+    isSprint: false,
+    // Autodromo Jose Carlos Pace, Interlagos, Sao Paulo, 6–8 November 2026.
+    // 71 laps. Standard weekend — FP1, FP2, FP3, Qualifying, Race. Not a sprint.
+    //
+    // DRIVER SUBSTITUTION — THIS ROUND ONLY: Rafael Camara raced for Haas on
+    // his Formula 1 debut in place of Esteban Ocon, who did not participate
+    // (as at R19). Ryo Hirakawa did NOT participate this round — he raced
+    // only at R19. The substitution must NOT be carried into any other
+    // round. Ocon keeps his existing points from earlier rounds, Hirakawa
+    // keeps his single R19 point, and Camara is retained in the season
+    // standings from here on via this result, exactly as Tsunoda (R12/R14)
+    // and Hirakawa (R19) are. Tsunoda did not participate.
+    //
+    // Classification verified against the Wikipedia race classification with
+    // penalty markers, PlanetF1's post-penalty gaps, Silverstone.co.uk and
+    // Total Motorsport. Post-race 5-second time penalties are ALREADY
+    // applied in the order below: Leclerc +5s dropped him from P7 to P8 and
+    // promoted Lawson from P8 to P7 (original +73.586s → adjusted
+    // +78.586s); Antonelli +5s did not change his position (P5 either way,
+    // original +36.017s → adjusted +41.017s); Bearman +5s did not change his
+    // position (P17). Some outlets (Yahoo, SI, f1ingenerale) published
+    // standings from the PRE-penalty classification and show Leclerc P7 on
+    // 251 and Lawson P8 on 87 — those are superseded. The post-penalty
+    // figures are Leclerc 249 and Lawson 89. The top six drivers and top
+    // four constructors are identical either way.
+    //
+    // Practice and the full qualifying grid are not entered — left out rather
+    // than invented. Only the Grand Prix pole (Norris) is stored. Lap times
+    // other than the winner's race time are not given — left as '—'. The data
+    // model has no field for fastest lap or Driver of the Day.
+    //
+    // Race notes: MERCEDES CLINCHED THE 2026 WORLD CONSTRUCTORS'
+    // CHAMPIONSHIP at Interlagos — their first since 2021 and ninth overall.
+    // Norris dominated from pole to win by 14.602s. Verstappen started P21
+    // and charged to P2, another recovery drive from the back of the grid.
+    // Antonelli spun on Lap 20 while leading and dropped through the field.
+    // Leclerc and Lawson made contact in a battle noted by the stewards,
+    // Leclerc taking the 5-second penalty that handed Lawson P7. Rafael
+    // Camara made his Formula 1 debut for Haas. Tricky conditions throughout.
+    pole: { name: 'Lando Norris', team: 'McLaren', team_colour: '#FF8000', time: '—' },
+    race: [
+      { position: 1,  name: 'Lando Norris',      team: 'McLaren',         team_colour: '#FF8000', time: '1:35:23.504', gap: '—'        },
+      { position: 2,  name: 'Max Verstappen',    team: 'Red Bull Racing', team_colour: '#3671C6', time: '—',           gap: '+14.602s' },
+      { position: 3,  name: 'Isack Hadjar',      team: 'Red Bull Racing', team_colour: '#3671C6', time: '—',           gap: '+24.485s' },
+      { position: 4,  name: 'George Russell',    team: 'Mercedes',        team_colour: '#27F4D2', time: '—',           gap: '+33.991s' },
+      { position: 5,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', time: '—',           gap: '+41.017s' },
+      { position: 6,  name: 'Oscar Piastri',     team: 'McLaren',         team_colour: '#FF8000', time: '—',           gap: '+56.475s' },
+      { position: 7,  name: 'Liam Lawson',       team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+75.402s' },
+      { position: 8,  name: 'Charles Leclerc',   team: 'Ferrari',         team_colour: '#E8002D', time: '—',           gap: '+78.586s' },
+      { position: 9,  name: 'Lewis Hamilton',    team: 'Ferrari',         team_colour: '#E8002D', time: '—',           gap: '+1 LAP'   },
+      { position: 10, name: 'Nico Hülkenberg',   team: 'Audi',            team_colour: '#C0C0C0', time: '—',           gap: '+1 LAP'   },
+      { position: 11, name: 'Arvid Lindblad',    team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+1 LAP'   },
+      { position: 12, name: 'Fernando Alonso',   team: 'Aston Martin',    team_colour: '#358C75', time: '—',           gap: '+1 LAP'   },
+      { position: 13, name: 'Franco Colapinto',  team: 'Alpine',          team_colour: '#FF69B4', time: '—',           gap: '+1 LAP'   },
+      { position: 14, name: 'Pierre Gasly',      team: 'Alpine',          team_colour: '#FF69B4', time: '—',           gap: '+1 LAP'   },
+      { position: 15, name: 'Alex Albon',        team: 'Williams',        team_colour: '#64C4FF', time: '—',           gap: '+1 LAP'   },
+      { position: 16, name: 'Gabriel Bortoleto', team: 'Audi',            team_colour: '#C0C0C0', time: '—',           gap: '+1 LAP'   },
+      { position: 17, name: 'Oliver Bearman',    team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: '+1 LAP'   },
+      { position: 18, name: 'Sergio Pérez',      team: 'Cadillac',        team_colour: '#CC0000', time: '—',           gap: '+2 LAPS'  },
+      { position: 19, name: 'Carlos Sainz',      team: 'Williams',        team_colour: '#64C4FF', time: '—',           gap: '+2 LAPS'  },
+      { position: 20, name: 'Rafael Camara',     team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: '+2 LAPS'  },
+      { position: 21, name: 'Lance Stroll',      team: 'Aston Martin',    team_colour: '#358C75', time: '—',           gap: 'DNF'      },
+      { position: 22, name: 'Valtteri Bottas',   team: 'Cadillac',        team_colour: '#CC0000', time: '—',           gap: 'DNF'      },
+    ],
+  },
+
 }
 
 // ─── 2026 Team & Driver Lineup ───────────────────────────────────────────────

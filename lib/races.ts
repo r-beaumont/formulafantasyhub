@@ -51,27 +51,28 @@ export const RACE_FULL_NAMES: Record<string, string> = {
 }
 
 // SSR-safe static fallback for the current round — computeCurrentRace()
-// overrides this client-side. Advanced to R20 now that Mexico City (R19) is
-// complete. Interlagos (Autodromo Jose Carlos Pace), Sao Paulo is a STANDARD
-// weekend (FP1/FP2/FP3), so the lock deadline label reads "Lineups Lock at
-// Qualifying". Brazil abolished DST in 2019, so local times are BRT (UTC-3)
-// year-round.
+// overrides this client-side. Advanced to R21 now that Sao Paulo (R20) is
+// complete. The Las Vegas Strip Circuit is a STANDARD weekend
+// (FP1/FP2/FP3), so the lock deadline label reads "Lineups Lock at
+// Qualifying". Las Vegas is on PST (UTC-8) in late November — DST ended on
+// 1 November 2026 — and the sessions run late at night local time, so each
+// UTC date is the following calendar day.
 export const CURRENT_RACE: Race = {
-  round: 20,
-  name: RACE_FULL_NAMES['Brazil'],
-  shortName: 'Brazil',
-  circuit: 'Autodromo Jose Carlos Pace',
-  country: 'Brazil',
-  flag: 'br',
+  round: 21,
+  name: RACE_FULL_NAMES['Las Vegas'],
+  shortName: 'Las Vegas',
+  circuit: 'Las Vegas Strip Circuit',
+  country: 'United States',
+  flag: 'us',
   isSprint: false,
-  timezone: 'America/Sao_Paulo',
-  dateRange: '6–8 Nov',
+  timezone: 'America/Los_Angeles',
+  dateRange: '19–21 Nov',
   sessions: [
-    { name: 'Practice 1', short: 'FP1',  date: 'Fri 6 Nov', dateISO: '2026-11-06T15:30:00Z', timeUTC: '15:30 UTC', timeLocal: '12:30 BRT', completed: false, duration: 60  },
-    { name: 'Practice 2', short: 'FP2',  date: 'Fri 6 Nov', dateISO: '2026-11-06T19:00:00Z', timeUTC: '19:00 UTC', timeLocal: '16:00 BRT', completed: false, duration: 60  },
-    { name: 'Practice 3', short: 'FP3',  date: 'Sat 7 Nov', dateISO: '2026-11-07T14:30:00Z', timeUTC: '14:30 UTC', timeLocal: '11:30 BRT', completed: false, duration: 60  },
-    { name: 'Qualifying', short: 'QUAL', date: 'Sat 7 Nov', dateISO: '2026-11-07T18:00:00Z', timeUTC: '18:00 UTC', timeLocal: '15:00 BRT', completed: false, duration: 60  },
-    { name: 'Race',       short: 'RACE', date: 'Sun 8 Nov', dateISO: '2026-11-08T17:00:00Z', timeUTC: '17:00 UTC', timeLocal: '14:00 BRT', completed: false, duration: 120 },
+    { name: 'Practice 1', short: 'FP1',  date: 'Thu 19 Nov', dateISO: '2026-11-20T00:30:00Z', timeUTC: '00:30 UTC', timeLocal: '16:30 PST', completed: false, duration: 60  },
+    { name: 'Practice 2', short: 'FP2',  date: 'Thu 19 Nov', dateISO: '2026-11-20T04:00:00Z', timeUTC: '04:00 UTC', timeLocal: '20:00 PST', completed: false, duration: 60  },
+    { name: 'Practice 3', short: 'FP3',  date: 'Fri 20 Nov', dateISO: '2026-11-21T00:30:00Z', timeUTC: '00:30 UTC', timeLocal: '16:30 PST', completed: false, duration: 60  },
+    { name: 'Qualifying', short: 'QUAL', date: 'Fri 20 Nov', dateISO: '2026-11-21T04:00:00Z', timeUTC: '04:00 UTC', timeLocal: '20:00 PST', completed: false, duration: 60  },
+    { name: 'Race',       short: 'RACE', date: 'Sat 21 Nov', dateISO: '2026-11-22T04:00:00Z', timeUTC: '04:00 UTC', timeLocal: '20:00 PST', completed: false, duration: 120 },
   ],
 }
 
@@ -564,7 +565,7 @@ export const SEASON_CALENDAR: {
     date: '8 Nov',
     dateRange: '6–8 Nov',
     sprint: false,
-    completed: false,
+    completed: true,
     calledOff: false,
     meeting_key: 1299,
     lat: -23.7036,

@@ -67,6 +67,11 @@ const _driverMeta: Omit<DriverStanding, 'pos' | 'points' | 'wins'>[] = [
   // Esteban Ocon, who did not participate. Formula 1 debut; scored a point in
   // it, so he stays in the standings for the rest of the season.
   { id: 'hirakawa',   name: 'Ryo Hirakawa',      shortName: 'HIR', team: 'Haas',            teamColor: '#B6BABD', flag: 'jp' },
+  // One-off substitute for Round 20 (Sao Paulo) — took the Haas seat for
+  // Esteban Ocon, who did not participate at R19 or R20. Formula 1 debut;
+  // finished P20 and scored no points, but he stays in the standings for the
+  // rest of the season as a classified entrant. Hirakawa did not race at R20.
+  { id: 'camara',     name: 'Rafael Camara',     shortName: 'CAM', team: 'Haas',            teamColor: '#B6BABD', flag: 'br' },
 ]
 
 export const DRIVER_STANDINGS: DriverStanding[] = _driverMeta
