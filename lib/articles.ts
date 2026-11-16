@@ -19,6 +19,58 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'sao-paulo-gp-2026-what-we-learned',
+    title: 'What We Learned: São Paulo Grand Prix',
+    excerpt: "Mercedes complete the title double, Max Verstappen goes from 21st to second at Interlagos once again, and the rain arrives without the chaos. Here is what the 2026 São Paulo Grand Prix told us.",
+    readTime: 5,
+    date: 'Nov 16, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #0a1a05 0%, #1f4d0f 50%, #0a1a05 100%)',
+    thumbnailBg: 'rgba(0,156,59,0.22)',
+    thumbnailIcon: 'br',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/sao-paulo-gp-2026-what-we-learned',
+    relatedSlugs: ['mexico-city-gp-2026-what-we-learned', 'race-week-preview-sao-paulo-gp-2026', 'united-states-gp-2026-what-we-learned'],
+    content: `Lando Norris won a wet São Paulo Grand Prix from pole, Max Verstappen climbed from 21st to second, and Mercedes sealed the constructors' title with fourth and fifth, completing a championship double with three races to spare. The rain doused the grid before the start and returned for the final ten laps, yet the race ran its full distance without a single Safety Car.
+
+---
+
+**MERCEDES ARE CONSTRUCTORS' CHAMPIONS**
+
+**George Russell** finished fourth and **Kimi Antonelli** fifth, which was more than enough to seal Mercedes' ninth constructors' title, their first since 2021, a week after Antonelli won the drivers' crown in Mexico City. It moves them level with Williams on nine, behind only Ferrari's 16 and McLaren's 10, and it came on their first Grand Prix weekend of the year without a podium, with Antonelli spinning from the lead at Turn 1 on lap 20 while reporting that the car felt as though it was steering itself. The title was built early, with Mercedes winning the first six races of the season, and Toto Wolff pointed to that strong start as what carried them over the line, even though Red Bull won three of the four races before Brazil and Ferrari outscored them across the same stretch.
+
+---
+
+**INTERLAGOS BELONGS TO VERSTAPPEN, WHEREVER HE STARTS**
+
+**Max Verstappen** started 21st after a raft of power unit changes and finished second, 14.6 seconds behind Norris, extending one of the most remarkable runs any driver has had at a single circuit. He won here from 17th on the grid in 2024, took third from the pit lane last year, and across those three starts from the back he has now scored 59 of a possible 76 points. He was up to 13th on the opening lap and inside the top six by lap 8, before passing Antonelli for third on lap 24 and being waved through by **Isack Hadjar**, who completed a Red Bull double podium in third. Verstappen felt the car's balance went awry after his first stint, but the result moves him 17 points clear of Russell in the fight for second in the championship.
+
+---
+
+**THE RAIN CAME, BUT THE CHAOS DIDN'T**
+
+Rain at Interlagos usually means red flags, crashes and a reshuffled order, and while the race started on intermediates, dried out and then caught a third band of rain for the final ten laps, there was no Safety Car and nobody crashed out. There were still moments, with Russell spinning at the pit exit after switching to slicks and briefly blocking the track as Hadjar, Liam Lawson and **Oscar Piastri** filed past, Piastri later calling it scary. Antonelli spun from the lead, **Lewis Hamilton** spun late on his way from 20th to ninth, and **Charles Leclerc** and Lawson made contact at Junção as they slithered around on the late damp track, while Nico Hulkenberg served a ten-second penalty and still took the final point with a late pass on Arvid Lindblad. Only Lance Stroll retired, while Valtteri Bottas failed to start after a cross-threaded wheel nut left a wheel stuck on his Cadillac, so there were plenty of moments but none of the carnage the forecast promised.
+
+---
+
+**CAMARA'S HOME DEBUT DIDN'T GO TO PLAN**
+
+**Rafael Camara** was handed his Formula 1 debut a season early after Esteban Ocon's exit from Haas, and his first Grand Prix weekend came at home, with practice his first real running in a 2026 car. He crashed in Q2 but still lined up 11th, then slid back through the field in the changing conditions and crossed the line 20th, last of the classified finishers. He admitted he was not satisfied with the result and had made mistakes he did not expect, though he brought the car home undamaged and called it a day of significant learning. With a full season at Haas ahead in 2027, Interlagos was a harsh introduction rather than a verdict.
+
+---
+
+**THE TITLES ARE SETTLED, BUT THERE IS STILL PLENTY TO RACE FOR**
+
+F1 has confirmed the season will finish as planned, standing Imola down as a backup on 10 November, which keeps Las Vegas, Qatar on 29 November and Abu Dhabi on 6 December on the calendar. The biggest prize left is second place in the drivers' standings, where Verstappen on 279 leads Russell on 262, Hamilton on 261, Leclerc on 251 and Norris on 246, five drivers separated by 33 points with 75 still available to each. In the constructors' standings, Red Bull, who trailed McLaren by 43 points after Baku, now lead them by 17 in the fight for third, while further back Haas and Audi are three points apart for seventh.
+
+---
+
+Las Vegas opens the final triple header this weekend, with the race on Saturday 21 November, and with nothing left to decide at the top, the fights for second, for third among the teams and for a strong finish to 2026 are what remain.`,
+  },
+  {
     slug: 'race-week-preview-sao-paulo-gp-2026',
     title: 'Race Week Preview: São Paulo Grand Prix',
     excerpt: "Kimi Antonelli arrives in São Paulo as world champion, and Formula 1 heads to a rain-threatened Interlagos for the final leg of the Americas triple-header. Here is your F1 Fantasy watchlist for the São Paulo Grand Prix.",
