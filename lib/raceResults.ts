@@ -1605,6 +1605,72 @@ export const RACE_WEEKENDS: Record<number, RaceWeekend> = {
     ],
   },
 
+  21: {
+    round: 21,
+    name: 'Las Vegas',
+    flag: 'us',
+    isSprint: false,
+    // Las Vegas Strip Circuit, 19–21 November 2026. 50 laps. Standard
+    // weekend — FP1, FP2, FP3, Qualifying, Race. Not a sprint.
+    //
+    // DRIVER SUBSTITUTION — CARRIED FROM R19/R20: Rafael Camara raced for
+    // Haas for the third consecutive round in place of Esteban Ocon, who did
+    // not participate. Ryo Hirakawa did NOT participate this round — he raced
+    // only at R19. Tsunoda did not participate. Ocon keeps his existing
+    // points from earlier rounds and Hirakawa his single R19 point.
+    //
+    // Alex Albon DID NOT START (DNS) — he is carried at the foot of the
+    // classification so that Williams' entry is complete, exactly as DNFs
+    // are, and scores nothing.
+    //
+    // Classification verified against the F1.com official result with
+    // penalties applied, the Wikipedia race classification, RacingNews365,
+    // ScuderiaFans and f1i. Post-race 10-second time penalties are ALREADY
+    // applied in the order below: Leclerc +10s for causing a collision did
+    // not change his position (P10 either way); Hadjar +10s for driving
+    // unnecessarily slowly under the Safety Car dropped him from P14 to P15,
+    // behind Lawson.
+    //
+    // Practice and the full qualifying grid are not entered — left out rather
+    // than invented. Only the Grand Prix pole (Verstappen) is stored. Lap
+    // times other than the winner's race time are not given — left as '—'.
+    // The data model has no field for fastest lap or Driver of the Day.
+    //
+    // Race notes: Verstappen took his 4th win of 2026 and his 3rd in Las
+    // Vegas, holding off Norris by 0.639s in a race where the top five
+    // finished covered by three seconds. Russell hit the wall trying to pass
+    // Antonelli and dropped from podium contention to P9. Hadjar's front wing
+    // disintegrated while he was running in the podium positions. Gasly P5
+    // and Colapinto P6 gave Alpine their best combined result of the season.
+    // Albon did not start. Alonso retired after 49 laps but was classified
+    // P19.
+    pole: { name: 'Max Verstappen', team: 'Red Bull Racing', team_colour: '#3671C6', time: '—' },
+    race: [
+      { position: 1,  name: 'Max Verstappen',    team: 'Red Bull Racing', team_colour: '#3671C6', time: '1:27:39.624', gap: '—'        },
+      { position: 2,  name: 'Lando Norris',      team: 'McLaren',         team_colour: '#FF8000', time: '—',           gap: '+0.639s'  },
+      { position: 3,  name: 'Oscar Piastri',     team: 'McLaren',         team_colour: '#FF8000', time: '—',           gap: '+1.529s'  },
+      { position: 4,  name: 'Kimi Antonelli',    team: 'Mercedes',        team_colour: '#27F4D2', time: '—',           gap: '+2.574s'  },
+      { position: 5,  name: 'Pierre Gasly',      team: 'Alpine',          team_colour: '#FF69B4', time: '—',           gap: '+2.927s'  },
+      { position: 6,  name: 'Franco Colapinto',  team: 'Alpine',          team_colour: '#FF69B4', time: '—',           gap: '+7.955s'  },
+      { position: 7,  name: 'Lewis Hamilton',    team: 'Ferrari',         team_colour: '#E8002D', time: '—',           gap: '+12.795s' },
+      { position: 8,  name: 'Carlos Sainz',      team: 'Williams',        team_colour: '#64C4FF', time: '—',           gap: '+12.938s' },
+      { position: 9,  name: 'George Russell',    team: 'Mercedes',        team_colour: '#27F4D2', time: '—',           gap: '+13.192s' },
+      { position: 10, name: 'Charles Leclerc',   team: 'Ferrari',         team_colour: '#E8002D', time: '—',           gap: '+17.554s' },
+      { position: 11, name: 'Nico Hülkenberg',   team: 'Audi',            team_colour: '#C0C0C0', time: '—',           gap: '+22.720s' },
+      { position: 12, name: 'Gabriel Bortoleto', team: 'Audi',            team_colour: '#C0C0C0', time: '—',           gap: '+28.602s' },
+      { position: 13, name: 'Oliver Bearman',    team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: '+28.843s' },
+      { position: 14, name: 'Liam Lawson',       team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: '+36.588s' },
+      { position: 15, name: 'Isack Hadjar',      team: 'Red Bull Racing', team_colour: '#3671C6', time: '—',           gap: '+46.488s' },
+      { position: 16, name: 'Rafael Camara',     team: 'Haas',            team_colour: '#B6BABD', time: '—',           gap: '+47.814s' },
+      { position: 17, name: 'Lance Stroll',      team: 'Aston Martin',    team_colour: '#358C75', time: '—',           gap: '+68.353s' },
+      { position: 18, name: 'Valtteri Bottas',   team: 'Cadillac',        team_colour: '#CC0000', time: '—',           gap: '+71.673s' },
+      { position: 19, name: 'Fernando Alonso',   team: 'Aston Martin',    team_colour: '#358C75', time: '—',           gap: 'DNF'      },
+      { position: 20, name: 'Arvid Lindblad',    team: 'Racing Bulls',    team_colour: '#6692FF', time: '—',           gap: 'DNF'      },
+      { position: 21, name: 'Sergio Pérez',      team: 'Cadillac',        team_colour: '#CC0000', time: '—',           gap: 'DNF'      },
+      { position: 22, name: 'Alex Albon',        team: 'Williams',        team_colour: '#64C4FF', time: '—',           gap: 'DNS'      },
+    ],
+  },
+
 }
 
 // ─── 2026 Team & Driver Lineup ───────────────────────────────────────────────

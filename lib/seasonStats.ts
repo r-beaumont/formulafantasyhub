@@ -142,46 +142,56 @@ export const CON_STATS_MAP: Record<string, ConstructorStats> = Object.fromEntrie
 // ── Build-time verification log ───────────────────────────────────────────────
 if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'test') {
   console.log('\n── seasonStats verification ──────────────────────────────')
-  // Expected values after R20 Sao Paulo — the final post-penalty
-  // classification (Leclerc +5s P7→P8, promoting Lawson to P7; Antonelli +5s
-  // and Bearman +5s with no positional change), per the Wikipedia race
-  // classification with penalty markers, PlanetF1's post-penalty gaps,
-  // Silverstone.co.uk and Total Motorsport. Standings published by Yahoo, SI
-  // and f1ingenerale from the PRE-penalty classification show Leclerc 251 and
-  // Lawson 87 and are superseded — the correct figures are Leclerc 249 and
-  // Lawson 89. Every driver and constructor is asserted, not just the top
-  // of each table, so a name-keying slip cannot pass unnoticed.
+  // Expected values after R21 Las Vegas — the final post-penalty
+  // classification (Leclerc +10s for causing a collision, no positional
+  // change at P10; Hadjar +10s for driving unnecessarily slowly under the
+  // Safety Car, P14 → P15 behind Lawson), per the F1.com official result
+  // with penalties applied, the Wikipedia race classification,
+  // RacingNews365, ScuderiaFans and f1i. Driver totals are unanimous across
+  // PlanetF1, RacingNews365, Crash, GPBlog, Grande Premio and ScuderiaFans.
+  // Every driver and constructor is asserted, not just the top of each
+  // table, so a name-keying slip cannot pass unnoticed.
   const check = [
-    { name: 'Kimi Antonelli',   expPts: 390, expWins: 9, expPodiums: 16, expPoles: 7 },
-    { name: 'Max Verstappen',   expPts: 279, expWins: 3, expPodiums: 12, expPoles: 2 },
-    { name: 'George Russell',   expPts: 262, expWins: 3, expPodiums: 8,  expPoles: 5 },
-    { name: 'Lewis Hamilton',   expPts: 261, expWins: 1, expPodiums: 7,  expPoles: 1 },
-    { name: 'Charles Leclerc',  expPts: 249, expWins: 1, expPodiums: 6,  expPoles: 0 },
-    { name: 'Lando Norris',     expPts: 246, expWins: 3, expPodiums: 6,  expPoles: 4 },
-    { name: 'Oscar Piastri',    expPts: 152, expWins: 0, expPodiums: 2,  expPoles: 0 },
+    { name: 'Kimi Antonelli',   expPts: 402, expWins: 9, expPodiums: 16, expPoles: 7 },
+    { name: 'Max Verstappen',   expPts: 304, expWins: 4, expPodiums: 13, expPoles: 3 },
+    { name: 'Lewis Hamilton',   expPts: 267, expWins: 1, expPodiums: 7,  expPoles: 1 },
+    // Tied on 264 — Russell takes P4 on countback (level on wins, more 2nd
+    // places), Norris P5. Hamilton's P7 in Las Vegas jumped them both.
+    { name: 'George Russell',   expPts: 264, expWins: 3, expPodiums: 8,  expPoles: 5 },
+    { name: 'Lando Norris',     expPts: 264, expWins: 3, expPodiums: 7,  expPoles: 4 },
+    { name: 'Charles Leclerc',  expPts: 250, expWins: 1, expPodiums: 6,  expPoles: 0 },
+    { name: 'Oscar Piastri',    expPts: 167, expWins: 0, expPodiums: 3,  expPoles: 0 },
     { name: 'Isack Hadjar',     expPts: 122, expWins: 0, expPodiums: 3,  expPoles: 0 },
     { name: 'Liam Lawson',      expPts: 89,  expWins: 0, expPodiums: 0,  expPoles: 0 },
-    { name: 'Pierre Gasly',     expPts: 42,  expWins: 0, expPodiums: 0,  expPoles: 1 },
+    // Gasly's P5 in Las Vegas took him clear of Lindblad, who retired.
+    { name: 'Pierre Gasly',     expPts: 52,  expWins: 0, expPodiums: 0,  expPoles: 1 },
     { name: 'Arvid Lindblad',   expPts: 38,  expWins: 0, expPodiums: 0,  expPoles: 0 },
-    { name: 'Franco Colapinto', expPts: 27,  expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Franco Colapinto', expPts: 35,  expWins: 0, expPodiums: 0,  expPoles: 0 },
     { name: 'Oliver Bearman',   expPts: 23,  expWins: 0, expPodiums: 0,  expPoles: 0 },
-    // Tied on 14 — Hülkenberg's P10 in Brazil drew him level with Bortoleto.
+    // Still tied on 14 — neither Audi scored in Las Vegas (P11 and P12).
     { name: 'Gabriel Bortoleto',expPts: 14,  expWins: 0, expPodiums: 0,  expPoles: 0 },
     { name: 'Nico Hülkenberg',  expPts: 14,  expWins: 0, expPodiums: 0,  expPoles: 0 },
-    // Three-way tie on 7 — Ocon retains his despite not racing at R19 or R20.
+    // Sainz's P8 broke the three-way tie on 7 and moved him clear of both
+    // Ocon and Alonso. Ocon retains his despite not racing since R18.
+    { name: 'Carlos Sainz',     expPts: 11,  expWins: 0, expPodiums: 0,  expPoles: 0 },
     { name: 'Esteban Ocon',     expPts: 7,   expWins: 0, expPodiums: 0,  expPoles: 0 },
     { name: 'Fernando Alonso',  expPts: 7,   expWins: 0, expPodiums: 0,  expPoles: 0 },
-    { name: 'Carlos Sainz',     expPts: 7,   expWins: 0, expPodiums: 0,  expPoles: 0 },
+    // Albon did not start in Las Vegas (DNS) and keeps his 5.
     { name: 'Alex Albon',       expPts: 5,   expWins: 0, expPodiums: 0,  expPoles: 0 },
-    // Tied on 1 — Hirakawa from his R19 debut (he did not race at R20),
-    // Tsunoda from R12 (he has not raced since R14 but keeps his point).
-    { name: 'Ryo Hirakawa',     expPts: 1,   expWins: 0, expPodiums: 0,  expPoles: 0 },
+    // Tied on 1 — Tsunoda from R13 (he has not raced since R14 but keeps his
+    // point), Hirakawa from his R19 debut (he has not raced since). Both have
+    // exactly one P10, so countback runs on to P11, where Tsunoda's R12
+    // eleventh place puts him ahead of Hirakawa, who has no second finish.
     { name: 'Yuki Tsunoda',     expPts: 1,   expWins: 0, expPodiums: 0,  expPoles: 0 },
-    // Camara joins on 0 from his R20 Haas debut (P20).
-    { name: 'Rafael Camara',    expPts: 0,   expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Ryo Hirakawa',     expPts: 1,   expWins: 0, expPodiums: 0,  expPoles: 0 },
+    // Four drivers on 0, separated by countback on best Grand Prix finish:
+    // Stroll's P12 (R16) leads, then Bottas's P13 (R2), then Pérez's three
+    // P14s. Camara is last of the 25 — his best finish in two starts is the
+    // P16 he took in Las Vegas, so he loses the countback to all three.
     { name: 'Lance Stroll',     expPts: 0,   expWins: 0, expPodiums: 0,  expPoles: 0 },
     { name: 'Valtteri Bottas',  expPts: 0,   expWins: 0, expPodiums: 0,  expPoles: 0 },
     { name: 'Sergio Pérez',     expPts: 0,   expWins: 0, expPodiums: 0,  expPoles: 0 },
+    { name: 'Rafael Camara',    expPts: 0,   expWins: 0, expPodiums: 0,  expPoles: 0 },
   ]
   for (const { name, expPts, expWins, expPodiums, expPoles } of check) {
     const d = DRIVER_STATS_MAP[name]
@@ -193,21 +203,34 @@ if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'test') {
   const expDrivers = 25
   console.log(`  ${SEASON_STATS.drivers.length === expDrivers ? '✓' : '✗'} driver entries: ${SEASON_STATS.drivers.length} (expected ${expDrivers})`)
 
-  // Constructor totals after R20. MERCEDES ARE 2026 CONSTRUCTORS' CHAMPIONS —
-  // clinched at Interlagos, 142 clear of Ferrari with three rounds left.
-  // Red Bull Racing's 33 points in Brazil extended its P3 margin over
-  // McLaren to 17. Sources showing Ferrari 512 and Racing Bulls 112 are
-  // pre-Leclerc-penalty; the post-penalty figures are 510 and 114.
+  // Expected championship order after R21, asserted explicitly so that a
+  // countback regression on any of the four points ties (Russell/Norris on
+  // 264, Bortoleto/Hülkenberg on 14, Tsunoda/Hirakawa on 1, and the four
+  // drivers on 0) fails the build log rather than silently reordering the
+  // standings table. The `check` array above is kept in championship order
+  // so it doubles as the expected order.
+  const expOrder = check.map(c => c.name)
+  const actOrder = SEASON_STATS.drivers.map(d => d.name)
+  const orderOk = expOrder.length === actOrder.length && expOrder.every((n, i) => n === actOrder[i])
+  console.log(`  ${orderOk ? '✓' : '✗'} championship order${orderOk ? '' : ` — expected ${expOrder.join(' > ')}, got ${actOrder.join(' > ')}`}`)
+
+  // Constructor totals after R21. MERCEDES ARE 2026 CONSTRUCTORS' CHAMPIONS —
+  // clinched at Interlagos (R20) and now 149 clear of Ferrari with two rounds
+  // left. Verstappen's win keeps Red Bull Racing P3, but McLaren's 33 points
+  // from P2 and P3 cut that margin from 17 to 9. Alpine's best combined
+  // result of the season (Gasly P5, Colapinto P6) lifted them from 69 to 87,
+  // and Williams went from 12 to 16 on Sainz's P8. Verified against
+  // Aktualita, Crash, Grande Premio and GPBlog.
   const conCheck: [string, number, number, number][] = [
-    ['Mercedes',        652, 12, 24],
-    ['Ferrari',         510, 2,  13],
-    ['Red Bull Racing', 415, 3,  15],
-    ['McLaren',         398, 3,  8],
+    ['Mercedes',        666, 12, 24],
+    ['Ferrari',         517, 2,  13],
+    ['Red Bull Racing', 440, 4,  16],
+    ['McLaren',         431, 3,  10],
     ['Racing Bulls',    114, 0,  0],
-    ['Alpine',          69,  0,  0],
+    ['Alpine',          87,  0,  0],
     ['Haas',            31,  0,  0],
     ['Audi',            28,  0,  0],
-    ['Williams',        12,  0,  0],
+    ['Williams',        16,  0,  0],
     ['Aston Martin',    7,   0,  0],
     ['Cadillac',        0,   0,  0],
   ]
@@ -218,11 +241,12 @@ if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'test') {
     console.log(`  ${ok ? '✓' : '✗'} P${pos} ${team}: ${c?.points ?? '?'}pts ${c?.wins ?? '?'}W ${c?.podiums ?? '?'}POD ${ok ? '' : `— expected ${expPts}pts ${expWins}W ${expPodiums}POD`}`)
   }
 
-  // Season totals — 20 rounds run, 6 different race winners.
+  // Season totals — 21 rounds run, still 6 different race winners (Verstappen
+  // was already one of them, so his fourth win does not add to the count).
   const totals: [string, number, number][] = [
-    ['wins',    SEASON_STATS.drivers.reduce((a, d) => a + d.wins, 0),    20],
-    ['poles',   SEASON_STATS.drivers.reduce((a, d) => a + d.poles, 0),   20],
-    ['podiums', SEASON_STATS.drivers.reduce((a, d) => a + d.podiums, 0), 60],
+    ['wins',    SEASON_STATS.drivers.reduce((a, d) => a + d.wins, 0),    21],
+    ['poles',   SEASON_STATS.drivers.reduce((a, d) => a + d.poles, 0),   21],
+    ['podiums', SEASON_STATS.drivers.reduce((a, d) => a + d.podiums, 0), 63],
   ]
   for (const [label, actual, exp] of totals) {
     console.log(`  ${actual === exp ? '✓' : '✗'} total ${label}: ${actual} (expected ${exp})`)
