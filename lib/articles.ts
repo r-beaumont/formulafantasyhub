@@ -19,6 +19,62 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'las-vegas-gp-2026-what-we-learned',
+    title: 'What We Learned: Las Vegas Grand Prix',
+    excerpt: "Max Verstappen survives 35 lead changes to win on the Strip for a third time, McLaren grab a double podium, George Russell's words come back to bite him, and Ferrari's drivers collide again. Here is what the 2026 Las Vegas Grand Prix told us.",
+    readTime: 6,
+    date: 'Nov 22, 2026',
+    tag: 'Race Recap',
+    category: 'Race Review',
+    articleType: 'F1',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #14001a 0%, #3d0a4d 50%, #14001a 100%)',
+    thumbnailBg: 'rgba(170,40,200,0.22)',
+    thumbnailIcon: 'us',
+    thumbnailImage: '/thumbnail-what-we-learned.png',
+    ogImage: 'https://formulahub.live/og/las-vegas-gp-2026-what-we-learned',
+    relatedSlugs: ['sao-paulo-gp-2026-what-we-learned', 'race-week-preview-sao-paulo-gp-2026', 'mexico-city-gp-2026-what-we-learned'],
+    content: `Las Vegas produced the most overtakes of any Grand Prix in Formula 1 history, a lead that changed hands 35 times and a finish decided by two late Mercedes mistakes, yet after all of that the man at the front was the one who usually is on the Strip. Max Verstappen won by 0.639 seconds from Lando Norris and Oscar Piastri, George Russell crashed out of podium contention after a weekend spent talking about his rival, and Ferrari's drivers found each other once again.
+
+---
+
+**MAX VERSTAPPEN IS THE HOUSE IN LAS VEGAS**
+
+In a casino the house always wins, and on the Strip that now means **Max Verstappen**, who took his third victory in four editions of the Las Vegas Grand Prix after winning here in 2023 and 2025. He inherited pole when Kimi Antonelli took a five-place grid penalty, then spent 50 laps defending a lead that changed hands 35 times by Formula 1's count, with Russell, Antonelli and Norris all taking turns in front. Verstappen admitted afterwards that Mercedes had worked out they could pass him into Turn 14, and believes the finish would have been a fight to the line had Antonelli not suffered a deployment problem on the final lap. Instead he held on for his 75th career win and his fourth of the season, all of them since the start of October, moving 37 points clear of Lewis Hamilton in the fight for second in the championship with two rounds to go.
+
+---
+
+**MCLAREN RECOVER TO THEIR BEST NIGHT SINCE MIAMI**
+
+A few hours before the race, a double podium for McLaren looked unlikely. **Lando Norris** dropped as low as 11th in the opening stint before a switch to the medium tyre brought him back into the lead fight, while **Oscar Piastri** started 17th and gained 14 places to finish third. Norris briefly led on lap 34 and crossed the line just 0.639 seconds behind Verstappen, giving McLaren their first double podium since Miami in May. With Red Bull scoring only Verstappen's 25 points after Isack Hadjar finished outside the top ten, McLaren's 33 cut the gap in the fight for third in the constructors' standings from 17 points to nine with two rounds remaining.
+
+---
+
+**RUSSELL TALKS A CHAMPIONSHIP GAME BUT NEVER PLAYS ONE**
+
+**George Russell** spent Friday in Las Vegas telling Sky Italia that Verstappen screws drivers over week in, week out, walks around as though he is bigger and better than everyone else, and that somebody had to stand up to him, which is a bold position for a driver who has spent the season being beaten by his own team-mate. On Saturday night he got his chance to prove it, lining up second and fighting Verstappen for the lead, and then threw it all away with three laps to go, locking up into Turn 5 while trying to pass Kimi Antonelli for second, hitting the barrier and limping home ninth. Verstappen, who won, said Russell speaks a lot away from the track but is "so far below my level" that he wasn't worth answering, before crediting karma and telling Viaplay that Russell had been "a complete joke" on track this season.
+
+It is a harsh verdict, but Russell has done very little to argue with it. He began 2026 as the championship leader after winning in Australia in what has been the best car on the grid, and within two races he had been overtaken by a team-mate in only his second season, a team-mate who has gone on to win nine Grands Prix and the world title while Russell has won three and now sits 138 points behind him in identical machinery. Some of his misfortune has been mechanical, with power unit failures in Canada and Malaysia, but too much of it has been self-inflicted, from a drive-through penalty in Monaco and a stall at the start in Hungary to a crash from the lead of the Singapore Sprint, a spin at the pit exit in Brazil that handed away a likely podium, and now a lock-up into the Vegas barriers while chasing the very team-mate he was supposed to be leading.
+
+He has lost second place in the championship to Verstappen, who was sixth at the summer break, and third to Hamilton, who is driving a car he says is down on straight-line speed everywhere. Russell has always been happy to position himself as the paddock's conscience, the man who calls out others and speaks for the grid, but leadership is earned on the track, and in the year Mercedes finally gave him a car capable of winning a title, he talked like a champion, raced like a number two and finished the season behind a 20-year-old with a fraction of his experience. Until his results match his rhetoric, nobody should take his lectures seriously, least of all the four-time world champion he keeps trying to lecture.
+
+---
+
+**FERRARI'S CIVIL WAR IS NOW A REAL PROBLEM**
+
+Ferrari arrived in Las Vegas a fortnight after Fred Vasseur sat **Lewis Hamilton** and **Charles Leclerc** down in Brazil to clear the air over Mexico, and left with the same problem. Both cars were knocked out in Q2, and as they recovered towards the top ten, Leclerc launched a move on Hamilton at Turn 7 with 12 laps to go, spinning his team-mate in a battle for sixth. The stewards found Leclerc wholly to blame and gave him a ten-second penalty, which dropped him to tenth, while Hamilton recovered to seventh. Vasseur said the team had told Leclerc not to overtake and called the collision completely unacceptable, Leclerc said he was embarrassed for the team, and Hamilton, who has asked for rules of engagement since the pair touched at Monza, said he had done all he could and that it was now for Ferrari to decide. After Zandvoort, Monza, Mexico and now Las Vegas, this is the fourth flashpoint between the two this season, and the friction between Ferrari's drivers has become as big a problem as anything in the car.
+
+---
+
+**LAS VEGAS IS AN OVERTAKING PARADISE**
+
+Formula 1's figures recorded 352 overtakes in Las Vegas, almost double the previous record of 186 set at the wet 2023 Dutch Grand Prix and more than twice the best in dry conditions, the 161 passes at the 2016 Chinese Grand Prix. The 35 changes of lead fell short only of the all-time record of 42 at Monza in 1965, while the previous high on the Strip had been 181 in 2023. The cause was the 2026 regulations, with active aerodynamics and battery deployment creating closing speeds of 20 to 30km/h on the long straights, and a Safety Car on lap 19 bunched the field onto matching strategies and kept it compressed through the second half. Piastri gained 14 places, Antonelli crossed the line on lap 43 just 0.001 seconds ahead of Verstappen, and Pierre Gasly fought for the podium before taking fifth for Alpine. Not everyone enjoyed it, with Norris admitting some passes did not feel like true overtakes and Verstappen saying the race had nothing to do with Formula 1, but as a spectacle under the lights, nothing this season has come close.
+
+---
+
+Qatar follows on 27 to 29 November, a standard weekend at Lusail, with Verstappen 37 points clear in the fight for second, Red Bull nine points ahead of McLaren for third, and Ferrari's drivers under instructions they have so far shown little sign of following.`,
+  },
+  {
     slug: 'sao-paulo-gp-2026-what-we-learned',
     title: 'What We Learned: São Paulo Grand Prix',
     excerpt: "Mercedes complete the title double, Max Verstappen goes from 21st to second at Interlagos once again, and the rain arrives without the chaos. Here is what the 2026 São Paulo Grand Prix told us.",
