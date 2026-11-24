@@ -19,6 +19,89 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'race-week-preview-qatar-gp-2026',
+    title: 'Race Week Preview: Qatar Grand Prix',
+    excerpt: "Max Verstappen arrives at a circuit he has never lost, Oscar Piastri has never finished off the Lusail podium, and Pirelli's tyre rules force a two-stop race. Here is your F1 Fantasy watchlist for the Qatar Grand Prix.",
+    readTime: 4,
+    date: 'Nov 24, 2026',
+    tag: 'Race Preview',
+    category: 'Race Preview',
+    articleType: 'F1 Fantasy',
+    premium: false,
+    thumbnail: 'linear-gradient(135deg, #1a0010 0%, #6b1030 50%, #1a0010 100%)',
+    thumbnailBg: 'rgba(170,30,70,0.22)',
+    thumbnailIcon: 'qa',
+    thumbnailImage: '/thumbnail-race-preview.png',
+    ogImage: 'https://formulahub.live/og/race-week-preview-qatar-gp-2026',
+    content: `**THE SETUP**
+
+Max Verstappen converted pole position into victory at the Las Vegas Grand Prix, holding off Lando Norris by 0.639 seconds after Kimi Antonelli lost a late podium and George Russell crashed out of contention. Norris and Oscar Piastri completed the podium, and Antonelli finished fourth after a five-place grid penalty for exceeding his engine allocation had cost him pole.
+
+Antonelli leads the championship on 402 points, with Verstappen second on 304, Lewis Hamilton third on 267 and Russell and Norris level on 264. Both titles are already settled, and one round remains after this weekend.
+
+**THE CIRCUIT**
+
+The Lusail International Circuit is a 5.419km permanent track run over 57 laps under floodlights, with sweeping medium and high-speed corners that put sustained load on the tyres. The long main straight into Turn 1 is the main overtaking opportunity, and the abrasive surface makes this one of the most demanding races of the year for cars and drivers.
+
+Tyre wear is again the talking point, with Pirelli limiting each set to a maximum of 25 laps across the weekend, which forces a two-stop race. Unlike recent years, this is not a Sprint weekend, so the team lock deadline is the start of Qualifying at 2100 local time on Saturday, November 28 (1800 UTC).
+
+**THE WEATHER**
+
+The forecast is dry and sunny across all three days, with temperatures around 24°C to 26°C for Qualifying and the race. Lusail runs at night, so the track cools through each session, and no rain is expected.
+
+**THE WEEKLY WATCHLIST**
+
+🟢 BUY
+
+**Max Verstappen**
+
+Verstappen has won the Qatar Grand Prix three years in a row, in 2023, 2024 and 2025, which makes him the most successful driver at the circuit. He arrives off a win in Las Vegas, his third victory in the last six rounds, after holding off Norris by 0.639 seconds.
+
+The fans have backed him all season. He won Driver of the Day in Las Vegas, his seventh in the last eight races, with Austin the only exception, and he also took it at the Qatar Grand Prix last year. A driver with a perfect record at a circuit and this much form behind him is the obvious 2x Boost candidate.
+
+**Oscar Piastri**
+
+Piastri has finished on the podium in every Qatar appearance since joining the grid in 2023, across both Sprints and Grands Prix. He won the Sprint three years running and took the chequered flag second in last year's Grand Prix, behind Verstappen.
+
+He arrives on the back of his best weekend of the season. Third place in Las Vegas returned 57 fantasy points, built on 24 overtakes and 14 positions gained, both season highs for him. That beat the 43 points he scored on his way to the Japan podium, and you have to go back to the 2025 Miami Sprint weekend, and the 58 he banked there, to find a bigger haul. It is also the highest single fantasy score of his career on a non-Sprint weekend. Lusail is the one circuit where his podium rate is perfect, so he is a strong second premium pick.
+
+Honourable mentions go to Pierre Gasly and Carlos Sainz, who finished fifth and eighth in Las Vegas.
+
+🟡 HOLD
+
+**Kimi Antonelli**
+
+Antonelli set the fastest time in Las Vegas Qualifying but lost pole to a five-place grid penalty for exceeding his engine allocation, then fought back to fourth after losing a podium in the closing laps. It was still a strong recovery from sixth on the grid, and the champion has been a reliable scorer all year.
+
+He leads the championship by 98 points with one round left, so he has nothing to prove, but Mercedes have been quick at most circuits this season. Anyone who owns him should keep him rather than spend a transfer.
+
+**Lando Norris**
+
+Norris finished second in Las Vegas after recovering from 11th during the opening stint, having briefly led before Verstappen counterattacked. He also won at Interlagos two races ago, so McLaren have found pace at the end of the season.
+
+Lusail has been a strong circuit for the team, with Norris setting the lap record there in 2024 and finishing on the podium from tenth on the grid in 2023. He is worth holding, although Piastri's record at this circuit is the stronger of the two.
+
+🔴 SELL
+
+**Nico Hulkenberg**
+
+Hulkenberg has retired from the last two Qatar Grands Prix, in 2024 and 2025, which made him the first driver to record multiple retirements at the event. That is a poor record at a circuit as demanding as Lusail, where sustained corner loads and a mandatory two-stop race leave little room for a car to survive untroubled.
+
+He has also been outscored by his team-mate in fantasy at each of the last four race weekends. If you are looking to make a midfield driver swap, Hulkenberg is a clear choice to move on.
+
+**Ferrari assets**
+
+The Ferrari constructor has not been a top-three fantasy scoring asset across either Brazil or Las Vegas, and in Las Vegas the Scuderia became the first front-running team this season to see both drivers eliminated before Q3. Hamilton recovered to seventh and Leclerc to tenth, which left the team with seven points from a weekend that started on the back foot.
+
+That follows a run which included a first-lap clash between the pair in Mexico City and a São Paulo weekend worth six points between them. Leclerc finished eighth at Lusail last year, equalling his worst result at the circuit, and with a mandatory two-stop race putting a premium on execution, both Ferrari drivers and the constructor are hard to back.
+
+**THE CHIPS**
+
+With only Qatar and Abu Dhabi left, any chip still unused needs a home now, and the order of priority runs Limitless, 3x Boost, No Negative, Wildcard, Final Fix and then Autopilot. Limitless comes first because it removes the cost cap for the weekend and lets you build around the drivers with the strongest Lusail records, and a dry forecast with three practice sessions gives you the evidence to commit.
+
+3x Boost is next, putting one driver on 3x and a second on 2x, with Verstappen and Piastri the cleanest pairing on the circuit form above. No Negative follows, which matters more than usual at a track where a mandatory two-stop race and sustained corner loads raise the risk of a retirement. Wildcard suits anyone who needs a rebuild before the finale, while Final Fix and Autopilot sit last, as neither adds much on a weekend with no Sprint and no rain in the forecast.`,
+  },
+  {
     slug: 'las-vegas-gp-2026-what-we-learned',
     title: 'What We Learned: Las Vegas Grand Prix',
     excerpt: "Max Verstappen survives 35 lead changes to win on the Strip for a third time, McLaren grab a double podium, George Russell's words come back to bite him, and Ferrari's drivers collide again. Here is what the 2026 Las Vegas Grand Prix told us.",
